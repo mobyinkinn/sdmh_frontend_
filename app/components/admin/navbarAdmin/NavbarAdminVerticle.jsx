@@ -1,7 +1,11 @@
 import { Stack, Typography } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import {
+  NavTableCell,
+  NavTableRow,
+} from "@/app/styledComponents/admin/NavTable";
 
-const NavData = [
+const navData = [
   { id: 0, name: "User Management", icon: ManageAccountsIcon },
   { id: 1, name: "Departments", icon: ManageAccountsIcon },
   { id: 2, name: "Doctors", icon: ManageAccountsIcon },
@@ -25,7 +29,14 @@ const NavData = [
 
 export default function NavbarAdmin() {
   return (
-    <Stack backgroundColor={"#3E5468"} height={"100%"} width={"300px"}>
+    <Stack
+      backgroundColor={"#3E5468"}
+      height={"90vh"}
+      width={"300px"}
+      sx={{
+        overflowY: "scroll",
+      }}
+    >
       <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
         <Typography
           sx={{
@@ -43,6 +54,24 @@ export default function NavbarAdmin() {
         >
           Quick Links
         </Typography>
+      </Stack>
+      <Stack>
+        <table
+          style={{
+            borderCollapse: "collapse",
+          }}
+        >
+          {navData.map((el, i) => {
+            return (
+              <NavTableRow>
+                <NavTableCell>
+                  <el.icon width={"50px"} height={"50px"} icon />
+                </NavTableCell>
+                <NavTableCell>{el.name}</NavTableCell>
+              </NavTableRow>
+            );
+          })}
+        </table>
       </Stack>
     </Stack>
   );

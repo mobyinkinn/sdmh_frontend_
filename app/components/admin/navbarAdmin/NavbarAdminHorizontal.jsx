@@ -6,6 +6,7 @@ import { NavText } from "@/app/styledComponents/admin/Text";
 export default function NavbarAdminHorizontal() {
   return (
     <Stack
+      height={"10vh"}
       backgroundColor={"#25313E"}
       padding={"10px"}
       direction={"row"}
