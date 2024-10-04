@@ -2,11 +2,11 @@
 
 import styled from "@emotion/styled";
 
-const NavTableCell = styled.td`
-  width: fit-content;
-  padding: 8px;
-  border: 1px solid #6a87a5;
-`;
+const NavTableCell = styled.td((props) => ({
+  padding: "8px",
+  border: "1px solid #6a87a5",
+  width: props.icon && "40px",
+}));
 
 const NavTableRow = styled.tr`
   color: #95bce2;

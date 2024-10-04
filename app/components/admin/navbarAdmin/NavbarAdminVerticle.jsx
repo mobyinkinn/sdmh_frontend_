@@ -29,14 +29,7 @@ const navData = [
 
 export default function NavbarAdmin() {
   return (
-    <Stack
-      backgroundColor={"#3E5468"}
-      height={"90vh"}
-      width={"300px"}
-      sx={{
-        overflowY: "scroll",
-      }}
-    >
+    <Stack backgroundColor={"#3E5468"} height={"90vh"} width={"300px"}>
       <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
         <Typography
           sx={{
@@ -55,22 +48,28 @@ export default function NavbarAdmin() {
           Quick Links
         </Typography>
       </Stack>
-      <Stack>
+      <Stack
+        sx={{
+          overflow: "auto",
+        }}
+      >
         <table
           style={{
             borderCollapse: "collapse",
           }}
         >
-          {navData.map((el, i) => {
-            return (
-              <NavTableRow>
-                <NavTableCell>
-                  <el.icon width={"50px"} height={"50px"} icon />
-                </NavTableCell>
-                <NavTableCell>{el.name}</NavTableCell>
-              </NavTableRow>
-            );
-          })}
+          <tbody>
+            {navData.map((el, i) => {
+              return (
+                <NavTableRow key={el.id}>
+                  <NavTableCell icon>
+                    <el.icon width={"50px"} height={"50px"} />
+                  </NavTableCell>
+                  <NavTableCell>{el.name}</NavTableCell>
+                </NavTableRow>
+              );
+            })}
+          </tbody>
         </table>
       </Stack>
     </Stack>
