@@ -32,7 +32,7 @@ const Label = styled.span((props) => ({
 const InputSection = styled.div((props) => ({
   width: "100%",
   display: "flex",
-  alignItems: "center",
+  alignItems: props.alignItems || "center",
   margin: "5px 0",
   gap: "20px",
 }));

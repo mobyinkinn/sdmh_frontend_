@@ -72,10 +72,18 @@ const BlueButtonSmall = styled.button((props) => ({
   },
 }));
 
+const StatusLabel = styled.span((props) => ({
+  padding: "5px",
+  color: "white",
+  backgroundColor: props.status === "Active" ? "#5CB85C" : "#D9534F",
+  borderRadius: "5px",
+}));
+
 export {
   GreenButtonSmall,
   GrayButtonSmall,
   StyledButton,
   BlueButtonSmall,
   RedButtonSmall,
+  StatusLabel,
 };

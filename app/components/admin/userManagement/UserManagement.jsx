@@ -40,32 +40,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import BlockIcon from "@mui/icons-material/Block";
 
 import { useState } from "react";
+import AddUser from "./parts/AddUser";
 
 const userDetails = [
   { id: 0, name: "Yogesh", username: "yogesh", status: "active" },
   { id: 1, name: "Test", username: "test1", status: "active" },
   { id: 2, name: "Test2", username: "test2", status: "inactive" },
   { id: 3, name: "Test3", username: "test3", status: "active" },
-];
-
-const menu = [
-  "Departments",
-  "Doctors",
-  "Appointments",
-  "Academics",
-  "Download Files",
-  "Academics Notices",
-  "Tpa Logo",
-  "Events",
-  "Testimonials",
-  "Award Accreditation",
-  "Enquiries",
-  "Contact",
-  "Videos",
-  "Latest Openings",
-  "Careers",
-  "Health Plans",
-  "Health Tips",
 ];
 
 export default function UserManagement() {
@@ -75,7 +56,7 @@ export default function UserManagement() {
       <NavbarAdminHorizontal />
       <Stack direction={"row"}>
         <NavbarAdmin />
-        <Stack width={"100%"}>
+        <Stack width={"100%"} position={"relative"}>
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <MainHead>User Management</MainHead>
@@ -86,50 +67,7 @@ export default function UserManagement() {
                 Add User
               </StyledButton>
             </Stack>
-            {viewForm && (
-              <InnerContainer>
-                <InnerContainerHead>New User</InnerContainerHead>
-                <InnerContainerHeadSection column>
-                  <InputSection>
-                    <Label>Name</Label>
-                    <TextInput placeholder="Enter Name" />
-                  </InputSection>
-                  <InputSection>
-                    <Label>Username</Label>
-                    <TextInput placeholder="Enter Username" />
-                  </InputSection>
-                  <InputSection>
-                    <Label>Password</Label>
-                    <TextInput placeholder="Enter Password" type="password" />
-                  </InputSection>
-                  <InputSection>
-                    <Label>Select Menu</Label>
-                    <Stack
-                      direction={"row"}
-                      flexWrap={"wrap"}
-                      maxWidth={"700px"}
-                      gap={"10px"}
-                    >
-                      {menu.map((el, i) => {
-                        return (
-                          <Checkbox>
-                            <input type="checkbox" />
-                            <CheckboxLabel>{el}</CheckboxLabel>
-                          </Checkbox>
-                        );
-                      })}
-                    </Stack>
-                  </InputSection>
-                  <InputSection>
-                    <Label></Label>
-                    <Stack direction={"row"} gap={"10px"}>
-                      <GreenButtonSmall>Save</GreenButtonSmall>
-                      <BlueButtonSmall>Cancel</BlueButtonSmall>
-                    </Stack>
-                  </InputSection>
-                </InnerContainerHeadSection>
-              </InnerContainer>
-            )}
+            {viewForm && <AddUser />}
             <InnerContainer>
               <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
@@ -141,7 +79,7 @@ export default function UserManagement() {
                 <Table
                   sx={{ minWidth: 650 }}
                   size="medium"
-                  aria-label="a dense table"
+                  aria-label="Admin Users"
                 >
                   <TableHead>
                     <TableRow>
@@ -155,7 +93,7 @@ export default function UserManagement() {
                   <TableBody>
                     {userDetails.map((row) => (
                       <TableRow
-                        key={row.name}
+                        key={row.id}
                         sx={{
                           backgroundColor: "white",
                           "&:last-child td, &:last-child th": { border: 0 },
