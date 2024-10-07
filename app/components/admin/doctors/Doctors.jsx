@@ -38,33 +38,60 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import departmentImg from "./parts/assets/untitled.jpg";
 import Image from "next/image";
 import { useState } from "react";
-import AddDepartment from "./parts/AddDepartment";
+import AddDoctors from "./parts/AddDoctors";
 
-const departmentData = [
+const doctorsData = [
   {
     id: 0,
-    name: "Child Devlopement Center(CDC)",
+    department: "Shoulder Surgery",
+    name: "Dr. Deen Dayal Nagar",
     image: departmentImg,
+    AvailableOn: [
+      { day: "Mon", at: "OT" },
+      { day: "Tue", at: "OT" },
+      { day: "Wed", at: "OT" },
+      { day: "Fri", at: "OT" },
+    ],
+    floor: "2",
+    room: "205",
     status: "Active",
     Created: "02/24/2022",
   },
   {
     id: 1,
-    name: "Shoulder Surgery",
+    department: "Hip Surgery",
+    name: "Dr. Rehanuddin",
     image: departmentImg,
-    status: "Inactive",
+    floor: "2",
+    AvailableOn: [
+      { day: "Mon", at: "OT" },
+      { day: "Tue", at: "OT" },
+      { day: "Wed", at: "OT" },
+      { day: "Fri", at: "OT" },
+    ],
+    room: "205",
+    status: "Active",
     Created: "02/24/2022",
   },
   {
     id: 2,
-    name: "Hip Surgery",
+    department: "Cardiology",
+    name: "Dr. Vipul Malpani",
     image: departmentImg,
+    floor: "2",
+    room: "205",
+    AvailableOn: [
+      { day: "Mon", at: "OT" },
+      { day: "Tue", at: "OT" },
+      { day: "Wed", at: "OT" },
+      { day: "Fri", at: "OT" },
+    ],
     status: "Active",
     Created: "02/24/2022",
   },
 ];
 
-export default function Departments() {
+export default function Doctors() {
   const [viewForm, setViewForm] = useState(false);
   return (
     <Stack>
@@ -74,12 +101,12 @@ export default function Departments() {
         <Stack width={"100%"} position={"relative"}>
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Departments</MainHead>
+              <MainHead>Doctors</MainHead>
               <StyledButton onClick={() => setViewForm(true)}>
-                Add Department
+                Add Doctors
               </StyledButton>
             </Stack>
-            {viewForm && <AddDepartment setViewForm={setViewForm} />}
+            {viewForm && <AddDoctors setViewForm={setViewForm} />}
             <InnerContainer>
               <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
@@ -88,23 +115,23 @@ export default function Departments() {
                 <GrayButtonSmall>Reset</GrayButtonSmall>
               </InnerContainerHeadSection>
               <TableContainer>
-                <Table
-                  sx={{ minWidth: 650 }}
-                  size="large"
-                  aria-label="Departments"
-                >
+                <Table sx={{ minWidth: 650 }} size="large" aria-label="Doctors">
                   <TableHead>
                     <TableRow>
                       <TableCell>#</TableCell>
+                      <TableCell>Department</TableCell>
                       <TableCell>Name</TableCell>
+                      <TableCell>Available on</TableCell>
+                      <TableCell>Floor no.</TableCell>
+                      <TableCell>Room no.</TableCell>
                       <TableCell>Image</TableCell>
-                      <TableCell>Created at</TableCell>
                       <TableCell>Status</TableCell>
+                      <TableCell>Created at</TableCell>
                       <TableCell>Actions</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {departmentData.map((row) => (
+                    {doctorsData.map((row) => (
                       <TableRow
                         key={row.id}
                         sx={{
@@ -112,25 +139,53 @@ export default function Departments() {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell component="th" scope="row">
+                        <TableCell
+                          sx={{ verticalAlign: "top" }}
+                          component="th"
+                          scope="row"
+                        >
                           {row.id + 1}
                         </TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.department}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.name}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          <Stack>
+                            {row.AvailableOn.map((el, i) => {
+                              return (
+                                <span key={i}>{`${el.day} ${el.at}`}</span>
+                              );
+                            })}
+                          </Stack>
+                        </TableCell>
+
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.floor}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.room}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <Image
                             src={row.image}
                             alt={row.name}
-                            width={20}
-                            height={20}
+                            width={40}
+                            height={40}
                           />
                         </TableCell>
-                        <TableCell>{row.Created}</TableCell>
-                        <TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <StatusLabel status={row.status}>
                             {row.status}
                           </StatusLabel>
                         </TableCell>
-                        <TableCell>
+
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.Created}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <Stack direction={"row"} gap={"8px"}>
                             {row.status === "Active" ? (
                               <GreenButtonSmall>

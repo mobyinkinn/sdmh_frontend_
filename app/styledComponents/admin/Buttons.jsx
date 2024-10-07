@@ -58,6 +58,20 @@ const RedButtonSmall = styled.button((props) => ({
   },
 }));
 
+const YellowButtonSmall = styled.button((props) => ({
+  backgroundColor: "#FFC333",
+  width: "fit-content",
+  outline: "none",
+  border: "none",
+  padding: "5px 10px",
+  color: "white",
+  cursor: "pointer",
+  borderRadius: "2px",
+  "&:hover": {
+    backgroundColor: "#FFBC1A",
+  },
+}));
+
 const BlueButtonSmall = styled.button((props) => ({
   backgroundColor: "#4CC0C1",
   width: "fit-content",
@@ -85,5 +99,6 @@ export {
   StyledButton,
   BlueButtonSmall,
   RedButtonSmall,
+  YellowButtonSmall,
   StatusLabel,
 };

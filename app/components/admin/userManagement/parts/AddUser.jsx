@@ -6,6 +6,7 @@ import {
 import {
   InnerContainer,
   InnerContainerHeadSection,
+  ModalContainer,
 } from "@/app/styledComponents/admin/Container";
 import {
   Checkbox,
@@ -40,16 +41,10 @@ const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];
 
 const donations = ["Donation tO", "Doners"];
 
-export default function AddUser() {
+export default function AddUser({ setViewForm }) {
   return (
-    <Box
-      sx={{
-        position: "absolute",
-        top: "0",
-        left: "0",
-      }}
-    >
-      <InnerContainer>
+    <ModalContainer>
+      <InnerContainer width={"80%"}>
         <InnerContainerHead>New User</InnerContainerHead>
         <InnerContainerHeadSection column>
           <InputSection>
@@ -122,11 +117,13 @@ export default function AddUser() {
             <Label></Label>
             <Stack direction={"row"} gap={"10px"}>
               <GreenButtonSmall>Save</GreenButtonSmall>
-              <BlueButtonSmall>Cancel</BlueButtonSmall>
+              <BlueButtonSmall onClick={() => setViewForm(false)}>
+                Cancel
+              </BlueButtonSmall>
             </Stack>
           </InputSection>
         </InnerContainerHeadSection>
       </InnerContainer>
-    </Box>
+    </ModalContainer>
   );
 }

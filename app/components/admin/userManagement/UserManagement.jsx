@@ -13,20 +13,12 @@ import {
   InnerContainerHeadSection,
 } from "@/app/styledComponents/admin/Container";
 import {
-  BlueButtonSmall,
   GrayButtonSmall,
   GreenButtonSmall,
-  RedButtonSmall,
   StyledButton,
+  YellowButtonSmall,
 } from "@/app/styledComponents/admin/Buttons";
-import {
-  Checkbox,
-  CheckboxLabel,
-  InputSection,
-  Label,
-  SearchInput,
-  TextInput,
-} from "@/app/styledComponents/admin/Inputs";
+import { SearchInput } from "@/app/styledComponents/admin/Inputs";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -60,14 +52,11 @@ export default function UserManagement() {
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <MainHead>User Management</MainHead>
-              <StyledButton
-                color="#65BD77"
-                onClick={() => setViewForm((view) => !view)}
-              >
+              <StyledButton color="#65BD77" onClick={() => setViewForm(true)}>
                 Add User
               </StyledButton>
             </Stack>
-            {viewForm && <AddUser />}
+            {viewForm && <AddUser setViewForm={setViewForm} />}
             <InnerContainer>
               <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
@@ -125,14 +114,14 @@ export default function UserManagement() {
                               />
                             </GrayButtonSmall>
                           )}
-                          <RedButtonSmall>
+                          <YellowButtonSmall>
                             <EditIcon
                               sx={{
                                 width: "15px",
                                 height: "15px",
                               }}
                             />
-                          </RedButtonSmall>
+                          </YellowButtonSmall>
                         </TableCell>
                       </TableRow>
                     ))}

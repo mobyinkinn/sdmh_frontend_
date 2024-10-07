@@ -21,6 +21,7 @@ import {
   MainHead,
 } from "@/app/styledComponents/admin/AdminHead";
 import {
+  BlueButtonSmall,
   GrayButtonSmall,
   GreenButtonSmall,
   RedButtonSmall,
@@ -34,37 +35,50 @@ import DoneIcon from "@mui/icons-material/Done";
 import EditIcon from "@mui/icons-material/Edit";
 import BlockIcon from "@mui/icons-material/Block";
 import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
-import departmentImg from "./parts/assets/untitled.jpg";
+// import departmentImg from "./parts/assets/untitled.jpg";
 import Image from "next/image";
 import { useState } from "react";
-import AddDepartment from "./parts/AddDepartment";
+// import AddDoctors from "./parts/AddDoctors";
 
-const departmentData = [
+const doctorsData = [
   {
     id: 0,
-    name: "Child Devlopement Center(CDC)",
-    image: departmentImg,
-    status: "Active",
+    department: "Shoulder Surgery",
+    doctor: "Dr. Deen Dayal Nagar",
+    patient: "Rajkumar",
+    patientEmail: "R@gmail.com",
+    phoneNo: "1234567890",
+    address: "",
+    city: "Jaipur",
     Created: "02/24/2022",
   },
   {
     id: 1,
-    name: "Shoulder Surgery",
-    image: departmentImg,
-    status: "Inactive",
+    department: "Shoulder Surgery",
+    doctor: "Dr. Deen Dayal Nagar",
+    patient: "Raj",
+    patientEmail: "Raj@gmail.com",
+    phoneNo: "1234567890",
+    address: "",
+    city: "Jaipur",
     Created: "02/24/2022",
   },
   {
     id: 2,
-    name: "Hip Surgery",
-    image: departmentImg,
-    status: "Active",
+    department: "Hip Surgery",
+    doctor: "Dr. Deen Dayal Nagar",
+    patient: "Kumar",
+    patientEmail: "K@gmail.com",
+    phoneNo: "1234567890",
+    address: "",
+    city: "Jaipur",
     Created: "02/24/2022",
   },
 ];
 
-export default function Departments() {
+export default function Appointments() {
   const [viewForm, setViewForm] = useState(false);
   return (
     <Stack>
@@ -74,12 +88,9 @@ export default function Departments() {
         <Stack width={"100%"} position={"relative"}>
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Departments</MainHead>
-              <StyledButton onClick={() => setViewForm(true)}>
-                Add Department
-              </StyledButton>
+              <MainHead>Appointments</MainHead>
             </Stack>
-            {viewForm && <AddDepartment setViewForm={setViewForm} />}
+            {/* {viewForm && <AddDoctors setViewForm={setViewForm} />} */}
             <InnerContainer>
               <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
@@ -91,20 +102,24 @@ export default function Departments() {
                 <Table
                   sx={{ minWidth: 650 }}
                   size="large"
-                  aria-label="Departments"
+                  aria-label="Appointments"
                 >
                   <TableHead>
                     <TableRow>
                       <TableCell>#</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Image</TableCell>
+                      <TableCell>Department</TableCell>
+                      <TableCell>Doctor Name</TableCell>
+                      <TableCell>Patient Name</TableCell>
+                      <TableCell>Patient Email</TableCell>
+                      <TableCell>Patient Phone No.</TableCell>
+                      <TableCell>Address</TableCell>
+                      <TableCell>City Name</TableCell>
                       <TableCell>Created at</TableCell>
-                      <TableCell>Status</TableCell>
                       <TableCell>Actions</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {departmentData.map((row) => (
+                    {doctorsData.map((row) => (
                       <TableRow
                         key={row.id}
                         sx={{
@@ -112,53 +127,48 @@ export default function Departments() {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell component="th" scope="row">
+                        <TableCell
+                          sx={{ verticalAlign: "top" }}
+                          component="th"
+                          scope="row"
+                        >
                           {row.id + 1}
                         </TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>
-                          <Image
-                            src={row.image}
-                            alt={row.name}
-                            width={20}
-                            height={20}
-                          />
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.department}
                         </TableCell>
-                        <TableCell>{row.Created}</TableCell>
-                        <TableCell>
-                          <StatusLabel status={row.status}>
-                            {row.status}
-                          </StatusLabel>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.doctor}
                         </TableCell>
-                        <TableCell>
+
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.patient}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.patientEmail}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.phoneNo}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.address}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.city}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.Created}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <Stack direction={"row"} gap={"8px"}>
-                            {row.status === "Active" ? (
-                              <GreenButtonSmall>
-                                <DoneIcon
-                                  sx={{
-                                    width: "15px",
-                                    height: "15px",
-                                  }}
-                                />
-                              </GreenButtonSmall>
-                            ) : (
-                              <GrayButtonSmall>
-                                <BlockIcon
-                                  sx={{
-                                    width: "15px",
-                                    height: "15px",
-                                  }}
-                                />
-                              </GrayButtonSmall>
-                            )}
-                            <YellowButtonSmall>
-                              <EditIcon
+                            <BlueButtonSmall>
+                              <VisibilityIcon
                                 sx={{
                                   width: "15px",
                                   height: "15px",
                                 }}
                               />
-                            </YellowButtonSmall>
+                            </BlueButtonSmall>
                             <RedButtonSmall>
                               <DeleteIcon
                                 sx={{

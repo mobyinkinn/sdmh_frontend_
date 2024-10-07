@@ -38,33 +38,33 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import departmentImg from "./parts/assets/untitled.jpg";
 import Image from "next/image";
 import { useState } from "react";
-import AddDepartment from "./parts/AddDepartment";
+import AddNotice from "./parts/AddNotice";
 
-const departmentData = [
+const doctorsData = [
   {
     id: 0,
-    name: "Child Devlopement Center(CDC)",
+    name: "IEC Research Protocol",
     image: departmentImg,
     status: "Active",
     Created: "02/24/2022",
   },
   {
     id: 1,
-    name: "Shoulder Surgery",
+    name: "IEC Research Protocol",
     image: departmentImg,
-    status: "Inactive",
+    status: "Active",
     Created: "02/24/2022",
   },
   {
     id: 2,
-    name: "Hip Surgery",
+    name: "IEC Research Protocol",
     image: departmentImg,
     status: "Active",
     Created: "02/24/2022",
   },
 ];
 
-export default function Departments() {
+export default function AcademicNotices() {
   const [viewForm, setViewForm] = useState(false);
   return (
     <Stack>
@@ -74,12 +74,12 @@ export default function Departments() {
         <Stack width={"100%"} position={"relative"}>
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Departments</MainHead>
+              <MainHead>Academic Notices</MainHead>
               <StyledButton onClick={() => setViewForm(true)}>
-                Add Department
+                Add Academics Notices
               </StyledButton>
             </Stack>
-            {viewForm && <AddDepartment setViewForm={setViewForm} />}
+            {viewForm && <AddNotice setViewForm={setViewForm} />}
             <InnerContainer>
               <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
@@ -91,20 +91,20 @@ export default function Departments() {
                 <Table
                   sx={{ minWidth: 650 }}
                   size="large"
-                  aria-label="Departments"
+                  aria-label="Academics Notices"
                 >
                   <TableHead>
                     <TableRow>
                       <TableCell>#</TableCell>
                       <TableCell>Name</TableCell>
                       <TableCell>Image</TableCell>
-                      <TableCell>Created at</TableCell>
                       <TableCell>Status</TableCell>
+                      <TableCell>Created at</TableCell>
                       <TableCell>Actions</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {departmentData.map((row) => (
+                    {doctorsData.map((row) => (
                       <TableRow
                         key={row.id}
                         sx={{
@@ -112,25 +112,35 @@ export default function Departments() {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell component="th" scope="row">
+                        <TableCell
+                          sx={{ verticalAlign: "top" }}
+                          component="th"
+                          scope="row"
+                        >
                           {row.id + 1}
                         </TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.name}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <Image
                             src={row.image}
                             alt={row.name}
-                            width={20}
-                            height={20}
+                            width={40}
+                            height={40}
                           />
                         </TableCell>
-                        <TableCell>{row.Created}</TableCell>
-                        <TableCell>
+
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <StatusLabel status={row.status}>
                             {row.status}
                           </StatusLabel>
                         </TableCell>
-                        <TableCell>
+
+                        <TableCell sx={{ verticalAlign: "top" }}>
+                          {row.Created}
+                        </TableCell>
+                        <TableCell sx={{ verticalAlign: "top" }}>
                           <Stack direction={"row"} gap={"8px"}>
                             {row.status === "Active" ? (
                               <GreenButtonSmall>

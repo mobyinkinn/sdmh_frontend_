@@ -13,7 +13,7 @@ const Container = styled.div((props) => ({
 const InnerContainer = styled.div((props) => ({
   marginTop: "20px",
   border: "1px solid #ddd",
-  width: "100%",
+  width: props.width || "100%",
   backgroundColor: "#F7F7F7",
   borderRadius: "3px",
   display: "flex",
@@ -30,4 +30,16 @@ const InnerContainerHeadSection = styled.div((props) => ({
   gap: "10px",
 }));
 
-export { Container, InnerContainer, InnerContainerHeadSection };
+const ModalContainer = styled.div((props) => ({
+  position: "absolute",
+  top: "0",
+  left: "0",
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "rgba(0, 0, 0, 0.4)",
+}));
+
+export { Container, InnerContainer, InnerContainerHeadSection, ModalContainer };
