@@ -11,8 +11,6 @@ import {
   ModalContainer,
 } from "@/app/styledComponents/admin/Container";
 import {
-  Checkbox,
-  CheckboxLabel,
   InputSection,
   Label,
   TextInput,
@@ -44,19 +42,20 @@ const menu = [
 
 const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];
 
-const donations = ["Donation tO", "Doners"];
+const donations = ["Donation to", "Doners"];
 
 export default function AddDepartment({ setViewForm }) {
   const editor = useRef(null);
   const [content, setContent] = useState("");
-
   const config = useMemo(
     () => ({
       readonly: false,
-      placeholder: placeholder || "Start typing...",
+      placeholder: "Start typing...",
+      language: "en", // Set default language
     }),
-    [placeholder]
+    []
   );
+
   return (
     <ModalContainer>
       <InnerContainer width={"80%"}>
