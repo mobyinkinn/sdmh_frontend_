@@ -4,16 +4,15 @@ import styled from "@emotion/styled";
 
 const NavTableCell = styled.td((props) => ({
   padding: "8px",
-  border: "1px solid #6a87a5",
+  color: "#717171",
   width: props.icon && "40px",
 }));
 
 const NavTableRow = styled.tr`
-  color: #95bce2;
-  backgroundcolor: #41586e;
+  transition: all 0.5s ease;
   &:hover {
-    color: #6a87a5;
     cursor: pointer;
+    box-shadow: 3px 3px 20px 1px rgba(0, 0, 0, 0.1);
   }
 `;
 

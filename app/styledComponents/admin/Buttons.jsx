@@ -3,16 +3,18 @@
 import styled from "@emotion/styled";
 
 const StyledButton = styled.button((props) => ({
-  backgroundColor: "#65BD77",
+  backgroundColor: "transparent",
+  border: "1px solid #65BD77",
+  color: "#65BD77",
   width: "fit-content",
   outline: "none",
-  border: "none",
   padding: "10px 40px",
   borderRadius: "3px",
-  color: "white",
   cursor: "pointer",
+  transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: "#53B567",
+    backgroundColor: "#65BD77",
+    color: "white",
   },
 }));
 
@@ -31,58 +33,67 @@ const GrayButtonSmall = styled.button((props) => ({
 }));
 
 const GreenButtonSmall = styled.button((props) => ({
-  backgroundColor: "#65BD77",
+  backgroundColor: "transparent",
   width: "fit-content",
   outline: "none",
-  border: "none",
+  border: "1px solid #65BD77",
   padding: "5px 10px",
-  color: "white",
+  color: "#65BD77",
   cursor: "pointer",
   borderRadius: "2px",
+  transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: "#53B567",
+    backgroundColor: "#65BD77",
+    color: "white",
   },
 }));
 
 const RedButtonSmall = styled.button((props) => ({
-  backgroundColor: "#FB6B5B",
+  backgroundColor: "transparent",
   width: "fit-content",
   outline: "none",
-  border: "none",
+  border: "1px solid #FB6B5B",
   padding: "5px 10px",
-  color: "white",
+  color: "#FB6B5B",
   cursor: "pointer",
   borderRadius: "2px",
+  transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: "#FA5542",
+    backgroundColor: "#FB6B5B",
+    color: "white",
   },
 }));
 
 const YellowButtonSmall = styled.button((props) => ({
-  backgroundColor: "#FFC333",
+  backgroundColor: "transparent",
+  border: "1px solid #FFC333",
   width: "fit-content",
+  border: "1px solid #FFC333",
   outline: "none",
-  border: "none",
   padding: "5px 10px",
-  color: "white",
+  color: "#FFC333",
   cursor: "pointer",
   borderRadius: "2px",
+  transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: "#FFBC1A",
+    backgroundColor: "#FFC333",
+    color: "white",
   },
 }));
 
 const BlueButtonSmall = styled.button((props) => ({
-  backgroundColor: "#4CC0C1",
+  backgroundColor: "transparent",
   width: "fit-content",
   outline: "none",
-  border: "none",
+  border: "1px solid #3f9eff",
   padding: "5px 10px",
-  color: "white",
+  color: "#3f9eff",
   cursor: "pointer",
   borderRadius: "2px",
+  transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: "#3FB4B5",
+    backgroundColor: "#3f9eff",
+    color: "white",
   },
 }));
 

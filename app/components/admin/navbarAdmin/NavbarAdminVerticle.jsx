@@ -138,7 +138,7 @@ const navData = [
 export default function NavbarAdmin() {
   const router = useRouter();
   return (
-    <Stack backgroundColor={"#3E5468"} height={"90vh"} width={"300px"}>
+    <Stack backgroundColor={"#fff"} height={"90vh"} width={"300px"}>
       <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
         <Typography
           sx={{

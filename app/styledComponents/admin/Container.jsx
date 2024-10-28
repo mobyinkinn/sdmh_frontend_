@@ -26,6 +26,7 @@ const InnerContainerHeadSection = styled.div((props) => ({
   borderBottom: "1px solid #ddd",
   padding: "15px",
   display: "flex",
+  justifyContent: "end",
   flexDirection: props.column && "column",
   gap: "10px",
 }));
