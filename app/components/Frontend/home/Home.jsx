@@ -1,10 +1,16 @@
-import React from 'react'
-import HoverYears from './parts/HoverYears'
+import React from "react";
+import HoverYears from "./parts/HoverYears";
+import Navbar from "../navbar/Nav";
+import Hero from "./parts/Hero";
 
 const Home = () => {
   return (
-    <HoverYears/>
-  )
-}
+    <>
+      <Navbar />
+      <Hero />
+      <HoverYears />
+    </>
+  );
+};
 
-export default Home
+export default Home;
