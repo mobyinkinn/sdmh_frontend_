@@ -1,6 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material";
 import banner from "../assets/heroBanner.png";
 import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
+import { FaSearch } from "react-icons/fa";
+
+import opinion from "../assets/icons/opinion.png";
+import query from "../assets/icons/query.png";
+import roomTour from "../assets/icons/roomTour.png";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -23,12 +29,23 @@ export default function Hero() {
         color="white"
         alignItems={"center"}
         justifyContent={"center"}
-        gap={"10px"}
+        gap={"20px"}
       >
-        <SearchInputHero contentEditable>Search</SearchInputHero>
-        <Typography fontSize={"1.2rem"}>Room Tour</Typography>
-        <Typography fontSize={"1.2rem"}>II Opinion</Typography>
-        <Typography fontSize={"1.2rem"}>Query Us</Typography>
+        <SearchInputHero contentEditable>
+          <FaSearch /> Search
+        </SearchInputHero>
+        <Stack direction={"row"} gap={"20px"}>
+          <Image src={roomTour} alt="" height={25} width={25} />
+          <Typography fontSize={"1.2rem"}>Room Tour</Typography>
+        </Stack>
+        <Stack direction={"row"} gap={"20px"}>
+          <Image src={opinion} alt="" height={20} width={30} />
+          <Typography fontSize={"1.2rem"}>II Opinion</Typography>
+        </Stack>
+        <Stack direction={"row"} gap={"20px"}>
+          <Image src={query} alt="" height={20} width={25} />
+          <Typography fontSize={"1.2rem"}>Query Us</Typography>
+        </Stack>
       </Stack>
     </Stack>
   );

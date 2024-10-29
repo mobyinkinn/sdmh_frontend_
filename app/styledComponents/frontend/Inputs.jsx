@@ -14,12 +14,15 @@ const SearchInput = styled.input((props) => ({
 
 const SearchInputHero = styled.div((props) => ({
   //use contentEditable where ever you write this function
-  width: "200px",
   outline: "none",
+  width: "180px",
   border: "1px solid #fff",
   backgroundColor: "#fff",
-
-  padding: "10px 10px",
+  display: "flex",
+  alignItems: "center",
+  gap: "20px",
+  fontSize: "1.2rem",
+  padding: "10px 20px",
   borderRadius: "40px",
   color: "#379237",
 }));

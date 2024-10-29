@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import hoverbg from "../assets/hoverbg.png";
 import { TfiArrowCircleUp } from "react-icons/tfi";
 import { TfiArrowCircleDown } from "react-icons/tfi";
+import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 
 const HoverYears = () => {
   const [planetData, setPlanetData] = useState(0);
@@ -81,7 +82,7 @@ const HoverYears = () => {
   };
 
   return (
-    <Stack bgcolor={"#54B435"}>
+    <ContainerMain bgColor={"#54B435"}>
       <Typography color="#FCF9C6" fontSize={"55px"} textAlign={"center"}>
         SDMH Through These Years
       </Typography>
@@ -174,7 +175,7 @@ const HoverYears = () => {
           ))}
         </Stack>
       </Stack>
-    </Stack>
+    </ContainerMain>
   );
 };
 

@@ -37,5 +37,27 @@ const DarkGreenButtonSmallOutline = styled.button((props) => ({
     color: "white",
   },
 }));
+const ButtonSmallOutline = styled.button((props) => ({
+  backgroundColor: "transparent",
+  width: "fit-content",
+  outline: "none",
+  border: `1px solid ${props.color}`,
+  padding: "10px 30px",
+  color: props.color,
+  cursor: "pointer",
+  borderRadius: "200px",
+  display: "flex",
+  gap: "8px",
+  alignItems: "center",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    backgroundColor: props.color,
+    color: "white",
+  },
+}));
 
-export { DarkGreenButtonSmall, DarkGreenButtonSmallOutline };
+export {
+  DarkGreenButtonSmall,
+  DarkGreenButtonSmallOutline,
+  ButtonSmallOutline,
+};
