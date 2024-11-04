@@ -13,17 +13,16 @@ export default function Hero() {
     <Stack direction={"row"}>
       <Box
         height={"90vh"}
-        width={"80%"}
+        width={"100%"}
         sx={{
           backgroundImage: `url(${banner.src})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
-          borderRight: "1px solid black",
         }}
       ></Box>
 
-      <Stack
+      {/* <Stack
         backgroundColor={"#379237"}
         width={"20%"}
         color="white"
@@ -46,7 +45,7 @@ export default function Hero() {
           <Image src={query} alt="" height={20} width={25} />
           <Typography fontSize={"1.2rem"}>Query Us</Typography>
         </Stack>
-      </Stack>
+      </Stack> */}
     </Stack>
   );
 }
