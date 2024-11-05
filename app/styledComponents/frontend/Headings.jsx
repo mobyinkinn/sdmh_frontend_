@@ -21,7 +21,7 @@ const Head2 = styled.span((props) => ({
 const Head3 = styled.span((props) => ({
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
-  textAlign: props.align || "center",
+  textAlign: props.textAlign || "center",
   width: props.width,
   fontSize: "1.8rem",
 }));
