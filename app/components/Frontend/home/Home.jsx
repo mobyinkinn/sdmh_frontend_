@@ -14,6 +14,8 @@ import About from "./parts/About";
 import View from "./parts/360View";
 import Reviews from "./parts/Reviews";
 import Enquire from "./parts/Enquire";
+import MobileApp from "./parts/MoblieApp";
+import Qr from "./parts/Qr";
 
 const Home = () => {
   return (
@@ -33,6 +35,8 @@ const Home = () => {
       <Blog />
       <Reviews />
       <Enquire />
+      <MobileApp />
+      <Qr />
     </div>
   );
 };

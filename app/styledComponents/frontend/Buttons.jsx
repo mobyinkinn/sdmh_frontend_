@@ -19,6 +19,29 @@ const DarkGreenButtonSmall = styled.button((props) => ({
   "&:hover": {},
 }));
 
+const DarkGreenButton = styled.button((props) => ({
+  backgroundColor: "transparent",
+  width: "fit-content",
+  outline: "none",
+  border: "1px solid",
+  borderColor: props.bgColor || "#005900",
+  backgroundColor: props.bgColor || "#005900",
+  padding: "15px 45px",
+  margin: props.margin,
+  fontSize: "1.2rem",
+  color: "white",
+  cursor: "pointer",
+  borderRadius: props.borderRadius || "10px",
+  display: "flex",
+  gap: "8px",
+  alignItems: "center",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    backgroundColor: "transparent",
+    color: props.bgColor || "#005900",
+  },
+}));
+
 const DarkGreenButtonSmallOutline = styled.button((props) => ({
   backgroundColor: "transparent",
   width: "fit-content",
@@ -80,6 +103,7 @@ const ButtonMediumOutline = styled.button((props) => ({
 
 export {
   DarkGreenButtonSmall,
+  DarkGreenButton,
   DarkGreenButtonSmallOutline,
   ButtonSmallOutline,
   ButtonMediumOutline,
