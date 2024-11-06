@@ -214,6 +214,7 @@ export default function PatientStories() {
     <ContainerMain marginTop={"40px"}>
       <Head1>Patient Stories</Head1>
       <Stack
+        onMouseLeave={handleMouseLeave}
         direction="row"
         height="70vh"
         alignItems="center"
@@ -266,7 +267,6 @@ export default function PatientStories() {
         </Stack>
         <Box
           onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           sx={{
             width: "30%",
             height: "70vh",
