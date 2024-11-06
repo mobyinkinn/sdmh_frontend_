@@ -16,13 +16,13 @@ import { IoIosMail } from "react-icons/io";
 import { SlArrowRight } from "react-icons/sl";
 
 const navLinks = [
-  { id: 0, name: "About Us" },
-  { id: 0, name: "Center Of Excellence" },
-  { id: 0, name: "Patient Care & Service" },
-  { id: 0, name: "Appointment" },
-  { id: 0, name: "Academics" },
-  { id: 0, name: "Donation" },
-  { id: 0, name: "Contact Us" },
+  { id: 0, name: "About Us", lin: "/departments" },
+  { id: 0, name: "Center Of Excellence", lin: "/departments" },
+  { id: 0, name: "Patient Care & Service", lin: "/departments" },
+  { id: 0, name: "Appointment", lin: "/departments" },
+  { id: 0, name: "Academics", lin: "/departments" },
+  { id: 0, name: "Donation", lin: "/departments" },
+  { id: 0, name: "Contact Us", lin: "/departments" },
 ];
 
 export default function Navbar() {
@@ -91,7 +91,9 @@ export default function Navbar() {
         >
           {navLinks.map((el, i) => {
             return (
-              <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
+              <a href={el?.lin} style={{textDecoration:"none", color:"black"}}>
+                <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
+              </a>
             );
           })}
         </Stack>
