@@ -1,4 +1,4 @@
-import Coe from "@/app/components/Frontend/centerofexcellence/coe";
+import Coe from "@/app/components/Frontend/centerofexcellence/Coe";
 
 export default function Index() {
   return <Coe />;
