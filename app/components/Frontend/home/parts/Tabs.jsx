@@ -147,7 +147,7 @@ export default function Tabs() {
               padding={"20px 45px"}
               fontSize={"1.3rem"}
               color={el.id === activeTab && "#54B435"}
-              fontWeight={el.id === activeTab && "bold"}
+              // fontWeight={el.id === activeTab && "bold"}
               sx={{
                 transition: "all 0.3s ease",
                 cursor: "pointer",

@@ -20,7 +20,7 @@ export default function Todo() {
     <ContainerMain bgColor={"#A8DF8E"}>
       <Stack direction={"row"} justifyContent={"center"}>
         <Head1 color="#000000">What would you like&nbsp;</Head1>
-        <Head1 color="#005900">to do today?</Head1>
+        <Head1 color="#005900">To Do today?</Head1>
       </Stack>
       <Stack
         marginTop={"30px"}

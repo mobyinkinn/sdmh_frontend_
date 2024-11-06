@@ -26,7 +26,7 @@ export default function About() {
       <Stack width={"60%"} gap={"20px"}>
         <Stack direction={"row"}>
           <Head1 color="black">About &nbsp;</Head1>
-          <Head1>Head</Head1>
+          <Head1>SDMH</Head1>
         </Stack>
         <Typography fontSize={"1.2rem"}>
           The Santokba Durlabhji Trust was founded in 1958 with a vision to

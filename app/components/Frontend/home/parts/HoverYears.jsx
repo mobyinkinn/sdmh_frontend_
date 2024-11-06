@@ -11,7 +11,7 @@ const HoverYears = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0); // Track hovered index
 
   // Years array
-  const years = ["1998", "1999", "2000", "2001", "2002"];
+  const years = ["1998", "1999", "2000", "2001", "2002","2003","2004","2005","2006","2007","2008","2009"];
 
   // Responsibility data corresponding to years
   const responsibility = [
@@ -60,6 +60,69 @@ const HoverYears = () => {
         },
       ],
     },
+    {
+      points: [
+        { Year: "2003" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
+    {
+      points: [
+        { Year: "2004" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
+    {
+      points: [
+        { Year: "2005" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
+    {
+      points: [
+        { Year: "2006" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
+    {
+      points: [
+        { Year: "2007" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
+    {
+      points: [
+        { Year: "2008" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
+    {
+      points: [
+        { Year: "2009" },
+        { Title: "Santokba Durlabhji Trust Created" },
+        {
+          Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
+        },
+      ],
+    },
   ];
 
   const clickUpArrow = () => {
@@ -83,7 +146,7 @@ const HoverYears = () => {
 
   return (
     <ContainerMain bgColor={"#54B435"}>
-      <Typography color="#FCF9C6" fontSize={"55px"} textAlign={"center"}>
+      <Typography color="#FCF9C6" fontSize={"55px"} textAlign={"center"} fontWeight={"bold"}>
         SDMH Through These Years
       </Typography>
       <Typography color="#FFFFFF" textAlign={"center"} fontSize={"25px"}>

@@ -74,6 +74,7 @@ export default function Navbar() {
               </DarkGreenButtonSmall>
             </Stack>
             <DarkGreenButtonSmallOutline>
+              <span style={{color:"red"}}>Emergency Number</span>
               <FaPhone style={{ width: "15px", height: "15px" }} /> 0141 352
               4444
             </DarkGreenButtonSmallOutline>

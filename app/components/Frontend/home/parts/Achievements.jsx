@@ -18,13 +18,13 @@ const achievementData = [
 export default function () {
   return (
     <ContainerMain bgColor={"#54B435"}>
-      <Head3 color="white" textAlign={"center"}>
+      <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
         Our
       </Head3>
       <Head1 color="#FCF9C6" textAlign={"center"}>
         Unmatched Achievements
       </Head1>
-      <Head3 color="white" textAlign={"center"}>
+      <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
         in teh Medical Field
       </Head3>
 
