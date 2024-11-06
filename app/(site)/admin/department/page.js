@@ -1,5 +1,5 @@
-import Departments from "@/app/components/admin/departments/Departments";
+import Departments from "../../../components/admin/departments/Departments";
 
 export default function Index() {
-  return <Departments />;
+  return <Departments/>;
 }
