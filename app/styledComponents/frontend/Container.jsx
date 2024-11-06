@@ -7,8 +7,9 @@ const ContainerMain = styled.div((props) => ({
   flexDirection: props.dir || "column",
   gap: props.gap || "20px",
   backgroundColor: props.bgColor,
-  alignItems: "center",
-  padding: "50px",
+  justifyContent: props.justifyContent,
+  alignItems: props.alignItems,
+  padding: props.padding || "50px",
 }));
 
 export { ContainerMain };

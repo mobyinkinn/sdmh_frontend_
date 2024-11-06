@@ -1,7 +1,15 @@
-const Para = styled.span((props) => ({
-  color: props.color || "#379237",
-  fontWeight: props.fontWeight || "bold",
-  textAlign: props.textAlign || "center",
+"use client";
+
+import styled from "@emotion/styled";
+
+const ParaNormal = styled.span((props) => ({
+  color: props.color || "black",
+  fontWeight: props.fontWeight,
+  textAlign: props.textAlign || "left",
   width: props.width,
-  fontSize: "3rem",
+  margin: props.margin,
+  lineHeight: props.lineHeight || "1.5",
+  fontSize: "1.2rem",
 }));
+
+export { ParaNormal };

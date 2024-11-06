@@ -98,8 +98,7 @@
 //     </ContainerMain>
 //   );
 // }
-"use client"
-
+"use client";
 
 // import { useState } from "react";
 // import { ContainerMain } from "@/app/styledComponents/frontend/Container";
@@ -211,7 +210,7 @@ export default function PatientStories() {
   const handleMouseLeave = () => setIsHovered(false);
 
   return (
-    <ContainerMain marginTop={"40px"}>
+    <ContainerMain marginTop={"40px"} alignItems="center">
       <Head1>Patient Stories</Head1>
       <Stack
         onMouseLeave={handleMouseLeave}
