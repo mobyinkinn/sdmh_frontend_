@@ -28,6 +28,26 @@ const filterData = [
   },
 ];
 
+const doctor = [
+  { id: 0, name: "Dr Yogesh Sewada" },
+  { id: 1, name: "Dr Nishit Lakhtakiya" },
+  { id: 2, name: "Dr Mohit Porwal" },
+  { id: 3, name: "Dr Jatin Hinduja" },
+  { id: 4, name: "Dr Vikas Sir Phd" },
+  { id: 5, name: "Dr Doom" },
+  { id: 6, name: "Dr Who" },
+];
+
+const specialityItems = [
+  { id: 0, name: "Lungs" },
+  { id: 1, name: "Neurology" },
+  { id: 2, name: "Cardiology" },
+  { id: 3, name: "Dental Science" },
+  { id: 4, name: "Dietetics" },
+  { id: 5, name: "General Medicine" },
+  { id: 6, name: "Urology" },
+];
+
 export default function FilterSection() {
   return (
     <Stack

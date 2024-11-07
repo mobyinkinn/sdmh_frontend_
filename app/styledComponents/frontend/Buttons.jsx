@@ -60,6 +60,24 @@ const DarkGreenButtonSmallOutline = styled.button((props) => ({
     color: "white",
   },
 }));
+
+const ButtonVerySmallOutline = styled.button((props) => ({
+  backgroundColor: "transparent",
+  width: "fit-content",
+  outline: "none",
+  border: `1px solid ${props.color}`,
+  padding: "5px 10px",
+  color: props.color,
+  cursor: "pointer",
+  borderRadius: "200px",
+  fontSize: "0.6rem",
+  display: "flex",
+  backgroundColor: props.bgColor,
+  gap: "8px",
+  alignItems: "center",
+  transition: "all 0.3s ease",
+}));
+
 const ButtonSmallOutline = styled.button((props) => ({
   backgroundColor: "transparent",
   width: "fit-content",
@@ -105,6 +123,7 @@ export {
   DarkGreenButtonSmall,
   DarkGreenButton,
   DarkGreenButtonSmallOutline,
+  ButtonVerySmallOutline,
   ButtonSmallOutline,
   ButtonMediumOutline,
 };

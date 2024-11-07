@@ -3,6 +3,7 @@
 import styled from "@emotion/styled";
 
 const Head1 = styled.span((props) => ({
+  position: props.position,
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
   textAlign: props.textAlign || "center",
@@ -13,8 +14,8 @@ const Head1 = styled.span((props) => ({
 const Head2 = styled.span((props) => ({
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
-  textAlign: "center",
   width: props.width,
+  textAlign: props.textAlign || "center",
   fontSize: "5rem",
 }));
 
@@ -29,7 +30,7 @@ const Head3 = styled.span((props) => ({
 const Head4 = styled.span((props) => ({
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
-  textAlign: props.align || "center",
+  textAlign: props.textAlign || "center",
   width: props.width,
   fontSize: "1.3rem",
 }));

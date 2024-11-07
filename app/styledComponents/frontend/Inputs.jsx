@@ -29,13 +29,18 @@ const SearchInputHero = styled.div((props) => ({
 const TextInput = styled.input((props) => ({
   width: props.width || "100%",
   outline: "none",
-  border: "1px solid #ddd",
+  border: "1px solid rgba(45, 45, 45, 0.2)",
   borderRadius: "100px",
   padding: "15px 30px",
   fontSize: "1.2rem",
-  color: "#000",
+  color: props.color || "#000000",
   backgroundColor: props.bgColor,
-  border: "1px solid rgba(45, 45, 45, 0.2)",
+
+  // Add ::placeholder styling here
+  "::placeholder": {
+    color: props.placeholderColor || "gray", // Set your desired placeholder color
+    opacity: 1,
+  },
 }));
 
 const TextArea = styled.textarea((props) => ({
