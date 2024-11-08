@@ -24,22 +24,144 @@ const doctorsData = [
       "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
     availablity: [1, 0, 0, 0, 0, 0, 0],
   },
+  {
+    id: 1,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 2,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 3,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 4,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 5,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 6,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 7,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 8,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+
+  {
+    id: 9,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+
+  {
+    id: 10,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    id: 11,
+    name: "Dr. Yogesh Sewada",
+    designation: "MBBS",
+    department: "Accident & Emergency",
+    img: img,
+    about:
+      "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
+    availablity: [1, 0, 0, 0, 0, 0, 0],
+  },
 ];
 
 const days = ["Sun", "Mon", "Tues", "Wed", "Thrus", "Fri", "Sat"];
 
 export default function Doctors() {
   return (
-    <Stack>
+    <Stack
+      direction={"row"}
+      flexWrap={"wrap"}
+      gap={"30px"}
+      justifyContent={"center"}
+      marginTop={"50px"}
+    >
       {doctorsData.map((el, i) => {
         return (
           <Stack
-            padding={"30px"}
-            height={"90vh"}
-            width={"30%"}
-            sx={{ border: "1px solid #F1EEEA" }}
+            height={"100vh"}
+            width={"45%"}
+            sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
-            <Box height={"50%"} width={"100%"} position={"relative"}>
+            <Box
+              height={"50%"}
+              backgroundColor={"#D9D9D9"}
+              width={"100%"}
+              position={"relative"}
+            >
               <Image
                 src={el.img}
                 alt=""
@@ -48,7 +170,14 @@ export default function Doctors() {
                 objectPosition="center bottom"
               />
             </Box>
-            <Stack marginTop={"20px"} gap={"10px"}>
+            <Stack
+              padding={"30px 50px"}
+              gap={"10px"}
+              sx={{
+                cursor: "pointer",
+                backgroundColor: "white",
+              }}
+            >
               <Head3 textAlign={"left"} color="black">
                 {el.name}
               </Head3>
