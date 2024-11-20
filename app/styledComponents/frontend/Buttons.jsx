@@ -29,7 +29,7 @@ const DarkGreenButton = styled.button((props) => ({
   padding: "15px 45px",
   margin: props.margin,
   fontSize: "1.2rem",
-  color: "white",
+  color: props.color || "white",
   cursor: "pointer",
   borderRadius: props.borderRadius || "10px",
   display: "flex",
@@ -94,16 +94,16 @@ const ButtonSmallOutline = styled.button((props) => ({
   transition: "all 0.3s ease",
   "&:hover": {
     backgroundColor: props.color,
-    color: "white",
+    color: props.hoverColor || "white",
   },
 }));
 
 const ButtonMediumOutline = styled.button((props) => ({
   backgroundColor: "transparent",
-  width: "fit-content",
+  width: props.width || "fit-content",
   outline: "none",
   border: `1px solid ${props.color}`,
-  padding: "15px 40px",
+  padding: props.padding || "15px 40px",
   fontSize: "1.2rem",
   color: props.color,
   cursor: "pointer",
@@ -115,7 +115,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   margin: props.margin,
   "&:hover": {
     backgroundColor: props.color,
-    color: "white",
+    color: props.hoverColor || "white",
   },
 }));
 
