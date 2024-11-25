@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import Banner from "./parts/Banner";
 import About from "./parts/About";
 import Visitors from "./parts/Visitors";
+import Help from "./parts/Help";
 
 export default function Donation() {
   return (
@@ -12,6 +13,7 @@ export default function Donation() {
       <Banner />
       <About />
       <Visitors />
+      <Help />
       <Footer />
     </Stack>
   );

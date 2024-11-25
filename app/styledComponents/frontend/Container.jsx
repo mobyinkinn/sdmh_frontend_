@@ -3,6 +3,7 @@
 import styled from "@emotion/styled";
 
 const ContainerMain = styled.div((props) => ({
+  position: props.position,
   display: "flex",
   flexDirection: props.dir || "column",
   gap: props.gap || "20px",
