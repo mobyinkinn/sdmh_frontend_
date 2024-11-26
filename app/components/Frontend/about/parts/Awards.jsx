@@ -13,6 +13,7 @@ import img5 from "./assets/award5.png";
 import img6 from "./assets/award6.png";
 import img7 from "./assets/award7.png";
 import { useState } from "react";
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 
 const initialImages = [img1, img2, img3, img4, img5, img6, img7];
 
@@ -55,10 +56,11 @@ export default function Awards() {
       <Stack
         width={"100%"}
         position={"relative"}
-        height="70vh"
+        height="60vh"
         alignItems={"center"}
         justifyContent={"end"}
         marginTop={"30px"}
+        marginBottom={"40px"}
       >
         <Stack
           sx={{
@@ -70,6 +72,7 @@ export default function Awards() {
             width: "35%",
             height: "50vh",
             zIndex: "100",
+            border: "6px solid #476C9B",
           }}
           onMouseEnter={changeImage}
           className="0"
@@ -81,6 +84,7 @@ export default function Awards() {
             position: "absolute",
             backgroundPosition: "center top",
 
+            border: "6px solid #476C9B",
             backgroundRepeat: "no-repeat",
             width: "15%",
             height: "40vh",
@@ -98,6 +102,7 @@ export default function Awards() {
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             width: "15%",
+            border: "6px solid #476C9B",
             height: "30vh",
             zIndex: "80",
             left: "68%",
@@ -111,6 +116,7 @@ export default function Awards() {
             backgroundSize: "cover",
             zIndex: "70",
             position: "absolute",
+            border: "6px solid #476C9B",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             width: "15%",
@@ -126,6 +132,7 @@ export default function Awards() {
             backgroundImage: `url(${center[4].src})`,
             zIndex: "60",
             backgroundSize: "cover",
+            border: "6px solid #476C9B",
             position: "absolute",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
@@ -142,6 +149,7 @@ export default function Awards() {
             backgroundImage: `url(${center[5].src})`,
             backgroundSize: "cover",
             zIndex: "50",
+            border: "6px solid #476C9B",
             position: "absolute",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
@@ -161,6 +169,7 @@ export default function Awards() {
             position: "absolute",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
+            border: "6px solid #476C9B",
             width: "15%",
             height: "20vh",
             zIndex: "50",
@@ -170,6 +179,7 @@ export default function Awards() {
           className="6"
         ></Stack>
       </Stack>
+      <ButtonMediumOutline color="#007946">View More</ButtonMediumOutline>
     </ContainerMain>
   );
 }
