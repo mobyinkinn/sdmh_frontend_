@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function MobileApp() {
   return (
-    <ContainerMain dir="row" bgColor="#A8DF8E">
+    <ContainerMain dir="row" bgColor="#A6C9B2">
       <Stack
         sx={{
           width: "50%",
@@ -32,7 +32,9 @@ export default function MobileApp() {
         <Head3 color="black" textAlign={"left"}>
           Download the
         </Head3>
-        <Head1 textAlign={"left"}>SDMH Mobile App</Head1>
+        <Head1 textAlign={"left"} color="#007946">
+          SDMH Mobile App
+        </Head1>
         <Stack direction={"row"} gap={"10px"}>
           <Image src={app} alt="" width={282.73} height={83.8} />
           <Image src={play} alt="" width={282.73} height={83.8} />

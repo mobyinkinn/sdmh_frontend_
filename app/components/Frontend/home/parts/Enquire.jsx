@@ -32,13 +32,13 @@ const address = [
 export default function Enquire() {
   return (
     <ContainerMain
-      bgColor={"#FBF6EE"}
+      bgColor={"#D8E0EB"}
       dir="row"
       justifyContent={"center"}
       gap={"70px"}
     >
       <Stack width={"45%"}>
-        <Head1 color="#379237" textAlign={"left"}>
+        <Head1 color="#005900" textAlign={"left"}>
           Enquire Now
         </Head1>
         <Stack
@@ -48,19 +48,19 @@ export default function Enquire() {
           borderRadius={"30px"}
         >
           <Label>Full Name</Label>
-          <TextInput placeholder="Enter Your Full Name" bgColor={"#FBF6EE"} />
+          <TextInput placeholder="Enter Your Full Name" bgColor={"#EFF3F8"} />
           <Label>Phone No.</Label>
           <TextInput
             placeholder="Enter Your Phone Number"
-            bgColor={"#FBF6EE"}
+            bgColor={"#EFF3F8"}
           />
           <Label>Email ID</Label>
           <TextInput
             placeholder="Enter Your Email Address"
-            bgColor={"#FBF6EE"}
+            bgColor={"#EFF3F8"}
           />
           <Label>Message</Label>
-          <TextArea placeholder="Message" rows={7} bgColor={"#FBF6EE"} />
+          <TextArea placeholder="Message" rows={7} bgColor={"#EFF3F8"} />
 
           <Label>Captcha</Label>
           <Stack
@@ -70,8 +70,8 @@ export default function Enquire() {
             justifyContent={"space-between"}
           >
             <TextInput
-              placeholder="Enter Your Email Address"
-              bgColor={"#FBF6EE"}
+              placeholder="Enter Your Captcha Code"
+              bgColor={"#EFF3F8"}
               width={"70%"}
             />
             <ButtonMediumOutline color="green">Captcha</ButtonMediumOutline>
@@ -82,7 +82,7 @@ export default function Enquire() {
         </Stack>
       </Stack>
       <Stack width={"45%"} gap={"15px"}>
-        <Head1 color="#379237" textAlign={"left"}>
+        <Head1 color="#005900" textAlign={"left"}>
           How To Reach
         </Head1>
         <Typography fontWeight={"bold"}>

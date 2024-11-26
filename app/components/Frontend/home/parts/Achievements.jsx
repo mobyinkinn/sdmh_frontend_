@@ -17,7 +17,7 @@ const achievementData = [
 
 export default function () {
   return (
-    <ContainerMain bgColor={"#54B435"}>
+    <ContainerMain bgColor={"#276923"}>
       <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
         Our
       </Head3>

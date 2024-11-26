@@ -23,6 +23,7 @@ const navLinks = [
   { id: 0, name: "Academics" },
   { id: 0, name: "Donation" },
   { id: 0, name: "Contact Us" },
+  { id: 0, name: "Nursing college" },
 ];
 
 export default function Navbar() {

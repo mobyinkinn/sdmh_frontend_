@@ -49,7 +49,7 @@ export default function Reviews() {
   };
 
   return (
-    <ContainerMain bgColor={"#C7EEC3"}>
+    <ContainerMain bgColor={"#fff"}>
       <Stack direction={"row"} margin={"0 auto"}>
         <Head1 color="black">What Our &nbsp;</Head1>
         <Head1>Patients Say</Head1>

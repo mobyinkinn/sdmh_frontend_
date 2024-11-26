@@ -8,7 +8,7 @@ export default function About() {
   return (
     <ContainerMain
       dir="row"
-      bgColor={"#FBF4E9"}
+      bgColor={"#D8E0EB"}
       padding={"50px 50px 0 50px"}
       justifyContent={"center"}
       gap="80px"

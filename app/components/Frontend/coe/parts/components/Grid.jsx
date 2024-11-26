@@ -73,9 +73,11 @@ const coeData = [
 
 export default function Grid() {
   return (
-    <ContainerMain bgColor="#FFFBE6">
-      <Head1 color="black">Center of Excellence</Head1>
-
+    <ContainerMain bgColor="#fff">
+      <Stack direction={"row"} justifyContent={"center"} gap={1}>
+        <Head1 color="black">Center of</Head1>
+        <Head1 color="#005900"> Excellence</Head1>
+      </Stack>
       <Stack
         direction={"row"}
         flexWrap={"wrap"}

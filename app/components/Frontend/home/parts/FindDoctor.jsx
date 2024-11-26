@@ -6,6 +6,7 @@ import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
 export default function FindDoctor() {
   return (
     <Stack
+      bgcolor={"#6A88AF"}
       height={"60vh"}
       width={"100%"}
       padding={"50px"}
@@ -17,13 +18,13 @@ export default function FindDoctor() {
         alignItems: "center",
       }}
     >
-      <Head2 color="black">Find your Doctor &</Head2>
-      <Head2 color="black">Make an Appointment</Head2>
-      <Typography margin={"20px 0"} width={"40%"} textAlign={"center"}>
+      <Head2 color="#fff">Find your Doctor &</Head2>
+      <Head2 color="#fff">Make an Appointment</Head2>
+      <Typography margin={"20px 0"} width={"40%"} textAlign={"center"} color="#fff">
         Good Heath Metal Physical And So Wel Being Not Just The Absence of
         Strong Connections And Gack Ancese To
       </Typography>
-      <ButtonSmallOutline color="#379237">View All</ButtonSmallOutline>
+      <ButtonSmallOutline color="#fff">View All</ButtonSmallOutline>
     </Stack>
   );
 }

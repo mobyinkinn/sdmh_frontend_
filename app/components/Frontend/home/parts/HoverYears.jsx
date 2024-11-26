@@ -145,8 +145,13 @@ const HoverYears = () => {
   };
 
   return (
-    <ContainerMain bgColor={"#54B435"}>
-      <Typography color="#FCF9C6" fontSize={"55px"} textAlign={"center"} fontWeight={"bold"}>
+    <ContainerMain bgColor={"#476C9B"}>
+      <Typography
+        color="#FFFFFF"
+        fontSize={"55px"}
+        textAlign={"center"}
+        fontWeight={"bold"}
+      >
         SDMH Through These Years
       </Typography>
       <Typography color="#FFFFFF" textAlign={"center"} fontSize={"25px"}>
