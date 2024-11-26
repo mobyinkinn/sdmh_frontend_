@@ -16,10 +16,10 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Box, Stack } from "@mui/material";
-import JoditEditor from "jodit-react";
 import { placeholder } from "jodit/esm/plugins/placeholder/placeholder";
 import { useMemo, useRef, useState } from "react";
-
+import dynamic from "next/dynamic";
+const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 const menu = [
   "Departments",
   "Doctors",
@@ -75,14 +75,7 @@ export default function AddDepartment({ setViewForm }) {
           </InputSection>
           <InputSection>
             <Label>Content</Label>
-            <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              tabIndex={1}
-              onBlur={(newContent) => setContent(newContent)}
-              onChange={(newContent) => {}}
-            />
+            <Jodit content={content} setContent={setContent} />
           </InputSection>
           <InputSection>
             <Label></Label>
