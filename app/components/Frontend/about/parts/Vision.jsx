@@ -22,7 +22,12 @@ const visionData = [
 
 export default function Vision() {
   return (
-    <ContainerMain position="relative" gap="30px" alignItems="center">
+    <ContainerMain
+      position="relative"
+      gap="30px"
+      alignItems="center"
+      id="vision"
+    >
       <Box
         sx={{
           backgroundColor: "#6A88AF",

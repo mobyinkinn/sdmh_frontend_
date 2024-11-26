@@ -20,7 +20,7 @@ const valueData = [
 
 export default function Values() {
   return (
-    <ContainerMain bgColor="#4B9369">
+    <ContainerMain bgColor="#4B9369" id="mission">
       <Head1 color="white">Our values</Head1>
       <Stack direction={"row"} gap={"20px"} justifyContent={"center"}>
         {valueData.map((el, i) => {

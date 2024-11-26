@@ -27,6 +27,7 @@ export default function Tpa() {
     infinite: true,
     speed: 500,
     autoplay: true,
+    autoplaySpeed: 2000,
     arrows: false,
     slidesToShow: 4,
     slidesToScroll: 1,

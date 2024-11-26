@@ -13,7 +13,7 @@ const overviewImages = [img1, img2, img3, img4];
 
 export default function Overview() {
   return (
-    <ContainerMain bgColor="#F9F9F9">
+    <ContainerMain bgColor="#F9F9F9" id="overview">
       <Head1 color="black">Overview</Head1>
       <ParaNormal>
         The Santokba Durlabhji Trust was founded in 1958 with a vision to

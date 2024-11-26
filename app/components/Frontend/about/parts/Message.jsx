@@ -10,7 +10,7 @@ import img from "./assets/yogendra.png";
 
 export default function Message() {
   return (
-    <ContainerMain bgColor="#476C9B" dir="row">
+    <ContainerMain bgColor="#476C9B" dir="row" id="message">
       <Stack alignItems="center" width={"30%"} gap="10px">
         <Stack
           sx={{

@@ -6,7 +6,12 @@ import founder from "./assets/founder.png";
 
 export default function Founder() {
   return (
-    <ContainerMain dir="row" bgColor="#276923" padding={"50px 50px 0 50px"}>
+    <ContainerMain
+      dir="row"
+      bgColor="#276923"
+      padding={"50px 50px 0 50px"}
+      id="founder"
+    >
       <Stack width={"60%"} justifyContent={"center"} gap="20px">
         <Head1 color="white">Our Founder</Head1>
         <Head3 color="white">Late Padmashri Khailshankar Durlabhji</Head3>

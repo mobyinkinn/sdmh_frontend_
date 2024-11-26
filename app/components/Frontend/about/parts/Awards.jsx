@@ -33,7 +33,7 @@ export default function Awards() {
   };
 
   return (
-    <ContainerMain alignItems="center">
+    <ContainerMain alignItems="center" id="awards">
       <Stack
         gap={"10px"}
         sx={{
