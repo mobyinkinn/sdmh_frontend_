@@ -17,10 +17,10 @@ const todoData = [
 
 export default function Todo() {
   return (
-    <ContainerMain bgColor={"#A8DF8E"}>
+    <ContainerMain bgColor={"#8EA5C3"}>
       <Stack direction={"row"} justifyContent={"center"}>
         <Head1 color="#000000">What would you like&nbsp;</Head1>
-        <Head1 color="#005900">To Do today?</Head1>
+        <Head1 color="#ffffff">To Do today?</Head1>
       </Stack>
       <Stack
         marginTop={"30px"}

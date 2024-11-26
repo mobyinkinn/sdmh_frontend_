@@ -153,7 +153,7 @@ export default function Doctors() {
         return (
           <Stack
             height={"100vh"}
-            width={"45%"}
+            width={"30%"}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
             <Box

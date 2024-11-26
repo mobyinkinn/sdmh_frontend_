@@ -6,7 +6,7 @@ import {
 } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
 
-import img from "./assets/yogendra.png";
+import img from "./assets/Yogendra.png";
 
 export default function Message() {
   return (

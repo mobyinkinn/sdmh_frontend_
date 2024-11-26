@@ -16,13 +16,14 @@ import { IoIosMail } from "react-icons/io";
 import { SlArrowRight } from "react-icons/sl";
 
 const navLinks = [
-  { id: 0, name: "About Us" },
-  { id: 0, name: "Center Of Excellence" },
-  { id: 0, name: "Patient Care & Service" },
+  { id: 0, name: "About Us", link:"about" },
+  { id: 0, name: "Center Of Excellence", link:"center-of-excellence"},
+  { id: 0, name: "Patient Care & Service",  },
   { id: 0, name: "Appointment" },
   { id: 0, name: "Academics" },
-  { id: 0, name: "Donation" },
+  { id: 0, name: "Donation", link:"support-a-cause" },
   { id: 0, name: "Contact Us" },
+  { id: 0, name: "Nursing college" },
 ];
 
 export default function Navbar() {
@@ -60,9 +61,9 @@ export default function Navbar() {
             borderBottom: "1.5px solid #5F5F5F",
           }}
         >
-          <Stack>
+          <a href="/" style={{textDecoration:"none", color:"black"}}>
             <Image src={logo} alt="" height={73} width={195} />
-          </Stack>
+          </a>
           <Stack direction={"row"} gap={"20px"}>
             <Stack direction={"row"}>
               <SearchInput
@@ -92,7 +93,9 @@ export default function Navbar() {
         >
           {navLinks.map((el, i) => {
             return (
-              <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
+              <a href={el.link} style={{textDecoration:"none",color:"black"}}>
+                <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
+              </a>
             );
           })}
         </Stack>

@@ -53,7 +53,7 @@ export default function FilterSection() {
     <Stack
       direction={"row"}
       margin={"50px auto"}
-      backgroundColor={"#379237"}
+      backgroundColor={"#476C9B"}
       width={"fit-content"}
     >
       {filterData.map((el, i) => {

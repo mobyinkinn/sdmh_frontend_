@@ -10,7 +10,7 @@ import lines from "../assets/icons/lines.png";
 
 export default function Hero() {
   return (
-    <Stack height={"80vh"} backgroundColor={"#FBF6EE"} direction="row">
+    <Stack height={"80vh"} backgroundColor={"#D2E4D8"} direction="row">
       <Stack
         width={"50%"}
         position={"relative"}

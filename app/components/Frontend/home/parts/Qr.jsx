@@ -15,7 +15,7 @@ import { SearchInput, TextInput } from "@/app/styledComponents/frontend/Inputs";
 
 export default function Qr() {
   return (
-    <ContainerMain dir="row" bgColor={"#FBF6EE"}>
+    <ContainerMain dir="row" bgColor={"#CEDDCC"}>
       <Stack
         width={"50%"}
         gap={"10px"}

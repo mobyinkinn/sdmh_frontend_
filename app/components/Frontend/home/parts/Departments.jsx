@@ -76,7 +76,7 @@ export default function Departments() {
                     el.id === activeTab
                       ? {
                           color: "white",
-                          backgroundColor: "#379237",
+                          backgroundColor: "#007946",
                           border: "none",
                           cursor: "pointer",
                         }

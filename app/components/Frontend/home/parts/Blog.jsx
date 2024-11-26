@@ -36,7 +36,7 @@ const blogData = [
 
 export default function Blog() {
   return (
-    <ContainerMain bgColor={"#54B435"} alignItems="center">
+    <ContainerMain bgColor={"#276923"} alignItems="center">
       <Head1 color="#FCF9C6">Blog</Head1>
       <Typography
         width={"80%"}

@@ -131,7 +131,7 @@ const tabs = [
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <ContainerMain bgColor={"#C7EEC3"}>
+    <ContainerMain bgColor={"#CEDDCC"}>
       <Stack
         direction={"row"}
         backgroundColor={"white"}
