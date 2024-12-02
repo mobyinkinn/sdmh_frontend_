@@ -15,6 +15,7 @@ export const careData = [
       "Please enter all details (name, age, phone number and address) as mentioned in the documents to avoid inconvenience, especially in case of medical reimbursement or for issuance of relevant certificates.",
       "A Unique Hospital Identification Number (UHID) is generated for new patient post submission of registration form and making payment. In case of revisit, it is requested that previous UHID number is mentioned by patient / attendant or their previous medical records are carried.",
     ],
+    color: "#fff",
   },
   {
     id: 1,
@@ -27,6 +28,7 @@ export const careData = [
       "On confirmation of bed/room availability, receptionist checks all papers and asks for mode of payment, i.e. cash/credit card/mediclaim/from empanelled organization. Admission is done accordingly.",
       "If patient is willing to avail Mediclaim facility for admission, the Mediclaim office will verify the approval / denial of the same.",
     ],
+    color: "#f9f6f6",
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ export const careData = [
       "Before leaving, the patient's attendant needs to check their room/ward bed carefully for any personal belongings, as the hospital is not liable for belongings left behind.",
       "Once discharged, doctor and nurse, dietician will explain the treatment plan that you need to follow.",
     ],
+    color: "#f9f6f6",
   },
   {
     id: 3,
@@ -51,6 +54,7 @@ export const careData = [
       "Any shortage of initial deposit during emergency admissions has to be cleared within 24 hours of admission or before 12.00 noon of the next day.",
       "Provisional bills will be presented to attendant every 3rd day, the payment should ideally be cleared same day.",
     ],
+    color: "#f9f6f6",
   },
   {
     id: 4,
@@ -63,6 +67,7 @@ export const careData = [
       "Restlessness, if any, after medication should be immediately reported to nursing staff on duty.",
       "The instructions given by consultant should be strictly followed.",
     ],
+    color: "#f9f6f6",
   },
   {
     id: 5,
@@ -72,6 +77,7 @@ export const careData = [
       "S.D.M.H. Provides air-conditioned 24 x7 waiting lounges in OPD & IPD buildings for attendants at no cost to them.",
       "One dedicated ICU Attendant Lounge is also created for the attendants of ICU patients. The facility is connect with ICUs for transmission of necessary information.",
     ],
+    color: "#f9f6f6",
   },
   {
     id: 6,
@@ -81,5 +87,6 @@ export const careData = [
       "Hospital has 24x7 ATM facilities located beneath the Auditorium facility and outside OPD (R.D.M.C) Buildings.",
       "Union Bank of India is also available inside the campus for any necessary transactions required.",
     ],
+    color: "#f9f6f6",
   },
 ];

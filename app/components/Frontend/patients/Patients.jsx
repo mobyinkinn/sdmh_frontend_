@@ -9,13 +9,26 @@ import CheckUp from "./parts/CheckUp";
 import Policy from "./parts/Policy";
 import Gallery from "./parts/Gallery";
 import Suggestions from "./parts/Suggestions";
+import CardScroll from "./parts/CardsScroll";
 
 export default function Patients() {
   return (
     <Stack>
       <Navbar />
       <Hero />
-      <Care />
+
+      {/* <Care /> */}
+      <Stack
+        display={{
+          xs: "none",
+          sm: "none",
+          md: "none",
+          lg: "block",
+          xl: "block",
+        }}
+      >
+        <CardScroll />
+      </Stack>
       <Rest />
       <Tpa />
       <CheckUp />
