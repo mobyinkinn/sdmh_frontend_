@@ -44,7 +44,11 @@ const Card = ({
           </Head3>
           <Stack gap={"10px"}>
             {data.map((ele, i) => {
-              return <ParaNormal key={i}>{ele}</ParaNormal>;
+              return (
+                <ParaNormal fontSize={"20px"} key={i}>
+                  {ele}
+                </ParaNormal>
+              );
             })}
           </Stack>
         </Stack>
