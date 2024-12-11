@@ -16,12 +16,12 @@ import { IoIosMail } from "react-icons/io";
 import { SlArrowRight } from "react-icons/sl";
 
 const navLinks = [
-  { id: 0, name: "About Us", link:"about" },
-  { id: 0, name: "Center Of Excellence", link:"center-of-excellence"},
-  { id: 0, name: "Patient Care & Service",  },
+  { id: 0, name: "About Us", link: "about" },
+  { id: 0, name: "Center Of Excellence", link: "center-of-excellence" },
+  { id: 0, name: "Patient Care & Service", link: "patients" },
   { id: 0, name: "Appointment" },
-  { id: 0, name: "Academics" },
-  { id: 0, name: "Donation", link:"support-a-cause" },
+  { id: 0, name: "Academics", link: "academics/academics-deanery" },
+  { id: 0, name: "Donation", link: "support-a-cause" },
   { id: 0, name: "Contact Us" },
   { id: 0, name: "Nursing college" },
 ];
