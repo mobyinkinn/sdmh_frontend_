@@ -1,10 +1,16 @@
-import { Stack, Typography } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import Link from "next/link";
+import styled from "styled-components";
 import {
-  NavTableCell,
-  NavTableRow,
-} from "@/app/styledComponents/admin/NavTable";
-import { useRouter } from "next/navigation";
+  HiOutlineCalendarDays,
+  HiOutlineCog6Tooth,
+  HiOutlineHome,
+  HiOutlineHomeModern,
+  HiOutlineUsers,
+} from "react-icons/hi2";
+import Image from "next/image";
+import Logo from "../../ui/Logo";
+import logo from "./assets/logo.png";
 
 const navData = [
   {
@@ -40,7 +46,6 @@ const navData = [
   {
     id: 5,
     name: "Download Files",
-
     link: "/admin/download_files",
     icon: ManageAccountsIcon,
   },
@@ -59,128 +64,146 @@ const navData = [
   {
     id: 8,
     name: "Events",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 9,
     name: "Testimonials",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 10,
     name: "Award Accreditations",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 11,
     name: "Enquiries",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 12,
     name: "Contact",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 13,
     name: "Videos",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 14,
     name: "Latest Openings",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 15,
     name: "Careers",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 16,
     name: "Health Plans",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 17,
     name: "Health Tips",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
   {
     id: 18,
     name: "Logout",
-
     link: "/admin/adminuser",
     icon: ManageAccountsIcon,
   },
 ];
 
-export default function NavbarAdmin() {
-  const router = useRouter();
+const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
+
+const StyledNavLink = styled(Link)`
+  &:link,
+  &:visited {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    color: var(--color-grey-600);
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 1rem 2rem;
+    transition: all 0.3s;
+  }
+
+  /* This works because react-router places the active class on the active NavLink */
+  &:hover,
+  &:active,
+  &.active:link,
+  &.active:visited {
+    color: var(--color-grey-800);
+    background-color: var(--color-grey-50);
+    border-radius: var(--border-radius-sm);
+  }
+
+  & svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-grey-400);
+    transition: all 0.3s;
+  }
+
+  &:hover svg,
+  &:active svg,
+  &.active:link svg,
+  &.active:visited svg {
+    color: var(--color-brand-600);
+  }
+`;
+
+const StyledSidebar = styled.aside`
+  background-color: var(--color-grey-0);
+  padding: 2rem 2rem;
+  border-right: 1px solid var(--color-grey-100);
+  grid-row: 1/ -1;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  height: 100vh;
+  // width: 30vw;
+  overflow: scroll;
+`;
+
+function NavbarAdminVerticle() {
   return (
-    <Stack backgroundColor={"#fff"} height={"90vh"} width={"300px"}>
-      <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
-        <Typography
-          sx={{
-            backgroundColor: "#61aa70",
-            width: "fit-content",
-            padding: "5px 10px",
-            borderRadius: "5px",
-            cursor: "pointer",
-            margin: "10px",
-            color: "white",
-            "&:hover": {
-              backgroundColor: "#53B567",
-            },
-          }}
-        >
-          Quick Links
-        </Typography>
-      </Stack>
-      <Stack
-        sx={{
-          overflow: "auto",
-        }}
-      >
-        <table
-          style={{
-            borderCollapse: "collapse",
-          }}
-        >
-          <tbody>
-            {navData.map((el, i) => {
-              return (
-                <NavTableRow key={el.id} onClick={() => router.push(el.link)}>
-                  <NavTableCell icon>
-                    <el.icon width={"50px"} height={"50px"} />
-                  </NavTableCell>
-                  <NavTableCell>{el.name}</NavTableCell>
-                </NavTableRow>
-              );
-            })}
-          </tbody>
-        </table>
-      </Stack>
-    </Stack>
+    <StyledSidebar>
+      <Logo src={logo} />
+      <NavList>
+        {navData.map((el, i) => {
+          return (
+            <StyledNavLink href={el.link}>
+              <HiOutlineHome />
+              <span>{el.name}</span>
+            </StyledNavLink>
+          );
+        })}
+      </NavList>
+    </StyledSidebar>
   );
 }
+
+export default NavbarAdminVerticle;

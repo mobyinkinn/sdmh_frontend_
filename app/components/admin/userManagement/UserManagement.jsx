@@ -44,94 +44,88 @@ const userDetails = [
 export default function UserManagement() {
   const [viewForm, setViewForm] = useState(false);
   return (
-    <Stack>
-      <NavbarAdminHorizontal />
-      <Stack direction={"row"}>
-        <NavbarAdmin />
-        <Stack width={"100%"} position={"relative"}>
-          <Container>
-            <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>User Management</MainHead>
-              <StyledButton color="#65BD77" onClick={() => setViewForm(true)}>
-                Add User
-              </StyledButton>
-            </Stack>
-            {viewForm && <AddUser setViewForm={setViewForm} />}
-            <InnerContainer>
-              <InnerContainerHead>Listing</InnerContainerHead>
-              <InnerContainerHeadSection>
-                <SearchInput placeholder="Search" />
-                <GreenButtonSmall>Go!</GreenButtonSmall>
-                <GrayButtonSmall>Reset</GrayButtonSmall>
-              </InnerContainerHeadSection>
-              <TableContainer>
-                <Table
-                  sx={{ minWidth: 650 }}
-                  size="medium"
-                  aria-label="Admin Users"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>#</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Username</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {userDetails.map((row) => (
-                      <TableRow
-                        key={row.id}
-                        sx={{
-                          backgroundColor: "white",
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {row.id + 1}
-                        </TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>{row.username}</TableCell>
-                        <TableCell>{row.status}</TableCell>
-                        <TableCell sx={{ display: "flex", gap: "8px" }}>
-                          {row.status === "active" ? (
-                            <GreenButtonSmall>
-                              <DoneIcon
-                                sx={{
-                                  width: "15px",
-                                  height: "15px",
-                                }}
-                              />
-                            </GreenButtonSmall>
-                          ) : (
-                            <GrayButtonSmall>
-                              <BlockIcon
-                                sx={{
-                                  width: "15px",
-                                  height: "15px",
-                                }}
-                              />
-                            </GrayButtonSmall>
-                          )}
-                          <YellowButtonSmall>
-                            <EditIcon
-                              sx={{
-                                width: "15px",
-                                height: "15px",
-                              }}
-                            />
-                          </YellowButtonSmall>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </InnerContainer>
-          </Container>
+    <Stack width={"100%"} position={"relative"}>
+      <Container>
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <MainHead>User Management</MainHead>
+          <StyledButton color="#65BD77" onClick={() => setViewForm(true)}>
+            Add User
+          </StyledButton>
         </Stack>
-      </Stack>
+        {viewForm && <AddUser setViewForm={setViewForm} />}
+        <InnerContainer>
+          <InnerContainerHead>Listing</InnerContainerHead>
+          <InnerContainerHeadSection>
+            <SearchInput placeholder="Search" />
+            <GreenButtonSmall>Go!</GreenButtonSmall>
+            <GrayButtonSmall>Reset</GrayButtonSmall>
+          </InnerContainerHeadSection>
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 650 }}
+              size="medium"
+              aria-label="Admin Users"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>#</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Username</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {userDetails.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{
+                      backgroundColor: "white",
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.id + 1}
+                    </TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.username}</TableCell>
+                    <TableCell>{row.status}</TableCell>
+                    <TableCell sx={{ display: "flex", gap: "8px" }}>
+                      {row.status === "active" ? (
+                        <GreenButtonSmall>
+                          <DoneIcon
+                            sx={{
+                              width: "15px",
+                              height: "15px",
+                            }}
+                          />
+                        </GreenButtonSmall>
+                      ) : (
+                        <GrayButtonSmall>
+                          <BlockIcon
+                            sx={{
+                              width: "15px",
+                              height: "15px",
+                            }}
+                          />
+                        </GrayButtonSmall>
+                      )}
+                      <YellowButtonSmall>
+                        <EditIcon
+                          sx={{
+                            width: "15px",
+                            height: "15px",
+                          }}
+                        />
+                      </YellowButtonSmall>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </InnerContainer>
+      </Container>
     </Stack>
   );
 }
