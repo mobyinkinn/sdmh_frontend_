@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
-import { PAGE_SIZE } from "../utils/constants";
+// import { PAGE_SIZE } from "../utils/constants";
+import { useState } from "react";
 
 const StyledPagination = styled.div`
   width: 100%;
@@ -62,11 +63,11 @@ const PaginationButton = styled.button`
 `;
 
 function Pagination({ count }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const currentPage = !searchParams.get("page")
+  const [searchParams, setSearchParams] = useState();
+  const PAGE_SIZE = 5;
+  const currentpage = !searchparams.get("page")
     ? 1
-    : Number(searchParams.get("page"));
+    : number(searchparams.get("page"));
 
   const pageCount = Math.ceil(count / PAGE_SIZE);
 

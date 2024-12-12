@@ -1,20 +1,20 @@
 /* eslint-disable no-unused-vars */
 
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import Select from "./Select";
 
 function SortBy({ options }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const sortBy = searchParams.get("sortBy") || "";
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const sortBy = searchParams.get("sortBy") || "";
 
   function handleChange(e) {
-    searchParams.set("sortBy", e.target.value);
-    setSearchParams(searchParams);
+    // searchParams.set("sortBy", e.target.value);
+    // setSearchParams(searchParams);
   }
   return (
     <Select
       options={options}
-      value={sortBy}
+      value={"sortBy"}
       type="white"
       onChange={handleChange}
     />

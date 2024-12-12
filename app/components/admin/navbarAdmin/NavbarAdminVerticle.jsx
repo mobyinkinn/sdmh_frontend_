@@ -132,7 +132,7 @@ const navData = [
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.4rem;
 `;
 
 const StyledNavLink = styled(Link)`
@@ -143,10 +143,10 @@ const StyledNavLink = styled(Link)`
     gap: 1.2rem;
 
     color: var(--color-grey-600);
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-decoration: none;
     font-weight: 500;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     transition: all 0.3s;
   }
 
@@ -161,8 +161,8 @@ const StyledNavLink = styled(Link)`
   }
 
   & svg {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
   }
@@ -182,9 +182,8 @@ const StyledSidebar = styled.aside`
   grid-row: 1/ -1;
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: 1.2rem;
   height: 100vh;
-  // width: 30vw;
   overflow: scroll;
 `;
 

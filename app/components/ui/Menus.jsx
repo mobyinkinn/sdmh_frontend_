@@ -25,8 +25,8 @@ const StyledToggle = styled.button`
   }
 
   & svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--color-grey-700);
   }
 `;
@@ -47,21 +47,21 @@ const StyledButton = styled.button`
   text-align: left;
   background: none;
   border: none;
-  padding: 1.2rem 2.4rem;
-  font-size: 1.4rem;
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
   transition: all 0.2s;
 
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1rem;
 
   &:hover {
     background-color: var(--color-grey-50);
   }
 
   & svg {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1rem;
+    height: 1rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
   }
@@ -125,7 +125,7 @@ function Button({ children, icon, onClick }) {
     close();
   }
   return (
-    <li>
+    <li style={{ listStyleType: "none" }}>
       <StyledButton onClick={handleClick}>
         {icon}
         <span>{children}</span>

@@ -3,7 +3,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-
+import GlobalStyles from "./components/styles/GlobalStyles";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
