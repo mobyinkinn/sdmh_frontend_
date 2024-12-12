@@ -5,6 +5,7 @@ import Empty from "../../../ui/Empty";
 // import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
+import { useUserContext } from "./UserContext";
 
 const userDetails = [
   { id: 0, name: "Yogesh", username: "yogesh", status: "active" },
@@ -14,6 +15,14 @@ const userDetails = [
 ];
 
 function UserTable() {
+  const { filter } = useUserContext();
+
+  let filteredUsers = userDetails;
+  if (filter !== "All") {
+    filteredUsers = userDetails.filter(
+      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
+    );
+  }
   //   const { bookings, isLoading, count } = useUsers();
 
   //   if (isLoading) return <Spinner />;
@@ -29,7 +38,7 @@ function UserTable() {
         </Table.Header>
 
         <Table.Body
-          data={userDetails}
+          data={filteredUsers}
           render={(user) => <UserRow key={user.id} user={user} />}
         />
         <Table.Footer>

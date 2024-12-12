@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Logo from "../../ui/Logo";
 import logo from "./assets/logo.png";
+import { usePathname } from "next/navigation";
 
 const navData = [
   {
@@ -141,7 +142,6 @@ const StyledNavLink = styled(Link)`
     display: flex;
     align-items: center;
     gap: 1.2rem;
-
     color: var(--color-grey-600);
     font-size: 1rem;
     text-decoration: none;
@@ -175,6 +175,36 @@ const StyledNavLink = styled(Link)`
   }
 `;
 
+const ActiveLink = styled(Link)`
+  &:link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.8rem 1.5rem;
+    transition: all 0.3s;
+    background-color: var(--color-grey-50);
+    color: var(--color-grey-800);
+    border-radius: var(--border-radius-sm);
+  }
+
+  & svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-brand-600);
+    transition: all 0.3s;
+  }
+
+  &:hover svg,
+  &:active svg,
+  &.active:link svg,
+  &.active:visited svg {
+    color: var(--color-brand-600);
+  }
+`;
+
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
   padding: 2rem 2rem;
@@ -188,16 +218,28 @@ const StyledSidebar = styled.aside`
 `;
 
 function NavbarAdminVerticle() {
+  const pathname = usePathname();
+  console.log(pathname);
+
   return (
     <StyledSidebar>
       <Logo src={logo} />
       <NavList>
         {navData.map((el, i) => {
           return (
-            <StyledNavLink href={el.link}>
-              <HiOutlineHome />
-              <span>{el.name}</span>
-            </StyledNavLink>
+            <>
+              {pathname === el.link ? (
+                <ActiveLink href={el.link}>
+                  <HiOutlineHome />
+                  <span>{el.name}</span>
+                </ActiveLink>
+              ) : (
+                <StyledNavLink href={el.link}>
+                  <HiOutlineHome />
+                  <span>{el.name}</span>
+                </StyledNavLink>
+              )}
+            </>
           );
         })}
       </NavList>

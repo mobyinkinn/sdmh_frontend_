@@ -15,6 +15,8 @@ import {
   HiEye,
   HiTrash,
 } from "react-icons/hi2";
+import Image from "next/image";
+import Button from "@/app/components/ui/Button";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -35,7 +37,19 @@ const Stacked = styled.div`
   }
 `;
 
-function UserRow({ user: { id: id, name, username, status } }) {
+function DoctorsRow({
+  department: {
+    id: id,
+    name,
+    image,
+    department,
+    floor,
+    room,
+    availableOn,
+    status,
+    created,
+  },
+}) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -53,13 +67,47 @@ function UserRow({ user: { id: id, name, username, status } }) {
       </Stacked>
 
       <Stacked>
-        <span>Username</span>
-        <span>{username}</span>
+        <span>Department</span>
+        <span>{department}</span>
+      </Stacked>
+
+      <Stacked>
+        <Image src={image} alt={name} width={50} height={50} />
+      </Stacked>
+
+      <Stacked>
+        <span>Floor</span>
+        <span>{floor}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Room</span>
+        <span>{room}</span>
+      </Stacked>
+
+      <Stacked>
+        <span
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "4px",
+          }}
+        >
+          {availableOn.map((el, i) => {
+            return (
+              <Button size="small" variation="secondary" key={i}>
+                {el.day} - {el.at}
+              </Button>
+            );
+          })}
+        </span>
       </Stacked>
 
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
+      <Stacked>
+        <span>{created}</span>
+      </Stacked>
 
       <Modal>
         <Menus.Menu>
@@ -71,31 +119,31 @@ function UserRow({ user: { id: id, name, username, status } }) {
             >
               See details
             </Menus.Button>
-            {status === "unconfirmed" && (
+            {status === "inactive" && (
               <Menus.Button
                 icon={<HiArrowDownOnSquare />}
                 // onClick={() => navigate(`/checkin/${bookingId}`)}
               >
-                Check in
+                Active
               </Menus.Button>
             )}
-            {status === "checked-in" && (
+            {status === "active" && (
               <Menus.Button
                 icon={<HiArrowUpOnSquare />}
                 // onClick={() => checkout(bookingId)}
                 // disabled={isCheckingOut}
               >
-                Check out
+                Inactive
               </Menus.Button>
             )}
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete Admin</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete doctor</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="admin"
+            resourceName="doctor"
             // disabled={isDeleting}
             // onConfirm={() => deleteBooking(bookingId)}
           />
@@ -105,4 +153,4 @@ function UserRow({ user: { id: id, name, username, status } }) {
   );
 }
 
-export default UserRow;
+export default DoctorsRow;

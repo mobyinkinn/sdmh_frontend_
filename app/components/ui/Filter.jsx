@@ -38,22 +38,21 @@ const FilterButton = styled.button`
   }
 `;
 
-function Filter({ filterField, options }) {
+function Filter({ filterField, filter, setFilter, options }) {
   // const [searchParams, setSearchParams] = useSearchParams();
-  // const currentFilter = searchParams.get(filterField) || options.at(0).value;
+  const currentFilter = filter || options.at(0).value;
+  // const currentFilter = options.at(0).value;
   function handleClick(value) {
-    // searchParams.set(filterField, value);
-    // if (searchParams.get("page")) searchParams.set("page", 1);
-    // setSearchParams(searchParams);
+    setFilter(value);
   }
   return (
     <StyledFilter>
       {options.map((option, i) => (
         <FilterButton
-          // onClick={() => handleClick(option.value)}
+          onClick={() => handleClick(option.value)}
           key={i}
-          // active={option.value === currentFilter}
-          // disabled={option.value === currentFilter}
+          active={option.value === currentFilter}
+          disabled={option.value === currentFilter}
         >
           {option.label}
         </FilterButton>

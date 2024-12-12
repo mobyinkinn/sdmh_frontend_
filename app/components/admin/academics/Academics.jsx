@@ -39,6 +39,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 // import Image from "next/image";
 import { useState } from "react";
 import AddAcademics from "./parts/AddAcademics";
+import AppLayout from "../navbarAdmin/AppLayout";
 
 const academicsData = [
   {
@@ -62,119 +63,5 @@ const academicsData = [
 ];
 
 export default function Academics() {
-  const [viewForm, setViewForm] = useState(false);
-  return (
-    <Stack>
-      <NavbarAdminHorizontal />
-      <Stack direction={"row"}>
-        <NavbarAdmin />
-        <Stack width={"100%"} position={"relative"}>
-          <Container>
-            <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Academics</MainHead>
-              <StyledButton onClick={() => setViewForm(true)}>
-                Add Academics
-              </StyledButton>
-            </Stack>
-            {viewForm && <AddAcademics setViewForm={setViewForm} />}
-            <InnerContainer>
-              <InnerContainerHead>Listing</InnerContainerHead>
-              <InnerContainerHeadSection>
-                <SearchInput placeholder="Search" />
-                <GreenButtonSmall>Go!</GreenButtonSmall>
-                <GrayButtonSmall>Reset</GrayButtonSmall>
-              </InnerContainerHeadSection>
-              <TableContainer>
-                <Table
-                  sx={{ minWidth: 650 }}
-                  size="large"
-                  aria-label="Academics"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>#</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Created at</TableCell>
-                      <TableCell>Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {academicsData.map((row) => (
-                      <TableRow
-                        key={row.id}
-                        sx={{
-                          backgroundColor: "white",
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell
-                          sx={{ verticalAlign: "top" }}
-                          component="th"
-                          scope="row"
-                        >
-                          {row.id + 1}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          {row.name}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          <StatusLabel status={row.status}>
-                            {row.status}
-                          </StatusLabel>
-                        </TableCell>
-
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          {row.Created}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          <Stack direction={"row"} gap={"8px"}>
-                            {row.status === "Active" ? (
-                              <GreenButtonSmall>
-                                <DoneIcon
-                                  sx={{
-                                    width: "15px",
-                                    height: "15px",
-                                  }}
-                                />
-                              </GreenButtonSmall>
-                            ) : (
-                              <GrayButtonSmall>
-                                <BlockIcon
-                                  sx={{
-                                    width: "15px",
-                                    height: "15px",
-                                  }}
-                                />
-                              </GrayButtonSmall>
-                            )}
-                            <YellowButtonSmall>
-                              <EditIcon
-                                sx={{
-                                  width: "15px",
-                                  height: "15px",
-                                }}
-                              />
-                            </YellowButtonSmall>
-                            <RedButtonSmall>
-                              <DeleteIcon
-                                sx={{
-                                  width: "15px",
-                                  height: "15px",
-                                }}
-                              />
-                            </RedButtonSmall>
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </InnerContainer>
-          </Container>
-        </Stack>
-      </Stack>
-    </Stack>
-  );
+  return <AppLayout>Hello</AppLayout>;
 }

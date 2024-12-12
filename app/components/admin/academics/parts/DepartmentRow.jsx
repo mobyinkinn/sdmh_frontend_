@@ -15,6 +15,7 @@ import {
   HiEye,
   HiTrash,
 } from "react-icons/hi2";
+import Image from "next/image";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -35,7 +36,9 @@ const Stacked = styled.div`
   }
 `;
 
-function UserRow({ user: { id: id, name, username, status } }) {
+function DepartmentRow({
+  department: { id: id, name, image, status, created },
+}) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -53,13 +56,16 @@ function UserRow({ user: { id: id, name, username, status } }) {
       </Stacked>
 
       <Stacked>
-        <span>Username</span>
-        <span>{username}</span>
+        <Image src={image} alt={name} width={50} height={50} />
       </Stacked>
 
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
+      <Stacked>
+        <span>Created on</span>
+        <span>{created}</span>
+      </Stacked>
 
       <Modal>
         <Menus.Menu>
@@ -71,31 +77,31 @@ function UserRow({ user: { id: id, name, username, status } }) {
             >
               See details
             </Menus.Button>
-            {status === "unconfirmed" && (
+            {status === "inactive" && (
               <Menus.Button
                 icon={<HiArrowDownOnSquare />}
                 // onClick={() => navigate(`/checkin/${bookingId}`)}
               >
-                Check in
+                Active
               </Menus.Button>
             )}
-            {status === "checked-in" && (
+            {status === "active" && (
               <Menus.Button
                 icon={<HiArrowUpOnSquare />}
                 // onClick={() => checkout(bookingId)}
                 // disabled={isCheckingOut}
               >
-                Check out
+                Inactive
               </Menus.Button>
             )}
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete Admin</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete department</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="admin"
+            resourceName="department"
             // disabled={isDeleting}
             // onConfirm={() => deleteBooking(bookingId)}
           />
@@ -105,4 +111,4 @@ function UserRow({ user: { id: id, name, username, status } }) {
   );
 }
 
-export default UserRow;
+export default DepartmentRow;

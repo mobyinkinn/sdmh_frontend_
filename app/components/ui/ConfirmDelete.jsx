@@ -5,20 +5,20 @@ import Button from "./Button";
 import Heading from "./Heading";
 
 const StyledConfirmDelete = styled.div`
-  width: 40rem;
+  width: 30rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 
   & p {
     color: var(--color-grey-500);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
   }
 
   & div {
     display: flex;
     justify-content: flex-end;
-    gap: 1.2rem;
+    gap: 1rem;
   }
 `;
 

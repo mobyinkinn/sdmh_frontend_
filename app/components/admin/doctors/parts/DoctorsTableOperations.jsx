@@ -1,10 +1,10 @@
 import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
-import { useUserContext } from "./UserContext";
+import { useDoctorsContext } from "./DoctorsContext";
 
-function UserTableOperations() {
-  const { filter, setFilter } = useUserContext();
+function DoctorsTableOperations() {
+  const { filter, setFilter } = useDoctorsContext();
   return (
     <TableOperations>
       <Filter
@@ -30,4 +30,4 @@ function UserTableOperations() {
   );
 }
 
-export default UserTableOperations;
+export default DoctorsTableOperations;
