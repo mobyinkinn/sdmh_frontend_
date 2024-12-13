@@ -1,10 +1,10 @@
 import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
-import { useDepartmentContext } from "./DepartmentContext";
+import { useAcademicContext } from "./AcademicContext";
 
-function DepartmentTableOperations() {
-  const { filter, setFilter } = useDepartmentContext();
+function AcademicTableOperations() {
+  const { filter, setFilter } = useAcademicContext();
   return (
     <TableOperations>
       <Filter
@@ -30,4 +30,4 @@ function DepartmentTableOperations() {
   );
 }
 
-export default DepartmentTableOperations;
+export default AcademicTableOperations;

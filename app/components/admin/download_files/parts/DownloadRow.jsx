@@ -36,8 +36,8 @@ const Stacked = styled.div`
   }
 `;
 
-function DepartmentRow({
-  department: { id: id, name, image, status, created },
+function DownloadRow({
+  department: { id: id, name, image, type, status, created },
 }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
@@ -57,6 +57,11 @@ function DepartmentRow({
 
       <Stacked>
         <Image src={image} alt={name} width={50} height={50} />
+      </Stacked>
+
+      <Stacked>
+        <span>Type</span>
+        <span>{type}</span>
       </Stacked>
 
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
@@ -95,13 +100,15 @@ function DepartmentRow({
               </Menus.Button>
             )}
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete department</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>
+                Delete downloadable file
+              </Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="department"
+            resourceName="downloadable file"
             // disabled={isDeleting}
             // onConfirm={() => deleteBooking(bookingId)}
           />
@@ -111,4 +118,4 @@ function DepartmentRow({
   );
 }
 
-export default DepartmentRow;
+export default DownloadRow;

@@ -39,162 +39,23 @@ import departmentImg from "./parts/assets/untitled.jpg";
 import Image from "next/image";
 import { useState } from "react";
 import AddFiles from "./parts/AddFiles";
-
-const doctorsData = [
-  {
-    id: 0,
-    name: "IEC Research Protocol",
-    image: departmentImg,
-    type: "Teaching Schedule",
-    status: "Active",
-    Created: "02/24/2022",
-  },
-  {
-    id: 1,
-    name: "IEC Research Protocol",
-    image: departmentImg,
-    type: "Teaching Schedule",
-    status: "Active",
-    Created: "02/24/2022",
-  },
-  {
-    id: 2,
-    name: "IEC Research Protocol",
-    image: departmentImg,
-    type: "Download",
-    status: "Active",
-    Created: "02/24/2022",
-  },
-];
+import AppLayout from "../navbarAdmin/AppLayout";
+import { DownloadProvider } from "./parts/DownloadContext";
+import Row from "../../ui/Row";
+import Heading from "../../ui/Heading";
+import DownloadTableOperations from "./parts/DownloadTableOperations";
+import DownloadTable from "./parts/DownloadTable";
 
 export default function DownloadFiles() {
-  const [viewForm, setViewForm] = useState(false);
   return (
-    <Stack>
-      <NavbarAdminHorizontal />
-      <Stack direction={"row"}>
-        <NavbarAdmin />
-        <Stack width={"100%"} position={"relative"}>
-          <Container>
-            <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Download Files</MainHead>
-              <StyledButton onClick={() => setViewForm(true)}>
-                Add Download Files
-              </StyledButton>
-            </Stack>
-            {viewForm && <AddFiles setViewForm={setViewForm} />}
-            <InnerContainer>
-              <InnerContainerHead>Listing</InnerContainerHead>
-              <InnerContainerHeadSection>
-                <SearchInput placeholder="Search" />
-                <GreenButtonSmall>Go!</GreenButtonSmall>
-                <GrayButtonSmall>Reset</GrayButtonSmall>
-              </InnerContainerHeadSection>
-              <TableContainer>
-                <Table
-                  sx={{ minWidth: 650 }}
-                  size="large"
-                  aria-label="Download files"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>#</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Image</TableCell>
-                      <TableCell>Type</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Created at</TableCell>
-                      <TableCell>Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {doctorsData.map((row) => (
-                      <TableRow
-                        key={row.id}
-                        sx={{
-                          backgroundColor: "white",
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell
-                          sx={{ verticalAlign: "top" }}
-                          component="th"
-                          scope="row"
-                        >
-                          {row.id + 1}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          {row.name}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          <Image
-                            src={row.image}
-                            alt={row.name}
-                            width={40}
-                            height={40}
-                          />
-                        </TableCell>
-
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          {row.type}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          <StatusLabel status={row.status}>
-                            {row.status}
-                          </StatusLabel>
-                        </TableCell>
-
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          {row.Created}
-                        </TableCell>
-                        <TableCell sx={{ verticalAlign: "top" }}>
-                          <Stack direction={"row"} gap={"8px"}>
-                            {row.status === "Active" ? (
-                              <GreenButtonSmall>
-                                <DoneIcon
-                                  sx={{
-                                    width: "15px",
-                                    height: "15px",
-                                  }}
-                                />
-                              </GreenButtonSmall>
-                            ) : (
-                              <GrayButtonSmall>
-                                <BlockIcon
-                                  sx={{
-                                    width: "15px",
-                                    height: "15px",
-                                  }}
-                                />
-                              </GrayButtonSmall>
-                            )}
-                            <YellowButtonSmall>
-                              <EditIcon
-                                sx={{
-                                  width: "15px",
-                                  height: "15px",
-                                }}
-                              />
-                            </YellowButtonSmall>
-                            <RedButtonSmall>
-                              <DeleteIcon
-                                sx={{
-                                  width: "15px",
-                                  height: "15px",
-                                }}
-                              />
-                            </RedButtonSmall>
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </InnerContainer>
-          </Container>
-        </Stack>
-      </Stack>
-    </Stack>
+    <DownloadProvider>
+      <AppLayout>
+        <Row type="horizontal">
+          <Heading as="h2">Downloadable files</Heading>
+          <DownloadTableOperations />
+        </Row>
+        <DownloadTable />
+      </AppLayout>
+    </DownloadProvider>
   );
 }
