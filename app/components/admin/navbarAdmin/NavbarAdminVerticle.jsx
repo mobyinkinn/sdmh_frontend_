@@ -65,67 +65,61 @@ const navData = [
   {
     id: 8,
     name: "Events",
-    link: "/admin/adminuser",
+    link: "/admin/events",
     icon: ManageAccountsIcon,
   },
   {
     id: 9,
     name: "Testimonials",
-    link: "/admin/adminuser",
+    link: "/admin/testimonials",
     icon: ManageAccountsIcon,
   },
   {
     id: 10,
     name: "Award Accreditations",
-    link: "/admin/adminuser",
+    link: "/admin/awards",
     icon: ManageAccountsIcon,
   },
   {
     id: 11,
     name: "Enquiries",
-    link: "/admin/adminuser",
+    link: "/admin/enquiries",
     icon: ManageAccountsIcon,
   },
   {
     id: 12,
     name: "Contact",
-    link: "/admin/adminuser",
+    link: "/admin/contacts",
     icon: ManageAccountsIcon,
   },
   {
     id: 13,
     name: "Videos",
-    link: "/admin/adminuser",
+    link: "/admin/videos",
     icon: ManageAccountsIcon,
   },
   {
     id: 14,
     name: "Latest Openings",
-    link: "/admin/adminuser",
+    link: "/admin/openings",
     icon: ManageAccountsIcon,
   },
   {
     id: 15,
     name: "Careers",
-    link: "/admin/adminuser",
+    link: "/admin/careers",
     icon: ManageAccountsIcon,
   },
   {
     id: 16,
     name: "Health Plans",
-    link: "/admin/adminuser",
+    link: "/admin/health-plans",
     icon: ManageAccountsIcon,
   },
   {
     id: 17,
     name: "Health Tips",
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 18,
-    name: "Logout",
-    link: "/admin/adminuser",
+    link: "/admin/health-tips",
     icon: ManageAccountsIcon,
   },
 ];
@@ -219,7 +213,6 @@ const StyledSidebar = styled.aside`
 
 function NavbarAdminVerticle() {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <StyledSidebar>
@@ -231,7 +224,9 @@ function NavbarAdminVerticle() {
               {pathname === el.link ? (
                 <ActiveLink href={el.link}>
                   <HiOutlineHome />
-                  <span>{el.name}</span>
+                  <span style={{ color: "var(--color-grey-800)" }}>
+                    {el.name}
+                  </span>
                 </ActiveLink>
               ) : (
                 <StyledNavLink href={el.link}>
