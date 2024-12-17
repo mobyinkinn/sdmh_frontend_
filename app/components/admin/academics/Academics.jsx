@@ -12,7 +12,7 @@ export default function Academics() {
     <AcademicProvider>
       <AppLayout>
         <Row type="horizontal">
-          <Heading as="h2">Departments</Heading>
+          <Heading as="h2">Academics</Heading>
           <AcademicTableOperations />
         </Row>
         <AcademicTable />

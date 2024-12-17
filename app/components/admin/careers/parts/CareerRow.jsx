@@ -6,8 +6,6 @@ import Table from "../../../ui/Table";
 import Modal from "../../../ui/Modal";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
 
-// import { formatCurrency } from "../../../utils/helpers";
-// import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
 import {
   HiArrowDownOnSquare,
@@ -16,9 +14,8 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
-// import { useNavigate } from "react-router-dom";
-// import { useCheckout } from "../check-in-out/useCheckout";
-// import useDeleteBooking from "./useDeleteBooking";
+import Button from "@/app/components/ui/Button";
+import { useState } from "react";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -36,10 +33,9 @@ const Stacked = styled.div`
   }
 `;
 
-function AcademicRow({ department: { id: id, name, status, created } }) {
-  //   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
+function CareerRow({
+  department: { id: id, title, email, name, phone, city, attachment, created },
+}) {
   const statusToTagName = {
     unconfirmed: "blue",
     active: "green",
@@ -47,17 +43,42 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
   };
 
   return (
-    <Table.Row>
+    <Table.Row alignItems="start">
+      <Stacked>
+        <span>{title}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Email</span>
+        <span>{email}</span>
+      </Stacked>
+
       <Stacked>
         <span>Name</span>
         <span>{name}</span>
       </Stacked>
-
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Stacked>
-        <span>Created on</span>
+        <span>Phone No</span>
+        <span>{phone}</span>
+      </Stacked>
+      <Stacked>
+        <span>City</span>
+        <span>{city}</span>
+      </Stacked>
+      <Stacked>
+        <span>
+          <a
+            href={attachment}
+            // target="blank"
+            download
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Download Attachment
+          </a>
+        </span>
+      </Stacked>
+
+      <Stacked>
         <span>{created}</span>
       </Stacked>
 
@@ -65,37 +86,22 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
         <Menus.Menu>
           <Menus.Toggle id={id} />
           <Menus.List id={id}>
+            {/* 
             <Menus.Button
               icon={<HiEye />}
               //   onClick={() => navigate(`/bookings/${bookingId}`)}
             >
               See details
             </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
+            */}
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete academics</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete resume</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="academics"
+            resourceName="resume"
             // disabled={isDeleting}
             // onConfirm={() => deleteBooking(bookingId)}
           />
@@ -105,4 +111,4 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
   );
 }
 
-export default AcademicRow;
+export default CareerRow;

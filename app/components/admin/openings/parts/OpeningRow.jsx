@@ -16,6 +16,8 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
+import Button from "@/app/components/ui/Button";
+import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -36,7 +38,21 @@ const Stacked = styled.div`
   }
 `;
 
-function AcademicRow({ department: { id: id, name, status, created } }) {
+function OpeningRow({
+  department: {
+    id: id,
+    title,
+    description,
+    seats,
+    status,
+    date,
+    cordinateProgramers,
+    cordinateNumber,
+    created,
+  },
+}) {
+  const [fullDesc, showFullDesc] = useState(false);
+  const [fullSDesc, showFullSDesc] = useState(false);
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -46,20 +62,45 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
     inactive: "silver",
   };
 
+  const expandDesc = () => {
+    showFullDesc((desc) => !desc);
+  };
+
+  const expandSDesc = () => {
+    showFullSDesc((desc) => !desc);
+  };
+
   return (
-    <Table.Row>
+    <Table.Row alignItems="start">
       <Stacked>
-        <span>Name</span>
-        <span>{name}</span>
+        <span>{title}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>{fullSDesc ? description : description.slice(0, 50)} ...</span>
+        <span onClick={expandSDesc} style={{ cursor: "pointer" }}>
+          {fullSDesc ? "Show less" : "Show more"}
+        </span>
+      </Stacked>
+      <Stacked>
+        <span>{seats}</span>
+      </Stacked>
+      <Stacked>
+        <span>{date}</span>
+      </Stacked>
+      <Stacked>
+        <span>{cordinateProgramers}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>{cordinateNumber}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>{created}</span>
       </Stacked>
 
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
-      <Stacked>
-        <span>Created on</span>
-        <span>{created}</span>
-      </Stacked>
 
       <Modal>
         <Menus.Menu>
@@ -89,13 +130,13 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
               </Menus.Button>
             )}
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete academics</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete openinng</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="academics"
+            resourceName="opening"
             // disabled={isDeleting}
             // onConfirm={() => deleteBooking(bookingId)}
           />
@@ -105,4 +146,4 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
   );
 }
 
-export default AcademicRow;
+export default OpeningRow;

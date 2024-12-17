@@ -13,7 +13,7 @@ export default function Awards() {
     <AwardsProvider>
       <AppLayout>
         <Row type="horizontal">
-          <Heading as="h2">Awards Accreditations</Heading>
+          <Heading as="h2">Awards accreditations</Heading>
           <AwardsTableOperations />
         </Row>
         <AwardsTable />
