@@ -1,3 +1,5 @@
+"use client";
+
 import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -14,6 +16,7 @@ import {
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { SlArrowRight } from "react-icons/sl";
+import { useEffect } from "react";
 
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
@@ -26,7 +29,35 @@ const navLinks = [
   { id: 0, name: "Nursing college" },
 ];
 
+//          <div id="google_translate_element" style={{ margin: "10px" }}></div>
+
 export default function Navbar() {
+  useEffect(() => {
+    // Prevent duplicate script loading
+    if (!document.querySelector('script[src*="translate.google.com"]')) {
+      const script = document.createElement("script");
+      script.src =
+        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+
+      window.googleTranslateElementInit = () => {
+        if (!window.googleTranslateInstance) {
+          window.googleTranslateInstance =
+            new window.google.translate.TranslateElement(
+              {
+                pageLanguage: "en",
+                includedLanguages:
+                  "as,bn,brx,doi,gu,hi,kn,ks,gom,mai,ml,mni,mr,ne,or,pa,sa,sat,sd,ta,te,ur",
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              },
+              "google_translate_element"
+            );
+        }
+      };
+    }
+  }, []);
+
   return (
     <>
       <Stack>
@@ -48,7 +79,11 @@ export default function Navbar() {
             <Typography>Lab Reports</Typography>
             <Typography>Downloads</Typography>
             <Stack direction={"row"} alignItems={"center"} gap={"5px"}>
-              <Typography>Select Language</Typography> <IoIosArrowDown />
+              <div
+                id="google_translate_element"
+                style={{ backgroundColor: "black" }}
+              ></div>
+              {/* <IoIosArrowDown /> */}
             </Stack>
           </Stack>
         </Stack>
@@ -61,7 +96,7 @@ export default function Navbar() {
             borderBottom: "1.5px solid #5F5F5F",
           }}
         >
-          <a href="/" style={{textDecoration:"none", color:"black"}}>
+          <a href="/" style={{ textDecoration: "none", color: "black" }}>
             <Image src={logo} alt="" height={73} width={195} />
           </a>
           <Stack direction={"row"} gap={"20px"}>
@@ -75,7 +110,7 @@ export default function Navbar() {
               </DarkGreenButtonSmall>
             </Stack>
             <DarkGreenButtonSmallOutline>
-              <span style={{color:"red"}}>Emergency Number</span>
+              <span style={{ color: "red" }}>Emergency Number</span>
               <FaPhone style={{ width: "15px", height: "15px" }} /> 0141 352
               4444
             </DarkGreenButtonSmallOutline>
@@ -93,7 +128,10 @@ export default function Navbar() {
         >
           {navLinks.map((el, i) => {
             return (
-              <a href={el.link} style={{textDecoration:"none",color:"black"}}>
+              <a
+                href={el.link}
+                style={{ textDecoration: "none", color: "black" }}
+              >
                 <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
               </a>
             );
