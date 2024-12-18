@@ -21,6 +21,12 @@ const navData = [
     icon: ManageAccountsIcon,
   },
   {
+    id: 100,
+    name: "Banners",
+    link: "/admin/banners",
+    icon: ManageAccountsIcon,
+  },
+  {
     id: 1,
     name: "Departments",
     link: "/admin/department",

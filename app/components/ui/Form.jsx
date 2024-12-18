@@ -4,7 +4,9 @@ const Form = styled.form`
   ${(props) =>
     props.type === "regular" &&
     css`
-      padding: 2.4rem 4rem;
+      padding: 1.2rem 2.3rem;
+      width: 600px;
+      margin: 0 auto;
 
       /* Box */
       background-color: var(--color-grey-0);
@@ -19,7 +21,7 @@ const Form = styled.form`
     `}
     
   overflow: hidden;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 `;
 
 Form.defaultProps = {
