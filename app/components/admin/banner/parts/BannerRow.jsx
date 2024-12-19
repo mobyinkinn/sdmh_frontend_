@@ -75,7 +75,7 @@ function BannerRow({ academic: { id: id, name, image, status, created } }) {
             >
               See details
             </Menus.Button>
-            {status === "inactive" && (
+            {/* {status === "inactive" && (
               <Menus.Button
                 icon={<HiArrowDownOnSquare />}
                 // onClick={() => navigate(`/checkin/${bookingId}`)}
@@ -91,15 +91,15 @@ function BannerRow({ academic: { id: id, name, image, status, created } }) {
               >
                 Inactive
               </Menus.Button>
-            )}
+            )} */}
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete tpa index</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete banner</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="tpa index"
+            resourceName="banner"
             // disabled={isDeleting}
             // onConfirm={() => deleteBooking(bookingId)}
           />
