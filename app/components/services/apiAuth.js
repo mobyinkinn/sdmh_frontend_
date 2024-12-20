@@ -20,7 +20,9 @@ export async function login({ email, password }) {
   const url = `${ApiUrl}/admin/login`;
   const formData = { email, password };
 
-  const { data, error } = await axios.post(url, formData);
+  const { data, error } = await axios.post(url, formData, {
+    withCredentials: true,
+  });
 
   return data;
 }
