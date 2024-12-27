@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useAcademicContext } from "./AcademicContext";
+import CreateNoticeForm from "@/app/components/features/academicNotices/CreateNoticeForm";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
 
 function AcademicTableOperations() {
   const { filter, setFilter } = useAcademicContext();
@@ -26,6 +29,14 @@ function AcademicTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="notice-form">
+          <Button>Add new Academic Notice</Button>
+        </Modal.Open>
+        <Modal.Window name="notice-form">
+          <CreateNoticeForm />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

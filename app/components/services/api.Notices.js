@@ -17,17 +17,26 @@ export const blockNotices = async (id) => {
   return response.data;
 };
 
-
 export const unblockNotices = async (id) => {
-  const response = await axios.patch(`${ApiUrl}/notices/unblock-notice?id=${id}`, 
+  const response = await axios.patch(
+    `${ApiUrl}/notices/unblock-notice?id=${id}`,
     {},
     { withCredentials: true }
   );
   return response.data.data;
 };
+
 export const deleteNotices = async (id) => {
   const response = await axios.get(`${ApiUrl}/notices/delete?id=${id}`, {
     withCredentials: true,
   });
+  return response.data;
+};
+
+export const createNotices = async (formData) => {
+  const response = await axios.post(`${ApiUrl}/notices/create`, formData, {
+    withCredentials: true,
+  });
+
   return response.data;
 };

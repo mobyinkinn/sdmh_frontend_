@@ -1,7 +1,13 @@
-"use client"
+"use client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { blockNotices, deleteNotices, fetchNotices, unblockNotices } from "../../services/api.Notices";
+import {
+  blockNotices,
+  createNotices,
+  deleteNotices,
+  fetchNotices,
+  unblockNotices,
+} from "../../services/api.Notices";
 
 export const useNotices = () => {
   const { data, isLoading, error } = useQuery({
@@ -46,7 +52,7 @@ export const useUnblockNotices = () => {
   return useMutation({
     mutationFn: unblockNotices,
     onSuccess: () => {
-      queryClient.invalidateQueries(["notice"]);
+      queryClient.invalidateQueries(["notices"]);
       toast.success("notice Unblocked sucessfully!");
     },
     onError: (error) => {
@@ -54,6 +60,24 @@ export const useUnblockNotices = () => {
       toast.error("Failed to unblock notice. Please try again.");
     },
   });
+};
+
+export const useCreateNotice = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: createNotice, isLoading: isCreating } = useMutation({
+    mutationFn: createNotices,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["notices"]);
+      toast.success("tpa Created successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to create tpa:", error);
+      toast.error("Failed to create tpa. Please try again.");
+    },
+  });
+
+  return { createNotice, isCreating };
 };
 
 // export const useUpdateTpa = () => {
