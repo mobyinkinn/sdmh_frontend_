@@ -1,65 +1,13 @@
+"use client"
 import { Head1 } from '@/app/styledComponents/frontend/Headings';
 import { ParaNormal } from '@/app/styledComponents/frontend/Para';
 import { Stack } from '@mui/material'
 import React from 'react'
 import Designslider from './Designslider';
 import Rounding from "./assets/RoundingImage.png"
+import { useTestimonials } from '@/app/components/admin/testimonials/parts/useTestimonial';
+import Spinner from '@/app/components/ui/Spinner';
 const Testimonialslider = () => {
-    // const bannerImages = 
-    //   {
-    //     FirstPart: [
-    //       {
-    //         id: 1,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //       {
-    //         id: 2,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //       {
-    //         id: 3,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //       {
-    //         id: 4,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //     ],
-    //     SecondPart: [
-    //       {
-    //         id: 5,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //       {
-    //         id: 6,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //       {
-    //         id: 7,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //       {
-    //         id: 8,
-    //         img: Rounding,
-    //         des: "It is A Long Established Fact That A Reader Will Be Distracted By The Readable Content of A Page When Looking At Its Layout. The Point of Using Lorem Ipsum Is That It Has A More-or-less Normal Distribution of Letters, As Opposed To Using 'content Here, Content Here', Making It Look Like Readable English.",
-    //         title: "Delip Joshi",
-    //       },
-    //     ],
-    //   }
    const bannerImages = [
      [
        {
@@ -140,8 +88,26 @@ const Testimonialslider = () => {
        },
      ],
    ];
+   const { data, isLoading, error } = useTestimonials();
 
+   const filteredData = data?.filter((el, i) => el.status === true)
+   let temp = []
+   console.log(filteredData)
+   
+    for(let i = 0; i < filteredData?.length; i=i+4){
+        let smallArr = [];
+        smallArr.push(filteredData[i]);
+        smallArr.push(filteredData[i+1] || null);
+        smallArr.push(filteredData[i + 2] || null);
+        smallArr.push(filteredData[i + 3] || null);
+      temp.push(smallArr);
+    }
+   console.log("temp", temp);
+  console.log(data, isLoading, error);
 
+if (isLoading){
+  return <Spinner/>
+}
   return (
     <Stack bgcolor={"#D2E4D8"} p={5}>
       <Stack direction={"row"} p={2}>
@@ -153,7 +119,8 @@ const Testimonialslider = () => {
         readable
       </ParaNormal>
       <Designslider
-        bannerImages={bannerImages}
+      groups={filteredData}
+        bannerImages={temp}
         position={"relative"}
         width={"100%"}
         slidesToShow={1} // Show 4 slides at a time

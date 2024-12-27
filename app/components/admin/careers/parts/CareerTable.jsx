@@ -3,6 +3,8 @@ import Table from "../../../ui/Table";
 import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
 import { useCareerContext } from "./CareerContext";
+import { useCareers } from "./useCareers";
+import Spinner from "@/app/components/ui/Spinner";
 
 const careerData = [
   {
@@ -41,28 +43,38 @@ const careerData = [
 ];
 
 function CareerTable() {
-  const { filter } = useCareerContext();
-  let filteredCareer = careerData;
-  if (filter !== "All") {
-    filteredCareer = careerData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+  const { data, isLoading, error } = useCareers();
+   const { filter } = useCareerContext();
+   if (isLoading) return <Spinner />;
+   if (error) return <div>Error loading Careers: {error.message}</div>;
+   let filteredCareer = data;
+   if (filter !== "All") {
+     filteredCareer = data.filter((el) => {
+       if (filter.toLowerCase() === "active") {
+         return el.status === true; // Show active testimonials
+       } else if (filter.toLowerCase() === "inactive") {
+         return el.status === false; // Show inactive testimonials
+       }
+       return false;
+     });
+   }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
   if (!careerData.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.5fr 3.5fr 1fr 1fr 1fr 1fr 1fr 1fr  0.1rem">
+      <Table columns="1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 5.2rem">
         <Table.Header>
-          <div>Job title</div>
+          <div>Position</div>
           <div>Email</div>
           <div>Name</div>
-          <div>Phone No</div>
+          <div>Phone</div>
           <div>City</div>
-          <div>Attachment</div>
-          <div>Created</div>
+          <div>Resume</div>
+          <div>Status</div>
+          <div>Date</div>
+          <div>Actions</div>
           <div></div>
         </Table.Header>
 

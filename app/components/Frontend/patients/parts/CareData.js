@@ -56,37 +56,4 @@ export const careData = [
     ],
     color: "#f9f6f6",
   },
-  {
-    id: 4,
-    title: "General Guidelines",
-    img: multi,
-    data: [
-      "We request our patient/attendant to keep their mobile phones on silent/vibration mode.",
-      "Patients and their attendant are requested to avoid overcrowding in patient area / hospital premises. Patients are requested to avoid self medication.",
-      "The medicines prescribed by doctor would be administered by the nursing staff only.",
-      "Restlessness, if any, after medication should be immediately reported to nursing staff on duty.",
-      "The instructions given by consultant should be strictly followed.",
-    ],
-    color: "#f9f6f6",
-  },
-  {
-    id: 5,
-    title: "Waiting Lounges for Attendants",
-    img: lounges,
-    data: [
-      "S.D.M.H. Provides air-conditioned 24 x7 waiting lounges in OPD & IPD buildings for attendants at no cost to them.",
-      "One dedicated ICU Attendant Lounge is also created for the attendants of ICU patients. The facility is connect with ICUs for transmission of necessary information.",
-    ],
-    color: "#f9f6f6",
-  },
-  {
-    id: 6,
-    title: "ATM & Bank",
-    img: atm,
-    data: [
-      "Hospital has 24x7 ATM facilities located beneath the Auditorium facility and outside OPD (R.D.M.C) Buildings.",
-      "Union Bank of India is also available inside the campus for any necessary transactions required.",
-    ],
-    color: "#f9f6f6",
-  },
-];
+]

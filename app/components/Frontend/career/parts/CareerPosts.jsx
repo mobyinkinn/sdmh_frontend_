@@ -1,8 +1,11 @@
+"use client"
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
 import CareerCard from "./CareerCard";
+import Spinner from "@/app/components/ui/Spinner";
+import { useOpening } from "@/app/components/admin/careers/parts/useOpening";
 
 const careerData = [
   {
@@ -58,6 +61,11 @@ const careerData = [
 ];
 
 export default function CareerPosts() {
+   const { data, isLoading, error } = useOpening();
+      const filteredData = data?.filter((el, i) => el.status === true);
+   if (isLoading) {
+     return <Spinner />;
+   }
   return (
     <ContainerMain alignItems="center">
       <Stack direction={"row"}>
@@ -69,7 +77,7 @@ export default function CareerPosts() {
         readable content of a page when looking at its layout.
       </ParaNormal>
       <Stack gap={"20px"}>
-        {careerData.map((el, i) => {
+        {filteredData.map((el, i) => {
           return <CareerCard career={el} />;
         })}
       </Stack>

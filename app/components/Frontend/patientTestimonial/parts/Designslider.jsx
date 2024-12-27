@@ -24,9 +24,11 @@ const Designslider = ({
   width,
   slidesToShow,
   bottom,
+  groups,
   padding,
   paddinginner,
 }) => {
+  console.log("bannerImages", bannerImages);
   const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
   const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
   const DesisliderRef = useRef(null);
@@ -46,6 +48,7 @@ const handleDotClick = (index) => {
   DesisliderRef.current.slickGoTo(index); 
 };
 
+
   return (
     <Stack
       sx={{
@@ -57,58 +60,98 @@ const handleDotClick = (index) => {
       }}
     >
       <Box mt={4}>
-        <Slider ref={DesisliderRef} {...settings}>
-          {bannerImages.map((group, groupIndex) => (
-            <Box
-              key={groupIndex}
-              display="flex"
-              justifyContent="space-between"
-              gap="20px"
-              width={"100%"}
-            >
-              <Stack
+        {bannerImages.length > 1 ? (
+          <Slider ref={DesisliderRef} {...settings}>
+            {bannerImages.map((group, groupIndex) => (
+              <Box
+                key={groupIndex}
+                display="flex"
+                justifyContent="space-between"
+                gap="20px"
                 width={"100%"}
-                direction={"row"}
-                flexWrap={"wrap"}
-                gap={2}
-                justifyContent={"center"}
               >
-                {group.map((item) => (
-                  <Box
-                    key={item.id}
-                    sx={{
-                      width: "45%", // Each card takes 22% to allow spacing
-                      padding: "10px",
-                      backgroundColor: "#D9EADF",
-                      borderRadius: "10px",
-                    }}
-                  >
+                <Stack
+                  width={"100%"}
+                  direction={"row"}
+                  flexWrap={"wrap"}
+                  gap={2}
+                  justifyContent={"center"}
+                >
+                  {group.map((item) => (
                     <Box
+                      key={item?.id}
                       sx={{
-                        height: "150px",
-                        backgroundImage: `url(${item.img})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
+                        width: "45%", // Each card takes 22% to allow spacing
+                        padding: "10px",
+                        backgroundColor: "#D9EADF",
                         borderRadius: "10px",
                       }}
-                    />
-                    <Typography variant="h6" mt={2}>
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {item.des}
-                    </Typography>
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          ))}
-        </Slider>
+                    >
+                      <Box
+                        sx={{
+                          height: "150px",
+                          backgroundImage: `url(${item?.image})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          borderRadius: "10px",
+                        }}
+                      />
+                      <Typography variant="h6" mt={2}>
+                        {item?.title}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        {item?.message}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
+            ))}
+          </Slider>
+        ) : (
+          <Stack
+            width={"100%"}
+            direction={"row"}
+            flexWrap={"wrap"}
+            gap={2}
+            justifyContent={"center"}
+          >
+            {groups.map((item) => (
+              <Box
+                key={item?.id}
+                sx={{
+                  width: "45%", // Each card takes 22% to allow spacing
+                  padding: "10px",
+                  backgroundColor: "#D9EADF",
+                  borderRadius: "10px",
+                }}
+              >
+                <Box
+                  sx={{
+                    height: "150px",
+                    backgroundImage: `url(${item?.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: "10px",
+                  }}
+                />
+                <Typography variant="h6" mt={2}>
+                  {item?.title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {item?.message}
+                </Typography>
+              </Box>
+            ))}
+          </Stack>
+        )}
       </Box>
+
       <Stack
         direction="row"
         justifyContent="center"
         alignItems="center"
+        display={bannerImages.length > 1 ? "flex" : "none"}
         gap={2}
         mt={4}
       >
@@ -133,6 +176,7 @@ const handleDotClick = (index) => {
         position="absolute"
         top={bottom}
         right="10%"
+        display={bannerImages.length > 1 ? "block" : "none"}
       >
         <Stack
           sx={{
@@ -160,6 +204,7 @@ const handleDotClick = (index) => {
         position="absolute"
         top={bottom}
         right="7%"
+        display={bannerImages.length > 1 ? "block" : "none"}
       >
         <Stack
           sx={{

@@ -13,9 +13,13 @@ import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
+  HiPencil,
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
+import { useBlockNotices, useDeleteNotice, useUnblockNotices } from "../useNotices";
+import { HiEyeOff } from "react-icons/hi";
+import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -36,7 +40,7 @@ const Stacked = styled.div`
   }
 `;
 
-function AcademicRow({ academic: { id: id, name, image, status, created } }) {
+function AcademicRow({ academic: { _id, name, file, status } }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -45,67 +49,77 @@ function AcademicRow({ academic: { id: id, name, image, status, created } }) {
     active: "green",
     inactive: "silver",
   };
-
+  const { mutate: blockNotices, isLoading: isBlocking } = useBlockNotices();
+  const { mutate: unblockNotices, isLoading: isUnblocking } = useUnblockNotices();
+   const { mutate: deleteNotices, isLoading: isDeleting } = useDeleteNotice();
+ const handleToggleStatus = () => {
+   if (status) {
+     blockNotices(_id); // Call block API if active
+   } else {
+     unblockNotices(_id); // Call unblock API if inactive
+   }
+ };
+ const handleDelete = () => {
+   deleteNotices(_id);
+ };
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
-
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        <span>{_id}</span>
+      </Stacked>
+      <Stacked>
+        <span>
+          <a
+            href={file}
+            // target="blank"
+            download
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <ButtonSmallOutlineWithoutHover style={{color:"#005900", border:"1px solid #005900"}}>
+              View
+            </ButtonSmallOutlineWithoutHover>
+          </a>
+        </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
+      <Tag type={status ? "green" : "silver"}>
+        {status ? "Active" : "Inactive"}
+      </Tag>
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
-      <Stacked>
-        <span>Created on</span>
-        <span>{created}</span>
-      </Stacked>
-
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>
-                Delete academic notice
-              </Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="edit">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="academic notice"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="notice"
+            disabled={isDeleting} // Disable button while deleting
+            onConfirm={handleDelete} // Call the delete function on confirm
           />
         </Modal.Window>
+        {/* <Modal.Window name="edit">
+          <ConfirmEdit
+            resourceName="blog"
+            editData={editData}
+            setEditData={setEditData}
+            onCloseModal={() => {}}
+            onConfirm={handleConfirmEdit}
+            disabled={false}
+          />
+        </Modal.Window> */}
       </Modal>
     </Table.Row>
   );

@@ -10,12 +10,15 @@ import ConfirmDelete from "../../../ui/ConfirmDelete";
 // import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
 import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
   HiEye,
+  HiPencil,
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
+import { useBlockTpa, useCreateTpa, useDeleteTpa, useUnblockTpa } from "../useTpa";
+import { HiEyeOff } from "react-icons/hi";
+import CreateTpa from "./CreateTpa";
+import Button from "@/app/components/ui/Button";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -36,72 +39,88 @@ const Stacked = styled.div`
   }
 `;
 
-function TpaRow({ academic: { id: id, name, image, status, created } }) {
+function TpaRow({ academic: { _id, name, logo, status } }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
-  const statusToTagName = {
-    unconfirmed: "blue",
-    active: "green",
-    inactive: "silver",
+  const { mutate: deleteTpa, isLoading: isDeleting } = useDeleteTpa();
+  const { mutate: blockTpa, isLoading: isBlocking } = useBlockTpa();
+  const { mutate: unblockTpa, isLoading: isUnblocking } = useUnblockTpa();
+  // const { mutate: updateBlog, isLoading: isUpdating } = useUpdateBlog();
+  const handleToggleStatus = () => {
+    if (status) {
+      blockTpa(_id); // Call block API if active
+    } else {
+      unblockTpa(_id); // Call unblock API if inactive
+    }
   };
+ const handleDelete = () => {
+   deleteTpa(_id);
+ };
+   const { mutate: createTpa, isLoading: isCreating } = useCreateTpa();
 
+   const handleCreateTpa = (formData) => {
+     createTpa(
+       {
+         data: formData,
+       },
+       {
+         onSuccess: () => {
+           toast.success("TPA created successfully!");
+           onCloseModal();
+         },
+         onError: () => {
+           toast.error("Failed to create TPA. Please try again.");
+         },
+       }
+     );
+   };
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        <Image src={logo} alt={name} width={50} height={50} />
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
+      <Tag type={status ? "green" : "silver"}>
+        {status ? "Active" : "Inactive"}
+      </Tag>
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Stacked>
-        <span>Created on</span>
-        <span>{created}</span>
+        <span>{_id}</span>
       </Stacked>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete tpa index</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="edit">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
+          <Modal.Open opens="create">
+            <Button>Create TPA</Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="tpa index"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="tpa"
+            disabled={isDeleting}
+            onConfirm={handleDelete}
+          />
+        </Modal.Window>
+        <Modal.Window name="create">
+          <CreateTpa
+            resourceName={"Tpa"}
+            disabled={isCreating}
+            onConfirm={handleCreateTpa}
           />
         </Modal.Window>
       </Modal>

@@ -83,3 +83,12 @@
   border-radius: 25px;
   z-index: 1;
 }
+
+
+.MuiTab-root {
+  min-width: 0; /* Override default Material-UI spacing */
+}
+
+.MuiTabs-flexContainer {
+  justify-content: space-around; /* Space the tabs evenly */
+}

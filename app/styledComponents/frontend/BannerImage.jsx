@@ -14,13 +14,14 @@ const BannerImage = ({
   textcenter,
   color,
   descolor,
+  heights,
   padding
 }) => {
   return (
     <ContainerMain gap="0" dir="row" padding="0" id="about">
       <Stack
         width={"100%"}
-        height={"90vh"}
+        height={heights||"90vh"}
         alignItems={"center"}
         sx={{
           backgroundImage: `url(${image})`,
@@ -37,7 +38,7 @@ const BannerImage = ({
           justifyContent={"center"}
           pl={padding||0}
         >
-          <Stack alignItems={align || "center"}>
+          <Stack alignItems={align || "center"} gap={1}>
             <Stack direction={"row"}>
               <Head1 color={color||"white"}>{title}</Head1>
             </Stack>

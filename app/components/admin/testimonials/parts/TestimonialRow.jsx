@@ -17,6 +17,12 @@ import {
 } from "react-icons/hi2";
 import Image from "next/image";
 import { useState } from "react";
+import {
+  useBlockTestimonial,
+  useDeleteTestimonial,
+  useUnblockTestimonial,
+} from "./useTestimonial";
+import { HiEyeOff } from "react-icons/hi";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -38,9 +44,23 @@ const Stacked = styled.div`
 `;
 
 function TestimonialRow({
-  academic: { id: id, name, designation, description, image, status, created },
+  academic: { _id, name, designation, message, image, status, created },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
+  const { mutate: deleteTestimonial, isLoading: isDeleting } =
+    useDeleteTestimonial();
+  const { mutate: blockTestimonial, isLoading: isBlocking } =
+    useBlockTestimonial();
+  const { mutate: unblockTestimonial, isLoading: isUnblocking } =
+    useUnblockTestimonial();
+
+  const handleToggleStatus = () => {
+    if (status) {
+      blockTestimonial(_id); // Call block API if active
+    } else {
+      unblockTestimonial(_id); // Call unblock API if inactive
+    }
+  };
   const statusToTagName = {
     unconfirmed: "blue",
     active: "green",
@@ -50,21 +70,22 @@ function TestimonialRow({
   const expandDesc = () => {
     setShowFullDesc((desc) => !desc);
   };
+  const handleDelete = () => {
+    deleteTestimonial(_id);
+  };
 
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Stacked>
-        <span>Designation</span>
         <span>{designation}</span>
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? description : description.slice(0, 70)} ...</span>
+        <span>{fullDesc ? message : message.slice(0, 70)} ...</span>
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
           {fullDesc ? "show less" : "show more"}
         </span>
@@ -74,50 +95,29 @@ function TestimonialRow({
         <Image src={image} alt={name} width={50} height={50} />
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Tag type={status ? "green" : "silver"}>
+        {status ? "Active" : "Inactive"}
+      </Tag>
 
       <Stacked>
-        <span>Created on</span>
         <span>{created}</span>
       </Stacked>
-
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete testimonial</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="testimonial"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            disabled={isDeleting} // Disable button while deleting
+            onConfirm={handleDelete} // Call the delete function on confirm
           />
         </Modal.Window>
       </Modal>

@@ -8,7 +8,7 @@ import pencil from "./assets/pencil.png";
 
 export default function Suggestions() {
   return (
-    <ContainerMain alignItems="center" bgColor="#007946" dir="row">
+    <ContainerMain alignItems="center" bgColor="#005900" dir="row">
       <Stack width="70%" gap={"5px"}>
         <Head1 color="white" textAlign="left">
           Your suggestions are welcome at

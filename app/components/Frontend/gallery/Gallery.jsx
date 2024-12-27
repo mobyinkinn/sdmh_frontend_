@@ -14,7 +14,7 @@ const Gallery = () => {
         image={banner.src}
       />
       <TabData/>
-      <VirtualView/>
+      {/* <VirtualView/> */}
       <Footer />
     </>
   );

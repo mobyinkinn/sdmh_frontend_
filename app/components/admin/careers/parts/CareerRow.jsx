@@ -16,6 +16,8 @@ import {
 import Image from "next/image";
 import Button from "@/app/components/ui/Button";
 import { useState } from "react";
+import { HiEyeOff } from "react-icons/hi";
+import { useBlockCareers, useDeleteCareers, useUnblockCareers } from "./useCareers";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -34,76 +36,96 @@ const Stacked = styled.div`
 `;
 
 function CareerRow({
-  department: { id: id, title, email, name, phone, city, attachment, created },
+  department: {
+    _id,
+    position,
+    name,
+    email,
+    phone,
+    city,
+    resume,
+    dateApplied,
+    status,
+  },
 }) {
+  const { mutate: deleteCareers, isLoading: isDeleting } = useDeleteCareers();
+  const { mutate: blockCareers, isLoading: isBlocking } = useBlockCareers();
+  const { mutate: unblockCareers, isLoading: isUnblocking } =
+    useUnblockCareers();
+
+  const handleToggleStatus = () => {
+    if (status) {
+      blockCareers(_id); // Call block API if active
+    } else {
+      unblockCareers(_id); // Call unblock API if inactive
+    }
+  };
   const statusToTagName = {
     unconfirmed: "blue",
     active: "green",
     inactive: "silver",
   };
-
+const handleDelete = () => {
+  deleteCareers(_id);
+};
   return (
     <Table.Row alignItems="start">
       <Stacked>
-        <span>{title}</span>
+        <span>{position}</span>
       </Stacked>
 
       <Stacked>
-        <span>Email</span>
         <span>{email}</span>
       </Stacked>
 
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
       <Stacked>
-        <span>Phone No</span>
         <span>{phone}</span>
       </Stacked>
       <Stacked>
-        <span>City</span>
         <span>{city}</span>
       </Stacked>
       <Stacked>
         <span>
           <a
-            href={attachment}
+            href={file}
             // target="blank"
             download
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            Download Attachment
+            <ButtonSmallOutlineWithoutHover
+              style={{ color: "#005900", border: "1px solid #005900" }}
+            >
+              Download
+            </ButtonSmallOutlineWithoutHover>
           </a>
         </span>
       </Stacked>
-
+      <Tag type={status ? "green" : "silver"}>
+        {status ? "Active" : "Inactive"}
+      </Tag>
       <Stacked>
-        <span>{created}</span>
+        <span>{dateApplied}</span>
       </Stacked>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            {/* 
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            */}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete resume</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="resume"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="testimonial"
+            disabled={isDeleting} // Disable button while deleting
+            onConfirm={handleDelete} // Call the delete function on confirm
           />
         </Modal.Window>
       </Modal>

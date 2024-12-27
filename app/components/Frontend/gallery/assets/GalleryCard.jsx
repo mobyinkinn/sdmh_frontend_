@@ -1,17 +1,16 @@
+
 "use client";
 
 import { Box, Stack, Typography } from "@mui/material";
-import img from "./exterior.png";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-
 export default function GalleryCard({ career }) {
-  
   console.log("career", career);
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
+
   return (
     <Box
       key={career.id}
@@ -31,20 +30,28 @@ export default function GalleryCard({ career }) {
         objectFit="cover"
         style={{ filter: "brightness(0.8)" }}
       />
-      <Stack>
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          color: "white",
+          textAlign: "center",
+          padding: "8px 16px",
+          borderRadius: "4px",
+        }}
+      >
         <Typography
-          width={"100%"}
           sx={{
-            position: "absolute",
-            bottom: "40%",
-            left: "30%",
-            color: "white",
-            fontSize: "16px",
+            fontSize: "18px",
+            fontWeight: "bold",
           }}
         >
           {career.title}
         </Typography>
-      </Stack>
+      </Box>
     </Box>
   );
 }

@@ -4,13 +4,13 @@ import NavbarAdminVerticle from "./NavbarAdminVerticle";
 
 const StyledAppLayout = styled.div`
   display: grid;
-  grid-template-columns: 22rem 1fr;
+  grid-template-columns: 19rem 1fr;
   grid-template-rows: auto 1fr;
   height: 90vh;
 `;
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  padding: 2rem 2.4rem 3.2rem;
+  padding: 2rem 1.4rem 3.2rem;
   overflow: scroll;
 `;
 

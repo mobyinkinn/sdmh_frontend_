@@ -118,6 +118,21 @@ const ButtonMediumOutline = styled.button((props) => ({
     color: props.hoverColor || "white",
   },
 }));
+const ButtonSmallOutlineWithoutHover = styled.button((props) => ({
+  backgroundColor: "transparent",
+  width: "fit-content",
+  outline: "none",
+  border: `1px solid ${props.color}`,
+  padding: "10px 30px",
+  color: props.color,
+  cursor: "pointer",
+  borderRadius: "200px",
+  fontSize: "0.8rem",
+  display: "flex",
+  gap: "8px",
+  alignItems: "center",
+  transition: "all 0.3s ease",
+}));
 
 export {
   DarkGreenButtonSmall,
@@ -126,4 +141,5 @@ export {
   ButtonVerySmallOutline,
   ButtonSmallOutline,
   ButtonMediumOutline,
+  ButtonSmallOutlineWithoutHover,
 };

@@ -43,11 +43,9 @@ const StyledList = styled.ul`
 `;
 
 const StyledButton = styled.button`
-  width: 100%;
   text-align: left;
   background: none;
   border: none;
-  padding: 0.9rem 1rem;
   font-size: 0.9rem;
   transition: all 0.2s;
 
@@ -60,8 +58,8 @@ const StyledButton = styled.button`
   }
 
   & svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
   }

@@ -7,6 +7,7 @@ import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useAcademicContext } from "./AcademicContext";
+import { useNotices } from "../useNotices";
 
 const noticeData = [
   {
@@ -33,25 +34,34 @@ const noticeData = [
 ];
 
 function AcademicTable() {
+   const { data, isLoading, error } = useNotices();
+   if (isLoading) return <Spinner />;
+   if (error) return <div>Error loading testimonials: {error.message}</div>;
   const { filter } = useAcademicContext();
-  let filteredAcademic = noticeData;
-  if (filter !== "All") {
-    filteredAcademic = noticeData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+  let filteredAcademic = data;
+ if (filter !== "All") {
+   filteredAcademic = data.filter((el) => {
+     if (filter.toLowerCase() === "active") {
+       return el.status === true; // Show active testimonials
+     } else if (filter.toLowerCase() === "inactive") {
+       return el.status === false; // Show inactive testimonials
+     }
+     return false;
+   });
+ }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
   if (!noticeData.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="3fr 2fr 2fr 2fr 2fr 3.2rem">
+      <Table columns="2fr 4fr 3fr 2fr 1.7fr 2.2rem">
         <Table.Header>
           <div>Name</div>
-          <div>Image</div>
+          <div>Id</div>
+          <div>File</div>
           <div>Status</div>
-          <div>created</div>
+          <div>Actions</div>
           <div></div>
         </Table.Header>
 

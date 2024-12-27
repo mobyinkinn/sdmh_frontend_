@@ -10,10 +10,12 @@ export function useLogin() {
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (admin) => {
       queryClient.setQueryData(["admin"], admin.data.admin);
+
+      console.log("Cookies after login:", document.cookie);
+
       router.push("/admin/adminuser");
     },
     onError: (err) => {
-      // console.log("ERROR", err);
       toast.error("Provided email or password are incorrect");
     },
   });
