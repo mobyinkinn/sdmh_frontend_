@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useBannerContext } from "./BannerContext";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
+import CreateBannerForm from "@/app/components/features/Banners/CreateBannerForm";
 
 function BannerTableOperations() {
   const { filter, setFilter } = useBannerContext();
@@ -26,6 +29,14 @@ function BannerTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="banner-form">
+          <Button>Add Banner</Button>
+        </Modal.Open>
+        <Modal.Window name="banner-form">
+          <CreateBannerForm/>
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

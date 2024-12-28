@@ -8,9 +8,9 @@ import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 // import useCreateCabin from "./useCreateCabin";
 // import useEditCabin from "./useEditCabin";
-import { useCreateNotice } from "../../admin/academic_notices/useNotices";
+import { useCreateBanner } from "../../admin/banner/parts/useBanner";
 
-function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
+function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
 
@@ -19,7 +19,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
   });
   const { errors } = formState;
 
-  const { isCreating, createNotice } = useCreateNotice();
+  const { isCreating, createBanners } = useCreateBanner();
   //   const { isEditing, editCabin } = useEditCabin();
 
   const isWorking = isCreating;
@@ -29,12 +29,12 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
 
     const formdata = new FormData();
     formdata.append("file", file);
-    formdata.append("name", data.name);
+    formdata.append("page", data.page);
     formdata.append("status", true);
     console.log("formdata", formdata);
     console.log("Submitted data:", data);
 
-    createNotice(formdata, {
+    createBanners(formdata, {
       onSuccess: (data) => {
         reset();
         onCloseModal?.();
@@ -49,12 +49,12 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
-      <FormRow label="Academic notice name" error={errors?.name?.message}>
+      <FormRow label="Page Name" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="text"
-          id="name"
-          {...register("name", {
+          id="page"
+          {...register("page", {
             required: "This field is required",
           })}
         />
@@ -63,7 +63,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
       <FormRow label={"File"}>
         <FileInput
           id="file"
-          accept="file/*"
+          accept="image/*"
           type="file"
           {...register("file", {
             required: "This field is required",
@@ -85,4 +85,4 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
   );
 }
 
-export default CreateNoticeForm;
+export default CreateBannerForm;

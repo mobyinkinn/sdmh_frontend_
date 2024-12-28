@@ -38,19 +38,6 @@ export default function TpaIndex({ onCloseModal }) {
         <Row type="horizontal">
           <Heading as="h2">Tpa Index</Heading>
           <TpaTableOperations />
-          <Modal>
-            <Modal.Open opens="edit">
-              <Button>Create TPA</Button>
-            </Modal.Open>
-            <Modal.Window name="edit">
-              <CreateTpa
-                onCloseModal={onCloseModal}
-                resourceName={"Tpa"}
-                disabled={isCreating}
-                onConfirm={handleCreateTpa}
-              />
-            </Modal.Window>
-          </Modal>
         </Row>
         <TpaTable />
       </AppLayout>

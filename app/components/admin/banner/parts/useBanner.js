@@ -1,0 +1,74 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { blockBanner, deleteBanner,createBanner, fetchBanners, unblockBanner } from "@/app/components/services/api.Banner";
+
+export const useBanner = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["banner"],
+    queryFn: fetchBanners,
+    staleTime: 5 * 60 * 1000,
+  });
+  return { data, isLoading, error };
+};
+
+export const useDeleteBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Banners"]);
+      toast.success("Banner deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete Banner:", error);
+      toast.error("Failed to delete Banner. Please try again.");
+    },
+  });
+};
+export const useBlockBanners = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: blockBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Banners"]);
+      toast.success("Banner blocked successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to block Banner:", error);
+      toast.error("Failed to block Banner. Please try again.");
+    },
+  });
+};
+export const useUnblockBanners = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: unblockBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Banners"]);
+      toast.success("Banner Unblocked sucessfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to unblock Banner:", error);
+      toast.error("Failed to unblock Banner. Please try again.");
+    },
+  });
+};
+export const useCreateBanner = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: createBanners, isLoading: isCreating } = useMutation({
+    mutationFn: createBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Banners"]);
+      toast.success("tpa Created successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to create tpa:", error);
+      toast.error("Failed to create tpa. Please try again.");
+    },
+  });
+
+  return { createBanners, isCreating };
+};

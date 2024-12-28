@@ -7,6 +7,7 @@ import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useBannerContext } from "./BannerContext";
+import { useBanner } from "./useBanner";
 
 const tpaData = [
   {
@@ -33,25 +34,35 @@ const tpaData = [
 ];
 
 function BannerTable() {
+  const { data, isLoading, error } = useBanner();
+
   const { filter } = useBannerContext();
-  let filteredBanner = tpaData;
-  if (filter !== "All") {
-    filteredBanner = tpaData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+if (isLoading) return <Spinner />;
+if (error) return <div>Error loading Tpa's: {error.message}</div>;
+let filteredBanner = data;
+ if (filter !== "All") {
+   filteredBanner = data.filter((el) => {
+     if (filter.toLowerCase() === "active") {
+       return el.status === true; // Show active testimonials
+     } else if (filter.toLowerCase() === "inactive") {
+       return el.status === false; // Show inactive testimonials
+     }
+     return false;
+   });
+ }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
-  if (!tpaData.length) return <Empty resourceName="Admins" />;
+  if (!filteredBanner.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="3fr 2fr 2fr 2fr 2fr 3.2rem">
+      <Table columns="3fr 3fr 2fr 3fr 1.7fr 1.2rem">
         <Table.Header>
-          <div>Name</div>
-          <div>Image</div>
+          <div>Page</div>
+          <div>id</div>
+          <div>Banner</div>
           <div>Status</div>
-          <div>created</div>
+          <div>Actions</div>
           <div></div>
         </Table.Header>
 

@@ -13,9 +13,12 @@ import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
+  HiPencil,
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
+import {  useBlockBanners, useDeleteBanner, useUnblockBanners } from "./useBanner";
+import { HiEyeOff } from "react-icons/hi";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -36,72 +39,55 @@ const Stacked = styled.div`
   }
 `;
 
-function BannerRow({ academic: { id: id, name, image, status, created } }) {
-  //   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
-  const statusToTagName = {
-    unconfirmed: "blue",
-    active: "green",
-    inactive: "silver",
-  };
-
+function BannerRow({ academic: { _id, page, banner, status } }) {
+const { mutate: blockbanner, isLoading: isBlocking } = useBlockBanners();
+const { mutate: unblockbanner, isLoading: isUnblocking } = useUnblockBanners();
+const { mutate: deletebanner, isLoading: isDeleting } = useDeleteBanner();
+const handleToggleStatus = () => {
+  if (status) {
+    blockbanner(_id); // Call block API if active
+  } else {
+    unblockbanner(_id); // Call unblock API if inactive
+  }
+};
+const handleDelete = () => {
+  deletebanner(page);
+};
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
-        <span>{name}</span>
+        <span>{page}</span>
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        <Image src={banner} alt={page} width={50} height={50} />
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
+      <Tag type={status ? "green" : "silver"}>
+        {status ? "Active" : "Inactive"}
+      </Tag>
       <Stacked>
-        <span>Created on</span>
-        <span>{created}</span>
+        <span>{_id}</span>
       </Stacked>
-
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {/* {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )} */}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete banner</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="edit">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="banner"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="Banner"
+            disabled={isDeleting}
+            onConfirm={handleDelete}
           />
         </Modal.Window>
       </Modal>

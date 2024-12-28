@@ -105,22 +105,12 @@ function TpaRow({ academic: { _id, name, logo, status } }) {
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
-          <Modal.Open opens="create">
-            <Button>Create TPA</Button>
-          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="tpa"
             disabled={isDeleting}
             onConfirm={handleDelete}
-          />
-        </Modal.Window>
-        <Modal.Window name="create">
-          <CreateTpa
-            resourceName={"Tpa"}
-            disabled={isCreating}
-            onConfirm={handleCreateTpa}
           />
         </Modal.Window>
       </Modal>
