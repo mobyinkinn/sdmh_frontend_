@@ -7,6 +7,8 @@ import {
   deleteNotices,
   fetchNotices,
   unblockNotices,
+  updateNotice,
+  updateNoticeFile,
 } from "../../services/api.Notices";
 
 export const useNotices = () => {
@@ -80,19 +82,40 @@ export const useCreateNotice = () => {
   return { createNotice, isCreating };
 };
 
-// export const useUpdateTpa = () => {
-//   const queryClient = useQueryClient();
+export const useUpdateName = () => {
+  const queryClient = useQueryClient();
 
-//   return useMutation({
-//     mutationFn: updateTpa,
-//     onSuccess: () => {
-//       // Invalidate the "Blogs" query to refresh the table data
-//       queryClient.invalidateQueries(["tpa"]);
-//       toast.success("tpa updated successfully!");
-//     },
-//     onError: (error) => {
-//       console.error("Failed to update tpa:", error);
-//       toast.error("Failed to update tpa. Please try again.");
-//     },
-//   });
-// };
+  const { mutate: updateName, isLoading: isUpdating } = useMutation({
+    mutationFn: updateNotice,
+    onSuccess: () => {
+      // Invalidate the "Blogs" query to refresh the table data
+      queryClient.invalidateQueries(["notices"]);
+      toast.success("Notice updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update notice:", error);
+      toast.error("Failed to update notice. Please try again.");
+    },
+  });
+
+  return { updateName, isUpdating };
+};
+
+export const useUpdateNameFile = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateFile, isLoading: isUpdatingFile } = useMutation({
+    mutationFn: updateNoticeFile,
+    onSuccess: () => {
+      // Invalidate the "Blogs" query to refresh the table data
+      queryClient.invalidateQueries(["notices"]);
+      toast.success("Notice updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update notice:", error);
+      toast.error("Failed to update notice. Please try again.");
+    },
+  });
+
+  return { updateFile, isUpdatingFile };
+};

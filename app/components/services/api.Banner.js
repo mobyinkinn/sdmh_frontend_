@@ -15,11 +15,9 @@ export const deleteBanner = async (page) => {
   return response.data;
 };
 export const blockBanner = async (id) => {
-  const response = await axios.patch(
-    `${ApiUrl}/banner/block-banner?id=${id}`,
-    {},
-    { withCredentials: true }
-  );
+  const response = await axios.patch(`${ApiUrl}/banner/block-banner?id=${id}`, {
+    withCredentials: true,
+  });
   return response.data;
 };
 
@@ -31,15 +29,20 @@ export const unblockBanner = async (id) => {
   );
   return response.data;
 };
-// export const updateBanner = async ({ id, data }) => {
-//   const response = await axios.post(`${ApiUrl}/Banner/update?id=${id}`, data, {
-//     withCredentials: true,
-//     headers: {
-//       "Content-Type": "multipart/form-data",
-//     },
-//   });
-//   return response.data;
-// };
+
+export const updateBanner = async ({ pageName, formdata }) => {
+  const response = await axios.post(
+    `${ApiUrl}/Banner/update?page=${pageName}`,
+    formdata,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return response.data;
+};
 
 export const createBanner = async (data) => {
   const response = await axios.post(`${ApiUrl}/banner/create`, data, {

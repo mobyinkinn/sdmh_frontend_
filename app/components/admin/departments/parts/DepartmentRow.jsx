@@ -9,6 +9,7 @@ import ConfirmDelete from "../../../ui/ConfirmDelete";
 // import { formatCurrency } from "../../../utils/helpers";
 // import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
+import moment from "moment";
 import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
@@ -16,6 +17,8 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
+import { HiEyeOff, HiPencil } from "react-icons/hi";
+import { useBlockDepartment, useUnblockDepartment } from "./useDepartment";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -37,11 +40,32 @@ const Stacked = styled.div`
 `;
 
 function DepartmentRow({
-  department: { id: id, name, image, status, created },
+  department: { id: id, name, image, status, updatedAt },
 }) {
+  const { blockDepartment, isBlocking } = useBlockDepartment;
+  const { unblockDepartment, isUnblocking } = useUnblockDepartment;
+
+  const handleToggleStatus = () => {
+    if (status === true) {
+      blockDepartment(id); // Call block API if active
+    } else {
+      unblockDepartment(id); // Call unblock API if inactive
+    }
+  };
+
+  const created = moment(updatedAt).format("YYYY-MM-DD");
+
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
+
+  let convertedStatus;
+  if (status === true) {
+    convertedStatus = "active";
+  } else {
+    convertedStatus = "inactive";
+  }
+
   const statusToTagName = {
     unconfirmed: "blue",
     active: "green",
@@ -59,7 +83,9 @@ function DepartmentRow({
         <Image src={image} alt={name} width={50} height={50} />
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Tag type={statusToTagName[convertedStatus]}>
+        {convertedStatus.replace("-", " ")}
+      </Tag>
 
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Stacked>
@@ -68,6 +94,31 @@ function DepartmentRow({
       </Stacked>
 
       <Modal>
+        <Menus.Menu>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="banner-form">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Window name="banner-form">
+            {/* <EditBannerForm pageName={page} /> */}
+          </Modal.Window>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
+        </Menus.Menu>
+        <Modal.Window name="delete">
+          <ConfirmDelete
+            resourceName="Banner"
+            // disabled={isDeleting}
+            // onConfirm={handleDelete}
+          />
+        </Modal.Window>
+      </Modal>
+      {/* <Modal>
         <Menus.Menu>
           <Menus.Toggle id={id} />
           <Menus.List id={id}>
@@ -106,7 +157,7 @@ function DepartmentRow({
             // onConfirm={() => deleteBooking(bookingId)}
           />
         </Modal.Window>
-      </Modal>
+      </Modal> */}
     </Table.Row>
   );
 }

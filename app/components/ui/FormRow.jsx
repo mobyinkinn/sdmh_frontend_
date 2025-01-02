@@ -5,7 +5,7 @@ const StyledFormRow = styled.div`
   align-items: center;
   grid-template-columns: 10rem 1fr;
   gap: 1.4rem;
-
+  margin: 15px 0;
 
   &:first-child {
     padding-top: 0;
@@ -15,9 +15,9 @@ const StyledFormRow = styled.div`
     padding-bottom: 0;
   }
 
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
-  }
+  // &:not(:last-child) {
+  //   border-bottom: 1px solid var(--color-grey-100);
+  // }
 
   &:has(button) {
     display: flex;

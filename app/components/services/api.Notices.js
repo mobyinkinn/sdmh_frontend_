@@ -40,3 +40,27 @@ export const createNotices = async (formData) => {
 
   return response.data;
 };
+
+export const updateNotice = async ({ formData, id }) => {
+  const response = await axios.post(
+    `${ApiUrl}/notices/update?id=${id}`,
+    formData,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
+
+export const updateNoticeFile = async ({ formData, id }) => {
+  const response = await axios.post(
+    `${ApiUrl}/notices/update-file?id=${id}`,
+    formData,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};

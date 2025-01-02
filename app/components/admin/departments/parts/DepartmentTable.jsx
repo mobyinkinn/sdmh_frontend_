@@ -2,11 +2,11 @@ import DepartmentRow from "./DepartmentRow";
 import Table from "../../../ui/Table";
 import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
-// import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useDepartmentContext } from "./DepartmentContext";
+import { useDepartment } from "./useDepartment";
 
 const departmentData = [
   {
@@ -33,17 +33,26 @@ const departmentData = [
 ];
 
 function DepartmentTable() {
+  const { data, isLoading, error } = useDepartment();
+
   const { filter } = useDepartmentContext();
-  let filteredDepartment = departmentData;
-  if (filter !== "All") {
-    filteredDepartment = departmentData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
+  if (isLoading) return <Spinner />;
+  console.log(data.data);
+
+  let filteredDepartment = data.data;
+  let convertedFilter;
+
+  if (filter.toLowerCase() === "inactive") {
+    convertedFilter = false;
+  } else {
+    convertedFilter = true;
   }
 
-  //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!departmentData.length) return <Empty resourceName="Admins" />;
+  if (filter !== "All") {
+    filteredDepartment = data.filter((el, i) => el.status === convertedFilter);
+  }
+
+  if (!filteredDepartment.length) return <Empty resourceName="departments" />;
   return (
     <Menus>
       <Table columns="3fr 2fr 2fr 2fr 3.2rem">
