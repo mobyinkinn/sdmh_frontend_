@@ -35,9 +35,51 @@ export default function MobileApp() {
         <Head1 textAlign={"left"} color="#007946">
           SDMH Mobile App
         </Head1>
-        <Stack direction={"row"} gap={"10px"}>
-          <Image src={app} alt="" width={282.73} height={83.8} />
-          <Image src={play} alt="" width={282.73} height={83.8} />
+        <Stack direction={"row"} gap={1}>
+          {/* <Image
+            src={app}
+            alt=""
+            sx={{
+              width: { xs: "50%", sm: "auto" }, // Responsive width
+              maxWidth: "282.73px", // Maximum width
+              height: "auto", // Maintain aspect ratio
+            }}
+            height={83.8}
+          />
+          <Image
+            src={play}
+            alt=""
+            sx={{
+              width: { xs: "50%", sm: "auto" }, // Responsive width
+              maxWidth: "282.73px", // Maximum width
+              height: "auto", // Maintain aspect ratio
+            }}
+            height={83.8}
+          /> */}
+          <Stack
+            direction={"row"}
+            gap={"10px"}
+            height={"20vh"}
+            width={{ md: "40%", xs: "90%" }}
+            sx={{
+              backgroundImage: `url(${app.src})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+            }}
+          ></Stack>
+          <Stack
+            direction={"row"}
+            gap={"10px"}
+            height={"20vh"}
+            width={{ md: "40%", xs: "90%" }}
+            sx={{
+              backgroundImage: `url(${play.src})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+            }}
+          ></Stack>
         </Stack>
       </Stack>
     </ContainerMain>

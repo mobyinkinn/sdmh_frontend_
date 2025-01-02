@@ -4,7 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
-import { Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { IoIosArrowDown } from "react-icons/io";
 import logo from "./assets/logo.png";
 import Image from "next/image";
@@ -16,7 +16,9 @@ import {
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { SlArrowRight } from "react-icons/sl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
@@ -32,6 +34,7 @@ const navLinks = [
 //          <div id="google_translate_element" style={{ margin: "10px" }}></div>
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   useEffect(() => {
     // Prevent duplicate script loading
     if (!document.querySelector('script[src*="translate.google.com"]')) {
@@ -63,28 +66,41 @@ export default function Navbar() {
       <Stack>
         <Stack
           direction={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
+          justifyContent={{ xs: "end", smm: "end", md: "space-between" }}
+          alignItems={{ xs: "end", smm: "end", md: "center" }}
           padding={"10px 100px"}
           backgroundColor={"#005900"}
           color={"white"}
         >
-          <Stack direction={"row"} gap={"10px"}>
+          <Stack
+            direction={"row"}
+            gap={"10px"}
+            sx={{ display: { sm: "none", md: "flex" } }}
+          >
             <FaFacebookF />
             <FaYoutube />
             <FaXTwitter />
             <AiFillInstagram />
           </Stack>
           <Stack direction={"row"} gap={"25px"}>
-            <Typography>Lab Reports</Typography>
-            <Typography>Downloads</Typography>
-            <Stack direction={"row"} alignItems={"center"} gap={"5px"}>
-              <div
-                id="google_translate_element"
-                style={{ backgroundColor: "black" }}
-              ></div>
-              {/* <IoIosArrowDown /> */}
-            </Stack>
+            <Typography sx={{ display: { sm: "none", md: "flex" } }}>
+              Lab Reports
+            </Typography>
+            <Box
+              display={"flex"}
+              direction={"row"}
+              gap={"25px"}
+              justifyContent={{ xs: "flex-end", sm: "flex-start" }}
+            >
+              <Typography>Downloads</Typography>
+              <Stack direction={"row"} alignItems={"center"} gap={"5px"}>
+                <div
+                  id="google_translate_element"
+                  style={{ backgroundColor: "black" }}
+                ></div>
+                {/* <IoIosArrowDown /> */}
+              </Stack>
+            </Box>
           </Stack>
         </Stack>
         <Stack
@@ -99,7 +115,11 @@ export default function Navbar() {
           <a href="/" style={{ textDecoration: "none", color: "black" }}>
             <Image src={logo} alt="" height={73} width={195} />
           </a>
-          <Stack direction={"row"} gap={"20px"}>
+          <Stack
+            direction={"row"}
+            gap={"20px"}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          >
             <Stack direction={"row"}>
               <SearchInput
                 placeholder="Search Doctor"
@@ -119,12 +139,64 @@ export default function Navbar() {
               info@sdmh.in
             </DarkGreenButtonSmallOutline>
           </Stack>
+          <IconButton
+            size="large"
+            sx={{ display: { xs: "flex", md: "none" } }}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+          >
+            <MenuIcon />
+          </IconButton>
         </Stack>
+        {isMenuOpen && (
+          <Box>
+            <Stack
+              direction={"column"}
+              padding={"15px"}
+              justifyContent={"center"}
+              gap={"25px"}
+              sx={{ display: { md: "none" } }}
+            >
+              {navLinks.map((el, i) => {
+                return (
+                  <a
+                    href={el.link}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <Typography sx={{ cursor: "pointer" }}>
+                      {el.name}
+                    </Typography>
+                  </a>
+                );
+              })}
+            </Stack>
+            <Stack
+              direction={"column"}
+              padding={"15px"}
+              justifyContent={"center"}
+              gap={"25px"}
+              sx={{ display: { md: "none" } }}
+            >
+              <Stack direction={"row"} spacing={1} sx={{ color: "#005900" }}>
+                <SearchIcon />
+                <Typography>Search Doctor</Typography>
+              </Stack>
+              <Stack direction={"row"} spacing={1} sx={{ color: "#005900" }}>
+                <IoIosMail style={{ width: "20px", height: "20px" }} />
+                <Typography>info@sdmh.in</Typography>
+              </Stack>
+              <Stack direction={"row"} spacing={1} sx={{ color: "#005900" }}>
+                <FaPhone style={{ width: "15px", height: "15px" }} />
+                <Typography>0141 352 4444</Typography>
+              </Stack>
+            </Stack>
+          </Box>
+        )}
         <Stack
           direction={"row"}
           padding={"15px"}
           justifyContent={"center"}
           gap={"25px"}
+          sx={{ display: { xs: "none", md: "flex" } }}
         >
           {navLinks.map((el, i) => {
             return (
