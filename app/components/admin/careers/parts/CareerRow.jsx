@@ -18,6 +18,7 @@ import Button from "@/app/components/ui/Button";
 import { useState } from "react";
 import { HiEyeOff } from "react-icons/hi";
 import { useBlockCareers, useDeleteCareers, useUnblockCareers } from "./useCareers";
+import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -90,7 +91,7 @@ const handleDelete = () => {
       <Stacked>
         <span>
           <a
-            href={file}
+            href={resume}
             // target="blank"
             download
             style={{ textDecoration: "none", color: "inherit" }}

@@ -39,7 +39,7 @@ function AcademicTable() {
    if (error) return <div>Error loading testimonials: {error.message}</div>;
   const { filter } = useAcademicContext();
   let filteredAcademic = data;
- if (filter !== "All") {
+  if (filter !== "All") {
    filteredAcademic = data.filter((el) => {
      if (filter.toLowerCase() === "active") {
        return el.status === true; // Show active testimonials

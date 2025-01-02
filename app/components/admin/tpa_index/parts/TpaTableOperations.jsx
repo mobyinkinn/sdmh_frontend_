@@ -125,10 +125,14 @@
 // export default TpaTableOperations;
 
 
+import CreateBannerForm from "@/app/components/features/Banners/CreateBannerForm";
 import TableOperations from "../../../ui/TableOperations";
 import { useTpaContext } from "./TpaContext";
 import Filter from "@/app/components/ui/Filter";
 import SortBy from "@/app/components/ui/SortBy";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
+import CreateTpaForm from "@/app/components/features/Tpa/CreateTpaForm";
 
 function TpaTableOperations() {
   const { filter, setFilter } = useTpaContext();
@@ -155,7 +159,15 @@ function TpaTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
-     
+
+      <Modal>
+        <Modal.Open opens="Tpa-form">
+          <Button>Add Tpa</Button>
+        </Modal.Open>
+        <Modal.Window name="Tpa-form">
+          <CreateTpaForm />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

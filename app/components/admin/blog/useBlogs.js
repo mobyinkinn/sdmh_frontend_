@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { blockBlog, deleteBlog, fetchBlogs, unblockBlog, updateBlog } from "../../services/api.Blogs";
+import { blockBlog, createBlog, deleteBlog, fetchBlogs, unblockBlog, updateBlog } from "../../services/api.Blogs";
 import toast from "react-hot-toast";
 
 export const useBlogs = () => {
@@ -71,4 +71,21 @@ export const useUpdateBlog = () => {
       toast.error("Failed to update Blog. Please try again.");
     },
   });
+};
+
+export const useCreateBlog = () => {
+  const queryClient = useQueryClient();
+  const { mutate: createBlogs, isLoading: isCreating } = useMutation({
+    mutationFn: createBlog,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["blogs"]);
+      toast.success("tpa Created successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to create tpa:", error);
+      toast.error("Failed to create tpa. Please try again.");
+    },
+  });
+
+  return { createBlogs, isCreating };
 };

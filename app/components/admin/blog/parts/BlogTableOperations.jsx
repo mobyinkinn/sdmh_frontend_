@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useBlogContext } from "./BlogContext";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
+import CreateBlogForm from "@/app/components/features/Blog/CreateBlogForm";
 
 function BlogTableOperations() {
   const { filter, setFilter } = useBlogContext();
@@ -26,6 +29,14 @@ function BlogTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="blog-form">
+          <Button>Add Blog</Button>
+        </Modal.Open>
+        <Modal.Window name="blog-form">
+          <CreateBlogForm resourceName="Blog" />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

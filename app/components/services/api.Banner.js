@@ -41,7 +41,7 @@ export const unblockBanner = async (id) => {
 //   return response.data;
 // };
 
-export const createBanner = async ({ data }) => {
+export const createBanner = async (data) => {
   const response = await axios.post(`${ApiUrl}/banner/create`, data, {
     withCredentials: true,
     headers: {

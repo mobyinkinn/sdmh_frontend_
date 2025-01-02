@@ -7,3 +7,47 @@ export const fetchOpening = async () => {
   });
   return response.data.message; // Adjust based on actual API structure
 };
+
+export const deleteOpening = async (id) => {
+  const response = await axios.get(`${ApiUrl}/openings/delete?id=${id}`, {
+    withCredentials: true,
+  });
+  return response.data;
+};
+export const blockOpening = async (id) => {
+  const response = await axios.patch(
+    `${ApiUrl}/openings/block-opening?id=${id}`,
+    {},
+    { withCredentials: true }
+  );
+  return response.data;
+};
+
+export const unblockOpening = async (id) => {
+  const response = await axios.patch(
+    `${ApiUrl}/openings/unblock-opening?id=${id}`,
+    {},
+    { withCredentials: true }
+  );
+  return response.data;
+};
+export const updateOpening = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/openings/update?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return response.data;
+};
+
+export const createOpening = async (formdata) => {
+  const response = await axios.post(`${ApiUrl}/openings/create`, formdata, {
+    withCredentials: true,
+  });
+  return response.data;
+};
