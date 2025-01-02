@@ -54,21 +54,23 @@ export default function FilterSection() {
       direction={"row"}
       margin={"50px auto"}
       backgroundColor={"#476C9B"}
-      width={"fit-content"}
+      width={"90%"}
+      sx={{ display: { sm: "none", md: "flex" } }}
     >
       {filterData.map((el, i) => {
         return (
           <Stack
+            width={"25%"}
             direction={"row"}
-            padding={"30px 50px"}
+            padding={{ lg: "40px", md: "30px" }}
             alignItems={"center"}
             gap={"10px"}
             sx={{
               borderRight: "1px solid white",
             }}
           >
-            <Image src={el.icon} alt="" height={50} width={50} />
-            <Typography color="white" fontSize={"1.3rem"}>
+            <Image src={el.icon} alt="" height={30} width={30} />
+            <Typography color="white" fontSize={"1rem"}>
               {el.name}
             </Typography>
             <IoIosArrowDown style={{ color: "white" }} />
