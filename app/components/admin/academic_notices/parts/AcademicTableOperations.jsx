@@ -31,7 +31,7 @@ function AcademicTableOperations() {
       />
       <Modal>
         <Modal.Open opens="notice-form">
-          <Button>Add new Academic Notice</Button>
+          <Button>Add Notice</Button>
         </Modal.Open>
         <Modal.Window name="notice-form">
           <CreateNoticeForm />

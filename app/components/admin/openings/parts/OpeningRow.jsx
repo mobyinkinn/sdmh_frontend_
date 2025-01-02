@@ -18,6 +18,8 @@ import {
 import Image from "next/image";
 import Button from "@/app/components/ui/Button";
 import { useState } from "react";
+import { HiEyeOff } from "react-icons/hi";
+import { useBlockOpening, useDeleteOpening, useUnblockOpening } from "../../careers/parts/useOpening";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -40,28 +42,29 @@ const Stacked = styled.div`
 
 function OpeningRow({
   department: {
-    id: id,
-    title,
-    description,
+    _id,
+    position,
+    jd,
     seats,
     status,
-    date,
-    cordinateProgramers,
-    cordinateNumber,
-    created,
+    lastDate,
+    programmer,
+    number,
   },
 }) {
   const [fullDesc, showFullDesc] = useState(false);
   const [fullSDesc, showFullSDesc] = useState(false);
-  //   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
-  const statusToTagName = {
-    unconfirmed: "blue",
-    active: "green",
-    inactive: "silver",
-  };
+const { mutate: deleteOpening, isLoading: isDeleting } = useDeleteOpening();
+const { mutate: blockOpening, isLoading: isBlocking } = useBlockOpening();
+const { mutate: unblockOpening, isLoading: isUnblocking } = useUnblockOpening();
 
+const handleToggleStatus = () => {
+  if (status) {
+    blockOpening(_id); // Call block API if active
+  } else {
+    unblockOpening(_id); // Call unblock API if inactive
+  }
+};
   const expandDesc = () => {
     showFullDesc((desc) => !desc);
   };
@@ -69,76 +72,62 @@ function OpeningRow({
   const expandSDesc = () => {
     showFullSDesc((desc) => !desc);
   };
-
+const handleDelete = () => {
+  deleteOpening(_id);
+};
   return (
     <Table.Row alignItems="start">
       <Stacked>
-        <span>{title}</span>
+        <span>{position}</span>
       </Stacked>
 
       <Stacked>
-        <span>{fullSDesc ? description : description.slice(0, 50)} ...</span>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullSDesc
+              ? jd
+              : `${jd.slice(0, 50)}${jd.length > 50 ? "..." : ""}`,
+          }}
+        />
         <span onClick={expandSDesc} style={{ cursor: "pointer" }}>
           {fullSDesc ? "Show less" : "Show more"}
         </span>
       </Stacked>
+
       <Stacked>
         <span>{seats}</span>
       </Stacked>
       <Stacked>
-        <span>{date}</span>
+        <span>{lastDate}</span>
       </Stacked>
       <Stacked>
-        <span>{cordinateProgramers}</span>
+        <span>{programmer}</span>
       </Stacked>
 
       <Stacked>
-        <span>{cordinateNumber}</span>
+        <span>{number}</span>
       </Stacked>
 
-      <Stacked>
-        <span>{created}</span>
-      </Stacked>
-
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Tag type={status ? "green" : "silver"}>
+        {status ? "Active" : "Inactive"}
+      </Tag>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete openinng</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="opening"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="Openings"
+            disabled={isDeleting} // Disable button while deleting
+            onConfirm={handleDelete} // Call the delete function on confirm
           />
         </Modal.Window>
       </Modal>

@@ -28,7 +28,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
     const file = typeof data.file === "string" ? data.file : data.file[0];
 
     const formdata = new FormData();
-    formdata.append("file", file);
+    formdata.append("banner", file);
     formdata.append("page", data.page);
     formdata.append("status", true);
     console.log("formdata", formdata);
@@ -79,7 +79,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button disabled={isWorking}>{"Create new cabin"}</Button>
+        <Button disabled={isWorking}>{"Create new banner"}</Button>
       </FormRow>
     </Form>
   );

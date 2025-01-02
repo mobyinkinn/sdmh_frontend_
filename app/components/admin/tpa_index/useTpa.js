@@ -75,8 +75,7 @@ export const useUpdateTpa = () => {
 
 export const useCreateTpa = () => {
   const queryClient = useQueryClient();
-
-  return useMutation({
+  const { mutate: createTpas, isLoading: isCreating } = useMutation({
     mutationFn: createTpa,
     onSuccess: () => {
       queryClient.invalidateQueries(["tpa"]);
@@ -87,5 +86,7 @@ export const useCreateTpa = () => {
       toast.error("Failed to create tpa. Please try again.");
     },
   });
+
+  return { createTpas, isCreating };
 };
 

@@ -40,3 +40,14 @@ export const updateBlog = async ({ id, data }) => {
   });
   return response.data;
 };
+
+
+export const createBlog = async (data) => {
+  const response = await axios.post(`${ApiUrl}/blogs/create`, data, {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+};

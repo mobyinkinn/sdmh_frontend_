@@ -58,10 +58,9 @@ function CareerTable() {
        return false;
      });
    }
-
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
-  if (!careerData.length) return <Empty resourceName="Admins" />;
+  if (!filteredCareer.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
       <Table columns="1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 5.2rem">

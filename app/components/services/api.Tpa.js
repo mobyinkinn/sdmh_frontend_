@@ -42,7 +42,7 @@ export const updateTpa = async ({ id, data }) => {
 };
 
 
-export const createTpa = async ({ data }) => {
+export const createTpa = async (data) => {
   const response = await axios.post(`${ApiUrl}/tpa/create`, data, {
     withCredentials: true,
     headers: {

@@ -6,20 +6,17 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-// import useCreateCabin from "./useCreateCabin";
-// import useEditCabin from "./useEditCabin";
-import { useCreateNotice } from "../../admin/academic_notices/useNotices";
+import { useCreateBanner } from "../../admin/banner/parts/useBanner";
+import { useCreateTpa } from "../../admin/tpa_index/useTpa";
 
-function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
-  //   const { id: editId, ...editValues } = cabinToEdit;
-  //   const isEditSession = Boolean(editId);
+function CreateTpaForm({ cabinToEdit = {}, onCloseModal }) {
 
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
   const { errors } = formState;
 
-  const { isCreating, createNotice } = useCreateNotice();
+  const { isCreating, createTpas } = useCreateTpa();
   //   const { isEditing, editCabin } = useEditCabin();
 
   const isWorking = isCreating;
@@ -28,13 +25,13 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
     const file = typeof data.file === "string" ? data.file : data.file[0];
 
     const formdata = new FormData();
-    formdata.append("file", file);
+    formdata.append("logo", file);
     formdata.append("name", data.name);
     formdata.append("status", true);
     console.log("formdata", formdata);
     console.log("Submitted data:", data);
 
-    createNotice(formdata, {
+    createTpas(formdata, {
       onSuccess: (data) => {
         reset();
         onCloseModal?.();
@@ -49,7 +46,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
-      <FormRow label="Academic notice name" error={errors?.name?.message}>
+      <FormRow label="Tpa Name" error={errors?.name?.message}>
         <Input
           disabled={isWorking}
           type="text"
@@ -63,7 +60,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
       <FormRow label={"File"}>
         <FileInput
           id="file"
-          accept="file/*"
+          accept="image/*"
           type="file"
           {...register("file", {
             required: "This field is required",
@@ -79,10 +76,10 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button disabled={isWorking}>{"Create new notice"}</Button>
+        <Button disabled={isWorking}>{"Create new Tpa"}</Button>
       </FormRow>
     </Form>
   );
 }
 
-export default CreateNoticeForm;
+export default CreateTpaForm;
