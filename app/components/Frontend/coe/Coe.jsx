@@ -7,10 +7,10 @@ import Grid from "./parts/components/Grid";
 export default function Coe() {
   return (
     <Stack>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <Grid />
-      <Footer />
+      {/* <Footer /> */}
     </Stack>
   );
 }

@@ -1,5 +1,5 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { Head1, Head2 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
@@ -10,38 +10,64 @@ import lines from "../assets/icons/lines.png";
 
 export default function Hero() {
   return (
-    <Stack height={"80vh"} backgroundColor={"#D2E4D8"} direction="row">
+    <Stack
+      height={{ lg: "80vh", md: "50vh" }}
+      backgroundColor={"#D2E4D8"}
+      direction={{ lg: "row", md: "column" }}
+      gap={4}
+      pl={{lg:15,md:0}}
+    >
       <Stack
-        width={"50%"}
+        width={{ lg: "50%", md: "100%" }}
         position={"relative"}
         justifyContent={"center"}
-        marginLeft={"100px"}
+        alignItems={{lg:"baseline",sm:"center"}}
       >
-        <Head1 color="black" textAlign="left">
-          Become
-        </Head1>
-        <Head1
-          color="black"
-          textAlign="left"
-          position={"relative"}
-          width={"fit-content"}
+        <Stack
+          width={"100%"}
+          direction={{ md: "row", lg: "column" }}
+          display={{ lg: "flex", sm: "none" }}
         >
-          a professional in
-          <Image
-            src={lines}
-            alt=""
-            height={32}
-            width={45}
-            style={{ position: "absolute", top: "-15px", right: "-30px" }}
-          />
-        </Head1>
-        <Head1 color="black" textAlign="left">
-          either field
-        </Head1>
-        <ParaNormal margin={"20px 0"}>
+          <Head1 color="black" textAlign={{ lg: "left", md: "center" }}>
+            Become&nbsp;
+          </Head1>
+          <Head1
+            color="black"
+            textAlign={{ lg: "left", md: "center" }}
+            position={"relative"}
+            width={"fit-content"}
+          >
+            a professional in
+            <Image
+              src={lines}
+              alt=""
+              height={32}
+              width={45}
+              style={{ position: "absolute", top: "-15px", right: "-30px" }}
+            />
+          </Head1>
+          <Head1 color="black" textAlign={{ lg: "left", md: "center" }}>
+            either field
+          </Head1>
+        </Stack>
+        <Stack
+          direction={{ md: "row", lg: "column" }}
+          display={{ md: "flex", lg: "none" }}
+          alignItems={"center"}
+          width={{md:"58%",smm:"85%", sm:"85%"}}
+          justifyContent={"center"}
+        >
+          <Head1 color="black" fontSize={{lg:"35px", md:"30px", sm:"25px"}}>
+            Become&nbsp;a professional in&nbsp;either field
+          </Head1>
+        </Stack>
+        <Typography
+          margin={{ lg: "20px 0px", md: "20px 85px", sm:"20px 70px" }}
+          textAlign={{ lg: "left", sm: "center" }}
+        >
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form.
-        </ParaNormal>
+        </Typography>
         <ButtonMediumOutline color="#379237">Get Started</ButtonMediumOutline>
       </Stack>
       <Stack
@@ -50,9 +76,9 @@ export default function Hero() {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center bottom",
-          alignSelf: "end",
+          alignSelf: { lg: "end", md: "center" },
           width: "50%",
-          height: "90%",
+          height: { lg: "90%", md: "55%" },
         }}
       ></Stack>
     </Stack>

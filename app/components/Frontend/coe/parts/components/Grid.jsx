@@ -73,10 +73,25 @@ const coeData = [
 
 export default function Grid() {
   return (
-    <ContainerMain bgColor="#fff">
+    <ContainerMain
+      bgColor="#fff"
+      padding={{ lg: "50px", md: "40px", smm: "30px", sm: "20px" }}
+      gap={{ lg: "20px", sm: "8px" }}
+    >
       <Stack direction={"row"} justifyContent={"center"} gap={1}>
-        <Head1 color="black">Center of</Head1>
-        <Head1 color="#005900"> Excellence</Head1>
+        <Head1
+          color="black"
+          fontSize={{ lg: "50px", md: "40px", smm: "30px", sm: "25px" }}
+        >
+          Center of
+        </Head1>
+        <Head1
+          color="#005900"
+          fontSize={{ lg: "50px", md: "40px", smm: "30px", sm: "25px" }}
+        >
+          {" "}
+          Excellence
+        </Head1>
       </Stack>
       <Stack
         direction={"row"}
@@ -95,7 +110,11 @@ export default function Grid() {
 
 function CoeCard({ el }) {
   return (
-    <Stack width={"30%"} gap={"10px"}>
+    <Stack
+      width={{ lg: "29%", md: "46%", sm: "100%", sm: "100%" }}
+      gap={"10px"}
+      alignItems={"center"}
+    >
       <Box
         sx={{
           height: "300px",
@@ -105,7 +124,9 @@ function CoeCard({ el }) {
       >
         <Image src={el.img} alt="" fill objectFit="cover" />
       </Box>
-      <ParaNormal>{el.data}</ParaNormal>
+      <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
+        {el.data}
+      </ParaNormal>
       <ButtonSmallOutline color="#000000">Read More</ButtonSmallOutline>
     </Stack>
   );
