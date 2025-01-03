@@ -37,26 +37,26 @@ function BannerTable() {
   const { data, isLoading, error } = useBanner();
 
   const { filter } = useBannerContext();
-if (isLoading) return <Spinner />;
-if (error) return <div>Error loading Tpa's: {error.message}</div>;
-let filteredBanner = data;
- if (filter !== "All") {
-   filteredBanner = data.filter((el) => {
-     if (filter.toLowerCase() === "active") {
-       return el.status === true; // Show active testimonials
-     } else if (filter.toLowerCase() === "inactive") {
-       return el.status === false; // Show inactive testimonials
-     }
-     return false;
-   });
- }
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading Tpa's: {error.message}</div>;
+  let filteredBanner = data;
+  if (filter !== "All") {
+    filteredBanner = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
+  }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
   if (!filteredBanner.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="3fr 3fr 2fr 3fr 1.7fr 1.2rem">
+      <Table columns="1.5fr 3fr 1.5fr 1.5fr 1.4fr 1.2rem">
         <Table.Header>
           <div>Page</div>
           <div>id</div>

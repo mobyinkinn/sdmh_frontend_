@@ -9,6 +9,7 @@ import FormRow from "../../ui/FormRow";
 // import useCreateCabin from "./useCreateCabin";
 // import useEditCabin from "./useEditCabin";
 import { useCreateNotice } from "../../admin/academic_notices/useNotices";
+import { Stack } from "@mui/material";
 
 function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
@@ -31,8 +32,6 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("file", file);
     formdata.append("name", data.name);
     formdata.append("status", true);
-    console.log("formdata", formdata);
-    console.log("Submitted data:", data);
 
     createNotice(formdata, {
       onSuccess: (data) => {
@@ -41,9 +40,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
       },
     });
   }
-  function onError(errors) {
-    // console.log(errors);
-  }
+  function onError(errors) {}
   return (
     <Form
       onSubmit={handleSubmit(onSubmit, onError)}
@@ -71,7 +68,13 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow>
+      <Stack
+        direction="row"
+        sx={{
+          gap: "20px",
+          justifyContent: "end",
+        }}
+      >
         <Button
           variation="secondary"
           type="reset"
@@ -80,7 +83,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>{"Create new notice"}</Button>
-      </FormRow>
+      </Stack>
     </Form>
   );
 }

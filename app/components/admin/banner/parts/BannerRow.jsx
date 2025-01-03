@@ -17,8 +17,13 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
-import {  useBlockBanners, useDeleteBanner, useUnblockBanners } from "./useBanner";
+import {
+  useBlockBanners,
+  useDeleteBanner,
+  useUnblockBanners,
+} from "./useBanner";
 import { HiEyeOff } from "react-icons/hi";
+import EditBannerForm from "@/app/components/features/Banners/EditBannerForm";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -40,23 +45,28 @@ const Stacked = styled.div`
 `;
 
 function BannerRow({ academic: { _id, page, banner, status } }) {
-const { mutate: blockbanner, isLoading: isBlocking } = useBlockBanners();
-const { mutate: unblockbanner, isLoading: isUnblocking } = useUnblockBanners();
-const { mutate: deletebanner, isLoading: isDeleting } = useDeleteBanner();
-const handleToggleStatus = () => {
-  if (status) {
-    blockbanner(_id); // Call block API if active
-  } else {
-    unblockbanner(_id); // Call unblock API if inactive
-  }
-};
-const handleDelete = () => {
-  deletebanner(page);
-};
+  const { mutate: blockbanner, isLoading: isBlocking } = useBlockBanners();
+  const { mutate: unblockbanner, isLoading: isUnblocking } =
+    useUnblockBanners();
+  const { mutate: deletebanner, isLoading: isDeleting } = useDeleteBanner();
+  const handleToggleStatus = () => {
+    if (status) {
+      blockbanner(_id); // Call block API if active
+    } else {
+      unblockbanner(_id); // Call unblock API if inactive
+    }
+  };
+  const handleDelete = () => {
+    deletebanner(page);
+  };
   return (
     <Table.Row>
       <Stacked>
         <span>{page}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>{_id}</span>
       </Stacked>
 
       <Stacked>
@@ -66,9 +76,7 @@ const handleDelete = () => {
       <Tag type={status ? "green" : "silver"}>
         {status ? "Active" : "Inactive"}
       </Tag>
-      <Stacked>
-        <span>{_id}</span>
-      </Stacked>
+
       <Modal>
         <Menus.Menu>
           <Menus.Button
@@ -76,9 +84,12 @@ const handleDelete = () => {
             onClick={handleToggleStatus}
             disabled={isBlocking || isUnblocking}
           ></Menus.Button>
-          <Modal.Open opens="edit">
+          <Modal.Open opens="banner-form">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
+          <Modal.Window name="banner-form">
+            <EditBannerForm pageName={page} />
+          </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>

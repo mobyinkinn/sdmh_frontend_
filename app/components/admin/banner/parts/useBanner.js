@@ -1,6 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { blockBanner, deleteBanner,createBanner, fetchBanners, unblockBanner } from "@/app/components/services/api.Banner";
+import {
+  blockBanner,
+  deleteBanner,
+  createBanner,
+  fetchBanners,
+  unblockBanner,
+  updateBanner,
+} from "@/app/components/services/api.Banner";
 
 export const useBanner = () => {
   const { data, isLoading, error } = useQuery({
@@ -71,4 +78,21 @@ export const useCreateBanner = () => {
   });
 
   return { createBanners, isCreating };
+};
+export const useUpdateBanner = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateBannerImage, isLoading: isUpdating } = useMutation({
+    mutationFn: updateBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Banners"]);
+      toast.success("Banner updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Banner:", error);
+      toast.error("Failed to update Banner. Please try again.");
+    },
+  });
+
+  return { updateBannerImage, isUpdating };
 };

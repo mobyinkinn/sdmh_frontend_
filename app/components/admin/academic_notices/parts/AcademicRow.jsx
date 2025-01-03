@@ -17,9 +17,14 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import Image from "next/image";
-import { useBlockNotices, useDeleteNotice, useUnblockNotices } from "../useNotices";
+import {
+  useBlockNotices,
+  useDeleteNotice,
+  useUnblockNotices,
+} from "../useNotices";
 import { HiEyeOff } from "react-icons/hi";
 import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
+import EditNoticeForm from "@/app/components/features/academicNotices/EditNoticeForm";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -50,18 +55,19 @@ function AcademicRow({ academic: { _id, name, file, status } }) {
     inactive: "silver",
   };
   const { mutate: blockNotices, isLoading: isBlocking } = useBlockNotices();
-  const { mutate: unblockNotices, isLoading: isUnblocking } = useUnblockNotices();
-   const { mutate: deleteNotices, isLoading: isDeleting } = useDeleteNotice();
- const handleToggleStatus = () => {
-   if (status) {
-     blockNotices(_id); // Call block API if active
-   } else {
-     unblockNotices(_id); // Call unblock API if inactive
-   }
- };
- const handleDelete = () => {
-   deleteNotices(_id);
- };
+  const { mutate: unblockNotices, isLoading: isUnblocking } =
+    useUnblockNotices();
+  const { mutate: deleteNotices, isLoading: isDeleting } = useDeleteNotice();
+  const handleToggleStatus = () => {
+    if (status) {
+      blockNotices(_id); // Call block API if active
+    } else {
+      unblockNotices(_id); // Call unblock API if inactive
+    }
+  };
+  const handleDelete = () => {
+    deleteNotices(_id);
+  };
   return (
     <Table.Row>
       <Stacked>
@@ -78,7 +84,9 @@ function AcademicRow({ academic: { _id, name, file, status } }) {
             download
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <ButtonSmallOutlineWithoutHover style={{color:"#005900", border:"1px solid #005900"}}>
+            <ButtonSmallOutlineWithoutHover
+              style={{ color: "#005900", border: "1px solid #005900" }}
+            >
               View
             </ButtonSmallOutlineWithoutHover>
           </a>
@@ -96,9 +104,12 @@ function AcademicRow({ academic: { _id, name, file, status } }) {
             onClick={handleToggleStatus}
             disabled={isBlocking || isUnblocking}
           ></Menus.Button>
-          <Modal.Open opens="edit">
+          <Modal.Open opens="notice-form">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
+          <Modal.Window name="notice-form">
+            <EditNoticeForm id={_id} />
+          </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
