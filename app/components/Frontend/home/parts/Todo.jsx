@@ -18,7 +18,7 @@ const todoData = [
 export default function Todo() {
   return (
     <ContainerMain bgColor={"#8EA5C3"}>
-      <Stack direction={"row"} justifyContent={"center"}>
+      <Stack direction={{ xs: "column", lg: "row" }} justifyContent={"center"}>
         <Head1 color="#000000">What would you like&nbsp;</Head1>
         <Head1 color="#ffffff">To Do today?</Head1>
       </Stack>
@@ -27,6 +27,7 @@ export default function Todo() {
         direction={"row"}
         justifyContent={"center"}
         gap={"20px"}
+        flexWrap={"wrap"}
       >
         {todoData.map((el, i) => {
           return (

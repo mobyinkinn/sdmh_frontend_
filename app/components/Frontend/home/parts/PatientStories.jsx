@@ -202,6 +202,7 @@ import img1 from "../assets/stories/img1.png";
 import img2 from "../assets/stories/img2.png";
 import img3 from "../assets/stories/img3.png";
 import img4 from "../assets/stories/img4.png";
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 
 export default function PatientStories() {
   const [isHovered, setIsHovered] = useState(false);
@@ -349,6 +350,9 @@ export default function PatientStories() {
             opacity: isHovered ? 1 : 0.2,
           }}
         />
+      </Stack>
+      <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
+        <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
       </Stack>
     </ContainerMain>
   );
