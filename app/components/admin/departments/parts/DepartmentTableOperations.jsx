@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useDepartmentContext } from "./DepartmentContext";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
+import CreateDepartmentForm from "@/app/components/features/Department/CreateDepartmentForm";
 
 function DepartmentTableOperations() {
   const { filter, setFilter } = useDepartmentContext();
@@ -26,6 +29,15 @@ function DepartmentTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+
+      <Modal>
+        <Modal.Open opens="department-form">
+          <Button>Add Department</Button>
+        </Modal.Open>
+        <Modal.Window name="department-form">
+          <CreateDepartmentForm />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

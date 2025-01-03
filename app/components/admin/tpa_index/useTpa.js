@@ -1,6 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { blockTpa, createTpa, deleteTpa, fetchTpa, unblockTpa, updateTpa } from "../../services/api.Tpa";
+import {
+  blockTpa,
+  createTpa,
+  deleteTpa,
+  fetchTpa,
+  unblockTpa,
+  updateTpa,
+} from "../../services/api.Tpa";
 
 export const useTpa = () => {
   const { data, isLoading, error } = useQuery({
@@ -10,6 +17,7 @@ export const useTpa = () => {
   });
   return { data, isLoading, error };
 };
+
 export const useDeleteTpa = () => {
   const queryClient = useQueryClient();
 
@@ -26,6 +34,7 @@ export const useDeleteTpa = () => {
     },
   });
 };
+
 export const useBlockTpa = () => {
   const queryClient = useQueryClient();
 
@@ -41,6 +50,7 @@ export const useBlockTpa = () => {
     },
   });
 };
+
 export const useUnblockTpa = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -89,4 +99,3 @@ export const useCreateTpa = () => {
 
   return { createTpas, isCreating };
 };
-

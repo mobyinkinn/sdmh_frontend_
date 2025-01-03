@@ -31,16 +31,13 @@ export const unblockTpa = async (id) => {
   );
   return response.data;
 };
+
 export const updateTpa = async ({ id, data }) => {
   const response = await axios.post(`${ApiUrl}/tpa/update?id=${id}`, data, {
     withCredentials: true,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   });
   return response.data;
 };
-
 
 export const createTpa = async (data) => {
   const response = await axios.post(`${ApiUrl}/tpa/create`, data, {

@@ -18,7 +18,12 @@ import {
 } from "react-icons/hi2";
 import Image from "next/image";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
-import { useBlockDepartment, useUnblockDepartment } from "./useDepartment";
+import {
+  useBlockDepartment,
+  useUnblockDepartment,
+  useDeleteDepartment,
+} from "./useDepartment";
+import EditDepartmentForm from "@/app/components/features/Department/EditDepartmentForm";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -40,10 +45,12 @@ const Stacked = styled.div`
 `;
 
 function DepartmentRow({
-  department: { id: id, name, image, status, updatedAt },
+  department: { _id: id, bannerImage, name, image, status, updatedAt },
 }) {
-  const { blockDepartment, isBlocking } = useBlockDepartment;
-  const { unblockDepartment, isUnblocking } = useUnblockDepartment;
+  const { mutate: blockDepartment, isLoading: isBlocking } =
+    useBlockDepartment();
+  const { unblockDepartment, isUnblocking } = useUnblockDepartment();
+  const { deleteDepartment, isDeleting } = useDeleteDepartment();
 
   const handleToggleStatus = () => {
     if (status === true) {
@@ -83,6 +90,10 @@ function DepartmentRow({
         <Image src={image} alt={name} width={50} height={50} />
       </Stacked>
 
+      <Stacked>
+        <Image src={bannerImage} alt={name} width={50} height={50} />
+      </Stacked>
+
       <Tag type={statusToTagName[convertedStatus]}>
         {convertedStatus.replace("-", " ")}
       </Tag>
@@ -104,6 +115,7 @@ function DepartmentRow({
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="banner-form">
+            <EditDepartmentForm id={id} />
             {/* <EditBannerForm pageName={page} /> */}
           </Modal.Window>
           <Modal.Open opens="delete">
@@ -113,8 +125,8 @@ function DepartmentRow({
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="Banner"
-            // disabled={isDeleting}
-            // onConfirm={handleDelete}
+            disabled={isDeleting}
+            onConfirm={() => deleteDepartment(id)}
           />
         </Modal.Window>
       </Modal>
