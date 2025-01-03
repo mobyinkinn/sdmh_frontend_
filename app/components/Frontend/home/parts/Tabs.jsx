@@ -1,9 +1,13 @@
 "use client";
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import img from "../assets/heartInHands.png";
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const tabs = [
   {
@@ -130,9 +134,22 @@ const tabs = [
 
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState(0);
+
+  var settings = {
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 1000,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <ContainerMain bgColor={"#CEDDCC"}>
       <Stack
+        display={{ xs: "none", lg: "flex" }}
         direction={"row"}
         backgroundColor={"white"}
         sx={{
@@ -163,10 +180,105 @@ export default function Tabs() {
         })}
       </Stack>
       <Stack
+        alignItems="center"
+        spacing={2}
+        display={{ xs: "flex", lg: "none" }}
+      >
+        <Stack direction="row" flexWrap="wrap" justifyContent="center">
+          {tabs.map((el, i) => (
+            <Stack key={el.id} width="50%" spacing={2}>
+              <ButtonMediumOutline
+                backgroundColor="#000000"
+                // color="#FFFFFF"
+                color={el.id === activeTab ? "#FFFFFF" : "#FFFFFF"}
+                sx={{
+                  transition: "all 0.3s ease",
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "#005900",
+                    color: "#54B435",
+                  },
+
+                  width: "100%",
+                }}
+                onClick={() => setActiveTab(el.id)}
+              >
+                {el.name}
+              </ButtonMediumOutline>
+            </Stack>
+          ))}
+        </Stack>
+      </Stack>
+
+      <Stack
+        direction={"row"}
+        justifyContent={"center"}
+        marginTop={"30px"}
+        width="100%"
+        display={{ xs: "flex", lg: "none" }}
+      >
+        <Slider
+          {...settings}
+          style={{
+            width: "100%",
+            overflow: "hidden",
+          }}
+        >
+          {tabs[activeTab].data.map((el, i) => (
+            <Stack
+              key={i}
+              width={"calc(50% - 20px)"}
+              margin={"10px"}
+              backgroundColor={"#FBF6EE"}
+              sx={{
+                borderRadius: "10px",
+                overflow: "hidden",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <Box
+                width={"100%"}
+                height={"200px"}
+                sx={{
+                  backgroundImage: `url(${el.image.src})`,
+                  backgroundSize: "cover",
+                  borderRadius: "10px 10px 0 0",
+                  backgroundPosition: "center center",
+                }}
+              ></Box>
+              <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
+                <Typography
+                  fontSize={"1.2rem"}
+                  textAlign={"center"}
+                  color={"#379237"}
+                  fontWeight={"bold"}
+                >
+                  {el.head}
+                </Typography>
+                <Typography textAlign={"center"}>{el.body}</Typography>
+                <Typography
+                  sx={{
+                    border: "1px solid black",
+                    padding: "10px 40px",
+                    borderRadius: "200px",
+                    cursor: "pointer",
+                    textAlign: "center",
+                  }}
+                >
+                  Know More
+                </Typography>
+              </Stack>
+            </Stack>
+          ))}
+        </Slider>
+      </Stack>
+
+      <Stack
         direction={"row"}
         gap={"20px"}
         justifyContent={"center"}
         marginTop={"30px"}
+        display={{ xs: "none", lg: "flex" }}
       >
         {tabs[activeTab].data.map((el, i) => {
           return (
@@ -211,6 +323,11 @@ export default function Tabs() {
             </Stack>
           );
         })}
+      </Stack>
+      <Stack alignItems="center">
+        <ButtonMediumOutline margin="0 50px" color="#379237">
+          View All
+        </ButtonMediumOutline>
       </Stack>
     </ContainerMain>
   );

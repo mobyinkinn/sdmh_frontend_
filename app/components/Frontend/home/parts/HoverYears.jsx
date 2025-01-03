@@ -11,7 +11,20 @@ const HoverYears = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0); // Track hovered index
 
   // Years array
-  const years = ["1998", "1999", "2000", "2001", "2002","2003","2004","2005","2006","2007","2008","2009"];
+  const years = [
+    "1998",
+    "1999",
+    "2000",
+    "2001",
+    "2002",
+    "2003",
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+  ];
 
   // Responsibility data corresponding to years
   const responsibility = [
@@ -157,10 +170,10 @@ const HoverYears = () => {
       <Typography color="#FFFFFF" textAlign={"center"} fontSize={"25px"}>
         50 Years of Care & Compassion
       </Typography>
-      <Stack padding={"40px 80px"} direction={"row"}>
+      <Stack padding={"40px 80px"} direction={{ xs: "column", md: "row" }}>
         <Stack
           gap="20px"
-          width={"40%"}
+          width={{ xs: "100%", md: "40%" }}
           height={"85vh"}
           paddingLeft={"20px"}
           sx={{
@@ -226,7 +239,7 @@ const HoverYears = () => {
           />
         </Stack>
         <Stack
-          width={"60%"}
+          width={{ xs: "100%", md: "60%" }}
           gap={"20px"}
           padding={5}
           bgcolor={"#FBF6EE"}

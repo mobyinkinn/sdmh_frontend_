@@ -99,7 +99,7 @@ const ButtonSmallOutline = styled.button((props) => ({
 }));
 
 const ButtonMediumOutline = styled.button((props) => ({
-  backgroundColor: "transparent",
+  backgroundColor: props.backgroundColor || "transparent",
   width: props.width || "fit-content",
   outline: "none",
   border: `1px solid ${props.color}`,
