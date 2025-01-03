@@ -52,17 +52,19 @@ export default function Departments() {
 
   return (
     <Stack padding={"50px"} backgroundColor={"#FBF6EE"} gap={"20px"}>
-      <Head1 color="black">World-class Speciality Care</Head1>
+      <Head1 width={{ xs: "349px", md: "777px" }} color="black">
+        World-class Speciality Care
+      </Head1>
       <Head1>At Your Fingertips</Head1>
 
       <Stack
         width={"100%"}
         height={"fit-content"}
-        direction={"row"}
+        direction={{ xs: "column", md: "row" }}
         gap={"30px"}
         justifyContent={"center"}
       >
-        <Stack width={"45%"} gap={"40px"}>
+        <Stack width={{ xs: "100%", md: "45%" }} gap={"40px"}>
           <Stack width={"100%"} sx={{ overflowY: "scroll" }} height={"75vh"}>
             {departments.map((el, i) => {
               return (
@@ -98,12 +100,9 @@ export default function Departments() {
               );
             })}
           </Stack>
-          <ButtonMediumOutline margin="0 50px" color="#379237">
-            View All
-          </ButtonMediumOutline>
         </Stack>
         <Stack
-          width={"45%"}
+          width={{ xs: "100%", md: "45%" }}
           height={"60vh"}
           position={"relative"}
           justifyContent={"center"}
@@ -116,6 +115,11 @@ export default function Departments() {
             alt=""
           />
         </Stack>
+      </Stack>
+      <Stack alignItems={{ xs: "center", md: "start" }}>
+        <ButtonMediumOutline margin="0 50px" color="#379237">
+          View All
+        </ButtonMediumOutline>
       </Stack>
     </Stack>
   );

@@ -7,14 +7,14 @@ import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 export default function About() {
   return (
     <ContainerMain
-      dir="row"
+      dir={{ xs: "column", md: "row" }}
       bgColor={"#D8E0EB"}
       padding={"50px 50px 0 50px"}
       justifyContent={"center"}
       gap="80px"
     >
       <Stack
-        width={"30%"}
+        width={{ xs: "90%", md: "30%" }}
         height={"70vh"}
         sx={{
           backgroundImage: `url(${durlabhji.src})`,
@@ -23,7 +23,7 @@ export default function About() {
           backgroundPosition: "bottom",
         }}
       ></Stack>
-      <Stack width={"60%"} gap={"20px"}>
+      <Stack width={{ xs: "90%", md: "60%" }} gap={"20px"}>
         <Stack direction={"row"}>
           <Head1 color="black">About &nbsp;</Head1>
           <Head1>SDMH</Head1>
@@ -41,7 +41,9 @@ export default function About() {
           through the several philanthropic initiatives it has undertaken e.g.
           The Avedna Ashram, the Rehabilitation and Limb Fitting Centre,
         </Typography>
-        <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
+        <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
+          <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
+        </Stack>
       </Stack>
     </ContainerMain>
   );

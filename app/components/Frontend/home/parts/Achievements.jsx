@@ -17,7 +17,7 @@ const achievementData = [
 
 export default function () {
   return (
-    <ContainerMain bgColor={"#276923"}>
+    <ContainerMain bgColor={"#276923"} dir="column">
       <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
         Our
       </Head3>
@@ -33,6 +33,7 @@ export default function () {
         marginTop={"50px"}
         direction={"row"}
         gap={"40px"}
+        flexWrap={"wrap"}
       >
         {achievementData.map((el, i) => {
           return (

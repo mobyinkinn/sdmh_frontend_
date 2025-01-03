@@ -4,12 +4,14 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { IoIosArrowDown } from "react-icons/io";
 import logo from "./assets/logo.png";
 import Image from "next/image";
 import { SearchInput } from "@/app/styledComponents/frontend/Inputs";
 import {
+  ButtonMediumOutline,
+  DarkGreenButton,
   DarkGreenButtonSmall,
   DarkGreenButtonSmallOutline,
 } from "@/app/styledComponents/frontend/Buttons";
@@ -66,8 +68,8 @@ export default function Navbar() {
       <Stack>
         <Stack
           direction={"row"}
-          justifyContent={{ xs: "end", smm: "end", md: "space-between" }}
-          alignItems={{ xs: "end", smm: "end", md: "center" }}
+          justifyContent={{ xs: "end", smm: "end", lg: "space-between" }}
+          alignItems={{ xs: "end", smm: "end", lg: "center" }}
           padding={"10px 100px"}
           backgroundColor={"#005900"}
           color={"white"}
@@ -75,7 +77,7 @@ export default function Navbar() {
           <Stack
             direction={"row"}
             gap={"10px"}
-            sx={{ display: { sm: "none", md: "flex" } }}
+            sx={{ display: { sm: "none", lg: "flex" } }}
           >
             <FaFacebookF />
             <FaYoutube />
@@ -83,7 +85,7 @@ export default function Navbar() {
             <AiFillInstagram />
           </Stack>
           <Stack direction={"row"} gap={"25px"}>
-            <Typography sx={{ display: { sm: "none", md: "flex" } }}>
+            <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
               Lab Reports
             </Typography>
             <Box
@@ -118,7 +120,7 @@ export default function Navbar() {
           <Stack
             direction={"row"}
             gap={"20px"}
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", lg: "flex" } }}
           >
             <Stack direction={"row"}>
               <SearchInput
@@ -141,7 +143,7 @@ export default function Navbar() {
           </Stack>
           <IconButton
             size="large"
-            sx={{ display: { xs: "flex", md: "none" } }}
+            sx={{ display: { xs: "flex", lg: "none" } }}
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
             <MenuIcon />
@@ -151,10 +153,10 @@ export default function Navbar() {
           <Box>
             <Stack
               direction={"column"}
-              padding={"15px"}
+              padding={"25px"}
               justifyContent={"center"}
-              gap={"25px"}
-              sx={{ display: { md: "none" } }}
+              gap={"15px"}
+              sx={{ display: { lg: "none" } }}
             >
               {navLinks.map((el, i) => {
                 return (
@@ -171,23 +173,42 @@ export default function Navbar() {
             </Stack>
             <Stack
               direction={"column"}
-              padding={"15px"}
+              padding={"25px"}
               justifyContent={"center"}
-              gap={"25px"}
-              sx={{ display: { md: "none" } }}
+              gap={"15px"}
+              sx={{ display: { lg: "none" }, mt: "40px", mb: "40px" }}
             >
-              <Stack direction={"row"} spacing={1} sx={{ color: "#005900" }}>
-                <SearchIcon />
+              <Stack
+                direction={"row"}
+                spacing={1}
+                sx={{ color: "#005900", alignItems: "center" }}
+              >
+                <SearchIcon style={{ width: "20px", height: "20px" }} />
                 <Typography>Search Doctor</Typography>
               </Stack>
-              <Stack direction={"row"} spacing={1} sx={{ color: "#005900" }}>
+              <Stack
+                direction={"row"}
+                spacing={1}
+                sx={{ color: "#005900", alignItems: "center" }}
+              >
                 <IoIosMail style={{ width: "20px", height: "20px" }} />
                 <Typography>info@sdmh.in</Typography>
               </Stack>
-              <Stack direction={"row"} spacing={1} sx={{ color: "#005900" }}>
+              <Stack
+                direction={"row"}
+                spacing={1}
+                sx={{ color: "#005900", alignItems: "center" }}
+              >
                 <FaPhone style={{ width: "15px", height: "15px" }} />
                 <Typography>0141 352 4444</Typography>
               </Stack>
+              <DarkGreenButton
+                bgColor={"#476C9B"}
+                borderRadius={"100px"}
+                style={{ padding: "10px 15px" }}
+              >
+                Lab Reports
+              </DarkGreenButton>
             </Stack>
           </Box>
         )}
@@ -196,7 +217,7 @@ export default function Navbar() {
           padding={"15px"}
           justifyContent={"center"}
           gap={"25px"}
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{ display: { xs: "none", lg: "flex" } }}
         >
           {navLinks.map((el, i) => {
             return (
