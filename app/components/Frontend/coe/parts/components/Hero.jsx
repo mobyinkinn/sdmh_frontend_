@@ -57,12 +57,12 @@ export default function Hero() {
           width={{md:"58%",smm:"85%", sm:"85%"}}
           justifyContent={"center"}
         >
-          <Head1 color="black" fontSize={{lg:"35px", md:"30px", sm:"25px"}}>
+          <Head1 color="black" fontSize={{lg:"35px", md:"30px", sm:"20px"}}>
             Become&nbsp;a professional in&nbsp;either field
           </Head1>
         </Stack>
         <Typography
-          margin={{ lg: "20px 0px", md: "20px 85px", sm:"20px 70px" }}
+          margin={{ lg: "20px 0px", md: "20px 85px", sm:"20px 20px" }}
           textAlign={{ lg: "left", sm: "center" }}
         >
           There are many variations of passages of Lorem Ipsum available, but

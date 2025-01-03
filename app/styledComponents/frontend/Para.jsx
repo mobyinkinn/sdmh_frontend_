@@ -38,16 +38,19 @@ const ParaNormal = styled.span((props) => ({
 
   // Breakpoint-specific values for textAlign
   [breakpoints.md]: {
-    textAlign: props.textAlign?.md || "center",
-    margin: props.margin?.md || "0",
+    textAlign: props.textAlign?.md ,
+    margin: props.margin?.md ,
+    fontSize: props.fontSize?.md,
   },
   [breakpoints.smm]: {
-    textAlign: props.textAlign?.smm || "center",
-    margin: props.margin?.smm || "0",
+    textAlign: props.textAlign?.smm ,
+    margin: props.margin?.smm ,
+    fontSize: props.fontSize?.smm,
   },
   [breakpoints.sm]: {
-    textAlign: props.textAlign?.sm || "center",
-    margin: props.margin?.sm || "0",
+    textAlign: props.textAlign?.sm ,
+    margin: props.margin?.sm ,
+    fontSize: props.fontSize?.sm ,
   },
 }));
 

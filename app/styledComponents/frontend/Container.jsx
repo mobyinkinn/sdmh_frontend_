@@ -49,7 +49,6 @@ const ContainerMain = styled.div((props) => ({
   border: props.border,
   borderRadius: props.borderRadius,
   position: props.position,
-  display: "flex",
   flexDirection: props.dir || "column",
   justifyContent: props.justifyContent,
   alignItems: props.alignItems,
@@ -58,19 +57,23 @@ const ContainerMain = styled.div((props) => ({
   // Default styles
   padding: props.padding?.lg || "50px",
   gap: props.gap?.lg || "20px",
+  display: props.display?.lg || "flex",
 
   // Breakpoint-specific styles
   [breakpoints.md]: {
-    padding: props.padding?.md || "40px",
-    gap: props.gap?.md || "15px",
+    padding: props.padding?.md,
+    gap: props.gap?.md,
+    display: props.display?.md,
   },
   [breakpoints.smm]: {
-    padding: props.padding?.smm || "30px",
-    gap: props.gap?.smm || "10px",
+    padding: props.padding?.smm,
+    gap: props.gap?.smm,
+    display: props.display?.smm,
   },
   [breakpoints.sm]: {
-    padding: props.padding?.sm || "20px",
-    gap: props.gap?.sm || "8px",
+    padding: props.padding?.sm,
+    gap: props.gap?.sm,
+    display: props.display?.sm,
   },
 }));
 
