@@ -130,46 +130,6 @@ function DepartmentRow({
           />
         </Modal.Window>
       </Modal>
-      {/* <Modal>
-        <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete department</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
-        </Menus.Menu>
-        <Modal.Window name="delete">
-          <ConfirmDelete
-            resourceName="department"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
-          />
-        </Modal.Window>
-      </Modal> */}
     </Table.Row>
   );
 }

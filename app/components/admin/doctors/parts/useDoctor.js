@@ -1,0 +1,128 @@
+import { updateImage } from "@/app/components/services/api.Department";
+import {
+  fetchDoctors,
+  blockDoctor as blockTheDoctor,
+  unblockDoctor as unblockTheDoctor,
+  deleteDoctor as deleteTheDoctor,
+  updateDoctor as updateTheDoctor,
+  updateImage as updateTheImage,
+  createDoctor as createTheDoctor,
+} from "@/app/components/services/api.Doctor";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
+export const useDoctors = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["Doctors"],
+    queryFn: fetchDoctors,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  return { data, isLoading, error };
+};
+
+export const useBlockDoctor = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: blockDoctor, isLoading: isBlocking } = useMutation({
+    mutationFn: blockTheDoctor,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Doctors"]);
+      toast.success("Doctor blocked successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to block the doctor: ", error);
+      toast.error("Failed to block doctor. Please try again!!!");
+    },
+  });
+
+  return { blockDoctor, isBlocking };
+};
+
+export const useUnblockDoctor = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: unblockDoctor, isLoading: isUnblocking } = useMutation({
+    mutationFn: unblockTheDoctor,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Doctors"]);
+      toast.success("Doctor unblocked successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to unblock the doctor: ", error);
+      toast.error("Failed to unblock doctor. Please try again!!!");
+    },
+  });
+  return { unblockDoctor, isUnblocking };
+};
+
+export const useDeleteDoctor = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteDoctor, isLoading: isDeleting } = useMutation({
+    mutationFn: deleteTheDoctor,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Doctors"]);
+      toast.success("Doctor deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete the doctor: ", error);
+      toast.error("Failed to delete doctor. Please try again!!!");
+    },
+  });
+  return { deleteDoctor, isDeleting };
+};
+
+export const useUpdateDoctor = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateDoctor, isLoading: isUpdating } = useMutation({
+    mutationFn: updateTheDoctor,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Doctors"]);
+      toast.success("Doctor updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to updated the doctor: ", error);
+      toast.error("Failed to updated doctor. Please try again!!!");
+    },
+  });
+
+  return { updateDoctor, isUpdating };
+};
+
+export const useUpdateImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: udpateImage, isLoading: isUpdatingImage } = useMutation({
+    mutationFn: updateTheDoctor,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Doctors"]);
+      toast.success("Doctor updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to updated the doctor: ", error);
+      toast.error("Failed to updated doctor. Please try again!!!");
+    },
+  });
+
+  return { updateImage, isUpdatingImage };
+};
+
+export const useCreateDoctor = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: createDoctor, isLoading: isCreating } = useMutation({
+    mutationFn: createTheDoctor,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Doctors"]);
+      toast.success("Doctor created successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to created the doctor: ", error);
+      toast.error("Failed to created doctor. Please try again!!!");
+    },
+  });
+
+  return { createDoctor, isCreating };
+};

@@ -48,3 +48,15 @@ export const createTpa = async (data) => {
   });
   return response.data;
 };
+
+export const updateLogo = async ({ formdata, id }) => {
+  const response = await axios.post(
+    `${ApiUrl}/tpa/update-logo?id=${id}`,
+    formdata,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return res.data;
+};

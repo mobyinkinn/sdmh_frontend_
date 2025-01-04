@@ -7,6 +7,7 @@ import {
   fetchTpa,
   unblockTpa,
   updateTpa,
+  updateLogo as updateTheLogo,
 } from "../../services/api.Tpa";
 
 export const useTpa = () => {
@@ -98,4 +99,21 @@ export const useCreateTpa = () => {
   });
 
   return { createTpas, isCreating };
+};
+
+export const useUpdateLogo = () => {
+  const queryClient = useQueryClient();
+  const { mutate: updateLogo, isLoading: isUpdatingLogo } = useMutation({
+    mutationFn: updateTheLogo,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["tpa"]);
+      toast.success("Logo updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update tpa:", error);
+      toast.error("Failed to update tpa. Please try again.");
+    },
+  });
+
+  return { updateLogo, isUpdatingLogo };
 };

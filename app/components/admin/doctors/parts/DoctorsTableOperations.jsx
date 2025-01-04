@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useDoctorsContext } from "./DoctorsContext";
+import Modal from "@/app/components/ui/Modal";
+import CreateDoctorForm from "@/app/components/features/Doctor/CreateDoctorForm";
+import Button from "@/app/components/ui/Button";
 
 function DoctorsTableOperations() {
   const { filter, setFilter } = useDoctorsContext();
@@ -26,6 +29,15 @@ function DoctorsTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+
+      <Modal>
+        <Modal.Open opens="department-form">
+          <Button>Add Doctor</Button>
+        </Modal.Open>
+        <Modal.Window name="department-form">
+          <CreateDoctorForm />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }
