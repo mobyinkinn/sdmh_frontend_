@@ -1,4 +1,3 @@
-import { updateImage } from "@/app/components/services/api.Department";
 import {
   fetchDoctors,
   blockDoctor as blockTheDoctor,
@@ -94,8 +93,8 @@ export const useUpdateDoctor = () => {
 export const useUpdateImage = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: udpateImage, isLoading: isUpdatingImage } = useMutation({
-    mutationFn: updateTheDoctor,
+  const { mutate: updateImage, isLoading: isUpdatingImage } = useMutation({
+    mutationFn: updateTheImage,
     onSuccess: () => {
       queryClient.invalidateQueries(["Doctors"]);
       toast.success("Doctor updated successfully!");

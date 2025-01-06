@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useDownloadContext } from "./DownloadContext";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
+import CreateDownloadablesForm from "@/app/components/features/Downloadables/CreateDownloadablesForm";
 
 function DownloadTableOperations() {
   const { filter, setFilter } = useDownloadContext();
@@ -26,6 +29,15 @@ function DownloadTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+
+      <Modal>
+        <Modal.Open opens="department-form">
+          <Button>Add Downloadables</Button>
+        </Modal.Open>
+        <Modal.Window name="department-form">
+          <CreateDownloadablesForm />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

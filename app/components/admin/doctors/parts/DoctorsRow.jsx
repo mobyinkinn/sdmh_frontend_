@@ -20,6 +20,8 @@ import Button from "@/app/components/ui/Button";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import { useBlockDoctor, useUnblockDoctor, useDeleteDoctor } from "./useDoctor";
 import EditDoctorForm from "@/app/components/features/Doctor/EditDoctorForm";
+import { useDepartment } from "../../departments/parts/useDepartment";
+import Spinner from "@/app/components/ui/Spinner";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -41,7 +43,7 @@ const Stacked = styled.div`
 `;
 
 function DoctorsRow({
-  department: {
+  doctor: {
     _id: id,
     name,
     image,
@@ -54,15 +56,23 @@ function DoctorsRow({
   },
 }) {
   let convertedStatus;
+  const { blockDoctor, isBlocking } = useBlockDoctor();
+  const { unblockDoctor, isUnblocking } = useUnblockDoctor();
+  const { deleteDoctor, isDeleting } = useDeleteDoctor();
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
+
+  if (isLoadingDepartment) return <Spinner />;
+
+  let filteredDepartment = departmentData.data.filter(
+    (el) => el._id === department
+  )[0];
+
   if (status === true) {
     convertedStatus = "active";
   } else {
     convertedStatus = "inactive";
   }
-
-  const { blockDoctor, isBlocking } = useBlockDoctor();
-  const { unblockDoctor, isUnblocking } = useUnblockDoctor();
-  const { deleteDoctor, isDeleting } = useDeleteDoctor();
 
   const handleToggleStatus = () => {
     if (status === true) {
@@ -87,7 +97,7 @@ function DoctorsRow({
 
       <Stacked>
         <span>Department</span>
-        <span>{department}</span>
+        <span>{filteredDepartment.name}</span>
       </Stacked>
 
       <Stacked>
@@ -138,7 +148,11 @@ function DoctorsRow({
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="banner-form">
-            <EditDoctorForm id={id} />
+            <EditDoctorForm
+              id={id}
+              department={filteredDepartment}
+              departmentData={departmentData}
+            />
           </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>

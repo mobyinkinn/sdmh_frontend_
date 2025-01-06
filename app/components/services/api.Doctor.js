@@ -48,10 +48,13 @@ export const deleteDoctor = async (id) => {
 };
 
 export const updateImage = async ({ id, formdata }) => {
-  const response = await axios.post(`${ApiUrl}/doctor/update-image?id=${id}`, {
+  const response = await axios.post(
+    `${ApiUrl}/doctor/update-image?id=${id}`,
     formdata,
-    withCredentials: true,
-  });
+    {
+      withCredentials: true,
+    }
+  );
 
   return response.data;
 };

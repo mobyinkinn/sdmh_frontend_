@@ -9,30 +9,61 @@ import FormRow from "../../ui/FormRow";
 
 import { Stack } from "@mui/material";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useDoctors,
   useUpdateImage,
   useUpdateDoctor,
 } from "../../admin/doctors/parts/useDoctor";
+import ControlsOverlay from "../../Frontend/gallery/ControlsOverlay";
+import { useDepartment } from "../../admin/departments/parts/useDepartment";
+import Spinner from "../../ui/Spinner";
 
-function EditDoctorForm({ onCloseModal, id }) {
+function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
   const { data, isLoading } = useDoctors();
   const filteredData = data.filter((el) => el._id === id);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
-
   const [formdata, setFormdata] = useState(filteredData[0]);
+  const [departmentValue, setDepartmentValue] = useState(department.name);
 
   const { isUpdating, updateDoctor } = useUpdateDoctor();
   const { updateImage, isUpdatingImage } = useUpdateImage();
 
   const { errors } = formState;
 
+  function updateDepartment(name) {
+    let newDepartment = departmentData.data.filter((el) => el.name === name);
+
+    if (newDepartment.length > 0) {
+      setFormdata((formdata) => ({
+        ...formdata,
+        department: newDepartment[0]._id,
+      }));
+      onUpdateDoctor({ ...formdata, department: newDepartment[0]._id }, id);
+    } else {
+      alert(
+        "No such department exists, hence department will not be updated!!!"
+      );
+    }
+  }
+
+  function updateDay(day) {
+    let days = formdata.availablity;
+    const includesDay = days.includes(day);
+    if (includesDay) {
+      days = days.filter((el) => el !== day);
+    } else {
+      days.push(day);
+    }
+
+    onUpdateDoctor({ ...formdata, availablity: days }, id);
+    setFormdata((formdata) => ({ ...formdata, availablity: days }));
+  }
+
   function onUpdateDoctor(formdata, id) {
-    console.log(formdata);
-    // updateDoctor({ formdata, id });
+    updateDoctor({ formdata, id });
   }
 
   function onUpdateImage(files, id) {
@@ -70,15 +101,16 @@ function EditDoctorForm({ onCloseModal, id }) {
           disabled={isUpdating}
           type="text"
           id="department"
-          value={formdata.department}
+          value={departmentValue}
           {...register("department", {
             required: "This field is required",
           })}
           onChange={(e) => {
-            const newName = e.target.value;
-            setFormdata((formdata) => ({ ...formdata, name: newName }));
-            onUpdateDoctor({ ...formdata, department: newName }, id);
+            setDepartmentValue(e.target.value);
+            // setFormdata((formdata) => ({ ...formdata, department: newName }));
+            // onUpdateDoctor({ ...formdata, department: newName }, id);
           }}
+          onBlur={(e) => updateDepartment(e.target.value)}
         />
       </FormRow>
 
@@ -107,9 +139,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Monday"
               value="Mon"
+              checked={formdata.availablity.includes("Mon")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Mon
           </Stack>
@@ -119,9 +156,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Tuesday"
               value="Tue"
+              checked={formdata.availablity.includes("Tue")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Tue
           </Stack>
@@ -131,9 +173,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Wednesday"
               value="Wed"
+              checked={formdata.availablity.includes("Wed")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Wed
           </Stack>
@@ -143,9 +190,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Thursday"
               value="Thurs"
+              checked={formdata.availablity.includes("Thurs")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Thurs
           </Stack>
@@ -155,9 +207,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Friday"
               value="Fri"
+              checked={formdata.availablity.includes("Fri")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Fri
           </Stack>
@@ -167,9 +224,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Saturday"
               value="Sat"
+              checked={formdata.availablity.includes("Sat")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Sat
           </Stack>
@@ -179,9 +241,14 @@ function EditDoctorForm({ onCloseModal, id }) {
               type="checkbox"
               id="Sunday"
               value="Sun"
+              checked={formdata.availablity.includes("Sun")}
               {...register("availablity", {
                 required: "This field is required",
               })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                updateDay(newName);
+              }}
             />{" "}
             Sun
           </Stack>
@@ -199,7 +266,7 @@ function EditDoctorForm({ onCloseModal, id }) {
           })}
           onChange={(e) => {
             const newName = e.target.value;
-            setFormdata((formdata) => ({ ...formdata, name: newName }));
+            setFormdata((formdata) => ({ ...formdata, room: newName }));
             onUpdateDoctor({ ...formdata, room: newName }, id);
           }}
         />
@@ -216,7 +283,7 @@ function EditDoctorForm({ onCloseModal, id }) {
           })}
           onChange={(e) => {
             const newName = e.target.value;
-            setFormdata((formdata) => ({ ...formdata, name: newName }));
+            setFormdata((formdata) => ({ ...formdata, floor: newName }));
             onUpdateDoctor({ ...formdata, floor: newName }, id);
           }}
         />
@@ -233,7 +300,7 @@ function EditDoctorForm({ onCloseModal, id }) {
           })}
           onChange={(e) => {
             const newName = e.target.value;
-            setFormdata((formdata) => ({ ...formdata, name: newName }));
+            setFormdata((formdata) => ({ ...formdata, about: newName }));
             onUpdateDoctor({ ...formdata, about: newName }, id);
           }}
         />

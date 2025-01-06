@@ -8,6 +8,7 @@ import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useDoctorsContext } from "./DoctorsContext";
 import { useDoctors } from "./useDoctor";
+import { useDepartment } from "../../departments/parts/useDepartment";
 
 const doctorsData = [
   {
@@ -63,6 +64,8 @@ const doctorsData = [
 function DoctorsTable() {
   const { filter } = useDoctorsContext();
   const { data, isLoading, error } = useDoctors();
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
 
   let filteredDoctors = data;
   // if (filter !== "All") {
@@ -71,8 +74,8 @@ function DoctorsTable() {
   //   );
   // }
 
-  if (isLoading) return <Spinner />;
-  if (!doctorsData.length) return <Empty resourceName="Admins" />;
+  if (isLoading || isLoadingDepartment) return <Spinner />;
+  if (!filteredDoctors.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
       <Table columns="2fr 2fr 1fr 1fr 1fr 2fr 2fr 1rem">
@@ -89,9 +92,7 @@ function DoctorsTable() {
 
         <Table.Body
           data={filteredDoctors}
-          render={(doctor) => (
-            <DoctorsRow key={doctor.id} department={doctor} />
-          )}
+          render={(doctor) => <DoctorsRow key={doctor.id} doctor={doctor} />}
         />
 
         <Table.Footer>
