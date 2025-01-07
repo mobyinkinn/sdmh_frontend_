@@ -6,6 +6,7 @@ import Empty from "../../../ui/Empty";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import { usePlanContext } from "./PlanContext";
+import { useCheckups } from "../useCheckups";
 
 const contactData = [
   {
@@ -35,17 +36,25 @@ const contactData = [
 ];
 
 function PlanTable() {
+  const { data, isLoading, error } = useCheckups();
   const { filter } = usePlanContext();
-  let filteredPlan = contactData;
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading Checkups: {error.message}</div>;
+  let filteredPlan = data;
   if (filter !== "All") {
-    filteredPlan = contactData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
+    filteredPlan = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
   }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
-  if (!contactData.length) return <Empty resourceName="Admins" />;
+  if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
       <Table columns="1fr 3fr 1fr 1fr 3.2rem">

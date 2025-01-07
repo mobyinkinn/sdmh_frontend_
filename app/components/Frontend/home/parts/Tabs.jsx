@@ -72,7 +72,7 @@ const tabs = [
   },
   {
     id: 2,
-    name: "Health Check-up Plans",
+    name: "Health Check",
     data: [
       {
         subId: 0,
@@ -149,7 +149,7 @@ export default function Tabs() {
   return (
     <ContainerMain bgColor={"#CEDDCC"}>
       <Stack
-        display={{ xs: "none", lg: "flex" }}
+        display={{ xs: "none", md: "flex" }}
         direction={"row"}
         backgroundColor={"white"}
         sx={{
@@ -161,8 +161,8 @@ export default function Tabs() {
         {tabs.map((el, i) => {
           return (
             <Typography
-              padding={"20px 45px"}
-              fontSize={"1.3rem"}
+              padding={{ xs: "15px 35px", lg: "20px 45px" }}
+              fontSize={{ xs: "1rem", lg: "1.3rem" }}
               color={el.id === activeTab && "#54B435"}
               // fontWeight={el.id === activeTab && "bold"}
               sx={{
@@ -179,26 +179,27 @@ export default function Tabs() {
           );
         })}
       </Stack>
+
       <Stack
         alignItems="center"
         spacing={2}
-        display={{ xs: "flex", lg: "none" }}
+        display={{ xs: "flex", md: "none" }}
       >
         <Stack direction="row" flexWrap="wrap" justifyContent="center">
           {tabs.map((el, i) => (
-            <Stack key={el.id} width="50%" spacing={2}>
+            <Stack key={el.id} width="50%" spacing={2} marginBottom={"20px"}>
               <ButtonMediumOutline
-                backgroundColor="#000000"
-                // color="#FFFFFF"
+                fontSize={{ xs: "1rem", lg: "1.2rem" }}
+                backgroundColor={el.id === activeTab ? "#005900" : "#000000"}
                 color={el.id === activeTab ? "#FFFFFF" : "#FFFFFF"}
                 sx={{
                   transition: "all 0.3s ease",
                   cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "#005900",
-                    color: "#54B435",
-                  },
 
+                  // "&:hover": {
+                  //   backgroundColor: "#005900",
+                  //   color: "#54B435",
+                  // },
                   width: "100%",
                 }}
                 onClick={() => setActiveTab(el.id)}

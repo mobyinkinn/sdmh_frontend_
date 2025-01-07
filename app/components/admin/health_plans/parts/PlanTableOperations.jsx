@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { usePlanContext } from "./PlanContext";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
+import CreateHealthCheckupForm from "@/app/components/features/Checkup/CreateHealthCheckupForm";
 
 function PlanTableOperations() {
   const { filter, setFilter } = usePlanContext();
@@ -26,6 +29,14 @@ function PlanTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="checkup-form">
+          <Button>Add Health Checkup</Button>
+        </Modal.Open>
+        <Modal.Window name="checkup-form">
+          <CreateHealthCheckupForm resourceName="Checkup" />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

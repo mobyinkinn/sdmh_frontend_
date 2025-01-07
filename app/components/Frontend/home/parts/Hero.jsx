@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <Stack direction={"row"}>
       <Box
-        height={"90vh"}
+        height={{ xs: "65vh", lg: "90vh" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${banner.src})`,

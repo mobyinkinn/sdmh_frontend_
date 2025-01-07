@@ -17,6 +17,13 @@ import {
 } from "react-icons/hi2";
 import Image from "next/image";
 import { useState } from "react";
+import {
+  useBlockCheckup,
+  useDeleteCheckup,
+  useUnblockCheckup,
+  useUpdateCheckup,
+} from "../useCheckups";
+import { HiEyeOff, HiPencil } from "react-icons/hi";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -38,13 +45,25 @@ const Stacked = styled.div`
 `;
 
 function PlanRow({
-  academic: { id: id, title, description, status, created },
+  academic: { _id, title, description, status, createdAt, image },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
-  const statusToTagName = {
-    unconfirmed: "blue",
-    active: "green",
-    inactive: "silver",
+  const { mutate: deleteCheckup, isLoading: isDeleting } = useDeleteCheckup();
+  const { mutate: blockCheckup, isLoading: isBlocking } = useBlockCheckup();
+  const { mutate: unblockCheckup, isLoading: isUnblocking } =
+    useUnblockCheckup();
+  const { mutate: updateCheckup, isLoading: isUpdating } = useUpdateCheckup();
+
+  const handleToggleStatus = () => {
+    if (status) {
+      blockCheckup(_id); // Call block API if active
+    } else {
+      unblockCheckup(_id); // Call unblock API if inactive
+    }
+  };
+
+  const handleDelete = () => {
+    deleteCheckup(_id);
   };
 
   const expandDesc = () => {
@@ -54,42 +73,70 @@ function PlanRow({
   return (
     <Table.Row>
       <Stacked>
-        <span>Title</span>
         <span>{title}</span>
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? description : description.slice(0, 70)} ...</span>
+        <span>{fullDesc ? description : description.slice(0, 30)} ...</span>
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
           {fullDesc ? "show less" : "show more"}
         </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      {/* <Stacked>
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            width={100}
+            height={100}
+            style={{ borderRadius: "8px" }}
+          />
+        ) : (
+          <span>No Image</span>
+        )}
+      </Stacked> */}
 
       <Stacked>
-        <span>Created on</span>
-        <span>{created}</span>
+        <Tag type={status ? "green" : "silver"}>
+          {status ? "Active" : "Inactive"}
+        </Tag>
+      </Stacked>
+
+      <Stacked>
+        <span>{createdAt}</span>
       </Stacked>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button icon={<HiEye />}>See details</Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button icon={<HiArrowDownOnSquare />}>Active</Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button icon={<HiArrowUpOnSquare />}>Inactive</Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete health plan</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="edit">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
-          <ConfirmDelete resourceName="health plan" />
+          <ConfirmDelete
+            resourceName="checkup"
+            disabled={isDeleting} // Disable button while deleting
+            onConfirm={handleDelete} // Call the delete function on confirm
+          />
+        </Modal.Window>
+        <Modal.Window name="edit">
+          {/* <ConfirmEdit
+            resourceName="checkup"
+            editData={editData}
+            setEditData={setEditData}
+            onCloseModal={() => {}}
+            onConfirm={handleConfirmEdit}
+            disabled={false}
+          /> */}
         </Modal.Window>
       </Modal>
     </Table.Row>

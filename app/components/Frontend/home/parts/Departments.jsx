@@ -64,7 +64,7 @@ export default function Departments() {
         gap={"30px"}
         justifyContent={"center"}
       >
-        <Stack width={{ xs: "100%", md: "45%" }} gap={"40px"}>
+        <Stack width={{ xs: "100%", md: "40%", lg: "45%" }} gap={"40px"}>
           <Stack width={"100%"} sx={{ overflowY: "scroll" }} height={"75vh"}>
             {departments.map((el, i) => {
               return (
@@ -90,8 +90,12 @@ export default function Departments() {
                   onClick={() => router.push("/")}
                 >
                   <Stack>
-                    <Typography fontSize={"1.5rem"}>{el.name}</Typography>
-                    <Typography fontSize={"1.2rem"}>{el.data}</Typography>
+                    <Typography fontSize={{ xs: "1.2rem", md: "1.5rem" }}>
+                      {el.name}
+                    </Typography>
+                    <Typography fontSize={{ xs: "1rem", md: "1.2rem" }}>
+                      {el.data}
+                    </Typography>
                   </Stack>
                   <Stack>
                     <FaArrowRight size={30} />
@@ -102,7 +106,7 @@ export default function Departments() {
           </Stack>
         </Stack>
         <Stack
-          width={{ xs: "100%", md: "45%" }}
+          width={{ xs: "100%", md: "40%", lg: "45%" }}
           height={"60vh"}
           position={"relative"}
           justifyContent={"center"}

@@ -45,17 +45,18 @@ export default function Blog() {
         fontSize={"1.4rem"}
       >
         Providing Best Health Services With Expert Diagnoses & Treatment Plans
-        Lorem Ipsum is simply dummy text of the printing and typesetting
+        Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
       </Typography>
       <Stack
         width={"100%"}
         justifyContent={"center"}
         height={"fit-content"}
-        direction={"row"}
+        direction={{ xs: "column", md: "row" }}
         gap={"50px"}
+        alignItems={{ xs: "center", md: "normal" }}
       >
-        <Stack width={"45%"} height={"100%"}>
+        <Stack width={{ xs: "100%", md: "45%" }} height={"100%"}>
           <Box width={"100%"} height={"400px"} position={"relative"}>
             <Image src={blood} alt="" fill objectFit="cover" />
           </Box>
@@ -75,11 +76,18 @@ export default function Blog() {
             </Stack>
           </Stack>
         </Stack>
-        <Stack width={"45%"} gap={"20px"} justifyContent={"space-between"}>
+        <Stack
+          width={{ xs: "100%", md: "45%" }}
+          gap={"20px"}
+          justifyContent={"space-between"}
+        >
           {blogData.map((el, i) => {
             return <BlogCard el={el}></BlogCard>;
           })}
         </Stack>
+      </Stack>
+      <Stack alignItems={{ xs: "center", md: "start" }}>
+        <ButtonSmallOutline color="#fff">View All</ButtonSmallOutline>
       </Stack>
     </ContainerMain>
   );
@@ -88,7 +96,7 @@ export default function Blog() {
 function BlogCard({ el }) {
   return (
     <Stack direction={"row"}>
-      <Box width={"400px"} height={"100%"} position={"relative"}>
+      <Box width={"400px"} height={"250px"} position={"relative"}>
         <Image src={el.img} alt="" fill objectFit="cover" />
       </Box>
       <Stack backgroundColor={"white"} padding={"20px"} gap={"15px"}>

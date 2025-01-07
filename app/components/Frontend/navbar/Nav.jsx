@@ -70,9 +70,11 @@ export default function Navbar() {
           direction={"row"}
           justifyContent={{ xs: "end", smm: "end", lg: "space-between" }}
           alignItems={{ xs: "end", smm: "end", lg: "center" }}
-          padding={"10px 100px"}
+          // padding={"10px 100px"}
           backgroundColor={"#005900"}
           color={"white"}
+          paddingX={{ xs: "40px", smm: "60px", lg: "100px" }}
+          paddingY={"10px"}
         >
           <Stack
             direction={"row"}
@@ -109,13 +111,22 @@ export default function Navbar() {
           direction={"row"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          padding={"10px 100px"}
+          paddingX={{ xs: "40px", smm: "60px", lg: "100px" }}
+          paddingY={"10px"}
           sx={{
             borderBottom: "1.5px solid #5F5F5F",
           }}
         >
           <a href="/" style={{ textDecoration: "none", color: "black" }}>
-            <Image src={logo} alt="" height={73} width={195} />
+            <Box
+              component="img"
+              src={logo.src}
+              alt=""
+              sx={{
+                width: { xs: "102px", smm: "150px", md: "195px" },
+                height: { xs: "38px", smm: "55px", md: "73px" },
+              }}
+            />
           </a>
           <Stack
             direction={"row"}
@@ -164,7 +175,12 @@ export default function Navbar() {
                     href={el.link}
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <Typography sx={{ cursor: "pointer" }}>
+                    <Typography
+                      sx={{
+                        cursor: "pointer",
+                        fontSize: { xs: "0.8rem", smm: "1rem" },
+                      }}
+                    >
                       {el.name}
                     </Typography>
                   </a>

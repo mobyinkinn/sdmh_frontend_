@@ -82,40 +82,40 @@ function BlogRow({
   const handleDelete = () => {
     deleteBlog(_id);
   };
-const [editData, setEditData] = useState({
-  title,
-  smallDescription,
-  description,
-  image,
-  date,
-});
+  const [editData, setEditData] = useState({
+    title,
+    smallDescription,
+    description,
+    image,
+    date,
+  });
 
-const handleConfirmEdit = () => {
-  const formData = new FormData();
-  formData.append("title", editData.title);
-  formData.append("description", editData.description);
-  formData.append("smallDescription", editData.smallDescription);
-  if (editData.image instanceof File) {
-    formData.append("image", editData.image);
-  }
-
-  updateBlog(
-    {
-      id: _id,
-      data: formData,
-    },
-    {
-      onSuccess: () => {
-        toast.success("Blog updated successfully!");
-        onCloseModal();
-      },
-      onError: (error) => {
-        console.error("Failed to update Blog:", error);
-        toast.error("Failed to update Blog. Please try again.");
-      },
+  const handleConfirmEdit = () => {
+    const formData = new FormData();
+    formData.append("title", editData.title);
+    formData.append("description", editData.description);
+    formData.append("smallDescription", editData.smallDescription);
+    if (editData.image instanceof File) {
+      formData.append("image", editData.image);
     }
-  );
-};
+
+    updateBlog(
+      {
+        id: _id,
+        data: formData,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Blog updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Blog:", error);
+          toast.error("Failed to update Blog. Please try again.");
+        },
+      }
+    );
+  };
 
   return (
     <Table.Row alignItems="start">

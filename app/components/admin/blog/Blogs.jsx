@@ -15,7 +15,7 @@ export default function Blogs() {
       <AppLayout>
         <Row type="horizontal">
           <Heading as="h2">Blogs</Heading>
-          <BlogTableOperations/>
+          <BlogTableOperations />
         </Row>
         <BlogTable />
       </AppLayout>

@@ -36,26 +36,62 @@ export default function Enquire() {
       dir="row"
       justifyContent={"center"}
       gap={"70px"}
+      flexDirection={{ sm: "column", smm: "column", md: "column", lg: "row" }}
     >
-      <Stack width={"45%"}>
-        <Head1 color="#005900" textAlign={"left"}>
+      <Stack
+        width={{ sm: "100%", lg: "45%" }}
+        // alignItems={{ xs: "center", md: "left" }}
+      >
+        <Head1
+          color="#005900"
+          textAlign={{
+            sm: "center",
+            smm: "center",
+            md: "start",
+            lg: "start",
+          }}
+        >
           Enquire Now
         </Head1>
         <Stack
           marginTop={"20px"}
-          padding={"30px"}
+          padding={{ xs: "20px", md: "30px" }}
           border={"1px solid rgba(45, 45, 45, 0.2)"}
           borderRadius={"30px"}
         >
           <Label>Full Name</Label>
-          <TextInput placeholder="Enter Your Full Name" bgColor={"#EFF3F8"} />
+          <TextInput
+            padding={{
+              xs: "6px 15px",
+              sm: "10px 25px",
+              smm: "10px 25px",
+              md: "10px 25px",
+              lg: "15px 30px",
+            }}
+            placeholder="Enter Your Full Name"
+            bgColor={"#EFF3F8"}
+          />
           <Label>Phone No.</Label>
           <TextInput
+            padding={{
+              xs: "6px 15px",
+              sm: "10px 25px",
+              smm: "10px 25px",
+              md: "10px 25px",
+              lg: "15px 30px",
+            }}
             placeholder="Enter Your Phone Number"
             bgColor={"#EFF3F8"}
           />
           <Label>Email ID</Label>
           <TextInput
+            padding={{
+              xs: "6px 15px",
+              sm: "10px 25px",
+              smm: "10px 25px",
+              md: "10px 25px",
+              lg: "15px 30px",
+            }}
             placeholder="Enter Your Email Address"
             bgColor={"#EFF3F8"}
           />
@@ -81,8 +117,16 @@ export default function Enquire() {
           </DarkGreenButton>
         </Stack>
       </Stack>
-      <Stack width={"45%"} gap={"15px"}>
-        <Head1 color="#005900" textAlign={"left"}>
+      <Stack width={{ sm: "100%", lg: "45%" }} gap={"15px"}>
+        <Head1
+          color="#005900"
+          textAlign={{
+            sm: "center",
+            smm: "center",
+            md: "start",
+            lg: "start",
+          }}
+        >
           How To Reach
         </Head1>
         <Typography fontWeight={"bold"}>

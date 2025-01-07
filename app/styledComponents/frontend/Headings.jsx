@@ -11,11 +11,38 @@ const Head1 = styled.span((props) => ({
   position: props.position,
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
-  textAlign: props.textAlign || "center",
+  textAlign: props.textAlign?.lg || "center",
   width: props.width,
 
   // Default font size
   fontSize: props.fontSize?.lg || "3rem",
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    fontSize: props.fontSize?.md || "2.5rem",
+    textAlign: props.textAlign?.md,
+  },
+  [breakpoints.smm]: {
+    fontSize: props.fontSize?.smm || "2rem",
+    textAlign: props.textAlign?.smm,
+  },
+  [breakpoints.sm]: {
+    fontSize: props.fontSize?.sm || "1.5rem",
+    textAlign: props.textAlign?.sm,
+  },
+  // [breakpoints.xs]: {
+  //   fontSize: props.fontSize?.xs || "1rem",
+  // },
+}));
+
+const Head2 = styled.span((props) => ({
+  color: props.color || "#379237",
+  fontWeight: props.fontWeight || "bold",
+  width: props.width,
+  textAlign: props.textAlign || "center",
+
+  // Default font size
+  fontSize: props.fontSize?.lg || "5rem",
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
@@ -27,15 +54,6 @@ const Head1 = styled.span((props) => ({
   [breakpoints.sm]: {
     fontSize: props.fontSize?.sm || "1.5rem",
   },
-}));
-
-
-const Head2 = styled.span((props) => ({
-  color: props.color || "#379237",
-  fontWeight: props.fontWeight || "bold",
-  width: props.width,
-  textAlign: props.textAlign || "center",
-  fontSize: "5rem",
 }));
 
 const Head3 = styled.span((props) => ({
@@ -51,7 +69,20 @@ const Head4 = styled.span((props) => ({
   fontWeight: props.fontWeight || "bold",
   textAlign: props.textAlign || "center",
   width: props.width,
-  fontSize: "1.3rem",
+
+  // Default font size
+  fontSize: props.fontSize?.lg || "1.3rem",
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    fontSize: props.fontSize?.md || "1rem",
+  },
+  [breakpoints.smm]: {
+    fontSize: props.fontSize?.smm || "1rem",
+  },
+  [breakpoints.sm]: {
+    fontSize: props.fontSize?.sm || "1rem",
+  },
 }));
 
 export { Head1, Head2, Head3, Head4 };

@@ -7,28 +7,29 @@ import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 export default function About() {
   return (
     <ContainerMain
-      dir={{ xs: "column", md: "row" }}
+      flexDirection={{ sm: "column", smm: "column", md: "column", lg: "row" }}
       bgColor={"#D8E0EB"}
       padding={"50px 50px 0 50px"}
       justifyContent={"center"}
+      alignItems={"center"}
       gap="80px"
     >
       <Stack
-        width={{ xs: "90%", md: "30%" }}
+        width={{ xs: "90%", md: "50%", lg: "40%" }}
         height={"70vh"}
         sx={{
           backgroundImage: `url(${durlabhji.src})`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "bottom",
+          backgroundPosition: "center",
         }}
       ></Stack>
-      <Stack width={{ xs: "90%", md: "60%" }} gap={"20px"}>
+      <Stack width={{ xs: "90%", md: "50%", lg: "60%" }} gap={"20px"}>
         <Stack direction={"row"}>
           <Head1 color="black">About &nbsp;</Head1>
           <Head1>SDMH</Head1>
         </Stack>
-        <Typography fontSize={"1.2rem"}>
+        <Typography fontSize={{ xs: "1rem", smm: "1.2rem" }}>
           The Santokba Durlabhji Trust was founded in 1958 with a vision to
           provide quality care to the common man – without favour or
           discrimination. The Santokba Durlabhji Memorial Hospital was
@@ -36,7 +37,7 @@ export default function About() {
           Indira Gandhi, the hospital was dedicated to the Armed Forces as the
           nation was then in the throes of a war with Pakistan.
         </Typography>
-        <Typography fontSize={"1.2rem"}>
+        <Typography fontSize={{ xs: "1rem", smm: "1.2rem" }}>
           Since then, S.D.M.H. has continued to provide affordable health care
           through the several philanthropic initiatives it has undertaken e.g.
           The Avedna Ashram, the Rehabilitation and Limb Fitting Centre,

@@ -83,7 +83,7 @@ const ButtonSmallOutline = styled.button((props) => ({
   width: "fit-content",
   outline: "none",
   border: `1px solid ${props.color}`,
-  padding: "10px 30px",
+  padding: props.padding || "10px 30px",
   color: props.color,
   cursor: "pointer",
   borderRadius: "200px",
@@ -96,6 +96,10 @@ const ButtonSmallOutline = styled.button((props) => ({
     backgroundColor: props.color,
     color: props.hoverColor || "white",
   },
+
+  "@media (max-width: 600px)": {
+    padding: "10px 20px", // padding for smaller screens
+  },
 }));
 
 const ButtonMediumOutline = styled.button((props) => ({
@@ -104,7 +108,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   outline: "none",
   border: `1px solid ${props.color}`,
   padding: props.padding || "15px 40px",
-  fontSize: "1.2rem",
+  fontSize: props.fontSize || "1.2rem",
   color: props.color,
   cursor: "pointer",
   borderRadius: "200px",
@@ -113,11 +117,17 @@ const ButtonMediumOutline = styled.button((props) => ({
   alignItems: "center",
   transition: "all 0.3s ease",
   margin: props.margin,
+  marginBottom: props.marginBottom,
   "&:hover": {
     backgroundColor: props.color,
     color: props.hoverColor || "white",
   },
+
+  "@media (max-width: 600px)": {
+    padding: "10px 20px", // padding for smaller screens
+  },
 }));
+
 const ButtonSmallOutlineWithoutHover = styled.button((props) => ({
   backgroundColor: "transparent",
   width: "fit-content",

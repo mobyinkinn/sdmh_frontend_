@@ -2,7 +2,7 @@
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head2, Head3 } from "@/app/styledComponents/frontend/Headings";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import quotes from "../assets/icons/quotes.png";
 import cert from "../assets/cert.png";
+import { BorderTop } from "@mui/icons-material";
 
 const reviewData = [
   {
@@ -54,11 +55,14 @@ export default function Reviews() {
         <Head1 color="black">What Our &nbsp;</Head1>
         <Head1>Patients Say</Head1>
       </Stack>
-      <Image
-        src={quotes}
+      <Box
+        component="img"
+        src={quotes.src}
         alt=""
-        width={206}
-        height={98.43}
+        sx={{
+          width: { xs: "100px", md: "150px", lg: "206px" },
+          height: { xs: "48px", md: "75px", lg: "98.43px" },
+        }}
         style={{ margin: "20px auto" }}
       />
       <Slider {...settings}>
@@ -72,20 +76,42 @@ export default function Reviews() {
 
 function ReviewCard({ el }) {
   return (
-    <Stack direction={"row"} gap={"50px"} width={"70%"} margin={"0 auto"}>
-      <Image
-        src={cert}
+    <Stack
+      direction={{ xs: "column", lg: "row" }}
+      gap={{ xs: "10px", lg: "10px" }}
+      width={"70%"}
+      margin={"0 auto"}
+      alignItems={"center"}
+    >
+      <Box
+        component="img"
+        src={cert.src}
         alt=""
-        width={243.95}
-        height={256.49}
+        sx={{
+          width: { xs: "210px", lg: "243.95px" },
+          height: { xs: "215px", lg: "256.49px" },
+        }}
         style={{
           padding: "10px 30px",
           paddingRight: "50px",
-          borderRight: "3px solid #379237",
         }}
       />
-      <Stack gap={"10px"} padding={"10px"}>
-        <Typography fontSize={"1.2rem"}>{el.data}</Typography>
+
+      <Stack
+        sx={{
+          borderLeft: { lg: "3px solid #379237" },
+          borderTop: { xs: "3px solid #379237", lg: "none" },
+        }}
+        gap={"10px"}
+        padding={"10px 30px"}
+        alignItems={{ xs: "center", lg: "normal" }}
+      >
+        <Typography
+          fontSize={{ xs: "1rem", lg: "1.2rem" }}
+          width={{ xs: "51vh", lg: "78vh" }}
+        >
+          {el.data}
+        </Typography>
         <Head3 color="black" textAlign={"left"}>
           {el.name}
         </Head3>

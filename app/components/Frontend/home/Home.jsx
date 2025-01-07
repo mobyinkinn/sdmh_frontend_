@@ -17,6 +17,7 @@ import Enquire from "./parts/Enquire";
 import MobileApp from "./parts/MoblieApp";
 import Qr from "./parts/Qr";
 import Footer from "../footer/Footer";
+import MobileFooter from "../footer/MobileFooter";
 
 const Home = () => {
   return (
@@ -39,6 +40,7 @@ const Home = () => {
       <MobileApp />
       <Qr />
       <Footer />
+      <MobileFooter />
     </div>
   );
 };

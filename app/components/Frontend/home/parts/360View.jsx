@@ -9,7 +9,7 @@ export default function View() {
         backgroundPosition: "center center",
         backgroundSize: "cover",
         width: "100%",
-        height: "80vh",
+        height: { xs: "29vh", md: "48vh", lg: "80vh" },
       }}
     ></Box>
   );

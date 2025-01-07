@@ -1,6 +1,13 @@
 "use client";
 
 import styled from "@emotion/styled";
+const breakpoints = {
+  xs: "@media (max-width: 299px)",
+  sm: "@media (min-width: 300px) and (max-width: 430px)", // Mobile
+  smm: "@media (min-width: 430px) and (max-width: 600px)", // Mobile
+  md: "@media (min-width: 601px) and (max-width: 1024px)", // Tablet
+  lg: "@media (min-width: 1025px)", // Desktop
+};
 
 const SearchInput = styled.input((props) => ({
   width: "200px",
@@ -32,7 +39,7 @@ const TextInput = styled.input((props) => ({
   outline: "none",
   border: "1px solid rgba(45, 45, 45, 0.2)",
   borderRadius: "100px",
-  padding: "15px 30px",
+  padding: props.padding?.lg || "15px 30px",
   fontSize: "1.2rem",
   color: props.color || "#000000",
   backgroundColor: props.bgColor,
@@ -41,6 +48,20 @@ const TextInput = styled.input((props) => ({
   "::placeholder": {
     color: props.placeholderColor || "gray", // Set your desired placeholder color
     opacity: 1,
+  },
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    padding: props.padding?.md,
+  },
+  [breakpoints.smm]: {
+    padding: props.padding?.smm,
+  },
+  [breakpoints.sm]: {
+    padding: props.padding?.sm,
+  },
+  [breakpoints.xs]: {
+    padding: props.padding?.xs,
   },
 }));
 

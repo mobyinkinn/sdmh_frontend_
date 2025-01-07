@@ -161,16 +161,23 @@ const HoverYears = () => {
     <ContainerMain bgColor={"#476C9B"}>
       <Typography
         color="#FFFFFF"
-        fontSize={"55px"}
+        fontSize={{ xs: "25px", smm: "45px", md: "55px" }}
         textAlign={"center"}
         fontWeight={"bold"}
       >
         SDMH Through These Years
       </Typography>
-      <Typography color="#FFFFFF" textAlign={"center"} fontSize={"25px"}>
+      <Typography
+        color="#FFFFFF"
+        textAlign={"center"}
+        fontSize={{ xs: "20px", smm: "25px", md: "30px" }}
+      >
         50 Years of Care & Compassion
       </Typography>
-      <Stack padding={"40px 80px"} direction={{ xs: "column", md: "row" }}>
+      <Stack
+        padding={{ xs: "20px 20px", smm: "40px 80px" }}
+        direction={{ xs: "column", md: "row" }}
+      >
         <Stack
           gap="20px"
           width={{ xs: "100%", md: "40%" }}
@@ -247,10 +254,13 @@ const HoverYears = () => {
         >
           {responsibility[planetData].points.map((el, i) => (
             <Stack key={i}>
-              <Typography fontWeight={"bold"} fontSize={"100px"}>
+              <Typography
+                fontWeight={"bold"}
+                fontSize={{ xs: "30px", smm: "50px", md: "80px", lg: "100px" }}
+              >
                 {el.Year}
               </Typography>
-              <Typography>{el.Title}</Typography>
+              <Typography fontWeight={"bold"}>{el.Title}</Typography>
               <Typography>{el.Desc}</Typography>
             </Stack>
           ))}
