@@ -1,13 +1,13 @@
 import React from "react";
-import Form from "../../ui/Form";
-import Button from "../../ui/Button";
-import FileInput from "../../ui/FileInput";
-import FormRow from "../../ui/FormRow";
+import Form from "./Form";
+import Button from "./Button";
+import FileInput from "./FileInput";
+import FormRow from "./FormRow";
 import { Stack } from "@mui/material";
-import Heading from "../../ui/Heading";
-import Input from "../../ui/Input";
+import Heading from "./Heading";
+import Input from "./Input";
 
-const EditDownloadablesForm = ({
+const ConfirmEdit = ({
   onCloseModal,
   resourceName,
   onConfirm,
@@ -28,42 +28,47 @@ const EditDownloadablesForm = ({
   };
 
   const handleSubmit = (e) => {
-    console.log("Form", editData);
     e.preventDefault();
     onConfirm(); // Call the onConfirm function to handle the submission logic
   };
-
-  // name type file
 
   return (
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
       <Heading as="h3">Edit {resourceName}</Heading>
 
       <Stack gap={2} pt={5}>
-        <FormRow label="Name">
+        <FormRow label="Title">
           <Input
             disabled={disabled}
             type="text"
-            name="name"
-            value={editData.name || ""}
+            name="title"
+            value={editData.title || ""}
             onChange={handleInputChange}
           />
         </FormRow>
-        <FormRow label="Type">
+        <FormRow label="Description">
           <Input
             disabled={disabled}
             type="text"
-            name="type"
-            value={editData.type || ""}
+            name="description"
+            value={editData.description || ""}
             onChange={handleInputChange}
           />
         </FormRow>
-        <FormRow label={"File"}>
+        <FormRow label={"Image"}>
           <FileInput
-            name="file"
+            name="image"
             accept="image/*"
             type="file"
-            onChange={(e) => handleImageChange(e, "file")}
+            onChange={(e) => handleImageChange(e, "image")}
+          />
+        </FormRow>
+        <FormRow label={"Banner"}>
+          <FileInput
+            name="banner"
+            accept="image/*"
+            type="file"
+            onChange={(e) => handleImageChange(e, "banner")}
           />
         </FormRow>
 
@@ -85,4 +90,4 @@ const EditDownloadablesForm = ({
   );
 };
 
-export default EditDownloadablesForm;
+export default ConfirmEdit;

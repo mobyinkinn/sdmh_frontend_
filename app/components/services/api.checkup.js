@@ -34,10 +34,29 @@ export const unblockCheckup = async (id) => {
 export const updateCheckup = async ({ id, data }) => {
   const response = await axios.post(`${ApiUrl}/checkup/update?id=${id}`, data, {
     withCredentials: true,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   });
+  return response.data;
+};
+
+export const updateImage = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/checkup/update-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const updateBanner = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/checkup/update-banner?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
   return response.data;
 };
 

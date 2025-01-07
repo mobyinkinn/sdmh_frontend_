@@ -23,7 +23,13 @@ import {
   ButtonSmallOutlineWithoutHover,
 } from "@/app/styledComponents/frontend/Buttons";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
-import { useDeleteDownloadables, useUpdateDownloadables } from "../useDownload";
+import {
+  useDeleteDownloadables,
+  useUpdateDownloadables,
+  useUpdateDownloadablesImage,
+} from "../useDownload";
+import EditDownloadablesForm from "@/app/components/features/Downloadables/EditDownloadablesForm";
+import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -45,13 +51,14 @@ const Stacked = styled.div`
 `;
 
 function DownloadRow({
-  department: { _id: id, name, file, type, status, created },
+  department: { _id, name, file, type, status, created },
 }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
   const { updateDownloadables, isUpdating } = useUpdateDownloadables();
   const { deleteDownloadables, isDeleting } = useDeleteDownloadables();
+  const { mutate: updateTheFile } = useUpdateDownloadablesImage();
 
   function handleToggleStatus() {
     if (status) {
@@ -72,6 +79,57 @@ function DownloadRow({
     unconfirmed: "blue",
     active: "green",
     inactive: "silver",
+  };
+
+  const [editData, setEditData] = useState({
+    name,
+    type,
+    file,
+  });
+
+  const handleConfirmEdit = () => {
+    console.log("2", editData);
+    const formData = {
+      name: editData.name,
+      type: editData.type,
+    };
+    updateDownloadables(
+      {
+        id: _id,
+        data: formData,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Downloadable updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Downloadable:", error);
+          toast.error("Failed to update Downloadable. Please try again.");
+        },
+      }
+    );
+    //Image Update
+    const formDataImage = new FormData();
+    if (editData.file instanceof File) {
+      formDataImage.append("file", editData.file);
+    }
+    updateTheFile(
+      {
+        id: _id,
+        data: formDataImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("File updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update File:", error);
+          toast.error("Failed to update File. Please try again.");
+        },
+      }
+    );
   };
 
   return (
@@ -122,7 +180,14 @@ function DownloadRow({
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="banner-form">
-            {/* <EditDepartmentForm id={id} /> */}
+            <EditDownloadablesForm
+              resourceName="Banner"
+              editData={editData}
+              setEditData={setEditData}
+              onCloseModal={() => {}}
+              onConfirm={handleConfirmEdit}
+              disabled={false}
+            />
           </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>

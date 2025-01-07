@@ -6,29 +6,103 @@ import FileInput from "../../ui/FileInput";
 import FormRow from "../../ui/FormRow";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
+import { useCreateCheckup } from "../../admin/health_plans/useCheckups";
 
-const CreateHealthCheckupForm = ({ onClosedModal, resourceName }) => {
+const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: {},
   });
   const { errors } = formState;
 
+  const { createCheckups, isCreating } = useCreateCheckup();
+
+  const onSubmit = (data) => {
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append text fields to FormData
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("status", true);
+    console.log("formdata", formData);
+    console.log("Submitted data:", data);
+
+    // Append file fields to FormData
+    if (data.image[0]) {
+      formData.append("image", data.image[0]); // Append the first file from the input
+    }
+    if (data.banner[0]) {
+      formData.append("banner", data.banner[0]); // Append the first file from the input
+    }
+
+    createCheckups(formData, {
+      onSuccess: () => {
+        reset();
+        onCloseModal?.();
+      },
+    });
+  };
+
   //title, description, image, bannerImage,
 
   return (
-    <Form>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <Heading as="h3">Add {resourceName}</Heading>
 
       <Stack gap={2} pt={5}>
-        <FormRow label="Title" error={errors?.page?.message}>
+        <FormRow label="Title" error={errors?.title?.message}>
           <Input
-            disabled={isWorking}
+            disabled={isCreating}
             type="text"
             id="title"
             {...register("title", {
               required: "This field is required",
             })}
           />
+        </FormRow>
+        <FormRow label="Description" error={errors?.description?.message}>
+          <Input
+            disabled={isCreating}
+            type="text"
+            id="description"
+            {...register("description", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+        <FormRow label={"Image"}>
+          <FileInput
+            id="file"
+            accept="image/*"
+            type="file"
+            {...register("image", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+        <FormRow label={"Banner Image"}>
+          <FileInput
+            id="file"
+            accept="image/*"
+            type="file"
+            {...register("banner", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+
+        <FormRow>
+          <Button
+            variation="secondary"
+            type="reset"
+            onClick={() => onCloseModal?.()}
+          >
+            Cancel
+          </Button>
+          <Button disabled={isCreating}>{"Create new checkup"}</Button>
         </FormRow>
       </Stack>
     </Form>

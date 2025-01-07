@@ -5,6 +5,7 @@ import {
   deleteDownloadables as deleteTheDownloadables,
   createDownloadables as createTheDownloadables,
   updateDownloadables as updateTheDownloadable,
+  updateFile as updateTheFile,
 } from "../../services/api.donwload";
 
 export const useDownloadables = () => {
@@ -33,6 +34,21 @@ export const useUpdateDownloadables = () => {
   });
 
   return { updateDownloadables, isUpdating };
+};
+export const useUpdateDownloadablesImage = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateTheFile,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Downloadables"]);
+      toast.success("Downloadable image updated sucessfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update downloadable image:", error);
+      toast.error("Failed to update downloadable image. Please try again.");
+    },
+  });
 };
 
 export const useCreateDownloadable = () => {

@@ -17,14 +17,14 @@ export const deleteDownloadables = async (id) => {
   return response;
 };
 
-export const updateDownloadables = async ({ id, formdata }) => {
+export const updateDownloadables = async ({ id, data }) => {
   const response = await axios.post(
     `${ApiUrl}/downloadables/update?id=${id}`,
-    formdata,
+    data,
     { withCredentials: true }
   );
 
-  return response;
+  return response.data;
 };
 
 export const createDownloadables = async (formdata) => {
@@ -39,12 +39,12 @@ export const createDownloadables = async (formdata) => {
   return response;
 };
 
-export const updateImage = async ({ id, formdata }) => {
+export const updateFile = async ({ id, data }) => {
   const response = await axios.post(
-    `${ApiUrl}/downloadables/update?id=${id}`,
-    formdata,
+    `${ApiUrl}/downloadables/update-file?id=${id}`,
+    data,
     { withCredentials: true }
   );
 
-  return response;
+  return response.data;
 };

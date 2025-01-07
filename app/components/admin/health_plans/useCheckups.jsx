@@ -6,6 +6,8 @@ import {
   blockCheckup,
   unblockCheckup,
   updateCheckup,
+  updateImage,
+  updateBanner,
 } from "../../services/api.checkup";
 import toast from "react-hot-toast";
 
@@ -78,6 +80,38 @@ export const useUpdateCheckup = () => {
     onError: (error) => {
       console.error("Failed to update Checkup:", error);
       toast.error("Failed to update Checkup. Please try again.");
+    },
+  });
+};
+export const useUpdateCheckupImage = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateImage,
+    onSuccess: () => {
+      // Invalidate the "Checkups" query to refresh the table data
+      queryClient.invalidateQueries(["checkups"]);
+      toast.success("Checkup image updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Checkup image:", error);
+      toast.error("Failed to update Checkup image. Please try again.");
+    },
+  });
+};
+export const useUpdateCheckupBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateBanner,
+    onSuccess: () => {
+      // Invalidate the "Checkups" query to refresh the table data
+      queryClient.invalidateQueries(["checkups"]);
+      toast.success("Checkup banner updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Checkup banner:", error);
+      toast.error("Failed to update Checkup banner. Please try again.");
     },
   });
 };

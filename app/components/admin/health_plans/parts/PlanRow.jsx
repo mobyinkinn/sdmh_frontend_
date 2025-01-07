@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
-
 import Tag from "../../../ui/Tag";
 import Table from "../../../ui/Table";
 import Modal from "../../../ui/Modal";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
-
 // import { formatCurrency } from "../../../utils/helpers";
 // import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
@@ -22,8 +20,11 @@ import {
   useDeleteCheckup,
   useUnblockCheckup,
   useUpdateCheckup,
+  useUpdateCheckupBanner,
+  useUpdateCheckupImage,
 } from "../useCheckups";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
+import ConfirmEdit from "@/app/components/ui/EditCheckupModal";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -45,14 +46,16 @@ const Stacked = styled.div`
 `;
 
 function PlanRow({
-  academic: { _id, title, description, status, createdAt, image },
+  academic: { _id, title, description, status, createdAt, image, banner },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: deleteCheckup, isLoading: isDeleting } = useDeleteCheckup();
   const { mutate: blockCheckup, isLoading: isBlocking } = useBlockCheckup();
   const { mutate: unblockCheckup, isLoading: isUnblocking } =
     useUnblockCheckup();
-  const { mutate: updateCheckup, isLoading: isUpdating } = useUpdateCheckup();
+  const { mutate: updateCheckup } = useUpdateCheckup();
+  const { mutate: updateImage } = useUpdateCheckupImage();
+  const { mutate: updateBanner } = useUpdateCheckupBanner();
 
   const handleToggleStatus = () => {
     if (status) {
@@ -62,12 +65,105 @@ function PlanRow({
     }
   };
 
+  let convertedStatus;
+  if (status === true) {
+    convertedStatus = "active";
+  } else {
+    convertedStatus = "inactive";
+  }
+
+  const statusToTagName = {
+    unconfirmed: "blue",
+    active: "green",
+    inactive: "silver",
+  };
+
   const handleDelete = () => {
     deleteCheckup(_id);
   };
 
   const expandDesc = () => {
     setShowFullDesc((desc) => !desc);
+  };
+
+  const [editData, setEditData] = useState({
+    title,
+    description,
+    image,
+    banner,
+    status,
+  });
+
+  const handleConfirmEdit = () => {
+    const formData = {
+      title: editData.title,
+      description: editData.description,
+    };
+
+    updateCheckup(
+      {
+        id: _id,
+        data: formData,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Checkup updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Checkup:", error);
+          toast.error("Failed to update Checkup. Please try again.");
+        },
+      }
+    );
+
+    //Image Update
+    const formDataImage = new FormData();
+
+    if (editData.image instanceof File) {
+      formDataImage.append("image", editData.image);
+    }
+
+    updateImage(
+      {
+        id: _id,
+        data: formDataImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Image updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Image:", error);
+          toast.error("Failed to update Image. Please try again.");
+        },
+      }
+    );
+
+    //Banner Update
+    const formDataBanner = new FormData();
+
+    if (editData.banner instanceof File) {
+      formDataBanner.append("banner", editData.banner);
+    }
+
+    updateBanner(
+      {
+        id: _id,
+        data: formDataBanner,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Banner updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Banner:", error);
+          toast.error("Failed to update Banner. Please try again.");
+        },
+      }
+    );
   };
 
   return (
@@ -83,7 +179,7 @@ function PlanRow({
         </span>
       </Stacked>
 
-      {/* <Stacked>
+      <Stacked>
         {image ? (
           <Image
             src={image}
@@ -95,13 +191,11 @@ function PlanRow({
         ) : (
           <span>No Image</span>
         )}
-      </Stacked> */}
-
-      <Stacked>
-        <Tag type={status ? "green" : "silver"}>
-          {status ? "Active" : "Inactive"}
-        </Tag>
       </Stacked>
+
+      <Tag type={statusToTagName[convertedStatus]}>
+        {convertedStatus.replace("-", " ")}
+      </Tag>
 
       <Stacked>
         <span>{createdAt}</span>
@@ -129,14 +223,14 @@ function PlanRow({
           />
         </Modal.Window>
         <Modal.Window name="edit">
-          {/* <ConfirmEdit
+          <ConfirmEdit
             resourceName="checkup"
             editData={editData}
             setEditData={setEditData}
             onCloseModal={() => {}}
             onConfirm={handleConfirmEdit}
             disabled={false}
-          /> */}
+          />
         </Modal.Window>
       </Modal>
     </Table.Row>
