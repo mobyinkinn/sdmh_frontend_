@@ -52,6 +52,7 @@ const ContainerMain = styled.div((props) => ({
   justifyContent: props.justifyContent,
   alignItems: props.alignItems,
   backgroundColor: props.bgColor,
+  flexDirection: props.flexDirection,
 
   // Default styles
   padding: props.padding?.lg || "50px",

@@ -23,10 +23,11 @@ export default function Todo() {
         <Head1 color="#ffffff">To Do today?</Head1>
       </Stack>
       <Stack
-        marginTop={"30px"}
+        marginTop={{ md: "30px" }}
         direction={"row"}
         justifyContent={"center"}
-        gap={"20px"}
+        alignItems={"center"}
+        gap={{ md: "20px", xs: "10px" }}
         flexWrap={"wrap"}
       >
         {todoData.map((el, i) => {
@@ -36,11 +37,16 @@ export default function Todo() {
               borderRadius={"10px"}
               padding={"30px 15px"}
               alignItems={"center"}
-              width={"200px"}
-              gap={"20px"}
+              width={{ md: "200px", xs: "150px" }}
+              gap={{ md: "20px", xs: "5px" }}
             >
               <Image src={el.icon} width={60} height={60} alt="" />
-              <Typography textAlign={"center"}>{el.title}</Typography>
+              <Typography
+                fontSize={{ md: "1rem", xs: "0.8rem" }}
+                textAlign={"center"}
+              >
+                {el.title}
+              </Typography>
             </Stack>
           );
         })}

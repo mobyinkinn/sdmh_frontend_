@@ -50,7 +50,7 @@ export default function Reviews() {
   };
 
   return (
-    <ContainerMain bgColor={"#fff"}>
+    <ContainerMain bgColor={"#fff"} margin="20px 0">
       <Stack direction={"row"} margin={"0 auto"}>
         <Head1 color="black">What Our &nbsp;</Head1>
         <Head1>Patients Say</Head1>
@@ -79,8 +79,8 @@ function ReviewCard({ el }) {
     <Stack
       direction={{ xs: "column", lg: "row" }}
       gap={{ xs: "10px", lg: "10px" }}
-      width={"70%"}
-      margin={"0 auto"}
+      width={{ md: "70%", xs: "100%" }}
+      margin={{ md: "0 auto" }}
       alignItems={"center"}
     >
       <Box
@@ -107,8 +107,9 @@ function ReviewCard({ el }) {
         alignItems={{ xs: "center", lg: "normal" }}
       >
         <Typography
-          fontSize={{ xs: "1rem", lg: "1.2rem" }}
-          width={{ xs: "51vh", lg: "78vh" }}
+          fontSize={{ xs: "0.8rem", lg: "1.2rem" }}
+          // width={{ xs: "90%", lg: "100%" }}
+          textAlign={{ md: "left", xs: "center" }}
         >
           {el.data}
         </Typography>

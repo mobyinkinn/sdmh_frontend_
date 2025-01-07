@@ -9,11 +9,14 @@ import Image from "next/image";
 
 export default function MobileApp() {
   return (
-    <ContainerMain dir="row" bgColor="#A6C9B2">
+    <ContainerMain
+      flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
+      bgColor="#A6C9B2"
+    >
       <Stack
         sx={{
-          width: "50%",
-          height: "80vh",
+          width: { md: "40%", xs: "100%" },
+          height: { md: "80vh", xs: "50vh" },
           backgroundImage: `url(${img.src})`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
@@ -22,45 +25,29 @@ export default function MobileApp() {
       ></Stack>
       <Stack
         sx={{
-          width: "50%",
-          height: "80vh",
-          gap: "20px",
+          width: { md: "50%" },
+          height: { md: "80vh" },
+          gap: { md: "20px", xs: "10px" },
           justifyContent: "center",
           margin: "0 auto",
         }}
       >
-        <Head3 color="black" textAlign={"left"}>
+        <Head3 color="black" textAlign={{ md: "left", sm: "center" }}>
           Download the
         </Head3>
-        <Head1 textAlign={"left"} color="#007946">
+        <Head1 textAlign={{ lg: "left", sm: "center" }} color="#007946">
           SDMH Mobile App
         </Head1>
-        <Stack direction={"row"} gap={1}>
-          {/* <Image
-            src={app}
-            alt=""
-            sx={{
-              width: { xs: "50%", sm: "auto" }, // Responsive width
-              maxWidth: "282.73px", // Maximum width
-              height: "auto", // Maintain aspect ratio
-            }}
-            height={83.8}
-          />
-          <Image
-            src={play}
-            alt=""
-            sx={{
-              width: { xs: "50%", sm: "auto" }, // Responsive width
-              maxWidth: "282.73px", // Maximum width
-              height: "auto", // Maintain aspect ratio
-            }}
-            height={83.8}
-          /> */}
+        <Stack
+          direction={"row"}
+          gap={"10px"}
+          marginTop={{ xs: "20px", md: "0" }}
+          alignItems={"center"}
+        >
           <Stack
             direction={"row"}
-            gap={"10px"}
-            height={"20vh"}
-            width={{ md: "40%", xs: "90%" }}
+            height={{ md: "20vh", xs: "5vh" }}
+            width={{ md: "40%", xs: "50%" }}
             sx={{
               backgroundImage: `url(${app.src})`,
               backgroundSize: "contain",
@@ -70,9 +57,8 @@ export default function MobileApp() {
           ></Stack>
           <Stack
             direction={"row"}
-            gap={"10px"}
-            height={"20vh"}
-            width={{ md: "40%", xs: "90%" }}
+            height={{ md: "20vh", xs: "5vh" }}
+            width={{ md: "40%", xs: "50%" }}
             sx={{
               backgroundImage: `url(${play.src})`,
               backgroundSize: "contain",
