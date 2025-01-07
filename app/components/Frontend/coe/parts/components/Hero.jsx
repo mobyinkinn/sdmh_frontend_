@@ -11,7 +11,7 @@ import lines from "../assets/icons/lines.png";
 export default function Hero() {
   return (
     <Stack
-      height={{ lg: "80vh", md: "50vh" }}
+      height={{ lg: "80vh", md: "80vh", sm:"70vh" }}
       backgroundColor={"#D2E4D8"}
       direction={{ lg: "row", md: "column" }}
       gap={4}
@@ -76,9 +76,9 @@ export default function Hero() {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center bottom",
-          alignSelf: { lg: "end", md: "center" },
+          alignSelf: { lg: "end", md: "center", sm:"center" },
           width: "50%",
-          height: { lg: "90%", md: "55%" },
+          height: { lg: "90%", md: "55%", smm:"50%", sm:"45%" },
         }}
       ></Stack>
     </Stack>

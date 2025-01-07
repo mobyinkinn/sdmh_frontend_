@@ -37,7 +37,6 @@ function DepartmentTable() {
 
   const { filter } = useDepartmentContext();
   if (isLoading) return <Spinner />;
-  console.log(data.data);
 
   let filteredDepartment = data.data;
   let convertedFilter;
@@ -55,10 +54,11 @@ function DepartmentTable() {
   if (!filteredDepartment.length) return <Empty resourceName="departments" />;
   return (
     <Menus>
-      <Table columns="3fr 2fr 2fr 2fr 3.2rem">
+      <Table columns="3fr 2fr 2fr 2fr 2fr 3.2rem">
         <Table.Header>
           <div>Name</div>
           <div>Image</div>
+          <div>Banner Image</div>
           <div>Status</div>
           <div>created</div>
           <div></div>

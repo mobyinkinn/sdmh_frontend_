@@ -78,7 +78,7 @@ const TextArea = styled.textarea((props) => ({
 }));
 
 const Label = styled.span((props) => ({
-  width: "200px",
+  width: "250px",
   padding: "5px 10px",
   marginTop: "10px",
   fontSize: "1.2rem",

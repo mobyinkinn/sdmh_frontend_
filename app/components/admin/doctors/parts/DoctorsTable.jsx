@@ -7,6 +7,8 @@ import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useDoctorsContext } from "./DoctorsContext";
+import { useDoctors } from "./useDoctor";
+import { useDepartment } from "../../departments/parts/useDepartment";
 
 const doctorsData = [
   {
@@ -61,19 +63,22 @@ const doctorsData = [
 
 function DoctorsTable() {
   const { filter } = useDoctorsContext();
-  let filteredDoctors = doctorsData;
-  if (filter !== "All") {
-    filteredDoctors = doctorsData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+  const { data, isLoading, error } = useDoctors();
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
 
-  //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!doctorsData.length) return <Empty resourceName="Admins" />;
+  let filteredDoctors = data;
+  // if (filter !== "All") {
+  //   filteredDoctors = doctorsData.filter(
+  //     (el, i) => el.status.toLowerCase() === filter.toLowerCase()
+  //   );
+  // }
+
+  if (isLoading || isLoadingDepartment) return <Spinner />;
+  if (!filteredDoctors.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 1fr 1fr 1fr 1fr 3fr 1fr 1fr 1rem">
+      <Table columns="2fr 2fr 1fr 1fr 1fr 2fr 2fr 1rem">
         <Table.Header>
           <div>Name</div>
           <div>Department</div>
@@ -82,15 +87,12 @@ function DoctorsTable() {
           <div>Room</div>
           <div>Available On</div>
           <div>Status</div>
-          <div>created</div>
           <div></div>
         </Table.Header>
 
         <Table.Body
           data={filteredDoctors}
-          render={(doctor) => (
-            <DoctorsRow key={doctor.id} department={doctor} />
-          )}
+          render={(doctor) => <DoctorsRow key={doctor.id} doctor={doctor} />}
         />
 
         <Table.Footer>

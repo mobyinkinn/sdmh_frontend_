@@ -147,14 +147,11 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-// import useCreateCabin from "./useCreateCabin";
-// import useEditCabin from "./useEditCabin";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
 import { useCreateOpening } from "../../admin/careers/parts/useOpening";
 import { useState } from "react";
-import dynamic from "next/dynamic";
-const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
+import Jodit from "./Jodit";
 function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
@@ -162,6 +159,8 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
     defaultValues: {},
   });
   const { errors } = formState;
+
+  
 
   const { isCreating, createOpenings } = useCreateOpening();
   //   const { isEditing, editCabin } = useEditCabin();
@@ -178,7 +177,6 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
       number: data.number,
       status: true,
     };
-console.log("payload", payload);
     createOpenings(payload, {
       onSuccess: (data) => {
         reset();
@@ -195,7 +193,7 @@ console.log("payload", payload);
       type={onCloseModal ? "modal" : "regular"}
     >
       <Heading as="h3">Add {resourceName}</Heading>
-      <Stack gap={2} pt={5}>
+      <Stack gap={1} pt={1}>
         <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
           <FormRow label="Position" error={errors?.page?.message}>
             <Input

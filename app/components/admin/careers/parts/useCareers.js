@@ -1,4 +1,4 @@
-import { blockCareers, deleteCareers, fetchCareers, unblockCareers } from "@/app/components/services/apiCareer";
+import { blockCareers, createData, deleteCareers, fetchCareers, unblockCareers } from "@/app/components/services/apiCareer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -57,4 +57,21 @@ export const useUnblockCareers = () => {
       toast.error("Failed to unblock Careers. Please try again.");
     },
   });
+};
+
+export const useCreateData = () => {
+  const queryClient = useQueryClient();
+  const { mutate: createDatas, isLoading: isCreating } = useMutation({
+    mutationFn: createData,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Careers"]);
+      toast.success("Careers data Created successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to create Careers:", error);
+      toast.error("Failed to create Careers. Please try again.");
+    },
+  });
+
+  return { createDatas, isCreating };
 };

@@ -1,4 +1,4 @@
-import { blockOpening, createOpening, deleteOpening, fetchOpening, unblockOpening, updateOpening } from "@/app/components/services/apiOpening";
+import { blockOpening, createOpening, deleteOpening, fetchOpening, fetchOpeningById, unblockOpening, updateOpening } from "@/app/components/services/apiOpening";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -10,7 +10,13 @@ export const useOpening = () => {
   });
   return { data, isLoading, error };
 };
-
+export const useOpeningById = (_id) => {
+  return useQuery({
+    queryKey: ["Opening", _id],
+    queryFn: () => fetchOpeningById(_id), 
+    staleTime: 5 * 60 * 1000, 
+  });
+};
 
 export const useDeleteOpening = () => {
   const queryClient = useQueryClient();

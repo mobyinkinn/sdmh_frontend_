@@ -10,15 +10,19 @@ import {
   ButtonSmallOutline,
 } from "@/app/styledComponents/frontend/Buttons";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CareerCard({ career }) {
   const [hovered, setHovered] = useState(false);
+  const router = useRouter();
+   const truncatedContent = career.jd.slice(0, 50);
   return (
     <Stack
       direction={"row"}
       gap={"30px"}
       alignItems={"center"}
       width={"80vw"}
+      onClick={() => router.push(`/career/${career._id}`)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       sx={{
@@ -46,11 +50,15 @@ export default function CareerCard({ career }) {
           },
         }}
       ></Stack>
-      <Stack gap={"5px"}>
+      <Stack gap={"5px"} width={"70%"}>
         <Head4 textAlign="left" color="inherit">
           {career.position}
         </Head4>
-        <ParaNormalSmall color="inherit">{career.jd}</ParaNormalSmall>
+        {/* <ParaNormalSmall color="inherit">{career.jd}</ParaNormalSmall> */}
+        <ParaNormalSmall
+          color="inherit"
+          dangerouslySetInnerHTML={{ __html: truncatedContent }}
+        />
         <Stack direction={"row"} marginBottom={"20px"} gap={"40px"}>
           <ParaNormalSmall color="inherit">
             Seats: <b> {career.seats}</b>
@@ -63,6 +71,7 @@ export default function CareerCard({ career }) {
           </ParaNormalSmall>
         </Stack>
         <ButtonSmallOutline
+          onClick={() => router.push(`/career/${career._id}`)}
           color={hovered ? "white" : "#476C9B"}
           hoverColor="#476C9B"
         >
