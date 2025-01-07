@@ -9,16 +9,18 @@ import ConfirmDelete from "../../../ui/ConfirmDelete";
 // import { formatCurrency } from "../../../utils/helpers";
 // import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
-import {
-  HiEye,
-  HiPencil,
-  HiTrash,
-} from "react-icons/hi2";
+import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 import Image from "next/image";
-import { useBlockTpa, useCreateTpa, useDeleteTpa, useUnblockTpa } from "../useTpa";
+import {
+  useBlockTpa,
+  useCreateTpa,
+  useDeleteTpa,
+  useUnblockTpa,
+} from "../useTpa";
 import { HiEyeOff } from "react-icons/hi";
 import CreateTpa from "./CreateTpa";
 import Button from "@/app/components/ui/Button";
+import EditTpaForm from "@/app/components/features/Tpa/EditTpaForm";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -53,27 +55,27 @@ function TpaRow({ academic: { _id, name, logo, status } }) {
       unblockTpa(_id); // Call unblock API if inactive
     }
   };
- const handleDelete = () => {
-   deleteTpa(_id);
- };
-   const { mutate: createTpa, isLoading: isCreating } = useCreateTpa();
+  const handleDelete = () => {
+    deleteTpa(_id);
+  };
+  const { mutate: createTpa, isLoading: isCreating } = useCreateTpa();
 
-   const handleCreateTpa = (formData) => {
-     createTpa(
-       {
-         data: formData,
-       },
-       {
-         onSuccess: () => {
-           toast.success("TPA created successfully!");
-           onCloseModal();
-         },
-         onError: () => {
-           toast.error("Failed to create TPA. Please try again.");
-         },
-       }
-     );
-   };
+  const handleCreateTpa = (formData) => {
+    createTpa(
+      {
+        data: formData,
+      },
+      {
+        onSuccess: () => {
+          toast.success("TPA created successfully!");
+          onCloseModal();
+        },
+        onError: () => {
+          toast.error("Failed to create TPA. Please try again.");
+        },
+      }
+    );
+  };
   return (
     <Table.Row>
       <Stacked>
@@ -102,6 +104,9 @@ function TpaRow({ academic: { _id, name, logo, status } }) {
           <Modal.Open opens="edit">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
+          <Modal.Window name="edit">
+            <EditTpaForm id={_id} />
+          </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>

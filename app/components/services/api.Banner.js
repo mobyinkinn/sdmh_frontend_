@@ -15,9 +15,13 @@ export const deleteBanner = async (page) => {
   return response.data;
 };
 export const blockBanner = async (id) => {
-  const response = await axios.patch(`${ApiUrl}/banner/block-banner?id=${id}`,{}, {
-    withCredentials: true,
-  });
+  const response = await axios.patch(
+    `${ApiUrl}/banner/block-banner?id=${id}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
   return response.data;
 };
 

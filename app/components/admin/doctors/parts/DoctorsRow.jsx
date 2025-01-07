@@ -17,6 +17,11 @@ import {
 } from "react-icons/hi2";
 import Image from "next/image";
 import Button from "@/app/components/ui/Button";
+import { HiEyeOff, HiPencil } from "react-icons/hi";
+import { useBlockDoctor, useUnblockDoctor, useDeleteDoctor } from "./useDoctor";
+import EditDoctorForm from "@/app/components/features/Doctor/EditDoctorForm";
+import { useDepartment } from "../../departments/parts/useDepartment";
+import Spinner from "@/app/components/ui/Spinner";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -38,21 +43,45 @@ const Stacked = styled.div`
 `;
 
 function DoctorsRow({
-  department: {
-    id: id,
+  doctor: {
+    _id: id,
     name,
     image,
     department,
     floor,
     room,
-    availableOn,
+    availablity,
     status,
     created,
   },
 }) {
-  //   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
+  let convertedStatus;
+  const { blockDoctor, isBlocking } = useBlockDoctor();
+  const { unblockDoctor, isUnblocking } = useUnblockDoctor();
+  const { deleteDoctor, isDeleting } = useDeleteDoctor();
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
+
+  if (isLoadingDepartment) return <Spinner />;
+
+  let filteredDepartment = departmentData.data.filter(
+    (el) => el._id === department
+  )[0];
+
+  if (status === true) {
+    convertedStatus = "active";
+  } else {
+    convertedStatus = "inactive";
+  }
+
+  const handleToggleStatus = () => {
+    if (status === true) {
+      blockDoctor(id);
+    } else {
+      unblockDoctor(id);
+    }
+  };
+
   const statusToTagName = {
     unconfirmed: "blue",
     active: "green",
@@ -68,7 +97,7 @@ function DoctorsRow({
 
       <Stacked>
         <span>Department</span>
-        <span>{department}</span>
+        <span>{filteredDepartment.name}</span>
       </Stacked>
 
       <Stacked>
@@ -93,59 +122,47 @@ function DoctorsRow({
             gap: "4px",
           }}
         >
-          {availableOn.map((el, i) => {
+          {availablity.map((el, i) => {
             return (
               <Button size="small" variation="secondary" key={i}>
-                {el.day} - {el.at}
+                {/* {el.day} - {el.at} */}
+                {el}
               </Button>
             );
           })}
         </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
-      <Stacked>
-        <span>{created}</span>
-      </Stacked>
+      <Tag type={statusToTagName[convertedStatus]}>
+        {convertedStatus.replace("-", " ")}
+      </Tag>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete doctor</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="banner-form">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Window name="banner-form">
+            <EditDoctorForm
+              id={id}
+              department={filteredDepartment}
+              departmentData={departmentData}
+            />
+          </Modal.Window>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="doctor"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="Banner"
+            disabled={isDeleting}
+            onConfirm={() => deleteDoctor(id)}
           />
         </Modal.Window>
       </Modal>

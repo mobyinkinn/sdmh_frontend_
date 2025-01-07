@@ -1,6 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { blockTpa, createTpa, deleteTpa, fetchTpa, unblockTpa, updateTpa } from "../../services/api.Tpa";
+import {
+  blockTpa,
+  createTpa,
+  deleteTpa,
+  fetchTpa,
+  unblockTpa,
+  updateTpa,
+  updateLogo as updateTheLogo,
+} from "../../services/api.Tpa";
 
 export const useTpa = () => {
   const { data, isLoading, error } = useQuery({
@@ -10,6 +18,7 @@ export const useTpa = () => {
   });
   return { data, isLoading, error };
 };
+
 export const useDeleteTpa = () => {
   const queryClient = useQueryClient();
 
@@ -26,6 +35,7 @@ export const useDeleteTpa = () => {
     },
   });
 };
+
 export const useBlockTpa = () => {
   const queryClient = useQueryClient();
 
@@ -41,6 +51,7 @@ export const useBlockTpa = () => {
     },
   });
 };
+
 export const useUnblockTpa = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -90,3 +101,19 @@ export const useCreateTpa = () => {
   return { createTpas, isCreating };
 };
 
+export const useUpdateLogo = () => {
+  const queryClient = useQueryClient();
+  const { mutate: updateLogo, isLoading: isUpdatingLogo } = useMutation({
+    mutationFn: updateTheLogo,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["tpa"]);
+      toast.success("Logo updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update tpa:", error);
+      toast.error("Failed to update tpa. Please try again.");
+    },
+  });
+
+  return { updateLogo, isUpdatingLogo };
+};
