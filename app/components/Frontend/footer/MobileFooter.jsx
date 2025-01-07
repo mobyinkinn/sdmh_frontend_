@@ -1,94 +1,11 @@
-
-// import { Stack } from "@mui/material";
-// import CollapsibleSection from "./parts/CollapsibleSection";
-
-// export default function MobileFooter() {
-//     const centerOfExcellence = [
-//       "Cardiology",
-//       "Dermatology",
-//       "Nephrology",
-//       "Neurology",
-//     ];
-//     const patients = [
-//       "Find a doctor",
-//       "Make an appointment",
-//       "Virtual tour",
-//       "Room tour",
-//       "Patient testimonial",
-//       "Timings",
-//       "Patient guide",
-//     ];
-//     const onlineService = [
-//       "Video Consultation",
-//       "Lab reports",
-//       "Download our app",
-//     ];
-//     const aboutUs = [
-//       "Our founders",
-//       "Vision & mission",
-//       "Secretary's message",
-//       "Awards & accreditation",
-//     ];
-//     const supportACause = [
-//       "Avedna Ashram",
-//       "Help little hearts",
-//       "Outreach",
-//       "Jaipur foot",
-//     ];
-//     const contactUs = [
-//       "Enquiry",
-//       "Emergency",
-//       "Patient feedback",
-//       "Appointment",
-//     ];
-//     const quickLinks = [
-//       "Academics",
-//       "Blog",
-//       "Events",
-//       "Terms & conditions",
-//       "Career",
-//       "News & press release",
-//       "Send a greeting",
-//     ];
-//     const social = [
-//       "Follow us on Instagram",
-//       "Like us on Facebook",
-//       "Connect on LinkedIn",
-//       "Follow us on Twitter",
-//     ];
-//   return (
-//     <Stack gap={{md:3,smm:2, sm:1}} padding={"24px 40px"} sx={{ backgroundColor: "#fff" }} display={{lg:"none", sm:"flex"}}>
-//       <CollapsibleSection
-//         title="Centre of Excellence"
-//         items={centerOfExcellence}
-//       />
-//       <CollapsibleSection title="Patients & Visitors" items={patients} />
-//       <CollapsibleSection title="Online Service" items={onlineService} />
-//       <CollapsibleSection title="About Us" items={aboutUs} />
-//       <CollapsibleSection title="Support a Cause" items={supportACause} />
-//       <CollapsibleSection title="Contact Us" items={contactUs} />
-//       <CollapsibleSection title="Quick Links" items={quickLinks} />
-//       <CollapsibleSection
-//         title="Get in Touch"
-//         items={social}
-//       />
-//     </Stack>
-//   );
-// }
-
 "use client";
 import { useState } from "react";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import CollapsibleSection from "./parts/CollapsibleSection";
+import sdmh from "./parts/assets/bannerImage.png";
+import logo from "./parts/assets/logo.png";
 
 export default function MobileFooter() {
-  const [openSection, setOpenSection] = useState(null); // Tracks the currently open section
-
-  const handleSectionClick = (section) => {
-    // Toggle the clicked section and close others
-    setOpenSection(openSection === section ? null : section);
-  };
-
   const centerOfExcellence = [
     "Cardiology",
     "Dermatology",
@@ -104,6 +21,15 @@ export default function MobileFooter() {
     "Timings",
     "Patient guide",
   ];
+  const donation = [
+    "Avedna Ashram",
+    "Help Little Hearts",
+    "Outreach",
+    "Jaipur Foot & Polio Caliper",
+    "SDMH Free Clinic",
+    "Thalassemia Centre",
+  ];
+
   const onlineService = [
     "Video Consultation",
     "Lab reports",
@@ -123,13 +49,12 @@ export default function MobileFooter() {
   ];
   const contactUs = ["Enquiry", "Emergency", "Patient feedback", "Appointment"];
   const quickLinks = [
+    "About SDMH",
+    "Patient Care & Service",
     "Academics",
+    "Appoinment",
     "Blog",
-    "Events",
     "Terms & conditions",
-    "Career",
-    "News & press release",
-    "Send a greeting",
   ];
   const social = [
     "Follow us on Instagram",
@@ -138,61 +63,72 @@ export default function MobileFooter() {
     "Follow us on Twitter",
   ];
 
+  const other = [
+    "Enquiry",
+    "Career",
+    "News & Press Release",
+    "Feedback",
+    "Health Check-Up plans",
+    "Send a Greeting",
+  ];
+
+  const footerData = [
+    { name: "Quick links", links: quickLinks },
+    { name: "Center Of Excellence", links: centerOfExcellence },
+    { name: "Donation", links: donation },
+    { name: "Other Links", links: other },
+  ];
+
   return (
     <Stack
-      gap={{ md: 3, smm: 2, sm: 1 }}
-      padding={"24px 40px"}
-      sx={{ backgroundColor: "#fff" }}
-      display={{ lg: "none", sm: "flex" }}
+      width="100%"
+      display={{ md: "none", xs: "flex" }}
+      sx={{
+        backgroundImage: `url(${sdmh.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
     >
-      <CollapsibleSection
-        title="Centre of Excellence"
-        items={centerOfExcellence}
-        isOpen={openSection === "Centre of Excellence"}
-        onClick={() => handleSectionClick("Centre of Excellence")}
-      />
-      <CollapsibleSection
-        title="Patients & Visitors"
-        items={patients}
-        isOpen={openSection === "Patients & Visitors"}
-        onClick={() => handleSectionClick("Patients & Visitors")}
-      />
-      <CollapsibleSection
-        title="Online Service"
-        items={onlineService}
-        isOpen={openSection === "Online Service"}
-        onClick={() => handleSectionClick("Online Service")}
-      />
-      <CollapsibleSection
-        title="About Us"
-        items={aboutUs}
-        isOpen={openSection === "About Us"}
-        onClick={() => handleSectionClick("About Us")}
-      />
-      <CollapsibleSection
-        title="Support a Cause"
-        items={supportACause}
-        isOpen={openSection === "Support a Cause"}
-        onClick={() => handleSectionClick("Support a Cause")}
-      />
-      <CollapsibleSection
-        title="Contact Us"
-        items={contactUs}
-        isOpen={openSection === "Contact Us"}
-        onClick={() => handleSectionClick("Contact Us")}
-      />
-      <CollapsibleSection
-        title="Quick Links"
-        items={quickLinks}
-        isOpen={openSection === "Quick Links"}
-        onClick={() => handleSectionClick("Quick Links")}
-      />
-      <CollapsibleSection
-        title="Get in Touch"
-        items={social}
-        isOpen={openSection === "Get in Touch"}
-        onClick={() => handleSectionClick("Get in Touch")}
-      />
+      <Stack
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+        }}
+        padding="40px 35px"
+        gap="20px"
+      >
+        <Stack
+          height="8vh"
+          width="100%"
+          sx={{
+            backgroundImage: `url(${logo.src})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center",
+          }}
+        ></Stack>
+        {footerData.map((el, i) => {
+          return (
+            <Stack>
+              <Typography fontWeight="bold" fontSize="0.9rem">
+                {el.name}
+              </Typography>
+              <Stack direction="row" flexWrap={"wrap"}>
+                {el.links.map((ele, i) => {
+                  return (
+                    <Typography
+                      fontSize={"0.8rem"}
+                      marginTop={"6px"}
+                      marginRight="15px"
+                    >
+                      {ele}
+                    </Typography>
+                  );
+                })}
+              </Stack>
+            </Stack>
+          );
+        })}
+      </Stack>
     </Stack>
   );
 }
