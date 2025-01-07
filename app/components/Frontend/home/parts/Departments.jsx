@@ -4,6 +4,8 @@ import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import { Head1, Head2 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Typography } from "@mui/material";
 import { FaArrowRight } from "react-icons/fa6";
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 import img1 from "../assets/departments/topLeft.png";
 import img2 from "../assets/departments/topRight.png";
@@ -51,27 +53,43 @@ export default function Departments() {
   const router = useRouter();
 
   return (
-    <Stack padding={"50px"} backgroundColor={"#FBF6EE"} gap={"20px"}>
-      <Head1 width={{ xs: "349px", md: "777px" }} color="black">
+    <Stack
+      sx={{
+        padding: { md: "50px", xs: "10px 0 0 0" },
+        backgroundColor: "#FBF6EE",
+        gap: { md: "20px", xs: "8px" },
+        // display: { md: "flex", xs: "none" },
+      }}
+    >
+      <Head1
+        position="center"
+        width={{ sm: "100%", md: "777px" }}
+        color="black"
+      >
         World-class Speciality Care
       </Head1>
       <Head1>At Your Fingertips</Head1>
 
       <Stack
-        width={"100%"}
+        width={{ md: "100%", xs: "100vw" }}
         height={"fit-content"}
         direction={{ xs: "column", md: "row" }}
         gap={"30px"}
         justifyContent={"center"}
       >
         <Stack width={{ xs: "100%", md: "40%", lg: "45%" }} gap={"40px"}>
-          <Stack width={"100%"} sx={{ overflowY: "scroll" }} height={"75vh"}>
+          <Stack
+            width={"100%"}
+            sx={{ overflowY: "scroll" }}
+            height={{ md: "75vh" }}
+          >
             {departments.map((el, i) => {
               return (
                 <Stack
+                  width={"100%"}
                   direction={"row"}
-                  padding={"20px 50px"}
-                  margin={"0 10px"}
+                  padding={{ md: "20px 50px", xs: "10px 20px" }}
+                  margin={{ md: "0 10px", xs: "0" }}
                   justifyContent={"space-between"}
                   alignItems={"center"}
                   sx={
@@ -90,15 +108,28 @@ export default function Departments() {
                   onClick={() => router.push("/")}
                 >
                   <Stack>
-                    <Typography fontSize={{ xs: "1.2rem", md: "1.5rem" }}>
+                    <Typography fontSize={{ xs: "1rem", md: "1.5rem" }}>
                       {el.name}
                     </Typography>
-                    <Typography fontSize={{ xs: "1rem", md: "1.2rem" }}>
+                    <Typography fontSize={{ xs: "0.9rem", md: "1.2rem" }}>
                       {el.data}
                     </Typography>
                   </Stack>
-                  <Stack>
+                  <Stack display={{ md: "flex", xs: "none" }}>
                     <FaArrowRight size={30} />
+                  </Stack>
+                  <Stack
+                    display={{ xs: "flex", md: "none" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveTab(el.id);
+                    }}
+                  >
+                    {el.id === activeTab ? (
+                      <IoIosArrowUp size={20} />
+                    ) : (
+                      <IoIosArrowDown size={20} />
+                    )}
                   </Stack>
                 </Stack>
               );
@@ -121,7 +152,7 @@ export default function Departments() {
         </Stack>
       </Stack>
       <Stack alignItems={{ xs: "center", md: "start" }}>
-        <ButtonMediumOutline margin="0 50px" color="#379237">
+        <ButtonMediumOutline margin="10px 50px" color="#379237">
           View All
         </ButtonMediumOutline>
       </Stack>

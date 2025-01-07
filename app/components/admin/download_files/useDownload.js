@@ -5,7 +5,6 @@ import {
   deleteDownloadables as deleteTheDownloadables,
   createDownloadables as createTheDownloadables,
   updateDownloadables as updateTheDownloadable,
-  deleteDownloadables,
 } from "../../services/api.donwload";
 
 export const useDownloadables = () => {
@@ -57,7 +56,7 @@ export const useCreateDownloadable = () => {
 export const useDeleteDownloadables = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteDonwloadables, isLoading: isDeleting } = useMutation({
+  const { mutate: deleteDownloadables, isLoading: isDeleting } = useMutation({
     mutationFn: deleteTheDownloadables,
     onSuccess: () => {
       queryClient.invalidateQueries(["Downloadables"]);

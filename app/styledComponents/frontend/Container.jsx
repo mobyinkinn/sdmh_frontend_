@@ -67,13 +67,13 @@ const ContainerMain = styled.div((props) => ({
     flexDirection: props.flexDirection?.md,
   },
   [breakpoints.smm]: {
-    padding: props.padding?.smm,
+    padding: props.padding?.smm || "20px",
     gap: props.gap?.smm,
     display: props.display?.smm,
     flexDirection: props.flexDirection?.smm,
   },
   [breakpoints.sm]: {
-    padding: props.padding?.sm,
+    padding: props.padding?.sm || "20px",
     gap: props.gap?.sm,
     display: props.display?.sm,
     flexDirection: props.flexDirection?.sm,

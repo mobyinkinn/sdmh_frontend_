@@ -185,9 +185,9 @@ export default function Tabs() {
         spacing={2}
         display={{ xs: "flex", md: "none" }}
       >
-        <Stack direction="row" flexWrap="wrap" justifyContent="center">
+        <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
           {tabs.map((el, i) => (
-            <Stack key={el.id} width="50%" spacing={2} marginBottom={"20px"}>
+            <Stack key={el.id} width="object-fit" marginBottom={"10px"}>
               <ButtonMediumOutline
                 fontSize={{ xs: "1rem", lg: "1.2rem" }}
                 backgroundColor={el.id === activeTab ? "#005900" : "#000000"}
@@ -229,7 +229,6 @@ export default function Tabs() {
             <Stack
               key={i}
               width={"calc(50% - 20px)"}
-              margin={"10px"}
               backgroundColor={"#FBF6EE"}
               sx={{
                 borderRadius: "10px",

@@ -9,10 +9,10 @@ export default function FindDoctor() {
       bgcolor={"#6A88AF"}
       // height={"60vh"}
       width={"100%"}
-      padding={"50px"}
+      padding={{ md: "50px", xs: "30px 15px" }}
       sx={{
         backgroundImage: `url(${banner.src})`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center bottom",
         alignItems: "center",
@@ -22,7 +22,7 @@ export default function FindDoctor() {
       <Head2 color="#fff">Make an Appointment</Head2>
       <Typography
         margin={"20px 0"}
-        width={{ xs: "66%", md: "40%" }}
+        width={{ xs: "90%", md: "40%" }}
         textAlign={"center"}
         color="#fff"
       >

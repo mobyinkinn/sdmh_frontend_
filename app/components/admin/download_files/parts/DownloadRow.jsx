@@ -23,7 +23,7 @@ import {
   ButtonSmallOutlineWithoutHover,
 } from "@/app/styledComponents/frontend/Buttons";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
-import { useUpdateDownloadables } from "../useDownload";
+import { useDeleteDownloadables, useUpdateDownloadables } from "../useDownload";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -51,6 +51,7 @@ function DownloadRow({
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
   const { updateDownloadables, isUpdating } = useUpdateDownloadables();
+  const { deleteDownloadables, isDeleting } = useDeleteDownloadables();
 
   function handleToggleStatus() {
     if (status) {
@@ -130,8 +131,8 @@ function DownloadRow({
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="Banner"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteDepartment(id)}
+            disabled={isDeleting}
+            onConfirm={() => deleteDownloadables(id)}
           />
         </Modal.Window>
       </Modal>

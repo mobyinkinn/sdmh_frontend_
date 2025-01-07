@@ -19,19 +19,20 @@ const Head1 = styled.span((props) => ({
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
-    fontSize: props.fontSize?.md || "2.5rem",
+    fontSize: props.fontSize?.md || "2rem",
     textAlign: props.textAlign?.md,
   },
   [breakpoints.smm]: {
-    fontSize: props.fontSize?.smm || "2rem",
+    fontSize: props.fontSize?.smm || "1.4rem",
     textAlign: props.textAlign?.smm,
   },
   [breakpoints.sm]: {
-    fontSize: props.fontSize?.sm || "1.5rem",
+    fontSize: props.fontSize?.sm || "1.2rem",
     textAlign: props.textAlign?.sm,
+    width: props.width?.sm,
   },
   // [breakpoints.xs]: {
-  //   fontSize: props.fontSize?.xs || "1rem",
+  //   fontSize: props.fontSize?.xs || "0.4rem",
   // },
 }));
 

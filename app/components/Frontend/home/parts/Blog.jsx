@@ -5,7 +5,10 @@ import { Box, Stack, Typography } from "@mui/material";
 import holi from "../assets/holi.png";
 import blood from "../assets/bloodDonation.png";
 import Image from "next/image";
-import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import {
+  ButtonSmallOutline,
+  DarkGreenButton,
+} from "@/app/styledComponents/frontend/Buttons";
 
 const blogData = [
   {
@@ -43,6 +46,7 @@ export default function Blog() {
         textAlign={"center"}
         color={"white"}
         fontSize={"1.4rem"}
+        display={{ md: "block", xs: "none" }}
       >
         Providing Best Health Services With Expert Diagnoses & Treatment Plans
         Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -56,7 +60,11 @@ export default function Blog() {
         gap={"50px"}
         alignItems={{ xs: "center", md: "normal" }}
       >
-        <Stack width={{ xs: "100%", md: "45%" }} height={"100%"}>
+        <Stack
+          width={{ xs: "100%", md: "45%" }}
+          height={"100%"}
+          display={{ md: "flex", xs: "none" }}
+        >
           <Box width={"100%"} height={"400px"} position={"relative"}>
             <Image src={blood} alt="" fill objectFit="cover" />
           </Box>
@@ -80,13 +88,34 @@ export default function Blog() {
           width={{ xs: "100%", md: "45%" }}
           gap={"20px"}
           justifyContent={"space-between"}
+          display={{ md: "flex", xs: "none" }}
         >
           {blogData.map((el, i) => {
             return <BlogCard el={el}></BlogCard>;
           })}
         </Stack>
+        <Stack
+          width={{ xs: "100%", md: "45%" }}
+          gap={"20px"}
+          justifyContent={"space-between"}
+          display={{ xs: "flex", md: "none" }}
+          bgcolor={"white"}
+          padding="15px"
+          borderRadius="5px"
+        >
+          {blogData.map((el, i) => {
+            return <BlogCard el={el}></BlogCard>;
+          })}
+
+          <Stack display={{ md: "none" }} margin="0px auto" marginTop="20px">
+            <DarkGreenButton borderRadius="300px">View All</DarkGreenButton>
+          </Stack>
+        </Stack>
       </Stack>
-      <Stack alignItems={{ xs: "center", md: "start" }}>
+      <Stack
+        alignItems={{ xs: "center", md: "start" }}
+        display={{ md: "flex", xs: "none" }}
+      >
         <ButtonSmallOutline color="#fff">View All</ButtonSmallOutline>
       </Stack>
     </ContainerMain>
@@ -95,14 +124,56 @@ export default function Blog() {
 
 function BlogCard({ el }) {
   return (
+    <Stack
+      direction={"row"}
+      height={"100px"}
+      borderRadius={"5px"}
+      overflow="hidden"
+      boxShadow={"2px 2px 8px 2px rgba(0, 0, 0, 0.1)"}
+    >
+      <Box width={"80%"} height={"100%"} position={"relative"}>
+        <Image src={el.img} alt="" fill objectFit="cover" />
+      </Box>
+      <Stack backgroundColor={"white"} padding={"10px"} gap={"5px"}>
+        <Typography align="left" fontSize="0.8rem">
+          {el.title}
+        </Typography>
+        <Typography fontSize={{ md: "0.9rem", xs: "0.6rem" }}>
+          {el.data}
+        </Typography>
+        <Stack
+          direction={"row"}
+          gap={"10px"}
+          display={{ md: "flex", xs: "none" }}
+        >
+          <ButtonSmallOutline color="#379237">{el.date}</ButtonSmallOutline>
+          <ButtonSmallOutline color="#379237">{el.tag}</ButtonSmallOutline>
+        </Stack>
+      </Stack>
+    </Stack>
+  );
+}
+
+function BlogCardSmall({ el }) {
+  return (
     <Stack direction={"row"}>
-      <Box width={"400px"} height={"250px"} position={"relative"}>
+      <Box
+        width={"400px"}
+        height={{ md: "250px", xs: "200px" }}
+        position={"relative"}
+      >
         <Image src={el.img} alt="" fill objectFit="cover" />
       </Box>
       <Stack backgroundColor={"white"} padding={"20px"} gap={"15px"}>
         <Head4 align="left">{el.title}</Head4>
-        <Typography fontSize={"0.9rem"}>{el.data}</Typography>
-        <Stack direction={"row"} gap={"10px"}>
+        <Typography fontSize={{ md: "0.9rem", xs: "0.7rem" }}>
+          {el.data}
+        </Typography>
+        <Stack
+          direction={"row"}
+          gap={"10px"}
+          display={{ md: "flex", xs: "none" }}
+        >
           <ButtonSmallOutline color="#379237">{el.date}</ButtonSmallOutline>
           <ButtonSmallOutline color="#379237">{el.tag}</ButtonSmallOutline>
         </Stack>
