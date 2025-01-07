@@ -15,7 +15,7 @@ export const deleteBanner = async (page) => {
   return response.data;
 };
 export const blockBanner = async (id) => {
-  const response = await axios.patch(`${ApiUrl}/banner/block-banner?id=${id}`, {
+  const response = await axios.patch(`${ApiUrl}/banner/block-banner?id=${id}`,{}, {
     withCredentials: true,
   });
   return response.data;
@@ -52,4 +52,14 @@ export const createBanner = async (data) => {
     },
   });
   return response.data;
+};
+
+export const fetchBannerByPage = async (page) => {
+  const response = await axios.get(
+    `${ApiUrl}/banner/get-by-page?page=${page}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data.message; // Adjust based on the actual API response structure
 };

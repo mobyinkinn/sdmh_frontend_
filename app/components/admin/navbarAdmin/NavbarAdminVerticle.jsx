@@ -118,7 +118,7 @@ const navData = [
   },
   {
     id: 15,
-    name: "Careers",
+    name: "Careers Data",
     link: "/admin/careers",
     icon: ManageAccountsIcon,
   },

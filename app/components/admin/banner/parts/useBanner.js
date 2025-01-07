@@ -7,6 +7,7 @@ import {
   fetchBanners,
   unblockBanner,
   updateBanner,
+  fetchBannerByPage,
 } from "@/app/components/services/api.Banner";
 
 export const useBanner = () => {
@@ -16,6 +17,13 @@ export const useBanner = () => {
     staleTime: 5 * 60 * 1000,
   });
   return { data, isLoading, error };
+};
+export const useBannerByPage = (page) => {
+  return useQuery({
+    queryKey: ["banner", page],
+    queryFn: () => fetchBannerByPage(page),
+    staleTime: 5 * 60 * 1000,
+  });
 };
 
 export const useDeleteBanner = () => {

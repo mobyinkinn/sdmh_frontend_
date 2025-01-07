@@ -5,6 +5,7 @@ import banner from "./assets/bannerImage.png";
 import { Stack, Typography } from "@mui/material";
 import { Head1, Head2, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
 
 const sideNavData = [
   { id: 0, name: "About", idName: "about" },
@@ -18,6 +19,7 @@ const sideNavData = [
 ];
 
 export default function Hero() {
+    const { data, isLoading, error } = useBannerByPage("contact us");
   const handleScroll = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth", // Smooth scrolling
@@ -31,8 +33,9 @@ export default function Hero() {
         width={"85%"}
         height={"90vh"}
         sx={{
-          backgroundImage: `url(${banner.src})`,
-          backgroundSize: "cover",
+          backgroundImage: `url(${data?.banner})`,
+          backgroundSize: "contain",
+          backgroundRepeat:"no-repeat",
           backgroundPosition: "center center",
         }}
         justifyContent={"center"}

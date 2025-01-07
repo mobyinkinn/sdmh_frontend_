@@ -5,7 +5,7 @@ const StyledFormRow = styled.div`
   align-items: center;
   grid-template-columns: 10rem 1fr;
   gap: 1.4rem;
-  margin: 15px 0;
+  margin: 5px 0;
 
   &:first-child {
     padding-top: 0;
