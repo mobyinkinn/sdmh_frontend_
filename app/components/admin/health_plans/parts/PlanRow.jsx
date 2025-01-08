@@ -58,6 +58,8 @@ function PlanRow({
   const { mutate: updateBanner } = useUpdateCheckupBanner();
 
   const handleToggleStatus = () => {
+    console.log("_id", _id);
+    console.log("status", status);
     if (status) {
       blockCheckup(_id); // Call block API if active
     } else {
@@ -198,7 +200,7 @@ function PlanRow({
       </Tag>
 
       <Stacked>
-        <span>{createdAt}</span>
+        <span>{format(new Date(createdAt), "yyyy-MM-dd")}</span>
       </Stacked>
 
       <Modal>
