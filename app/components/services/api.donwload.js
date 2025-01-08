@@ -39,10 +39,10 @@ export const createDownloadables = async (formdata) => {
   return response;
 };
 
-export const updateFile = async ({ id, data }) => {
+export const updateFile = async ({ id, formdata }) => {
   const response = await axios.post(
     `${ApiUrl}/downloadables/update-file?id=${id}`,
-    data,
+    formdata,
     { withCredentials: true }
   );
 
