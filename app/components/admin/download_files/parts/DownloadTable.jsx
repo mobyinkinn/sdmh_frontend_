@@ -43,14 +43,19 @@ function DownloadTable() {
   if (isLoading) return <Spinner />;
   let filteredDownload = data;
 
-  // if (filter !== "All") {
-  //   filteredDownload = downloadData.filter(
-  //     (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-  //   );
-  // }
+  if (filter !== "All") {
+    filteredDownload = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
+  }
 
   //   const { bookings, isLoading, count } = useUsers();
-  if (!downloadData.length) return <Empty resourceName="Admins" />;
+  if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
       <Table columns="3fr 2fr 2fr 2fr 2fr 3.2rem">

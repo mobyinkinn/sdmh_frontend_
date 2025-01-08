@@ -59,12 +59,24 @@ function DownloadRow({
   const { updateDownloadables, isUpdating } = useUpdateDownloadables();
   const { deleteDownloadables, isDeleting } = useDeleteDownloadables();
   const { mutate: updateTheFile } = useUpdateDownloadablesImage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // When opening the modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const id = _id;
 
   function handleToggleStatus() {
     if (status) {
-      updateDownloadables({ id, formdata: { status: false } });
+      updateDownloadables({ id, data: { status: false } });
     } else {
-      updateDownloadables({ id, formdata: { status: true } });
+      updateDownloadables({ id, data: { status: true } });
     }
   }
 
@@ -88,15 +100,15 @@ function DownloadRow({
   });
 
   const handleConfirmEdit = () => {
-    console.log("2", editData);
-    const formData = {
+    const formDataText = {
       name: editData.name,
       type: editData.type,
     };
+
     updateDownloadables(
       {
         id: _id,
-        data: formData,
+        data: formDataText,
       },
       {
         onSuccess: () => {
@@ -114,10 +126,11 @@ function DownloadRow({
     if (editData.file instanceof File) {
       formDataImage.append("file", editData.file);
     }
+
     updateTheFile(
       {
         id: _id,
-        data: formDataImage,
+        formdata: formDataImage,
       },
       {
         onSuccess: () => {
@@ -184,7 +197,7 @@ function DownloadRow({
               resourceName="Banner"
               editData={editData}
               setEditData={setEditData}
-              onCloseModal={() => {}}
+              onCloseModal={onCloseModal}
               onConfirm={handleConfirmEdit}
               disabled={false}
             />
