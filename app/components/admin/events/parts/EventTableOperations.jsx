@@ -1,7 +1,10 @@
 import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
 import { useEventContext } from "./EventContext";
+import CreateEventsForm from "@/app/components/features/Events/CreateEventsForm";
 
 function EventTableOperations() {
   const { filter, setFilter } = useEventContext();
@@ -26,6 +29,15 @@ function EventTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+
+      <Modal>
+        <Modal.Open opens="event-form">
+          <Button>Add Events</Button>
+        </Modal.Open>
+        <Modal.Window name="event-form">
+          <CreateEventsForm resourceName="Event" />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

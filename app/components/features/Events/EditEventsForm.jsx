@@ -1,0 +1,117 @@
+import React from "react";
+import Input from "../../ui/Input";
+import Form from "../../ui/Form";
+import Button from "../../ui/Button";
+import FileInput from "../../ui/FileInput";
+import FormRow from "../../ui/FormRow";
+import { Stack } from "@mui/material";
+import Heading from "../../ui/Heading";
+
+const EditEventsForm = ({
+  resourceName,
+  onConfirm,
+  disabled,
+  editData,
+  setEditData,
+  onCloseModal,
+}) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditData({ ...editData, [name]: value });
+  };
+
+  const handleImageChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onConfirm(); // Call the onConfirm function to handle the submission logic
+  };
+
+  // title, smallDescription, description, date, featured, status, images
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Heading as="h3">Edit {resourceName}</Heading>
+      <Stack gap={2} pt={5}>
+        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+          <FormRow label="Title">
+            <Input
+              disabled={disabled}
+              type="text"
+              id="title"
+              name="title"
+              value={editData.title || ""}
+              onChange={handleInputChange}
+            />
+          </FormRow>
+          <FormRow label="Small Description">
+            <Input
+              disabled={disabled}
+              type="text"
+              id="smallDescription"
+              name="smallDescription"
+              value={editData.smallDescription || ""}
+              onChange={handleInputChange}
+            />
+          </FormRow>
+        </Stack>
+        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+          <FormRow label="Description">
+            <Input
+              disabled={disabled}
+              type="text"
+              id="description"
+              name="description"
+              value={editData.description || ""}
+              onChange={handleInputChange}
+            />
+          </FormRow>
+          <FormRow label="Date">
+            <Input
+              disabled={disabled}
+              type="text"
+              id="date"
+              name="date"
+              value={editData.date || ""}
+              onChange={handleInputChange}
+            />
+          </FormRow>
+        </Stack>
+
+        <Stack direction={"row"} p={"0px 10px"}>
+          <FormRow label="Images">
+            <FileInput
+              id="images"
+              accept="image/*"
+              type="file"
+              name="images"
+              onChange={(e) => handleImageChange(e, "images")}
+              multiple
+            />
+          </FormRow>
+        </Stack>
+
+        <FormRow>
+          <Button
+            variation="secondary"
+            type="button"
+            onClick={() => onCloseModal?.()}
+            disabled={disabled}
+          >
+            Cancel
+          </Button>
+          <Button type="submit" disabled={disabled}>
+            {"Create new event"}
+          </Button>
+        </FormRow>
+      </Stack>
+    </form>
+  );
+};
+
+export default EditEventsForm;

@@ -6,6 +6,7 @@ import Empty from "../../../ui/Empty";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import { useEventContext } from "./EventContext";
+import { useEvents } from "../useEvents";
 
 const eventData = [
   {
@@ -40,32 +41,40 @@ const eventData = [
 
 function EventTable() {
   const { filter } = useEventContext();
-  let filteredEvent = eventData;
+  const { data, isLoading } = useEvents();
+  if (isLoading) return <Spinner />;
+  console.log("events", data);
+  let filteredEvent = data;
+
   if (filter !== "All") {
-    filteredEvent = eventData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
+    filteredEvent = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
   }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
-  if (!eventData.length) return <Empty resourceName="Admins" />;
+  if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 3fr 4fr 1fr 1fr 1fr 1rem">
+      <Table columns="1fr 3fr 4fr 1fr 2fr 2fr 2fr">
         <Table.Header>
           <div>Title</div>
-          <div>Short description</div>
+          <div>Small description</div>
           <div>Description</div>
-          <div>Featured</div>
           <div>Date</div>
           <div>Status</div>
-          <div></div>
+          <div>Actions</div>
         </Table.Header>
 
         <Table.Body
           data={filteredEvent}
-          render={(doctor) => <EventRow key={doctor.id} department={doctor} />}
+          render={(event) => <EventRow key={event.id} event={event} />}
         />
 
         <Table.Footer>
