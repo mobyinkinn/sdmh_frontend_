@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../ui/Input";
+import Input, { DateInput } from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
@@ -29,6 +29,7 @@ const EditEventsForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onCloseModal?.();
     onConfirm(); // Call the onConfirm function to handle the submission logic
   };
 
@@ -72,9 +73,17 @@ const EditEventsForm = ({
             />
           </FormRow>
           <FormRow label="Date">
-            <Input
+            {/* <Input
               disabled={disabled}
               type="text"
+              id="date"
+              name="date"
+              value={editData.date || ""}
+              onChange={handleInputChange}
+            /> */}
+            <DateInput
+              disabled={disabled}
+              type="date"
               id="date"
               name="date"
               value={editData.date || ""}
@@ -106,7 +115,7 @@ const EditEventsForm = ({
             Cancel
           </Button>
           <Button type="submit" disabled={disabled}>
-            {"Create new event"}
+            {"Update Event"}
           </Button>
         </FormRow>
       </Stack>

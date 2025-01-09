@@ -38,12 +38,24 @@ export const createEvent = async (data) => {
   return response.data;
 };
 
-export const addImagesToEvent = async (id, images) => {
-  const response = await axios.post(`${ApiUrl}/events/add-images`, id, images, {
-    withCredentials: true,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+export const addImagesToEvent = async ({ id, images }) => {
+  const response = await axios.post(
+    `${ApiUrl}/events/add-images?id=${id}`,
+    images,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const removeImageFromEvent = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/events/delete-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
   return response.data;
 };

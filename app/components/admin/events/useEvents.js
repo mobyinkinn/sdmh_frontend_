@@ -5,6 +5,7 @@ import {
   updateEvent,
   createEvent,
   addImagesToEvent,
+  removeImageFromEvent,
 } from "../../services/api.events";
 import toast from "react-hot-toast";
 
@@ -78,6 +79,22 @@ export const useAddImagesToEvent = () => {
     onError: (error) => {
       console.error("Failed to add events images:", error);
       toast.error("Failed to add events images. Please try again.");
+    },
+  });
+};
+
+export const useDeleteImageFromEvent = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: removeImageFromEvent,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Events"]);
+      toast.success("Event image deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete event image:", error);
+      toast.error("Failed to delete event image. Please try again.");
     },
   });
 };

@@ -14,6 +14,7 @@ import Image from "next/image";
 import Button from "@/app/components/ui/Button";
 import { useState } from "react";
 import { HiEyeOff } from "react-icons/hi";
+import { FaRegImages } from "react-icons/fa";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -23,6 +24,9 @@ import {
   useAddImagesToEvent,
 } from "../useEvents";
 import EditEventsForm from "@/app/components/features/Events/EditEventsForm";
+import AddImagesForm from "@/app/components/features/Events/AddImagesForm";
+import toast from "react-hot-toast";
+import moment from "moment";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -67,12 +71,13 @@ function EventRow({
     images,
   });
 
-  const handleConfirmEdit = () => {
+  const handleConfirmEdit = async () => {
+    const created = moment(editData.date).format("YYYY-MM-DD");
     const formData = {
       title: editData.title,
       smallDescription: editData.smallDescription,
       description: editData.description,
-      date: editData.date,
+      date: created,
     };
 
     updateEvent(
@@ -89,29 +94,66 @@ function EventRow({
       }
     );
 
-    //Image Update
-    const formDataImages = new FormData();
+    // async function convertBlobUrlToBinary(blobUrl) {
+    //   try {
+    //     // Step 1: Fetch the Blob data
+    //     const response = await fetch(blobUrl);
 
-    const multipleFiles = editData.images ? Array.from(editData.images) : [];
+    //     if (!response.ok) {
+    //       throw new Error("Failed to fetch blob data");
+    //     }
 
-    multipleFiles.forEach((file) => {
-      formDataImages.append("images", file);
-    });
+    //     const blob = await response.blob(); // Convert response to Blob
 
-    console.log("formImages", formDataImages);
+    //     // Step 2: Convert Blob to binary data (ArrayBuffer)
+    //     const arrayBuffer = await blob.arrayBuffer();
 
-    addImagesToEvent(
-      { id, data: formDataImages },
-      {
-        onSuccess: () => {
-          toast.success("Images updated successfully!");
-        },
-        onError: (error) => {
-          console.error("Failed to update Images:", error);
-          toast.error("Failed to update Images. Please try again.");
-        },
-      }
-    );
+    //     // Step 3: Convert ArrayBuffer to binary (Uint8Array)
+    //     const binaryData = new Uint8Array(arrayBuffer);
+
+    //     console.log("Binary Data:", binaryData);
+    //     return binaryData;
+    //   } catch (error) {
+    //     console.error("Error converting blob URL to binary:", error);
+    //   }
+    // }
+
+    // //Image Update
+    // const formDataImages = new FormData();
+
+    // let fileToUpload = editData.images.filter((el) => !el.startsWith("http"));
+    // // const multipleFiles = fileToUpload.images
+    // //   ? Array.from(fileToUpload.images)
+    // //   : [];
+
+    // let multipleFiles = [];
+    // for (let i = 0; i < fileToUpload.length; i++) {
+    //   let file =
+    //     typeof fileToUpload[i] === "string"
+    //       ? fileToUpload[i]
+    //       : fileToUpload[i][0];
+
+    //   // const arrayBuffer = await file.arrayBuffer();
+    //   // const binary = new Uint8Array(arrayBuffer);
+    //   multipleFiles.push(await convertBlobUrlToBinary(file));
+    // }
+
+    // for (let i = 0; i < multipleFiles.length; i++) {
+    //   formDataImages.append(`images`, multipleFiles[i]);
+    // }
+
+    // addImagesToEvent(
+    //   { id, images: formDataImages },
+    //   {
+    //     onSuccess: () => {
+    //       toast.success("Images updated successfully!");
+    //     },
+    //     onError: (error) => {
+    //       console.error("Failed to update Images:", error);
+    //       toast.error("Failed to update Images. Please try again.");
+    //     },
+    //   }
+    // );
   };
 
   //   const navigate = useNavigate();
@@ -132,6 +174,8 @@ function EventRow({
   const expandSDesc = () => {
     showFullSDesc((desc) => !desc);
   };
+
+  const created = moment(date).format("YYYY-MM-DD");
 
   return (
     <Table.Row alignItems="start">
@@ -156,7 +200,7 @@ function EventRow({
       </Stacked>
 
       <Stacked>
-        <span>{date}</span>
+        <span>{created}</span>
       </Stacked>
 
       <Tag type={status ? "green" : "silver"}>
@@ -183,6 +227,21 @@ function EventRow({
               disabled={false}
             />
           </Modal.Window>
+          <Modal.Open opens="image-form">
+            <Menus.Button icon={<FaRegImages />} />
+          </Modal.Open>
+          <Modal.Window name="image-form">
+            <AddImagesForm
+              id={_id}
+              resourceName="Event"
+              editData={editData}
+              setEditData={setEditData}
+              onCloseModal={() => {}}
+              onConfirm={handleConfirmEdit}
+              disabled={false}
+            />
+          </Modal.Window>
+
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
