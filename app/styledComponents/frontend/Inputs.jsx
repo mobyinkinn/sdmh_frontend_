@@ -19,7 +19,6 @@ const SearchInput = styled.input((props) => ({
 }));
 
 const SearchInputHero = styled.div((props) => ({
-  //use contentEditable where ever you write this function
   outline: "none",
   width: props.width || "180px",
   border: "1px solid",
@@ -50,18 +49,20 @@ const TextInput = styled.input((props) => ({
     opacity: 1,
   },
 
+  fontSize: props.fontSize?.lg || "1.2rem",
+
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
-    padding: props.padding?.md,
+    fontSize: props.fontSize?.md || "1.2rem",
+    padding: props.padding?.md || "10px",
   },
   [breakpoints.smm]: {
-    padding: props.padding?.smm,
+    fontSize: props.fontSize?.smm || "1rem",
+    padding: props.padding?.smm || "5px",
   },
   [breakpoints.sm]: {
-    padding: props.padding?.sm,
-  },
-  [breakpoints.xs]: {
-    padding: props.padding?.xs,
+    fontSize: props.fontSize?.sm || "0.9rem",
+    padding: props.padding?.sm || "5px",
   },
 }));
 
@@ -70,11 +71,27 @@ const TextArea = styled.textarea((props) => ({
   outline: "none",
   border: "1px solid #ddd",
   borderRadius: "30px",
-  padding: "15px 30px",
+  padding: "25px 55px",
   fontSize: "1.2rem",
   color: "#000",
   backgroundColor: props.bgColor,
   border: "1px solid rgba(45, 45, 45, 0.2)",
+
+  fontSize: props.fontSize?.lg || "1.2rem",
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    fontSize: props.fontSize?.md || "1.2rem",
+    padding: props.padding?.md || "10px",
+  },
+  [breakpoints.smm]: {
+    fontSize: props.fontSize?.smm || "1rem",
+    padding: props.padding?.smm || "5px",
+  },
+  [breakpoints.sm]: {
+    fontSize: props.fontSize?.sm || "0.9rem",
+    padding: props.padding?.sm || "5px",
+  },
 }));
 
 const Label = styled.span((props) => ({
@@ -83,6 +100,19 @@ const Label = styled.span((props) => ({
   marginTop: "10px",
   fontSize: "1.2rem",
   color: "black",
+
+  fontSize: props.fontSize?.lg || "1.2rem",
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    fontSize: props.fontSize?.md || "1.2rem",
+  },
+  [breakpoints.smm]: {
+    fontSize: props.fontSize?.smm || "1rem",
+  },
+  [breakpoints.sm]: {
+    fontSize: props.fontSize?.sm || "0.9rem",
+  },
 }));
 
 export { SearchInput, SearchInputHero, TextInput, Label, TextArea };

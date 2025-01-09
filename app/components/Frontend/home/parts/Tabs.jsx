@@ -180,14 +180,15 @@ export default function Tabs() {
         })}
       </Stack>
 
-      <Stack
-        alignItems="center"
-        spacing={2}
-        display={{ xs: "flex", md: "none" }}
-      >
-        <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
+      <Stack alignItems="center" display={{ xs: "flex", md: "none" }}>
+        <Stack direction="row" flexWrap="wrap" justifyContent="start">
           {tabs.map((el, i) => (
-            <Stack key={el.id} width="object-fit" marginBottom={"10px"}>
+            <Stack
+              key={el.id}
+              marginRight="10px"
+              width="object-fit"
+              marginBottom={"10px"}
+            >
               <ButtonMediumOutline
                 fontSize={{ xs: "1rem", lg: "1.2rem" }}
                 backgroundColor={el.id === activeTab ? "#005900" : "#000000"}
@@ -214,7 +215,7 @@ export default function Tabs() {
       <Stack
         direction={"row"}
         justifyContent={"center"}
-        marginTop={"30px"}
+        marginTop={"20px"}
         width="100%"
         display={{ xs: "flex", lg: "none" }}
       >

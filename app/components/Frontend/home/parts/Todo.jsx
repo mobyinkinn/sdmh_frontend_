@@ -35,10 +35,12 @@ export default function Todo() {
             <Stack
               backgroundColor={"white"}
               borderRadius={"10px"}
-              padding={"30px 15px"}
+              padding={"30px 10px"}
               alignItems={"center"}
-              width={{ md: "200px", xs: "150px" }}
+              width={{ md: "200px", xs: "140px" }}
+              height={"180px"}
               gap={{ md: "20px", xs: "5px" }}
+              justifyContent={"center"}
             >
               <Image src={el.icon} width={60} height={60} alt="" />
               <Typography
