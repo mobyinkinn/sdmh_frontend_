@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ButtonIcon from "./ButtonIcon";
 import { HiOutlineUser } from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
+import { logout } from "../services/apiAuth";
+import { useRouter } from "next/navigation";
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -12,15 +14,22 @@ const Styledli = styled.li`
 `;
 
 function HeaderMenu() {
+  const router = useRouter();
+
+  const onLogout = () => {
+    logout();
+    router.push("/admin/login");
+  };
+
   return (
     <StyledHeaderMenu>
-      <Styledli>
+      <Styledli onClick={() => router.push("/admin/login")}>
         <ButtonIcon>
           <HiOutlineUser />
         </ButtonIcon>
       </Styledli>
       <Styledli>
-        <ButtonIcon>
+        <ButtonIcon onClick={onLogout}>
           <HiOutlineLogout />
         </ButtonIcon>
       </Styledli>

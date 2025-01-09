@@ -36,6 +36,7 @@ export default function Enquire() {
       dir="row"
       justifyContent={"center"}
       gap={"70px"}
+      margin={"20px 0px"}
       flexDirection={{ sm: "column", smm: "column", md: "column", lg: "row" }}
     >
       <Stack
@@ -106,7 +107,7 @@ export default function Enquire() {
             justifyContent={"space-between"}
           >
             <TextInput
-              placeholder="Enter Your Captcha Code"
+              placeholder="Enter Captcha Code"
               bgColor={"#EFF3F8"}
               width={"70%"}
             />

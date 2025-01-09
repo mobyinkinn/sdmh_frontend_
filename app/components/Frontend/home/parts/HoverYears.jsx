@@ -161,7 +161,7 @@ const HoverYears = () => {
     <ContainerMain bgColor={"#476C9B"}>
       <Typography
         color="#FFFFFF"
-        fontSize={{ xs: "25px", smm: "45px", md: "55px" }}
+        fontSize={{ xs: "20px", smm: "40px", md: "55px" }}
         textAlign={"center"}
         fontWeight={"bold"}
       >
@@ -170,18 +170,18 @@ const HoverYears = () => {
       <Typography
         color="#FFFFFF"
         textAlign={"center"}
-        fontSize={{ xs: "20px", smm: "25px", md: "30px" }}
+        fontSize={{ xs: "15px", smm: "22px", md: "30px" }}
       >
         50 Years of Care & Compassion
       </Typography>
       <Stack
-        padding={{ xs: "20px 20px", smm: "40px 80px" }}
+        padding={{ xs: "10px 0px", smm: "40px 80px" }}
         direction={{ xs: "column", md: "row" }}
       >
         <Stack
-          gap="20px"
+          gap={{ md: "20px", xs: "10px" }}
           width={{ xs: "100%", md: "40%" }}
-          height={"85vh"}
+          height={{ md: "85vh", xs: "70vh" }}
           paddingLeft={"20px"}
           sx={{
             cursor: "pointer",
@@ -193,7 +193,10 @@ const HoverYears = () => {
         >
           <TfiArrowCircleUp
             color="white"
-            style={{ width: "22px", height: "22px" }}
+            style={{
+              width: { md: "22px", xs: "10px" },
+              height: { md: "22px", xs: "10px" },
+            }}
             onClick={clickUpArrow}
           />
           {years.map((year, index) => (
@@ -201,7 +204,7 @@ const HoverYears = () => {
               key={index}
               direction={"row"}
               alignItems={"center"}
-              gap={"10px"}
+              gap={{ md: "10px", xs: "8px" }}
               onClick={() => {
                 setPlanetData(index);
                 setHoveredIndex(index);
