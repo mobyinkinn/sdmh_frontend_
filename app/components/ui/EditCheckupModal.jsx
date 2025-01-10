@@ -6,8 +6,15 @@ import FormRow from "./FormRow";
 import { Stack } from "@mui/material";
 import Heading from "./Heading";
 import Input from "./Input";
+import { ImagePreviewContainer } from "./ImagePreviewContainer";
+import { FaEdit } from "react-icons/fa";
+import {
+  useUpdateCheckupBanner,
+  useUpdateCheckupImage,
+} from "../admin/health_plans/useCheckups";
 
 const ConfirmEdit = ({
+  id,
   onCloseModal,
   resourceName,
   onConfirm,
@@ -15,12 +22,46 @@ const ConfirmEdit = ({
   editData,
   setEditData,
 }) => {
+  const { mutate: updateImage } = useUpdateCheckupImage();
+  const { mutate: updateBanner } = useUpdateCheckupBanner();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditData({ ...editData, [name]: value });
   };
 
   const handleImageChange = (e, fieldName) => {
+    const file = e.target.files[0];
+
+    const formDataImage = new FormData();
+
+    if (editData.image instanceof File) {
+      formDataImage.append("image", editData.image);
+    }
+
+    updateImage(
+      {
+        id,
+        data: formDataImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Image updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Image:", error);
+          toast.error("Failed to update Image. Please try again.");
+        },
+      }
+    );
+
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
+  };
+
+  const handleBannerChange = (e, fieldName) => {
     const file = e.target.files[0];
     if (file) {
       setEditData({ ...editData, [fieldName]: file });
@@ -55,21 +96,82 @@ const ConfirmEdit = ({
             onChange={handleInputChange}
           />
         </FormRow>
-        <FormRow label={"Image"}>
+        {/* <FormRow label={"Image"}>
           <FileInput
             name="image"
             accept="image/*"
             type="file"
             onChange={(e) => handleImageChange(e, "image")}
           />
+          
+        </FormRow> */}
+        <FormRow label={"Image"}>
+          <label>
+            <ImagePreviewContainer>
+              {editData.image && (
+                <>
+                  <img
+                    src={
+                      typeof editData.image === "string"
+                        ? editData.image
+                        : URL.createObjectURL(editData.image)
+                    }
+                    alt="Preview"
+                  />
+                  <div className="edit-icon">
+                    <label htmlFor="image-upload">
+                      <FaEdit size={16} />
+                    </label>
+                    <input
+                      id="image-upload"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageChange}
+                    />
+                  </div>
+                </>
+              )}
+            </ImagePreviewContainer>
+          </label>
         </FormRow>
-        <FormRow label={"Banner"}>
+        {/* <FormRow label={"Banner"}>
           <FileInput
             name="banner"
             accept="image/*"
             type="file"
-            onChange={(e) => handleImageChange(e, "banner")}
+            onChange={(e) => handleBannnerChange(e, "banner")}
           />
+        </FormRow> */}
+        <FormRow label={"Banner"}>
+          <label>
+            <ImagePreviewContainer>
+              {editData.bannerImage && (
+                <>
+                  <img
+                    src={
+                      typeof editData.bannerImage === "string"
+                        ? editData.bannerImage
+                        : URL.createObjectURL(editData.bannerImage)
+                    }
+                    alt="Preview"
+                  />
+                  <div className="edit-icon">
+                    <label htmlFor="image-upload">
+                      <FaEdit size={16} />
+                    </label>
+                    <input
+                      id="image-upload"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleBannerChange}
+                    />
+                  </div>
+                </>
+              )}
+            </ImagePreviewContainer>
+          </label>
         </FormRow>
 
         <FormRow>

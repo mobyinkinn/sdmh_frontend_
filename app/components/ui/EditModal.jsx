@@ -1,60 +1,12 @@
-// /* eslint-disable no-unused-vars */
-
-// import styled from "styled-components";
-// import Button from "./Button";
-// import Heading from "./Heading";
-// import { Stack } from "@mui/material";
-
-// const StyledConfirmDelete = styled.div`
-//   width: 30rem;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-
-//   & p {
-//     color: var(--color-grey-500);
-//     margin-bottom: 1rem;
-//   }
-
-//   & div {
-//     display: flex;
-//     justify-content: flex-end;
-//     gap: 1rem;
-//   }
-// `;
-
-// function ConfirmEdit({ onCloseModal, resourceName, onConfirm, disabled }) {
-//   return (
-//     <StyledConfirmDelete>
-//       <Heading as="h3">Edit {resourceName}</Heading>
-//       <Stack>
-
-//       </Stack>
-//       {/* <div>
-//         <Button
-//           variation="secondary"
-//           onClick={onCloseModal}
-//           disabled={disabled}
-//         >
-//           Cancel
-//         </Button>
-//         <Button variation="danger" onClick={onConfirm} disabled={disabled}>
-//           Delete
-//         </Button>
-//       </div> */}
-//     </StyledConfirmDelete>
-//   );
-// }
-
-// export default ConfirmEdit;
-
 import styled from "styled-components";
 import Button from "./Button";
 import Heading from "./Heading";
 import { Stack } from "@mui/material";
 import { DateInput } from "./Input";
 import FormRow from "./FormRow";
-import FileInput from "./FileInput";
+import { FaEdit } from "react-icons/fa";
+import { useUpdateSingleImageFromBlog } from "../admin/blog/useBlogs";
+import { ImagePreviewContainer } from "./ImagePreviewContainer";
 
 const StyledConfirmEdit = styled.div`
   width: 40rem;
@@ -89,9 +41,8 @@ const StyledConfirmEdit = styled.div`
   }
 `;
 
-//title , smallDescription, description, date, image
-
 function ConfirmEdit({
+  id,
   onCloseModal,
   resourceName,
   onConfirm,
@@ -99,12 +50,35 @@ function ConfirmEdit({
   editData,
   setEditData,
 }) {
+  const { mutate: updateSingleImageFromBlog } = useUpdateSingleImageFromBlog();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditData({ ...editData, [name]: value });
   };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    console.log("Single image", file);
+    const formDataImage = new FormData();
+    formDataImage.append("image", file);
+
+    updateSingleImageFromBlog(
+      {
+        id,
+        data: formDataImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Image updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Image:", error);
+          toast.error("Failed to update Image. Please try again.");
+        },
+      }
+    );
     if (file) {
       setEditData({ ...editData, image: file });
     }
@@ -158,14 +132,39 @@ function ConfirmEdit({
             />
           </label>
         </Stack>
-        <FormRow label={"Image"}>
-          <FileInput
-            name="image"
-            accept="image/*"
-            type="file"
-            onChange={(e) => handleImageChange(e, "image")}
-          />
-        </FormRow>
+
+        <Stack label={"Image"}>
+          <label>
+            Image{" "}
+            <ImagePreviewContainer>
+              {editData.image && (
+                <>
+                  <img
+                    src={
+                      typeof editData.image === "string"
+                        ? editData.image
+                        : URL.createObjectURL(editData.image)
+                    }
+                    alt="Preview"
+                  />
+                  <div className="edit-icon">
+                    <label htmlFor="image-upload">
+                      <FaEdit size={16} />
+                    </label>
+                    <input
+                      id="image-upload"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageChange}
+                    />
+                  </div>
+                </>
+              )}
+            </ImagePreviewContainer>
+          </label>
+        </Stack>
+
         <div>
           <Button
             variation="secondary"

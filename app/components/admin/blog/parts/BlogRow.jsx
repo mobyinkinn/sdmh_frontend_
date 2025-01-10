@@ -98,65 +98,29 @@ function BlogRow({
   });
 
   const handleConfirmEdit = () => {
-    const hasBlogData =
-      editData.title ||
-      editData.smallDescription ||
-      editData.description ||
-      editData.date;
+    const formData = {
+      title: editData.title,
+      smallDescription: editData.smallDescription,
+      description: editData.description,
+      date: editData.date,
+    };
 
-    const hasImageData = editData.image instanceof File;
-
-    if (hasBlogData) {
-      const formData = {
-        title: editData.title,
-        smallDescription: editData.smallDescription,
-        description: editData.description,
-        date: editData.date,
-      };
-
-      updateBlog(
-        {
-          id: _id,
-          data: formData,
+    updateBlog(
+      {
+        id: _id,
+        data: formData,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Blog updated successfully!");
+          onCloseModal();
         },
-        {
-          onSuccess: () => {
-            toast.success("Blog updated successfully!");
-            onCloseModal();
-          },
-          onError: (error) => {
-            console.error("Failed to update Blog:", error);
-            toast.error("Failed to update Blog. Please try again.");
-          },
-        }
-      );
-    }
-
-    if (hasImageData) {
-      const formDataImage = new FormData();
-      formDataImage.append("image", editData.image);
-
-      updateSingleImageFromBlog(
-        {
-          id: _id,
-          data: formDataImage,
+        onError: (error) => {
+          console.error("Failed to update Blog:", error);
+          toast.error("Failed to update Blog. Please try again.");
         },
-        {
-          onSuccess: () => {
-            toast.success("Image updated successfully!");
-            onCloseModal();
-          },
-          onError: (error) => {
-            console.error("Failed to update Image:", error);
-            toast.error("Failed to update Image. Please try again.");
-          },
-        }
-      );
-    }
-
-    if (!hasBlogData && !hasImageData) {
-      toast.error("No data provided to update.");
-    }
+      }
+    );
   };
 
   return (
@@ -237,6 +201,7 @@ function BlogRow({
         </Modal.Window>
         <Modal.Window name="edit">
           <ConfirmEdit
+            id={_id}
             resourceName="blog"
             editData={editData}
             setEditData={setEditData}
