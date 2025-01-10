@@ -13,6 +13,7 @@ export default function Plan() {
       <AppLayout>
         <Row type="horizontal">
           <Heading as="h2">Health Plans</Heading>
+         {/* <Typography type="text> */}
           <PlanTableOperations />
         </Row>
         <PlanTable />
