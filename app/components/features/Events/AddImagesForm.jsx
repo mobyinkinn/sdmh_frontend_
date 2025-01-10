@@ -155,6 +155,9 @@ const AddImagesForm = ({
       formData.append("images", image); // No index brackets
     });
 
+         {
+           /* <Typography type="text> */
+         }
 
     addImagesToEvent(
       { id, images: formData },
