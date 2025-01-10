@@ -59,7 +59,6 @@ function EventRow({
   const [fullDesc, showFullDesc] = useState(false);
   const [fullSDesc, showFullSDesc] = useState(false);
   const { mutate: updateEvent, isLoading: isUpdating } = useUpdateEvent();
-  const { mutate: addImagesToEvent } = useAddImagesToEvent();
   const { mutate: deleteEvent, isLoading: isDeleting } = useDeleteEvent();
   const id = _id;
 
