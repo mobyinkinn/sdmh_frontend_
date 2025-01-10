@@ -32,15 +32,12 @@ export const unblockBlog = async (id) => {
   return response.data;
 };
 export const updateBlog = async ({ id, data }) => {
+  console.log("Updating blog", data);
   const response = await axios.post(`${ApiUrl}/blogs/update?id=${id}`, data, {
     withCredentials: true,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   });
   return response.data;
 };
-
 
 export const createBlog = async (data) => {
   const response = await axios.post(`${ApiUrl}/blogs/create`, data, {
@@ -49,5 +46,27 @@ export const createBlog = async (data) => {
       "Content-Type": "multipart/form-data",
     },
   });
+  return response.data;
+};
+
+export const removeMultiImageFromBlog = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/blogs/delete-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const updateSingleImageFromBlog = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/blogs/update-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
   return response.data;
 };

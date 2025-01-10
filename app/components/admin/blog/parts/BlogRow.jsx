@@ -21,12 +21,15 @@ import {
   useDeleteBlog,
   useUnblockBlog,
   useUpdateBlog,
+  useUpdateSingleImageFromBlog,
 } from "../useBlogs";
 import Image from "next/image";
 import Button from "@/app/components/ui/Button";
 import { useState } from "react";
 import { HiEyeOff } from "react-icons/hi";
 import ConfirmEdit from "@/app/components/ui/EditModal";
+import { FaRegImages } from "react-icons/fa";
+import AddImagesFormBlog from "@/app/components/features/Blog/AddImagesFormBlog";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -56,6 +59,7 @@ function BlogRow({
     smallDescription,
     description,
     image,
+    images,
   },
 }) {
   const [fullDesc, showFullDesc] = useState(false);
@@ -64,6 +68,8 @@ function BlogRow({
   const { mutate: blockBlog, isLoading: isBlocking } = useBlockBlog();
   const { mutate: unblockBlog, isLoading: isUnblocking } = useUnblockBlog();
   const { mutate: updateBlog, isLoading: isUpdating } = useUpdateBlog();
+  const { mutate: updateSingleImageFromBlog, isLoading: isUpdatingImage } =
+    useUpdateSingleImageFromBlog();
   const handleToggleStatus = () => {
     if (status) {
       blockBlog(_id); // Call block API if active
@@ -88,33 +94,69 @@ function BlogRow({
     description,
     image,
     date,
+    images,
   });
 
   const handleConfirmEdit = () => {
-    const formData = new FormData();
-    formData.append("title", editData.title);
-    formData.append("description", editData.description);
-    formData.append("smallDescription", editData.smallDescription);
-    if (editData.image instanceof File) {
-      formData.append("image", editData.image);
+    const hasBlogData =
+      editData.title ||
+      editData.smallDescription ||
+      editData.description ||
+      editData.date;
+
+    const hasImageData = editData.image instanceof File;
+
+    if (hasBlogData) {
+      const formData = {
+        title: editData.title,
+        smallDescription: editData.smallDescription,
+        description: editData.description,
+        date: editData.date,
+      };
+
+      updateBlog(
+        {
+          id: _id,
+          data: formData,
+        },
+        {
+          onSuccess: () => {
+            toast.success("Blog updated successfully!");
+            onCloseModal();
+          },
+          onError: (error) => {
+            console.error("Failed to update Blog:", error);
+            toast.error("Failed to update Blog. Please try again.");
+          },
+        }
+      );
     }
 
-    updateBlog(
-      {
-        id: _id,
-        data: formData,
-      },
-      {
-        onSuccess: () => {
-          toast.success("Blog updated successfully!");
-          onCloseModal();
+    if (hasImageData) {
+      const formDataImage = new FormData();
+      formDataImage.append("image", editData.image);
+
+      updateSingleImageFromBlog(
+        {
+          id: _id,
+          data: formDataImage,
         },
-        onError: (error) => {
-          console.error("Failed to update Blog:", error);
-          toast.error("Failed to update Blog. Please try again.");
-        },
-      }
-    );
+        {
+          onSuccess: () => {
+            toast.success("Image updated successfully!");
+            onCloseModal();
+          },
+          onError: (error) => {
+            console.error("Failed to update Image:", error);
+            toast.error("Failed to update Image. Please try again.");
+          },
+        }
+      );
+    }
+
+    if (!hasBlogData && !hasImageData) {
+      toast.error("No data provided to update.");
+    }
   };
 
   return (
@@ -167,6 +209,20 @@ function BlogRow({
           <Modal.Open opens="edit">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
+          <Modal.Open opens="image-form">
+            <Menus.Button icon={<FaRegImages />} />
+          </Modal.Open>
+          <Modal.Window name="image-form">
+            <AddImagesFormBlog
+              id={_id}
+              resourceName="Blog"
+              editData={editData}
+              setEditData={setEditData}
+              onCloseModal={() => {}}
+              onConfirm={handleConfirmEdit}
+              disabled={false}
+            />
+          </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
@@ -176,6 +232,7 @@ function BlogRow({
             resourceName="blog"
             disabled={isDeleting} // Disable button while deleting
             onConfirm={handleDelete} // Call the delete function on confirm
+            onCloseModal={() => {}}
           />
         </Modal.Window>
         <Modal.Window name="edit">

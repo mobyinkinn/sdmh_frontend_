@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Input from "../../ui/Input";
+import Input, { DateInput } from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
@@ -58,7 +58,7 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
       <Heading as="h3">Add {resourceName}</Heading>
       <Stack gap={2} pt={5}>
         <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
-          <FormRow label="Topic" error={errors?.page?.message}>
+          <FormRow label="Title" error={errors?.page?.message}>
             <Input
               disabled={isWorking}
               type="text"
@@ -68,7 +68,7 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
               })}
             />
           </FormRow>
-          <FormRow label="Title" error={errors?.page?.message}>
+          <FormRow label="Short Description" error={errors?.page?.message}>
             <Input
               disabled={isWorking}
               type="text"
@@ -91,9 +91,9 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
             />
           </FormRow>
           <FormRow label="Date" error={errors?.date?.message}>
-            <Input
+            <DateInput
               disabled={isWorking}
-              type="text"
+              type="date"
               id="date"
               {...register("date", {
                 required: "This field is required",

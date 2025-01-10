@@ -48,11 +48,13 @@
 
 // export default ConfirmEdit;
 
-
 import styled from "styled-components";
 import Button from "./Button";
 import Heading from "./Heading";
 import { Stack } from "@mui/material";
+import { DateInput } from "./Input";
+import FormRow from "./FormRow";
+import FileInput from "./FileInput";
 
 const StyledConfirmEdit = styled.div`
   width: 40rem;
@@ -87,6 +89,8 @@ const StyledConfirmEdit = styled.div`
   }
 `;
 
+//title , smallDescription, description, date, image
+
 function ConfirmEdit({
   onCloseModal,
   resourceName,
@@ -106,16 +110,33 @@ function ConfirmEdit({
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onCloseModal?.();
+    onConfirm(); // Call the onConfirm function to handle the submission logic
+  };
+
   return (
     <StyledConfirmEdit>
       <Heading as="h3">Edit {resourceName}</Heading>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit}>
         <label>
           Title:
           <input
             type="text"
             name="title"
             value={editData.title}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Date:
+          <DateInput
+            disabled={disabled}
+            type="date"
+            id="date"
+            name="date"
+            value={editData.date || ""}
             onChange={handleInputChange}
           />
         </label>
@@ -137,36 +158,14 @@ function ConfirmEdit({
             />
           </label>
         </Stack>
-        <Stack direction={"row"}>
-          <label>
-            Date:
-            <input
-              type="text"
-              name="date"
-              value={editData.date}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Featured Image:
-            <input type="file" name="image" onChange={handleImageChange} />
-            {editData.image && (
-              <div style={{ marginTop: "0.5rem" }}>
-                <strong>Preview:</strong>
-                <img
-                  src={
-                    typeof editData.image === "string"
-                      ? editData.image
-                      : URL.createObjectURL(editData.image)
-                  }
-                  alt="Preview"
-                  width={100}
-                  style={{ borderRadius: "8px", marginTop: "0.5rem" }}
-                />
-              </div>
-            )}
-          </label>
-        </Stack>
+        <FormRow label={"Image"}>
+          <FileInput
+            name="image"
+            accept="image/*"
+            type="file"
+            onChange={(e) => handleImageChange(e, "image")}
+          />
+        </FormRow>
         <div>
           <Button
             variation="secondary"

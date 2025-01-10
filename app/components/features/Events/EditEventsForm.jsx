@@ -73,14 +73,6 @@ const EditEventsForm = ({
             />
           </FormRow>
           <FormRow label="Date">
-            {/* <Input
-              disabled={disabled}
-              type="text"
-              id="date"
-              name="date"
-              value={editData.date || ""}
-              onChange={handleInputChange}
-            /> */}
             <DateInput
               disabled={disabled}
               type="date"

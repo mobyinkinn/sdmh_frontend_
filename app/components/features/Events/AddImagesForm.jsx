@@ -155,7 +155,6 @@ const AddImagesForm = ({
       formData.append("images", image); // No index brackets
     });
 
-
     addImagesToEvent(
       { id, images: formData },
       {
