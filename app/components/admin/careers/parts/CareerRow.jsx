@@ -104,20 +104,12 @@ const handleDelete = () => {
           </a>
         </span>
       </Stacked>
-      <Tag type={status ? "green" : "silver"}>
-        {status ? "Active" : "Inactive"}
-      </Tag>
       <Stacked>
         <span>{dateApplied}</span>
       </Stacked>
 
       <Modal>
-        <Menus.Menu>
-          <Menus.Button
-            icon={status ? <HiEye /> : <HiEyeOff />}
-            onClick={handleToggleStatus}
-            disabled={isBlocking || isUnblocking}
-          ></Menus.Button>
+        <Menus.Menu style={{justifyContent:"center"}}>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>

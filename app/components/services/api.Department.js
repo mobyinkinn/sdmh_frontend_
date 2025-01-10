@@ -6,7 +6,7 @@ export const fetchAllDepartments = async () => {
     withCredentials: true,
   });
 
-  return response.data;
+  return response.data.data;
 };
 
 export const fetchDepartment = async (id) => {

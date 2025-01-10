@@ -38,7 +38,7 @@ function DepartmentTable() {
   const { filter } = useDepartmentContext();
   if (isLoading) return <Spinner />;
 
-  let filteredDepartment = data.data;
+  let filteredDepartment = data;
   let convertedFilter;
 
   if (filter.toLowerCase() === "inactive") {

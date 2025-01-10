@@ -63,7 +63,7 @@ function CareerTable() {
   if (!filteredCareer.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 5.2rem">
+      <Table columns="1fr 2fr 1fr 1fr 1fr 1.5fr 1fr 5.2rem">
         <Table.Header>
           <div>Position</div>
           <div>Email</div>
@@ -71,10 +71,8 @@ function CareerTable() {
           <div>Phone</div>
           <div>City</div>
           <div>Resume</div>
-          <div>Status</div>
           <div>Date</div>
           <div>Actions</div>
-          <div></div>
         </Table.Header>
 
         <Table.Body

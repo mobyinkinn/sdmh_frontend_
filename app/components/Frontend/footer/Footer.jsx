@@ -82,7 +82,7 @@ const aboutUs = [
 
 export default function Footer() {
   return (
-    <ContainerMain dir={"row"} gap="30px" justifyContent={"space-between"} display={{sm:"none", smm:"none", md:"none"}}>
+    <ContainerMain flexDirection={{lg:"row"}} gap="30px" justifyContent={"space-between"} display={{sm:"none", smm:"none", md:"none"}}>
       <Stack gap={"50px"} width={"20%"}>
         <Stack
           sx={{

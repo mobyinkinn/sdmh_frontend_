@@ -8,7 +8,7 @@ import MobileFooter from "../footer/MobileFooter";
 export default function Coe() {
   return (
     <Stack>
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
       <Grid />
       <Footer />

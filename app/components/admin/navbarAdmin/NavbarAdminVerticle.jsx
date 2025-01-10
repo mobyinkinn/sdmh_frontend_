@@ -38,12 +38,12 @@ const navData = [
     link: "/admin/doctors",
     icon: ManageAccountsIcon,
   },
-  {
-    id: 3,
-    name: "Appointments",
-    link: "/admin/appointments",
-    icon: ManageAccountsIcon,
-  },
+  // {
+  //   id: 3,
+  //   name: "Appointments",
+  //   link: "/admin/appointments",
+  //   icon: ManageAccountsIcon,
+  // },
   {
     id: 4,
     name: "Academics",
@@ -96,12 +96,6 @@ const navData = [
     id: 11,
     name: "Enquiries",
     link: "/admin/enquiries",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 12,
-    name: "Contact",
-    link: "/admin/contacts",
     icon: ManageAccountsIcon,
   },
   {

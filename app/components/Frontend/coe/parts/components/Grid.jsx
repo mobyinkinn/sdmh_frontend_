@@ -1,3 +1,4 @@
+"use client"
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import ballon from "../assets/hotAirBaloon.png";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
@@ -6,6 +7,9 @@ import { Height } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
+import Spinner from "@/app/components/ui/Spinner";
+import { useRouter } from "next/navigation";
 
 const coeData = [
   {
@@ -72,6 +76,13 @@ const coeData = [
 ];
 
 export default function Grid() {
+   const { data, isLoading, error } = useDepartment();
+      const filteredData = data?.filter((el, i) => el.status === true);
+  const router = useRouter();
+
+   if (isLoading) {
+     return <Spinner />;
+   }
   return (
     <ContainerMain
       bgColor="#fff"
@@ -97,10 +108,10 @@ export default function Grid() {
         direction={"row"}
         flexWrap={"wrap"}
         gap={"50px"}
-        justifyContent={"space-between"}
+        justifyContent={"center"}
         marginTop={"20px"}
       >
-        {coeData.map((el, i) => {
+        {filteredData.map((el, i) => {
           return <CoeCard el={el} />;
         })}
       </Stack>
@@ -122,12 +133,17 @@ function CoeCard({ el }) {
           position: "relative",
         }}
       >
-        <Image src={el.img} alt="" fill objectFit="cover" />
+        <Image src={el.image} alt="" fill objectFit="cover" />
       </Box>
       <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
-        {el.data}
+        {el.name}
       </ParaNormal>
-      <ButtonSmallOutline color="#000000">Read More</ButtonSmallOutline>
+      <ButtonSmallOutline
+        color="#000000"
+        onClick={() => router.push(`/center-of-excellence/${el.name}`)}
+      >
+        Read More
+      </ButtonSmallOutline>
     </Stack>
   );
 }

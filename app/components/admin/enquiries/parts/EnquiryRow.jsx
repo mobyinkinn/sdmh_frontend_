@@ -17,6 +17,8 @@ import {
 } from "react-icons/hi2";
 import Image from "next/image";
 import { useState } from "react";
+import { HiEyeOff } from "react-icons/hi";
+import { useDeleteEnquiry } from "./useEnquiry";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -37,34 +39,28 @@ const Stacked = styled.div`
   }
 `;
 
-function EnquiryRow({
-  academic: { id: id, name, phone, email, message, status, created },
-}) {
+function EnquiryRow({ academic: { _id, name, phone, email, message, date } }) {
+  const { mutate: deleteEnquiry, isLoading: isDeleting } = useDeleteEnquiry();
   const [fullDesc, setShowFullDesc] = useState(false);
-  const statusToTagName = {
-    unconfirmed: "blue",
-    active: "green",
-    inactive: "silver",
-  };
 
   const expandDesc = () => {
     setShowFullDesc((desc) => !desc);
   };
 
+  const handleDelete = () => {
+    deleteEnquiry(_id);
+  };
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Stacked>
-        <span>Email</span>
         <span>{email}</span>
       </Stacked>
 
       <Stacked>
-        <span>Phone</span>
         <span>{phone}</span>
       </Stacked>
 
@@ -75,50 +71,21 @@ function EnquiryRow({
         </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
       <Stacked>
-        <span>Created on</span>
-        <span>{created}</span>
+        <span>{date}</span>
       </Stacked>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Active
-              </Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Inactive
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete enquiry</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="enquiry"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="testimonial"
+            disabled={isDeleting} // Disable button while deleting
+            onConfirm={handleDelete} // Call the delete function on confirm
           />
         </Modal.Window>
       </Modal>

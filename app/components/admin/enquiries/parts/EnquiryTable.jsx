@@ -7,6 +7,7 @@ import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useEnquiryContext } from "./EnquiryContext";
+import { useEnquiry } from "./useEnquiry";
 
 const enquiryData = [
   {
@@ -40,28 +41,35 @@ const enquiryData = [
 ];
 
 function EnquiryTable() {
+  const { data, isLoading, error } = useEnquiry();
   const { filter } = useEnquiryContext();
-  let filteredEnquiry = enquiryData;
-  if (filter !== "All") {
-    filteredEnquiry = enquiryData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+   if (isLoading) return <Spinner />;
+   if (error) return <div>Error loading Careers: {error.message}</div>;
+   let filteredEnquiry = data;
+   if (filter !== "All") {
+     filteredEnquiry = data.filter((el) => {
+       if (filter.toLowerCase() === "active") {
+         return el.status === true; // Show active testimonials
+       } else if (filter.toLowerCase() === "inactive") {
+         return el.status === false; // Show inactive testimonials
+       }
+       return false;
+     });
+   }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
-  if (!enquiryData.length) return <Empty resourceName="Admins" />;
+  if (!filteredEnquiry.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 2fr 1fr 3fr 1fr 1fr 3.2rem">
+      <Table columns="1fr 2fr 1fr 3fr 1fr 3.2rem">
         <Table.Header>
           <div>Name</div>
           <div>Email</div>
           <div>Phone No</div>
           <div>Message</div>
-          <div>Status</div>
           <div>created</div>
-          <div></div>
+          <div>Action</div>
         </Table.Header>
 
         <Table.Body
