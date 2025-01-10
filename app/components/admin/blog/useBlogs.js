@@ -1,12 +1,21 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { blockBlog, createBlog, deleteBlog, fetchBlogs, unblockBlog, updateBlog } from "../../services/api.Blogs";
+import {
+  blockBlog,
+  createBlog,
+  deleteBlog,
+  fetchBlogs,
+  unblockBlog,
+  updateBlog,
+  removeMultiImageFromBlog,
+  updateSingleImageFromBlog,
+} from "../../services/api.Blogs";
 import toast from "react-hot-toast";
 
 export const useBlogs = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["Blogs"],
     queryFn: fetchBlogs,
-    staleTime: 5 * 60 * 1000, 
+    staleTime: 5 * 60 * 1000,
   });
   return { data, isLoading, error };
 };
@@ -88,4 +97,36 @@ export const useCreateBlog = () => {
   });
 
   return { createBlogs, isCreating };
+};
+
+export const useDeleteMultiImageFromBlog = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: removeMultiImageFromBlog,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["blogs"]);
+      toast.success("Blog multi image deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete blog multi image:", error);
+      toast.error("Failed to delete blog multi image. Please try again.");
+    },
+  });
+};
+
+export const useUpdateSingleImageFromBlog = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateSingleImageFromBlog,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["blogs"]);
+      toast.success("Blog image updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update blog image:", error);
+      toast.error("Failed to update blog image. Please try again.");
+    },
+  });
 };

@@ -9,7 +9,6 @@ import { useBlogContext } from "./BlogContext";
 import BlogRow from "./BlogRow";
 import { useBlogs } from "../useBlogs";
 
-
 const eventData = [
   {
     id: 0,
@@ -43,28 +42,27 @@ const eventData = [
 
 function BlogTable() {
   const { data, isLoading, error } = useBlogs();
-   const { filter } = useBlogContext();
-   if (isLoading) return <Spinner />;
-   if (error) return <div>Error loading testimonials: {error.message}</div>;
-   let filteredBlog = data;
-   if (filter !== "All") {
-     filteredBlog = data.filter((el) => {
-       if (filter.toLowerCase() === "active") {
-         return el.status === true; // Show active testimonials
-       } else if (filter.toLowerCase() === "inactive") {
-         return el.status === false; // Show inactive testimonials
-       }
-       return false;
-     });
-   }
-
+  const { filter } = useBlogContext();
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading testimonials: {error.message}</div>;
+  let filteredBlog = data;
+  if (filter !== "All") {
+    filteredBlog = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
+  }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 1fr 2fr 1fr 1fr 1fr 5.2rem">
+      <Table columns="1fr 1fr 2fr 1fr 1fr 1fr 6.2rem">
         <Table.Header>
           <div>Title</div>
           <div>Short description</div>
