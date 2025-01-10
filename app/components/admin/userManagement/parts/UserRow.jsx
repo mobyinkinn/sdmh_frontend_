@@ -15,6 +15,9 @@ import {
   HiEye,
   HiTrash,
 } from "react-icons/hi2";
+import { HiEyeOff, HiPencil } from "react-icons/hi";
+import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
+import EditAdminForm from "@/app/components/features/Admin/EditAdminForm";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -35,10 +38,29 @@ const Stacked = styled.div`
   }
 `;
 
-function UserRow({ user: { id: id, name, username, status } }) {
+function UserRow({ user: { _id: id, menu, name, username, status } }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
+  const { blockAdmin, isBlocking } = useBlockAdmin();
+  const { unblockAdmin, isUnblocking } = useUnblockAdmin();
+  const { deleteAdmin, isDeleting } = useDeleteAdmin();
+
+  const handleToggleStatus = () => {
+    if (status === true) {
+      blockAdmin(id); // Call block API if active
+    } else {
+      unblockAdmin(id); // Call unblock API if inactive
+    }
+  };
+
+  let convertedStatus;
+  if (status === true) {
+    convertedStatus = "active";
+  } else {
+    convertedStatus = "inactive";
+  }
+
   const statusToTagName = {
     unconfirmed: "blue",
     active: "green",
@@ -57,47 +79,42 @@ function UserRow({ user: { id: id, name, username, status } }) {
         <span>{username}</span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Stacked>
+        <span>
+          {menu.map((el, i) => (
+            <span> {el + " "} </span>
+          ))}
+        </span>
+      </Stacked>
+
+      <Tag type={statusToTagName[convertedStatus]}>
+        {convertedStatus.replace("-", " ")}
+      </Tag>
 
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              //   onClick={() => navigate(`/bookings/${bookingId}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "unconfirmed" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                // onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Check in
-              </Menus.Button>
-            )}
-            {status === "checked-in" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
-              >
-                Check out
-              </Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete Admin</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Menus.Button
+            icon={status ? <HiEye /> : <HiEyeOff />}
+            onClick={handleToggleStatus}
+            disabled={isBlocking || isUnblocking}
+          ></Menus.Button>
+          <Modal.Open opens="banner-form">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Window name="banner-form">
+            <EditAdminForm id={id} />
+          </Modal.Window>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="admin"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            resourceName="Banner"
+            disabled={isDeleting}
+            onConfirm={() => deleteAdmin(id)}
           />
         </Modal.Window>
       </Modal>

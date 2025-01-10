@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useUserContext } from "./UserContext";
+import CreateAdminForm from "@/app/components/features/Admin/CreateAdminForm";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
 
 function UserTableOperations() {
   const { filter, setFilter } = useUserContext();
@@ -26,6 +29,14 @@ function UserTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="department-form">
+          <Button>Add Admin</Button>
+        </Modal.Open>
+        <Modal.Window name="department-form">
+          <CreateAdminForm />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

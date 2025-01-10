@@ -5,6 +5,7 @@ import Empty from "../../../ui/Empty";
 // import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
+import { useAdmin } from "./useUser";
 import { useUserContext } from "./UserContext";
 
 const userDetails = [
@@ -15,24 +16,28 @@ const userDetails = [
 ];
 
 function UserTable() {
+  const { data, isLoading, error } = useAdmin();
   const { filter } = useUserContext();
 
-  let filteredUsers = userDetails;
-  if (filter !== "All") {
-    filteredUsers = userDetails.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+  if (isLoading) return <Spinner />;
+
+  let filteredUsers = data;
+  // if (filter !== "All") {
+  // filteredUsers = userDetails.filter(
+  // (el, i) => el.status.toLowerCase() === filter.toLowerCase()
+  // );
+  // }
   //   const { bookings, isLoading, count } = useUsers();
 
-  //   if (isLoading) return <Spinner />;
-  if (!userDetails.length) return <Empty resourceName="Admins" />;
+  if (isLoading) return <Spinner />;
+  if (!filteredUsers.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.3fr 2fr 2.4fr 3.2rem">
+      <Table columns="1.3fr 2fr 2fr 2.4fr 3.2rem">
         <Table.Header>
           <div>Name</div>
           <div>Username</div>
+          <div>Permisions</div>
           <div>Status</div>
           <div></div>
         </Table.Header>
