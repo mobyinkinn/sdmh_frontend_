@@ -58,14 +58,14 @@ function DownloadTable() {
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="3fr 2fr 2fr 2fr 2fr 3.2rem">
+      <Table columns="3fr 2fr 2fr 2fr 2fr 1fr">
         <Table.Header>
           <div>Name</div>
           <div>File</div>
           <div>Type</div>
           <div>Status</div>
           <div>created</div>
-          <div></div>
+          <div>Actions</div>
         </Table.Header>
 
         <Table.Body
