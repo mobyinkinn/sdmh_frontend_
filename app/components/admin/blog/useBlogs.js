@@ -8,6 +8,7 @@ import {
   updateBlog,
   removeMultiImageFromBlog,
   updateSingleImageFromBlog,
+  updateMultiImagesFromBlog,
 } from "../../services/api.Blogs";
 import toast from "react-hot-toast";
 
@@ -127,6 +128,22 @@ export const useUpdateSingleImageFromBlog = () => {
     onError: (error) => {
       console.error("Failed to update blog image:", error);
       toast.error("Failed to update blog image. Please try again.");
+    },
+  });
+};
+
+export const useUpdateMultiImagesFromBlog = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateMultiImagesFromBlog,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["blogs"]);
+      toast.success("Blog multi images updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update blog multi images:", error);
+      toast.error("Failed to update blog multi images. Please try again.");
     },
   });
 };

@@ -70,3 +70,14 @@ export const updateSingleImageFromBlog = async ({ id, data }) => {
   );
   return response.data;
 };
+
+export const updateMultiImagesFromBlog = async ({ id, images }) => {
+  const response = await axios.post(
+    `${ApiUrl}/blogs/update-images?id=${id}`,
+    images,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

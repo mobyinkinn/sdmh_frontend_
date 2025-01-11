@@ -20,13 +20,6 @@ const EditEventsForm = ({
     setEditData({ ...editData, [name]: value });
   };
 
-  const handleImageChange = (e, fieldName) => {
-    const file = e.target.files[0];
-    if (file) {
-      setEditData({ ...editData, [fieldName]: file });
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     onCloseModal?.();
@@ -80,19 +73,6 @@ const EditEventsForm = ({
               name="date"
               value={editData.date || ""}
               onChange={handleInputChange}
-            />
-          </FormRow>
-        </Stack>
-
-        <Stack direction={"row"} p={"0px 10px"}>
-          <FormRow label="Images">
-            <FileInput
-              id="images"
-              accept="image/*"
-              type="file"
-              name="images"
-              onChange={(e) => handleImageChange(e, "images")}
-              multiple
             />
           </FormRow>
         </Stack>

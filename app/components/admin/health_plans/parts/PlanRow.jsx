@@ -46,7 +46,16 @@ const Stacked = styled.div`
 `;
 
 function PlanRow({
-  academic: { _id, title, description, status, createdAt, image, banner },
+  academic: {
+    _id,
+    title,
+    description,
+    status,
+    createdAt,
+    image,
+    banner,
+    bannerImage,
+  },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: deleteCheckup, isLoading: isDeleting } = useDeleteCheckup();
@@ -94,6 +103,7 @@ function PlanRow({
     image,
     banner,
     status,
+    bannerImage,
   });
 
   const handleConfirmEdit = () => {
@@ -226,6 +236,7 @@ function PlanRow({
         </Modal.Window>
         <Modal.Window name="edit">
           <ConfirmEdit
+            id={_id}
             resourceName="checkup"
             editData={editData}
             setEditData={setEditData}

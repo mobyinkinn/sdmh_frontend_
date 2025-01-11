@@ -1,7 +1,10 @@
 import Heading from "../../ui/Heading";
 import { IconButton, Stack } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDeleteMultiImageFromBlog } from "../../admin/blog/useBlogs";
+import {
+  useDeleteMultiImageFromBlog,
+  useUpdateMultiImagesFromBlog,
+} from "../../admin/blog/useBlogs";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
 import FileInput from "../../ui/FileInput";
@@ -15,16 +18,29 @@ const AddImagesFormBlog = ({
   onCloseModal,
 }) => {
   const { mutate: removeMultiImageFromBlog } = useDeleteMultiImageFromBlog();
-
+  const { mutate: updateMultiImagesFromBlog, isLoading: isAddingImages } =
+    useUpdateMultiImagesFromBlog();
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCloseModal?.();
-    onConfirm();
+    const formData = new FormData();
+    editData.images.forEach((image) => {
+      formData.append("images", image); // No index brackets
+    });
+    updateMultiImagesFromBlog(
+      { id, images: formData },
+      {
+        onSuccess: () => {
+          toast.success("Images added successfully!");
+          onCloseModal?.();
+          onConfirm?.();
+        },
+        onError: (error) => {
+          console.error("Failed to add images:", error);
+          toast.error("Failed to add images. Please try again.");
+        },
+      }
+    );
   };
-
-  console.log("edit data b", editData);
-
-  console.log("id", id);
 
   const handleDeleteImage = (index) => {
     const payload = { index: { index } };
@@ -58,7 +74,9 @@ const AddImagesFormBlog = ({
         {editData?.images?.map((image, index) => (
           <div key={index} style={{ position: "relative" }}>
             <img
-              src={image}
+              src={
+                typeof image === "string" ? image : URL.createObjectURL(image)
+              }
               alt={`Preview ${index}`}
               style={{ width: "100px", height: "100px", objectFit: "inherit" }}
             />
@@ -87,10 +105,9 @@ const AddImagesFormBlog = ({
             accept="image/*"
             onChange={(e) => {
               const files = Array.from(e.target.files);
-              const newImages = files.map((file) => URL.createObjectURL(file));
               setEditData({
                 ...editData,
-                images: [...editData.images, ...newImages],
+                images: [...editData.images, ...files],
               });
             }}
             multiple
@@ -107,8 +124,8 @@ const AddImagesFormBlog = ({
         >
           Cancel
         </Button>
-        <Button type="submit" disabled={disabled}>
-          Save Changes
+        <Button type="submit" disabled={disabled || isAddingImages}>
+          {isAddingImages ? "Saving..." : "Save Changes"}
         </Button>
       </FormRow>
     </form>

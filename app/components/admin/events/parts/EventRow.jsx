@@ -92,67 +92,6 @@ function EventRow({
         },
       }
     );
-
-    // async function convertBlobUrlToBinary(blobUrl) {
-    //   try {
-    //     // Step 1: Fetch the Blob data
-    //     const response = await fetch(blobUrl);
-
-    //     if (!response.ok) {
-    //       throw new Error("Failed to fetch blob data");
-    //     }
-
-    //     const blob = await response.blob(); // Convert response to Blob
-
-    //     // Step 2: Convert Blob to binary data (ArrayBuffer)
-    //     const arrayBuffer = await blob.arrayBuffer();
-
-    //     // Step 3: Convert ArrayBuffer to binary (Uint8Array)
-    //     const binaryData = new Uint8Array(arrayBuffer);
-
-    //     console.log("Binary Data:", binaryData);
-    //     return binaryData;
-    //   } catch (error) {
-    //     console.error("Error converting blob URL to binary:", error);
-    //   }
-    // }
-
-    // //Image Update
-    // const formDataImages = new FormData();
-
-    // let fileToUpload = editData.images.filter((el) => !el.startsWith("http"));
-    // // const multipleFiles = fileToUpload.images
-    // //   ? Array.from(fileToUpload.images)
-    // //   : [];
-
-    // let multipleFiles = [];
-    // for (let i = 0; i < fileToUpload.length; i++) {
-    //   let file =
-    //     typeof fileToUpload[i] === "string"
-    //       ? fileToUpload[i]
-    //       : fileToUpload[i][0];
-
-    //   // const arrayBuffer = await file.arrayBuffer();
-    //   // const binary = new Uint8Array(arrayBuffer);
-    //   multipleFiles.push(await convertBlobUrlToBinary(file));
-    // }
-
-    // for (let i = 0; i < multipleFiles.length; i++) {
-    //   formDataImages.append(`images`, multipleFiles[i]);
-    // }
-
-    // addImagesToEvent(
-    //   { id, images: formDataImages },
-    //   {
-    //     onSuccess: () => {
-    //       toast.success("Images updated successfully!");
-    //     },
-    //     onError: (error) => {
-    //       console.error("Failed to update Images:", error);
-    //       toast.error("Failed to update Images. Please try again.");
-    //     },
-    //   }
-    // );
   };
 
   //   const navigate = useNavigate();

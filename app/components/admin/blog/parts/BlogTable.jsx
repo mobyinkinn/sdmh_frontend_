@@ -62,7 +62,7 @@ function BlogTable() {
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 1fr 2fr 1fr 1fr 1fr 6.2rem">
+      <Table columns="1fr 1fr 1fr 1fr 1fr 1fr 6.2rem">
         <Table.Header>
           <div>Title</div>
           <div>Short description</div>
