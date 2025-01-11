@@ -6,7 +6,7 @@ export const fetchAdmin = async () => {
     withCredentials: true,
   });
 
-  return response;
+  return response.data.data;
 };
 
 export const fetchAllAdmins = async () => {

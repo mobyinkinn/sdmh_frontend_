@@ -12,23 +12,29 @@ import Image from "next/image";
 import Logo from "../../ui/Logo";
 import logo from "./assets/logo.png";
 import { usePathname } from "next/navigation";
+import { useAdmin, useCurrentAdmin } from "../userManagement/parts/useUser";
+import Spinner from "../../ui/Spinner";
 
 const navData = [
   {
     id: 0,
+    value: "admin",
     name: "User Management",
     link: "/admin/adminuser",
+
     icon: ManageAccountsIcon,
   },
   {
     id: 100,
     name: "Banners",
+    value: "banners",
     link: "/admin/banners",
     icon: ManageAccountsIcon,
   },
   {
     id: 1,
     name: "Departments",
+    value: "departments",
     link: "/admin/department",
     icon: ManageAccountsIcon,
   },
@@ -36,22 +42,19 @@ const navData = [
     id: 2,
     name: "Doctors",
     link: "/admin/doctors",
+    value: "doctors",
     icon: ManageAccountsIcon,
   },
-  // {
-  //   id: 3,
-  //   name: "Appointments",
-  //   link: "/admin/appointments",
-  //   icon: ManageAccountsIcon,
-  // },
   {
     id: 4,
+    value: "academics",
     name: "Academics",
     link: "/admin/academics",
     icon: ManageAccountsIcon,
   },
   {
     id: 5,
+    value: "downloadables",
     name: "Download Files",
     link: "/admin/download_files",
     icon: ManageAccountsIcon,
@@ -59,6 +62,7 @@ const navData = [
   {
     id: 6,
     name: "Academics Notices",
+    value: "notices",
     link: "/admin/academic_notices",
     icon: ManageAccountsIcon,
   },
@@ -67,23 +71,27 @@ const navData = [
     name: "Tpa Logo",
     link: "/admin/tpa_index",
     icon: ManageAccountsIcon,
+    value: "tpa",
   },
   {
     id: 8,
     name: "Events",
     link: "/admin/events",
+    value: "events",
     icon: ManageAccountsIcon,
   },
   {
     id: 18,
     name: "Blogs",
     link: "/admin/blogs",
+    value: "blogs",
     icon: ManageAccountsIcon,
   },
   {
     id: 9,
     name: "Testimonials",
     link: "/admin/testimonials",
+    value: "testimonials",
     icon: ManageAccountsIcon,
   },
   {
@@ -91,28 +99,33 @@ const navData = [
     name: "Award Accreditations",
     link: "/admin/awards",
     icon: ManageAccountsIcon,
+    value: "awards",
   },
   {
     id: 11,
     name: "Enquiries",
     link: "/admin/enquiries",
+    value: "enquiries",
     icon: ManageAccountsIcon,
   },
   {
     id: 13,
     name: "Videos",
     link: "/admin/videos",
+    value: "videos",
     icon: ManageAccountsIcon,
   },
   {
     id: 14,
     name: "Latest Openings",
+    value: "openings",
     link: "/admin/openings",
     icon: ManageAccountsIcon,
   },
   {
     id: 15,
     name: "Careers Data",
+    value: "careers",
     link: "/admin/careers",
     icon: ManageAccountsIcon,
   },
@@ -120,11 +133,13 @@ const navData = [
     id: 16,
     name: "Health Plans",
     link: "/admin/health-plans",
+    value: "plans",
     icon: ManageAccountsIcon,
   },
   {
     id: 17,
     name: "Health Tips",
+    value: "tips",
     link: "/admin/health-tips",
     icon: ManageAccountsIcon,
   },
@@ -218,15 +233,21 @@ const StyledSidebar = styled.aside`
 `;
 
 function NavbarAdminVerticle() {
+  const { currAdmin, isFetching } = useCurrentAdmin();
   const pathname = usePathname();
+  if (isFetching) return <Spinner />;
+
+  const filteredNavData = navData.filter((el) =>
+    currAdmin?.menu?.includes(el.value)
+  );
 
   return (
     <StyledSidebar>
       <Logo src={logo} />
       <NavList>
-        {navData.map((el, i) => {
+        {filteredNavData.map((el, i) => {
           return (
-            <>
+            <div key={i}>
               {pathname === el.link ? (
                 <ActiveLink href={el.link}>
                   <HiOutlineHome />
@@ -240,7 +261,7 @@ function NavbarAdminVerticle() {
                   <span>{el.name}</span>
                 </StyledNavLink>
               )}
-            </>
+            </div>
           );
         })}
       </NavList>

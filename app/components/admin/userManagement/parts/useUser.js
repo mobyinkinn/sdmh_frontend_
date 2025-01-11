@@ -5,6 +5,7 @@ import {
   deleteAdmin as deleteTheAdmin,
   updateAdmin as updateTheAdmin,
   updatePassword as updateThePassword,
+  fetchAdmin,
 } from "@/app/components/services/api.User";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -17,6 +18,20 @@ export const useAdmin = () => {
   });
 
   return { data, isLoading, error };
+};
+
+export const useCurrentAdmin = () => {
+  const {
+    data: currAdmin,
+    isLoading: isFetching,
+    error,
+  } = useQuery({
+    queryKey: ["Admin"],
+    queryFn: fetchAdmin,
+    staleTime: 1 * 1000,
+  });
+
+  return { currAdmin, isFetching, error };
 };
 
 export const useBlockAdmin = () => {

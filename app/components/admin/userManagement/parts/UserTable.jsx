@@ -44,7 +44,7 @@ function UserTable() {
 
         <Table.Body
           data={filteredUsers}
-          render={(user) => <UserRow key={user.id} user={user} />}
+          render={(user) => <UserRow key={user._id} user={user} />}
         />
         <Table.Footer>
           {/* <Pagination count={userDetails.length} /> */}

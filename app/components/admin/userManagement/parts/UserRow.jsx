@@ -82,7 +82,7 @@ function UserRow({ user: { _id: id, menu, name, username, status } }) {
       <Stacked>
         <span>
           {menu.map((el, i) => (
-            <span> {el + " "} </span>
+            <span key={i}> {el + " "} </span>
           ))}
         </span>
       </Stacked>
