@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useVideoContext } from "./VideoContext";
+import CreateVideoForm from "@/app/components/features/Videos/CreateVideoForm";
+import Modal from "@/app/components/ui/Modal";
+import Button from "@/app/components/ui/Button";
 
 function VideoTableOperations() {
   const { filter, setFilter } = useVideoContext();
@@ -26,6 +29,14 @@ function VideoTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="video-form">
+          <Button>Add Video</Button>
+        </Modal.Open>
+        <Modal.Window name="video-form">
+          <CreateVideoForm resourceName="Video" />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

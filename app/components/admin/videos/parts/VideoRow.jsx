@@ -1,19 +1,12 @@
 import styled from "styled-components";
-import { format, isToday } from "date-fns";
-
-import Tag from "../../../ui/Tag";
 import Table from "../../../ui/Table";
 import Modal from "../../../ui/Modal";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
-
 import Menus from "../../../ui/Menus";
-import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
-  HiEye,
-  HiTrash,
-} from "react-icons/hi2";
-import Image from "next/image";
+import { HiTrash } from "react-icons/hi2";
+import { HiPencil } from "react-icons/hi";
+import { useDeleteVideo } from "../useVideos";
+import EditVideoForm from "@/app/components/features/Videos/EditVideoForm";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -31,22 +24,14 @@ const Stacked = styled.div`
   }
 `;
 
-function VideoRow({ academic: { id: id, title, url, status } }) {
-  //   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
-  const statusToTagName = {
-    unconfirmed: "blue",
-    active: "green",
-    inactive: "silver",
-  };
-
+function VideoRow({ videos: { _id, title, url } }) {
+  const id = _id;
   const videoId = url.split("v=")[1]?.split("&")[0];
+  const { deleteVideos, isDeleting } = useDeleteVideo();
 
   return (
     <Table.Row>
       <Stacked>
-        <span>Title</span>
         <span>{title}</span>
       </Stacked>
 
@@ -62,27 +47,24 @@ function VideoRow({ academic: { id: id, title, url, status } }) {
         ></iframe>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button icon={<HiEye />}>See details</Menus.Button>
-            {status === "inactive" && (
-              <Menus.Button icon={<HiArrowDownOnSquare />}>Active</Menus.Button>
-            )}
-            {status === "active" && (
-              <Menus.Button icon={<HiArrowUpOnSquare />}>Inactive</Menus.Button>
-            )}
-            <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete video</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
+          <Modal.Open opens="edit">
+            <Menus.Button icon={<HiPencil />} />
+          </Modal.Open>
+          <Modal.Open opens="delete">
+            <Menus.Button icon={<HiTrash />}></Menus.Button>
+          </Modal.Open>
         </Menus.Menu>
+        <Modal.Window name="edit">
+          <EditVideoForm resourceName="video" />
+        </Modal.Window>
         <Modal.Window name="delete">
-          <ConfirmDelete resourceName="video" />
+          <ConfirmDelete
+            resourceName="video"
+            disabled={isDeleting}
+            onConfirm={() => deleteVideos(id)}
+          />
         </Modal.Window>
       </Modal>
     </Table.Row>
