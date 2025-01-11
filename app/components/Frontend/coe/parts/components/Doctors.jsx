@@ -22,7 +22,7 @@ const doctorsData = [
     img: img,
     about:
       "Acute Emergencies, Emergency Life Saving Procedures, Time Sensitive.",
-    availablity: [1, 0, 0, 0, 0, 0, 0],
+    availablity: [1, 0, 0, 1, 0, 0, 0],
   },
   {
     id: 1,
@@ -140,20 +140,20 @@ const doctorsData = [
 
 const days = ["Sun", "Mon", "Tues", "Wed", "Thrus", "Fri", "Sat"];
 
-export default function Doctors() {
+export default function Doctors({ data, departments }) {
   return (
     <Stack
       direction={"row"}
       flexWrap={"wrap"}
-      gap={"30px"}
+      gap={{ md: "30px", xs: "10px" }}
       justifyContent={"center"}
-      marginTop={"50px"}
+      marginTop={{ md: "50px", xs: "15px" }}
     >
-      {doctorsData.map((el, i) => {
+      {data.map((el, i) => {
         return (
           <Stack
             height={"100vh"}
-            width={"30%"}
+            width={{ lg: "30%", md: "45%", xs: "100%" }}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
             <Box
@@ -163,7 +163,7 @@ export default function Doctors() {
               position={"relative"}
             >
               <Image
-                src={el.img}
+                src={el.image}
                 alt=""
                 fill
                 objectFit="contain"
@@ -171,11 +171,12 @@ export default function Doctors() {
               />
             </Box>
             <Stack
-              padding={"30px 50px"}
+              padding={{ lg: "20px 35px", md: "15px 25px", xs: "10px 15px" }}
               gap={"10px"}
               sx={{
                 cursor: "pointer",
                 backgroundColor: "white",
+                borderRadius: "0 0 15px 15px",
               }}
             >
               <Head3 textAlign={"left"} color="black">
@@ -186,19 +187,24 @@ export default function Doctors() {
               </Head4>
               <Stack>
                 <ParaNormal>Department</ParaNormal>
-                <ParaNormalSmall>{el.department}</ParaNormalSmall>
+                <ParaNormalSmall>
+                  {
+                    departments?.filter((ele) => ele._id === el.department)[0]
+                      .name
+                  }
+                </ParaNormalSmall>
               </Stack>
               <Stack>
                 <ParaNormal>Expertise</ParaNormal>
                 <ParaNormalSmall>{el.about}</ParaNormalSmall>
               </Stack>
-              <Stack direction={"row"} gap={"4px"}>
+              <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
                 {days.map((ele, i) => {
                   return (
                     <ButtonVerySmallOutline
-                      color={el.availablity[i] === 1 ? "white" : "#379237"}
+                      color={el.availablity.includes(ele) ? "white" : "#379237"}
                       bgColor={
-                        el.availablity[i] === 1 ? "#379237" : "transparent"
+                        el.availablity.includes(ele) ? "#379237" : "transparent"
                       }
                     >
                       {ele}
@@ -207,7 +213,7 @@ export default function Doctors() {
                 })}
               </Stack>
 
-              <Stack direction={"row"} gap={"20px"}>
+              <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
                 <ButtonSmallOutline color={"#379237"}>
                   Appointment
                 </ButtonSmallOutline>
