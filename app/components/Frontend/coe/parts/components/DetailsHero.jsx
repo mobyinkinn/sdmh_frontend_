@@ -3,19 +3,23 @@ import { Box, Stack } from "@mui/material";
 
 import baloon from "../assets/bigHotAirBaloon.png";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import Spinner from "@/app/components/ui/Spinner";
 
-export default function DetailsHero() {
+export default function DetailsHero({ name, data, isLoading }) {
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <Stack>
       <Head1 textAlign="left" color="black">
-        Dynamic 365: Which Solution is
+        {data?.name}
       </Head1>
       <Head1 textAlign="left" color="black">
         Best for Your Business?
       </Head1>
       <Box
         sx={{
-          backgroundImage: `url(${baloon.src})`,
+          backgroundImage: `url(${data?.bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           width: "100%",

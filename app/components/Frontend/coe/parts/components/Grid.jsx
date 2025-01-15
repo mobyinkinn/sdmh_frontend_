@@ -78,7 +78,6 @@ const coeData = [
 export default function Grid() {
    const { data, isLoading, error } = useDepartment();
       const filteredData = data?.filter((el, i) => el.status === true);
-  const router = useRouter();
 
    if (isLoading) {
      return <Spinner />;
@@ -120,6 +119,8 @@ export default function Grid() {
 }
 
 function CoeCard({ el }) {
+  const router = useRouter();
+
   return (
     <Stack
       width={{ lg: "29%", md: "46%", sm: "100%", sm: "100%" }}

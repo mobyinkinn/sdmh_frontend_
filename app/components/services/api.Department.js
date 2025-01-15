@@ -88,3 +88,12 @@ export const updateBanner = async ({ id, formdata }) => {
   );
   return response.data;
 };
+
+
+
+export const fetchDepartmentById = async (name) => {
+  const response = await axios.get(`${ApiUrl}/department/getbyId?name=${name}`, {
+    withCredentials: true,
+  });
+  return response.data.message; // Adjust based on the actual API response structure
+};

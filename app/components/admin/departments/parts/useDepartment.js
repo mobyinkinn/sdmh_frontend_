@@ -9,6 +9,7 @@ import {
   editDepartment,
   updateImage as updateTheImage,
   updateBanner as updateTheBanner,
+  fetchDepartmentById,
 } from "@/app/components/services/api.Department";
 
 export const useDepartment = () => {
@@ -18,6 +19,13 @@ export const useDepartment = () => {
     staleTime: 5 * 60 * 1000,
   });
   return { data, isLoading, error };
+};
+export const useDepartmentById = (name) => {
+  return useQuery({
+    queryKey: ["Departments", name],
+    queryFn: () => fetchDepartmentById(name),
+    staleTime: 5 * 60 * 1000,
+  });
 };
 
 export const useBlockDepartment = () => {
