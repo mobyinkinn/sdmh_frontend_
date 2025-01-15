@@ -17,11 +17,16 @@ import doc6 from "../assets/doctor6.png";
 export default function Banner() {
   return (
     <ContainerMain bgColor="#FBF4E9">
-      <Head1 color="black">We Always Care</Head1>
+      {/* <Head1 color="black">We Always Care</Head1>
       <Stack direction={"row"} margin={"0 auto"}>
         <Head1 color="black">About Your Health&nbsp;</Head1>
         <Head1>Appointment Now</Head1>
-      </Stack>
+      </Stack> */}
+
+      <Head1>
+        <span style={{ color: "black" }}>We Always Care About Your Health</span>{" "}
+        Appointment Now
+      </Head1>
       <Stack
         width={"80%"}
         gap={"10px"}
@@ -39,7 +44,7 @@ export default function Banner() {
           <Box
             sx={{
               backgroundImage: `url(${doc3.src})`,
-              backgroundSize: "150%",
+              backgroundSize: "cover",
               backgroundPosition: "center center",
               height: "40vh",
               width: "100%",
@@ -51,7 +56,7 @@ export default function Banner() {
             <Box
               sx={{
                 backgroundImage: `url(${doc1.src})`,
-                backgroundSize: "150%",
+                backgroundSize: "cover",
                 backgroundPosition: "center center",
                 height: "40vh",
                 width: "70%",
@@ -60,7 +65,7 @@ export default function Banner() {
             <Box
               sx={{
                 backgroundImage: `url(${doc5.src})`,
-                backgroundSize: "150%",
+                backgroundSize: "cover",
                 backgroundPosition: "center center",
                 height: "20vh",
                 width: "30%",
@@ -71,7 +76,7 @@ export default function Banner() {
             <Box
               sx={{
                 backgroundImage: `url(${doc6.src})`,
-                backgroundSize: "150%",
+                backgroundSize: "cover",
                 backgroundPosition: "center center",
                 height: "20vh",
                 width: "30%",
@@ -80,7 +85,7 @@ export default function Banner() {
             <Box
               sx={{
                 backgroundImage: `url(${doc2.src})`,
-                backgroundSize: "150%",
+                backgroundSize: "cover",
                 backgroundPosition: "center center",
                 height: "40vh",
                 width: "70%",
@@ -92,7 +97,7 @@ export default function Banner() {
           <Box
             sx={{
               backgroundImage: `url(${doc4.src})`,
-              backgroundSize: "150%",
+              backgroundSize: "cover",
               backgroundPosition: "center center",
               height: "40vh",
               width: "100%",

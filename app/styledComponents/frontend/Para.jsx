@@ -1,4 +1,3 @@
-
 // const ParaNormal = styled.span((props) => ({
 //   color: props.color || "black",
 //   fontWeight: props.fontWeight,
@@ -38,24 +37,21 @@ const ParaNormal = styled.span((props) => ({
 
   // Breakpoint-specific values for textAlign
   [breakpoints.md]: {
-    textAlign: props.textAlign?.md ,
-    margin: props.margin?.md ,
-    fontSize: props.fontSize?.md,
+    textAlign: props.textAlign?.md,
+    margin: props.margin?.md,
+    fontSize: props.fontSize?.md || "1rem",
   },
   [breakpoints.smm]: {
-    textAlign: props.textAlign?.smm ,
-    margin: props.margin?.smm ,
-    fontSize: props.fontSize?.smm,
+    textAlign: props.textAlign?.smm,
+    margin: props.margin?.smm,
+    fontSize: props.fontSize?.smm || "1rem",
   },
   [breakpoints.sm]: {
-    textAlign: props.textAlign?.sm ,
-    margin: props.margin?.sm ,
-    fontSize: props.fontSize?.sm ,
+    textAlign: props.textAlign?.sm,
+    margin: props.margin?.sm,
+    fontSize: props.fontSize?.sm || "1rem",
   },
 }));
-
-
-
 
 const ParaNormalSmall = styled.span((props) => ({
   color: props.color || "black",
@@ -65,6 +61,22 @@ const ParaNormalSmall = styled.span((props) => ({
   margin: props.margin,
   lineHeight: props.lineHeight || "1.5",
   fontSize: "1rem",
+
+  [breakpoints.md]: {
+    textAlign: props.textAlign?.md,
+    margin: props.margin?.md,
+    fontSize: props.fontSize?.md || "0.8rem",
+  },
+  [breakpoints.smm]: {
+    textAlign: props.textAlign?.smm,
+    margin: props.margin?.smm,
+    fontSize: props.fontSize?.smm || "0.8rem",
+  },
+  [breakpoints.sm]: {
+    textAlign: props.textAlign?.sm,
+    margin: props.margin?.sm,
+    fontSize: props.fontSize?.sm || "0.8rem",
+  },
 }));
 
 export { ParaNormal, ParaNormalSmall };

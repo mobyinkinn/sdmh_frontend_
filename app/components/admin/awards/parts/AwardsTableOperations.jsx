@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useAwardsContext } from "./AwardsContext";
+import Button from "@/app/components/ui/Button";
+import Modal from "@/app/components/ui/Modal";
+import CreateAwardForm from "@/app/components/features/Awards/CreateAwardForm";
 
 function AwardsTableOperations() {
   const { filter, setFilter } = useAwardsContext();
@@ -26,6 +29,14 @@ function AwardsTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+      <Modal>
+        <Modal.Open opens="award-form">
+          <Button>Add Award</Button>
+        </Modal.Open>
+        <Modal.Window name="award-form">
+          <CreateAwardForm resourceName="Award" />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }
