@@ -6,6 +6,7 @@ import Empty from "../../../ui/Empty";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import { useVideoContext } from "./VideoContext";
+import { useVideos } from "../useVideos";
 
 const videoData = [
   {
@@ -31,30 +32,38 @@ const videoData = [
 //<iframe width="560" height="315" src="https://www.youtube.com/embed/lMiz7sSNqP8?si=5c8619xBfzGuVk2g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 function VideoTable() {
+  const { data, isLoading, error } = useVideos();
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading Videos: {error.message}</div>;
   const { filter } = useVideoContext();
-  let filteredVideo = videoData;
-  if (filter !== "All") {
-    filteredVideo = videoData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
-  }
+  let filteredVideo = data;
+
+  // if (filter !== "All") {
+  //   filteredVideo = data.filter((el) => {
+  //     if (filter.toLowerCase() === "active") {
+  //       return el.status === true; // Show active testimonials
+  //     } else if (filter.toLowerCase() === "inactive") {
+  //       return el.status === false; // Show inactive testimonials
+  //     }
+  //     return false;
+  //   });
+  // }
 
   //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!videoData.length) return <Empty resourceName="Admins" />;
+
+  if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 4fr 2fr 3.2rem">
+      <Table columns="2fr 4fr 0fr">
         <Table.Header>
           <div>Title</div>
           <div>Url</div>
-          <div>Status</div>
-          <div></div>
+          <div>Actions</div>
         </Table.Header>
 
         <Table.Body
           data={filteredVideo}
-          render={(notice) => <VideoRow key={notice.id} academic={notice} />}
+          render={(notice) => <VideoRow key={notice.id} videos={notice} />}
         />
         <Table.Footer>
           {/* <Pagination count={videoData.length} /> */}
