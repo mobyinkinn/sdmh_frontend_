@@ -8,14 +8,10 @@ export const fetchVideos = async () => {
   return response.data.message;
 };
 
-export const updateVideo = async ({ id, formData }) => {
-  const response = await axios.post(
-    `${ApiUrl}/videos/update?id=${id}`,
-    formData,
-    {
-      withCredentials: true,
-    }
-  );
+export const updateVideo = async ({ id, data }) => {
+  const response = await axios.post(`${ApiUrl}/videos/update?id=${id}`, data, {
+    withCredentials: true,
+  });
   return response.data;
 };
 

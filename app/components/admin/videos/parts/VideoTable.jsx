@@ -38,16 +38,16 @@ function VideoTable() {
   const { filter } = useVideoContext();
   let filteredVideo = data;
 
-  if (filter !== "All") {
-    filteredVideo = data.filter((el) => {
-      if (filter.toLowerCase() === "active") {
-        return el.status === true; // Show active testimonials
-      } else if (filter.toLowerCase() === "inactive") {
-        return el.status === false; // Show inactive testimonials
-      }
-      return false;
-    });
-  }
+  // if (filter !== "All") {
+  //   filteredVideo = data.filter((el) => {
+  //     if (filter.toLowerCase() === "active") {
+  //       return el.status === true; // Show active testimonials
+  //     } else if (filter.toLowerCase() === "inactive") {
+  //       return el.status === false; // Show inactive testimonials
+  //     }
+  //     return false;
+  //   });
+  // }
 
   //   const { bookings, isLoading, count } = useUsers();
 

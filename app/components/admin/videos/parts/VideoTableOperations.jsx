@@ -10,7 +10,7 @@ function VideoTableOperations() {
   const { filter, setFilter } = useVideoContext();
   return (
     <TableOperations>
-      <Filter
+      {/* <Filter
         filterField="status"
         filter={filter}
         setFilter={setFilter}
@@ -19,7 +19,7 @@ function VideoTableOperations() {
           { value: "Active", label: "Active" },
           { value: "Inactive", label: "Inactive" },
         ]}
-      />
+      /> */}
 
       <SortBy
         options={[

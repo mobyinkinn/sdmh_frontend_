@@ -5,8 +5,9 @@ import ConfirmDelete from "../../../ui/ConfirmDelete";
 import Menus from "../../../ui/Menus";
 import { HiTrash } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
-import { useDeleteVideo } from "../useVideos";
+import { useDeleteVideo, useUpdateVideo } from "../useVideos";
 import EditVideoForm from "@/app/components/features/Videos/EditVideoForm";
+import { useState } from "react";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -28,6 +29,33 @@ function VideoRow({ videos: { _id, title, url } }) {
   const id = _id;
   const videoId = url.split("v=")[1]?.split("&")[0];
   const { deleteVideos, isDeleting } = useDeleteVideo();
+  const { updateVideos, isUpdating } = useUpdateVideo();
+  const [editData, setEditData] = useState({
+    title,
+    url,
+  });
+
+  const handleConfirmEdit = () => {
+    const formData = {
+      title: editData.title,
+      url: editData.url,
+    };
+
+    updateVideos(
+      {
+        id,
+        data: formData,
+      },
+      {
+        onSuccess: () => {
+          console.log("Video updated successfully!");
+        },
+        onError: (error) => {
+          console.error("Failed to update Video:", error);
+        },
+      }
+    );
+  };
 
   return (
     <Table.Row>
@@ -57,7 +85,15 @@ function VideoRow({ videos: { _id, title, url } }) {
           </Modal.Open>
         </Menus.Menu>
         <Modal.Window name="edit">
-          <EditVideoForm resourceName="video" />
+          <EditVideoForm
+            resourceName="video"
+            id={_id}
+            editData={editData}
+            setEditData={setEditData}
+            onCloseModal={() => {}}
+            onConfirm={handleConfirmEdit}
+            disabled={isUpdating}
+          />
         </Modal.Window>
         <Modal.Window name="delete">
           <ConfirmDelete
