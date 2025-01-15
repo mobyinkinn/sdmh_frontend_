@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import Button from "./Button";
 import FileInput from "./FileInput";
@@ -12,6 +12,7 @@ import {
   useUpdateCheckupBanner,
   useUpdateCheckupImage,
 } from "../admin/health_plans/useCheckups";
+import Jodit from "../features/Openings/Jodit";
 
 const ConfirmEdit = ({
   id,
@@ -21,6 +22,8 @@ const ConfirmEdit = ({
   disabled,
   editData,
   setEditData,
+  descContent,
+  setDescContent,
 }) => {
   const { mutate: updateImage } = useUpdateCheckupImage();
   const { mutate: updateBanner } = useUpdateCheckupBanner();
@@ -105,12 +108,14 @@ const ConfirmEdit = ({
             onChange={handleInputChange}
           />
         </FormRow>
-        <FormRow label="Description">
+        <FormRow label="Description"></FormRow>
+        <Jodit content={descContent} setContent={setDescContent} />
+        <FormRow label="Price">
           <Input
             disabled={disabled}
             type="text"
-            name="description"
-            value={editData.description || ""}
+            name="price"
+            value={editData.price || ""}
             onChange={handleInputChange}
           />
         </FormRow>

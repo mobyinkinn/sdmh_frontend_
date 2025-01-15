@@ -23,6 +23,7 @@ import {
 } from "../useCheckups";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import ConfirmEdit from "@/app/components/ui/EditCheckupModal";
+import toast from "react-hot-toast";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -53,6 +54,7 @@ function PlanRow({
     image,
     banner,
     bannerImage,
+    price,
   },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
@@ -61,6 +63,7 @@ function PlanRow({
   const { mutate: unblockCheckup, isLoading: isUnblocking } =
     useUnblockCheckup();
   const { mutate: updateCheckup } = useUpdateCheckup();
+  const [descContent, setDescContent] = useState(description);
 
   const handleToggleStatus = () => {
     console.log("_id", _id);
@@ -100,12 +103,14 @@ function PlanRow({
     banner,
     status,
     bannerImage,
+    price,
   });
 
   const handleConfirmEdit = () => {
     const formData = {
       title: editData.title,
-      description: editData.description,
+      description: descContent,
+      price: editData.price,
     };
 
     updateCheckup(
@@ -133,10 +138,22 @@ function PlanRow({
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? description : description.slice(0, 30)} ...</span>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullDesc
+              ? description
+              : `${description.slice(0, 50)}${
+                  description.length > 50 ? "..." : ""
+                }`,
+          }}
+        />
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
           {fullDesc ? "show less" : "show more"}
         </span>
+      </Stacked>
+
+      <Stacked>
+        <span>{price}</span>
       </Stacked>
 
       <Stacked>
@@ -191,6 +208,8 @@ function PlanRow({
             onCloseModal={() => {}}
             onConfirm={handleConfirmEdit}
             disabled={false}
+            descContent={descContent}
+            setDescContent={setDescContent}
           />
         </Modal.Window>
       </Modal>

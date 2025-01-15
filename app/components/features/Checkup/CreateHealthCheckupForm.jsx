@@ -7,6 +7,8 @@ import FormRow from "../../ui/FormRow";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
 import { useCreateCheckup } from "../../admin/health_plans/useCheckups";
+import Jodit from "../Openings/Jodit";
+import { useState } from "react";
 
 const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
@@ -15,6 +17,7 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
   const { errors } = formState;
 
   const { createCheckups, isCreating } = useCreateCheckup();
+  const [descContent, setDescContent] = useState("");
 
   const onSubmit = (data) => {
     // Create a FormData object
@@ -22,10 +25,9 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
 
     // Append text fields to FormData
     formData.append("title", data.title);
-    formData.append("description", data.description);
+    formData.append("description", descContent);
+    formData.append("price", data.price);
     formData.append("status", true);
-    console.log("formdata", formData);
-    console.log("Submitted data:", data);
 
     // Append file fields to FormData
     if (data.image[0]) {
@@ -63,12 +65,17 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
             })}
           />
         </FormRow>
-        <FormRow label="Description" error={errors?.description?.message}>
+        <FormRow
+          label="Description"
+          error={errors?.description?.message}
+        ></FormRow>
+        <Jodit content={descContent} setContent={setDescContent} />
+        <FormRow label="Price" error={errors?.price?.message}>
           <Input
             disabled={isCreating}
             type="text"
-            id="description"
-            {...register("description", {
+            id="price"
+            {...register("price", {
               required: "This field is required",
             })}
           />

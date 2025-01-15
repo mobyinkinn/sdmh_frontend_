@@ -57,10 +57,11 @@ function PlanTable() {
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 2fr 1fr 1fr 1fr 1fr">
+      <Table columns="1fr 2fr 1fr 1fr 1fr 1fr 1fr">
         <Table.Header>
           <div>Title</div>
           <div>Description</div>
+          <div>Price</div>
           <div>Image</div>
           <div>Status</div>
           <div>Created</div>
