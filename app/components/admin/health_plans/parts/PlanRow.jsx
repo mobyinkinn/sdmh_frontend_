@@ -20,8 +20,6 @@ import {
   useDeleteCheckup,
   useUnblockCheckup,
   useUpdateCheckup,
-  useUpdateCheckupBanner,
-  useUpdateCheckupImage,
 } from "../useCheckups";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import ConfirmEdit from "@/app/components/ui/EditCheckupModal";
@@ -63,8 +61,6 @@ function PlanRow({
   const { mutate: unblockCheckup, isLoading: isUnblocking } =
     useUnblockCheckup();
   const { mutate: updateCheckup } = useUpdateCheckup();
-  const { mutate: updateImage } = useUpdateCheckupImage();
-  const { mutate: updateBanner } = useUpdateCheckupBanner();
 
   const handleToggleStatus = () => {
     console.log("_id", _id);
@@ -128,54 +124,6 @@ function PlanRow({
         },
       }
     );
-
-    //Image Update
-    const formDataImage = new FormData();
-
-    if (editData.image instanceof File) {
-      formDataImage.append("image", editData.image);
-    }
-
-    updateImage(
-      {
-        id: _id,
-        data: formDataImage,
-      },
-      {
-        onSuccess: () => {
-          toast.success("Image updated successfully!");
-          onCloseModal();
-        },
-        onError: (error) => {
-          console.error("Failed to update Image:", error);
-          toast.error("Failed to update Image. Please try again.");
-        },
-      }
-    );
-
-    //Banner Update
-    const formDataBanner = new FormData();
-
-    if (editData.banner instanceof File) {
-      formDataBanner.append("banner", editData.banner);
-    }
-
-    updateBanner(
-      {
-        id: _id,
-        data: formDataBanner,
-      },
-      {
-        onSuccess: () => {
-          toast.success("Banner updated successfully!");
-          onCloseModal();
-        },
-        onError: (error) => {
-          console.error("Failed to update Banner:", error);
-          toast.error("Failed to update Banner. Please try again.");
-        },
-      }
-    );
   };
 
   return (
@@ -230,8 +178,8 @@ function PlanRow({
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="checkup"
-            disabled={isDeleting} // Disable button while deleting
-            onConfirm={handleDelete} // Call the delete function on confirm
+            disabled={isDeleting}
+            onConfirm={handleDelete}
           />
         </Modal.Window>
         <Modal.Window name="edit">

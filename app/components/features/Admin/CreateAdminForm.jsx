@@ -48,7 +48,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createDepartment } = useCreateDepartment();
   //   const { isEditing, editCabin } = useEditCabin();
   const [menu, setMenu] = useState([]);
-
+const [isshow, setisshow] = useState("")
   const isWorking = isCreating;
 
   function handleMenu(e) {
@@ -87,6 +87,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   }
   return (
     <Form
+    style={{overflow:"visible"}}
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
@@ -126,7 +127,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
       <FormRow label="Password" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
-          type="password"
+          type={!isshow?"password":"name"}
           id="password"
           {...register("password", {
             required: "This field is required",

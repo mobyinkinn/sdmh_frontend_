@@ -7,6 +7,7 @@ import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useAwardsContext } from "./AwardsContext";
+import { useAwards } from "../useAwards";
 
 const awardsData = [
   {
@@ -43,32 +44,43 @@ const awardsData = [
 
 function AwardsTable() {
   const { filter } = useAwardsContext();
-  let filteredAwards = awardsData;
+  const { data, isLoading, error } = useAwards();
+
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading Awards: {error.message}</div>;
+
+  let filteredAwards = data;
+
   if (filter !== "All") {
-    filteredAwards = awardsData.filter(
-      (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-    );
+    filteredAwards = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
   }
 
   //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!awardsData.length) return <Empty resourceName="Admins" />;
+
+  if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 1fr 4fr 1fr 1fr 1fr 3.2rem">
+      <Table columns="1fr 1fr 3fr 1fr 1fr 1fr 1fr">
         <Table.Header>
           <div>Name</div>
-          <div>Designation</div>
-          <div>Description</div>
+          <div>Year</div>
+          <div>About</div>
           <div>Image</div>
           <div>Status</div>
           <div>created</div>
-          <div></div>
+          <div>Actions</div>
         </Table.Header>
 
         <Table.Body
           data={filteredAwards}
-          render={(notice) => <AwardsRow key={notice.id} academic={notice} />}
+          render={(notice) => <AwardsRow key={notice.id} award={notice} />}
         />
         <Table.Footer>
           {/* <Pagination count={awardsData.length} /> */}
