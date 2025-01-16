@@ -33,7 +33,7 @@ const ParaNormal = styled.span((props) => ({
   // Default values
   textAlign: props.textAlign?.lg || "left",
   margin: props.margin?.lg || "0",
-  fontSize: props.fontSize || "1.2rem",
+  fontSize: props.fontSize?.lg || "1.2rem",
 
   // Breakpoint-specific values for textAlign
   [breakpoints.md]: {

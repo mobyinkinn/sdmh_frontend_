@@ -17,6 +17,7 @@ export default function Grid() {
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <ContainerMain
       bgColor="#D8E0EB"
@@ -71,9 +72,19 @@ function CheckupCard({ el }) {
       >
         <Image src={el.image} alt="" fill objectFit="cover" />
       </Box>
-      <ParaNormal fontSize={"30px"}>{el.title}</ParaNormal>
-      <ParaNormal fontSize={"30px"}>₹{el.price}</ParaNormal>
-      <ParaNormal fontSize={"20px"}>
+      <ParaNormal
+        fontSize={{ lg: "30px", md: "30px", smm: "25px", sm: "20px" }}
+      >
+        {el.title}
+      </ParaNormal>
+      <ParaNormal
+        fontSize={{ lg: "30px", md: "30px", smm: "25px", sm: "20px" }}
+      >
+        ₹{el.price}
+      </ParaNormal>
+      <ParaNormal
+        fontSize={{ lg: "20px", md: "20px", smm: "15px", sm: "15px" }}
+      >
         <span
           dangerouslySetInnerHTML={{
             __html: `${el.description.slice(0, 100)}`,

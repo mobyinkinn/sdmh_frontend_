@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Head1, Head2 } from "@/app/styledComponents/frontend/Headings";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
-import bannerImg from "../assets/checkup_banner.png";
+import bannerImg from "../assets/appointment_banner.png";
 import Image from "next/image";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
@@ -22,6 +22,14 @@ export default function Hero() {
         justifyContent={"center"}
         alignItems={{ lg: "baseline", sm: "center" }}
       >
+        <Typography
+          //   margin={{ lg: "20px 0px", md: "20px 85px", sm: "20px 20px" }}
+          fontSize={{ lg: "30px", md: "25px", sm: "20px" }}
+          fontWeight={500}
+          textAlign={{ lg: "left", sm: "center" }}
+        >
+          The Hospital That Cares
+        </Typography>
         <Stack
           width={"100%"}
           direction={{ md: "row", lg: "column" }}
@@ -32,7 +40,7 @@ export default function Hero() {
             color={"#476C9B"}
             textAlign={{ lg: "left", md: "center", sm: "center" }}
           >
-            Health Check Up Plans&nbsp;
+            Get Appointment&nbsp;
           </Head1>
         </Stack>
 
@@ -40,42 +48,22 @@ export default function Hero() {
           margin={{ lg: "20px 0px", md: "20px 85px", sm: "20px 20px" }}
           textAlign={{ lg: "left", sm: "center" }}
         >
-          Choose from our wide range of Preventive Health
-          <br /> Check Plans that are designed keeping your
-          <br /> health needs in mind
+          Contrary to popular belief, not simply It has roots in
+          <br /> Richard McClintock, a Latin professor at Hampden-Sydney <br />{" "}
+          College in Virginia, looked.
         </Typography>
-        <ButtonMediumOutline color="#379237">Contact Us</ButtonMediumOutline>
+        <ButtonMediumOutline color="#379237">
+          Make Appointment
+        </ButtonMediumOutline>
       </Stack>
-      {/* <Box
-        sx={{
-          width: "50%",
-          height: { lg: "90%", md: "55%", smm: "50%", sm: "45%" },
-          backgroundColor: "white",
-          borderRadius: "50%",
-          display: "flex",
-          alignSelf: { lg: "end", md: "center", sm: "center" },
-          justifyContent: "center",
-          overflow: "hidden", // Ensures the image stays within the circular container
-        }}
-      >
-        <Stack
-          sx={{
-            backgroundImage: `url(${bannerImg.src})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center bottom",
-            width: "80%",
-            height: "80%",
-          }}
-        ></Stack>
-      </Box> */}
+
       <Stack
         sx={{
           backgroundImage: `url(${bannerImg.src})`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center bottom",
-          alignSelf: { lg: "end", md: "center", sm: "center" },
+          backgroundPosition: "center ",
+          alignSelf: { lg: "center", md: "center", sm: "center" },
           width: "50%",
           height: { lg: "90%", md: "55%", smm: "50%", sm: "45%" },
         }}
