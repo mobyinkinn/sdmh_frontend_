@@ -3,7 +3,7 @@ import Header from "../../ui/Header";
 import NavbarAdminVerticle from "./NavbarAdminVerticle";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../../services/apiAuth";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Spinner from "../../ui/Spinner";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { useCurrentAdmin } from "../userManagement/parts/useUser";
@@ -163,6 +163,7 @@ function AppLayout({ children }) {
   const [user, setUser] = useState(null);
   const { currAdmin, isFetching } = useCurrentAdmin();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     async function auth() {
@@ -192,11 +193,18 @@ function AppLayout({ children }) {
     currAdmin?.menu?.includes(el.value)
   );
 
-  if (filteredNavData.length > 0) {
-    router.push(filteredNavData[0].link);
-  } else {
+  let isPathnameValid = false;
+  for (let i = 0; i < filteredNavData.length; i++) {
+    if (filteredNavData[i].link === pathname) {
+      isPathnameValid = true;
+      break;
+    }
+  }
+
+  if (!isPathnameValid) {
     router.push("/admin/login");
   }
+
   return (
     <StyledAppLayout>
       <Header />
