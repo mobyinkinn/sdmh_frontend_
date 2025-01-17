@@ -29,6 +29,7 @@ const ParaNormal = styled.span((props) => ({
   fontWeight: props.fontWeight,
   width: props.width,
   lineHeight: props.lineHeight || "1.5",
+  padding: props.padding,
 
   // Default values
   textAlign: props.textAlign?.lg || "left",

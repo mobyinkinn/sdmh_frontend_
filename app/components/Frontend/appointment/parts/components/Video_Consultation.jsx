@@ -1,13 +1,12 @@
 "use client";
-import { Stack, Typography } from "@mui/material";
-import banner from "../assets/book_appointment.png";
+import { Box, Stack, Typography } from "@mui/material";
 import { Head1, Head2 } from "@/app/styledComponents/frontend/Headings";
-import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import banner from "../assets/video_consultation.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const appointmentSteps = [
+const ConsultationSteps = [
   {
     id: 0,
     heading: "Choose Your Doctor",
@@ -30,12 +29,12 @@ const appointmentSteps = [
   },
   {
     id: 4,
-    heading: "Appointment Done",
+    heading: "Consultation Done",
     body: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.",
   },
 ];
 
-export default function BookAppointment() {
+const Video_Consultation = () => {
   var settings = {
     autoplay: true,
     autoplaySpeed: 2000,
@@ -72,29 +71,48 @@ export default function BookAppointment() {
       },
     ],
   };
-
   return (
     <Stack
-      bgcolor={"white"}
+      bgcolor={"#007946"}
       width={"100%"}
       padding={{ md: "50px", xs: "30px 15px" }}
-      sx={{
-        backgroundImage: `url(${banner.src})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center bottom",
-        alignItems: "center",
-      }}
+      alignItems={"center"}
     >
-      <Typography
-        fontSize={{ lg: "30px", md: "25px", sm: "20px" }}
-        fontWeight={500}
-        textAlign={{ lg: "left", sm: "center" }}
-      >
-        How to Book an
+      <Head1 color="#FFFFFF">Online Video Consultation</Head1>
+      <Typography color="#FFFFFF" fontSize={"1.5rem"}>
+        Even during the pandemic, the health and safety of our patients is of
+        utmost importance. Numerous
       </Typography>
-
-      <Head1 color="#005900">Appointment</Head1>
+      <Typography color="#FFFFFF" fontSize={"1.5rem"}>
+        safety protocols are in place at all Max Hospitals to limit the spread
+        of infection.
+      </Typography>
+      <Box
+        sx={{
+          backgroundImage: `url(${banner.src})`,
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+          width: "100%",
+          height: { xs: "29vh", md: "48vh", lg: "80vh" },
+          my: "30px",
+        }}
+      ></Box>
+      <Typography
+        fontSize={"2.5rem"}
+        color={"#FFFFFF"}
+        fontWeight={"bold"}
+        alignSelf={"start"}
+      >
+        To Start Online Consultation
+      </Typography>
+      <Stack direction={"row"} width={"100%"} justifyContent={"space-between"}>
+        <Typography color="#FFFFFF" fontWeight={500} fontSize={"2rem"}>
+          Please Follow These Steps
+        </Typography>
+        <Typography color="#FFFFFF" fontWeight={500} fontSize={"2rem"}>
+          View All Steps
+        </Typography>
+      </Stack>
       {/* slider*/}
       <Stack
         direction={"row"}
@@ -111,7 +129,7 @@ export default function BookAppointment() {
             overflow: "hidden",
           }}
         >
-          {appointmentSteps.map((el, i) => (
+          {ConsultationSteps.map((el, i) => (
             <Stack
               height={"fit-content"}
               key={i}
@@ -152,4 +170,6 @@ export default function BookAppointment() {
       </Stack>
     </Stack>
   );
-}
+};
+
+export default Video_Consultation;

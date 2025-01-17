@@ -38,7 +38,7 @@ export default function Hero() {
         >
           <Head1
             color={"#476C9B"}
-            textAlign={{ lg: "left", md: "center", sm: "center" }}
+            textAlign={{ lg: "left", md: "left", sm: "center" }}
           >
             Get Appointment&nbsp;
           </Head1>
