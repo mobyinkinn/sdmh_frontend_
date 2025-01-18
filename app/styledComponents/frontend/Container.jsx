@@ -52,29 +52,28 @@ const ContainerMain = styled.div((props) => ({
   justifyContent: props.justifyContent,
   alignItems: props.alignItems,
   backgroundColor: props.bgColor,
-  flexDirection: props.flexDirection,
 
   // Default styles
-  padding: props.padding?.lg || "50px",
+  padding: props.padding || props.padding?.lg || "50px",
   gap: props.gap?.lg || "20px",
   display: props.display?.lg || "flex",
-  flexDirection: props.flexDirection?.lg || "column",
+  flexDirection: props.flexDirection || props.flexDirection?.lg || "column",
 
   // Breakpoint-specific styles
   [breakpoints.md]: {
-    padding: props.padding?.md,
+    padding: props.padding?.md || props.padding,
     gap: props.gap?.md,
     display: props.display?.md,
     flexDirection: props.flexDirection?.md,
   },
   [breakpoints.smm]: {
-    padding: props.padding?.smm || "20px",
+    padding: props.padding?.smm || props.padding || "20px",
     gap: props.gap?.smm,
     display: props.display?.smm,
     flexDirection: props.flexDirection?.smm,
   },
   [breakpoints.sm]: {
-    padding: props.padding?.sm || "20px",
+    padding: props.padding?.sm || props.padding || "20px",
     gap: props.gap?.sm,
     display: props.display?.sm,
     flexDirection: props.flexDirection?.sm,

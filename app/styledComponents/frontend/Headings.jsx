@@ -15,7 +15,7 @@ const Head1 = styled.span((props) => ({
   width: props.width,
 
   // Default font size
-  fontSize: props.fontSize?.lg || "3rem",
+  fontSize: props.fontSize || "3rem",
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
@@ -27,7 +27,7 @@ const Head1 = styled.span((props) => ({
     textAlign: props.textAlign?.smm,
   },
   [breakpoints.sm]: {
-    fontSize: props.fontSize?.sm || "1.2rem",
+    fontSize: props.fontSize?.sm || "1.1rem",
     textAlign: props.textAlign?.sm,
     width: props.width?.sm,
   },
@@ -62,7 +62,22 @@ const Head3 = styled.span((props) => ({
   fontWeight: props.fontWeight || "bold",
   textAlign: props.textAlign || "center",
   width: props.width,
-  fontSize: "1.8rem",
+  fontSize: props.fontSize?.lg || "1.8rem",
+  margin: props.margin || "0",
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    fontSize: props.fontSize?.md || "1.5rem",
+    width: props.width?.md,
+  },
+  [breakpoints.smm]: {
+    fontSize: props.fontSize?.smm || "1.2rem",
+    width: props.width?.smm,
+  },
+  [breakpoints.sm]: {
+    fontSize: props.fontSize?.sm || "0.9rem",
+    width: props.width?.sm,
+  },
 }));
 
 const Head4 = styled.span((props) => ({

@@ -19,7 +19,6 @@
 
 // export default TabData
 
-
 // "use client";
 // import React, { useState } from "react";
 // import { careData } from "./CareData";
@@ -65,7 +64,6 @@
 // };
 
 // export default TabData;
-
 
 "use client";
 import React, { useState } from "react";

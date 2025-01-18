@@ -27,12 +27,12 @@ const breakpoints = {
 const ParaNormal = styled.span((props) => ({
   color: props.color || "black",
   fontWeight: props.fontWeight,
-  width: props.width,
+  width: props.width || props.width?.lg || "100%",
   lineHeight: props.lineHeight || "1.5",
 
   // Default values
-  textAlign: props.textAlign?.lg || "left",
-  margin: props.margin?.lg || "0",
+  textAlign: props.textAlign || props.textAlign?.lg || "left",
+  margin: props.margin || props.margin?.lg || "0",
   fontSize: props.fontSize || "1.2rem",
 
   // Breakpoint-specific values for textAlign
@@ -40,16 +40,19 @@ const ParaNormal = styled.span((props) => ({
     textAlign: props.textAlign?.md,
     margin: props.margin?.md,
     fontSize: props.fontSize?.md || "1rem",
+    width: props.width?.md,
   },
   [breakpoints.smm]: {
     textAlign: props.textAlign?.smm,
     margin: props.margin?.smm,
-    fontSize: props.fontSize?.smm || "1rem",
+    fontSize: props.fontSize?.smm || "0.9rem",
+    width: props.width?.smm,
   },
   [breakpoints.sm]: {
     textAlign: props.textAlign?.sm,
     margin: props.margin?.sm,
-    fontSize: props.fontSize?.sm || "1rem",
+    fontSize: props.fontSize?.sm || "0.9rem",
+    width: props.width?.sm,
   },
 }));
 
