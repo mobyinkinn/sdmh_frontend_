@@ -24,7 +24,7 @@ export default function Banner() {
       </Stack> */}
 
       <Head1>
-        <span style={{ color: "black" }}>We Always Care About Your Health</span>{" "}
+        <span style={{ color: "black" }}>We Always Care About Your Health</span>
         Appointment Now
       </Head1>
       <Stack
