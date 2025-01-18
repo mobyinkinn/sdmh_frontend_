@@ -30,7 +30,7 @@
 //             })}
 //           </Stack>
 //         </Stack>
-        
+
 //         <Stack
 //           sx={{
 //             backgroundImage: `url(${img.src})`,
@@ -41,7 +41,7 @@
 //             borderRadius: "20px",
 //           }}
 //         ></Stack>
-       
+
 //     </Stack>
 //   );
 // };
@@ -57,24 +57,33 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 
 const Card = ({ i, title, data, img }) => {
   return (
-    <Stack direction={"row"} p={5} justifyContent={"space-around"}>
+    <Stack
+      direction={{ md: "row", xs: "column-reverse" }}
+      p={5}
+      justifyContent={"space-around"}
+      gap={"20px"}
+    >
       <Stack
         sx={{
           backgroundImage: `url(${img.src})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
-          height: "70vh",
-          width: "35%",
+          height: { md: "70vh", xs: "40vh" },
+          width: { md: "35%" },
           borderRadius: "20px",
         }}
       ></Stack>
-      <Stack width={"60%"} gap={"20px"}>
-        <Head3 color="#007946" textAlign="left" >
+      <Stack width={{ md: "60%" }} gap={"20px"}>
+        <Head3 color="#007946" textAlign="left">
           {title}
         </Head3>
         <Stack gap={"10px"}>
           {data.map((ele, i) => (
-            <ParaNormal fontSize={"20px"} key={i} style={{textAlign:"justify"}}>
+            <ParaNormal
+              fontSize={"20px"}
+              key={i}
+              style={{ textAlign: "justify" }}
+            >
               {ele}
             </ParaNormal>
           ))}
