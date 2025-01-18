@@ -64,7 +64,9 @@ export default function Awards() {
         <Head3 color="black">
           BEST PLACES TO WORK IN HEALTHCARE IN INDIA BY
         </Head3>
-        <Head3 color="black">"HOSMAC" AND "PEOPLE STRONG"</Head3>
+        <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
+          "HOSMAC" AND "PEOPLE STRONG"
+        </Head1>
       </Stack>
       <ParaNormal
         width={{ sm: "100%", smm: "100%", md: "70%", lg: "70%" }}

@@ -88,16 +88,24 @@ const Head4 = styled.span((props) => ({
 
   // Default font size
   fontSize: props.fontSize?.lg || "1.3rem",
+  textAlign: props.textAlign?.lg,
+  fontWeight: props.fontWeight?.lg,
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
     fontSize: props.fontSize?.md || "1rem",
+    textAlign: props.textAlign?.md,
+    fontWeight: props.fontWeight?.md,
   },
   [breakpoints.smm]: {
     fontSize: props.fontSize?.smm || "1rem",
+    textAlign: props.textAlign?.smm,
+    fontWeight: props.fontWeight?.smm,
   },
   [breakpoints.sm]: {
     fontSize: props.fontSize?.sm || "1rem",
+    textAlign: props.textAlign?.sm,
+    fontWeight: props.fontWeight?.sm,
   },
 }));
 

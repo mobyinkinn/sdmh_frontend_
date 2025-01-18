@@ -58,7 +58,7 @@ export default function Visitors() {
   return (
     <ContainerMain bgColor="#6A88AF">
       <Head1 color="white">Some Comments by Visitors</Head1>
-      <ParaNormal color="white" width="60%" textAlign="center" margin="0 auto">
+      <ParaNormal color="white" width={{lg:"60%",sm:"100%"}} textAlign={{lg:"center",sm:"center"}} margin="0 auto">
         Contrary to popular belief, Lorem Ipsum is not simply random text. It
         has roots in a piece of classical Latin literature from 45 BC, making it
         over 2000 years old.
@@ -95,10 +95,10 @@ export default function Visitors() {
       <Stack
         margin={"0 auto"}
         gap={"30px"}
-        marginTop={"50px"}
+        marginTop={{lg:"50px",sm:"10px"}}
         direction={"row"}
         flexWrap={"wrap"}
-        width={"80%"}
+        width={{lg:"80%",sm:"100%"}}
         justifyContent={"space-between"}
       >
         {visitorsData.map((el, i) => (

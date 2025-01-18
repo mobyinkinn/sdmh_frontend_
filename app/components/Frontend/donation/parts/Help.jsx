@@ -12,12 +12,12 @@ export default function Help() {
         backgroundColor="#4B9369"
         borderRadius={"10px"}
         alignItems={"center"}
-        padding={"30px 100px"}
-        gap={"20px"}
-        margin="0px 80px"
+        padding={{lg:"30px 100px", sm:"25px"}}
+        gap={{lg:"20px",sm:"10px"}}
+        margin={{lg:"0px 80px",sm:"0"}}
       >
         <Head1 color="white">Wish to help?</Head1>
-        <ParaNormal color="white" textAlign="center">
+        <ParaNormal color="white" textAlign={{lg:"center",sm:"center"}}>
           We welcome enlightened members of the community and corporate bodies
           to sponsor and provide long term sustainability to this free welfare
           project. Your contribution will go a long way in bringing peace and

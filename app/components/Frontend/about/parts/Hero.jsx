@@ -65,23 +65,25 @@ export default function Hero() {
       >
         {sideNavData.map((el, i) => {
           return (
-            <Typography
-              key={i}
-              fontSize={"1.2rem"}
-              sx={{
-                padding: { md: "10px 15px", xs: "5px" },
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                fontSize: { md: "1.2rem", xs: "0.9rem" },
-                "&:hover": {
-                  backgroundColor: { md: "#007946" },
-                  color: { md: "white", xs: "#007946" },
-                },
-              }}
-              onClick={() => handleScroll(el.idName)}
-            >
-              {el.name}
-            </Typography>
+            <Stack width={{ lg: "100%", sm: "25%" }}>
+              <Typography
+                key={i}
+                fontSize={{ lg: "1.2rem", sm: "0.7rem" }}
+                sx={{
+                  padding: { md: "10px 15px", xs: "5px" },
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  fontSize: { md: "1.2rem", xs: "0.9rem" },
+                  "&:hover": {
+                    backgroundColor: { md: "#007946" },
+                    color: { md: "white", xs: "#007946" },
+                  },
+                }}
+                onClick={() => handleScroll(el.idName)}
+              >
+                {el.name}
+              </Typography>
+            </Stack>
           );
         })}
       </Stack>

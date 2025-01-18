@@ -48,7 +48,11 @@ export default function Values() {
                 },
               }}
             >
-              <Stack width={"100%"} height={"15vh"} position={"relative"}>
+              <Stack
+                width={"100%"}
+                height={{ lg: "15vh", sm: "10vh" }}
+                position={"relative"}
+              >
                 <Image
                   fill
                   src={el.icon}

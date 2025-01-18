@@ -14,7 +14,7 @@ export default function Inspiration() {
   const [grayMan, setGrayMan] = useState(1);
   const [grayWoman, setGrayWoman] = useState(1);
   return (
-    <ContainerMain bgColor="#D2E4D8" id="inspiration">
+    <ContainerMain bgColor="#D2E4D8" id="inspiration" alignItems={"center"}>
       <Head1 color="black">Inspiration</Head1>
       <Head3 width={{ md: "100%", sm: "60%" }} margin="0 auto" color="black">
         Behind Santokba Durlabhji Memorial Hospital

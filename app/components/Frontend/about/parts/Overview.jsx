@@ -45,6 +45,9 @@ export default function Overview() {
         gap={{ xs: "30px", md: "none" }}
         flexWrap={"wrap"}
         width={"100%"}
+        flexWrap={"wrap"}
+        rowGap={"10px"}
+        columnGap={"10px"}
       >
         {overviewImages.map((el, i) => {
           return (
