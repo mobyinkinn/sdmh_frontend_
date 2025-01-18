@@ -6,10 +6,10 @@ import Image from "next/image";
 export default function VisionCard({ el }) {
   return (
     <Stack
-      width={"50%"}
+      width={{lg:"50%", sm:"100%"}}
       backgroundColor="#D8E0EB"
       borderRadius={"10px"}
-      padding={"40px"}
+      padding={{lg:"40px", sm:"25px"}}
       alignItems={"center"}
       gap={"20px"}
     >

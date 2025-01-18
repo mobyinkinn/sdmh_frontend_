@@ -235,6 +235,7 @@ const StyledSidebar = styled.aside`
 function NavbarAdminVerticle() {
   const { currAdmin, isFetching } = useCurrentAdmin();
   const pathname = usePathname();
+  console.log("path",pathname);
   if (isFetching) return <Spinner />;
 
   const filteredNavData = navData.filter((el) =>

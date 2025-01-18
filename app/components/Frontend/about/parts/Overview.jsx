@@ -15,7 +15,7 @@ export default function Overview() {
   return (
     <ContainerMain bgColor="#F9F9F9" id="overview">
       <Head1 color="black">Overview</Head1>
-      <ParaNormal>
+      <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
         The Santokba Durlabhji Trust was founded in 1958 with a vision to
         provide quality care to the common man – without favour or
         discrimination. The Santokba Durlabhji Memorial Hospital was established
@@ -23,14 +23,14 @@ export default function Overview() {
         hospital was dedicated to the Armed Forces as the nation was then in the
         throes of a war with Pakistan.
       </ParaNormal>
-      <ParaNormal>
+      <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
         Since then, SDMH has continued to provide affordable health care through
         the several philanthropic initiatives it has undertaken e.g. The Avedna
         Ashram, the Rehabilitation and Limb Fitting Centre, the Outreach
         Programme, Project Prayatna (eradication of thalassemia) and several
         other projects that serve to alleviate human suffering.
       </ParaNormal>
-      <ParaNormal>
+      <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
         Sdmh Is A Private, Trust-managed, Autonomous, Fee-for-services And
         Not-for-profit Hospital. It Is A Multidisciplinary, 525-bed, Tertiary
         Care Hospital. It Houses Several Wards, Operation Theatres, Icus,
@@ -40,13 +40,16 @@ export default function Overview() {
       </ParaNormal>
       <Stack
         direction="row"
-        marginTop={"40px"}
+        marginTop={{lg:"40px", sm:"10px"}}
         justifyContent={"space-between"}
         width={"100%"}
+        flexWrap={"wrap"}
+        rowGap={"10px"}
+        columnGap={"10px"}
       >
         {overviewImages.map((el, i) => {
           return (
-            <Stack width={"20%"} height={"30vh"} position={"relative"}>
+            <Stack width={{lg:"20%",sm:"48%"}} height={"30vh"} position={"relative"}>
               <Image
                 src={el}
                 fill

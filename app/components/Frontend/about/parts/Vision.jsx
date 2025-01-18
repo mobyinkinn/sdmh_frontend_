@@ -40,7 +40,7 @@ export default function Vision() {
       ></Box>
       <Typography sx={{ height: "40px" }}></Typography>
       <Head1 color="white">Vision & Mission</Head1>
-      <Stack direction="row" gap={"70px"} width={"70%"} margin={"0 auto"}>
+      <Stack direction={{lg:"row",sm:"column"}} gap={{lg:"70px", sm:"25px"}} width={{lg:"70%",sm:"80%"}} margin={"0 auto"}>
         {visionData.map((el, i) => {
           return <VisionCard el={el} />;
         })}

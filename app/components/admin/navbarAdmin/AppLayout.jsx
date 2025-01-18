@@ -162,6 +162,7 @@ const navData = [
 function AppLayout({ children }) {
   const [user, setUser] = useState(null);
   const { currAdmin, isFetching } = useCurrentAdmin();
+  console.log(currAdmin)
   const router = useRouter();
 
   useEffect(() => {
@@ -193,7 +194,7 @@ function AppLayout({ children }) {
   );
 
   if (filteredNavData.length > 0) {
-    router.push(filteredNavData[0].link);
+    router.push(filteredNavData.link);
   } else {
     router.push("/admin/login");
   }

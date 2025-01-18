@@ -10,7 +10,7 @@ export default function VisitorCard({ visitor }) {
     <Stack
       direction={"row"}
       gap={"20px"}
-      width={"45%"}
+      width={{lg:"45%",sm:"100%"}}
       borderRadius={"5px"}
       alignItems={"center"}
       sx={{

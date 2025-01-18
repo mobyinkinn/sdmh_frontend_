@@ -14,7 +14,7 @@ export default function Inspiration() {
   const [grayMan, setGrayMan] = useState(1);
   const [grayWoman, setGrayWoman] = useState(1);
   return (
-    <ContainerMain bgColor="#D2E4D8" id="inspiration">
+    <ContainerMain bgColor="#D2E4D8" id="inspiration" alignItems={"center"}>
       <Head1 color="black">Inspiration</Head1>
       <Head3 color="black">Behind Santokba Durlabhji Memorial Hospital</Head3>
       <ParaNormal width="80%" margin="0 auto" textAlign="center">
@@ -26,7 +26,7 @@ export default function Inspiration() {
         Entire State Of Rajasthan And To Neighbouring States As Well.
       </ParaNormal>
       <Stack
-        direction={"row"}
+        direction={"column"}
         justifyContent={"center"}
         gap={"100px"}
         marginTop={"50px"}

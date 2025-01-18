@@ -9,6 +9,7 @@ import Vision from "./parts/Vision";
 import Values from "./parts/Values";
 import Message from "./parts/Message";
 import Awards from "./parts/Awards";
+import MobileFooter from "../footer/MobileFooter";
 
 export default function About() {
   return (
@@ -23,6 +24,7 @@ export default function About() {
       <Message />
       <Awards />
       <Footer />
+      <MobileFooter/>
     </Stack>
   );
 }
