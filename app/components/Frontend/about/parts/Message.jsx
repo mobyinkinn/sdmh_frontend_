@@ -56,7 +56,6 @@ export default function Message() {
         <Head4 color="white" textAlign={{ sm: "center", smm: "center" }}>
           Read More
         </Head4>{" "}
-        */}
       </Stack>
     </ContainerMain>
   );
