@@ -19,7 +19,7 @@ const sideNavData = [
 ];
 
 export default function Hero() {
-    const { data, isLoading, error } = useBannerByPage("contact us");
+    const { data, isLoading, error } = useBannerByPage("about-us");
   const handleScroll = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth", // Smooth scrolling
@@ -28,25 +28,35 @@ export default function Hero() {
   };
 
   return (
-    <ContainerMain gap="0" dir="row" padding="0" id="about">
+    <ContainerMain
+      gap="0"
+      flexDirection={{ lg: "row", sm: "column" }}
+      id="about"
+      padding={{ lg: "50px", sm: "0" }}
+    >
       <Stack
-        width={"85%"}
-        height={"90vh"}
+        width={{ lg: "85%", sm: "100%" }}
+        height={{lg:"90vh", sm:"47vh"}}
         sx={{
           backgroundImage: `url(${data?.banner})`,
           backgroundSize: "contain",
-          backgroundRepeat:"no-repeat",
+          backgroundRepeat: "no-repeat",
           backgroundPosition: "center center",
         }}
         justifyContent={"center"}
         gap={"10px"}
-        paddingLeft={"100px"}
+        paddingLeft={{lg:"100px", sm:"10px"}}
+        pr={{sm:"10px"}}
       >
         <Stack direction={"row"}>
           <Head1 color="black">About&nbsp;</Head1>
           <Head1 color="#476C9B">SDMH</Head1>
         </Stack>
-        <ParaNormal width="60%">
+        <ParaNormal
+          width={{ lg: "60%", sm: "100%" }}
+          fontSize={{ lg: "1.2rem", sm: "0.8rem" }}
+          textAlign={{lg:"left", sm:"justify"}}
+        >
           It Is a Long Established Fact That a Reader Will Be Distracted By The
           Readable Content of a Page When Looking At Its Layout. The Point of
           Using Lorem Ipsum Is That It Has a More-or-less Normal Distribution of
@@ -54,12 +64,13 @@ export default function Hero() {
           Look Like Readable English.
         </ParaNormal>
       </Stack>
-      <Stack>
+      <Stack direction={"row"} flexWrap={"wrap"} p={"0 20px"}>
         {sideNavData.map((el, i) => {
           return (
+            <Stack width={{lg:"100%", sm:"25%"}}>
             <Typography
               key={i}
-              fontSize={"1.2rem"}
+              fontSize={{lg:"1.2rem", sm:"0.7rem"}}
               sx={{
                 padding: "10px 15px",
                 cursor: "pointer",
@@ -70,6 +81,7 @@ export default function Hero() {
             >
               {el.name}
             </Typography>
+            </Stack>
           );
         })}
       </Stack>

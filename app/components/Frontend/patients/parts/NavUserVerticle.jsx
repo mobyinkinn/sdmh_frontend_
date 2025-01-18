@@ -39,7 +39,7 @@ export default function NavUserVerticle({ sectionsRef }) {
   };
 
   return (
-    <aside style={{ width: "15%", backgroundColor: "#f4f4f4" }}>
+    <Stack bgcolor={"#f4f4f4"} display={{lg:"flex", sm:"none"}}>
       <NavList>
         {navData.map((item) => (
           <StyledNavItem
@@ -50,6 +50,6 @@ export default function NavUserVerticle({ sectionsRef }) {
           </StyledNavItem>
         ))}
       </NavList>
-    </aside>
+    </Stack>
   );
 }

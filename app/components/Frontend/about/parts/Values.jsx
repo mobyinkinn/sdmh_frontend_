@@ -22,11 +22,11 @@ export default function Values() {
   return (
     <ContainerMain bgColor="#4B9369" id="mission">
       <Head1 color="white">Our values</Head1>
-      <Stack direction={"row"} gap={"20px"} justifyContent={"center"}>
+      <Stack direction={"row"} gap={"20px"} justifyContent={"center"} flexWrap={{sm:"wrap"}}>
         {valueData.map((el, i) => {
           return (
             <Stack
-              width={"15%"}
+              width={{lg:"15%", sm:"40%"}}
               alignItems={"center"}
               gap={"10px"}
               padding={"20px"}
@@ -40,7 +40,7 @@ export default function Values() {
                 },
               }}
             >
-              <Stack width={"100%"} height={"15vh"} position={"relative"}>
+              <Stack width={"100%"} height={{lg:"15vh", sm:"10vh"}} position={"relative"}>
                 <Image
                   fill
                   src={el.icon}

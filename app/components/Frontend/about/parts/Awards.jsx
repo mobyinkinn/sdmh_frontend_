@@ -43,12 +43,14 @@ export default function Awards() {
         }}
       >
         <Head1>Awards & Accreditation</Head1>
-        <Head3 color="black">
+        <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
           BEST PLACES TO WORK IN HEALTHCARE IN INDIA BY
-        </Head3>
-        <Head3 color="black">"HOSMAC" AND "PEOPLE STRONG"</Head3>
+        </Head1>
+        <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
+          "HOSMAC" AND "PEOPLE STRONG"
+        </Head1>
       </Stack>
-      <ParaNormal width="70%" textAlign="center">
+      <ParaNormal width={{lg:"70%", sm:"90%"}} textAlign={{lg:"center", sm:"justify"}}>
         SDMH was placed among the top three "Best Places to Work in 2
         Healthcare" in India by "Hosmac" and "People Strong on 10th February,
         2013.

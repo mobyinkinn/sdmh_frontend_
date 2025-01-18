@@ -10,8 +10,12 @@ import img from "./assets/Yogendra.png";
 
 export default function Message() {
   return (
-    <ContainerMain bgColor="#476C9B" dir="row" id="message">
-      <Stack alignItems="center" width={"30%"} gap="10px">
+    <ContainerMain
+      bgColor="#476C9B"
+      flexDirection={{ lg: "row", sm: "column" }}
+      id="message"
+    >
+      <Stack alignItems="center" width={{ lg: "30%", sm: "100%" }} gap="10px">
         <Stack
           sx={{
             backgroundImage: `url(${img.src})`,
@@ -31,18 +35,18 @@ export default function Message() {
           </ParaNormalSmall>
         </Stack>
       </Stack>
-      <Stack gap="10px" width={"70%"}>
+      <Stack gap="10px" width={{ lg: "70%", sm: "100%" }}>
         <Head1 color="white" textAlign="left">
           Secretary's Message
         </Head1>
-        <ParaNormal color="white">
+        <ParaNormal color="white" textAlign={{ sm: "center" }}>
           Empathy is the word that immediately comes to mind as I think of my
           father. Empathy is aptly defined as someone else’s pain in your heart.
           My father felt the pain of many in his. He was deeply affected by the
           plight of the pavement dwellers he drove past on his way to work – he
           would cover them with blankets during clandestine outings at night.
         </ParaNormal>
-        <ParaNormal color="white">
+        <ParaNormal color="white" textAlign={{ sm: "center" }}>
           That shared pain for those who dwelt on pavements, and lived on the
           periphery of life was evident at the hospital we know as Santokba.
           Santokba is the story of his vision which impacted a million lives. It
@@ -53,9 +57,9 @@ export default function Message() {
           about martyrdom or about sacrifice but about care, compassion and
           concern.
         </ParaNormal>
-        <Head4 color="white" textAlign="left">
+        {/* <Head4 color="white" textAlign="left">
           Read More
-        </Head4>
+        </Head4> */}
       </Stack>
     </ContainerMain>
   );

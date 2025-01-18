@@ -10,10 +10,11 @@ export default function Hero({ sectionsRef }) {
   return (
     <Stack direction={"row"}>
       <ContainerMain
-        alignItems="left"
+      gap={{lg:"20px", sm:"10px"}}
+      alignItems={{sm:"center", lg:"left"}}
         bgColor="#D2E4D8"
         padding="100px 70px"
-        style={{ width: "90%" }}
+        width={{lg:"90%", sm:"100%"}}
       >
         <Head1 color="black" textAlign="left">
           The Hospital That
@@ -21,7 +22,7 @@ export default function Hero({ sectionsRef }) {
         <Head1 color="#476C9B" textAlign="left">
           Cares Patient Care & Services
         </Head1>
-        <ParaNormal width="50%">
+        <ParaNormal width={{lg:"50%", sm:"90%"}} textAlign={{sm:"center"}}>
           Contrary to popular belief, not simply It has roots in Richard
           McClintock, a Latin professor at Hampden-Sydney College in Virginia,
           looked.
