@@ -6,9 +6,12 @@ import bookShop from "./assets/bookShop.png";
 import temple from "./assets/temple.png";
 import salon from "./assets/salon.png";
 import RestCard from "./RestCard";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useState } from "react";
 import CareCard from "./CareCard";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const restData = [
   {
@@ -61,12 +64,34 @@ const restData = [
   },
 ];
 
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  arrows: false,
+  slidesToShow: 1,
+  centerMode: true,
+  slidesToScroll: 1,
+};
+
 export default function Rest() {
   const [activeEl, setActiveEl] = useState(0);
-  console.log(activeEl);
   return (
-    <ContainerMain bgColor="#007946" gap="50px">
-      <Stack direction="row" justifyContent={"space-between"}>
+    <ContainerMain
+      flexDirection={{
+        lg: "column",
+        md: "column",
+        smm: "column",
+        sm: "column",
+      }}
+      bgColor="#007946"
+      gap="50px"
+    >
+      <Stack
+        direction="row"
+        display={{ md: "flex", xs: "none" }}
+        justifyContent={"space-between"}
+      >
         {restData.map((el, i) => {
           return (
             <RestCard
@@ -78,6 +103,23 @@ export default function Rest() {
           );
         })}
       </Stack>
+      <Box
+        display={{ md: "none", xs: "block" }}
+        justifyContent={"space-between"}
+      >
+        <Slider {...settings}>
+          {restData.map((el, i) => {
+            return (
+              <RestCard
+                el={el}
+                key={i}
+                setActiveEl={setActiveEl}
+                activeEl={activeEl}
+              />
+            );
+          })}
+        </Slider>
+      </Box>
       <CareCard el={restData[activeEl]} type={"white"} />
     </ContainerMain>
   );

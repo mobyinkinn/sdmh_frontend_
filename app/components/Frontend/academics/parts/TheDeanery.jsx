@@ -46,7 +46,6 @@
 
 // export default TheDeanery;
 
-
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
@@ -78,7 +77,7 @@ const TheDeanery = () => {
             direction={"row"}
             gap={3}
             justifyContent={"center"}
-            padding={"30px"}
+            padding={{ md: "30px" }}
             borderRadius={"20px"}
             sx={{
               transition: "all 0.3s ease",

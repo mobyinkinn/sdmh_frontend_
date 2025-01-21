@@ -37,17 +37,16 @@ const Designslider = ({
     dots: false, // Add dots for debugging
     infinite: true,
     speed: 500,
-    autoplay:true,
+    autoplay: true,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: false,
     beforeChange: (current, next) => setActiveSlide(next),
   };
-const handleDotClick = (index) => {
-  setActiveSlide(index);
-  DesisliderRef.current.slickGoTo(index); 
-};
-
+  const handleDotClick = (index) => {
+    setActiveSlide(index);
+    DesisliderRef.current.slickGoTo(index);
+  };
 
   return (
     <Stack
@@ -77,7 +76,7 @@ const handleDotClick = (index) => {
                   gap={2}
                   justifyContent={"center"}
                 >
-                  {group.map((item) => (
+                  {group?.map((item) => (
                     <Box
                       key={item?.id}
                       sx={{
@@ -116,7 +115,7 @@ const handleDotClick = (index) => {
             gap={2}
             justifyContent={"center"}
           >
-            {groups.map((item) => (
+            {groups?.map((item) => (
               <Box
                 key={item?.id}
                 sx={{

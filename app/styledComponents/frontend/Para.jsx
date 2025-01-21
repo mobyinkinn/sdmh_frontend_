@@ -1,18 +1,3 @@
-// const ParaNormal = styled.span((props) => ({
-//   color: props.color || "black",
-//   fontWeight: props.fontWeight,
-//   textAlign: props.textAlign || "left",
-//   width: props.width,
-//   margin: props.margin,
-//   lineHeight: props.lineHeight || "1.5",
-//   fontSize: "1.2rem",
-
-//   @media (max-width: 600px) {
-//     margin: ${props.margin?.sm || "10px"};
-//     text-align: ${props.textAlign?.sm || "right"};
-//   }
-
-// }));
 "use client";
 
 import styled from "@emotion/styled";
@@ -27,12 +12,12 @@ const breakpoints = {
 const ParaNormal = styled.span((props) => ({
   color: props.color || "black",
   fontWeight: props.fontWeight,
-  width: props.width || props.width?.lg || "100%",
+  width: props.width,
   lineHeight: props.lineHeight || "1.5",
-  // Default values
   textAlign: props.textAlign || props.textAlign?.lg || "left",
   margin: props.margin || props.margin?.lg || "0",
   fontSize: props.fontSize || "1.2rem",
+  width: props.width?.lg || "100%",
 
   // Breakpoint-specific values for textAlign
   [breakpoints.md]: {

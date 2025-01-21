@@ -78,9 +78,9 @@ const TabData = () => {
           }}
           sx={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "center",
             margin: "0 auto",
-            width: "80%",
+            width: "100%",
             marginTop: "30px",
             flexDirection: "row",
             flexWrap: "wrap",

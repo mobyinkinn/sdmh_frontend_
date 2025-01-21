@@ -7,9 +7,13 @@ import visitor from "./assets/visitor.png";
 export default function Policy() {
   return (
     <ContainerMain bgColor="#CEDDCC">
-      <Stack backgroundColor="#476C9B" direction="row" borderRadius={"10px"}>
+      <Stack
+        backgroundColor="#476C9B"
+        flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
+        borderRadius={"10px"}
+      >
         <Stack
-          width={"70%"}
+          width={{ md: "70%" }}
           backgroundColor="white"
           padding={"30px 50px"}
           gap="10px"
@@ -65,7 +69,8 @@ export default function Policy() {
           </ul>
         </Stack>
         <Stack
-          width="30%"
+          width={{ md: "30%" }}
+          padding={{ md: "0", xs: "20px 20px 0 20px" }}
           alignItems={"center"}
           justifyContent={"end"}
           sx={{

@@ -11,24 +11,28 @@ const Head1 = styled.span((props) => ({
   position: props.position,
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
-  textAlign: props.textAlign?.lg || "center",
   width: props.width,
+  textAlign: props.textAlign || "center",
 
   // Default font size
-  fontSize: props.fontSize || "3rem",
+
+  [breakpoints.lg]: {
+    textAlign: props.textAlign?.lg || "center",
+    fontSize: props.fontSize || "3rem",
+  },
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
     fontSize: props.fontSize?.md || "2rem",
-    textAlign: props.textAlign?.md,
+    textAlign: props.textAlign?.md || "center",
   },
   [breakpoints.smm]: {
     fontSize: props.fontSize?.smm || "1.4rem",
-    textAlign: props.textAlign?.smm,
+    textAlign: props.textAlign?.smm || "center",
   },
   [breakpoints.sm]: {
     fontSize: props.fontSize?.sm || "1.1rem",
-    textAlign: props.textAlign?.sm,
+    textAlign: props.textAlign?.sm || "center",
     width: props.width?.sm,
   },
   // [breakpoints.xs]: {

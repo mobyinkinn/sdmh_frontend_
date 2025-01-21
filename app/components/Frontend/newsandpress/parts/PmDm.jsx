@@ -1,48 +1,48 @@
-import { Head1 } from '@/app/styledComponents/frontend/Headings';
-import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-import { Box, Stack, Typography } from '@mui/material';
-import React from 'react'
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Box, Stack, Typography } from "@mui/material";
+import React from "react";
 import image from "./assests/Img1.png"; // Replace this with your actual image imports
-import Image from 'next/image';
-import { ButtonSmallOutline } from '@/app/styledComponents/frontend/Buttons';
+import Image from "next/image";
+import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
 
 const PmDm = () => {
-    const data = [
-      {
-        id: 1,
-        img: image,
-        title: "Blood Donation Camp Through JSG GEM CITY",
-      },
-      {
-        id: 2,
-        img: image,
-        title: "Blood Donation Camp Through JSG GEM CITY",
-      },
-      {
-        id: 3,
-        img: image,
-        title: "Blood Donation Camp Through JSG GEM CITY Lab",
-      },
-      {
-        id: 4,
-        img: image,
-        title: "Blood Donation Camp Through JSG GEM CITYm",
-      },
-      {
-        id: 5,
-        img: image,
-        title: "Blood Donation Camp Through JSG GEM CITY",
-      },
-      {
-        id: 6,
-        img: image,
-        title: "Blood Donation Camp Through JSG GEM CITY",
-      },
-    ];
+  const data = [
+    {
+      id: 1,
+      img: image,
+      title: "Blood Donation Camp Through JSG GEM CITY",
+    },
+    {
+      id: 2,
+      img: image,
+      title: "Blood Donation Camp Through JSG GEM CITY",
+    },
+    {
+      id: 3,
+      img: image,
+      title: "Blood Donation Camp Through JSG GEM CITY Lab",
+    },
+    {
+      id: 4,
+      img: image,
+      title: "Blood Donation Camp Through JSG GEM CITYm",
+    },
+    {
+      id: 5,
+      img: image,
+      title: "Blood Donation Camp Through JSG GEM CITY",
+    },
+    {
+      id: 6,
+      img: image,
+      title: "Blood Donation Camp Through JSG GEM CITY",
+    },
+  ];
 
   return (
-    <Stack p={5}>
-      <Stack direction={"row"} justifyContent={"center"}>
+    <Stack p={{ md: 5, xs: 2 }}>
+      <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"center"}>
         <Head1 color="#007946">Print Media&nbsp;</Head1>
         <Head1 color="black">Releases and&nbsp;</Head1>
         <Head1 color="#007946">Digital Media</Head1>
@@ -56,7 +56,7 @@ const PmDm = () => {
         justifyContent={"center"}
         alignItems={"center"}
         gap={2}
-        p={3}
+        p={{ md: 3, xs: "10px 0" }}
       >
         {data.map((item) => (
           <Box
@@ -79,7 +79,7 @@ const PmDm = () => {
             />
             <Stack>
               <Typography
-              width={"70%"}
+                width={"70%"}
                 sx={{
                   position: "absolute",
                   bottom: "40%",
@@ -94,8 +94,8 @@ const PmDm = () => {
               </Typography>
               <ButtonSmallOutline
                 style={{
-                    backgroundColor:"white",
-                    border:"1px solid white",
+                  backgroundColor: "white",
+                  border: "1px solid white",
                   position: "absolute",
                   bottom: "20%",
                   left: "22%",
@@ -110,7 +110,6 @@ const PmDm = () => {
       </Stack>
     </Stack>
   );
-}
+};
 
-export default PmDm
-
+export default PmDm;

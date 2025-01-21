@@ -6,13 +6,13 @@ import { Stack } from "@mui/material";
 export default function CareCard({ el, type }) {
   return (
     <ContainerMain
-      dir="row"
+      flexDirection={{ lg: "row", md: "row", smm: "column", sm: "column" }}
       alignItems="center"
       borderRadius="10px"
       bgColor={type === "white" && "white"}
       border={type === "white" ? "none" : "1px solid rgba(45, 45, 45, 0.5)"}
     >
-      <Stack width={"70%"} gap={"20px"}>
+      <Stack width={{ md: "70%" }} gap={"20px"}>
         <Head3 color="black" textAlign="left">
           {el.title}
         </Head3>
@@ -28,7 +28,7 @@ export default function CareCard({ el, type }) {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           height: "80vh",
-          width: "30%",
+          width: { md: "30%", xs: "100%" },
           borderRadius: "10px",
         }}
       ></Stack>

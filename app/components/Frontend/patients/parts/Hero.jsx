@@ -13,7 +13,12 @@ export default function Hero({ sectionsRef }) {
         gap={{ lg: "20px", sm: "10px" }}
         alignItems={{ sm: "center", lg: "left" }}
         bgColor="#D2E4D8"
-        padding={{ md: "100px 70px", sm: "100px 20px", smm: "100px 20px" }}
+        padding={{
+          lg: "100px 70px",
+          md: "100px 70px",
+          sm: "100px 20px",
+          smm: "100px 20px",
+        }}
         width={{ lg: "90%", md: "90%", sm: "100%" }}
       >
         <Head1 color="black" textAlign="left">

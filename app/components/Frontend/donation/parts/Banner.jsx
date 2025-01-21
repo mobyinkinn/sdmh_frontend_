@@ -78,7 +78,7 @@ export default function Banner() {
       <Stack
         position={"relative"}
         width={{ lg: "40%", sm: "85%" }}
-        height={"70vh"}
+        height={{ md: "70vh", xs: "50vh" }}
       >
         <Image
           src={banner}

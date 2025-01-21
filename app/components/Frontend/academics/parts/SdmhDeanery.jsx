@@ -1,13 +1,13 @@
-import { ContainerMain } from '@/app/styledComponents/frontend/Container'
-import { Head1 } from '@/app/styledComponents/frontend/Headings'
-import { ParaNormal } from '@/app/styledComponents/frontend/Para'
-import { Stack } from '@mui/material'
-import React from 'react'
-import Imag from "./assets/deanery.png"
+import { ContainerMain } from "@/app/styledComponents/frontend/Container";
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Stack } from "@mui/material";
+import React from "react";
+import Imag from "./assets/deanery.png";
 import Image from "next/image";
 
 const SdmhDeanery = () => {
-    const bannerImage = [Imag, Imag, Imag, Imag]
+  const bannerImage = [Imag, Imag, Imag, Imag];
   return (
     <>
       <ContainerMain style={{ backgroundColor: "#D2E4D8" }}>
@@ -31,16 +31,28 @@ const SdmhDeanery = () => {
           holds the position of Consultant, in Paediatric Intensive Care at
           SDMH.
         </ParaNormal>
-        <Stack width={"100%"} height={"40vh"} direction={"row"} gap={2}>
+        <Stack
+          width={"100%"}
+          height={{ md: "40vh" }}
+          direction={{ md: "row", xs: "column" }}
+          gap={2}
+        >
           {bannerImage.map((d) => (
-            <Stack position={"relative"} width={"25%"} height={"100%"}>
+            <Stack
+              position={"relative"}
+              width={{ md: "25%" }}
+              height={{ md: "100%", xs: "40vh" }}
+              key={d}
+            >
               <Image src={d.src} fill objectFit="contain" />
             </Stack>
           ))}
         </Stack>
       </ContainerMain>
-      <Stack bgcolor={"#007946"} padding={10} gap={1}>
-        <Head1 color="white">Contact Details</Head1>
+      <Stack bgcolor={"#007946"} padding={{ md: 10, xs: 3 }} gap={1}>
+        <Head1 color="white" textAlign="center" margin="0 auto">
+          Contact Details
+        </Head1>
         <ParaNormal color="white" textAlign={"center"}>
           Office of the Dean Academics, Room A2, Administration Wing (Basement),
           Santokba Durlabhji Memorial Hospital, Bhawani Singh Marg, Jaipur
@@ -51,6 +63,6 @@ const SdmhDeanery = () => {
       </Stack>
     </>
   );
-}
+};
 
-export default SdmhDeanery
+export default SdmhDeanery;

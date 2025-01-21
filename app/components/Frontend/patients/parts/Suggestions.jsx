@@ -8,8 +8,12 @@ import pencil from "./assets/pencil.png";
 
 export default function Suggestions() {
   return (
-    <ContainerMain alignItems="center" bgColor="#005900" dir="row">
-      <Stack width="70%" gap={"5px"}>
+    <ContainerMain
+      alignItems="center"
+      bgColor="#005900"
+      flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
+    >
+      <Stack width={{ md: "70%" }} gap={"5px"}>
         <Head1 color="white" textAlign="left">
           Your suggestions are welcome at
         </Head1>

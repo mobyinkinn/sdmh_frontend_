@@ -1,6 +1,9 @@
 "use client";
 
-import { ButtonSmallOutline, ButtonVerySmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import {
+  ButtonSmallOutline,
+  ButtonVerySmallOutline,
+} from "@/app/styledComponents/frontend/Buttons";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
@@ -16,7 +19,7 @@ const BannerImage = ({
   textcenter,
   color,
   descolor,
-  padding
+  padding,
 }) => {
   return (
     <ContainerMain gap="0" dir="row" padding="0" id="about">
@@ -33,7 +36,7 @@ const BannerImage = ({
           height={"100%"}
           justifyContent={"space-evenly"}
           pl={padding || 0}
-          direction={"row"}
+          direction={{ md: "row", xs: "column" }}
           alignItems={"center"}
         >
           <Stack justifyContent={align || "center"} gap={1} width={"50%"}>

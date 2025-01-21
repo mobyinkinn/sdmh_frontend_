@@ -15,12 +15,14 @@ const ContainerMain = styled.div((props) => ({
   justifyContent: props.justifyContent,
   alignItems: props.alignItems,
   backgroundColor: props.bgColor,
+  padding: props.padding || "50px",
+  flexDirection: props.flexDirection,
 
   // Default styles
-  padding: props.padding || props.padding?.lg || "50px",
+  // padding: props.padding?.lg,
   gap: props.gap?.lg || "20px",
   display: props.display?.lg || "flex",
-  flexDirection: props.flexDirection || props.flexDirection?.lg || "column",
+  flexDirection: props.flexDirection?.lg || "column",
 
   // Breakpoint-specific styles
   [breakpoints.md]: {
