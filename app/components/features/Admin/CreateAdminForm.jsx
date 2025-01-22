@@ -34,6 +34,7 @@ const options = [
   { value: "careers", label: "careers" },
   { value: "plans", label: "Health Plans" },
   { value: "tips", label: "Health Tips" },
+  { value: "pages", label: "Pages" },
 ];
 
 function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
@@ -48,7 +49,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createDepartment } = useCreateDepartment();
   //   const { isEditing, editCabin } = useEditCabin();
   const [menu, setMenu] = useState([]);
-const [isshow, setisshow] = useState("")
+  const [isshow, setisshow] = useState("");
   const isWorking = isCreating;
 
   function handleMenu(e) {
@@ -87,7 +88,7 @@ const [isshow, setisshow] = useState("")
   }
   return (
     <Form
-    style={{overflow:"visible"}}
+      style={{ overflow: "visible" }}
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
@@ -127,7 +128,7 @@ const [isshow, setisshow] = useState("")
       <FormRow label="Password" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
-          type={!isshow?"password":"name"}
+          type={!isshow ? "password" : "name"}
           id="password"
           {...register("password", {
             required: "This field is required",

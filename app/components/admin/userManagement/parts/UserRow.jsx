@@ -70,12 +70,10 @@ function UserRow({ user: { _id: id, menu, name, username, status } }) {
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Stacked>
-        <span>Username</span>
         <span>{username}</span>
       </Stacked>
 
