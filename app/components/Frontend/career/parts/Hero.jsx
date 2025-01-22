@@ -16,21 +16,32 @@ import banner from "./assets/bannerImage.png";
 
 export default function Hero(params) {
   return (
-    <ContainerMain bgColor="#D2E4D8" dir="row" alignItems={"center"}>
+    <ContainerMain
+      bgColor="#D2E4D8"
+      flexDirection={{ md: "row", sm: "column-reverse", smm: "column-reverse" }}
+      alignItems={"center"}
+    >
       <Stack
         gap={"10px"}
-        width={"60%"}
-        height={"70vh"}
+        width={{ md: "60%" }}
+        height={{ md: "70vh" }}
         justifyContent={"center"}
-        paddingLeft={"40px"}
+        alignItems={{ xs: "center", md: "none" }}
+        paddingLeft={{ md: "40px" }}
       >
-        <Head1 color="#476C9B" textAlign="left">
+        <Head1
+          color="#476C9B"
+          textAlign={{ lg: "left", md: "left", sm: "center", smm: "center" }}
+        >
           Transforming Healthcare
         </Head1>
-        <Head1 color="#476C9B" textAlign="left">
+        <Head1
+          color="#476C9B"
+          textAlign={{ lg: "left", md: "left", sm: "center", smm: "center" }}
+        >
           Transforming Lives
         </Head1>
-        <ParaNormal>
+        <ParaNormal textAlign={{ lg: "left", sm: "center", smm: "center" }}>
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout.
         </ParaNormal>
@@ -38,7 +49,11 @@ export default function Hero(params) {
           Explore Jobs
         </ButtonMediumOutline>
       </Stack>
-      <Stack width={"40%"} height={"50vh"} position={"relative"}>
+      <Stack
+        width={{ md: "40%", xs: "100%" }}
+        height={"50vh"}
+        position={"relative"}
+      >
         <Image
           src={banner}
           fill

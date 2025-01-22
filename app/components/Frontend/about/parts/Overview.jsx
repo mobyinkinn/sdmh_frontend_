@@ -15,7 +15,7 @@ export default function Overview() {
   return (
     <ContainerMain bgColor="#F9F9F9" id="overview">
       <Head1 color="black">Overview</Head1>
-      <ParaNormal>
+      <ParaNormal textAlign={{ md: "left", sm: "center" }}>
         The Santokba Durlabhji Trust was founded in 1958 with a vision to
         provide quality care to the common man – without favour or
         discrimination. The Santokba Durlabhji Memorial Hospital was established
@@ -23,14 +23,14 @@ export default function Overview() {
         hospital was dedicated to the Armed Forces as the nation was then in the
         throes of a war with Pakistan.
       </ParaNormal>
-      <ParaNormal>
+      <ParaNormal textAlign={{ md: "left", sm: "center" }}>
         Since then, SDMH has continued to provide affordable health care through
         the several philanthropic initiatives it has undertaken e.g. The Avedna
         Ashram, the Rehabilitation and Limb Fitting Centre, the Outreach
         Programme, Project Prayatna (eradication of thalassemia) and several
         other projects that serve to alleviate human suffering.
       </ParaNormal>
-      <ParaNormal>
+      <ParaNormal textAlign={{ md: "left", sm: "center" }}>
         Sdmh Is A Private, Trust-managed, Autonomous, Fee-for-services And
         Not-for-profit Hospital. It Is A Multidisciplinary, 525-bed, Tertiary
         Care Hospital. It Houses Several Wards, Operation Theatres, Icus,
@@ -41,12 +41,21 @@ export default function Overview() {
       <Stack
         direction="row"
         marginTop={"40px"}
-        justifyContent={"space-between"}
+        justifyContent={{ md: "space-between", xs: "center" }}
+        gap={{ xs: "30px", md: "none" }}
+        flexWrap={"wrap"}
         width={"100%"}
+        rowGap={"10px"}
+        columnGap={"10px"}
       >
         {overviewImages.map((el, i) => {
           return (
-            <Stack width={"20%"} height={"30vh"} position={"relative"}>
+            <Stack
+              width={{ md: "20%", xs: "40%" }}
+              height={"30vh"}
+              position={"relative"}
+              key={i}
+            >
               <Image
                 src={el}
                 fill

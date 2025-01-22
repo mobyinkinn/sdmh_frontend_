@@ -16,10 +16,10 @@ export default function CareerInner() {
   const { data, isLoading, error } = useOpeningById(_id);
   const router = useRouter();
 
-  if(isLoading){
-   return <Spinner/>
+  if (isLoading) {
+    return <Spinner />;
   }
-  console.log("datqa",data)
+  console.log("datqa", data);
   return (
     <Stack>
       <Navbar />
@@ -27,7 +27,7 @@ export default function CareerInner() {
       <Stack bgcolor={"#D2E4D8"} p={"43px 111px"}>
         <ParaNormalSmall
           color="inherit"
-          dangerouslySetInnerHTML={{ __html: data.jd }}
+          dangerouslySetInnerHTML={{ __html: data?.jd }}
         />
         <Stack alignItems={"center"}>
           <ButtonSmallOutlineWithoutHover

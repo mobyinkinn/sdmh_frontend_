@@ -4,12 +4,15 @@ import { Stack } from "@mui/material";
 export default function RestCard({ el, setActiveEl, activeEl }) {
   return (
     <Stack
-      alignItems="center"
+      alignItems={{ md: "center" }}
       borderRadius={"10px"}
+      justifyContent={"space-between"}
       backgroundColor={el.id === activeEl ? "#D2E4D8" : "#A6C9B2"}
-      width={"24%"}
+      width={{ md: "24%" }}
       gap={"10px"}
       padding={"20px"}
+      margin="5px"
+      height={{ smm: "50vh", xs: "40vh" }}
       sx={{
         cursor: "pointer",
         transition: "all 0.3s ease",

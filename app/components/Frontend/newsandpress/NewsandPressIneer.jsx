@@ -16,7 +16,7 @@ const NewsandPressIneer = () => {
       <Navbar />
       <Stack
         width={"100%"}
-        height={"90vh"}
+        height={{ md: "90vh", xs: "50vh" }}
         alignItems={"center"}
         sx={{
           backgroundImage: `url(${banner.src})`,
@@ -26,7 +26,7 @@ const NewsandPressIneer = () => {
         }}
         justifyContent={"center"}
       />
-      <Stack p={"20px 72px"} gap={2}>
+      <Stack p={{ md: "20px 72px", xs: "20px" }} gap={2}>
         <Head1 color="#476C9B">{slug}</Head1>
         <ParaNormal style={{ textAlign: "justify" }}>
           It is a long established fact that a reader will be distracted by the

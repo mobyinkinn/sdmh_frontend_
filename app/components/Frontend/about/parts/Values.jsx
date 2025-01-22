@@ -6,7 +6,10 @@ import img2 from "./assets/empthy.png";
 import img3 from "./assets/intigrity.png";
 import img4 from "./assets/progress.png";
 import img5 from "./assets/trust.png";
-import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import {
+  ParaNormal,
+  ParaNormalSmall,
+} from "@/app/styledComponents/frontend/Para";
 import Image from "next/image";
 import { Stack } from "@mui/material";
 
@@ -22,11 +25,16 @@ export default function Values() {
   return (
     <ContainerMain bgColor="#4B9369" id="mission">
       <Head1 color="white">Our values</Head1>
-      <Stack direction={"row"} gap={"20px"} justifyContent={"center"}>
+      <Stack
+        flexWrap={"wrap"}
+        direction={"row"}
+        gap={"20px"}
+        justifyContent={"center"}
+      >
         {valueData.map((el, i) => {
           return (
             <Stack
-              width={"15%"}
+              width={{ md: "15%", xs: "45%" }}
               alignItems={"center"}
               gap={"10px"}
               padding={"20px"}
@@ -40,7 +48,11 @@ export default function Values() {
                 },
               }}
             >
-              <Stack width={"100%"} height={"15vh"} position={"relative"}>
+              <Stack
+                width={"100%"}
+                height={{ lg: "15vh", sm: "10vh" }}
+                position={"relative"}
+              >
                 <Image
                   fill
                   src={el.icon}
@@ -48,7 +60,7 @@ export default function Values() {
                   objectPosition="center center"
                 />
               </Stack>
-              <ParaNormal color="white">{el.name}</ParaNormal>
+              <ParaNormalSmall color="white">{el.name}</ParaNormalSmall>
             </Stack>
           );
         })}

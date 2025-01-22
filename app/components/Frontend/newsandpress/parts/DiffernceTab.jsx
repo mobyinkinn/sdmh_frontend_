@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React, { useState } from "react";
@@ -100,7 +98,6 @@ const data = [
   },
 ];
 
-
 const DiffernceTab = () => {
   const [mediaType, setMediaType] = useState("PrintMedia");
   const [formatType, setFormatType] = useState("Image");
@@ -111,14 +108,14 @@ const DiffernceTab = () => {
   );
 
   return (
-    <Box bgcolor={"#EDF5E1"} p={4}>
+    <Box bgcolor={"#EDF5E1"} p={{ md: 4, xs: 2 }}>
       {/* Top Tabs: Media Type */}
       <Stack
-        direction="row"
+        direction={{ md: "row" }}
         justifyContent="center"
         alignItems="center"
-        gap={2}
-        mt={3}
+        gap={{ md: 2, xs: 1 }}
+        mt={{ md: 3 }}
         sx={{
           "& .MuiButton-root": {
             padding: "10px 20px",
@@ -173,9 +170,11 @@ const DiffernceTab = () => {
           mt: 2,
           "& .MuiTab-root": {
             textTransform: "none",
-            fontSize: "16px",
+            fontSize: { md: "16px", xs: "12px" },
             fontWeight: "600",
             color: "#2A803C",
+            minWidth: "auto",
+            padding: { md: "30px", xs: "10px" },
             "&.Mui-selected": {
               color: "#2A803C",
             },
@@ -264,4 +263,3 @@ const DiffernceTab = () => {
 };
 
 export default DiffernceTab;
-

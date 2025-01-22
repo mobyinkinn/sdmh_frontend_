@@ -3,7 +3,10 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
-import { Stack } from "@mui/material";
+import { autocompleteClasses, Box, Stack } from "@mui/material";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 import img1 from "./assets/award1.png";
 import img2 from "./assets/award2.png";
@@ -20,6 +23,18 @@ const initialImages = [img1, img2, img3, img4, img5, img6, img7];
 export default function Awards() {
   const [center, setCenter] = useState(initialImages);
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    arrows: true,
+    slidesToShow: 1,
+    centerMode: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToScroll: 1,
+  };
+
   function swapImages(a) {
     const images = [...center];
     let temp = images[a].src;
@@ -33,22 +48,30 @@ export default function Awards() {
   };
 
   return (
-    <ContainerMain alignItems="center" id="awards">
+    <ContainerMain padding="0" alignItems="center" id="awards">
       <Stack
         gap={"10px"}
+        padding={{ md: "50px", xs: "20px" }}
         sx={{
           paddingBottom: "20px",
           borderBottom: "1px solid #2D2D2D",
-          width: "90%",
+          width: { md: "90%" },
         }}
       >
-        <Head1>Awards & Accreditation</Head1>
+        <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
+          Awards & Accreditation
+        </Head1>
         <Head3 color="black">
           BEST PLACES TO WORK IN HEALTHCARE IN INDIA BY
         </Head3>
-        <Head3 color="black">"HOSMAC" AND "PEOPLE STRONG"</Head3>
+        <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
+          "HOSMAC" AND "PEOPLE STRONG"
+        </Head1>
       </Stack>
-      <ParaNormal width="70%" textAlign="center">
+      <ParaNormal
+        width={{ sm: "100%", smm: "100%", md: "70%", lg: "70%" }}
+        textAlign="center"
+      >
         SDMH was placed among the top three "Best Places to Work in 2
         Healthcare" in India by "Hosmac" and "People Strong on 10th February,
         2013.
@@ -61,6 +84,7 @@ export default function Awards() {
         justifyContent={"end"}
         marginTop={"30px"}
         marginBottom={"40px"}
+        display={{ md: "flex", xs: "none" }}
       >
         <Stack
           sx={{
@@ -179,7 +203,44 @@ export default function Awards() {
           className="6"
         ></Stack>
       </Stack>
-      <ButtonMediumOutline color="#007946">View More</ButtonMediumOutline>
+      <Stack
+        width={"100%"}
+        height={"30vh"}
+        display={{ md: "none", xs: "flex" }}
+      >
+        <Slider {...settings}>
+          {initialImages.map((img, index) => (
+            <ImageCard key={index} img={img} />
+          ))}
+        </Slider>
+      </Stack>
+      <ButtonMediumOutline margin="20px 0" color="#007946">
+        View More
+      </ButtonMediumOutline>
     </ContainerMain>
+  );
+}
+
+function ImageCard({ img }) {
+  return (
+    <Stack padding="5px">
+      <Stack
+        width="100%"
+        height="30vh"
+        padding="5px"
+        backgroundColor="#476C9B"
+        borderRadius="5px"
+      >
+        <Box
+          sx={{
+            backgroundImage: `url(${img.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            height: "100%",
+            width: "100%",
+          }}
+        ></Box>
+      </Stack>
+    </Stack>
   );
 }

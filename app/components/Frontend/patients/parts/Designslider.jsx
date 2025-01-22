@@ -37,20 +37,19 @@ const Designslider = ({
     dots: false, // Add dots for debugging
     infinite: true,
     speed: 500,
-    autoplay:true,
+    autoplay: true,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: false,
     beforeChange: (current, next) => setActiveSlide(next),
   };
-const handleDotClick = (index) => {
-  setActiveSlide(index);
-  DesisliderRef.current.slickGoTo(index); 
-};
+  const handleDotClick = (index) => {
+    setActiveSlide(index);
+    DesisliderRef.current.slickGoTo(index);
+  };
 
   return (
-    <Stack
-    >
+    <Stack>
       <Box>
         <Slider ref={DesisliderRef} {...settings}>
           {bannerImages.map((group, groupIndex) => (
@@ -70,21 +69,26 @@ const handleDotClick = (index) => {
                 alignItems={"center"}
               >
                 <Stack
-                gap={2}
+                  gap={2}
                   key={group.id}
                   sx={{
-                    width: "50%", // Each card takes 22% to allow spacing
+                    width: { md: "50%", xs: "90%" }, // Each card takes 22% to allow spacing
                     padding: "10px",
                     borderRadius: "10px",
                   }}
                 >
-                  <Head1 color="#005900" style={{textAlign:"left", fontWeight:"none"}}>
+                  <Head1
+                    color="#005900"
+                    style={{ textAlign: "left", fontWeight: "none" }}
+                  >
                     {group.title}
                   </Head1>
                   <Stack gap={2}>
                     {group.des.map((d) => (
                       <ul>
-                        <li style={{fontSize:"15px", textAlign:"justify"}}>{d}</li>
+                        <li style={{ fontSize: "15px", textAlign: "justify" }}>
+                          {d}
+                        </li>
                       </ul>
                     ))}
                   </Stack>

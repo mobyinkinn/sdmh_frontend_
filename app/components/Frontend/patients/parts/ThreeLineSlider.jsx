@@ -1,14 +1,3 @@
-// import React from 'react'
-
-// const ThreeLineSlider = () => {
-//   return (
-//     <div>ThreeLineSlider</div>
-//   )
-// }
-
-// export default ThreeLineSlider
-
-
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";

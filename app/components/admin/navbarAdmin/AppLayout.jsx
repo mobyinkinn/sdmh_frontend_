@@ -162,6 +162,7 @@ const navData = [
 function AppLayout({ children }) {
   const [user, setUser] = useState(null);
   const { currAdmin, isFetching } = useCurrentAdmin();
+  console.log(currAdmin)
   const router = useRouter();
   const pathname = usePathname();
 

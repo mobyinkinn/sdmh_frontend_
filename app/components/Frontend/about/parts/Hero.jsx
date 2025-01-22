@@ -19,7 +19,7 @@ const sideNavData = [
 ];
 
 export default function Hero() {
-    const { data, isLoading, error } = useBannerByPage("contact us");
+  const { data, isLoading, error } = useBannerByPage("contact us");
   const handleScroll = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth", // Smooth scrolling
@@ -28,25 +28,29 @@ export default function Hero() {
   };
 
   return (
-    <ContainerMain gap="0" dir="row" padding="0" id="about">
+    <ContainerMain gap="0" dir="row" padding="20px 0" id="about">
       <Stack
-        width={"85%"}
-        height={"90vh"}
+        width={{ md: "85%", sm: "90%", smm: "90%" }}
+        height={{ md: "90vh" }}
+        margin="0 auto"
         sx={{
           backgroundImage: `url(${data?.banner})`,
           backgroundSize: "contain",
-          backgroundRepeat:"no-repeat",
+          backgroundRepeat: "no-repeat",
           backgroundPosition: "center center",
         }}
         justifyContent={"center"}
         gap={"10px"}
-        paddingLeft={"100px"}
+        paddingLeft={{ md: "100px" }}
       >
-        <Stack direction={"row"}>
+        <Stack direction={"row"} margin={"0 auto"}>
           <Head1 color="black">About&nbsp;</Head1>
           <Head1 color="#476C9B">SDMH</Head1>
         </Stack>
-        <ParaNormal width="60%">
+        <ParaNormal
+          width={{ md: "60%" }}
+          textAlign={{ sm: "center", smm: "center", md: "left" }}
+        >
           It Is a Long Established Fact That a Reader Will Be Distracted By The
           Readable Content of a Page When Looking At Its Layout. The Point of
           Using Lorem Ipsum Is That It Has a More-or-less Normal Distribution of
@@ -54,22 +58,32 @@ export default function Hero() {
           Look Like Readable English.
         </ParaNormal>
       </Stack>
-      <Stack>
+      <Stack
+        justifyContent={"center"}
+        direction={{ md: "column", sm: "row", xs: "row" }}
+        flexWrap="wrap"
+      >
         {sideNavData.map((el, i) => {
           return (
-            <Typography
-              key={i}
-              fontSize={"1.2rem"}
-              sx={{
-                padding: "10px 15px",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                "&:hover": { backgroundColor: "#007946", color: "white" },
-              }}
-              onClick={() => handleScroll(el.idName)}
-            >
-              {el.name}
-            </Typography>
+            <Stack width={{ lg: "100%", sm: "25%" }}>
+              <Typography
+                key={i}
+                fontSize={{ lg: "1.2rem", sm: "0.7rem" }}
+                sx={{
+                  padding: { md: "10px 15px", xs: "5px" },
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  fontSize: { md: "1.2rem", xs: "0.9rem" },
+                  "&:hover": {
+                    backgroundColor: { md: "#007946" },
+                    color: { md: "white", xs: "#007946" },
+                  },
+                }}
+                onClick={() => handleScroll(el.idName)}
+              >
+                {el.name}
+              </Typography>
+            </Stack>
           );
         })}
       </Stack>

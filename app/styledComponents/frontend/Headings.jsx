@@ -11,24 +11,28 @@ const Head1 = styled.span((props) => ({
   position: props.position,
   color: props.color || "#379237",
   fontWeight: props.fontWeight || "bold",
-  textAlign: props.textAlign?.lg || "center",
   width: props.width,
+  textAlign: props.textAlign || "center",
 
   // Default font size
-  fontSize: props.fontSize?.lg || "3rem",
+
+  [breakpoints.lg]: {
+    textAlign: props.textAlign?.lg || "center",
+    fontSize: props.fontSize || "3rem",
+  },
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
     fontSize: props.fontSize?.md || "2rem",
-    textAlign: props.textAlign?.md,
+    textAlign: props.textAlign?.md || "center",
   },
   [breakpoints.smm]: {
     fontSize: props.fontSize?.smm || "1.4rem",
-    textAlign: props.textAlign?.smm,
+    textAlign: props.textAlign?.smm || "center",
   },
   [breakpoints.sm]: {
-    fontSize: props.fontSize?.sm || "1.2rem",
-    textAlign: props.textAlign?.sm,
+    fontSize: props.fontSize?.sm || "1.1rem",
+    textAlign: props.textAlign?.sm || "center",
     width: props.width?.sm,
   },
   // [breakpoints.xs]: {
@@ -62,7 +66,22 @@ const Head3 = styled.span((props) => ({
   fontWeight: props.fontWeight || "bold",
   textAlign: props.textAlign || "center",
   width: props.width,
-  fontSize: "1.8rem",
+  fontSize: props.fontSize?.lg || "1.8rem",
+  margin: props.margin || "0",
+
+  // Breakpoint-specific font sizes
+  [breakpoints.md]: {
+    fontSize: props.fontSize?.md || "1.5rem",
+    width: props.width?.md,
+  },
+  [breakpoints.smm]: {
+    fontSize: props.fontSize?.smm || "1.2rem",
+    width: props.width?.smm,
+  },
+  [breakpoints.sm]: {
+    fontSize: props.fontSize?.sm || "0.9rem",
+    width: props.width?.sm,
+  },
 }));
 
 const Head4 = styled.span((props) => ({
@@ -73,16 +92,24 @@ const Head4 = styled.span((props) => ({
 
   // Default font size
   fontSize: props.fontSize?.lg || "1.3rem",
+  textAlign: props.textAlign?.lg,
+  fontWeight: props.fontWeight?.lg,
 
   // Breakpoint-specific font sizes
   [breakpoints.md]: {
     fontSize: props.fontSize?.md || "1rem",
+    textAlign: props.textAlign?.md,
+    fontWeight: props.fontWeight?.md,
   },
   [breakpoints.smm]: {
     fontSize: props.fontSize?.smm || "1rem",
+    textAlign: props.textAlign?.smm,
+    fontWeight: props.fontWeight?.smm,
   },
   [breakpoints.sm]: {
     fontSize: props.fontSize?.sm || "1rem",
+    textAlign: props.textAlign?.sm,
+    fontWeight: props.fontWeight?.sm,
   },
 }));
 

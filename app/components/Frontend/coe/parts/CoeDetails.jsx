@@ -21,7 +21,6 @@ export default function CoeDetails() {
         <Procedure />
         <Doctors />
       </ContainerMain>
-
       <Footer />
     </Stack>
   );
