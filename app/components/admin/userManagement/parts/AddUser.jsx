@@ -69,7 +69,7 @@ export default function AddUser({ setViewForm }) {
             >
               {menu.map((el, i) => {
                 return (
-                  <Checkbox>
+                  <Checkbox key={i}>
                     <input type="checkbox" />
                     <CheckboxLabel>{el}</CheckboxLabel>
                   </Checkbox>
@@ -87,7 +87,7 @@ export default function AddUser({ setViewForm }) {
             >
               {cms.map((el, i) => {
                 return (
-                  <Checkbox>
+                  <Checkbox key={i}>
                     <input type="checkbox" />
                     <CheckboxLabel>{el}</CheckboxLabel>
                   </Checkbox>
@@ -105,7 +105,7 @@ export default function AddUser({ setViewForm }) {
             >
               {donations.map((el, i) => {
                 return (
-                  <Checkbox>
+                  <Checkbox key={i}>
                     <input type="checkbox" />
                     <CheckboxLabel>{el}</CheckboxLabel>
                   </Checkbox>

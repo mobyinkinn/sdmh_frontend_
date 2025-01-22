@@ -89,6 +89,7 @@ const TabData = () => {
         >
           {careData.map((item, index) => (
             <Stack
+              key={index}
               direction="column"
               width="40%"
               color="#fff"

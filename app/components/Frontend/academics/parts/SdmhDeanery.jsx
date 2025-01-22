@@ -37,12 +37,12 @@ const SdmhDeanery = () => {
           direction={{ md: "row", xs: "column" }}
           gap={2}
         >
-          {bannerImage.map((d) => (
+          {bannerImage.map((d, i) => (
             <Stack
               position={"relative"}
               width={{ md: "25%" }}
               height={{ md: "100%", xs: "40vh" }}
-              key={d}
+              key={i}
             >
               <Image src={d.src} fill objectFit="contain" />
             </Stack>

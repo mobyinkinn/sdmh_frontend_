@@ -84,8 +84,8 @@ const Designslider = ({
                     {group.title}
                   </Head1>
                   <Stack gap={2}>
-                    {group.des.map((d) => (
-                      <ul>
+                    {group.des.map((d, i) => (
+                      <ul key={i}>
                         <li style={{ fontSize: "15px", textAlign: "justify" }}>
                           {d}
                         </li>

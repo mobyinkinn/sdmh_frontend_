@@ -152,6 +152,7 @@ export default function Doctors({ data, departments }) {
       {data.map((el, i) => {
         return (
           <Stack
+            key={i}
             height={"100vh"}
             width={{ lg: "30%", md: "45%", xs: "100%" }}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
@@ -202,6 +203,7 @@ export default function Doctors({ data, departments }) {
                 {days.map((ele, i) => {
                   return (
                     <ButtonVerySmallOutline
+                      key={i}
                       color={el.availablity.includes(ele) ? "white" : "#379237"}
                       bgColor={
                         el.availablity.includes(ele) ? "#379237" : "transparent"

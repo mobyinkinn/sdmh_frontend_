@@ -12,32 +12,32 @@ import Image from "next/image";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 
 const EventInner = () => {
-    const data = [
-      {
-        Img: Recent,
-        Title:
-          "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-        data: "13 Dec 2024",
-      },
-      {
-        Img: Recent,
-        Title:
-          "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-        data: "13 Dec 2024",
-      },
-      {
-        Img: Recent,
-        Title:
-          "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-        data: "13 Dec 2024",
-      },
-      {
-        Img: Recent,
-        Title:
-          "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-        data: "13 Dec 2024",
-      },
-    ];
+  const data = [
+    {
+      Img: Recent,
+      Title:
+        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+      data: "13 Dec 2024",
+    },
+    {
+      Img: Recent,
+      Title:
+        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+      data: "13 Dec 2024",
+    },
+    {
+      Img: Recent,
+      Title:
+        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+      data: "13 Dec 2024",
+    },
+    {
+      Img: Recent,
+      Title:
+        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+      data: "13 Dec 2024",
+    },
+  ];
   const { id } = useParams();
   return (
     <>
@@ -82,15 +82,31 @@ const EventInner = () => {
             </ParaNormal>
           </Stack>
         </Stack>
-        <Stack width={"24%"} bgcolor={"#476C9B"} p={3} borderRadius={2} gap={2} alignItems={"center"}>
+        <Stack
+          width={"24%"}
+          bgcolor={"#476C9B"}
+          p={3}
+          borderRadius={2}
+          gap={2}
+          alignItems={"center"}
+        >
           <Head1 color="white" style={{ fontSize: "20px" }}>
             Recent Events
           </Head1>
-          {data.map((d) => (
-            <Stack gap={"5px"}>
-              <Image src={d.Img.src} width={300} height={200} style={{borderRadius:"15px"}}/>
-              <ParaNormal color="white" style={{fontSize:"15px"}}>{d.data}</ParaNormal>
-              <Head1 style={{ fontSize: "18px", color: "white", textAlign:"left" }}>
+          {data.map((d, i) => (
+            <Stack gap={"5px"} key={i}>
+              <Image
+                src={d.Img.src}
+                width={300}
+                height={200}
+                style={{ borderRadius: "15px" }}
+              />
+              <ParaNormal color="white" style={{ fontSize: "15px" }}>
+                {d.data}
+              </ParaNormal>
+              <Head1
+                style={{ fontSize: "18px", color: "white", textAlign: "left" }}
+              >
                 {d.Title}
               </Head1>
             </Stack>

@@ -35,8 +35,8 @@ const Tabs = () => {
         py={2}
         margin="10px"
       >
-        {filteredData?.map((d) => (
-          <Stack bgcolor={"white"} p={2} gap={2} borderRadius={"15px"}>
+        {filteredData?.map((d, i) => (
+          <Stack bgcolor={"white"} key={i} p={2} gap={2} borderRadius={"15px"}>
             <Image src={d.logo} width={250} height={150} />
             <Typography textAlign={"center"}>{d.name}</Typography>
             <Stack alignItems={"center"}>

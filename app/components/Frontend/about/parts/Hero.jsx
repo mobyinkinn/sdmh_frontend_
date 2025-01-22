@@ -65,7 +65,7 @@ export default function Hero() {
       >
         {sideNavData.map((el, i) => {
           return (
-            <Stack width={{ lg: "100%", sm: "25%" }}>
+            <Stack key={i} width={{ lg: "100%", sm: "25%" }}>
               <Typography
                 key={i}
                 fontSize={{ lg: "1.2rem", sm: "0.7rem" }}

@@ -38,7 +38,7 @@ export default function Procedure() {
       >
         {prodedureData.map((el, i) => {
           return (
-            <Stack direction={"row"} gap={"40px"} width={"47%"}>
+            <Stack direction={"row"} gap={"40px"} width={"47%"} key={i}>
               <Stack
                 border={"2px solid #54B435"}
                 sx={{

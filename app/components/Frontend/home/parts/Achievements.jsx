@@ -37,7 +37,7 @@ export default function () {
       >
         {achievementData.map((el, i) => {
           return (
-            <Stack gap={"10px"} alignItems={"center"} width={"200px"}>
+            <Stack key={i} gap={"10px"} alignItems={"center"} width={"200px"}>
               <Image src={el.img} alt="" height={70} width={70} />
               <Head1 color={"white"}>{el.count}+</Head1>
               <Typography

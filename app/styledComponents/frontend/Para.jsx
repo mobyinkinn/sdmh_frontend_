@@ -14,12 +14,16 @@ const ParaNormal = styled.span((props) => ({
   fontWeight: props.fontWeight,
   width: props.width,
   lineHeight: props.lineHeight || "1.5",
-  textAlign: props.textAlign || props.textAlign?.lg || "left",
+  textAlign: props.textAlign || "left",
   margin: props.margin || props.margin?.lg || "0",
   fontSize: props.fontSize || "1.2rem",
-  width: props.width?.lg || "100%",
 
   // Breakpoint-specific values for textAlign
+
+  [breakpoints.lg]: {
+    width: props.width?.lg,
+    textAlign: props.textAlign?.lg,
+  },
   [breakpoints.md]: {
     textAlign: props.textAlign?.md,
     margin: props.margin?.md,

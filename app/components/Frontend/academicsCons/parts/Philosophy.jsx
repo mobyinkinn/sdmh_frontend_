@@ -1,21 +1,22 @@
-import { Head1 } from '@/app/styledComponents/frontend/Headings'
-import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-import { Stack } from '@mui/material'
-import React from 'react'
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Stack } from "@mui/material";
+import React from "react";
 import one from "./assets/five1.png";
 import two from "./assets/five1.png";
 import three from "./assets/five1.png";
 import four from "./assets/five1.png";
 import five from "./assets/five1.png";
-import Image from 'next/image';
-
+import Image from "next/image";
 
 const Philosophy = () => {
-    const images =[one,two,three,four,five]
+  const images = [one, two, three, four, five];
   return (
     <Stack bgcolor={"#D2E4D8"} p={"30px 100px"} gap={2}>
-      <Head1 color="black" style={{fontSize:"45px"}}>Philosophy of the Nursing College</Head1>
-      <ParaNormal style={{textAlign:"center"}}>
+      <Head1 color="black" style={{ fontSize: "45px" }}>
+        Philosophy of the Nursing College
+      </Head1>
+      <ParaNormal style={{ textAlign: "center" }}>
         The primary aim of the Nursing College is to translate the lofty ideals
         and philosophy of Santokba Durlabhji Trust into reality. The Trust
         believes that nursing is distinctive among professions in its angle of
@@ -30,12 +31,12 @@ const Philosophy = () => {
       </ParaNormal>
 
       <Stack direction={"row"} gap={1}>
-      {images.map((d)=>(
-        <Image src={d} width={240}/>
-    ))}
-    </Stack>
+        {images.map((d, i) => (
+          <Image src={d} key={i} width={240} />
+        ))}
+      </Stack>
     </Stack>
   );
-}
+};
 
-export default Philosophy
+export default Philosophy;

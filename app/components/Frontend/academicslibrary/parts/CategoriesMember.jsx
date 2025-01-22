@@ -1,34 +1,35 @@
-import { Head1 } from '@/app/styledComponents/frontend/Headings'
-import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-import { Box, Stack } from '@mui/material'
-import React from 'react'
-import doctor from "../parts/assets/doctor.png"
-import Image from 'next/image';
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Box, Stack } from "@mui/material";
+import React from "react";
+import doctor from "../parts/assets/doctor.png";
+import Image from "next/image";
 const CategoriesMember = () => {
-
-    const data = [
-      {
-        img: doctor,
-        title: "Doctor",
-      },
-      {
-        img: doctor,
-        title: "Doctor",
-      },
-      {
-        img: doctor,
-        title: "Doctor",
-      },
-    ];
+  const data = [
+    {
+      img: doctor,
+      title: "Doctor",
+    },
+    {
+      img: doctor,
+      title: "Doctor",
+    },
+    {
+      img: doctor,
+      title: "Doctor",
+    },
+  ];
 
   return (
     <Stack bgcolor={"#007946"} gap={1}>
-      <Head1 color="white" style={{paddingTop:"10px"}}>Categories for membership</Head1>
+      <Head1 color="white" style={{ paddingTop: "10px" }}>
+        Categories for membership
+      </Head1>
       <ParaNormal color="white" style={{ textAlign: "center" }}>
         Library membership will be classified into 3 categories
       </ParaNormal>
       <Stack direction={"row"} gap={2} justifyContent={"center"} p={"30px 0"}>
-        {data.map((d) => (
+        {data.map((d, i) => (
           //   <Box width={"30%"} height={"100%"}>
           //     <Image
           //       src={d.img}
@@ -38,6 +39,7 @@ const CategoriesMember = () => {
 
           //   </Box>
           <Stack
+            key={i}
             width={"24%"}
             height={"50vh"}
             alignItems={"center"}
@@ -68,6 +70,6 @@ const CategoriesMember = () => {
       </Stack>
     </Stack>
   );
-}
+};
 
-export default CategoriesMember
+export default CategoriesMember;

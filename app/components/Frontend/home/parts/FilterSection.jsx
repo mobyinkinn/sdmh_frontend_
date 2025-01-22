@@ -65,6 +65,7 @@ export default function FilterSection() {
             padding={{ lg: "40px", md: "30px" }}
             alignItems={"center"}
             gap={"10px"}
+            key={i}
             sx={{
               borderRight: "1px solid white",
             }}

@@ -67,7 +67,7 @@ export default function Reviews() {
       />
       <Slider {...settings}>
         {reviewData.map((el, i) => (
-          <ReviewCard el={el} />
+          <ReviewCard el={el} key={i} />
         ))}
       </Slider>
     </ContainerMain>

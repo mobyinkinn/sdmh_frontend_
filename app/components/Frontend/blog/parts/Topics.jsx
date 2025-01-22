@@ -1,5 +1,3 @@
-
-
 "use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
@@ -13,13 +11,13 @@ import Spinner from "@/app/components/ui/Spinner";
 const Topics = () => {
   const [selectedTitle, setSelectedTitle] = useState(null); // Track selected title
   const { data, isLoading, error } = useBlogs();
- const filteredData = data?.filter((el, i) => el.status === true);
+  const filteredData = data?.filter((el, i) => el.status === true);
   // Filter unique blogs based on title
   const uniqueBlogs = filteredData?.filter(
     (blog, index, self) =>
       index === self.findIndex((b) => b.title === blog.title)
   );
-    
+
   useEffect(() => {
     if (filteredData && filteredData.length > 0 && !selectedTitle) {
       setSelectedTitle(filteredData[0].title); // Set the title of the first blog as default

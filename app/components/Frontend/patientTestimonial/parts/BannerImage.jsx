@@ -38,16 +38,36 @@ const BannerImage = ({
           pl={padding || 0}
           direction={{ md: "row", xs: "column" }}
           alignItems={"center"}
+          paddingTop={{ xs: "30px", md: "0" }}
         >
-          <Stack justifyContent={align || "center"} gap={1} width={"50%"}>
-            <ParaNormal>What our</ParaNormal>
-            <Stack direction={"row"}>
+          <Stack
+            justifyContent={align || "center"}
+            alignItems={{ sm: "center", md: "flex-start" }}
+            gap={1}
+            width={{ md: "50%", xs: "80%" }}
+          >
+            <ParaNormal
+              textAlign={{
+                lg: "left",
+                md: "left",
+                smm: "center",
+                sm: "center",
+              }}
+            >
+              What our
+            </ParaNormal>
+            <Stack direction={"row"} margin={{ xs: "0 auto", md: "0" }}>
               <Head1 color={color || "white"}>{title}</Head1>
             </Stack>
             <ParaNormal
-              width="63%"
+              textAlign={{
+                lg: "left",
+                md: "left",
+                smm: "center",
+                sm: "center",
+              }}
+              width={{ lg: "63%", md: "63%", smm: "90%", sm: "90%" }}
               color={descolor || "white"}
-              textAlign={textcenter || "center"}
             >
               {description}
             </ParaNormal>
@@ -58,7 +78,14 @@ const BannerImage = ({
               View More
             </ButtonSmallOutline>
           </Stack>
-          <Image src={image} width={400} />
+          <Stack position="relative" width={"30%"} height={"100%"}>
+            <Image
+              src={image}
+              fill
+              objectFit="contain"
+              objectPosition="center center"
+            />
+          </Stack>
         </Stack>
       </Stack>
     </ContainerMain>

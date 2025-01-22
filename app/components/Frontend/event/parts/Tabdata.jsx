@@ -63,36 +63,36 @@ const Tabdata = () => {
       status: true,
     },
   ];
-   const categories = [
-     "All",
-     ...new Set(eventData.map((event) => event.category)),
-   ];
+  const categories = [
+    "All",
+    ...new Set(eventData.map((event) => event.category)),
+  ];
 
-   // Filter event data based on the selected category
-   const filteredData =
-     selectedCategory === "All"
-       ? eventData
-       : eventData.filter((event) => event.category === selectedCategory);
+  // Filter event data based on the selected category
+  const filteredData =
+    selectedCategory === "All"
+      ? eventData
+      : eventData.filter((event) => event.category === selectedCategory);
 
   return (
     <>
       {/* Tabs Section */}
       <Stack
         direction="row"
-        gap={2}
-        padding={5}
-        justifyContent="center"
+        gap={{ md: 2, xs: 1 }}
+        padding={{ md: 5, xs: 2 }}
+        justifyContent={{ md: "center", xs: "start" }}
+        flexWrap="wrap"
         bgcolor={"#476C9B"}
       >
-        {categories.map((category) => (
+        {categories.map((category, i) => (
           <Button
-        
-            key={category}
+            key={i}
             variant={selectedCategory === category ? "contained" : "outlined"}
             color="primary"
             onClick={() => setSelectedCategory(category)}
             sx={{
-                padding:"5px 30px",
+              padding: "5px 30px",
               backgroundColor:
                 selectedCategory === category ? "white" : "transparent",
               color: selectedCategory === category ? "#476C9B" : "white",

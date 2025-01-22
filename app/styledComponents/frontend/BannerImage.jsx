@@ -48,7 +48,7 @@ const BannerImage = ({
               <Head1 color={color || "white"}>{title}</Head1>
             </Stack>
             <ParaNormal
-              width="63%"
+              width={{ lg: "63%", md: "63%", sm: "90%", smm: "90%" }}
               color={descolor || "white"}
               textAlign={textcenter || "center"}
             >

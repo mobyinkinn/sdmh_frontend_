@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Box, Stack, Typography } from "@mui/material";
@@ -16,8 +15,8 @@ export default function GalleryCard({ career }) {
       key={career.id}
       sx={{
         position: "relative",
-        width: "400px",
-        height: "280px",
+        width: { md: "400px", xs: "300px" },
+        height: { md: "280px", xs: "200px" },
         overflow: "hidden",
         borderRadius: "8px",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",

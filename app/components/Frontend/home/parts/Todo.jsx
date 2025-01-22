@@ -33,6 +33,7 @@ export default function Todo() {
         {todoData.map((el, i) => {
           return (
             <Stack
+              key={i}
               backgroundColor={"white"}
               borderRadius={"10px"}
               padding={"30px 10px"}

@@ -125,7 +125,11 @@ const PatientStories = () => {
     <Stack bgcolor={"#D8E0EB"} padding={4}>
       <Stack alignItems={"center"} mb={4}>
         <Head1 color="#005900">Patient Stories</Head1>
-        <ParaNormal color="black" style={{ width: "50%", textAlign: "center" }}>
+        <ParaNormal
+          color="black"
+          width={{ lg: "50%", md: "50%", smm: "90%", sm: "90%" }}
+          style={{ textAlign: "center" }}
+        >
           It is a long established fact that a reader will be distracted by the
           readable
         </ParaNormal>

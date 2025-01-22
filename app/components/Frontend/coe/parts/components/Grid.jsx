@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import ballon from "../assets/hotAirBaloon.png";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
@@ -76,12 +76,12 @@ const coeData = [
 ];
 
 export default function Grid() {
-   const { data, isLoading, error } = useDepartment();
-      const filteredData = data?.filter((el, i) => el.status === true);
+  const { data, isLoading, error } = useDepartment();
+  const filteredData = data?.filter((el, i) => el.status === true);
 
-   if (isLoading) {
-     return <Spinner />;
-   }
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <ContainerMain
       bgColor="#fff"
@@ -111,7 +111,7 @@ export default function Grid() {
         marginTop={"20px"}
       >
         {filteredData.map((el, i) => {
-          return <CoeCard el={el} />;
+          return <CoeCard key={i} el={el} />;
         })}
       </Stack>
     </ContainerMain>

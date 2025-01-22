@@ -109,11 +109,20 @@ const Testimonialslider = () => {
   }
   return (
     <Stack bgcolor={"#D2E4D8"} p={5}>
-      <Stack direction={"row"} p={2}>
+      <Stack
+        direction={"row"}
+        p={2}
+        flexWrap={"wrap"}
+        justifyContent={{ xs: "center", md: "flex-start" }}
+      >
         <Head1 color="black">What Our&nbsp;</Head1>
         <Head1 style={{ textAlign: "center" }}>Patients Say</Head1>
       </Stack>
-      <ParaNormal style={{ width: "40%", paddingLeft: "20px" }}>
+      <ParaNormal
+        width={{ lg: "40%", md: "40%", smm: "100%", sm: "100%" }}
+        textAlign={{ lg: "left", md: "left", smm: "center", sm: "center" }}
+        style={{ paddingLeft: "20px" }}
+      >
         It is a long established fact that a reader will be distracted by the
         readable
       </ParaNormal>

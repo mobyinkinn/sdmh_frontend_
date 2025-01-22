@@ -1,46 +1,46 @@
-import { ContainerMain } from '@/app/styledComponents/frontend/Container'
-import { Head1 } from '@/app/styledComponents/frontend/Headings'
-import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-import { Stack, Typography } from '@mui/material';
-import React from 'react'
+import { ContainerMain } from "@/app/styledComponents/frontend/Container";
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Stack, Typography } from "@mui/material";
+import React from "react";
 
 const KohaSection = () => {
-    const data = [
-      {
-        heading: "Users Categories:",
-        points: [
-          {
-            id: 1,
-            point: "Consultant (2)",
-          },
-          {
-            id: 2,
-            point: "Consultant (2)",
-          },
-          {
-            id: 3,
-            point: "Consultant (2)",
-          },
-          {
-            id: 4,
-            point: "Outsiders",
-          },
-        ],
-      },
-      {
-        heading: "Useful Links:",
-        points: [
-          {
-            id: 1,
-            point: "Consultant (2)",
-          },
-          {
-            id: 2,
-            point: "Consultant (2)",
-          },
-        ],
-      },
-    ];
+  const data = [
+    {
+      heading: "Users Categories:",
+      points: [
+        {
+          id: 1,
+          point: "Consultant (2)",
+        },
+        {
+          id: 2,
+          point: "Consultant (2)",
+        },
+        {
+          id: 3,
+          point: "Consultant (2)",
+        },
+        {
+          id: 4,
+          point: "Outsiders",
+        },
+      ],
+    },
+    {
+      heading: "Useful Links:",
+      points: [
+        {
+          id: 1,
+          point: "Consultant (2)",
+        },
+        {
+          id: 2,
+          point: "Consultant (2)",
+        },
+      ],
+    },
+  ];
   return (
     <ContainerMain style={{ backgroundColor: "#F9F9F9", alignItems: "center" }}>
       <Head1 color="#005900">KOHA</Head1>
@@ -62,9 +62,17 @@ const KohaSection = () => {
         automation addresses the problem of manual processing of materials.
       </ParaNormal>
       <Stack direction={"row"} gap={2} width={"100%"} justifyContent={"center"}>
-        {data.map((d) => (
-          <Stack bgcolor={"white"} width={"45%"} padding={5} borderRadius={"10px"}>
-            <Head1 color='black' fontSize={"20px"} textAlign={"left"}>{d.heading}</Head1>
+        {data.map((d, i) => (
+          <Stack
+            key={i}
+            bgcolor={"white"}
+            width={"45%"}
+            padding={5}
+            borderRadius={"10px"}
+          >
+            <Head1 color="black" fontSize={"20px"} textAlign={"left"}>
+              {d.heading}
+            </Head1>
             <Stack textAlign={"left"}>
               {d.points.map((di) => (
                 <Stack
@@ -104,6 +112,6 @@ const KohaSection = () => {
       </Stack>
     </ContainerMain>
   );
-}
+};
 
-export default KohaSection
+export default KohaSection;

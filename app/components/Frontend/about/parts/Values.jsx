@@ -35,6 +35,7 @@ export default function Values() {
           return (
             <Stack
               width={{ md: "15%", xs: "45%" }}
+              key={i}
               alignItems={"center"}
               gap={"10px"}
               padding={"20px"}

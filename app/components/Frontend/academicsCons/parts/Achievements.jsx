@@ -19,8 +19,8 @@ const Achievements = () => {
         Rajasthan, throughout India as well as abroad.
       </ParaNormal>
       <Stack direction={"row"} gap={2} justifyContent={"center"}>
-        {data.map((d) => (
-          <Stack>
+        {data.map((d, i) => (
+          <Stack key={i}>
             <Image src={d} width={300} />
           </Stack>
         ))}

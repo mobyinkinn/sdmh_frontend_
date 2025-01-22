@@ -91,7 +91,7 @@ export default function Blog() {
           display={{ md: "flex", xs: "none" }}
         >
           {blogData.map((el, i) => {
-            return <BlogCard el={el}></BlogCard>;
+            return <BlogCard el={el} key={i}></BlogCard>;
           })}
         </Stack>
         <Stack
@@ -104,7 +104,7 @@ export default function Blog() {
           borderRadius="5px"
         >
           {blogData.map((el, i) => {
-            return <BlogCard el={el}></BlogCard>;
+            return <BlogCard key={i} el={el}></BlogCard>;
           })}
 
           <Stack display={{ md: "none" }} margin="0px auto" marginTop="20px">
