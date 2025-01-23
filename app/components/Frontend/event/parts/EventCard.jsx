@@ -23,7 +23,7 @@ export default function EventCard({ career }) {
       direction={{ md: "row", xs: "column" }}
       gap={"30px"}
       alignItems={"center"}
-      width={{ md: "80vw", xs: "100vw" }}
+      width={{ md: "80vw", xs: "95vw" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       sx={{
@@ -51,7 +51,7 @@ export default function EventCard({ career }) {
         }}
       ></Stack>
       <Stack gap={1}>
-        <ParaNormal>{career.category}</ParaNormal>
+        <ParaNormal color="inherit">{career.category}</ParaNormal>
         <Head4 textAlign="left" color="inherit">
           {career.position}
         </Head4>
