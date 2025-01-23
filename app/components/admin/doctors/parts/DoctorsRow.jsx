@@ -64,7 +64,7 @@ function DoctorsRow({
 
   if (isLoadingDepartment) return <Spinner />;
 
-  let filteredDepartment = departmentData.data.filter(
+  let filteredDepartment = departmentData.filter(
     (el) => el._id === department
   )[0];
 

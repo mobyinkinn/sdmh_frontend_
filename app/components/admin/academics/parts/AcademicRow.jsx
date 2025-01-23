@@ -49,15 +49,12 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Stacked>
-        <span>Created on</span>
         <span>{created}</span>
       </Stacked>
 

@@ -7,8 +7,8 @@ import Menus from "../../../ui/Menus";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 import { useCreatePage, useDeletePage, useUpdatePage } from "../usePages";
 import { HiEyeOff } from "react-icons/hi";
-import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
-import EditNoticeForm from "@/app/components/features/academicNotices/EditNoticeForm";
+import EditPageForm from "@/app/components/features/Page/EditPageForm";
+import { useState } from "react";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -26,9 +26,32 @@ const Stacked = styled.div`
   }
 `;
 
-function PagesRow({ page: { _id, name, file, status } }) {
+function PagesRow({ page: { _id, name, status } }) {
   const { mutate: updatePage, isLoading: isUpdating } = useUpdatePage();
   const { mutate: deletePage, isLoading: isDeleting } = useDeletePage();
+  const [editData, setEditData] = useState({
+    name,
+  });
+
+  const handleConfirmEdit = async () => {
+    const formData = {
+      name: editData.name,
+    };
+
+    updatePage(
+      { id: _id, data: formData },
+      {
+        onSuccess: () => {
+          toast.success("Page updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Page:", error);
+          toast.error("Failed to update Page. Please try again.");
+        },
+      }
+    );
+  };
 
   const handleToggleStatus = () => {
     if (status) {
@@ -64,7 +87,15 @@ function PagesRow({ page: { _id, name, file, status } }) {
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="page-form">
-            <EditNoticeForm id={_id} />
+            <EditPageForm
+              id={_id}
+              resourceName="Page"
+              editData={editData}
+              setEditData={setEditData}
+              onCloseModal={() => {}}
+              onConfirm={handleConfirmEdit}
+              isUpdating={isUpdating}
+            />
           </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>

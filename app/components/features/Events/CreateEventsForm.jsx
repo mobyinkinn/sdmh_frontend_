@@ -8,6 +8,8 @@ import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
 import { useCreateEvent } from "../../admin/events/useEvents";
 import moment from "moment";
+import { useState } from "react";
+import Jodit from "../Openings/Jodit";
 
 const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
@@ -16,6 +18,7 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   const { createEvents, isCreating } = useCreateEvent();
   const { errors } = formState;
   const isWorking = isCreating;
+  const [description, setDescription] = useState("");
 
   function onSubmit(data) {
     const multipleFiles = data.images ? Array.from(data.images) : [];
@@ -29,7 +32,7 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
 
     formdata.append("title", data.title);
     formdata.append("smallDescription", data.smallDescription);
-    formdata.append("description", data.description);
+    formdata.append("description", description);
     formdata.append("date", formattedDate);
     formdata.append("featured", false);
     formdata.append("status", true);
@@ -52,39 +55,14 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
       type={onCloseModal ? "modal" : "regular"}
     >
       <Heading as="h3">Add {resourceName}</Heading>
-      <Stack gap={2} pt={5}>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+      <Stack gap={1} pt={2}>
+        <Stack direction={"row"} columnGap={7}>
           <FormRow label="Title" error={errors?.title?.message}>
             <Input
               disabled={isWorking}
               type="text"
               id="title"
               {...register("title", {
-                required: "This field is required",
-              })}
-            />
-          </FormRow>
-          <FormRow
-            label="Small Description"
-            error={errors?.smallDescription?.message}
-          >
-            <Input
-              disabled={isWorking}
-              type="text"
-              id="smallDescription"
-              {...register("smallDescription", {
-                required: "This field is required",
-              })}
-            />
-          </FormRow>
-        </Stack>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
-          <FormRow label="Description" error={errors?.description?.message}>
-            <Input
-              disabled={isWorking}
-              type="text"
-              id="description"
-              {...register("description", {
                 required: "This field is required",
               })}
             />
@@ -100,8 +78,24 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
             />
           </FormRow>
         </Stack>
+        <FormRow
+          label="Small Description"
+          error={errors?.smallDescription?.message}
+        >
+          <Input
+            disabled={isWorking}
+            type="text"
+            id="smallDescription"
+            {...register("smallDescription", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
 
-        <Stack direction={"row"} p={"0px 10px"}>
+        <FormRow label="Description" error={errors?.page?.message}></FormRow>
+        <Jodit content={description} setContent={setDescription} />
+
+        <Stack direction={"row"}>
           <FormRow label="Images">
             <FileInput
               id="images"

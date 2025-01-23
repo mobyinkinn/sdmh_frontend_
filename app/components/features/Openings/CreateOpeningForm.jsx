@@ -160,8 +160,6 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
   });
   const { errors } = formState;
 
-  
-
   const { isCreating, createOpenings } = useCreateOpening();
   //   const { isEditing, editCabin } = useEditCabin();
 

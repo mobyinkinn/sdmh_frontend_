@@ -27,7 +27,7 @@ function PagesTable() {
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 3fr 2fr 1fr">
+      <Table columns="2fr 3fr 2fr 0.8fr">
         <Table.Header>
           <div>Name</div>
           <div>Id</div>

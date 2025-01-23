@@ -82,7 +82,6 @@ function DepartmentRow({
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
@@ -98,9 +97,7 @@ function DepartmentRow({
         {convertedStatus.replace("-", " ")}
       </Tag>
 
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Stacked>
-        <span>Created on</span>
         <span>{created}</span>
       </Stacked>
 

@@ -56,14 +56,13 @@ function BannerTable() {
   if (!filteredBanner.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.5fr 3fr 1.5fr 1.5fr 1.4fr 1.2rem">
+      <Table columns="2fr 3fr 2fr 1.5fr 1fr">
         <Table.Header>
           <div>Page</div>
           <div>id</div>
           <div>Banner</div>
           <div>Status</div>
           <div>Actions</div>
-          <div></div>
         </Table.Header>
 
         <Table.Body

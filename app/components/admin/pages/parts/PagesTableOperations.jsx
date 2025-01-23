@@ -4,7 +4,7 @@ import TableOperations from "../../../ui/TableOperations";
 import { usePagesContext } from "./PagesContext";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
-// import CreatePageForm from "@/app/components/features/Page/CreatePageForm";
+import CreatePageForm from "@/app/components/features/Page/CreatePageForm";
 
 function PagesTableOperations() {
   const { filter, setFilter } = usePagesContext();
@@ -34,7 +34,9 @@ function PagesTableOperations() {
         <Modal.Open opens="page-form">
           <Button>Add Page</Button>
         </Modal.Open>
-        <Modal.Window name="page-form">{/* <CreatePageForm /> */}</Modal.Window>
+        <Modal.Window name="page-form">
+          <CreatePageForm resourceName={"Page"} />
+        </Modal.Window>
       </Modal>
     </TableOperations>
   );

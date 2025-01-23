@@ -13,6 +13,7 @@ import {
   useUpdateCheckupImage,
 } from "../admin/health_plans/useCheckups";
 import Jodit from "../features/Openings/Jodit";
+import { px } from "framer-motion";
 
 const ConfirmEdit = ({
   id,
@@ -98,7 +99,7 @@ const ConfirmEdit = ({
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
       <Heading as="h3">Edit {resourceName}</Heading>
 
-      <Stack gap={2} pt={5}>
+      <Stack gap={0.5} pt={1}>
         <FormRow label="Title">
           <Input
             disabled={disabled}
@@ -133,6 +134,8 @@ const ConfirmEdit = ({
                           : URL.createObjectURL(editData.image)
                       }
                       alt="Preview"
+                      width={200}
+                      height={110}
                     />
                     <div className="edit-icon">
                       <label htmlFor="image-upload">
@@ -164,6 +167,8 @@ const ConfirmEdit = ({
                           : URL.createObjectURL(editData.bannerImage)
                       }
                       alt="Preview"
+                      width={200}
+                      height={110}
                     />
                     <div className="edit-icon">
                       <label htmlFor="banner-upload">

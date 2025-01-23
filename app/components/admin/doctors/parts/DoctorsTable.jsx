@@ -78,7 +78,7 @@ function DoctorsTable() {
   if (!filteredDoctors.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 2fr 1fr 1fr 1fr 2fr 2fr 1rem">
+      <Table columns="2fr 2fr 1fr 1fr 1fr 2.5fr 2fr 1.4fr">
         <Table.Header>
           <div>Name</div>
           <div>Department</div>
@@ -87,7 +87,7 @@ function DoctorsTable() {
           <div>Room</div>
           <div>Available On</div>
           <div>Status</div>
-          <div></div>
+          <div>Actions</div>
         </Table.Header>
 
         <Table.Body

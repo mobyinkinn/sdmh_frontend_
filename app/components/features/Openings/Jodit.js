@@ -29,7 +29,6 @@
 
 // // export default Jodit;
 
-
 // "use client";
 
 // import dynamic from "next/dynamic";
@@ -70,11 +69,6 @@
 
 // export default Jodit;
 
-
-
-
-
-
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -83,51 +77,52 @@ const Jodit = ({ content, setContent }) => {
   const handleChange = (value) => {
     setContent(value);
   };
-const modules = {
-  toolbar: [
-    // Add font size and header options
-    [{ font: [] }, { size: [] }],
 
-    // Bold, italic, underline, strikethrough
-    ["bold", "italic", "underline", "strike"],
+  const modules = {
+    toolbar: [
+      // Add font size and header options
+      [{ font: [] }, { size: [] }],
 
-    // Text color and background color
-    [{ color: [] }, { background: [] }],
+      // Bold, italic, underline, strikethrough
+      ["bold", "italic", "underline", "strike"],
 
-    // Alignment
-    [{ align: [] }],
+      // Text color and background color
+      [{ color: [] }, { background: [] }],
 
-    // List options
-    [{ list: "ordered" }, { list: "bullet" }],
+      // Alignment
+      [{ align: [] }],
 
-    // Indent and outdent
-    [{ indent: "-1" }, { indent: "+1" }],
+      // List options
+      [{ list: "ordered" }, { list: "bullet" }],
 
-    // Add links, images, and videos
-    ["link", "image", "video"],
+      // Indent and outdent
+      [{ indent: "-1" }, { indent: "+1" }],
 
-    // Clear formatting
-    ["clean"],
-  ],
-};
+      // Add links, images, and videos
+      ["link", "image", "video"],
 
-const formats = [
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "color",
-  "background",
-  "align",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-];
+      // Clear formatting
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "color",
+    "background",
+    "align",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+  ];
 
   return (
     <div
@@ -138,6 +133,13 @@ const formats = [
         borderRadius: "4px",
       }}
     >
+      <style>
+        {`
+          .ql-editor {
+            min-height: 200px; 
+          }
+        `}
+      </style>
       <ReactQuill
         theme="snow" // You can switch to 'bubble' if preferred
         value={content}
@@ -151,4 +153,3 @@ const formats = [
 };
 
 export default Jodit;
-

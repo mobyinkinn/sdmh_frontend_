@@ -54,7 +54,7 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
     >
       <Heading as="h3">Add {resourceName}</Heading>
 
-      <Stack gap={2} pt={5}>
+      <Stack gap={1} pt={2}>
         <FormRow label="Title" error={errors?.title?.message}>
           <Input
             disabled={isCreating}
