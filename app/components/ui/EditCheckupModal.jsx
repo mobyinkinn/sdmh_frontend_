@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import Button from "./Button";
 import FileInput from "./FileInput";
@@ -12,6 +12,8 @@ import {
   useUpdateCheckupBanner,
   useUpdateCheckupImage,
 } from "../admin/health_plans/useCheckups";
+import Jodit from "../features/Openings/Jodit";
+import { px } from "framer-motion";
 
 const ConfirmEdit = ({
   id,
@@ -21,6 +23,8 @@ const ConfirmEdit = ({
   disabled,
   editData,
   setEditData,
+  descContent,
+  setDescContent,
 }) => {
   const { mutate: updateImage } = useUpdateCheckupImage();
   const { mutate: updateBanner } = useUpdateCheckupBanner();
@@ -95,7 +99,7 @@ const ConfirmEdit = ({
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
       <Heading as="h3">Edit {resourceName}</Heading>
 
-      <Stack gap={2} pt={5}>
+      <Stack gap={0.5} pt={1}>
         <FormRow label="Title">
           <Input
             disabled={disabled}
@@ -105,12 +109,14 @@ const ConfirmEdit = ({
             onChange={handleInputChange}
           />
         </FormRow>
-        <FormRow label="Description">
+        <FormRow label="Description"></FormRow>
+        <Jodit content={descContent} setContent={setDescContent} />
+        <FormRow label="Price">
           <Input
             disabled={disabled}
             type="text"
-            name="description"
-            value={editData.description || ""}
+            name="price"
+            value={editData.price || ""}
             onChange={handleInputChange}
           />
         </FormRow>
@@ -128,6 +134,8 @@ const ConfirmEdit = ({
                           : URL.createObjectURL(editData.image)
                       }
                       alt="Preview"
+                      width={200}
+                      height={110}
                     />
                     <div className="edit-icon">
                       <label htmlFor="image-upload">
@@ -159,6 +167,8 @@ const ConfirmEdit = ({
                           : URL.createObjectURL(editData.bannerImage)
                       }
                       alt="Preview"
+                      width={200}
+                      height={110}
                     />
                     <div className="edit-icon">
                       <label htmlFor="banner-upload">

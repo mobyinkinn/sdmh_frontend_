@@ -7,6 +7,8 @@ import FormRow from "../../ui/FormRow";
 import { useCreateBlog } from "../../admin/blog/useBlogs";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
+import { useState } from "react";
+import Jodit from "../Openings/Jodit";
 
 function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
@@ -16,6 +18,7 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
     defaultValues: {},
   });
   const { errors } = formState;
+  const [description, setDescription] = useState("");
 
   const { isCreating, createBlogs } = useCreateBlog();
   //   const { isEditing, editCabin } = useEditCabin();
@@ -33,7 +36,7 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
     });
     formdata.append("title", data.title);
     formdata.append("smallDescription", data.smallDescription);
-    formdata.append("description", data.description);
+    formdata.append("description", description);
     formdata.append("date", data.date);
 
     formdata.append("status", true);
@@ -56,36 +59,14 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
       type={onCloseModal ? "modal" : "regular"}
     >
       <Heading as="h3">Add {resourceName}</Heading>
-      <Stack gap={2} pt={5}>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+      <Stack gap={1} pt={2}>
+        <Stack direction={"row"} columnGap={7}>
           <FormRow label="Title" error={errors?.page?.message}>
             <Input
               disabled={isWorking}
               type="text"
               id="title"
               {...register("title", {
-                required: "This field is required",
-              })}
-            />
-          </FormRow>
-          <FormRow label="Short Description" error={errors?.page?.message}>
-            <Input
-              disabled={isWorking}
-              type="text"
-              id="smallDescription"
-              {...register("smallDescription", {
-                required: "This field is required",
-              })}
-            />
-          </FormRow>
-        </Stack>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
-          <FormRow label="Description" error={errors?.description?.message}>
-            <Input
-              disabled={isWorking}
-              type="text"
-              id="description"
-              {...register("description", {
                 required: "This field is required",
               })}
             />
@@ -101,7 +82,25 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
             />
           </FormRow>
         </Stack>
-        <Stack pl={3} gap={2}>
+        <FormRow
+          label="Short Description"
+          error={errors?.page?.message}
+          p={"0px 10px"}
+        >
+          <Input
+            disabled={isWorking}
+            type="text"
+            id="smallDescription"
+            {...register("smallDescription", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+
+        <FormRow label="Description" error={errors?.page?.message}></FormRow>
+        <Jodit content={description} setContent={setDescription} />
+
+        <Stack>
           <FormRow label={"File"}>
             <FileInput
               id="file"
@@ -132,7 +131,7 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
           >
             Cancel
           </Button>
-          <Button disabled={isWorking}>{"Create new banner"}</Button>
+          <Button disabled={isWorking}>{"Create Blog"}</Button>
         </FormRow>
       </Stack>
     </Form>

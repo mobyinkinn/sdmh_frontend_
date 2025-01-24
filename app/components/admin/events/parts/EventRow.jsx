@@ -61,6 +61,7 @@ function EventRow({
   const { mutate: updateEvent, isLoading: isUpdating } = useUpdateEvent();
   const { mutate: deleteEvent, isLoading: isDeleting } = useDeleteEvent();
   const id = _id;
+  const [descContent, setDescContent] = useState(description);
 
   const [editData, setEditData] = useState({
     title,
@@ -75,7 +76,7 @@ function EventRow({
     const formData = {
       title: editData.title,
       smallDescription: editData.smallDescription,
-      description: editData.description,
+      description: descContent,
       date: created,
     };
 
@@ -131,9 +132,17 @@ function EventRow({
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? description : description.slice(0, 70)}...</span>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullDesc
+              ? description
+              : `${description.slice(0, 50)}${
+                  description.length > 50 ? "..." : ""
+                }`,
+          }}
+        />
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
-          {fullDesc ? "Show less" : "Show more"}
+          {fullDesc ? "show less" : "show more"}
         </span>
       </Stacked>
 
@@ -163,6 +172,8 @@ function EventRow({
               onCloseModal={() => {}}
               onConfirm={handleConfirmEdit}
               disabled={false}
+              descContent={descContent}
+              setDescContent={setDescContent}
             />
           </Modal.Window>
           <Modal.Open opens="image-form">

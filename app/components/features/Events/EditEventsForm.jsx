@@ -6,6 +6,7 @@ import FileInput from "../../ui/FileInput";
 import FormRow from "../../ui/FormRow";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
+import Jodit from "../Openings/Jodit";
 
 const EditEventsForm = ({
   resourceName,
@@ -14,6 +15,8 @@ const EditEventsForm = ({
   editData,
   setEditData,
   onCloseModal,
+  descContent,
+  setDescContent,
 }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +35,7 @@ const EditEventsForm = ({
     <form onSubmit={handleSubmit}>
       <Heading as="h3">Edit {resourceName}</Heading>
       <Stack gap={2} pt={5}>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+        <Stack direction={"row"} justifyContent={"space-around"} columnGap={5}>
           <FormRow label="Title">
             <Input
               disabled={disabled}
@@ -40,28 +43,6 @@ const EditEventsForm = ({
               id="title"
               name="title"
               value={editData.title || ""}
-              onChange={handleInputChange}
-            />
-          </FormRow>
-          <FormRow label="Small Description">
-            <Input
-              disabled={disabled}
-              type="text"
-              id="smallDescription"
-              name="smallDescription"
-              value={editData.smallDescription || ""}
-              onChange={handleInputChange}
-            />
-          </FormRow>
-        </Stack>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
-          <FormRow label="Description">
-            <Input
-              disabled={disabled}
-              type="text"
-              id="description"
-              name="description"
-              value={editData.description || ""}
               onChange={handleInputChange}
             />
           </FormRow>
@@ -76,6 +57,19 @@ const EditEventsForm = ({
             />
           </FormRow>
         </Stack>
+        <FormRow label="Small Description">
+          <Input
+            disabled={disabled}
+            type="text"
+            id="smallDescription"
+            name="smallDescription"
+            value={editData.smallDescription || ""}
+            onChange={handleInputChange}
+          />
+        </FormRow>
+
+        <FormRow label="Description"></FormRow>
+        <Jodit content={descContent} setContent={setDescContent} />
 
         <FormRow>
           <Button

@@ -1,56 +1,27 @@
-import styled from "styled-components";
 import Button from "./Button";
 import Heading from "./Heading";
 import { Stack } from "@mui/material";
-import { DateInput } from "./Input";
+import Input, { DateInput } from "./Input";
 import FormRow from "./FormRow";
 import { FaEdit } from "react-icons/fa";
 import { useUpdateSingleImageFromBlog } from "../admin/blog/useBlogs";
 import { ImagePreviewContainer } from "./ImagePreviewContainer";
-
-const StyledConfirmEdit = styled.div`
-  width: 40rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-
-  & label {
-    font-size: 1rem;
-    color: var(--color-grey-700);
-  }
-
-  & input,
-  & textarea {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid var(--color-grey-300);
-    border-radius: var(--border-radius-sm);
-    margin-top: 0.3rem;
-  }
-
-  & textarea {
-    resize: vertical;
-    min-height: 8rem;
-  }
-
-  & div {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
-`;
+import Jodit from "../features/Openings/Jodit";
+import Spinner from "./Spinner";
 
 function ConfirmEdit({
   id,
   onCloseModal,
   resourceName,
   onConfirm,
-  disabled,
   editData,
   setEditData,
+  descContent,
+  setDescContent,
+  isUpdating,
 }) {
-  const { mutate: updateSingleImageFromBlog } = useUpdateSingleImageFromBlog();
+  const { mutate: updateSingleImageFromBlog, isLoading: isImageUpdating } =
+    useUpdateSingleImageFromBlog();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,56 +57,51 @@ function ConfirmEdit({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     onCloseModal?.();
     onConfirm(); // Call the onConfirm function to handle the submission logic
   };
 
   return (
-    <StyledConfirmEdit>
+    <form onSubmit={handleSubmit}>
       <Heading as="h3">Edit {resourceName}</Heading>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={editData.title}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Date:
-          <DateInput
-            disabled={disabled}
-            type="date"
-            id="date"
-            name="date"
-            value={editData.date || ""}
-            onChange={handleInputChange}
-          />
-        </label>
-        <Stack direction={"row"}>
-          <label>
-            Small Description:
-            <textarea
-              name="smallDescription"
-              value={editData.smallDescription}
+      <Stack pt={2}>
+        <Stack direction={"row"} columnGap={7}>
+          <FormRow label="Title">
+            <Input
+              type="text"
+              id="title"
+              value={editData.title}
               onChange={handleInputChange}
+              name="title"
             />
-          </label>
-          <label>
-            Description:
-            <textarea
-              name="description"
-              value={editData.description}
+          </FormRow>
+          <FormRow label="Date">
+            <DateInput
+              type="date"
+              id="date"
+              value={editData.date}
               onChange={handleInputChange}
+              name="date"
             />
-          </label>
+          </FormRow>
         </Stack>
+        <FormRow label="Short Description" p={"0px 10px"}>
+          <Input
+            type="text"
+            id="smallDescription"
+            value={editData.smallDescription}
+            onChange={handleInputChange}
+            name="smallDescription"
+          />
+        </FormRow>
 
-        <Stack label={"Image"}>
+        <FormRow label="Description"></FormRow>
+        <Jodit content={descContent} setContent={setDescContent} />
+
+        <Stack>
           <label>
-            Image{" "}
+            Image:
             <ImagePreviewContainer>
               {editData.image && (
                 <>
@@ -146,6 +112,8 @@ function ConfirmEdit({
                         : URL.createObjectURL(editData.image)
                     }
                     alt="Preview"
+                    width={200}
+                    height={110}
                   />
                   <div className="edit-icon">
                     <label htmlFor="image-upload">
@@ -164,21 +132,18 @@ function ConfirmEdit({
             </ImagePreviewContainer>
           </label>
         </Stack>
-
-        <div>
+        <FormRow>
           <Button
             variation="secondary"
-            onClick={onCloseModal}
-            disabled={disabled}
+            type="reset"
+            onClick={() => onCloseModal?.()}
           >
             Cancel
           </Button>
-          <Button variation="primary" onClick={onConfirm} disabled={disabled}>
-            Save Changes
-          </Button>
-        </div>
-      </form>
-    </StyledConfirmEdit>
+          <Button>{"Update Blog"}</Button>
+        </FormRow>
+      </Stack>
+    </form>
   );
 }
 

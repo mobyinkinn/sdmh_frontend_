@@ -66,7 +66,7 @@ function OpeningTable() {
   if (!filteredOpening.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.5fr 2fr 1fr 1fr 2fr 1fr 1fr 1fr 0rem">
+      <Table columns="1fr 2fr 1fr 1fr 1.5fr 1fr 1fr 1fr ">
         <Table.Header>
           <div>position</div>
           <div>JD</div>
