@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
 import FileInput from "../../ui/FileInput";
 import Button from "../../ui/Button";
+import SpinnerMini from "../../ui/SpinnerMini";
 const AddImagesFormBlog = ({
   id,
   onConfirm,
@@ -18,8 +19,9 @@ const AddImagesFormBlog = ({
   onCloseModal,
 }) => {
   const { mutate: removeMultiImageFromBlog } = useDeleteMultiImageFromBlog();
-  const { mutate: updateMultiImagesFromBlog, isLoading: isAddingImages } =
+  const { mutate: updateMultiImagesFromBlog, isPending: isAddingImages } =
     useUpdateMultiImagesFromBlog();
+  if (isAddingImages) return <SpinnerMini />;
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();

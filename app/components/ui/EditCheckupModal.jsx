@@ -14,6 +14,7 @@ import {
 } from "../admin/health_plans/useCheckups";
 import Jodit from "../features/Openings/Jodit";
 import { px } from "framer-motion";
+import SpinnerMini from "./SpinnerMini";
 
 const ConfirmEdit = ({
   id,
@@ -26,8 +27,12 @@ const ConfirmEdit = ({
   descContent,
   setDescContent,
 }) => {
-  const { mutate: updateImage } = useUpdateCheckupImage();
-  const { mutate: updateBanner } = useUpdateCheckupBanner();
+  const { mutate: updateImage, isPending: isUpdateImage } =
+    useUpdateCheckupImage();
+  const { mutate: updateBanner, isPending: isUpdateBanner } =
+    useUpdateCheckupBanner();
+
+  if (isUpdateImage || isUpdateBanner) return <SpinnerMini />;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

@@ -8,6 +8,7 @@ import { useUpdateSingleImageFromBlog } from "../admin/blog/useBlogs";
 import { ImagePreviewContainer } from "./ImagePreviewContainer";
 import Jodit from "../features/Openings/Jodit";
 import Spinner from "./Spinner";
+import SpinnerMini from "./SpinnerMini";
 
 function ConfirmEdit({
   id,
@@ -20,8 +21,10 @@ function ConfirmEdit({
   setDescContent,
   isUpdating,
 }) {
-  const { mutate: updateSingleImageFromBlog, isLoading: isImageUpdating } =
+  const { mutate: updateSingleImageFromBlog, isPending: isImageUpdating } =
     useUpdateSingleImageFromBlog();
+
+  if (isImageUpdating) return <SpinnerMini />;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

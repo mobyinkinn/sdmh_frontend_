@@ -20,6 +20,7 @@ import {
 } from "../../admin/departments/parts/useDepartment";
 import { useState } from "react";
 import Jodit from "../Openings/Jodit";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function EditDepartmentForm({ onCloseModal, id }) {
   const { data, isLoading } = useDepartment();
@@ -36,7 +37,7 @@ function EditDepartmentForm({ onCloseModal, id }) {
   const { updateBanner, isUpdatingBanner } = useBannerImage();
 
   const { errors } = formState;
-
+  if (isUpdating || isUpdatingImage || isUpdatingBanner) return <SpinnerMini />;
   // const { isUpdating, updateBannerImage } = useUpdateBanner();
 
   function onUpdateDepartment(name, content, id) {

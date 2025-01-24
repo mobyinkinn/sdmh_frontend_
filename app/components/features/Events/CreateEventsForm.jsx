@@ -10,6 +10,7 @@ import { useCreateEvent } from "../../admin/events/useEvents";
 import moment from "moment";
 import { useState } from "react";
 import Jodit from "../Openings/Jodit";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
@@ -17,6 +18,7 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   });
   const { createEvents, isCreating } = useCreateEvent();
   const { errors } = formState;
+  if (isCreating) return <SpinnerMini />;
   const isWorking = isCreating;
   const [description, setDescription] = useState("");
 

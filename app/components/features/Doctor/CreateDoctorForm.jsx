@@ -13,10 +13,13 @@ import { useCreateDepartment } from "../../admin/departments/parts/useDepartment
 import { Stack, Typography } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
 import { useCreateDoctor } from "../../admin/doctors/parts/useDoctor";
+import Jodit from "../Openings/Jodit";
+import { useState } from "react";
 
 function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
+  const [about, setAbout] = useState("");
 
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
@@ -25,6 +28,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
 
   const { isCreating, createDoctor } = useCreateDoctor();
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 
@@ -37,7 +41,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("room", data.room);
     formdata.append("floor", data.floor);
     formdata.append("department", data.department);
-    formdata.append("about", data.about);
+    formdata.append("about", about);
     for (let i = 0; i < data.availablity.length; i++) {
       formdata.append("availablity", data.availablity[i]);
     }
@@ -197,7 +201,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow label="About" error={errors?.page?.message}>
+      {/* <FormRow label="About" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="text"
@@ -206,7 +210,9 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
             required: "This field is required",
           })}
         />
-      </FormRow>
+      </FormRow> */}
+      <FormRow label="About" error={errors?.page?.message}></FormRow>
+      <Jodit content={about} setContent={setAbout} />
 
       <FormRow label={"Image"}>
         <FileInput
@@ -234,7 +240,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new banner"}
+          {isWorking ? <SpinnerMini /> : "Create Doctor"}
         </Button>
       </Stack>
     </Form>

@@ -91,12 +91,10 @@ function DoctorsRow({
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Stacked>
-        <span>Department</span>
         <span>{filteredDepartment.name}</span>
       </Stacked>
 
@@ -105,12 +103,10 @@ function DoctorsRow({
       </Stacked>
 
       <Stacked>
-        <span>Floor</span>
         <span>{floor}</span>
       </Stacked>
 
       <Stacked>
-        <span>Room</span>
         <span>{room}</span>
       </Stacked>
 

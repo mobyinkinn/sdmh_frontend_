@@ -52,7 +52,7 @@ export const useUpdateEvent = () => {
 
 export const useCreateEvent = () => {
   const queryClient = useQueryClient();
-  const { mutate: createEvents, isLoading: isCreating } = useMutation({
+  const { mutate: createEvents, isPending: isCreating } = useMutation({
     mutationFn: createEvent,
     onSuccess: () => {
       queryClient.invalidateQueries(["Events"]);

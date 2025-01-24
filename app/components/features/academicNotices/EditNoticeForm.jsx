@@ -13,6 +13,7 @@ import {
 } from "../../admin/academic_notices/useNotices";
 import { Stack } from "@mui/material";
 import { useEffect, useState } from "react";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id }) {
   const { data, isLoading } = useNotices();
@@ -28,6 +29,7 @@ function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id }) {
   const { isCreating, createNotice } = useCreateNotice();
   const { isUpdating, updateName } = useUpdateName();
   const { isUpdatingFile, updateFile } = useUpdateNameFile();
+  if (isUpdatingFile) return <SpinnerMini />;
 
   const isWorking = isCreating;
 

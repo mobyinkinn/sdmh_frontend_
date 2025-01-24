@@ -10,6 +10,7 @@ import FormRow from "../../ui/FormRow";
 // import useEditCabin from "./useEditCabin";
 import { useCreateNotice } from "../../admin/academic_notices/useNotices";
 import { Stack } from "@mui/material";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
@@ -22,6 +23,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
 
   const { isCreating, createNotice } = useCreateNotice();
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 

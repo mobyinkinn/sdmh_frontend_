@@ -85,7 +85,7 @@ export const useDeleteDepartment = () => {
 export const useCreateDepartment = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createDepartment, isLoading: isCreating } = useMutation({
+  const { mutate: createDepartment, isPending: isCreating } = useMutation({
     mutationFn: createTheDepartment,
     onSuccess: () => {
       queryClient.invalidateQueries(["Departments"]);
@@ -103,7 +103,7 @@ export const useCreateDepartment = () => {
 export const useUpdateDepartment = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateDepartment, isLoading: isUpdating } = useMutation({
+  const { mutate: updateDepartment, isPending: isUpdating } = useMutation({
     mutationFn: editDepartment,
     onSuccess: () => {
       queryClient.invalidateQueries(["Departments"]);
@@ -121,7 +121,7 @@ export const useUpdateDepartment = () => {
 export const useUpdateImage = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateImage, isLoading: isUpdatingImage } = useMutation({
+  const { mutate: updateImage, isPending: isUpdatingImage } = useMutation({
     mutationFn: updateTheImage,
     onSuccess: () => {
       queryClient.invalidateQueries(["Departments"]);
@@ -139,7 +139,7 @@ export const useUpdateImage = () => {
 export const useBannerImage = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateBanner, isLoading: isUpdatingBanner } = useMutation({
+  const { mutate: updateBanner, isPending: isUpdatingBanner } = useMutation({
     mutationFn: updateTheBanner,
     onSuccess: () => {
       queryClient.invalidateQueries(["Departments"]);

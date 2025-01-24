@@ -12,6 +12,7 @@ import {
   useUpdateBanner,
 } from "../../admin/banner/parts/useBanner";
 import { Stack } from "@mui/material";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function EditBannerForm({ cabinToEdit = {}, onCloseModal, pageName }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -21,6 +22,7 @@ function EditBannerForm({ cabinToEdit = {}, onCloseModal, pageName }) {
 
   const { isCreating, createBanners } = useCreateBanner();
   const { isUpdating, updateBannerImage } = useUpdateBanner();
+  if (isUpdating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 

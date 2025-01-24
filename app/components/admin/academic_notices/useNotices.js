@@ -67,7 +67,7 @@ export const useUnblockNotices = () => {
 export const useCreateNotice = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createNotice, isLoading: isCreating } = useMutation({
+  const { mutate: createNotice, isPending: isCreating } = useMutation({
     mutationFn: createNotices,
     onSuccess: () => {
       queryClient.invalidateQueries(["notices"]);
@@ -85,7 +85,7 @@ export const useCreateNotice = () => {
 export const useUpdateName = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateName, isLoading: isUpdating } = useMutation({
+  const { mutate: updateName, isPending: isUpdating } = useMutation({
     mutationFn: updateNotice,
     onSuccess: () => {
       // Invalidate the "Blogs" query to refresh the table data
@@ -104,7 +104,7 @@ export const useUpdateName = () => {
 export const useUpdateNameFile = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateFile, isLoading: isUpdatingFile } = useMutation({
+  const { mutate: updateFile, isPending: isUpdatingFile } = useMutation({
     mutationFn: updateNoticeFile,
     onSuccess: () => {
       // Invalidate the "Blogs" query to refresh the table data

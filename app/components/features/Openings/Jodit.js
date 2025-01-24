@@ -73,6 +73,26 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+// Custom font sizes
+const customFontSizes = [
+  "8px",
+  "10px",
+  "12px",
+  "14px",
+  "16px",
+  "18px",
+  "20px",
+  "24px",
+  "28px",
+  "32px",
+  "36px",
+];
+
+// Custom font size module
+const Size = ReactQuill.Quill.import("attributors/style/size");
+Size.whitelist = customFontSizes; // Define the allowed font sizes
+ReactQuill.Quill.register(Size, true);
+
 const Jodit = ({ content, setContent }) => {
   const handleChange = (value) => {
     setContent(value);
@@ -80,8 +100,8 @@ const Jodit = ({ content, setContent }) => {
 
   const modules = {
     toolbar: [
-      // Add font size and header options
-      [{ font: [] }, { size: [] }],
+      // Add custom font size dropdown
+      [{ font: [] }, { size: customFontSizes }],
 
       // Bold, italic, underline, strikethrough
       ["bold", "italic", "underline", "strike"],
@@ -108,7 +128,7 @@ const Jodit = ({ content, setContent }) => {
 
   const formats = [
     "font",
-    "size",
+    "size", // Include size in formats
     "bold",
     "italic",
     "underline",
@@ -137,6 +157,18 @@ const Jodit = ({ content, setContent }) => {
         {`
           .ql-editor {
             min-height: 200px; 
+          }
+
+          /* Custom CSS for font size dropdown labels */
+          .ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,
+          .ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before {
+            content: attr(data-value);
+          }
+
+          /* Ensure all labels appear in the same font size */
+          .ql-snow .ql-picker.ql-size .ql-picker-label,
+          .ql-snow .ql-picker.ql-size .ql-picker-item {
+            font-size: 14px; /* Set a uniform font size for all labels */
           }
         `}
       </style>

@@ -31,6 +31,7 @@ import {
 import EditDownloadablesForm from "@/app/components/features/Downloadables/EditDownloadablesForm";
 import { useState } from "react";
 import moment from "moment";
+
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -62,7 +63,6 @@ function DownloadRow({
   const { mutate: updateTheFile } = useUpdateDownloadablesImage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const created = moment(createdAt).format("YYYY-MM-DD");
-
   const onCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -150,7 +150,6 @@ function DownloadRow({
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 

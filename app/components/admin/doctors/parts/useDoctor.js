@@ -75,7 +75,7 @@ export const useDeleteDoctor = () => {
 export const useUpdateDoctor = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateDoctor, isLoading: isUpdating } = useMutation({
+  const { mutate: updateDoctor, isPending: isUpdating } = useMutation({
     mutationFn: updateTheDoctor,
     onSuccess: () => {
       queryClient.invalidateQueries(["Doctors"]);
@@ -93,7 +93,7 @@ export const useUpdateDoctor = () => {
 export const useUpdateImage = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateImage, isLoading: isUpdatingImage } = useMutation({
+  const { mutate: updateImage, isPending: isUpdatingImage } = useMutation({
     mutationFn: updateTheImage,
     onSuccess: () => {
       queryClient.invalidateQueries(["Doctors"]);
@@ -111,7 +111,7 @@ export const useUpdateImage = () => {
 export const useCreateDoctor = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createDoctor, isLoading: isCreating } = useMutation({
+  const { mutate: createDoctor, isPending: isCreating } = useMutation({
     mutationFn: createTheDoctor,
     onSuccess: () => {
       queryClient.invalidateQueries(["Doctors"]);

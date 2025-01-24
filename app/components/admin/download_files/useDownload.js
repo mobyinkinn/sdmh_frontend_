@@ -21,7 +21,7 @@ export const useDownloadables = () => {
 export const useUpdateDownloadables = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateDownloadables, isLoading: isUpdating } = useMutation({
+  const { mutate: updateDownloadables, isPending: isUpdating } = useMutation({
     mutationFn: updateTheDownloadable,
     onSuccess: () => {
       queryClient.invalidateQueries(["Downloadables"]);
@@ -54,7 +54,7 @@ export const useUpdateDownloadablesImage = () => {
 export const useCreateDownloadable = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createDownloadables, isLoading: isCreating } = useMutation({
+  const { mutate: createDownloadables, isPending: isCreating } = useMutation({
     mutationFn: createTheDownloadables,
     onSuccess: () => {
       queryClient.invalidateQueries(["Downloadables"]);

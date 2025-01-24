@@ -12,6 +12,7 @@ import AnotherSelect from "../../ui/AnotherSelect";
 import { Stack } from "@mui/material";
 import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -73,7 +74,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
     console.log(errors);
   }
 
-  if (isCreating) return <Spinner />;
+  if (isCreating) return <SpinnerMini />;
 
   return (
     <Form
