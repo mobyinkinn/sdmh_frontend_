@@ -82,7 +82,12 @@ const aboutUs = [
 
 export default function Footer() {
   return (
-    <ContainerMain flexDirection={{lg:"row"}} gap="30px" justifyContent={"space-between"} display={{sm:"none", smm:"none", md:"none"}}>
+    <ContainerMain
+      flexDirection={{ lg: "row" }}
+      gap="30px"
+      justifyContent={"space-between"}
+      display={{ sm: "none", smm: "none", md: "none" }}
+    >
       <Stack gap={"50px"} width={"20%"}>
         <Stack
           sx={{
@@ -96,7 +101,7 @@ export default function Footer() {
         ></Stack>
         <Stack>
           {address.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
       </Stack>
@@ -106,7 +111,7 @@ export default function Footer() {
             Center of Excellence
           </ParaNormal>
           {centerOfExcellence.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
         <Stack>
@@ -114,7 +119,7 @@ export default function Footer() {
             Support a cause
           </ParaNormal>
           {supportACause.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
       </Stack>
@@ -124,7 +129,7 @@ export default function Footer() {
             Patients & visitors
           </ParaNormal>
           {Patients.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
         <Stack>
@@ -132,7 +137,7 @@ export default function Footer() {
             Contact us
           </ParaNormal>
           {contactUs.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
       </Stack>
@@ -142,7 +147,7 @@ export default function Footer() {
             Online service
           </ParaNormal>
           {onlineService.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
         <Stack>
@@ -150,7 +155,7 @@ export default function Footer() {
             Quick links
           </ParaNormal>
           {quickLinks.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
       </Stack>
@@ -160,7 +165,7 @@ export default function Footer() {
             About us
           </ParaNormal>
           {aboutUs.map((el, i) => {
-            return <ParaNormal>{el.data}</ParaNormal>;
+            return <ParaNormal key={i}>{el.data}</ParaNormal>;
           })}
         </Stack>
         <Stack>
@@ -171,6 +176,7 @@ export default function Footer() {
             {social.map((el, i) => {
               return (
                 <Stack
+                  key={i}
                   padding={"10px"}
                   color={"white"}
                   backgroundColor={"#379237"}
@@ -192,7 +198,3 @@ export default function Footer() {
     </ContainerMain>
   );
 }
-
-
-
-

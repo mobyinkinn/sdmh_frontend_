@@ -174,6 +174,7 @@ export default function Navbar() {
                   <a
                     href={el.link}
                     style={{ textDecoration: "none", color: "black" }}
+                    key={i}
                   >
                     <Typography
                       sx={{
@@ -240,6 +241,7 @@ export default function Navbar() {
               <a
                 href={el.link}
                 style={{ textDecoration: "none", color: "black" }}
+                key={i}
               >
                 <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
               </a>

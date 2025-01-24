@@ -161,6 +161,7 @@ export default function Tabs() {
         {tabs.map((el, i) => {
           return (
             <Typography
+              key={i}
               padding={{ xs: "15px 35px", lg: "20px 45px" }}
               fontSize={{ xs: "1rem", lg: "1.3rem" }}
               color={el.id === activeTab && "#54B435"}
@@ -284,6 +285,7 @@ export default function Tabs() {
         {tabs[activeTab].data.map((el, i) => {
           return (
             <Stack
+              key={i}
               width={"20%"}
               backgroundColor={"#FBF6EE"}
               sx={{

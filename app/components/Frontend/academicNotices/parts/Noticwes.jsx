@@ -41,11 +41,11 @@ const Noticwes = () => {
   //   },
   // ];
   const { data, isLoading, error } = useNotices();
- const filteredData = data?.filter((el, i) => el.status === true);
-if (isLoading) {
-  return <Spinner />;
-}
-console.log("data",data)
+  const filteredData = data?.filter((el, i) => el.status === true);
+  if (isLoading) {
+    return <Spinner />;
+  }
+  console.log("data", data);
   return (
     <Stack
       bgcolor={"#F9F9F9"}
@@ -55,8 +55,9 @@ console.log("data",data)
       p={4}
       gap={3}
     >
-      {filteredData?.map((d) => (
+      {filteredData?.map((d, i) => (
         <Stack
+          key={i}
           width={"30%"}
           bgcolor={"white"}
           borderRadius={"20px"}

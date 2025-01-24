@@ -108,7 +108,7 @@ export default function MobileFooter() {
         ></Stack>
         {footerData.map((el, i) => {
           return (
-            <Stack>
+            <Stack key={i}>
               <Typography fontWeight="bold" fontSize="0.9rem">
                 {el.name}
               </Typography>
@@ -116,6 +116,7 @@ export default function MobileFooter() {
                 {el.links.map((ele, i) => {
                   return (
                     <Typography
+                      key={i}
                       fontSize={"0.8rem"}
                       marginTop={"6px"}
                       marginRight="15px"

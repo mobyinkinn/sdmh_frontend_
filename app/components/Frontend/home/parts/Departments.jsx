@@ -92,6 +92,7 @@ export default function Departments() {
                   margin={{ md: "0 10px", xs: "0" }}
                   justifyContent={"space-between"}
                   alignItems={"center"}
+                  key={i}
                   sx={
                     el.id === activeTab
                       ? {

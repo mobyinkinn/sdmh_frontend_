@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head2, Head3 } from "@/app/styledComponents/frontend/Headings";
@@ -35,14 +35,14 @@ const address = [
 ];
 
 export default function Enquire() {
-   const { register, handleSubmit, reset, formState } = useForm();
-   const { errors } = formState;
-   const { isCreating, createEnquiries } = useCreateEnquiry(); // Replace with career-related API hook
-   const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const { register, handleSubmit, reset, formState } = useForm();
+  const { errors } = formState;
+  const { isCreating, createEnquiries } = useCreateEnquiry(); // Replace with career-related API hook
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
-   const isWorking = isCreating;
+  const isWorking = isCreating;
 
-   function onSubmit(data) {
+  function onSubmit(data) {
     const formData = {
       name: data.name,
       email: data.email,
@@ -50,16 +50,16 @@ export default function Enquire() {
       message: data.message,
       date: new Date().toISOString().split("T")[0],
     };
-     createEnquiries(formData, {
-       onSuccess: () => {
-         reset();
-         setShowModal(true); // Show "Thank You" modal on success
-       },
-       onError: (error) => {
-         console.error("Failed to submit application:", error);
-       },
-     });
-   }
+    createEnquiries(formData, {
+      onSuccess: () => {
+        reset();
+        setShowModal(true); // Show "Thank You" modal on success
+      },
+      onError: (error) => {
+        console.error("Failed to submit application:", error);
+      },
+    });
+  }
   return (
     <>
       <ContainerMain
@@ -203,6 +203,7 @@ export default function Enquire() {
           {address.map((el, i) => {
             return (
               <Stack
+                key={i}
                 direction={"row"}
                 gap={"20px"}
                 alignItems={"center"}

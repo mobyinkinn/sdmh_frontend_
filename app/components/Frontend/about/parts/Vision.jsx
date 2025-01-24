@@ -48,7 +48,7 @@ export default function Vision() {
         alignItems={"center"}
       >
         {visionData.map((el, i) => {
-          return <VisionCard el={el} />;
+          return <VisionCard el={el} key={i} />;
         })}
       </Stack>
     </ContainerMain>

@@ -1,13 +1,13 @@
-import { Head1 } from '@/app/styledComponents/frontend/Headings';
-import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-import { Stack } from '@mui/material'
-import React from 'react'
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Stack } from "@mui/material";
+import React from "react";
 import Image1 from "./assets/Image1.png";
 import Image2 from "./assets/Image2.png";
 import Image3 from "./assets/Image3.png";
-import Image from 'next/image';
+import Image from "next/image";
 const Scholarship = () => {
-  const data =[Image1,Image2,Image3]
+  const data = [Image1, Image2, Image3];
 
   return (
     <Stack bgcolor={"#CEDDCC"} p={"30px 100px"} gap={3}>
@@ -24,14 +24,14 @@ const Scholarship = () => {
         with Shri Shiv Shanker Sharma award.
       </ParaNormal>
       <Stack direction={"row"} gap={2} justifyContent={"center"}>
-        {data.map((d) => (
-          <Stack>
-            <Image src={d}/>
+        {data.map((d, i) => (
+          <Stack key={i}>
+            <Image src={d} />
           </Stack>
         ))}
       </Stack>
     </Stack>
   );
-}
+};
 
-export default Scholarship
+export default Scholarship;

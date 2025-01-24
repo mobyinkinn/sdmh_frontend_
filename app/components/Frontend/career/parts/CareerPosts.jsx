@@ -78,7 +78,7 @@ export default function CareerPosts() {
       </ParaNormal>
       <Stack gap={"20px"}>
         {filteredData.map((el, i) => {
-          return <CareerCard career={el} />;
+          return <CareerCard key={i} career={el} />;
         })}
       </Stack>
     </ContainerMain>

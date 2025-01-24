@@ -50,8 +50,9 @@ const OfficeAcademics = () => {
           bottom={100}
           borderRadius={2}
         >
-          {data.map((d) => (
+          {data.map((d, i) => (
             <Stack
+              key={i}
               width={"50%"}
               direction={"row"}
               p={"27px"}
