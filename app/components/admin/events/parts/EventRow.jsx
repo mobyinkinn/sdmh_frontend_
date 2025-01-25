@@ -54,6 +54,7 @@ function EventRow({
     description,
     featured,
     images,
+    image,
   },
 }) {
   const [fullDesc, showFullDesc] = useState(false);
@@ -69,6 +70,7 @@ function EventRow({
     description,
     date,
     images,
+    image,
   });
 
   const handleConfirmEdit = async () => {
@@ -147,6 +149,20 @@ function EventRow({
       </Stacked>
 
       <Stacked>
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            width={100}
+            height={100}
+            style={{ borderRadius: "8px" }}
+          />
+        ) : (
+          <span>No Image</span>
+        )}
+      </Stacked>
+
+      <Stacked>
         <span>{created}</span>
       </Stacked>
 
@@ -166,6 +182,7 @@ function EventRow({
           </Modal.Open>
           <Modal.Window name="event-form">
             <EditEventsForm
+              id={_id}
               resourceName="Event"
               editData={editData}
               setEditData={setEditData}

@@ -2,7 +2,10 @@
 import { Stack, Typography } from "@mui/material";
 import banner from "../assets/book_appointment.png";
 import { Head1, Head2 } from "@/app/styledComponents/frontend/Headings";
-import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import {
+  ButtonMediumOutline,
+  ButtonSmallOutline,
+} from "@/app/styledComponents/frontend/Buttons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -87,14 +90,72 @@ export default function BookAppointment() {
       }}
     >
       <Typography
-        fontSize={{ lg: "30px", md: "25px", sm: "20px" }}
+        fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "13px" }}
         fontWeight={500}
         textAlign={{ lg: "left", sm: "center" }}
       >
         How to Book an
       </Typography>
 
-      <Head1 color="#005900">Appointment</Head1>
+      <Head1 color="#005900" fontSize={{ md: "2.5rem", sm: "1.5rem" }}>
+        Appointment
+      </Head1>
+      {/* non slider */}
+      <Stack
+        direction={"column"}
+        justifyContent={"center"}
+        marginTop={"20px"}
+        width="100%"
+        // maxWidth="800px"
+        display={{ xs: "flex", md: "none" }}
+      >
+        {appointmentSteps.map((el, i) => {
+          if (i >= 4) return null;
+          return (
+            <Stack
+              height={"fit-content"}
+              key={i}
+              width={"100%"}
+              sx={{
+                padding: "20px ",
+              }}
+            >
+              <Stack
+                backgroundColor={"white"}
+                padding={"20px"}
+                gap={"10px"}
+                sx={{
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <Typography
+                  fontSize={"1.2rem"}
+                  color={"#476C9B"}
+                  fontWeight={"bold"}
+                >
+                  {el.id + 1}.
+                </Typography>
+                <Typography
+                  fontSize={"1.3rem"}
+                  color={"#379237"}
+                  fontWeight={"bold"}
+                >
+                  {el.heading}
+                </Typography>
+                <Typography>{el.body}</Typography>
+              </Stack>
+            </Stack>
+          );
+        })}
+        <Stack alignItems={{ xs: "center", md: "start" }}>
+          <ButtonMediumOutline margin="10px 50px" color="#476C9B">
+            View All
+          </ButtonMediumOutline>
+        </Stack>
+      </Stack>
+
       {/* slider*/}
       <Stack
         direction={"row"}
@@ -102,7 +163,7 @@ export default function BookAppointment() {
         marginTop={"20px"}
         width="100%"
         // maxWidth="800px"
-        display={{ xs: "flex", lg: "flex" }}
+        display={{ xs: "none", md: "flex" }}
       >
         <Slider
           {...settings}

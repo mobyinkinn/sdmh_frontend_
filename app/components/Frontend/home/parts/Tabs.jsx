@@ -8,6 +8,9 @@ import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEvents } from "@/app/components/admin/events/useEvents";
+import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
+import Spinner from "@/app/components/ui/Spinner";
 
 const tabs = [
   {
@@ -134,6 +137,27 @@ const tabs = [
 
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState(0);
+  const { data: events, isLoading: isLoadingEvents } = useEvents();
+  const { data: checkups, isLoading: isLoadingCheckups } = useCheckups();
+
+  if (isLoadingCheckups || isLoadingEvents) return <Spinner />;
+
+  const tabsData = [
+    {
+      id: 0,
+      name: "Events",
+      data: [events],
+    },
+    {
+      id: 1,
+      name: "Checkups",
+      data: [checkups],
+    },
+  ];
+
+  console.log("tabsData", tabsData);
+
+  console.log("events", tabsData[activeTab].data[0][0]);
 
   var settings = {
     autoplay: true,
@@ -158,7 +182,7 @@ export default function Tabs() {
           margin: "0 auto",
         }}
       >
-        {tabs.map((el, i) => {
+        {tabsData.map((el, i) => {
           return (
             <Typography
               key={i}
@@ -183,7 +207,7 @@ export default function Tabs() {
 
       <Stack alignItems="center" display={{ xs: "flex", md: "none" }}>
         <Stack direction="row" flexWrap="wrap" justifyContent="start">
-          {tabs.map((el, i) => (
+          {tabsData.map((el, i) => (
             <Stack
               key={el.id}
               marginRight="10px"
@@ -227,51 +251,59 @@ export default function Tabs() {
             overflow: "hidden",
           }}
         >
-          {tabs[activeTab].data.map((el, i) => (
-            <Stack
-              key={i}
-              width={"calc(50% - 20px)"}
-              backgroundColor={"#FBF6EE"}
-              sx={{
-                borderRadius: "10px",
-                overflow: "hidden",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <Box
-                width={"100%"}
-                height={"200px"}
+          {tabsData[activeTab].data[0].map((el, i) => {
+            if (i >= 4) return null;
+            return (
+              <Stack
+                key={i}
+                width={"calc(50% - 20px)"}
+                backgroundColor={"#FBF6EE"}
                 sx={{
-                  backgroundImage: `url(${el.image.src})`,
-                  backgroundSize: "cover",
-                  borderRadius: "10px 10px 0 0",
-                  backgroundPosition: "center center",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
                 }}
-              ></Box>
-              <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
-                <Typography
-                  fontSize={"1.2rem"}
-                  textAlign={"center"}
-                  color={"#379237"}
-                  fontWeight={"bold"}
-                >
-                  {el.head}
-                </Typography>
-                <Typography textAlign={"center"}>{el.body}</Typography>
-                <Typography
+              >
+                <Box
+                  width={"100%"}
+                  height={"200px"}
                   sx={{
-                    border: "1px solid black",
-                    padding: "10px 40px",
-                    borderRadius: "200px",
-                    cursor: "pointer",
-                    textAlign: "center",
+                    backgroundImage: `url(${el.image})`,
+                    backgroundSize: "cover",
+                    borderRadius: "10px 10px 0 0",
+                    backgroundPosition: "center center",
                   }}
-                >
-                  Know More
-                </Typography>
+                ></Box>
+                <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
+                  <Typography
+                    fontSize={"1.2rem"}
+                    textAlign={"center"}
+                    color={"#379237"}
+                    fontWeight={"bold"}
+                  >
+                    {el.title}
+                  </Typography>
+                  <Typography
+                    textAlign={"center"}
+                    dangerouslySetInnerHTML={{
+                      __html: el.description.split(" ").slice(0, 25).join(" "),
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      border: "1px solid black",
+                      padding: "10px 40px",
+                      borderRadius: "200px",
+                      cursor: "pointer",
+                      textAlign: "center",
+                    }}
+                  >
+                    Know More
+                  </Typography>
+                </Stack>
               </Stack>
-            </Stack>
-          ))}
+            );
+          })}
         </Slider>
       </Stack>
 
@@ -282,7 +314,8 @@ export default function Tabs() {
         marginTop={"30px"}
         display={{ xs: "none", lg: "flex" }}
       >
-        {tabs[activeTab].data.map((el, i) => {
+        {tabsData[activeTab].data[0].map((el, i) => {
+          if (i >= 4) return null;
           return (
             <Stack
               key={i}
@@ -296,7 +329,7 @@ export default function Tabs() {
                 width={"100%"}
                 height={"200px"}
                 sx={{
-                  backgroundImage: `url(${el.image.src})`,
+                  backgroundImage: `url(${el.image})`,
                   backgroundSize: "cover",
                   borderRadius: "10px 10px 0 0",
                   backgroundPosition: "center center",
@@ -309,9 +342,14 @@ export default function Tabs() {
                   color={"#379237"}
                   fontWeight={"bold"}
                 >
-                  {el.head}
+                  {el.title}
                 </Typography>
-                <Typography textAlign={"center"}>{el.body}</Typography>
+                <Typography
+                  textAlign={"center"}
+                  dangerouslySetInnerHTML={{
+                    __html: el.description.split(" ").slice(0, 25).join(" "),
+                  }}
+                />
                 <Typography
                   sx={{
                     border: "1px solid black",

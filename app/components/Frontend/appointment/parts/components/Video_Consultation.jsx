@@ -77,15 +77,18 @@ const Video_Consultation = () => {
       width={"100%"}
       padding={{ md: "50px", xs: "30px 15px" }}
       alignItems={"center"}
+      textAlign={"center"}
     >
-      <Head1 color="#FFFFFF">Online Video Consultation</Head1>
-      <Typography color="#FFFFFF" fontSize={"1.5rem"}>
+      <Head1 color="#FFFFFF" fontSize={{ md: "2.5rem", sm: "1.5rem" }}>
+        Online Video Consultation
+      </Head1>
+      <Typography
+        color="#FFFFFF"
+        fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "13px" }}
+      >
         Even during the pandemic, the health and safety of our patients is of
-        utmost importance. Numerous
-      </Typography>
-      <Typography color="#FFFFFF" fontSize={"1.5rem"}>
-        safety protocols are in place at all Max Hospitals to limit the spread
-        of infection.
+        utmost importance. Numerous safety protocols are in place at all Max
+        Hospitals to limit the spread of infection.
       </Typography>
       <Box
         sx={{
@@ -98,18 +101,26 @@ const Video_Consultation = () => {
         }}
       ></Box>
       <Typography
-        fontSize={"2.5rem"}
+        fontSize={{ md: "2.5rem", sm: "1.5rem" }}
         color={"#FFFFFF"}
         fontWeight={"bold"}
-        alignSelf={"start"}
+        alignSelf={{ md: "start", sm: "center" }}
       >
         To Start Online Consultation
       </Typography>
       <Stack direction={"row"} width={"100%"} justifyContent={"space-between"}>
-        <Typography color="#FFFFFF" fontWeight={500} fontSize={"2rem"}>
+        <Typography
+          color="#FFFFFF"
+          fontWeight={500}
+          fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "13px" }}
+        >
           Please Follow These Steps
         </Typography>
-        <Typography color="#FFFFFF" fontWeight={500} fontSize={"2rem"}>
+        <Typography
+          color="#FFFFFF"
+          fontWeight={500}
+          fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "13px" }}
+        >
           View All Steps
         </Typography>
       </Stack>
