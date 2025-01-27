@@ -10,6 +10,7 @@ const breakpoints = {
 };
 
 const ParaNormal = styled.span((props) => ({
+  padding: props.padding,
   color: props.color || "black",
   fontWeight: props.fontWeight,
   width: props.width,

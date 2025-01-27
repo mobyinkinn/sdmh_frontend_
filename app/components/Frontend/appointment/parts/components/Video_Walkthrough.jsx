@@ -14,7 +14,7 @@ const Video_Walkthrough = () => {
         Video Walkthrough
       </Head1>
       <Typography
-        width={{ lg: "898px", xs: "306px" }}
+        // width={{ lg: "898px", xs: "306px" }}
         fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "13px" }}
       >
         On the other hand, we denounce with righteous indignation and dislike

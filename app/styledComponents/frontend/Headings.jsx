@@ -13,6 +13,7 @@ const Head1 = styled.span((props) => ({
   fontWeight: props.fontWeight || "bold",
   width: props.width,
   textAlign: props.textAlign || "center",
+  paddingBottom: props.paddingBottom,
 
   // Default font size
 

@@ -1,10 +1,11 @@
-import React from 'react'
-import Navbar from '../navbar/Nav'
-import Footer from '../footer/Footer'
+import React from "react";
+import Navbar from "../navbar/Nav";
+import Footer from "../footer/Footer";
 import banner from "./parts/assets/BannerRight.png";
-import BannerImage from './parts/BannerImage';
-import Testimonialslider from './parts/Testimonialslider';
-import PatientStories from './parts/PatientStories';
+import BannerImage from "./parts/BannerImage";
+import Testimonialslider from "./parts/Testimonialslider";
+import PatientStories from "./parts/PatientStories";
+import MobileFooter from "../footer/MobileFooter";
 
 const PatientTestimonials = () => {
   return (
@@ -19,11 +20,12 @@ const PatientTestimonials = () => {
         image={banner}
         textcenter={"left"}
       />
-      <Testimonialslider/>
-      <PatientStories/>
+      <Testimonialslider />
+      <PatientStories />
       <Footer />
+      <MobileFooter />
     </>
   );
-}
+};
 
-export default PatientTestimonials
+export default PatientTestimonials;

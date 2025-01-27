@@ -1,5 +1,5 @@
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import durlabhji from "./assests/sdmhContact.png";
@@ -39,8 +39,18 @@ const OfficeAcademics = () => {
         alignItems={"center"}
         p={"0 16px 20% 16px"}
         position={"relative"}
+        display={{ xs: "none", lg: "flex" }}
       >
-        <Image src={durlabhji.src} width={1200} height={500} />
+        <Box
+          component="img"
+          src={durlabhji.src}
+          alt="Durlabhji"
+          sx={{
+            width: { md: "700px", lg: "1200px" },
+            height: 500,
+            objectFit: "cover", // Optional: adjust how the image scales
+          }}
+        />
         <Stack
           bgcolor={"white"}
           width={"65%"}
@@ -66,6 +76,30 @@ const OfficeAcademics = () => {
             </Stack>
           ))}
         </Stack>
+      </Stack>
+
+      <Stack
+        bgcolor={"white"}
+        width={"80%"}
+        bottom={100}
+        borderRadius={2}
+        display={{ xs: "flex", lg: "none" }}
+      >
+        {data.map((d, i) => (
+          <Stack
+            key={i}
+            width={"100%"}
+            direction={"row"}
+            p={"27px"}
+            alignItems={"center"}
+            gap={2}
+          >
+            <Stack bgcolor={"#007946"} p={"18px"} borderRadius={2}>
+              <d.icon size={47} color="white" />
+            </Stack>
+            <ParaNormal>{d.text}</ParaNormal>
+          </Stack>
+        ))}
       </Stack>
     </Stack>
   );
