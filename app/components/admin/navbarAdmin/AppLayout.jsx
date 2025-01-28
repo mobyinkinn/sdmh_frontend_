@@ -157,12 +157,18 @@ const navData = [
     link: "/admin/health-tips",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 19,
+    name: "Pages",
+    link: "/admin/pages",
+    value: "pages",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 function AppLayout({ children }) {
   const [user, setUser] = useState(null);
   const { currAdmin, isFetching } = useCurrentAdmin();
-  console.log(currAdmin)
   const router = useRouter();
   const pathname = usePathname();
 

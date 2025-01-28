@@ -134,40 +134,42 @@ const PatientStories = () => {
           readable
         </ParaNormal>
       </Stack>
-      {rows.map((row, index) => (
-        <Stack
-          key={index}
-          direction={"row"}
-          gap={3}
-          justifyContent={"center"}
-          flexWrap={"wrap"}
-        >
-          {row.map((item) => (
-            <Stack
-              key={item.id}
-              alignItems={"center"}
-              sx={{
-                padding: 2,
-                borderRadius: "8px",
-              }}
-            >
-              <Image
-                src={item.image}
-                width={220}
-                height={300}
-                alt={item.title}
-              />
-              <ParaNormal>{item.title}</ParaNormal>
-            </Stack>
-          ))}
-        </Stack>
-      ))}
+      {rows.map((row, index) => {
+        return (
+          <Stack
+            key={index}
+            direction={"row"}
+            gap={3}
+            justifyContent={"center"}
+            flexWrap={"wrap"}
+          >
+            {row.map((item) => (
+              <Stack
+                key={item.id}
+                alignItems={"center"}
+                sx={{
+                  padding: 2,
+                  borderRadius: "8px",
+                }}
+              >
+                <Image
+                  src={item.image}
+                  width={220}
+                  height={300}
+                  alt={item.title}
+                />
+                <ParaNormal>{item.title}</ParaNormal>
+              </Stack>
+            ))}
+          </Stack>
+        );
+      })}
       <Stack alignItems={"center"}>
         <ButtonSmallOutline
           color="#007946"
           style={{ border: "1px solid #007946" }}
         >
-          View More
+          View All
         </ButtonSmallOutline>
       </Stack>
     </Stack>

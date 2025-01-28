@@ -13,6 +13,7 @@ import {
   useAddImagesToEvent,
 } from "../../admin/events/useEvents";
 import toast from "react-hot-toast";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const AddImagesForm = ({
   id,
@@ -23,8 +24,9 @@ const AddImagesForm = ({
   onCloseModal,
 }) => {
   const { mutate: removeImageFromEvent } = useDeleteImageFromEvent();
-  const { mutate: addImagesToEvent, isLoading: isAddingImages } =
+  const { mutate: addImagesToEvent, isPending: isAddingImages } =
     useAddImagesToEvent();
+  if (isAddingImages) return <SpinnerMini />;
 
   const handleSubmit = (e) => {
     e.preventDefault();

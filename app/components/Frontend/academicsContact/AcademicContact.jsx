@@ -1,9 +1,10 @@
-import React from 'react'
-import Navbar from '../navbar/Nav'
-import Footer from '../footer/Footer'
-import BannerImage from '@/app/styledComponents/frontend/BannerImage';
+import React from "react";
+import Navbar from "../navbar/Nav";
+import Footer from "../footer/Footer";
+import BannerImage from "@/app/styledComponents/frontend/BannerImage";
 import banner from "./parts/assests/banner.png";
-import OfficeAcademics from './parts/OfficeAcademics';
+import sm_banner from "./parts/assests/sm_banner.png";
+import OfficeAcademics from "./parts/OfficeAcademics";
 
 const AcademicContact = () => {
   return (
@@ -17,11 +18,12 @@ const AcademicContact = () => {
         color={"#476C9B"}
         descolor={"black"}
         padding={10}
+        sm_image={sm_banner.src}
       />
-      <OfficeAcademics/>
+      <OfficeAcademics />
       <Footer />
     </>
   );
-}
+};
 
-export default AcademicContact
+export default AcademicContact;

@@ -23,6 +23,7 @@ import {
   useUnblockTestimonial,
 } from "./useTestimonial";
 import { HiEyeOff } from "react-icons/hi";
+import moment from "moment";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -44,7 +45,7 @@ const Stacked = styled.div`
 `;
 
 function TestimonialRow({
-  academic: { _id, name, designation, message, image, status, created },
+  academic: { _id, name, designation, message, image, status, createdAt },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: deleteTestimonial, isLoading: isDeleting } =
@@ -53,6 +54,7 @@ function TestimonialRow({
     useBlockTestimonial();
   const { mutate: unblockTestimonial, isLoading: isUnblocking } =
     useUnblockTestimonial();
+  const created = moment(createdAt).format("YYYY-MM-DD");
 
   const handleToggleStatus = () => {
     if (status) {

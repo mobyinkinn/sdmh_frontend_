@@ -8,6 +8,7 @@ import {
   updateCheckup,
   updateImage,
   updateBanner,
+  fetchCheckupById,
 } from "../../services/api.checkup";
 import toast from "react-hot-toast";
 
@@ -18,6 +19,14 @@ export const useCheckups = () => {
     staleTime: 5 * 60 * 1000,
   });
   return { data, isLoading, error };
+};
+
+export const useCheckupById = (id) => {
+  return useQuery({
+    queryKey: ["Checkups", id],
+    queryFn: () => fetchCheckupById(id),
+    staleTime: 5 * 60 * 1000,
+  });
 };
 
 export const useDeleteCheckup = () => {
@@ -118,7 +127,7 @@ export const useUpdateCheckupBanner = () => {
 
 export const useCreateCheckup = () => {
   const queryClient = useQueryClient();
-  const { mutate: createCheckups, isLoading: isCreating } = useMutation({
+  const { mutate: createCheckups, isPending: isCreating } = useMutation({
     mutationFn: createCheckup,
     onSuccess: () => {
       queryClient.invalidateQueries(["checkups"]);

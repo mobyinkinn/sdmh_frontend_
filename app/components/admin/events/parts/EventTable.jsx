@@ -67,6 +67,7 @@ function EventTable() {
           <div>Title</div>
           <div>Small description</div>
           <div>Description</div>
+          <div>Image</div>
           <div>Date</div>
           <div>Status</div>
           <div>Actions</div>

@@ -78,7 +78,11 @@ const BannerImage = ({
               View More
             </ButtonSmallOutline>
           </Stack>
-          <Stack position="relative" width={"30%"} height={"100%"}>
+          <Stack
+            position="relative"
+            width={{ xs: "50%", md: "30%" }}
+            height={{ xs: "70%", md: "100%" }}
+          >
             <Image
               src={image}
               fill

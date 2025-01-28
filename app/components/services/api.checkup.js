@@ -69,3 +69,10 @@ export const createCheckup = async (data) => {
   });
   return response.data;
 };
+
+export const fetchCheckupById = async (id) => {
+  const response = await axios.get(`${ApiUrl}/checkup/get-by-id?_id=${id}`, {
+    withCredentials: true,
+  });
+  return response.data.message;
+};

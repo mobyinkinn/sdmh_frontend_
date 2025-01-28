@@ -54,6 +54,7 @@ function EventRow({
     description,
     featured,
     images,
+    image,
   },
 }) {
   const [fullDesc, showFullDesc] = useState(false);
@@ -61,6 +62,7 @@ function EventRow({
   const { mutate: updateEvent, isLoading: isUpdating } = useUpdateEvent();
   const { mutate: deleteEvent, isLoading: isDeleting } = useDeleteEvent();
   const id = _id;
+  const [descContent, setDescContent] = useState(description);
 
   const [editData, setEditData] = useState({
     title,
@@ -68,6 +70,7 @@ function EventRow({
     description,
     date,
     images,
+    image,
   });
 
   const handleConfirmEdit = async () => {
@@ -75,7 +78,7 @@ function EventRow({
     const formData = {
       title: editData.title,
       smallDescription: editData.smallDescription,
-      description: editData.description,
+      description: descContent,
       date: created,
     };
 
@@ -131,10 +134,32 @@ function EventRow({
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? description : description.slice(0, 70)}...</span>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullDesc
+              ? description
+              : `${description.slice(0, 50)}${
+                  description.length > 50 ? "..." : ""
+                }`,
+          }}
+        />
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
-          {fullDesc ? "Show less" : "Show more"}
+          {fullDesc ? "show less" : "show more"}
         </span>
+      </Stacked>
+
+      <Stacked>
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            width={100}
+            height={100}
+            style={{ borderRadius: "8px" }}
+          />
+        ) : (
+          <span>No Image</span>
+        )}
       </Stacked>
 
       <Stacked>
@@ -157,12 +182,15 @@ function EventRow({
           </Modal.Open>
           <Modal.Window name="event-form">
             <EditEventsForm
+              id={_id}
               resourceName="Event"
               editData={editData}
               setEditData={setEditData}
               onCloseModal={() => {}}
               onConfirm={handleConfirmEdit}
               disabled={false}
+              descContent={descContent}
+              setDescContent={setDescContent}
             />
           </Modal.Window>
           <Modal.Open opens="image-form">

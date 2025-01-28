@@ -30,6 +30,8 @@ import {
 } from "../useDownload";
 import EditDownloadablesForm from "@/app/components/features/Downloadables/EditDownloadablesForm";
 import { useState } from "react";
+import moment from "moment";
+
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -51,7 +53,7 @@ const Stacked = styled.div`
 `;
 
 function DownloadRow({
-  department: { _id, name, file, type, status, created },
+  department: { _id, name, file, type, status, createdAt },
 }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
@@ -60,7 +62,7 @@ function DownloadRow({
   const { deleteDownloadables, isDeleting } = useDeleteDownloadables();
   const { mutate: updateTheFile } = useUpdateDownloadablesImage();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const created = moment(createdAt).format("YYYY-MM-DD");
   const onCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -148,7 +150,6 @@ function DownloadRow({
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
@@ -168,7 +169,6 @@ function DownloadRow({
       </Stacked>
 
       <Stacked>
-        <span>Type</span>
         <span>{type}</span>
       </Stacked>
 
@@ -178,7 +178,6 @@ function DownloadRow({
 
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
       <Stacked>
-        <span>Created on</span>
         <span>{created}</span>
       </Stacked>
 

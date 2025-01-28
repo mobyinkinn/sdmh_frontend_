@@ -143,6 +143,13 @@ const navData = [
     link: "/admin/health-tips",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 19,
+    name: "Pages",
+    link: "/admin/pages",
+    value: "pages",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 const NavList = styled.ul`
@@ -235,7 +242,6 @@ const StyledSidebar = styled.aside`
 function NavbarAdminVerticle() {
   const { currAdmin, isFetching } = useCurrentAdmin();
   const pathname = usePathname();
-  console.log("path",pathname);
   if (isFetching) return <Spinner />;
 
   const filteredNavData = navData.filter((el) =>

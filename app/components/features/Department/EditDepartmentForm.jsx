@@ -19,10 +19,12 @@ import {
   useBannerImage,
 } from "../../admin/departments/parts/useDepartment";
 import { useState } from "react";
+import Jodit from "../Openings/Jodit";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function EditDepartmentForm({ onCloseModal, id }) {
   const { data, isLoading } = useDepartment();
-  const filteredData = data.data.filter((el) => el._id === id);
+  const filteredData = data.filter((el) => el._id === id);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
@@ -35,7 +37,7 @@ function EditDepartmentForm({ onCloseModal, id }) {
   const { updateBanner, isUpdatingBanner } = useBannerImage();
 
   const { errors } = formState;
-
+  if (isUpdating || isUpdatingImage || isUpdatingBanner) return <SpinnerMini />;
   // const { isUpdating, updateBannerImage } = useUpdateBanner();
 
   function onUpdateDepartment(name, content, id) {
@@ -56,6 +58,10 @@ function EditDepartmentForm({ onCloseModal, id }) {
     formdata.append("banner", file);
     updateBanner({ id, formdata });
   }
+
+  const handleContentClick = () => {
+    onUpdateDepartment(name, content, id);
+  };
 
   function onError(errors) {}
   return (
@@ -80,22 +86,18 @@ function EditDepartmentForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      <FormRow label="Content" error={errors?.page?.message}>
-        <Input
-          // disabled={isUpdating}
-          type="text"
-          id="content"
-          value={content}
-          {...register("content", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            const newContent = e.target.value;
-            setContent(newContent);
-            onUpdateDepartment(name, newContent, id);
-          }}
-        />
-      </FormRow>
+      <FormRow label="Content"></FormRow>
+      <Jodit content={content} setContent={setContent} />
+      <Stack
+        direction="row"
+        sx={{
+          justifyContent: "end",
+          gap: "20px",
+          marginTop: "10px",
+        }}
+      >
+        <Button onClick={handleContentClick}>{"Update Content"}</Button>
+      </Stack>
 
       <FormRow label={"Image"}>
         <FileInput

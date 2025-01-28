@@ -37,9 +37,6 @@ export const updateOpening = async ({ id, data }) => {
     data,
     {
       withCredentials: true,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
     }
   );
   return response.data;
@@ -52,11 +49,9 @@ export const createOpening = async (formdata) => {
   return response.data;
 };
 
-
 export const fetchOpeningById = async (_id) => {
   const response = await axios.get(`${ApiUrl}/openings/getbyId?id=${_id}`, {
     withCredentials: true,
-    
   });
   return response.data.message; // Adjust based on the actual API response structure
 };

@@ -9,13 +9,7 @@ import ConfirmDelete from "../../../ui/ConfirmDelete";
 // import { formatCurrency } from "../../../utils/helpers";
 // import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
-import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
-  HiEye,
-  HiPencil,
-  HiTrash,
-} from "react-icons/hi2";
+import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 import {
   useBlockBlog,
   useDeleteBlog,
@@ -70,6 +64,8 @@ function BlogRow({
   const { mutate: updateBlog, isLoading: isUpdating } = useUpdateBlog();
   const { mutate: updateSingleImageFromBlog, isLoading: isUpdatingImage } =
     useUpdateSingleImageFromBlog();
+  const [descContent, setDescContent] = useState(description);
+
   const handleToggleStatus = () => {
     if (status) {
       blockBlog(_id); // Call block API if active
@@ -101,7 +97,7 @@ function BlogRow({
     const formData = {
       title: editData.title,
       smallDescription: editData.smallDescription,
-      description: editData.description,
+      description: descContent,
       date: editData.date,
     };
 
@@ -139,9 +135,17 @@ function BlogRow({
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? description : description.slice(0, 30)}...</span>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullDesc
+              ? description
+              : `${description.slice(0, 50)}${
+                  description.length > 50 ? "..." : ""
+                }`,
+          }}
+        />
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
-          {fullDesc ? "Show less" : "Show more"}
+          {fullDesc ? "show less" : "show more"}
         </span>
       </Stacked>
 
@@ -207,7 +211,9 @@ function BlogRow({
             setEditData={setEditData}
             onCloseModal={() => {}}
             onConfirm={handleConfirmEdit}
-            disabled={false}
+            isUpdating={isUpdating}
+            descContent={descContent}
+            setDescContent={setDescContent}
           />
         </Modal.Window>
       </Modal>

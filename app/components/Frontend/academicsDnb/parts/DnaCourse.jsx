@@ -13,22 +13,54 @@ import {
 } from "@mui/material";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 
-const DNBTable = ({ rows, title, title1, title2, title3, title4 }) => {
+const DNBTable = ({
+  rows,
+  title,
+  title1,
+  title2,
+  title3,
+  title4,
+  column1,
+  column2,
+  column3,
+}) => {
   return (
     <Stack bgcolor={"#dcefe9"} p={2}>
       <Stack p={2} lineHeight={1}>
         <Head1 color="black">{title}&nbsp;</Head1>
-        <Stack direction={"row"} p={2} justifyContent={"center"}>
+        <Stack direction={"row"} p={1} justifyContent={"center"}>
           <Head1 style={{ textAlign: "center" }}>{title1}&nbsp;</Head1>
           <Head1 color="black">{title2}</Head1>
         </Stack>
-        <Head1 color="black" style={{display:title3===""?"none":"block"}}>{title3}&nbsp;</Head1>
+        <Head1
+          color="black"
+          style={{ display: title3 === "" ? "none" : "block" }}
+          paddingBottom={8}
+        >
+          {title3}&nbsp;
+        </Head1>
+        <Typography
+          fontSize={{ xs: "15px", md: "18px" }}
+          component="div"
+          align="center"
+          display={{ xs: "block", lg: "none" }}
+        >
+          Eligibility – MS/MD/MCh/DNB in broad or super specialty
+        </Typography>
+        <Typography
+          fontSize={{ xs: "15px", md: "18px" }}
+          component="div"
+          align="center"
+          display={{ xs: "block", lg: "none" }}
+        >
+          Duration – 3 years
+        </Typography>
       </Stack>
       <Box
         sx={{
-          padding: "26px",
+          padding: { xs: "0", lg: "26px" },
           borderRadius: "8px",
-          width: "90%",
+          width: { xs: "95%", lg: "90%" },
           margin: "0 auto",
         }}
       >
@@ -42,17 +74,25 @@ const DNBTable = ({ rows, title, title1, title2, title3, title4 }) => {
             borderRadius: "8px 8px 0 0",
             color: "white",
           }}
+          display={{ xs: "none", lg: "flex" }}
         >
           <Typography fontSize={"18px"} component="div" align="center">
             National Board of Examinations - DNB Post MBBS Program
           </Typography>
-          <Typography fontSize={"18px"} component="div" align="center" display={title4===""?"none":"block"}>
-           {title4}
+
+          <Typography
+            fontSize={"18px"}
+            component="div"
+            align="center"
+            display={title4 === "" ? "none" : "block"}
+          >
+            {title4}
           </Typography>
           <Typography fontSize={"18px"} component="div" align="center">
             Duration – 3 years
           </Typography>
         </Stack>
+
         <TableContainer component={Paper} elevation={0}>
           <Table>
             <TableHead>
@@ -64,7 +104,7 @@ const DNBTable = ({ rows, title, title1, title2, title3, title4 }) => {
                     fontSize: "18px",
                   }}
                 >
-                  Subject
+                  {column1}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -73,7 +113,7 @@ const DNBTable = ({ rows, title, title1, title2, title3, title4 }) => {
                     color: "#2a803c",
                   }}
                 >
-                  Intake
+                  {column2}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -82,7 +122,7 @@ const DNBTable = ({ rows, title, title1, title2, title3, title4 }) => {
                     color: "#2a803c",
                   }}
                 >
-                  Session
+                  {column3}
                 </TableCell>
               </TableRow>
             </TableHead>

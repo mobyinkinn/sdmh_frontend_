@@ -45,6 +45,7 @@ const options = [
   { value: "careers", label: "careers" },
   { value: "plans", label: "Health Plans" },
   { value: "tips", label: "Health Tips" },
+  { value: "pages", label: "Pages" },
 ];
 
 function EditAdminForm({ onCloseModal, id }) {

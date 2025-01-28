@@ -14,6 +14,7 @@ import {
   useUpdateTpa,
   useUpdateLogo,
 } from "../../admin/tpa_index/useTpa";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function EditTpaForm({ onCloseModal, id }) {
   const { data, isLoading } = useTpa();
@@ -24,8 +25,9 @@ function EditTpaForm({ onCloseModal, id }) {
 
   const [name, setName] = useState(filteredData[0].name);
 
-  const { isLoading: isUpdating, mutate: updateTpa } = useUpdateTpa();
+  const { isPending: isUpdating, mutate: updateTpa } = useUpdateTpa();
   const { updateLogo, isUpdatingLogo } = useUpdateLogo();
+  if (isUpdatingLogo) return <SpinnerMini />;
 
   const { errors } = formState;
 

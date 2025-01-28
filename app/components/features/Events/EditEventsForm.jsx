@@ -6,15 +6,55 @@ import FileInput from "../../ui/FileInput";
 import FormRow from "../../ui/FormRow";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
+import Jodit from "../Openings/Jodit";
+import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
+import { FaEdit } from "react-icons/fa";
+import { useUpdateSingleImageFromEvent } from "../../admin/events/useEvents";
+import { ConstantAlphaFactor } from "three";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const EditEventsForm = ({
+  id,
   resourceName,
   onConfirm,
   disabled,
   editData,
   setEditData,
   onCloseModal,
+  descContent,
+  setDescContent,
 }) => {
+  const { mutate: updateSingleImageFromEvent, isPending: isUpdatingImage } =
+    useUpdateSingleImageFromEvent();
+  if (isUpdatingImage) return <SpinnerMini />;
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    const formDataImage = new FormData();
+    formDataImage.append("image", file);
+
+    updateSingleImageFromEvent(
+      {
+        id,
+        data: formDataImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Image updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Image:", error);
+          toast.error("Failed to update Image. Please try again.");
+        },
+      }
+    );
+    if (file) {
+      setEditData({ ...editData, image: file });
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditData({ ...editData, [name]: value });
@@ -32,7 +72,7 @@ const EditEventsForm = ({
     <form onSubmit={handleSubmit}>
       <Heading as="h3">Edit {resourceName}</Heading>
       <Stack gap={2} pt={5}>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+        <Stack direction={"row"} justifyContent={"space-around"} columnGap={5}>
           <FormRow label="Title">
             <Input
               disabled={disabled}
@@ -40,28 +80,6 @@ const EditEventsForm = ({
               id="title"
               name="title"
               value={editData.title || ""}
-              onChange={handleInputChange}
-            />
-          </FormRow>
-          <FormRow label="Small Description">
-            <Input
-              disabled={disabled}
-              type="text"
-              id="smallDescription"
-              name="smallDescription"
-              value={editData.smallDescription || ""}
-              onChange={handleInputChange}
-            />
-          </FormRow>
-        </Stack>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
-          <FormRow label="Description">
-            <Input
-              disabled={disabled}
-              type="text"
-              id="description"
-              name="description"
-              value={editData.description || ""}
               onChange={handleInputChange}
             />
           </FormRow>
@@ -75,6 +93,53 @@ const EditEventsForm = ({
               onChange={handleInputChange}
             />
           </FormRow>
+        </Stack>
+        <FormRow label="Small Description">
+          <Input
+            disabled={disabled}
+            type="text"
+            id="smallDescription"
+            name="smallDescription"
+            value={editData.smallDescription || ""}
+            onChange={handleInputChange}
+          />
+        </FormRow>
+
+        <FormRow label="Description"></FormRow>
+        <Jodit content={descContent} setContent={setDescContent} />
+
+        <Stack>
+          <label>
+            Image:
+            <ImagePreviewContainer>
+              {editData.image && (
+                <>
+                  <img
+                    src={
+                      typeof editData.image === "string"
+                        ? editData.image
+                        : URL.createObjectURL(editData.image)
+                    }
+                    alt="Preview"
+                    width={200}
+                    height={110}
+                  />
+                  <div className="edit-icon">
+                    <label htmlFor="image-upload">
+                      <FaEdit size={16} />
+                    </label>
+                    <input
+                      id="image-upload"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageChange}
+                    />
+                  </div>
+                </>
+              )}
+            </ImagePreviewContainer>
+          </label>
         </Stack>
 
         <FormRow>

@@ -7,6 +7,7 @@ import FormRow from "../../ui/FormRow";
 import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
 import { useCreateAward } from "../../admin/awards/useAwards";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const CreateAwardForm = ({ onCloseModal, resourceName }) => {
   const { createAwards, isCreating } = useCreateAward();
@@ -14,6 +15,7 @@ const CreateAwardForm = ({ onCloseModal, resourceName }) => {
     defaultValues: {},
   });
   const { errors } = formState;
+  if (isCreating) return <SpinnerMini />;
 
   const onSubmit = (data) => {
     const formData = new FormData();

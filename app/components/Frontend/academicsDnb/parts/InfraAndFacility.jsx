@@ -49,7 +49,6 @@
 //   );
 // }
 
-
 // export default InfraAndFacility
 
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
@@ -58,6 +57,7 @@ import { Stack, Box, Typography } from "@mui/material";
 import React from "react";
 import Image from "next/image";
 import image from "./assests/image1.png"; // Replace this with your actual image imports
+import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
 
 const InfraAndFacility = () => {
   const data = [
@@ -105,11 +105,12 @@ const InfraAndFacility = () => {
 
   return (
     <>
-      <Stack bgcolor={"#F9F9F9"} p={5} gap={1}>
+      <Stack bgcolor={"#F9F9F9"} px={5} pt={5} gap={1}>
         <Head1 color="#476C9B">Infrastructure & Facilities</Head1>
         <ParaNormal
+          padding={{ xs: "0", lg: "0 100px" }}
           color="black"
-          style={{ textAlign: "center", padding: "0 100px" }}
+          style={{ textAlign: "center" }}
         >
           Sixty students are admitted every year in the month of September.
           After three months of admission, the students are examined to judge
@@ -123,6 +124,57 @@ const InfraAndFacility = () => {
         alignItems={"center"}
         gap={2}
         p={3}
+        display={{ xs: "flex", md: "none" }}
+      >
+        {data.map((item) => {
+          if (item.id >= 5) return null;
+          return (
+            <Box
+              key={item.id}
+              sx={{
+                position: "relative",
+                width: "300px",
+                height: "200px",
+                overflow: "hidden",
+                borderRadius: "8px",
+                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <Image
+                src={item.img}
+                alt={item.title}
+                layout="fill"
+                objectFit="cover"
+                style={{ filter: "brightness(0.3)" }}
+              />
+              <Typography
+                sx={{
+                  position: "absolute",
+                  bottom: "10px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                {item.title}
+              </Typography>
+            </Box>
+          );
+        })}
+
+        <ButtonSmallOutline color="#007946">View All</ButtonSmallOutline>
+      </Stack>
+
+      <Stack
+        direction={"row"}
+        flexWrap={"wrap"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={2}
+        p={3}
+        display={{ xs: "none", md: "flex" }}
       >
         {data.map((item) => (
           <Box

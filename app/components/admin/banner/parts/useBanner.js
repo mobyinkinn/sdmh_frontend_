@@ -73,7 +73,7 @@ export const useUnblockBanners = () => {
 export const useCreateBanner = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createBanners, isLoading: isCreating } = useMutation({
+  const { mutate: createBanners, isPending: isCreating } = useMutation({
     mutationFn: createBanner,
     onSuccess: () => {
       queryClient.invalidateQueries(["Banners"]);
@@ -90,7 +90,7 @@ export const useCreateBanner = () => {
 export const useUpdateBanner = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateBannerImage, isLoading: isUpdating } = useMutation({
+  const { mutate: updateBannerImage, isPending: isUpdating } = useMutation({
     mutationFn: updateBanner,
     onSuccess: () => {
       queryClient.invalidateQueries(["Banners"]);

@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
@@ -11,6 +10,8 @@ import FormRow from "../../ui/FormRow";
 import { useCreateDepartment } from "../../admin/departments/parts/useDepartment";
 import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useState } from "react";
+import Jodit from "../Openings/Jodit";
 
 function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
@@ -22,7 +23,9 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
   const { errors } = formState;
 
   const { isCreating, createDepartment } = useCreateDepartment();
+  const [content, setContent] = useState("");
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 
@@ -37,7 +40,7 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("image", file);
     formdata.append("bannerImage", bannerFile);
     formdata.append("name", data.name);
-    formdata.append("content", data.content);
+    formdata.append("content", content);
     formdata.append("status", true);
 
     console.log("Department formdata: ", formdata);
@@ -68,16 +71,8 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow label="Content" error={errors?.page?.message}>
-        <Input
-          disabled={isWorking}
-          type="text"
-          id="content"
-          {...register("content", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
+      <FormRow label="Content" error={errors?.page?.message}></FormRow>
+      <Jodit content={content} setContent={setContent} />
 
       <FormRow label={"Image"}>
         <FileInput
@@ -115,9 +110,7 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new banner"}
-        </Button>
+        <Button disabled={isWorking}>{"Create new department"}</Button>
       </Stack>
     </Form>
   );

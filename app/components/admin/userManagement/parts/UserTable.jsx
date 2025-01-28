@@ -22,24 +22,28 @@ function UserTable() {
   if (isLoading) return <Spinner />;
 
   let filteredUsers = data;
-  // if (filter !== "All") {
-  // filteredUsers = userDetails.filter(
-  // (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-  // );
-  // }
-  //   const { bookings, isLoading, count } = useUsers();
+  if (filter !== "All") {
+    filteredUsers = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true;
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false;
+      }
+      return false;
+    });
+  }
 
   if (isLoading) return <Spinner />;
   if (!filteredUsers.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.3fr 2fr 2fr 2.4fr 3.2rem">
+      <Table columns="1fr 1fr 2fr 1fr 0.6fr">
         <Table.Header>
           <div>Name</div>
           <div>Username</div>
           <div>Permisions</div>
           <div>Status</div>
-          <div></div>
+          <div>Actions</div>
         </Table.Header>
 
         <Table.Body
