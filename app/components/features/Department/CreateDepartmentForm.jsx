@@ -25,6 +25,7 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createDepartment } = useCreateDepartment();
   const [content, setContent] = useState("");
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 
@@ -110,9 +111,7 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new banner"}
-        </Button>
+        <Button disabled={isWorking}>{"Create new department"}</Button>
       </Stack>
     </Form>
   );

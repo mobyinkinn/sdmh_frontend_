@@ -67,7 +67,7 @@ export const useUpdateAwardImage = () => {
 
 export const useCreateAward = () => {
   const queryClient = useQueryClient();
-  const { mutate: createAwards, isLoading: isCreating } = useMutation({
+  const { mutate: createAwards, isPending: isCreating } = useMutation({
     mutationFn: createAward,
     onSuccess: () => {
       queryClient.invalidateQueries(["Awards"]);

@@ -9,6 +9,7 @@ import Input from "../../ui/Input";
 import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
 import { FaEdit } from "react-icons/fa";
 import { useUpdateAwardImage } from "../../admin/awards/useAwards";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const EditAwardForm = ({
   id,
@@ -19,7 +20,10 @@ const EditAwardForm = ({
   editData,
   setEditData,
 }) => {
-  const { mutate: updateAwardImage } = useUpdateAwardImage();
+  const { mutate: updateAwardImage, isPending: isUpdateImage } =
+    useUpdateAwardImage();
+
+  if (isUpdateImage) return <SpinnerMini />;
 
   const handleSubmit = (e) => {
     e.preventDefault();

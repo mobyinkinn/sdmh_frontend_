@@ -24,6 +24,7 @@ function CreateDownloadablesForm({ cabinToEdit = {}, onCloseModal }) {
 
   const { isCreating, createDownloadables } = useCreateDownloadable();
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 
@@ -100,7 +101,7 @@ function CreateDownloadablesForm({ cabinToEdit = {}, onCloseModal }) {
           Cancel
         </Button>
         <Button disabled={isCreating}>
-          {isCreating ? <SpinnerMini /> : "Create new banner"}
+          {isCreating ? <SpinnerMini /> : "Create new downloadable"}
         </Button>
       </Stack>
     </Form>

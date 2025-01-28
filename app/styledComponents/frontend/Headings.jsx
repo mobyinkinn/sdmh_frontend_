@@ -13,12 +13,13 @@ const Head1 = styled.span((props) => ({
   fontWeight: props.fontWeight || "bold",
   width: props.width,
   textAlign: props.textAlign || "center",
+  paddingBottom: props.paddingBottom,
 
   // Default font size
 
   [breakpoints.lg]: {
     textAlign: props.textAlign?.lg || "center",
-    fontSize: props.fontSize || "3rem",
+    fontSize: props.fontSize?.lg || "3rem",
   },
 
   // Breakpoint-specific font sizes

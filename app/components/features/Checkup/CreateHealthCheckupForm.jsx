@@ -9,6 +9,7 @@ import Heading from "../../ui/Heading";
 import { useCreateCheckup } from "../../admin/health_plans/useCheckups";
 import Jodit from "../Openings/Jodit";
 import { useState } from "react";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
@@ -18,6 +19,7 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
 
   const { createCheckups, isCreating } = useCreateCheckup();
   const [descContent, setDescContent] = useState("");
+  if (isCreating) return <SpinnerMini />;
 
   const onSubmit = (data) => {
     // Create a FormData object

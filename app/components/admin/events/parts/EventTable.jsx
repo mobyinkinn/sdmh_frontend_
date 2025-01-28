@@ -62,11 +62,12 @@ function EventTable() {
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 3fr 4fr 2fr 2fr 2fr">
+      <Table columns="1fr 3fr 4fr 2fr 2fr 2fr 2fr">
         <Table.Header>
           <div>Title</div>
           <div>Small description</div>
           <div>Description</div>
+          <div>Image</div>
           <div>Date</div>
           <div>Status</div>
           <div>Actions</div>

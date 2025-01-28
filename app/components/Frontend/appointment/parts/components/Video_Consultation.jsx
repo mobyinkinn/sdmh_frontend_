@@ -5,6 +5,7 @@ import banner from "../assets/video_consultation.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 
 const ConsultationSteps = [
   {
@@ -77,15 +78,18 @@ const Video_Consultation = () => {
       width={"100%"}
       padding={{ md: "50px", xs: "30px 15px" }}
       alignItems={"center"}
+      textAlign={"center"}
     >
-      <Head1 color="#FFFFFF">Online Video Consultation</Head1>
-      <Typography color="#FFFFFF" fontSize={"1.5rem"}>
+      <Head1 color="#FFFFFF" fontSize={{ md: "2.5rem", sm: "1.5rem" }}>
+        Online Video Consultation
+      </Head1>
+      <Typography
+        color="#FFFFFF"
+        fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "13px" }}
+      >
         Even during the pandemic, the health and safety of our patients is of
-        utmost importance. Numerous
-      </Typography>
-      <Typography color="#FFFFFF" fontSize={"1.5rem"}>
-        safety protocols are in place at all Max Hospitals to limit the spread
-        of infection.
+        utmost importance. Numerous safety protocols are in place at all Max
+        Hospitals to limit the spread of infection.
       </Typography>
       <Box
         sx={{
@@ -98,29 +102,101 @@ const Video_Consultation = () => {
         }}
       ></Box>
       <Typography
-        fontSize={"2.5rem"}
+        fontSize={{ lg: "2.5rem", md: "2rem", sm: "1.5rem" }}
         color={"#FFFFFF"}
         fontWeight={"bold"}
-        alignSelf={"start"}
+        alignSelf={{ lg: "start", sm: "center" }}
       >
         To Start Online Consultation
       </Typography>
-      <Stack direction={"row"} width={"100%"} justifyContent={"space-between"}>
-        <Typography color="#FFFFFF" fontWeight={500} fontSize={"2rem"}>
+      <Stack
+        direction={"row"}
+        width={"100%"}
+        justifyContent={{ xs: "center", md: "space-between" }}
+      >
+        <Typography
+          color="#FFFFFF"
+          fontWeight={500}
+          fontSize={{ lg: "30px", md: "22px", smm: "20px", sm: "13px" }}
+        >
           Please Follow These Steps
         </Typography>
-        <Typography color="#FFFFFF" fontWeight={500} fontSize={"2rem"}>
+        <Typography
+          color="#FFFFFF"
+          fontWeight={500}
+          fontSize={{ lg: "30px", md: "22px", smm: "20px", sm: "13px" }}
+          display={{ xs: "none", md: "flex" }}
+        >
           View All Steps
         </Typography>
       </Stack>
+
+      {/* non slider */}
+      <Stack
+        direction={"column"}
+        justifyContent={"center"}
+        marginTop={"20px"}
+        width="100%"
+        display={{ xs: "flex", md: "none" }}
+      >
+        {ConsultationSteps.map((el, i) => {
+          if (i >= 4) return null;
+          return (
+            <Stack
+              height={"fit-content"}
+              key={i}
+              width={"100%"}
+              sx={{
+                padding: "20px ",
+              }}
+            >
+              <Stack
+                backgroundColor={"white"}
+                padding={"20px"}
+                gap={"10px"}
+                sx={{
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <Typography
+                  fontSize={"1.2rem"}
+                  color={"#476C9B"}
+                  fontWeight={"bold"}
+                >
+                  {el.id + 1}.
+                </Typography>
+                <Typography
+                  fontSize={"1.3rem"}
+                  color={"#379237"}
+                  fontWeight={"bold"}
+                >
+                  {el.heading}
+                </Typography>
+                <Typography>{el.body}</Typography>
+              </Stack>
+            </Stack>
+          );
+        })}
+        <Stack alignItems={{ xs: "center", md: "start" }}>
+          <ButtonMediumOutline
+            margin="10px 50px"
+            color="#476C9B"
+            backgroundColor="#FFFFFF"
+          >
+            View All Steps
+          </ButtonMediumOutline>
+        </Stack>
+      </Stack>
+
       {/* slider*/}
       <Stack
         direction={"row"}
         justifyContent={"center"}
         marginTop={"20px"}
         width="100%"
-        // maxWidth="800px"
-        display={{ xs: "flex", lg: "flex" }}
+        display={{ xs: "none", md: "flex" }}
       >
         <Slider
           {...settings}

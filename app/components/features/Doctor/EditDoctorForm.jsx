@@ -1,14 +1,11 @@
 import { useForm } from "react-hook-form";
-
 import Input, { InputCheck } from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-
 import { Stack } from "@mui/material";
-
 import { useEffect, useState } from "react";
 import {
   useDoctors,
@@ -18,6 +15,8 @@ import {
 import ControlsOverlay from "../../Frontend/gallery/ControlsOverlay";
 import { useDepartment } from "../../admin/departments/parts/useDepartment";
 import Spinner from "../../ui/Spinner";
+import Jodit from "../Openings/Jodit";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
   const { data, isLoading } = useDoctors();
@@ -30,11 +29,16 @@ function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
 
   const { isUpdating, updateDoctor } = useUpdateDoctor();
   const { updateImage, isUpdatingImage } = useUpdateImage();
-
+  const [content, setContent] = useState(filteredData[0]?.about || "");
   const { errors } = formState;
+  if (isUpdatingImage) return <SpinnerMini />;
+
+  const handleAboutClick = () => {
+    onUpdateDoctor({ ...formdata, about: content }, id);
+  };
 
   function updateDepartment(name) {
-    let newDepartment = departmentData.data.filter((el) => el.name === name);
+    let newDepartment = data.filter((el) => el.name === name);
 
     if (newDepartment.length > 0) {
       setFormdata((formdata) => ({
@@ -74,6 +78,7 @@ function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
   }
 
   function onError(errors) {}
+
   return (
     <Form
       // onSubmit={handleSubmit(onSubmit, onError)}
@@ -107,8 +112,6 @@ function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
           })}
           onChange={(e) => {
             setDepartmentValue(e.target.value);
-            // setFormdata((formdata) => ({ ...formdata, department: newName }));
-            // onUpdateDoctor({ ...formdata, department: newName }, id);
           }}
           onBlur={(e) => updateDepartment(e.target.value)}
         />
@@ -133,125 +136,24 @@ function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
 
       <FormRow label="Available on" error={errors?.page?.message}>
         <Stack direction="row" gap="20px">
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Monday"
-              value="Mon"
-              checked={formdata.availablity.includes("Mon")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Mon
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Tuesday"
-              value="Tue"
-              checked={formdata.availablity.includes("Tue")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Tue
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Wednesday"
-              value="Wed"
-              checked={formdata.availablity.includes("Wed")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Wed
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Thursday"
-              value="Thurs"
-              checked={formdata.availablity.includes("Thurs")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Thurs
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Friday"
-              value="Fri"
-              checked={formdata.availablity.includes("Fri")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Fri
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Saturday"
-              value="Sat"
-              checked={formdata.availablity.includes("Sat")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Sat
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isUpdating}
-              type="checkbox"
-              id="Sunday"
-              value="Sun"
-              checked={formdata.availablity.includes("Sun")}
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-              onChange={(e) => {
-                const newName = e.target.value;
-                updateDay(newName);
-              }}
-            />{" "}
-            Sun
-          </Stack>
+          {["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"].map((day) => (
+            <Stack direction="row" gap="5px" key={day}>
+              <InputCheck
+                disabled={isUpdating}
+                type="checkbox"
+                id={day}
+                value={day}
+                checked={formdata.availablity.includes(day)}
+                {...register("availablity", {
+                  required: "This field is required",
+                })}
+                onChange={(e) => {
+                  updateDay(day);
+                }}
+              />{" "}
+              {day}
+            </Stack>
+          ))}
         </Stack>
       </FormRow>
 
@@ -289,22 +191,18 @@ function EditDoctorForm({ onCloseModal, id, department, departmentData }) {
         />
       </FormRow>
 
-      <FormRow label="About" error={errors?.page?.message}>
-        <Input
-          disabled={isUpdating}
-          type="text"
-          id="about"
-          value={formdata.about}
-          {...register("about", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            const newName = e.target.value;
-            setFormdata((formdata) => ({ ...formdata, about: newName }));
-            onUpdateDoctor({ ...formdata, about: newName }, id);
-          }}
-        />
-      </FormRow>
+      <FormRow label="About"></FormRow>
+      <Jodit content={content} setContent={setContent} />
+      <Stack
+        direction="row"
+        sx={{
+          justifyContent: "end",
+          gap: "20px",
+          marginTop: "10px",
+        }}
+      >
+        <Button onClick={handleAboutClick}>{"Update About"}</Button>
+      </Stack>
 
       <FormRow label={"Image"}>
         <FileInput

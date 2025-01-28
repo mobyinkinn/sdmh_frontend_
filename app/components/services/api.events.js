@@ -59,3 +59,21 @@ export const removeImageFromEvent = async ({ id, data }) => {
   );
   return response.data;
 };
+
+export const updateSingleImageFromEvent = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/events/update-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const fetchEventById = async (id) => {
+  const response = await axios.get(`${ApiUrl}/events/get-by-id?_id=${id}`, {
+    withCredentials: true,
+  });
+  return response.data.message;
+};

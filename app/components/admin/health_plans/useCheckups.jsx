@@ -127,7 +127,7 @@ export const useUpdateCheckupBanner = () => {
 
 export const useCreateCheckup = () => {
   const queryClient = useQueryClient();
-  const { mutate: createCheckups, isLoading: isCreating } = useMutation({
+  const { mutate: createCheckups, isPending: isCreating } = useMutation({
     mutationFn: createCheckup,
     onSuccess: () => {
       queryClient.invalidateQueries(["checkups"]);

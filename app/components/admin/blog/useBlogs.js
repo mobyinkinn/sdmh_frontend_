@@ -85,7 +85,7 @@ export const useUpdateBlog = () => {
 
 export const useCreateBlog = () => {
   const queryClient = useQueryClient();
-  const { mutate: createBlogs, isLoading: isCreating } = useMutation({
+  const { mutate: createBlogs, isPending: isCreating } = useMutation({
     mutationFn: createBlog,
     onSuccess: () => {
       queryClient.invalidateQueries(["blogs"]);

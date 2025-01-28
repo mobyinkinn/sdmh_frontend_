@@ -10,6 +10,7 @@ import { useCreateEvent } from "../../admin/events/useEvents";
 import moment from "moment";
 import { useState } from "react";
 import Jodit from "../Openings/Jodit";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
@@ -17,8 +18,8 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   });
   const { createEvents, isCreating } = useCreateEvent();
   const { errors } = formState;
-  const isWorking = isCreating;
   const [description, setDescription] = useState("");
+  if (isCreating) return <SpinnerMini />;
 
   function onSubmit(data) {
     const multipleFiles = data.images ? Array.from(data.images) : [];
@@ -36,6 +37,9 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
     formdata.append("date", formattedDate);
     formdata.append("featured", false);
     formdata.append("status", true);
+    if (data.image[0]) {
+      formdata.append("image", data.image[0]);
+    }
 
     createEvents(formdata, {
       onSuccess: () => {
@@ -59,7 +63,6 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
         <Stack direction={"row"} columnGap={7}>
           <FormRow label="Title" error={errors?.title?.message}>
             <Input
-              disabled={isWorking}
               type="text"
               id="title"
               {...register("title", {
@@ -69,7 +72,6 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
           </FormRow>
           <FormRow label="Date" error={errors?.date?.message}>
             <DateInput
-              disabled={isWorking}
               type="date"
               id="date"
               {...register("date", {
@@ -83,7 +85,6 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
           error={errors?.smallDescription?.message}
         >
           <Input
-            disabled={isWorking}
             type="text"
             id="smallDescription"
             {...register("smallDescription", {
@@ -94,6 +95,17 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
 
         <FormRow label="Description" error={errors?.page?.message}></FormRow>
         <Jodit content={description} setContent={setDescription} />
+
+        <FormRow label={"Image"}>
+          <FileInput
+            id="file"
+            accept="image/*"
+            type="file"
+            {...register("image", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
 
         <Stack direction={"row"}>
           <FormRow label="Images">
@@ -117,7 +129,7 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
           >
             Cancel
           </Button>
-          <Button disabled={isWorking}>{"Create new event"}</Button>
+          <Button>{"Create new event"}</Button>
         </FormRow>
       </Stack>
     </Form>

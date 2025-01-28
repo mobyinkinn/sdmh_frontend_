@@ -8,9 +8,9 @@ import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 import { useCreateBanner } from "../../admin/banner/parts/useBanner";
 import { useCreateTpa } from "../../admin/tpa_index/useTpa";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CreateTpaForm({ cabinToEdit = {}, onCloseModal }) {
-
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
@@ -18,6 +18,7 @@ function CreateTpaForm({ cabinToEdit = {}, onCloseModal }) {
 
   const { isCreating, createTpas } = useCreateTpa();
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 

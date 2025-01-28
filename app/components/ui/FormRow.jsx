@@ -6,6 +6,7 @@ const StyledFormRow = styled.div`
   grid-template-columns: 10rem 1fr;
   gap: 0.5rem;
   margin: 5px 0;
+  font-size: 1.2rem;
 
   &:first-child {
     padding-top: 0;

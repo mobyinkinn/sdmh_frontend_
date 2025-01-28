@@ -86,7 +86,7 @@ export const useUpdateTpa = () => {
 
 export const useCreateTpa = () => {
   const queryClient = useQueryClient();
-  const { mutate: createTpas, isLoading: isCreating } = useMutation({
+  const { mutate: createTpas, isPending: isCreating } = useMutation({
     mutationFn: createTpa,
     onSuccess: () => {
       queryClient.invalidateQueries(["tpa"]);
@@ -103,7 +103,7 @@ export const useCreateTpa = () => {
 
 export const useUpdateLogo = () => {
   const queryClient = useQueryClient();
-  const { mutate: updateLogo, isLoading: isUpdatingLogo } = useMutation({
+  const { mutate: updateLogo, isPending: isUpdatingLogo } = useMutation({
     mutationFn: updateTheLogo,
     onSuccess: () => {
       queryClient.invalidateQueries(["tpa"]);

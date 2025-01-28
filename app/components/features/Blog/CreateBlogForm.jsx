@@ -9,6 +9,7 @@ import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
 import { useState } from "react";
 import Jodit from "../Openings/Jodit";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
@@ -22,6 +23,7 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
 
   const { isCreating, createBlogs } = useCreateBlog();
   //   const { isEditing, editCabin } = useEditCabin();
+  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
 
