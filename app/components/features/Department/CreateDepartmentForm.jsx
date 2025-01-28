@@ -27,7 +27,6 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
   const isWorking = isCreating;
 
   function onSubmit(data) {
-    console.log("Department data: ", data);
     const file = typeof data.image === "string" ? data.image : data.image[0];
     const bannerFile =
       typeof data.bannerFile === "string"

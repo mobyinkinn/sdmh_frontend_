@@ -20,6 +20,7 @@ export const useDepartment = () => {
   });
   return { data, isLoading, error };
 };
+
 export const useDepartmentById = (name) => {
   return useQuery({
     queryKey: ["Departments", name],

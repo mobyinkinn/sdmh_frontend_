@@ -36,14 +36,14 @@ const Hero = ({
           width={"100%"}
           height={"100%"}
           justifyContent={"center"}
-          pl={padding || 0}
+          padding={{ md: 0, xs: "20px" }}
         >
           <Stack alignItems={align || "center"} gap={2}>
             <Stack direction={"row"}>
               <Head1 color={color || "white"}>{title}</Head1>
             </Stack>
             <ParaNormal
-              width="63%"
+              width={{ md: "70%", lg: "70%", sm: "90%", smm: "90%" }}
               color={descolor || "white"}
               textAlign={textcenter || "center"}
             >
@@ -56,13 +56,11 @@ const Hero = ({
                 sx={{
                   backgroundColor: "white",
                   borderRadius: "25px",
-                  width: "600px",
+                  width: { md: "600px", xs: "300px" },
                 }}
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment
-                      position="end"
-                    >
+                    <InputAdornment position="end">
                       <Button
                         variant="contained"
                         sx={{

@@ -1,6 +1,9 @@
 "use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
-import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import {
+  ParaNormal,
+  ParaNormalSmall,
+} from "@/app/styledComponents/frontend/Para";
 import { Box, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -27,33 +30,34 @@ const Topics = () => {
     return <Spinner />;
   }
   return (
-    <Stack p={"20px 50px"} gap={2}>
+    <Stack p={{ md: "20px 50px" }} gap={2}>
       <Stack
         bgcolor={"#FFFFFB"}
         justifyContent={"space-between"}
         direction={"row"}
         alignItems={"center"}
+        padding={2}
       >
-        <Stack direction={"row"} justifyContent={"center"} p={2}>
-          <Head1 color="black" style={{ fontSize: "40px" }}>
-            Most&nbsp;
-          </Head1>
-          <Head1 color="#007946" style={{ fontSize: "40px" }}>
-            Viewed Topic
+        <Stack
+          direction={"row"}
+          justifyContent={{ md: "center", xs: "space-between" }}
+        >
+          <Head1 textAlign="left" color="black">
+            Most <span style={{ color: "#007946" }}>Viewed Topic</span>{" "}
           </Head1>
         </Stack>
-        <ParaNormal style={{ fontSize: "16px" }}>See All Categories</ParaNormal>
+        <ParaNormalSmall>See All Categories</ParaNormalSmall>
       </Stack>
 
       {/* Blog Selection Section */}
-      <Stack direction={"row"} gap={2}>
+      <Stack padding="0 20px" direction={{ md: "row" }} gap={2}>
         {uniqueBlogs?.map((d) => (
           <Box
             key={d._id}
             onClick={() => setSelectedTitle(d.title)} // Set selected title
             sx={{
               position: "relative",
-              width: "350px",
+              width: { md: "350px", xs: "100%" },
               height: "240px",
               overflow: "hidden",
               borderRadius: "8px",
@@ -100,15 +104,14 @@ const Topics = () => {
       {selectedTitle && (
         <>
           <Stack direction={"row"} p={2} mt={4}>
-            <Head1 color="#007946" style={{ fontSize: "40px" }}>
-              Blogs
-            </Head1>
+            <Head1 color="#007946">Blogs</Head1>
           </Stack>
           <Stack
             direction={"row"}
             flexWrap={"wrap"}
             rowGap={2}
             justifyContent={"left"}
+            padding="0 20px"
           >
             {filteredData
               ?.filter((blog) => blog.title === selectedTitle) // Filter blogs by selected title
@@ -118,21 +121,33 @@ const Topics = () => {
                   key={blog._id}
                   sx={{
                     cursor: "pointer",
+                    padding: "10px",
                     borderRadius: "8px",
-                    padding: "16px",
                     transition: "transform 0.2s",
+                    boxShadow: {
+                      xs: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                      md: "none",
+                    },
                     "&:hover": {
                       transform: "scale(1.05)",
                     },
                   }}
+                  width={"100%"}
+                  position={"relative"}
                 >
-                  <Image
-                    src={blog.image}
-                    style={{ borderRadius: "10px" }}
-                    width={400}
-                    height={200}
-                    alt={blog.title}
-                  />
+                  <Box
+                    height={{ md: "200px", xs: "150px" }}
+                    width={"100%"}
+                    position={"relative"}
+                  >
+                    <Image
+                      src={blog.image}
+                      style={{ borderRadius: "10px" }}
+                      fill
+                      objectFit="cover"
+                      alt={blog.title}
+                    />
+                  </Box>
                   <Typography fontWeight={"bold"}>
                     {blog.smallDescription}
                   </Typography>
