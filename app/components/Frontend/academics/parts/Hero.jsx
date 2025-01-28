@@ -1,12 +1,11 @@
 "use client";
 
 import banner from "./assets/bannerImage.png";
-import BannerImage from "@/app/styledComponents/frontend/BannerImage";
-
+import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 
 export default function Hero() {
   return (
-    <BannerImage
+    <BannerImage2
       image={banner.src}
       overlayColor="#476C9BE5"
       title="Academic Deanery"

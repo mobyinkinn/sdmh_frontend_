@@ -5,6 +5,7 @@ import BannerImage from "@/app/styledComponents/frontend/BannerImage";
 import banner from "./parts/assests/banner.png";
 import sm_banner from "./parts/assests/sm_banner.png";
 import OfficeAcademics from "./parts/OfficeAcademics";
+import MobileFooter from "../footer/MobileFooter";
 
 const AcademicContact = () => {
   return (
@@ -19,9 +20,11 @@ const AcademicContact = () => {
         descolor={"black"}
         padding={10}
         sm_image={sm_banner.src}
+        textcenter={"left"}
       />
       <OfficeAcademics />
       <Footer />
+      <MobileFooter />
     </>
   );
 };

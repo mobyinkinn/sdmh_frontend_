@@ -1,14 +1,15 @@
-import React from 'react'
-import Navbar from '../navbar/Nav'
-import Footer from '../footer/Footer'
-import BannerImage from '@/app/styledComponents/frontend/BannerImage'
+import React from "react";
+import Navbar from "../navbar/Nav";
+import Footer from "../footer/Footer";
+import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import banner from "./parts/assets/bannerImage.png";
-import Noticwes from './parts/Noticwes';
+import Noticwes from "./parts/Noticwes";
+import MobileFooter from "../footer/MobileFooter";
 const AcademicsNotices = () => {
   return (
     <>
       <Navbar />
-      <BannerImage
+      <BannerImage2
         image={banner.src}
         overlayColor="#476C9BE5"
         title="Academic Notices"
@@ -18,8 +19,9 @@ const AcademicsNotices = () => {
       />
       <Noticwes />
       <Footer />
+      <MobileFooter />
     </>
   );
-}
+};
 
-export default AcademicsNotices
+export default AcademicsNotices;

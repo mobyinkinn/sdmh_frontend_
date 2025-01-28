@@ -46,9 +46,9 @@ const OfficeAcademics = () => {
           src={durlabhji.src}
           alt="Durlabhji"
           sx={{
-            width: { md: "700px", lg: "1200px" },
+            width: { md: "700px", lg: "925px", xl: "1200px" },
             height: 500,
-            objectFit: "cover", // Optional: adjust how the image scales
+            objectFit: "cover",
           }}
         />
         <Stack
@@ -84,6 +84,7 @@ const OfficeAcademics = () => {
         bottom={100}
         borderRadius={2}
         display={{ xs: "flex", lg: "none" }}
+        marginBottom={5}
       >
         {data.map((d, i) => (
           <Stack
@@ -94,8 +95,16 @@ const OfficeAcademics = () => {
             alignItems={"center"}
             gap={2}
           >
-            <Stack bgcolor={"#007946"} p={"18px"} borderRadius={2}>
-              <d.icon size={47} color="white" />
+            <Stack
+              bgcolor={"#007946"}
+              p={"12px"}
+              borderRadius={2}
+              width={47}
+              height={47}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <d.icon size={25} color="white" />
             </Stack>
             <ParaNormal>{d.text}</ParaNormal>
           </Stack>

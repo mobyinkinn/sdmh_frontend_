@@ -42,21 +42,26 @@ const ServiceProvide = () => {
   ];
   return (
     <Stack bgcolor={"#D8E0EB"}>
-      <Head1 color="black" style={{ padding: "20px 0 0 0" }}>
+      <Head1
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        color="black"
+        style={{ padding: "20px 0 0 0" }}
+      >
         Service Provided
       </Head1>
       <Stack
         width={"100%"}
         flexWrap={"wrap"}
         padding={4}
-        direction={"row"}
+        direction={{ xs: "column", md: "row" }}
         gap={2}
         justifyContent={"center"}
+        alignItems={{ xs: "center", md: "normal" }}
       >
         {data.map((d, i) => (
           <Stack
             border={"1px solid lightgray"}
-            width={"45%"}
+            width={{ xs: "90%", md: "45%" }}
             padding={3}
             borderRadius={2}
             key={i}
@@ -66,7 +71,10 @@ const ServiceProvide = () => {
               },
             }}
           >
-            <Typography fontWeight={"bold"} fontSize={"15px"}>
+            <Typography
+              fontWeight={"bold"}
+              fontSize={{ xs: "15px", smm: "20px", md: "25px", lg: "30px" }}
+            >
               {d.item}
             </Typography>
             <Typography>{d.Desc}</Typography>

@@ -1,18 +1,18 @@
-import React from 'react'
-import Navbar from '../navbar/Nav'
-import Footer from '../footer/Footer'
-import BannerImage from '@/app/styledComponents/frontend/BannerImage'
+import React from "react";
+import Navbar from "../navbar/Nav";
+import Footer from "../footer/Footer";
+import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import banner from "./parts/assets/bannerImage.png";
-import SdmhLibrary from './parts/SdmhLibrary';
-import KohaSection from './parts/KohaSection';
-import ServiceProvide from './parts/ServiceProvide';
-import CategoriesMember from './parts/CategoriesMember';
+import SdmhLibrary from "./parts/SdmhLibrary";
+import KohaSection from "./parts/KohaSection";
+import ServiceProvide from "./parts/ServiceProvide";
+import CategoriesMember from "./parts/CategoriesMember";
 
 const AcademicsLibrary = () => {
   return (
     <>
       <Navbar />
-      <BannerImage
+      <BannerImage2
         align={"center"}
         textcenter={"center"}
         image={banner.src}
@@ -27,6 +27,6 @@ const AcademicsLibrary = () => {
       <Footer />
     </>
   );
-}
+};
 
-export default AcademicsLibrary
+export default AcademicsLibrary;

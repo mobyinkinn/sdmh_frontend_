@@ -49,16 +49,16 @@ const Noticwes = () => {
   return (
     <Stack
       bgcolor={"#F9F9F9"}
-      direction={"row"}
+      direction={{ xs: "columnn", md: "row" }}
       justifyContent={"center"}
-      flexWrap={"wrap"}
+      flexWrap={{ xs: "nowrap", md: "wrap" }}
       p={4}
       gap={3}
     >
       {filteredData?.map((d, i) => (
         <Stack
           key={i}
-          width={"30%"}
+          width={{ xs: "100%", md: "43%", lg: "30%" }}
           bgcolor={"white"}
           borderRadius={"20px"}
           alignItems={"center"}
