@@ -14,6 +14,19 @@ import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
 import SpinnerMini from "../../ui/SpinnerMini";
 
+
+const OverlaySpinner = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
 function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
@@ -74,73 +87,80 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
     console.log(errors);
   }
 
-  if (isCreating) return <SpinnerMini />;
+  if (isWorking) return <Spinner />;
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
-    >
-      <FormRow label="Page Name" error={errors?.page?.message}>
-        <StyledSelect
-          disabled={isWorking}
-          id="page"
-          {...register("page", {
-            required: "This field is required",
-          })}
-        >
-          <option value="">Select a page</option>
-          {data?.map((page, index) => (
-            <option key={index} value={page.name}>
-              {page.name}
-            </option>
-          ))}
-        </StyledSelect>
-      </FormRow>
+    <>
+      {isCreating && (
+        <OverlaySpinner>
+          <Spinner />
+        </OverlaySpinner>
+      )}
+      <Form
+        onSubmit={handleSubmit(onSubmit, onError)}
+        type={onCloseModal ? "modal" : "regular"}
+      >
+        <FormRow label="Page Name" error={errors?.page?.message}>
+          <StyledSelect
+            disabled={isWorking}
+            id="page"
+            {...register("page", {
+              required: "This field is required",
+            })}
+          >
+            <option value="">Select a page</option>
+            {data?.map((page, index) => (
+              <option key={index} value={page.name}>
+                {page.name}
+              </option>
+            ))}
+          </StyledSelect>
+        </FormRow>
 
-      <FormRow label={"File"}>
-        <FileInput
-          id="file"
-          accept="image/*"
-          type="file"
-          {...register("file", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            handleImageChange(e); // Update preview on file change
-            register("file").onChange(e);
-          }}
-        />
-        <Stack>
-          {imagePreview && (
-            <div style={{ marginTop: "0.5rem" }}>
-              <strong>Preview:</strong>
-              <img
-                src={imagePreview}
-                alt="Preview"
-                width={100}
-                style={{ borderRadius: "8px", marginTop: "0.5rem" }}
-              />
-            </div>
-          )}
-        </Stack>
-      </FormRow>
+        <FormRow label={"File"}>
+          <FileInput
+            id="file"
+            accept="image/*"
+            type="file"
+            {...register("file", {
+              required: "This field is required",
+            })}
+            onChange={(e) => {
+              handleImageChange(e); // Update preview on file change
+              register("file").onChange(e);
+            }}
+          />
+          <Stack>
+            {imagePreview && (
+              <div style={{ marginTop: "0.5rem" }}>
+                <strong>Preview:</strong>
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  width={100}
+                  style={{ borderRadius: "8px", marginTop: "0.5rem" }}
+                />
+              </div>
+            )}
+          </Stack>
+        </FormRow>
 
-      <FormRow>
-        <Button
-          variation="secondary"
-          type="reset"
-          onClick={() => {
-            reset();
-            setImagePreview(null); // Clear preview on reset
-            onCloseModal?.();
-          }}
-        >
-          Cancel
-        </Button>
-        <Button disabled={isWorking}>{"Create new banner"}</Button>
-      </FormRow>
-    </Form>
+        <FormRow>
+          <Button
+            variation="secondary"
+            type="reset"
+            onClick={() => {
+              reset();
+              setImagePreview(null); // Clear preview on reset
+              onCloseModal?.();
+            }}
+          >
+            Cancel
+          </Button>
+          <Button disabled={isWorking}>{"Create new banner"}</Button>
+        </FormRow>
+      </Form>
+    </>
   );
 }
 
