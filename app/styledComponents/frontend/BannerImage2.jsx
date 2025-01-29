@@ -18,7 +18,7 @@ const BannerImage2 = ({
   padding,
 }) => {
   return (
-    <ContainerMain gap="0" dir="row" padding="0" id="about">
+    <ContainerMain gap="0" dir="row" padding={{ lg: "0" }} id="about">
       <Stack
         width={"100%"}
         height={heights || { xs: "40vh", md: "70vh", lg: "90vh" }}

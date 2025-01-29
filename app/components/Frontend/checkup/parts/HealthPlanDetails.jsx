@@ -6,6 +6,7 @@ import React from "react";
 import Navbar from "../../navbar/Nav";
 import Footer from "../../footer/Footer";
 import DetailsHero from "./components/DetailsHero";
+import MobileFooter from "../../footer/MobileFooter";
 
 const HealthPlanDetails = () => {
   const { id } = useParams();
@@ -16,6 +17,7 @@ const HealthPlanDetails = () => {
       <Navbar />
       <DetailsHero id={id} data={data} isLoading={isLoading} />
       <Footer />
+      <MobileFooter />
     </Stack>
   );
 };

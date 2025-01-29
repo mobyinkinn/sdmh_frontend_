@@ -77,42 +77,69 @@ const DetailsHero = ({ id, data, isLoading }) => {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           width: "100%",
-          height: "70vh",
-          margin: "30px 0",
+          height: { xs: "38vh", md: "55vh", lg: "70vh" },
+          marginBottom: "30px",
         }}
       ></Box>
       <Stack alignItems={"center"}>
-        <Head1 color="black">{data?.title}</Head1>
-        <Typography color="#005900" fontSize={"2.5rem"} fontWeight={"600"}>
+        <Head1
+          color="black"
+          fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
+        >
+          {data?.title}
+        </Head1>
+        <Typography
+          color="#005900"
+          fontSize={{ sm: "1.3rem", smm: "1.7rem", md: "2rem", lg: "2.5rem" }}
+          fontWeight={"600"}
+        >
           ₹{data?.price}
         </Typography>
         <ParaNormal
           color="#000000"
-          fontSize={"1.2rem"}
+          fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
           fontWeight={"400"}
           lineheight={"2.1rem"}
           padding={"0px 50px"}
           dangerouslySetInnerHTML={{ __html: data?.description }}
         />
       </Stack>
-      <ButtonMediumOutline margin="auto" color="#007946">
-        Book Now
-      </ButtonMediumOutline>
+      <Stack marginTop={2}>
+        <ButtonMediumOutline margin="auto" color="#007946">
+          Book Now
+        </ButtonMediumOutline>
+      </Stack>
       <Divider color={"#2D2D2D"} sx={{ margin: "30px 0" }} />
 
       {/* Checkup Details */}
-      <Stack direction={"row"} gap={4} justifyContent={"space-around"}>
+      <Stack
+        direction={"row"}
+        gap={4}
+        justifyContent={"space-around"}
+        flexWrap={"wrap"}
+      >
         {checkupDetails.map((item) => (
           <Stack key={item.title} mb={2}>
-            <ParaNormal color="#000000" fontSize={"1.9rem"} fontWeight={"600"}>
+            <ParaNormal
+              color="#000000"
+              fontSize={{ sm: "20px", smm: "23px", md: "26px", lg: "30px" }}
+              fontWeight={"600"}
+            >
               {item.title}
             </ParaNormal>
             <Stack direction="column" gap={2} width={"100%"} marginTop={1}>
               {item.items.map((subItem) => (
                 <list>
-                  <li color="#000000" fontSize={"1.2rem"} fontWeight={"400"}>
-                    {subItem}
-                  </li>
+                  <Typography
+                    fontSize={{
+                      sm: "15px",
+                      smm: "18px",
+                      md: "21px",
+                      lg: "25px",
+                    }}
+                  >
+                    <li color="#000000">{subItem}</li>
+                  </Typography>
                 </list>
               ))}
             </Stack>
@@ -124,10 +151,38 @@ const DetailsHero = ({ id, data, isLoading }) => {
       <Stack
         bgcolor={"#D2E4D8"}
         width={"100%"}
-        padding={{ md: "50px", xs: "30px 15px" }}
-        direction={"row"}
+        padding={{ md: "50px", xs: "30px" }}
+        direction={{ xs: "column", md: "row" }}
+        alignItems={"center"}
+        display={{ xs: "none", lg: "flex" }}
       >
         {groupImages.map((item) => {
+          return (
+            <Box
+              key={item.id}
+              sx={{
+                height: "300px",
+                width: "100%",
+                margin: "10px",
+                borderRadius: "5px",
+                backgroundImage: `url(${item.image.src})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+              }}
+            ></Box>
+          );
+        })}
+      </Stack>
+      <Stack
+        bgcolor={"#D2E4D8"}
+        width={"100%"}
+        padding={{ md: "50px", xs: "30px" }}
+        direction={{ xs: "column", md: "row" }}
+        alignItems={"center"}
+        display={{ xs: "flex", lg: "none" }}
+      >
+        {groupImages.map((item) => {
+          if (item.id > 2) return null;
           return (
             <Box
               key={item.id}

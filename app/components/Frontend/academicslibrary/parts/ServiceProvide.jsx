@@ -1,3 +1,4 @@
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Typography } from "@mui/material";
 import React from "react";
@@ -57,29 +58,83 @@ const ServiceProvide = () => {
         gap={2}
         justifyContent={"center"}
         alignItems={{ xs: "center", md: "normal" }}
+        display={{ xs: "none", md: "flex" }}
       >
-        {data.map((d, i) => (
-          <Stack
-            border={"1px solid lightgray"}
-            width={{ xs: "90%", md: "45%" }}
-            padding={3}
-            borderRadius={2}
-            key={i}
-            sx={{
-              "&:hover": {
-                bgcolor: "#C5D1E1",
-              },
-            }}
-          >
-            <Typography
-              fontWeight={"bold"}
-              fontSize={{ xs: "15px", smm: "20px", md: "25px", lg: "30px" }}
+        {data.map((d, i) => {
+          return (
+            <Stack
+              border={"1px solid lightgray"}
+              width={{ xs: "90%", md: "45%" }}
+              padding={3}
+              borderRadius={2}
+              key={i}
+              sx={{
+                "&:hover": {
+                  bgcolor: "#C5D1E1",
+                },
+              }}
             >
-              {d.item}
-            </Typography>
-            <Typography>{d.Desc}</Typography>
-          </Stack>
-        ))}
+              <Typography
+                fontWeight={"bold"}
+                fontSize={{ xs: "15px", smm: "20px", md: "25px", lg: "30px" }}
+              >
+                {d.item}
+              </Typography>
+              <Typography
+                fontSize={{ xs: "12px", smm: "16px", md: "20px", lg: "25px" }}
+              >
+                {d.Desc}
+              </Typography>
+            </Stack>
+          );
+        })}
+      </Stack>
+
+      <Stack
+        width={"100%"}
+        flexWrap={"wrap"}
+        padding={2}
+        direction={{ xs: "column", md: "row" }}
+        gap={2}
+        justifyContent={"center"}
+        alignItems={{ xs: "center", md: "normal" }}
+        display={{ xs: "flex", md: "none" }}
+      >
+        {data.map((d, i) => {
+          if (i >= 4) return null;
+          return (
+            <Stack
+              border={"1px solid lightgray"}
+              width={{ xs: "90%", md: "45%" }}
+              padding={3}
+              borderRadius={2}
+              key={i}
+              sx={{
+                "&:hover": {
+                  bgcolor: "#C5D1E1",
+                },
+              }}
+            >
+              <Typography
+                fontWeight={"bold"}
+                fontSize={{ xs: "15px", smm: "20px", md: "25px", lg: "30px" }}
+              >
+                {d.item}
+              </Typography>
+              <Typography
+                fontSize={{ xs: "12px", smm: "16px", md: "20px", lg: "25px" }}
+              >
+                {d.Desc}
+              </Typography>
+            </Stack>
+          );
+        })}
+
+        <Stack alignItems={{ xs: "center", md: "start" }}>
+          <ButtonMediumOutline margin="10px 50px" color="#476C9B">
+            View All
+          </ButtonMediumOutline>
+        </Stack>
       </Stack>
     </Stack>
   );
