@@ -1,7 +1,8 @@
+"use client";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const ServiceProvide = () => {
   const data = [
@@ -41,6 +42,8 @@ const ServiceProvide = () => {
       Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
     },
   ];
+  const [visibleCount, setVisibleCount] = useState(4);
+  const visibleData = data.slice(0, visibleCount);
   return (
     <Stack bgcolor={"#D8E0EB"}>
       <Head1
@@ -100,8 +103,7 @@ const ServiceProvide = () => {
         alignItems={{ xs: "center", md: "normal" }}
         display={{ xs: "flex", md: "none" }}
       >
-        {data.map((d, i) => {
-          if (i >= 4) return null;
+        {visibleData.map((d, i) => {
           return (
             <Stack
               border={"1px solid lightgray"}
@@ -129,12 +131,17 @@ const ServiceProvide = () => {
             </Stack>
           );
         })}
-
-        <Stack alignItems={{ xs: "center", md: "start" }}>
-          <ButtonMediumOutline margin="10px 50px" color="#476C9B">
-            View All
-          </ButtonMediumOutline>
-        </Stack>
+        {visibleCount < data.length && (
+          <Stack alignItems={{ xs: "center", md: "start" }}>
+            <ButtonMediumOutline
+              onClick={() => setVisibleCount(visibleCount + 3)}
+              margin="10px 50px"
+              color="#476C9B"
+            >
+              View All
+            </ButtonMediumOutline>
+          </Stack>
+        )}
       </Stack>
     </Stack>
   );

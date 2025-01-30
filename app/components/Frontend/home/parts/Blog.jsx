@@ -86,8 +86,8 @@ export default function Blog() {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "45%" }}
-          gap={"20px"}
-          justifyContent={"space-between"}
+          gap={{ xs: "20px", md: "166px", lg: "135px" }}
+          justifyContent={{ xs: "space-between", md: "unset" }}
           display={{ md: "flex", xs: "none" }}
         >
           {blogData.map((el, i) => {
@@ -128,13 +128,23 @@ function BlogCard({ el }) {
       direction={"row"}
       height={"100px"}
       borderRadius={"5px"}
-      overflow="hidden"
+      // overflow="hidden"
       boxShadow={"2px 2px 8px 2px rgba(0, 0, 0, 0.1)"}
     >
-      <Box width={"80%"} height={"100%"} position={"relative"}>
+      <Box
+        width={"80%"}
+        height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "20vh" }}
+        position={"relative"}
+      >
         <Image src={el.img} alt="" fill objectFit="cover" />
       </Box>
-      <Stack backgroundColor={"white"} padding={"10px"} gap={"5px"}>
+      <Stack
+        backgroundColor={"white"}
+        padding={"10px"}
+        gap={"5px"}
+        height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "20vh" }}
+        justifyContent={{ xs: "unset", lg: "space-evenly" }}
+      >
         <Typography align="left" fontSize="0.8rem">
           {el.title}
         </Typography>

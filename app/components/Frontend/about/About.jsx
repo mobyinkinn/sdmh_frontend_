@@ -24,7 +24,7 @@ export default function About() {
       <Message />
       <Awards />
       <Footer />
-      <MobileFooter/>
+      <MobileFooter />
     </Stack>
   );
 }

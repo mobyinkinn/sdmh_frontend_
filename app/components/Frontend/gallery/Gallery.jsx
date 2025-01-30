@@ -1,26 +1,24 @@
-import React from 'react'
-import Navbar from '../navbar/Nav'
-import Footer from '../footer/Footer'
+import React from "react";
+import Navbar from "../navbar/Nav";
+import Footer from "../footer/Footer";
 import banner from "./assets/bannerImage.png";
-import BannerImage from "@/app/styledComponents/frontend/BannerImage";
-import TabData from './assets/TabData';
-import VirtualView from './assets/VirtualView';
+import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
+import TabData from "./assets/TabData";
+import VirtualView from "./assets/VirtualView";
 
 const Gallery = () => {
   return (
     <>
       <Navbar />
-      <BannerImage
-        image={banner.src}
-      />
-      <TabData/>
+      <BannerImage2 image={banner.src} />
+      <TabData />
       {/* <VirtualView/> */}
       <Footer />
     </>
   );
-}
+};
 
-export default Gallery
+export default Gallery;
 
 // "use client"
 
@@ -43,7 +41,6 @@ export default Gallery
 // };
 
 // export default Gallery;
-
 
 // "use client";
 
