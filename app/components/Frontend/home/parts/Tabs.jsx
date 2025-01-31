@@ -155,9 +155,6 @@ export default function Tabs() {
     },
   ];
 
-  console.log("tabsData", tabsData);
-
-  console.log("events", tabsData[activeTab].data[0][0]);
 
   var settings = {
     autoplay: true,
@@ -251,7 +248,7 @@ export default function Tabs() {
             overflow: "hidden",
           }}
         >
-          {tabsData[activeTab].data[0].map((el, i) => {
+          {tabsData[activeTab].data[0]?.map((el, i) => {
             if (i >= 4) return null;
             return (
               <Stack
