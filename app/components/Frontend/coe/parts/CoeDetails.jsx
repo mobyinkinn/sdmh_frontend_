@@ -8,20 +8,22 @@ import Procedure from "./components/Procedures";
 import Doctors from "./components/Doctors";
 import { useParams, useRouter } from "next/navigation";
 import { useDepartmentById } from "@/app/components/admin/departments/parts/useDepartment";
+import MobileFooter from "../../footer/MobileFooter";
 
 export default function CoeDetails() {
-  const {name} = useParams();
-  const { data, isLoading, error } = useDepartmentById(name);
- 
+  const { _id } = useParams();
+  const { data, isLoading, error } = useDepartmentById(_id);
+
   return (
     <Stack>
       <Navbar />
       <ContainerMain bgColor={"#FBF6EE"}>
-        <DetailsHero name={name} data={data} isLoading ={isLoading}/>
+        <DetailsHero data={data} isLoading={isLoading} />
         <Procedure />
-        <Doctors />
+        <Doctors _id={_id} />
       </ContainerMain>
       <Footer />
+      <MobileFooter />
     </Stack>
   );
 }

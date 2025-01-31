@@ -38,7 +38,7 @@ const EventInner = () => {
       data: "13 Dec 2024",
     },
   ];
-  const { id } = useParams();
+  const { _id } = useParams();
   return (
     <>
       <Navbar />
@@ -47,7 +47,7 @@ const EventInner = () => {
           <Image src={BannerImage.src} width={950} height={600} />
           <Stack direction={"row"} gap={2} alignItems={"center"} p={"20px 0"}>
             <Head1 color="black" style={{ fontSize: "20px" }}>
-              Upcoming
+              Upcoming {_id}
             </Head1>
             <ParaNormal color="#000000">13 Dec 2024</ParaNormal>
           </Stack>

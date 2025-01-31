@@ -91,8 +91,8 @@ export const updateBanner = async ({ id, formdata }) => {
 
 
 
-export const fetchDepartmentById = async (name) => {
-  const response = await axios.get(`${ApiUrl}/department/getbyId?name=${name}`, {
+export const fetchDepartmentById = async (_id) => {
+  const response = await axios.get(`${ApiUrl}/department/getbyId?id=${_id}`, {
     withCredentials: true,
   });
   return response.data.message; // Adjust based on the actual API response structure

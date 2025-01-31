@@ -46,9 +46,9 @@ const BannerImage = ({
             alignItems={align || "center"}
             gap={1}
           >
-            <Typography fontSize={"1.2rem"} fontWeight={400}>
+            {/* <Typography fontSize={"1.2rem"} fontWeight={400}>
               The Hospital That Cares
-            </Typography>
+            </Typography> */}
             <Stack direction={"row"}>
               <Head1 color={color || "white"}>{title}</Head1>
             </Stack>
@@ -71,8 +71,8 @@ const BannerImage = ({
           backgroundSize: "cover",
           backgroundPosition: "center center",
         }}
-        alignContent={"start"}
-        // justifyContent={"center"}
+        // alignContent={"center"}
+        justifyContent={"center"}
         gap={"10px"}
         display={{ xs: "flex", lg: "none" }}
       >
@@ -84,14 +84,14 @@ const BannerImage = ({
           // pl={padding || 0}
         >
           <Stack
-            width={{ md: "80%", xs: "85%" }}
+            width={{ md: "80%", xs: "90%" }}
             margin={"auto"}
             alignItems={"center"}
             gap={1}
           >
-            <Typography fontSize={{ xs: "13px", md: "17px" }}>
+            {/* <Typography fontSize={{ xs: "13px", md: "17px" }}>
               The Hospital That Cares
-            </Typography>
+            </Typography> */}
             <Stack direction={"row"}>
               <Head1 color={color || "white"} textAlign={"center"}>
                 {title}

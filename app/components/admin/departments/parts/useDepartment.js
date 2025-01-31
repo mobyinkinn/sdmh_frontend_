@@ -20,10 +20,10 @@ export const useDepartment = () => {
   });
   return { data, isLoading, error };
 };
-export const useDepartmentById = (name) => {
+export const useDepartmentById = (_id) => {
   return useQuery({
-    queryKey: ["Departments", name],
-    queryFn: () => fetchDepartmentById(name),
+    queryKey: ["Departments", _id],
+    queryFn: () => fetchDepartmentById(_id),
     staleTime: 5 * 60 * 1000,
   });
 };

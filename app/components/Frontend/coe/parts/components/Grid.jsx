@@ -141,7 +141,7 @@ function CoeCard({ el }) {
       </ParaNormal>
       <ButtonSmallOutline
         color="#000000"
-        onClick={() => router.push(`/center-of-excellence/${el.name}`)}
+        onClick={() => router.push(`/center-of-excellence/${el._id}`)}
       >
         Read More
       </ButtonSmallOutline>

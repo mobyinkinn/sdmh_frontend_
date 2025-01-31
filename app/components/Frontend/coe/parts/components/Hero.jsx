@@ -56,6 +56,7 @@ export default function Hero() {
           alignItems={"center"}
           width={{md:"58%",smm:"85%", sm:"85%"}}
           justifyContent={"center"}
+          pt={2}
         >
           <Head1 color="black" fontSize={{lg:"35px", md:"30px", sm:"20px"}}>
             Become&nbsp;a professional in&nbsp;either field

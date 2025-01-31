@@ -66,3 +66,10 @@ export const createDoctor = async (formdata) => {
 
   return response.data;
 };
+
+export const fetchDoctorById = async (_id) => {
+  const response = await axios.post(`${ApiUrl}/doctor/get`, {department:_id}, {
+    withCredentials: true,
+  });
+  return response.data.message; 
+};

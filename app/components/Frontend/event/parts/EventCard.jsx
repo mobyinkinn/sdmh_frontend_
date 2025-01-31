@@ -1,6 +1,6 @@
 "use client";
 
-import { Head4 } from "@/app/styledComponents/frontend/Headings";
+import { Head2, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import {
   ParaNormal,
   ParaNormalSmall,
@@ -18,12 +18,16 @@ import { useRouter } from "next/navigation";
 export default function EventCard({ career }) {
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
+  const extractDate = (isoString) => {
+    return isoString.split("T")[0]; // Extracts only the date part
+  };
+  const dateOnly = extractDate(career.date);
   return (
     <Stack
       direction={{ md: "row", xs: "column" }}
       gap={"30px"}
       alignItems={"center"}
-      width={{ md: "80vw", xs: "95vw" }}
+      width={{ md: "90vw", xs: "100vw" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       sx={{
@@ -38,11 +42,12 @@ export default function EventCard({ career }) {
       }}
     >
       <Stack
-        width={{ md: "30%", xs: "90%" }}
+        border={"1px solid lightgrey"}
+        width={{ md: "30%", xs: "100%" }}
         height={{ md: "25vh", xs: "35vh" }}
         sx={{
           backgroundImage: `url(${hovered ? hoverImg.src : img.src})`,
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
           "& :hover": {
@@ -50,21 +55,23 @@ export default function EventCard({ career }) {
           },
         }}
       ></Stack>
-      <Stack gap={1}>
-        <ParaNormal color="inherit">{career.category}</ParaNormal>
-        <Head4 textAlign="left" color="inherit">
-          {career.position}
-        </Head4>
-        <ParaNormalSmall color="inherit">{career.jd}</ParaNormalSmall>
+      <Stack gap={1} width={"70%"}>
+        <ParaNormalSmall color="inherit">{career.tag}</ParaNormalSmall>
+        <Head3 textAlign="left" color="inherit">
+          {career.title}
+        </Head3>
+        <ParaNormalSmall color="inherit">
+          {career.smallDescription}
+        </ParaNormalSmall>
         <Stack direction={"row"} gap={{ md: 3, xs: 1 }}>
           <ButtonSmallOutline
             color={hovered ? "white" : "#476C9B"}
             hoverColor="#476C9B"
           >
-            {career.lastDate}
+            {dateOnly}
           </ButtonSmallOutline>
           <ButtonSmallOutline
-            onClick={() => router.push(`/event/${career.id}`)}
+            onClick={() => router.push(`/event/${career._id}`)}
             color={hovered ? "white" : "#476C9B"}
             hoverColor="#476C9B"
           >

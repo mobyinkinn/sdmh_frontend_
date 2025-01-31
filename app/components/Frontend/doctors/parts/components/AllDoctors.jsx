@@ -1,7 +1,6 @@
 "use client";
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import Doctors from "../../../coe/parts/components/Doctors";
 import { Stack } from "@mui/material";
 import {
   DarkGreenButton,
@@ -13,6 +12,7 @@ import { useDoctors } from "@/app/components/admin/doctors/parts/useDoctor";
 import Spinner from "@/app/components/ui/Spinner";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 import { useState } from "react";
+import Doctors from "./Doctors";
 
 export default function AllDoctors() {
   const { data, isLoading } = useDoctors();

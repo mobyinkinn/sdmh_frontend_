@@ -22,7 +22,7 @@ const prodedureData = [
 
 export default function Procedure() {
   return (
-    <Stack marginTop={"30px"}>
+    <Stack marginTop={{lg:"30px",md:"25px", sm:"20px"}}>
       <Head1 color="black" textAlign="left">
         Round the clock Anesthesiologist
       </Head1>
@@ -31,22 +31,24 @@ export default function Procedure() {
       </Head1>
       <Stack
         marginTop={"20px"}
-        direction={"row"}
-        flexWrap={"wrap"}
-        gap={"20px"}
+        direction={{lg:"row", sm:"column"}}
+        flexWrap={{lg:"wrap", sm:"nowrap"}}
+        gap={{lg:"20px", md:"15px",sm:"10px"}}
         justifyContent={"space-between"}
       >
         {prodedureData.map((el, i) => {
           return (
-            <Stack direction={"row"} gap={"40px"} width={"47%"} key={i}>
+            <Stack direction={"row"} gap={{lg:"40px",md:"30px", sm:"20px"}} width={{lg:"47%",sm:"100%"}}  key={i}>
               <Stack
                 border={"2px solid #54B435"}
+                p={{lg:0,sm:1.5}}
                 sx={{
-                  width: "40px",
-                  height: "40px",
+                  width: {lg:"40px", md:"30px", sm:"20px"},
+                  height: {lg:"40px", md:"30px", sm:"20px"},
                   justifyContent: "center",
                   borderRadius: "200px",
                   alignItems: "center",
+                  
                 }}
               >
                 <ParaNormal color={"#54B435"}>{el.id + 1}</ParaNormal>

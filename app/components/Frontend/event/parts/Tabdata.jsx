@@ -3,8 +3,12 @@
 import { Button, Stack } from "@mui/material";
 import React, { useState } from "react";
 import EventCard from "./EventCard";
+import { useEvents } from "@/app/components/admin/events/useEvents";
+import Spinner from "@/app/components/ui/Spinner";
 
 const Tabdata = () => {
+  const { data, isLoading, error } = useEvents();
+  console.log("data",data);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const eventData = [
     {
@@ -63,17 +67,16 @@ const Tabdata = () => {
       status: true,
     },
   ];
-  const categories = [
-    "All",
-    ...new Set(eventData.map((event) => event.category)),
-  ];
+  const categories = [ ...new Set(data?.map((event) => event.tag))];
 
   // Filter event data based on the selected category
   const filteredData =
     selectedCategory === "All"
-      ? eventData
-      : eventData.filter((event) => event.category === selectedCategory);
-
+      ? data
+      : data.filter((event) => event.tag === selectedCategory);
+if (isLoading){
+  return <Spinner/>
+}
   return (
     <>
       {/* Tabs Section */}
@@ -92,7 +95,7 @@ const Tabdata = () => {
             color="primary"
             onClick={() => setSelectedCategory(category)}
             sx={{
-              padding: "5px 30px",
+              padding: { lg: "5px 30px", xs: "5px 17px" },
               backgroundColor:
                 selectedCategory === category ? "white" : "transparent",
               color: selectedCategory === category ? "#476C9B" : "white",
@@ -114,7 +117,7 @@ const Tabdata = () => {
 
       {/* Render Filtered Event Cards */}
       <Stack alignItems="center" pt={2}>
-        {filteredData.map((el, i) => (
+        {filteredData?.map((el, i) => (
           <EventCard key={el.id} career={el} />
         ))}
       </Stack>

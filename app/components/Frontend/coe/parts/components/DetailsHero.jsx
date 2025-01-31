@@ -5,7 +5,7 @@ import baloon from "../assets/bigHotAirBaloon.png";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import Spinner from "@/app/components/ui/Spinner";
 
-export default function DetailsHero({ name, data, isLoading }) {
+export default function DetailsHero({ data, isLoading }) {
   if (isLoading) {
     return <Spinner />;
   }

@@ -4,6 +4,7 @@ import banner from "./parts/assests/banner.png";
 import Navbar from '../navbar/Nav';
 import Footer from '../footer/Footer';
 import Tabdata from './parts/Tabdata';
+import MobileFooter from '../footer/MobileFooter';
 
 const Event = () => {
   return (
@@ -19,6 +20,7 @@ const Event = () => {
       />
       <Tabdata/>
       <Footer />
+      <MobileFooter/>
     </>
   );
 }
