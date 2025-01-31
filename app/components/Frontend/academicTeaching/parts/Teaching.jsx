@@ -7,7 +7,7 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
 import { useNotices } from "@/app/components/admin/academic_notices/useNotices";
 import Spinner from "@/app/components/ui/Spinner";
-const Noticwes = () => {
+const Teaching = () => {
   // const data = [
   //   {
   //     img: logo,
@@ -91,4 +91,4 @@ const Noticwes = () => {
   );
 };
 
-export default Noticwes;
+export default Teaching;

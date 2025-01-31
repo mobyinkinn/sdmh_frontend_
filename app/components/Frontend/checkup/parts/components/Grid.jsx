@@ -5,7 +5,10 @@ import Image from "next/image";
 import { Height } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
-import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import {
+  ButtonMediumOutline,
+  ButtonSmallOutline,
+} from "@/app/styledComponents/frontend/Buttons";
 import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
@@ -34,7 +37,7 @@ export default function Grid() {
         </Head1>
         <Head1
           color="#005900"
-          fontSize={{ lg: "50px", md: "40px", smm: "30px", sm: "25px" }}
+          fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
         >
           {" "}
           Health checkup plans
@@ -46,10 +49,29 @@ export default function Grid() {
         gap={"50px"}
         justifyContent={"center"}
         marginTop={"20px"}
+        marginX={{ xs: "20px", md: "0" }}
+        display={{ xs: "none", md: "flex" }}
       >
         {filteredData.map((el, i) => {
           return <CheckupCard el={el} />;
         })}
+      </Stack>
+      <Stack
+        direction={"row"}
+        flexWrap={"wrap"}
+        gap={{ xs: "25px", md: "50px" }}
+        justifyContent={"center"}
+        marginTop={"20px"}
+        marginX={{ xs: "20px", md: "0" }}
+        display={{ xs: "flex", md: "none" }}
+      >
+        {filteredData.map((el, i) => {
+          if (i >= 4) return null;
+          return <CheckupCard el={el} />;
+        })}
+        <Stack alignItems={{ xs: "center", md: "start" }}>
+          <ButtonMediumOutline color="#476C9B">View All</ButtonMediumOutline>
+        </Stack>
       </Stack>
     </ContainerMain>
   );
@@ -61,49 +83,63 @@ function CheckupCard({ el }) {
   return (
     <Stack
       width={{ lg: "29%", md: "46%", sm: "100%", sm: "100%" }}
-      gap={"10px"}
+      height={"421px"}
+      sx={{
+        borderRadius: "10px",
+        overflow: "hidden",
+      }}
     >
       <Box
         sx={{
-          height: "300px",
+          height: { xs: "50%", md: "40%" },
           width: "100%",
           position: "relative",
+          alignSelf: "center",
         }}
       >
         <Image src={el.image} alt="" fill objectFit="cover" />
       </Box>
-      <ParaNormal
-        fontSize={{ lg: "30px", md: "30px", smm: "25px", sm: "20px" }}
+      <Stack
+        bgcolor={"#FFFFFF"}
+        height={{ xs: "50%", md: "60%" }}
+        paddingX={2.5}
+        justifyContent={"space-evenly"}
       >
-        {el.title}
-      </ParaNormal>
-      <ParaNormal
-        fontSize={{ lg: "30px", md: "30px", smm: "25px", sm: "20px" }}
-      >
-        ₹{el.price}
-      </ParaNormal>
-      <ParaNormal
-        fontSize={{ lg: "20px", md: "20px", smm: "15px", sm: "15px" }}
-      >
-        <span
-          dangerouslySetInnerHTML={{
-            __html: `${el.description.slice(0, 100)}`,
-          }}
-        />
-      </ParaNormal>
-      <Stack direction={"row"} gap={2}>
-        <ButtonSmallOutline
-          color="#007946"
-          // onClick={() => router.push(`/health-checkup/${el._id}`)}
+        <Stack>
+          <ParaNormal
+            fontSize={{ lg: "30px", md: "22px", smm: "22px", sm: "20px" }}
+          >
+            {el.title}
+          </ParaNormal>
+          <ParaNormal
+            fontSize={{ lg: "30px", md: "25px", smm: "22px", sm: "20px" }}
+          >
+            ₹{el.price}
+          </ParaNormal>
+        </Stack>
+        <ParaNormal
+          fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "15px" }}
         >
-          Book Now
-        </ButtonSmallOutline>
-        <ButtonSmallOutline
-          color="#000000"
-          onClick={() => router.push(`/health-checkup/${el._id}`)}
-        >
-          Know More
-        </ButtonSmallOutline>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: `${el.description.slice(0, 84)}`,
+            }}
+          />
+        </ParaNormal>
+        <Stack direction={"row"} gap={2}>
+          <ButtonSmallOutline
+            color="#007946"
+            // onClick={() => router.push(`/health-checkup/${el._id}`)}
+          >
+            Book Now
+          </ButtonSmallOutline>
+          <ButtonSmallOutline
+            color="#000000"
+            onClick={() => router.push(`/health-checkup/${el._id}`)}
+          >
+            Know More
+          </ButtonSmallOutline>
+        </Stack>
       </Stack>
     </Stack>
   );

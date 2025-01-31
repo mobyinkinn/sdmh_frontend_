@@ -50,11 +50,11 @@
 // }
 
 // export default InfraAndFacility
-
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack, Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import image from "./assests/image1.png"; // Replace this with your actual image imports
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
@@ -102,6 +102,8 @@ const InfraAndFacility = () => {
       title: "Statistician Services",
     },
   ];
+  const [visibleCount, setVisibleCount] = useState(4);
+  const visibleData = data.slice(0, visibleCount);
 
   return (
     <>
@@ -126,8 +128,7 @@ const InfraAndFacility = () => {
         p={3}
         display={{ xs: "flex", md: "none" }}
       >
-        {data.map((item) => {
-          if (item.id >= 5) return null;
+        {visibleData.map((item) => {
           return (
             <Box
               key={item.id}
@@ -150,12 +151,13 @@ const InfraAndFacility = () => {
               <Typography
                 sx={{
                   position: "absolute",
-                  bottom: "10px",
+                  top: "50%",
                   left: "50%",
-                  transform: "translateX(-50%)",
+                  transform: "translate(-50%, -50%)",
                   color: "white",
                   fontWeight: "bold",
                   fontSize: "16px",
+                  textAlign: "center",
                 }}
               >
                 {item.title}
@@ -163,8 +165,14 @@ const InfraAndFacility = () => {
             </Box>
           );
         })}
-
-        <ButtonSmallOutline color="#007946">View All</ButtonSmallOutline>
+        {visibleCount < data.length && (
+          <ButtonSmallOutline
+            onClick={() => setVisibleCount(visibleCount + 3)}
+            color="#007946"
+          >
+            View All
+          </ButtonSmallOutline>
+        )}
       </Stack>
 
       <Stack

@@ -15,7 +15,7 @@ const ContainerMain = styled.div((props) => ({
   justifyContent: props.justifyContent,
   alignItems: props.alignItems,
   backgroundColor: props.bgColor,
-  padding: props.padding || "50px",
+  padding: props.padding?.lg || "50px",
   flexDirection: props.flexDirection,
 
   // Default styles

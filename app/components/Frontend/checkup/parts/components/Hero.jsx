@@ -9,6 +9,7 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 export default function Hero() {
   return (
     <Stack
+      paddingTop={{ xs: 4, lg: 0 }}
       height={{ lg: "80vh", md: "80vh", sm: "70vh" }}
       backgroundColor={"#E9EEF1"}
       direction={{ lg: "row", md: "column" }}
@@ -31,6 +32,7 @@ export default function Hero() {
           <Head1
             color={"#476C9B"}
             textAlign={{ lg: "left", md: "center", sm: "center" }}
+            fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
           >
             Health Check Up Plans&nbsp;
           </Head1>
@@ -39,36 +41,14 @@ export default function Hero() {
         <Typography
           margin={{ lg: "20px 0px", md: "20px 85px", sm: "20px 20px" }}
           textAlign={{ lg: "left", sm: "center" }}
+          fontSize={{ sm: "15px", smm: "20px", md: "24px", lg: "30px" }}
         >
-          Choose from our wide range of Preventive Health
-          <br /> Check Plans that are designed keeping your
-          <br /> health needs in mind
+          Choose from our wide range of Preventive Health Check Plans that are
+          designed keeping your health needs in mind
         </Typography>
         <ButtonMediumOutline color="#379237">Contact Us</ButtonMediumOutline>
       </Stack>
-      {/* <Box
-        sx={{
-          width: "50%",
-          height: { lg: "90%", md: "55%", smm: "50%", sm: "45%" },
-          backgroundColor: "white",
-          borderRadius: "50%",
-          display: "flex",
-          alignSelf: { lg: "end", md: "center", sm: "center" },
-          justifyContent: "center",
-          overflow: "hidden", // Ensures the image stays within the circular container
-        }}
-      >
-        <Stack
-          sx={{
-            backgroundImage: `url(${bannerImg.src})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center bottom",
-            width: "80%",
-            height: "80%",
-          }}
-        ></Stack>
-      </Box> */}
+
       <Stack
         sx={{
           backgroundImage: `url(${bannerImg.src})`,
@@ -77,7 +57,7 @@ export default function Hero() {
           backgroundPosition: "center bottom",
           alignSelf: { lg: "end", md: "center", sm: "center" },
           width: "50%",
-          height: { lg: "90%", md: "55%", smm: "50%", sm: "45%" },
+          height: { lg: "90%", md: "55%", smm: "52%", sm: "50%" },
         }}
       ></Stack>
     </Stack>

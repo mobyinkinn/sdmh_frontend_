@@ -43,12 +43,22 @@ const KohaSection = () => {
   ];
   return (
     <ContainerMain style={{ backgroundColor: "#F9F9F9", alignItems: "center" }}>
-      <Head1 color="#005900">KOHA</Head1>
-      <Head1 style={{ width: "60%", fontSize: "30px" }} color="black">
+      <Head1
+        color="#005900"
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+      >
+        KOHA
+      </Head1>
+      <Head1
+        style={{ width: "60%" }}
+        fontSize={{ sm: "1.1rem", smm: "1.5rem", md: "2rem", lg: "2.5rem" }}
+        color="black"
+      >
         The Library ManagementK Software at SDMH Library
       </Head1>
       <ParaNormal
-        style={{ textAlign: "center", fontSize: "20px", width: "85%" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "20px", lg: "25px" }}
+        style={{ textAlign: "center", width: "90%" }}
       >
         The introduction of open source software Koha Library Software
         Management is an added feather to the library’s cap. KOHA improves a
@@ -61,16 +71,31 @@ const KohaSection = () => {
         rendered using an OPAC instead of a card catalogue system. KOHA Library
         automation addresses the problem of manual processing of materials.
       </ParaNormal>
-      <Stack direction={"row"} gap={2} width={"100%"} justifyContent={"center"}>
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        gap={2}
+        width={"100%"}
+        justifyContent={"center"}
+        alignItems={{ xs: "center", md: "normal" }}
+      >
         {data.map((d, i) => (
           <Stack
             key={i}
             bgcolor={"white"}
-            width={"45%"}
-            padding={5}
+            width={{ xs: "90%", md: "45%" }}
+            padding={{ xs: 3, md: 5 }}
             borderRadius={"10px"}
           >
-            <Head1 color="black" fontSize={"20px"} textAlign={"left"}>
+            <Head1
+              color="black"
+              fontSize={{
+                sm: "1.5rem",
+                smm: "1.5rem",
+                md: "1.5rem",
+                lg: "2.5rem",
+              }}
+              textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
+            >
               {d.heading}
             </Head1>
             <Stack textAlign={"left"}>
@@ -80,16 +105,16 @@ const KohaSection = () => {
                   gap={3}
                   direction={"row"}
                   alignItems={"center"}
-                  padding={"10px"}
+                  paddingY={"10px"}
                   borderRadius={"20px"}
                   bgcolor={"white"}
                 >
                   {/* Circle Number */}
                   <Stack
-                    width={"42px"}
-                    height={"42px"}
+                    width={{ xs: "27px", md: "42px" }}
+                    height={{ xs: "27px", md: "42px" }}
                     borderRadius={"50%"}
-                    fontSize={"25px"}
+                    fontSize={{ xs: "15px", md: "25px" }}
                     color={"white"}
                     alignItems={"center"}
                     justifyContent={"center"}
@@ -102,7 +127,17 @@ const KohaSection = () => {
                     {di.id}
                   </Stack>
                   <Stack>
-                    <ParaNormal fontSize={"30px"}>{di.point}</ParaNormal>
+                    <ParaNormal
+                      fontWeight={500}
+                      fontSize={{
+                        sm: "15px",
+                        smm: "18px",
+                        md: "22px",
+                        lg: "30px",
+                      }}
+                    >
+                      {di.point}
+                    </ParaNormal>
                   </Stack>
                 </Stack>
               ))}
