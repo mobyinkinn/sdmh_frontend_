@@ -14,6 +14,7 @@ import {
   DarkGreenButton,
 } from "@/app/styledComponents/frontend/Buttons";
 import { useCreateEnquiry } from "@/app/components/admin/enquiries/parts/useEnquiry";
+import FileInput from "./FileInput";
 
 const Enquire_Now = () => {
   const { register, handleSubmit, reset, formState } = useForm();
@@ -58,7 +59,7 @@ const Enquire_Now = () => {
               lg: "start",
             }}
           >
-            Enquire Now
+            GET AN APPOINTMENT
           </Head1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack
@@ -132,8 +133,8 @@ const Enquire_Now = () => {
                 />
               </Stack>
               <Stack>
-                <Label>Message</Label>
-                <TextArea
+                <Label>Speciality</Label>
+                <TextInput
                   padding={{
                     xs: "6px 15px",
                     sm: "10px 25px",
@@ -141,11 +142,23 @@ const Enquire_Now = () => {
                     md: "10px 25px",
                     lg: "15px 30px",
                   }}
-                  placeholder="Type Here"
-                  rows={7}
+                  placeholder="Enter Your Speciality"
                   bgColor={"white"}
-                  {...register("message", {
-                    required: "Message is required",
+                  type="text"
+                  {...register("text", {
+                    required: "Speciality is required",
+                  })}
+                  disabled={isWorking}
+                />
+              </Stack>
+
+              <Stack>
+                <Label>Upload Prescription</Label>
+                <FileInput
+                  placeholder="Upload file"
+                  type="file"
+                  {...register("file", {
+                    required: "File is required",
                   })}
                   disabled={isWorking}
                 />

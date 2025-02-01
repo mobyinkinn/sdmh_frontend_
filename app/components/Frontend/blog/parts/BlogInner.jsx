@@ -11,7 +11,7 @@ import Recent from "./assests/recent1.png";
 import Image from "next/image";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 
-const EventInner = () => {
+const BlogInner = () => {
   const data = [
     {
       Img: Recent,
@@ -44,7 +44,7 @@ const EventInner = () => {
       <Navbar />
       <Stack
         direction={{ md: "row" }}
-        gap={{ md: 5, xs: 2 }}
+        gap={{ md: 4, xs: 2 }}
         padding={{ md: 5, sm: 3, xs: 2 }}
       >
         <Stack width={{ md: "70%" }}>
@@ -106,7 +106,7 @@ const EventInner = () => {
           </Stack>
         </Stack>
         <Stack
-          width={{ md: "24%", xs: "100%" }}
+          width={{ md: "27%", xs: "100%" }}
           bgcolor={"#476C9B"}
           marginTop="40px"
           p={2}
@@ -151,4 +151,4 @@ const EventInner = () => {
   );
 };
 
-export default EventInner;
+export default BlogInner;

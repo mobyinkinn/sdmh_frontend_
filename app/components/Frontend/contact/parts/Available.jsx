@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import banner from "./assets/findDoctor.png";
-import { Head2 } from "@/app/styledComponents/frontend/Headings";
+import { Head2, Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
 
 export default function Available() {
@@ -19,8 +19,8 @@ export default function Available() {
       }}
     >
       <Typography color="#fff">We are available 24/7</Typography>
-      <Head2 color="#fff">Trust Us Be There To Help All</Head2>
-      <Head2 color="#fff">& Make Things Well Again.</Head2>
+      <Head1 color="#fff">Trust Us Be There To Help All</Head1>
+      <Head1 color="#fff">& Make Things Well Again.</Head1>
       <Typography
         margin={"20px 0"}
         width={{ xs: "90%", md: "40%" }}
