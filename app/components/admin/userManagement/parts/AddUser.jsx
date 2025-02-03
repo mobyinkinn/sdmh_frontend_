@@ -35,6 +35,7 @@ const menu = [
   "Careers",
   "Health Plans",
   "Health Tips",
+  "Second Opinion",
 ];
 
 const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];
