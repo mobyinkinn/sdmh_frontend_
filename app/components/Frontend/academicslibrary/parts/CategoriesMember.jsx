@@ -118,35 +118,7 @@ const CategoriesMember = () => {
       >
         <Slider ref={TwosliderRef} {...sm_Settings}>
           {data.map((d, i) => (
-            <Stack
-              key={i}
-              width={"100%"}
-              height={"35vh"}
-              alignItems={"center"}
-              sx={{
-                backgroundImage: `url(${d.img.src})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center center",
-              }}
-              justifyContent={"center"}
-              gap={"10px"}
-            >
-              <Stack
-                bgcolor={"#4A4A4A99"}
-                marginX={"112px"}
-                height={"35vh"}
-                borderRadius={"10px"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <Stack alignItems={"center"}>
-                  <Stack direction={"row"}>
-                    <Head1 color="white">{d.title}</Head1>
-                  </Stack>
-                </Stack>
-              </Stack>
-            </Stack>
+            <SmSlider key={i} d={d} />
           ))}
         </Slider>
 
@@ -205,6 +177,40 @@ const CategoriesMember = () => {
               onMouseEnter={() => setArrowStyle2(hoverStyle)}
               onMouseLeave={() => setArrowStyle2(normalStyle)}
             />
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
+  );
+};
+
+const SmSlider = ({ d }) => {
+  return (
+    <Stack
+      width="100%"
+      height="35vh"
+      alignItems="center"
+      justifyContent="center"
+      sx={{
+        backgroundImage: `url(${d.img.src})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+      }}
+      gap="10px"
+    >
+      <Stack
+        width="202px"
+        bgcolor="#4A4A4A99"
+        height="35vh"
+        borderRadius="10px"
+        justifyContent="center"
+        alignItems="center"
+        display="flex"
+      >
+        <Stack alignItems="center">
+          <Stack direction="row">
+            <Head1 color="white">{d.title}</Head1>
           </Stack>
         </Stack>
       </Stack>
