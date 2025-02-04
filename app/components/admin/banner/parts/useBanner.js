@@ -90,7 +90,7 @@ export const useCreateBanner = () => {
 export const useUpdateBanner = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateBannerImage, isPending: isUpdating } = useMutation({
+  const { mutate: updateBanners, isPending: isUpdating } = useMutation({
     mutationFn: updateBanner,
     onSuccess: () => {
       queryClient.invalidateQueries(["Banners"]);
@@ -102,5 +102,5 @@ export const useUpdateBanner = () => {
     },
   });
 
-  return { updateBannerImage, isUpdating };
+  return { updateBanners, isUpdating };
 };
