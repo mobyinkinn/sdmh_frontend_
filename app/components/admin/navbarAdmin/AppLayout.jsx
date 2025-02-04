@@ -171,6 +171,13 @@ const navData = [
     value: "opinions",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 21,
+    name: "Navbar",
+    link: "/admin/navbar",
+    value: "navbar",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 function AppLayout({ children }) {
