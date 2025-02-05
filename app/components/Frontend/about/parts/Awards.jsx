@@ -15,13 +15,33 @@ import img4 from "./assets/award4.png";
 import img5 from "./assets/award5.png";
 import img6 from "./assets/award6.png";
 import img7 from "./assets/award7.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 
-const initialImages = [img1, img2, img3, img4, img5, img6, img7];
+const initialImages = [
+  { img: img1, data: "data 1 for image 1" },
+  { img: img2, data: "data 2 for image 2" },
+  { img: img3, data: "data 3 for image 3" },
+  { img: img4, data: "data 4 for image 4" },
+  { img: img5, data: "data 5 for image 5" },
+  { img: img6, data: "data 6 for image 6" },
+  { img: img7, data: "data 7 for image 7" },
+];
 
 export default function Awards() {
   const [center, setCenter] = useState(initialImages);
+  useEffect(() => {
+    function RotateCenter() {
+      setCenter((prev) => {
+        let n = prev.length;
+        return prev.map((_, i) => prev[(i + 1) % n]);
+      });
+    }
+
+    const interval = setInterval(RotateCenter, 5000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   const settings = {
     dots: false,
@@ -37,9 +57,13 @@ export default function Awards() {
 
   function swapImages(a) {
     const images = [...center];
-    let temp = images[a].src;
-    images[a].src = images[0].src;
-    images[0].src = temp;
+    // let temp = images[a].img.src;
+    // images[a].img.src = images[0].img.src;
+    // images[0].img.src = temp;
+    // setCenter(images);
+    let temp = images[a];
+    images[a] = images[0];
+    images[0] = temp;
     setCenter(images);
   }
 
@@ -72,9 +96,7 @@ export default function Awards() {
         width={{ sm: "100%", smm: "100%", md: "70%", lg: "70%" }}
         textAlign="center"
       >
-        SDMH was placed among the top three "Best Places to Work in 2
-        Healthcare" in India by "Hosmac" and "People Strong on 10th February,
-        2013.
+        {center[0].data}
       </ParaNormal>
       <Stack
         width={"100%"}
@@ -88,7 +110,7 @@ export default function Awards() {
       >
         <Stack
           sx={{
-            backgroundImage: `url(${center[0].src})`,
+            backgroundImage: `url(${center[0].img.src})`,
             backgroundSize: "cover",
             position: "absolute",
             backgroundPosition: "center center",
@@ -98,12 +120,12 @@ export default function Awards() {
             zIndex: "100",
             border: "6px solid #476C9B",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="0"
         ></Stack>
         <Stack
           sx={{
-            backgroundImage: `url(${center[1].src})`,
+            backgroundImage: `url(${center[1].img.src})`,
             backgroundSize: "cover",
             position: "absolute",
             backgroundPosition: "center top",
@@ -115,12 +137,12 @@ export default function Awards() {
             zIndex: "90",
             left: "60%",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="1"
         ></Stack>
         <Stack
           sx={{
-            backgroundImage: `url(${center[2].src})`,
+            backgroundImage: `url(${center[2].img.src})`,
             backgroundSize: "cover",
             position: "absolute",
             backgroundPosition: "center center",
@@ -131,12 +153,12 @@ export default function Awards() {
             zIndex: "80",
             left: "68%",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="2"
         ></Stack>
         <Stack
           sx={{
-            backgroundImage: `url(${center[3].src})`,
+            backgroundImage: `url(${center[3].img.src})`,
             backgroundSize: "cover",
             zIndex: "70",
             position: "absolute",
@@ -148,12 +170,12 @@ export default function Awards() {
             zIndex: "70",
             left: "75%",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="3"
         ></Stack>
         <Stack
           sx={{
-            backgroundImage: `url(${center[4].src})`,
+            backgroundImage: `url(${center[4].img.src})`,
             zIndex: "60",
             backgroundSize: "cover",
             border: "6px solid #476C9B",
@@ -165,12 +187,12 @@ export default function Awards() {
             zIndex: "70",
             right: "60%",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="4"
         ></Stack>
         <Stack
           sx={{
-            backgroundImage: `url(${center[5].src})`,
+            backgroundImage: `url(${center[5].img.src})`,
             backgroundSize: "cover",
             zIndex: "50",
             border: "6px solid #476C9B",
@@ -182,12 +204,12 @@ export default function Awards() {
             zIndex: "60",
             right: "68%",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="5"
         ></Stack>
         <Stack
           sx={{
-            backgroundImage: `url(${center[6].src})`,
+            backgroundImage: `url(${center[6].img.src})`,
             backgroundSize: "cover",
             zIndex: "50",
             position: "absolute",
@@ -199,7 +221,7 @@ export default function Awards() {
             zIndex: "50",
             right: "75%",
           }}
-          onMouseEnter={changeImage}
+          // onMouseEnter={changeImage}
           className="6"
         ></Stack>
       </Stack>
@@ -210,7 +232,7 @@ export default function Awards() {
       >
         <Slider {...settings}>
           {initialImages.map((img, index) => (
-            <ImageCard key={index} img={img} />
+            <ImageCard key={index} img={img.img} />
           ))}
         </Slider>
       </Stack>
