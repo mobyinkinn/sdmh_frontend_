@@ -14,7 +14,6 @@ import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
 import SpinnerMini from "../../ui/SpinnerMini";
 
-
 const OverlaySpinner = styled.div`
   position: fixed;
   top: 0;
@@ -40,6 +39,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
 
   // State to store the selected image
   const [imagePreview, setImagePreview] = useState(null);
+  const [mobileImagePreview, setMobileImagePreview] = useState(null);
 
   // Function to handle image file selection
   const handleImageChange = (e) => {
@@ -50,6 +50,16 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
       setImagePreview(null);
     }
   };
+
+  const handleMobileImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMobileImagePreview(URL.createObjectURL(file));
+    } else {
+      setMobileImagePreview(null);
+    }
+  };
+
   const StyledSelect = styled.select`
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
@@ -66,9 +76,15 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
 
   function onSubmit(data) {
     const file = typeof data.file === "string" ? data.file : data.file[0];
+    const mobileFile =
+      typeof data.mobileFile === "string"
+        ? data.mobileFile
+        : data.mobileFile[0];
 
     const formdata = new FormData();
+    formdata.append("link", data.link);
     formdata.append("banner", file);
+    formdata.append("mobileBanner", mobileFile);
     formdata.append("page", data.page);
     formdata.append("status", true);
     console.log("formdata", formdata);
@@ -117,7 +133,18 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
           </StyledSelect>
         </FormRow>
 
-        <FormRow label={"File"}>
+        <FormRow label={"Link"} error={errors?.title?.message}>
+          <Input
+            disabled={isWorking}
+            type="text"
+            id="link"
+            {...register("link", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+
+        <FormRow label={"Banner"}>
           <FileInput
             id="file"
             accept="image/*"
@@ -145,6 +172,34 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
           </Stack>
         </FormRow>
 
+        <FormRow label={"Mobile Banner"}>
+          <FileInput
+            id="mobileFile"
+            accept="image/*"
+            type="file"
+            {...register("mobileFile", {
+              required: "This field is required",
+            })}
+            onChange={(e) => {
+              handleMobileImageChange(e);
+              register("mobileFile").onChange(e);
+            }}
+          />
+          <Stack>
+            {mobileImagePreview && (
+              <div style={{ marginTop: "0.5rem" }}>
+                <strong>Preview:</strong>
+                <img
+                  src={mobileImagePreview}
+                  alt="Mobile Preview"
+                  width={100}
+                  style={{ borderRadius: "8px", marginTop: "0.5rem" }}
+                />
+              </div>
+            )}
+          </Stack>
+        </FormRow>
+
         <FormRow>
           <Button
             variation="secondary"
@@ -152,6 +207,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
             onClick={() => {
               reset();
               setImagePreview(null); // Clear preview on reset
+              setMobileImagePreview(null);
               onCloseModal?.();
             }}
           >

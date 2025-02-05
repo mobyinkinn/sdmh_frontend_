@@ -39,18 +39,29 @@ const BannerImage2 = ({
           pl={padding || 0}
         >
           <Stack
-            width={{ md: "80%", xs: "85%" }}
+            width={{ md: "80%", xs: "100%" }}
             margin={"auto"}
             alignItems={align || "center"}
             gap={1}
           >
             <Stack direction={"row"}>
-              <Head1 color={color || "white"}>{title}</Head1>
+              <Head1
+                fontSize={{
+                  sm: "1.1rem",
+                  smm: "2rem",
+                  md: "2.5rem",
+                  lg: "3.5rem",
+                }}
+                color={color || "white"}
+              >
+                {title}
+              </Head1>
             </Stack>
             <ParaNormal
-              width={{ lg: "63%", md: "63%", sm: "90%", smm: "90%" }}
+              width={{ lg: "70%", md: "90%", sm: "90%", smm: "90%" }}
               color={descolor || "white"}
               textAlign={textcenter || "center"}
+              fontSize={{ sm: "12px", smm: "15px", md: "18px", lg: "25px" }}
             >
               {description}
             </ParaNormal>

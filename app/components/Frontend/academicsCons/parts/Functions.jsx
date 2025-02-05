@@ -1,54 +1,59 @@
-import { Head1 } from '@/app/styledComponents/frontend/Headings'
-import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-import { Stack } from '@mui/material'
-import React from 'react'
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import { Stack } from "@mui/material";
+import React from "react";
 
 const Functions = () => {
-    const data = [
-      {
-        id: 1,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 2,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 3,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 4,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 5,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 6,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 7,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-      {
-        id: 8,
-        desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
-      },
-    ];
+  const data = [
+    {
+      id: 1,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 2,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 3,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 4,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 5,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 6,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 7,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+    {
+      id: 8,
+      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+    },
+  ];
   return (
-    <Stack bgcolor={"white"}>
-      <Head1 color="black">Functions</Head1>
-      <Stack gap={4}>
+    <Stack bgcolor={"#F9F9F9"} paddingTop={"30px"}>
+      <Head1
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        color="black"
+      >
+        Functions
+      </Head1>
+      <Stack gap={4} marginY={"30px"}>
         {data.map((d) => (
           <Stack
             key={d.id}
             direction={"row"}
             gap={3}
             justifyContent={"center"}
-            padding={"30px"}
+            paddingX={"30px"}
             borderRadius={"20px"}
             sx={{
               transition: "all 0.3s ease",
@@ -78,12 +83,17 @@ const Functions = () => {
               sx={{
                 transition: "all 0.3s ease", // Smooth transition for hover effect
               }}
+              display={{ sm: "none", md: "flex" }}
             >
               {d.id}
             </Stack>
 
             {/* Description */}
-            <ParaNormal style={{ width: "90%", lineHeight: "1.5" }}>
+            <ParaNormal
+              style={{ width: "90%", lineHeight: "1.5" }}
+              backgroundColor="white"
+              padding="10px"
+            >
               {d.desc}
             </ParaNormal>
           </Stack>
@@ -91,6 +101,6 @@ const Functions = () => {
       </Stack>
     </Stack>
   );
-}
+};
 
-export default Functions
+export default Functions;

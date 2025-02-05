@@ -12,11 +12,21 @@ import Image from "next/image";
 const Philosophy = () => {
   const images = [one, two, three, four, five];
   return (
-    <Stack bgcolor={"#D2E4D8"} p={"30px 100px"} gap={2}>
-      <Head1 color="black" style={{ fontSize: "45px" }}>
+    <Stack
+      bgcolor={"#D2E4D8"}
+      p={{ sm: "30px 25px", md: "30px 100px" }}
+      gap={2}
+    >
+      <Head1
+        color="black"
+        fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+      >
         Philosophy of the Nursing College
       </Head1>
-      <ParaNormal style={{ textAlign: "center" }}>
+      <ParaNormal
+        fontSize={{ sm: "12px", smm: "15px", md: "18px", lg: "22px" }}
+        style={{ textAlign: "center" }}
+      >
         The primary aim of the Nursing College is to translate the lofty ideals
         and philosophy of Santokba Durlabhji Trust into reality. The Trust
         believes that nursing is distinctive among professions in its angle of
@@ -30,7 +40,13 @@ const Philosophy = () => {
         knowledge and technology and its application in a humanistic manner.
       </ParaNormal>
 
-      <Stack direction={"row"} gap={1}>
+      <Stack
+        direction={"row"}
+        gap={1}
+        flexWrap={"wrap"}
+        alignContent={"center"}
+        justifyContent={"center"}
+      >
         {images.map((d, i) => (
           <Image src={d} key={i} width={240} />
         ))}

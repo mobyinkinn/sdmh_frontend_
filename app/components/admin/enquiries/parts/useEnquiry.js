@@ -1,4 +1,8 @@
-import { createEnquiry, deleteEnquiry, fetchEnquiry } from "@/app/components/services/api.Enquiry";
+import {
+  createEnquiry,
+  deleteEnquiry,
+  fetchEnquiry,
+} from "@/app/components/services/api.Enquiry";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -18,7 +22,6 @@ export const useCreateEnquiry = () => {
 
   return { createEnquiries, isCreating };
 };
-
 
 export const useDeleteEnquiry = () => {
   const queryClient = useQueryClient();

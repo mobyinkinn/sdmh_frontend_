@@ -13,30 +13,39 @@ import {
   ButtonMediumOutline,
   DarkGreenButton,
 } from "@/app/styledComponents/frontend/Buttons";
-import { useCreateEnquiry } from "@/app/components/admin/enquiries/parts/useEnquiry";
+import { useCreateOpinion } from "@/app/components/admin/opinions/useOpinions";
 import FileInput from "./FileInput";
+import Spinner from "@/app/components/ui/Spinner";
 
 const Enquire_Now = () => {
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
-  const { isCreating, createEnquiries } = useCreateEnquiry();
+  const { isCreating, createOpinions } = useCreateOpinion();
   const isWorking = isCreating;
+  if (isCreating) return <Spinner />;
 
   function onSubmit(data) {
-    const formData = {
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      message: data.message,
-      date: new Date().toISOString().split("T")[0],
-    };
-    createEnquiries(formData, {
+    const file = typeof data.file === "string" ? data.file : data.file[0];
+    // const formData = {
+    //   name: data.name,
+    //   phone: data.phone,
+    //   email: data.email,
+    //   speciality: data.speciality,
+    //   file: data.file,
+    // };
+    const formdata = new FormData();
+    formdata.append("name", data.name);
+    formdata.append("phone", data.phone);
+    formdata.append("email", data.email);
+    formdata.append("speciality", data.speciality);
+    formdata.append("file", file);
+    createOpinions(formdata, {
       onSuccess: () => {
         reset();
-        setShowModal(true); // Show "Thank You" modal on success
+        setShowModal(true);
       },
       onError: (error) => {
-        console.error("Failed to submit application:", error);
+        console.error("Failed to submit opinion:", error);
       },
     });
   }
@@ -145,7 +154,7 @@ const Enquire_Now = () => {
                   placeholder="Enter Your Speciality"
                   bgColor={"white"}
                   type="text"
-                  {...register("text", {
+                  {...register("speciality", {
                     required: "Speciality is required",
                   })}
                   disabled={isWorking}

@@ -12,10 +12,15 @@ import {
 import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Grid() {
   const { data, isLoading, error } = useCheckups();
   const filteredData = data?.filter((el, i) => el.status === true);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const visibleData = data
+    ?.filter((el, i) => el.status === true)
+    .slice(0, visibleCount);
 
   if (isLoading) {
     return <Spinner />;
@@ -24,7 +29,7 @@ export default function Grid() {
   return (
     <ContainerMain
       bgColor="#D8E0EB"
-      padding={{ lg: "50px", md: "40px", smm: "30px", sm: "20px" }}
+      padding={{ lg: "50px", md: "40px", smm: "30px", sm: "8px" }}
       gap={{ lg: "20px", sm: "8px" }}
     >
       <Stack justifyContent={"center"} gap={1}>
@@ -65,12 +70,18 @@ export default function Grid() {
         marginX={{ xs: "20px", md: "0" }}
         display={{ xs: "flex", md: "none" }}
       >
-        {filteredData.map((el, i) => {
-          if (i >= 4) return null;
+        {visibleData.map((el, i) => {
           return <CheckupCard el={el} />;
         })}
         <Stack alignItems={{ xs: "center", md: "start" }}>
-          <ButtonMediumOutline color="#476C9B">View All</ButtonMediumOutline>
+          {visibleCount < data.length && (
+            <ButtonMediumOutline
+              onClick={() => setVisibleCount(visibleCount + 3)}
+              color="#476C9B"
+            >
+              View All
+            </ButtonMediumOutline>
+          )}
         </Stack>
       </Stack>
     </ContainerMain>
@@ -107,18 +118,23 @@ function CheckupCard({ el }) {
       >
         <Stack>
           <ParaNormal
-            fontSize={{ lg: "30px", md: "22px", smm: "22px", sm: "20px" }}
+            fontSize={{
+              lg: "30px",
+              md: "22px",
+              smm: "22px",
+              sm: "17px",
+            }}
           >
             {el.title}
           </ParaNormal>
           <ParaNormal
-            fontSize={{ lg: "30px", md: "25px", smm: "22px", sm: "20px" }}
+            fontSize={{ lg: "30px", md: "25px", smm: "22px", sm: "17px" }}
           >
             ₹{el.price}
           </ParaNormal>
         </Stack>
         <ParaNormal
-          fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "15px" }}
+          fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "13px" }}
         >
           <span
             dangerouslySetInnerHTML={{

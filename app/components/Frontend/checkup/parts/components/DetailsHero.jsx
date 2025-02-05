@@ -117,13 +117,14 @@ const DetailsHero = ({ id, data, isLoading }) => {
         gap={4}
         justifyContent={"space-around"}
         flexWrap={"wrap"}
+        padding={{ xs: "12px" }}
       >
         {checkupDetails.map((item) => (
           <Stack key={item.title} mb={2}>
             <ParaNormal
               color="#000000"
               fontSize={{ sm: "20px", smm: "23px", md: "26px", lg: "30px" }}
-              fontWeight={"600"}
+              fontWeight={"500"}
             >
               {item.title}
             </ParaNormal>
@@ -136,6 +137,16 @@ const DetailsHero = ({ id, data, isLoading }) => {
                       smm: "18px",
                       md: "21px",
                       lg: "25px",
+                    }}
+                    sx={{
+                      listStyle: "none",
+                      "& li::before": {
+                        content: '"\\2022"',
+                        color: "#005900",
+                        fontWeight: "bold",
+                        display: "inline-block",
+                        width: "12px",
+                      },
                     }}
                   >
                     <li color="#000000">{subItem}</li>

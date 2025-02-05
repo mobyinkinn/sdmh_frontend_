@@ -11,12 +11,17 @@ const breakpoints = {
 
 const ParaNormal = styled.span((props) => ({
   padding: props.padding,
+  paddingLeft: props.paddingLeft,
+  paddingRight: props.paddingRight,
+  paddingTop: props.paddingTop,
+  paddingBottom: props.paddingBottom,
   color: props.color || "black",
   fontWeight: props.fontWeight,
   width: props.width,
   lineHeight: props.lineHeight || "1.5",
   textAlign: props.textAlign || "left",
   margin: props.margin || props.margin?.lg || "0",
+  backgroundColor: props.backgroundColor,
 
   // Breakpoint-specific values for textAlign
 
@@ -52,7 +57,7 @@ const ParaNormalSmall = styled.span((props) => ({
   width: props.width,
   margin: props.margin,
   lineHeight: props.lineHeight || "1.5",
-  fontSize: "1rem",
+  fontSize: props.fontSize?.lg || "1rem",
 
   [breakpoints.md]: {
     textAlign: props.textAlign?.md,

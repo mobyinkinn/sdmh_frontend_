@@ -1,56 +1,162 @@
-import { useForm } from "react-hook-form";
-
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
-import FileInput from "../../ui/FileInput";
-import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-import {
-  useCreateBanner,
-  useBanner,
-  useUpdateBanner,
-} from "../../admin/banner/parts/useBanner";
+import { useUpdateBanner } from "../../admin/banner/parts/useBanner";
 import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
+import { FaEdit } from "react-icons/fa";
 
-function EditBannerForm({ cabinToEdit = {}, onCloseModal, pageName }) {
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
-    defaultValues: {},
-  });
-  const { errors } = formState;
-
-  const { isCreating, createBanners } = useCreateBanner();
-  const { isUpdating, updateBannerImage } = useUpdateBanner();
+function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
+  const { isUpdating, updateBanners } = useUpdateBanner();
   if (isUpdating) return <SpinnerMini />;
 
-  const isWorking = isCreating;
+  const handleBannerChange = (e) => {
+    const file = e.target.files[0];
 
-  function onUpdateImage(files, pageName) {
-    const file = typeof files === "string" ? files : files[0];
-    const formdata = new FormData();
-    formdata.append("banner", file);
-    updateBannerImage({ pageName, formdata });
-  }
-  function onError(errors) {}
+    const formDataBanner = new FormData();
+    formDataBanner.append("banner", file);
+
+    updateBanners(
+      {
+        pageName,
+        formdata: formDataBanner,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Banner updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Banner:", error);
+          toast.error("Failed to update Banner. Please try again.");
+        },
+      }
+    );
+    if (file) {
+      setEditData({ ...editData, banner: file });
+    }
+  };
+  const handleMobileBannerChange = (e) => {
+    const file = e.target.files[0];
+
+    const formDataMobileBanner = new FormData();
+    formDataMobileBanner.append("mobileBanner", file);
+
+    updateBanners(
+      {
+        pageName,
+        formdata: formDataMobileBanner,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Mobile Banner updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Mobile Banner:", error);
+          toast.error("Failed to update Mobile Banner. Please try again.");
+        },
+      }
+    );
+    if (file) {
+      setEditData({ ...editData, mobileBanner: file });
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditData({ ...editData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    onCloseModal();
+    const formDataLink = {
+      link: editData.link,
+    };
+    updateBanners({ pageName, formdata: formDataLink });
+  };
+
   return (
-    <Form
-      // onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
-    >
-      <FormRow label={"File"}>
-        <FileInput
-          id="file"
-          accept="image/*"
-          type="file"
-          {...register("file", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            onUpdateImage(e.target.files, pageName);
-          }}
+    <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
+      <FormRow label="Link">
+        <Input
+          type="text"
+          id="link"
+          name="link"
+          value={editData.link || ""}
+          onChange={handleInputChange}
         />
       </FormRow>
+
+      <Stack>
+        <label>
+          Banner:
+          <ImagePreviewContainer>
+            {editData.banner && (
+              <>
+                <img
+                  src={
+                    typeof editData.banner === "string"
+                      ? editData.banner
+                      : URL.createObjectURL(editData.banner)
+                  }
+                  alt="Preview"
+                  width={200}
+                  height={110}
+                />
+                <div className="edit-icon">
+                  <label htmlFor="image-upload">
+                    <FaEdit size={16} />
+                  </label>
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleBannerChange}
+                  />
+                </div>
+              </>
+            )}
+          </ImagePreviewContainer>
+        </label>
+      </Stack>
+
+      <Stack>
+        <label>
+          Mobile Banner:
+          <ImagePreviewContainer>
+            {editData.mobileBanner && (
+              <>
+                <img
+                  src={
+                    typeof editData.mobileBanner === "string"
+                      ? editData.mobileBanner
+                      : URL.createObjectURL(editData.mobileBanner)
+                  }
+                  alt="Preview"
+                  width={200}
+                  height={110}
+                />
+                <div className="edit-icon">
+                  <label htmlFor="mobile-image-upload">
+                    <FaEdit size={16} />
+                  </label>
+                  <input
+                    id="mobile-image-upload"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleMobileBannerChange}
+                  />
+                </div>
+              </>
+            )}
+          </ImagePreviewContainer>
+        </label>
+      </Stack>
 
       <Stack
         direction="row"
@@ -59,7 +165,7 @@ function EditBannerForm({ cabinToEdit = {}, onCloseModal, pageName }) {
           gap: "20px",
         }}
       >
-        <Button disabled={isWorking}>{"Done"}</Button>
+        <Button>{"Update Banner"}</Button>
       </Stack>
     </Form>
   );
