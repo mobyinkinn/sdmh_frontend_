@@ -9,6 +9,10 @@ import SpinnerMini from "@/app/components/ui/SpinnerMini";
 import { useDeleteNavbar } from "../useNavbar";
 import { HiPencil } from "react-icons/hi";
 import EditNavbarForm from "@/app/components/features/Navbar/EditNavbarForm";
+import { useState } from "react";
+import { MdAddLink } from "react-icons/md";
+import Input from "@/app/components/ui/Input";
+import { useRouter } from "next/navigation";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -29,10 +33,17 @@ const Stacked = styled.div`
 function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
   const { mutate: deleteNavbar, isPending: isDeleting } = useDeleteNavbar();
   if (isDeleting) return <SpinnerMini />;
+  const [editData, setEditData] = useState({
+    orderId,
+    name,
+    link,
+    items,
+  });
 
   const handleDelete = () => {
     deleteNavbar(_id);
   };
+  const router = useRouter();
 
   console.log("items", items);
   return (
@@ -64,6 +75,15 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
         </Table>
       </Stacked>
 
+      <Stacked>
+        <Menus.Menu>
+          <Menus.Button
+            icon={<MdAddLink />}
+            onClick={() => router.push(`/admin/navbar/${_id}`)}
+          />
+        </Menus.Menu>
+      </Stacked>
+
       <Modal>
         <Menus.Menu>
           <Modal.Open opens="edit">
@@ -77,10 +97,8 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
           <EditNavbarForm
             id={_id}
             resourceName="Navbar"
-            // editData={editData}
-            // setEditData={setEditData}
-            // onCloseModal={() => {}}
-            // onConfirm={handleConfirmEdit}
+            editData={editData}
+            setEditData={setEditData}
           />
         </Modal.Window>
         <Modal.Window name="delete">

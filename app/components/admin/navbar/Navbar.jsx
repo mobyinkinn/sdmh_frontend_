@@ -6,7 +6,7 @@ import { NavbarProvider } from "./parts/NavbarContext";
 import NavbarTable from "./parts/NavbarTable";
 import NavbarTableOperations from "./parts/NavbarTableOperations";
 
-export default function Enquiries() {
+export default function Navbar() {
   return (
     <NavbarProvider>
       <AppLayout>

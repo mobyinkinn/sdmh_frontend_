@@ -2,6 +2,7 @@ import {
   createNavbar,
   deleteNavbar,
   fetchNavbar,
+  fetchNavbarById,
   updateNavbar,
 } from "@/app/components/services/api.navbar.js";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -62,5 +63,13 @@ export const useUpdateNavbar = () => {
       console.error("Failed to update Navbar:", error);
       toast.error("Failed to update Navbar. Please try again.");
     },
+  });
+};
+
+export const useNavbarById = (id) => {
+  return useQuery({
+    queryKey: ["Navbar", id],
+    queryFn: () => fetchNavbarById(id),
+    staleTime: 5 * 60 * 1000,
   });
 };

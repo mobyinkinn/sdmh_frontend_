@@ -15,12 +15,13 @@ function NavbarTable() {
   if (!filteredNavbar.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 1fr 1fr 3fr 0.5fr">
+      <Table columns="1fr 1fr 1fr 3fr 0.5fr 0.5fr">
         <Table.Header>
           <div>Order Id</div>
           <div>Name</div>
           <div>Link</div>
           <div>Items</div>
+          <div>Items Actions</div>
           <div>Actions</div>
         </Table.Header>
 
