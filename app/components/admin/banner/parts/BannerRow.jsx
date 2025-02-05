@@ -24,6 +24,7 @@ import {
 } from "./useBanner";
 import { HiEyeOff } from "react-icons/hi";
 import EditBannerForm from "@/app/components/features/Banners/EditBannerForm";
+import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -44,7 +45,9 @@ const Stacked = styled.div`
   }
 `;
 
-function BannerRow({ academic: { _id, page, banner, status } }) {
+function BannerRow({
+  academic: { _id, page, banner, status, link, mobileBanner },
+}) {
   const { mutate: blockbanner, isLoading: isBlocking } = useBlockBanners();
   const { mutate: unblockbanner, isLoading: isUnblocking } =
     useUnblockBanners();
@@ -56,9 +59,18 @@ function BannerRow({ academic: { _id, page, banner, status } }) {
       unblockbanner(_id); // Call unblock API if inactive
     }
   };
+
   const handleDelete = () => {
     deletebanner(page);
   };
+
+  const [editData, setEditData] = useState({
+    _id,
+    banner,
+    mobileBanner,
+    link,
+  });
+
   return (
     <Table.Row>
       <Stacked>
@@ -71,6 +83,14 @@ function BannerRow({ academic: { _id, page, banner, status } }) {
 
       <Stacked>
         <Image src={banner} alt={page} width={50} height={50} />
+      </Stacked>
+
+      <Stacked>
+        <Image src={mobileBanner} alt={page} width={50} height={50} />
+      </Stacked>
+
+      <Stacked>
+        <span>{link}</span>
       </Stacked>
 
       <Tag type={status ? "green" : "silver"}>
@@ -88,7 +108,12 @@ function BannerRow({ academic: { _id, page, banner, status } }) {
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="banner-form">
-            <EditBannerForm pageName={page} />
+            <EditBannerForm
+              pageName={page}
+              editData={editData}
+              setEditData={setEditData}
+              id={_id}
+            />
           </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>

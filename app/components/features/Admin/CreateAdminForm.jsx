@@ -35,6 +35,8 @@ const options = [
   { value: "plans", label: "Health Plans" },
   { value: "tips", label: "Health Tips" },
   { value: "pages", label: "Pages" },
+  { value: "opinions", label: "Second Opinion" },
+  { value: "navbar", label: "Navbar" },
 ];
 
 function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {

@@ -57,7 +57,7 @@ const ParaNormalSmall = styled.span((props) => ({
   width: props.width,
   margin: props.margin,
   lineHeight: props.lineHeight || "1.5",
-  fontSize: "1rem",
+  fontSize: props.fontSize?.lg || "1rem",
 
   [breakpoints.md]: {
     textAlign: props.textAlign?.md,

@@ -150,6 +150,20 @@ const navData = [
     value: "pages",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 20,
+    name: "Second Opinion",
+    link: "/admin/opinions",
+    value: "opinions",
+    icon: ManageAccountsIcon,
+  },
+  {
+    id: 21,
+    name: "Navbar",
+    link: "/admin/navbar",
+    value: "navbar",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 const NavList = styled.ul`

@@ -155,7 +155,6 @@ export default function Tabs() {
     },
   ];
 
-
   var settings = {
     autoplay: true,
     autoplaySpeed: 2000,
@@ -249,7 +248,7 @@ export default function Tabs() {
           }}
         >
           {tabsData[activeTab].data[0]?.map((el, i) => {
-         if (i >= 4) return null;
+            if (i >= 4) return null;
             return (
               <Stack
                 key={i}

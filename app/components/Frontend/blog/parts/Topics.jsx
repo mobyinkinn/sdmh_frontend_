@@ -10,11 +10,14 @@ import Image from "next/image";
 import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
 import { useBlogs } from "@/app/components/admin/blog/useBlogs";
 import Spinner from "@/app/components/ui/Spinner";
+import { useRouter } from "next/navigation";
 
 const Topics = () => {
+  const router = useRouter();
   const [selectedTitle, setSelectedTitle] = useState(null); // Track selected title
   const { data, isLoading, error } = useBlogs();
   const filteredData = data?.filter((el, i) => el.status === true);
+
   // Filter unique blogs based on title
   const uniqueBlogs = filteredData?.filter(
     (blog, index, self) =>
@@ -42,22 +45,41 @@ const Topics = () => {
           direction={"row"}
           justifyContent={{ md: "center", xs: "space-between" }}
         >
-          <Head1 textAlign="left" color="black">
+          <Head1
+            fontSize={{
+              sm: "0.95rem",
+              smm: "1.8rem",
+              md: "2.1rem",
+              lg: "3.4rem",
+            }}
+            textAlign="left"
+            color="black"
+          >
             Most <span style={{ color: "#007946" }}>Viewed Topic</span>{" "}
           </Head1>
         </Stack>
-        <ParaNormalSmall>See All Categories</ParaNormalSmall>
+        <ParaNormalSmall
+          fontSize={{ sm: "13px", smm: "18px", md: "22px", lg: "25px" }}
+        >
+          See All Categories
+        </ParaNormalSmall>
       </Stack>
 
       {/* Blog Selection Section */}
-      <Stack padding="0 20px" direction={{ md: "row" }} gap={2}>
+      <Stack
+        padding="0 20px"
+        direction={{ md: "row" }}
+        gap={2}
+        // flexWrap={"wrap"}
+        columnGap={{ lg: "15px" }}
+      >
         {uniqueBlogs?.map((d) => (
-          <Box
+          <Stack
             key={d._id}
             onClick={() => setSelectedTitle(d.title)} // Set selected title
             sx={{
               position: "relative",
-              width: { md: "350px", xs: "100%" },
+              // width: { md: "325px", xs: "100%" },
               height: "240px",
               overflow: "hidden",
               borderRadius: "8px",
@@ -68,6 +90,7 @@ const Topics = () => {
                 transform: "scale(1.05)",
               },
             }}
+            width={{ sm: "100%", md: "42%", lg: "24%" }}
           >
             <Image
               src={d.image}
@@ -90,27 +113,43 @@ const Topics = () => {
             >
               <Typography
                 sx={{
-                  fontSize: "18px",
+                  fontSize: "20px",
                   fontWeight: "bold",
                 }}
               >
                 {d.title}
               </Typography>
             </Box>
-          </Box>
+          </Stack>
         ))}
       </Stack>
 
       {selectedTitle && (
         <>
-          <Stack direction={"row"} p={2} mt={4}>
-            <Head1 color="#007946">Blogs</Head1>
+          <Stack
+            direction={"row"}
+            p={2}
+            mt={4}
+            justifyContent={{ sm: "center", md: "start" }}
+          >
+            <Head1
+              fontSize={{
+                sm: "1.5rem",
+                smm: "2rem",
+                md: "2.5rem",
+                lg: "3.4rem",
+              }}
+              color="#007946"
+            >
+              Blogs
+            </Head1>
           </Stack>
           <Stack
             direction={"row"}
             flexWrap={"wrap"}
             rowGap={2}
-            justifyContent={"left"}
+            columnGap={{ lg: "44px" }}
+            // justifyContent={"space-evenly"}
             padding="0 20px"
           >
             {filteredData
@@ -132,8 +171,9 @@ const Topics = () => {
                       transform: "scale(1.05)",
                     },
                   }}
-                  width={"100%"}
                   position={"relative"}
+                  width={{ sm: "100%", md: "50%", lg: "30%" }}
+                  onClick={() => router.push(`/blog/${blog._id}`)}
                 >
                   <Box
                     height={{ md: "200px", xs: "150px" }}
@@ -148,11 +188,32 @@ const Topics = () => {
                       alt={blog.title}
                     />
                   </Box>
-                  <Typography fontWeight={"bold"}>
+                  <Typography
+                    fontWeight={{ xs: "normal", md: "bold" }}
+                    fontSize={{
+                      sm: "20px",
+                      smm: "23px",
+                      md: "26px",
+                      lg: "28px",
+                    }}
+                  >
                     {blog.smallDescription}
                   </Typography>
-                  <ParaNormal style={{ fontSize: "15px" }}>
-                    {blog.description}
+                  <ParaNormal
+                    style={{
+                      fontSize: {
+                        sm: "15px",
+                        smm: "17px",
+                        md: "20px",
+                        lg: "25px",
+                      },
+                    }}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: `${blog.description.slice(0, 50)}`,
+                      }}
+                    />
                   </ParaNormal>
                   <Stack direction={"row"} gap={2}>
                     <ButtonSmallOutlineWithoutHover
