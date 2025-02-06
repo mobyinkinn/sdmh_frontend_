@@ -1,22 +1,30 @@
-import { useForm } from "react-hook-form";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FormRow from "../../ui/FormRow";
 import { useNavbarById, useUpdateNavbar } from "../../admin/navbar/useNavbar";
 import SpinnerMini from "../../ui/SpinnerMini";
-import { Stack } from "@mui/material";
-import Textarea from "../../ui/Textarea";
 import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { Stack } from "@mui/material";
 
 function EditNavlinksForm({ itemId, editData, setEditData, onCloseModal }) {
   console.log("itemId", itemId);
   const { id } = useParams();
-  const { data: navData, isLoading, error } = useNavbarById(id);
+  const { data: navData, isLoading, error, refetch } = useNavbarById(id);
   const { isPending: isUpdating, mutate: updateNavbar } = useUpdateNavbar();
   const isWorking = isUpdating || isLoading;
 
-  if (isLoading) return <SpinnerMini />;
+  useEffect(() => {
+    if (navData) {
+      const itemToEdit = navData.items.find((item) => item._id === itemId);
+      if (itemToEdit) {
+        setEditData(itemToEdit);
+      }
+    }
+  }, [navData, itemId, setEditData]);
+
+  if (isLoading || isUpdating) return <SpinnerMini />;
   if (error) return <div>Error loading Navbar links: {error.message}</div>;
 
   const handleInputChange = (e) => {
@@ -33,9 +41,9 @@ function EditNavlinksForm({ itemId, editData, setEditData, onCloseModal }) {
       itemName: editData.itemName,
     };
 
-    const updatedItems = navData.items.filter((item) => item.id !== itemId);
+    const updatedItems = navData.items.filter((item) => item._id !== itemId);
 
-    updatedItems.push({ _id: itemId, ...formData });
+    updatedItems.push({ ...formData });
 
     const updatedNavData = {
       ...navData,
@@ -46,6 +54,7 @@ function EditNavlinksForm({ itemId, editData, setEditData, onCloseModal }) {
       { id, formData: updatedNavData },
       {
         onSuccess: () => {
+          refetch();
           onCloseModal?.();
         },
       }

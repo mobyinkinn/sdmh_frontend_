@@ -1,5 +1,4 @@
 "use client";
-
 import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -21,7 +20,8 @@ import { SlArrowRight } from "react-icons/sl";
 import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-
+import { useNavbar } from "../../admin/navbar/useNavbar";
+import Spinner from "../../ui/Spinner";
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
   { id: 0, name: "Center Of Excellence", link: "center-of-excellence" },
@@ -36,7 +36,10 @@ const navLinks = [
 //          <div id="google_translate_element" style={{ margin: "10px" }}></div>
 
 export default function Navbar() {
+  const { data: navData, isLoading, error } = useNavbar();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
   useEffect(() => {
     // Prevent duplicate script loading
     if (!document.querySelector('script[src*="translate.google.com"]')) {
@@ -62,6 +65,9 @@ export default function Navbar() {
       };
     }
   }, []);
+
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading Navbar: {error.message}</div>;
 
   return (
     <>
@@ -169,24 +175,61 @@ export default function Navbar() {
               gap={"15px"}
               sx={{ display: { lg: "none" } }}
             >
-              {navLinks.map((el, i) => {
-                return (
-                  <a
-                    href={el.link}
-                    style={{ textDecoration: "none", color: "black" }}
-                    key={i}
+              {navData.map((el, i) => (
+                <Box
+                  key={i}
+                  position="relative"
+                  onMouseEnter={() => setOpenDropdown(i)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    sx={{ cursor: "pointer" }}
                   >
-                    <Typography
+                    <Typography>{el.name}</Typography>
+                    {el.items.length > 0 && (
+                      <IoIosArrowDown
+                        style={{
+                          transform:
+                            openDropdown === i
+                              ? "rotate(180deg)"
+                              : "rotate(0deg)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      />
+                    )}
+                  </Stack>
+                  {el.items.length > 0 && (
+                    <Stack
+                      position="absolute"
+                      bgcolor="white"
+                      boxShadow={3}
+                      padding={1}
+                      width={"10rem"}
                       sx={{
-                        cursor: "pointer",
-                        fontSize: { xs: "0.8rem", smm: "1rem" },
+                        opacity: openDropdown === i ? 1 : 0,
+                        transform:
+                          openDropdown === i
+                            ? "translateY(0)"
+                            : "translateY(-10px)",
+                        transition: "opacity 0.3s ease, transform 0.3s ease",
+                        pointerEvents: openDropdown === i ? "auto" : "none",
                       }}
                     >
-                      {el.name}
-                    </Typography>
-                  </a>
-                );
-              })}
+                      {el.items.map((subItem) => (
+                        <a
+                          key={subItem._id}
+                          href={subItem.itemLink}
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          <Typography>{subItem.itemName}</Typography>
+                        </a>
+                      ))}
+                    </Stack>
+                  )}
+                </Box>
+              ))}
             </Stack>
             <Stack
               direction={"column"}
@@ -231,22 +274,71 @@ export default function Navbar() {
         )}
         <Stack
           direction={"row"}
-          padding={"15px"}
+          padding={{ lg: "15px" }}
           justifyContent={"center"}
-          gap={"25px"}
-          sx={{ display: { xs: "none", lg: "flex" } }}
+          alignItems={"center"}
         >
-          {navLinks.map((el, i) => {
-            return (
-              <a
-                href={el.link}
-                style={{ textDecoration: "none", color: "black" }}
+          <Stack
+            direction={"row"}
+            gap={"25px"}
+            sx={{ display: { xs: "none", lg: "flex" } }}
+          >
+            {navData.map((el, i) => (
+              <Box
                 key={i}
+                position="relative"
+                onMouseEnter={() => setOpenDropdown(i)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                <Typography sx={{ cursor: "pointer" }}>{el.name}</Typography>
-              </a>
-            );
-          })}
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  <Typography>{el.name}</Typography>
+                  {el.items.length > 0 && (
+                    <IoIosArrowDown
+                      style={{
+                        transform:
+                          openDropdown === i
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                        transition: "transform 0.3s ease",
+                      }}
+                    />
+                  )}
+                </Stack>
+                {el.items.length > 0 && (
+                  <Stack
+                    position="absolute"
+                    bgcolor="white"
+                    boxShadow={3}
+                    padding={1}
+                    width={"10rem"}
+                    sx={{
+                      opacity: openDropdown === i ? 1 : 0,
+                      transform:
+                        openDropdown === i
+                          ? "translateY(0)"
+                          : "translateY(-10px)",
+                      transition: "opacity 0.3s ease, transform 0.3s ease",
+                      pointerEvents: openDropdown === i ? "auto" : "none",
+                    }}
+                  >
+                    {el.items.map((subItem) => (
+                      <a
+                        key={subItem._id}
+                        href={subItem.itemLink}
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        <Typography>{subItem.itemName}</Typography>
+                      </a>
+                    ))}
+                  </Stack>
+                )}
+              </Box>
+            ))}
+          </Stack>
         </Stack>
       </Stack>
     </>

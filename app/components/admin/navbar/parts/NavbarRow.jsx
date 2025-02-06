@@ -31,8 +31,7 @@ const Stacked = styled.div`
 `;
 
 function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
-  const { mutate: deleteNavbar, isPending: isDeleting } = useDeleteNavbar();
-  if (isDeleting) return <SpinnerMini />;
+  const { mutate: deleteNavbar } = useDeleteNavbar();
   const [editData, setEditData] = useState({
     orderId,
     name,
@@ -43,9 +42,9 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
   const handleDelete = () => {
     deleteNavbar(_id);
   };
+
   const router = useRouter();
 
-  console.log("items", items);
   return (
     <Table.Row>
       <Stacked>
@@ -102,11 +101,7 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
           />
         </Modal.Window>
         <Modal.Window name="delete">
-          <ConfirmDelete
-            resourceName="Navbar"
-            disabled={isDeleting}
-            onConfirm={handleDelete}
-          />
+          <ConfirmDelete resourceName="Navbar" onConfirm={handleDelete} />
         </Modal.Window>
       </Modal>
     </Table.Row>
