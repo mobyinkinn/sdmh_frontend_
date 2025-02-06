@@ -42,3 +42,10 @@ export const createAward = async (data) => {
   });
   return response.data;
 };
+
+export const fetchAwardById = async (id) => {
+  const response = await axios.get(`${ApiUrl}/awards/get-by-id?_id=${id}`, {
+    withCredentials: true,
+  });
+  return response.data.message;
+};

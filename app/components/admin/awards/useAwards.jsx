@@ -5,6 +5,7 @@ import {
   updateAward,
   updateAwardImage,
   createAward,
+  fetchAwardById,
 } from "../../services/api.awards";
 import toast from "react-hot-toast";
 
@@ -15,6 +16,14 @@ export const useAwards = () => {
     staleTime: 5 * 60 * 1000,
   });
   return { data, isLoading, error };
+};
+
+export const useAwardById = (id) => {
+  return useQuery({
+    queryKey: ["Awards", id],
+    queryFn: () => fetchAwardById(id),
+    staleTime: 5 * 60 * 1000,
+  });
 };
 
 export const useDeleteAward = () => {
