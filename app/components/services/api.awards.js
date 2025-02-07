@@ -49,3 +49,25 @@ export const fetchAwardById = async (id) => {
   });
   return response.data.message;
 };
+
+export const updateBanner = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/awards/update-banner?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const updateMultiImagesFromAward = async ({ id, images }) => {
+  const response = await axios.post(
+    `${ApiUrl}/awards/update-images?id=${id}`,
+    images,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

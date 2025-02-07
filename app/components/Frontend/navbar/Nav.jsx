@@ -187,7 +187,13 @@ export default function Navbar() {
                     alignItems="center"
                     sx={{ cursor: "pointer" }}
                   >
-                    <Typography>{el.name}</Typography>
+                    <a
+                      key={el._id}
+                      href={el.link}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <Typography>{el.name}</Typography>
+                    </a>
                     {el.items.length > 0 && (
                       <IoIosArrowDown
                         style={{
@@ -295,7 +301,13 @@ export default function Navbar() {
                   alignItems="center"
                   sx={{ cursor: "pointer" }}
                 >
-                  <Typography>{el.name}</Typography>
+                  <a
+                    key={el._id}
+                    href={el.link}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <Typography>{el.name}</Typography>
+                  </a>
                   {el.items.length > 0 && (
                     <IoIosArrowDown
                       style={{

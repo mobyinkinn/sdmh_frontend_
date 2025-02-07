@@ -6,6 +6,8 @@ import {
   updateAwardImage,
   createAward,
   fetchAwardById,
+  updateMultiImagesFromAward,
+  updateBanner,
 } from "../../services/api.awards";
 import toast from "react-hot-toast";
 
@@ -89,4 +91,36 @@ export const useCreateAward = () => {
   });
 
   return { createAwards, isCreating };
+};
+
+export const useUpdateAwardBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Awards"]);
+      toast.success("Award banner updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Award banner:", error);
+      toast.error("Failed to update Award banner. Please try again.");
+    },
+  });
+};
+
+export const useUpdateMultiImagesFromAward = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateMultiImagesFromAward,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Awards"]);
+      toast.success("Award multi images updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Award multi images:", error);
+      toast.error("Failed to update Award multi images. Please try again.");
+    },
+  });
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
@@ -8,8 +8,12 @@ import Heading from "../../ui/Heading";
 import Input from "../../ui/Input";
 import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
 import { FaEdit } from "react-icons/fa";
-import { useUpdateAwardImage } from "../../admin/awards/useAwards";
+import {
+  useUpdateAwardBanner,
+  useUpdateAwardImage,
+} from "../../admin/awards/useAwards";
 import SpinnerMini from "../../ui/SpinnerMini";
+import Jodit from "../Openings/Jodit";
 
 const EditAwardForm = ({
   id,
@@ -19,11 +23,15 @@ const EditAwardForm = ({
   isUpdating,
   editData,
   setEditData,
+  aboutContent,
+  setAboutContent,
 }) => {
   const { mutate: updateAwardImage, isPending: isUpdateImage } =
     useUpdateAwardImage();
+  const { mutate: updateBanner, isPending: isUpdateBanner } =
+    useUpdateAwardBanner();
 
-  if (isUpdateImage) return <SpinnerMini />;
+  if (isUpdateImage || isUpdateBanner) return <SpinnerMini />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,12 +71,40 @@ const EditAwardForm = ({
     }
   };
 
+  const handleBannerChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    const formDataBanner = new FormData();
+    formDataBanner.append("banner", file);
+    setEditData({ ...editData, [fieldName]: file });
+
+    updateBanner(
+      {
+        id,
+        data: formDataBanner,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Banner updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Banner:", error);
+          toast.error("Failed to update Banner. Please try again.");
+        },
+      }
+    );
+
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
+  };
+
   return (
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
       <Heading as="h3">Edit {resourceName}</Heading>
 
-      <Stack gap={2} pt={5}>
-        <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
+      <Stack gap={1} pt={1}>
+        <Stack direction={"row"} marginLeft={2} columnGap={7}>
           <FormRow label="Name">
             <Input
               name="name"
@@ -91,18 +127,23 @@ const EditAwardForm = ({
           </FormRow>
         </Stack>
         <Stack marginLeft={2}>
-          <FormRow label="About">
+          <FormRow label="Small Description">
             <Input
-              name="about"
+              name="smallDescription"
               disabled={isUpdating}
               type="text"
-              id="about"
-              value={editData.about}
+              id="smallDescription"
+              value={editData.smallDescription}
               onChange={handleInputChange}
             />
           </FormRow>
         </Stack>
         <Stack marginLeft={2}>
+          <FormRow label="About"></FormRow>
+          <Jodit content={aboutContent} setContent={setAboutContent} />
+        </Stack>
+
+        <Stack marginLeft={2} direction={"row"} columnGap={7}>
           <FormRow label="Image">
             <ImagePreviewContainer>
               {editData.image && (
@@ -114,6 +155,8 @@ const EditAwardForm = ({
                         : URL.createObjectURL(editData.image)
                     }
                     alt="Preview"
+                    width={200}
+                    height={110}
                   />
                   <div className="edit-icon">
                     <label htmlFor="image-upload">
@@ -130,6 +173,39 @@ const EditAwardForm = ({
                 </>
               )}
             </ImagePreviewContainer>
+          </FormRow>
+          <FormRow label={"Banner"}>
+            <label>
+              <ImagePreviewContainer>
+                {editData.bannerImage && (
+                  <>
+                    <img
+                      src={
+                        typeof editData.bannerImage === "string"
+                          ? editData.bannerImage
+                          : URL.createObjectURL(editData.bannerImage)
+                      }
+                      alt="Preview"
+                      width={200}
+                      height={110}
+                    />
+                    <div className="edit-icon">
+                      <label htmlFor="banner-upload">
+                        <FaEdit size={16} />
+                      </label>
+                      <input
+                        name="banner"
+                        id="banner-upload"
+                        type="file"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={(e) => handleBannerChange(e, "banner")}
+                      />
+                    </div>
+                  </>
+                )}
+              </ImagePreviewContainer>
+            </label>
           </FormRow>
         </Stack>
 
