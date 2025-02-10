@@ -8,6 +8,7 @@ import {
   fetchAwardById,
   updateMultiImagesFromAward,
   updateBanner,
+  removeMultiImageFromAward,
 } from "../../services/api.awards";
 import toast from "react-hot-toast";
 
@@ -121,6 +122,22 @@ export const useUpdateMultiImagesFromAward = () => {
     onError: (error) => {
       console.error("Failed to update Award multi images:", error);
       toast.error("Failed to update Award multi images. Please try again.");
+    },
+  });
+};
+
+export const useDeleteMultiImageFromAward = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: removeMultiImageFromAward,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Awards"]);
+      toast.success("Award multi image deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete award multi image:", error);
+      toast.error("Failed to delete award multi image. Please try again.");
     },
   });
 };

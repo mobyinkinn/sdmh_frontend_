@@ -136,11 +136,12 @@ function AwardCard({ el }) {
         <ParaNormal
           fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "13px" }}
         >
-          <span
+          {el.smallDescription}
+          {/* <span
             dangerouslySetInnerHTML={{
               __html: `${el.about.slice(0, 84)}`,
             }}
-          />
+          /> */}
         </ParaNormal>
         <Stack direction={"row"} gap={2}>
           <ButtonSmallOutline

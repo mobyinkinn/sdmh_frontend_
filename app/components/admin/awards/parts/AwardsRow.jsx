@@ -46,6 +46,7 @@ function AwardsRow({
     createdAt,
     smallDescription,
     bannerImage,
+    images,
   },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
@@ -59,6 +60,7 @@ function AwardsRow({
     image,
     smallDescription,
     bannerImage,
+    images,
   });
   const [aboutContent, setAboutContent] = useState(about);
 
@@ -176,9 +178,6 @@ function AwardsRow({
             resourceName="Award"
             editData={editData}
             setEditData={setEditData}
-            // onCloseModal={() => {}}
-            // onConfirm={handleConfirmEdit}
-            // disabled={false}
           />
         </Modal.Window>
         <Modal.Window name="edit">

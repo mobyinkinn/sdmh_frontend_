@@ -71,3 +71,14 @@ export const updateMultiImagesFromAward = async ({ id, images }) => {
   );
   return response.data;
 };
+
+export const removeMultiImageFromAward = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/awards/delete-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
