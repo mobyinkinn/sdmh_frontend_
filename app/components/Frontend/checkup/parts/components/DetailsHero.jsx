@@ -167,18 +167,19 @@ const DetailsHero = ({ id, data, isLoading }) => {
         alignItems={"center"}
         display={{ xs: "none", lg: "flex" }}
       >
-        {groupImages.map((item) => {
+        {data.images.map((item, index) => {
           return (
             <Box
-              key={item.id}
+              key={index}
               sx={{
                 height: "300px",
                 width: "100%",
                 margin: "10px",
                 borderRadius: "5px",
-                backgroundImage: `url(${item.image.src})`,
+                backgroundImage: `url(${item})`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
+                backgroundSize: "cover",
               }}
             ></Box>
           );
@@ -192,19 +193,20 @@ const DetailsHero = ({ id, data, isLoading }) => {
         alignItems={"center"}
         display={{ xs: "flex", lg: "none" }}
       >
-        {groupImages.map((item) => {
-          if (item.id > 2) return null;
+        {data.images.map((item, index) => {
+          if (index > 1) return null;
           return (
             <Box
-              key={item.id}
+              key={index}
               sx={{
                 height: "300px",
                 width: "100%",
                 margin: "10px",
                 borderRadius: "5px",
-                backgroundImage: `url(${item.image.src})`,
+                backgroundImage: `url(${item})`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
+                backgroundSize: "cover",
               }}
             ></Box>
           );

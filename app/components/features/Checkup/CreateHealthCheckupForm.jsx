@@ -22,12 +22,14 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
   if (isCreating) return <SpinnerMini />;
 
   const onSubmit = (data) => {
+    const multipleFiles = data.images ? Array.from(data.images) : [];
     // Create a FormData object
     const formData = new FormData();
 
     // Append text fields to FormData
     formData.append("title", data.title);
     formData.append("description", descContent);
+    formData.append("smallDescription", data.smallDescription);
     formData.append("price", data.price);
     formData.append("status", true);
 
@@ -38,6 +40,9 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
     if (data.banner[0]) {
       formData.append("banner", data.banner[0]); // Append the first file from the input
     }
+    multipleFiles.forEach((file) => {
+      formData.append("images", file);
+    });
 
     createCheckups(formData, {
       onSuccess: () => {
@@ -56,13 +61,23 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
     >
       <Heading as="h3">Add {resourceName}</Heading>
 
-      <Stack gap={1} pt={2}>
+      <Stack pt={1}>
         <FormRow label="Title" error={errors?.title?.message}>
           <Input
             disabled={isCreating}
             type="text"
             id="title"
             {...register("title", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+        <FormRow label="Short Description" error={errors?.title?.message}>
+          <Input
+            disabled={isCreating}
+            type="text"
+            id="smallDescription"
+            {...register("smallDescription", {
               required: "This field is required",
             })}
           />
@@ -98,6 +113,18 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
             accept="image/*"
             type="file"
             {...register("banner", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+
+        <FormRow label="Images">
+          <FileInput
+            id="images"
+            accept="image/*"
+            type="file"
+            multiple
+            {...register("images", {
               required: "This field is required",
             })}
           />

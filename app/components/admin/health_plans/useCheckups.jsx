@@ -9,6 +9,8 @@ import {
   updateImage,
   updateBanner,
   fetchCheckupById,
+  updateMultiImagesFromCheckup,
+  removeMultiImageFromCheckup,
 } from "../../services/api.checkup";
 import toast from "react-hot-toast";
 
@@ -140,4 +142,36 @@ export const useCreateCheckup = () => {
   });
 
   return { createCheckups, isCreating };
+};
+
+export const useUpdateMultiImagesFromCheckup = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateMultiImagesFromCheckup,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["checkups"]);
+      toast.success("Checkup multi images updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Checkup multi images:", error);
+      toast.error("Failed to update Checkup multi images. Please try again.");
+    },
+  });
+};
+
+export const useDeleteMultiImageFromCheckup = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: removeMultiImageFromCheckup,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["checkups"]);
+      toast.success("Checkup multi image deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete Checkup multi image:", error);
+      toast.error("Failed to delete Checkup multi image. Please try again.");
+    },
+  });
 };

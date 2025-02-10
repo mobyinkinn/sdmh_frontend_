@@ -136,11 +136,7 @@ function CheckupCard({ el }) {
         <ParaNormal
           fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "13px" }}
         >
-          <span
-            dangerouslySetInnerHTML={{
-              __html: `${el.description.slice(0, 84)}`,
-            }}
-          />
+          {el.smallDescription}
         </ParaNormal>
         <Stack direction={"row"} gap={2}>
           <ButtonSmallOutline
