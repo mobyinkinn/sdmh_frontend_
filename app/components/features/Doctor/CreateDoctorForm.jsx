@@ -1,33 +1,24 @@
 import { useForm } from "react-hook-form";
-
-import Input, { InputCheck } from "../../ui/Input";
-
+import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
-import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-// import useCreateCabin from "./useCreateCabin";
-// import useEditCabin from "./useEditCabin";
-import { useCreateDepartment } from "../../admin/departments/parts/useDepartment";
-import { Stack, Typography } from "@mui/material";
-import SpinnerMini from "../../ui/SpinnerMini";
 import { useCreateDoctor } from "../../admin/doctors/parts/useDoctor";
 import Jodit from "../Openings/Jodit";
 import { useState } from "react";
-
+import { InputLabel, MenuItem, Select, Stack } from "@mui/material";
+import SpinnerMini from "../../ui/SpinnerMini";
+import { useDepartment } from "../../admin/departments/parts/useDepartment";
 function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
-  //   const { id: editId, ...editValues } = cabinToEdit;
-  //   const isEditSession = Boolean(editId);
   const [about, setAbout] = useState("");
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+  const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: {},
   });
   const { errors } = formState;
 
   const { isCreating, createDoctor } = useCreateDoctor();
-  //   const { isEditing, editCabin } = useEditCabin();
   if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
@@ -38,15 +29,31 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("image", file);
     formdata.append("name", data.name);
     formdata.append("designation", data.designation);
+    formdata.append("experience", data.experience);
     formdata.append("room", data.room);
     formdata.append("floor", data.floor);
     formdata.append("department", data.department);
     formdata.append("about", about);
-    for (let i = 0; i < data.availablity.length; i++) {
-      formdata.append("availablity", data.availablity[i]);
+
+    const availability = Object.fromEntries(
+      Object.entries({
+        Mon: data.Mon,
+        Tue: data.Tue,
+        Wed: data.Wed,
+        Thu: data.Thu,
+        Fri: data.Fri,
+        Sat: data.Sat,
+        Sun: data.Sun,
+      }).filter(([_, value]) => value)
+    );
+
+    if (Object.keys(availability).length > 0) {
+      formdata.append("availablity", JSON.stringify(availability));
     }
+
     formdata.append("status", true);
 
+    console.log(formdata);
     createDoctor(formdata, {
       onSuccess: (data) => {
         reset();
@@ -54,7 +61,11 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
       },
     });
   }
-  function onError(errors) {}
+
+  function onError(errors) {
+    console.error(errors);
+  }
+
   return (
     <Form
       onSubmit={handleSubmit(onSubmit, onError)}
@@ -90,92 +101,39 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
-      <FormRow label="Available on" error={errors?.page?.message}>
+      <FormRow label="Experience" error={errors?.page?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="experience"
+          {...register("experience", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
+      <FormRow label="Available on" error={errors?.availability?.message}>
         <Stack direction="row" gap="20px">
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Monday"
-              value="Mon"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Mon
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Tuesday"
-              value="Tue"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Tue
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Wednesday"
-              value="Wed"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Wed
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Thursday"
-              value="Thurs"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Thurs
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Friday"
-              value="Fri"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Fri
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Saturday"
-              value="Sat"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Sat
-          </Stack>
-          <Stack direction="row" gap="5px">
-            <InputCheck
-              disabled={isWorking}
-              type="checkbox"
-              id="Sunday"
-              value="Sun"
-              {...register("availablity", {
-                required: "This field is required",
-              })}
-            />{" "}
-            Sun
-          </Stack>
+          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
+            <Stack direction="column" alignItems={"center"} gap="5px" key={day}>
+              <InputLabel id={day}>{day}</InputLabel>
+              <Select
+                labelId={day}
+                id={day}
+                label={day}
+                {...register(day)}
+                MenuProps={{
+                  disablePortal: true,
+                  style: {
+                    zIndex: 1300,
+                  },
+                }}
+              >
+                <MenuItem value="OT">OT</MenuItem>
+                <MenuItem value="OPD">OPD</MenuItem>
+              </Select>
+            </Stack>
+          ))}
         </Stack>
       </FormRow>
 
@@ -201,16 +159,6 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      {/* <FormRow label="About" error={errors?.page?.message}>
-        <Input
-          disabled={isWorking}
-          type="text"
-          id="about"
-          {...register("about", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow> */}
       <FormRow label="About" error={errors?.page?.message}></FormRow>
       <Jodit content={about} setContent={setAbout} />
 
