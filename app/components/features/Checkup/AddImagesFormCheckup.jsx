@@ -28,7 +28,7 @@ const AddImagesFormCheckup = ({
 
     const formData = new FormData();
 
-    // Convert existing image URLs to File objects
+    // Convert existing image URLs to File objects {//}
     const allImages = await Promise.all(
       editData.images.map(async (image) => {
         if (typeof image === "string") {
