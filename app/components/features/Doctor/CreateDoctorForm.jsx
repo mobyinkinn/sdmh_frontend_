@@ -10,18 +10,45 @@ import { useState } from "react";
 import { InputLabel, MenuItem, Select, Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
 import { useDepartment } from "../../admin/departments/parts/useDepartment";
+import styled from "styled-components";
 function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
   const [about, setAbout] = useState("");
-
   const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: {},
   });
   const { errors } = formState;
-
   const { isCreating, createDoctor } = useCreateDoctor();
-  if (isCreating) return <SpinnerMini />;
+  const { data: departmentData, isLoading, error } = useDepartment();
 
   const isWorking = isCreating;
+
+  const StyledSelect = styled.select`
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid
+      ${(props) =>
+        props.type === "white"
+          ? "var(--color-grey-100)"
+          : "var(--color-grey-300)"};
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-grey-0);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  `;
+
+  const StyledAvailabilty = styled.select`
+    font-size: 1rem;
+    padding: 0.2rem 0rem;
+    border: 1px solid
+      ${(props) =>
+        props.type === "white"
+          ? "var(--color-grey-100)"
+          : "var(--color-grey-300)"};
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-grey-0);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  `;
 
   function onSubmit(data) {
     const file = typeof data.image === "string" ? data.image : data.image[0];
@@ -65,6 +92,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
   function onError(errors) {
     console.error(errors);
   }
+  if (isCreating || isLoading) return <SpinnerMini />;
 
   return (
     <Form
@@ -81,16 +109,24 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
-      <FormRow label="Department" error={errors?.page?.message}>
-        <Input
+
+      <FormRow label="Department" error={errors?.department?.message}>
+        <StyledSelect
           disabled={isWorking}
-          type="text"
           id="department"
           {...register("department", {
             required: "This field is required",
           })}
-        />
+        >
+          <option value="">Select a department</option>
+          {departmentData?.map((department, index) => (
+            <option key={index} value={department.name}>
+              {department.name}
+            </option>
+          ))}
+        </StyledSelect>
       </FormRow>
+
       <FormRow label="Designation" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
@@ -117,21 +153,16 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
             <Stack direction="column" alignItems={"center"} gap="5px" key={day}>
               <InputLabel id={day}>{day}</InputLabel>
-              <Select
+              <StyledAvailabilty
                 labelId={day}
                 id={day}
                 label={day}
                 {...register(day)}
-                MenuProps={{
-                  disablePortal: true,
-                  style: {
-                    zIndex: 1300,
-                  },
-                }}
               >
-                <MenuItem value="OT">OT</MenuItem>
-                <MenuItem value="OPD">OPD</MenuItem>
-              </Select>
+                <option value="">Select</option>
+                <option value="OT">OT</option>
+                <option value="OPD">OPD</option>
+              </StyledAvailabilty>
             </Stack>
           ))}
         </Stack>

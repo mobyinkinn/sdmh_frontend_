@@ -25,6 +25,8 @@ import {
 import { HiEyeOff } from "react-icons/hi";
 import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
 import EditNoticeForm from "@/app/components/features/academicNotices/EditNoticeForm";
+import { useDepartment } from "../../departments/parts/useDepartment";
+import Spinner from "@/app/components/ui/Spinner";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -45,7 +47,9 @@ const Stacked = styled.div`
   }
 `;
 
-function AcademicRow({ academic: { _id, name, file, status } }) {
+function AcademicRow({
+  academic: { _id, name, file, status, year, department },
+}) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -58,6 +62,12 @@ function AcademicRow({ academic: { _id, name, file, status } }) {
   const { mutate: unblockNotices, isLoading: isUnblocking } =
     useUnblockNotices();
   const { mutate: deleteNotices, isLoading: isDeleting } = useDeleteNotice();
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
+  if (isLoadingDepartment) return <Spinner />;
+  let filteredDepartment = departmentData.filter(
+    (el) => el._id === department
+  )[0];
   const handleToggleStatus = () => {
     if (status) {
       blockNotices(_id); // Call block API if active
@@ -72,6 +82,12 @@ function AcademicRow({ academic: { _id, name, file, status } }) {
     <Table.Row>
       <Stacked>
         <span>{name}</span>
+      </Stacked>
+      <Stacked>
+        <span>{year}</span>
+      </Stacked>
+      <Stacked>
+        <span>{filteredDepartment?.name}</span>
       </Stacked>
       <Stacked>
         <span>{_id}</span>

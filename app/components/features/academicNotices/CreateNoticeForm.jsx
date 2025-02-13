@@ -11,6 +11,8 @@ import FormRow from "../../ui/FormRow";
 import { useCreateNotice } from "../../admin/academic_notices/useNotices";
 import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useDepartment } from "../../admin/departments/parts/useDepartment";
+import styled from "styled-components";
 
 function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
@@ -22,10 +24,25 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
   const { errors } = formState;
 
   const { isCreating, createNotice } = useCreateNotice();
+  const { data: departmentData, isLoading, error } = useDepartment();
+
   //   const { isEditing, editCabin } = useEditCabin();
-  if (isCreating) return <SpinnerMini />;
 
   const isWorking = isCreating;
+
+  const StyledSelect = styled.select`
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid
+      ${(props) =>
+        props.type === "white"
+          ? "var(--color-grey-100)"
+          : "var(--color-grey-300)"};
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-grey-0);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  `;
 
   function onSubmit(data) {
     const file = typeof data.file === "string" ? data.file : data.file[0];
@@ -33,6 +50,8 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
     const formdata = new FormData();
     formdata.append("file", file);
     formdata.append("name", data.name);
+    formdata.append("year", data.year);
+    formdata.append("department", data.department);
     formdata.append("status", true);
 
     createNotice(formdata, {
@@ -42,13 +61,14 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
       },
     });
   }
+  if (isCreating) return <SpinnerMini />;
   function onError(errors) {}
   return (
     <Form
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
-      <FormRow label="Academic notice name" error={errors?.name?.message}>
+      <FormRow label="Name" error={errors?.name?.message}>
         <Input
           disabled={isWorking}
           type="text"
@@ -57,6 +77,34 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
             required: "This field is required",
           })}
         />
+      </FormRow>
+
+      <FormRow label="Year" error={errors?.year?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="year"
+          {...register("year", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
+      <FormRow label="Department" error={errors?.department?.message}>
+        <StyledSelect
+          disabled={isWorking}
+          id="department"
+          {...register("department", {
+            required: "This field is required",
+          })}
+        >
+          <option value="">Select a department</option>
+          {departmentData?.map((department, index) => (
+            <option key={index} value={department.name}>
+              {department.name}
+            </option>
+          ))}
+        </StyledSelect>
       </FormRow>
 
       <FormRow label={"File"}>

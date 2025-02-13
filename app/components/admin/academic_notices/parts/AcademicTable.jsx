@@ -34,30 +34,33 @@ const noticeData = [
 ];
 
 function AcademicTable() {
-   const { data, isLoading, error } = useNotices();
-   if (isLoading) return <Spinner />;
-   if (error) return <div>Error loading testimonials: {error.message}</div>;
+  const { data, isLoading, error } = useNotices();
+
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading testimonials: {error.message}</div>;
   const { filter } = useAcademicContext();
   let filteredAcademic = data;
   if (filter !== "All") {
-   filteredAcademic = data.filter((el) => {
-     if (filter.toLowerCase() === "active") {
-       return el.status === true; // Show active testimonials
-     } else if (filter.toLowerCase() === "inactive") {
-       return el.status === false; // Show inactive testimonials
-     }
-     return false;
-   });
- }
+    filteredAcademic = data.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true; // Show active testimonials
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false; // Show inactive testimonials
+      }
+      return false;
+    });
+  }
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
-  if (!noticeData.length) return <Empty resourceName="Admins" />;
+  if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 4fr 3fr 2fr 1.7fr 2.2rem">
+      <Table columns="2fr 2fr 3fr 4fr 3fr 2fr 1.7fr 2.2rem">
         <Table.Header>
           <div>Name</div>
+          <div>Year</div>
+          <div>Department</div>
           <div>Id</div>
           <div>File</div>
           <div>Status</div>
