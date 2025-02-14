@@ -82,10 +82,10 @@ export const useCreateNotice = () => {
   return { createNotice, isCreating };
 };
 
-export const useUpdateName = () => {
+export const useUpdateNotice = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: updateName, isPending: isUpdating } = useMutation({
+  const { mutate: updatedNotice, isPending: isUpdating } = useMutation({
     mutationFn: updateNotice,
     onSuccess: () => {
       // Invalidate the "Blogs" query to refresh the table data
@@ -98,7 +98,7 @@ export const useUpdateName = () => {
     },
   });
 
-  return { updateName, isUpdating };
+  return { updatedNotice, isUpdating };
 };
 
 export const useUpdateNameFile = () => {

@@ -124,7 +124,7 @@ function AcademicRow({
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="notice-form">
-            <EditNoticeForm id={_id} />
+            <EditNoticeForm id={_id} department={filteredDepartment} />
           </Modal.Window>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
