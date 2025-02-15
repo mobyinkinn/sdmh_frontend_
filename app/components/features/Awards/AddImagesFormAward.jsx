@@ -2,15 +2,15 @@ import Heading from "../../ui/Heading";
 import { IconButton, Stack } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
-  useDeleteMultiImageFromBlog,
-  useUpdateMultiImagesFromBlog,
-} from "../../admin/blog/useBlogs";
+  useDeleteMultiImageFromAward,
+  useUpdateMultiImagesFromAward,
+} from "../../admin/awards/useAwards";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
 import FileInput from "../../ui/FileInput";
 import Button from "../../ui/Button";
 import SpinnerMini from "../../ui/SpinnerMini";
-const AddImagesFormBlog = ({
+const AddImagesFormAward = ({
   id,
   onConfirm,
   disabled,
@@ -18,9 +18,9 @@ const AddImagesFormBlog = ({
   setEditData,
   onCloseModal,
 }) => {
-  const { mutate: removeMultiImageFromBlog } = useDeleteMultiImageFromBlog();
-  const { mutate: updateMultiImagesFromBlog, isPending: isAddingImages } =
-    useUpdateMultiImagesFromBlog();
+  const { mutate: removeMultiImageFromAward } = useDeleteMultiImageFromAward();
+  const { mutate: updateMultiImagesFromAward, isPending: isAddingImages } =
+    useUpdateMultiImagesFromAward();
   if (isAddingImages) return <SpinnerMini />;
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const AddImagesFormBlog = ({
       formData.append("images", image);
     });
 
-    updateMultiImagesFromBlog(
+    updateMultiImagesFromAward(
       { id, images: formData },
       {
         onSuccess: () => {
@@ -65,7 +65,7 @@ const AddImagesFormBlog = ({
   const handleDeleteImage = (index) => {
     const payload = { index: { index } };
 
-    removeMultiImageFromBlog(
+    removeMultiImageFromAward(
       { id, data: payload },
       {
         onSuccess: () => {
@@ -152,4 +152,4 @@ const AddImagesFormBlog = ({
   );
 };
 
-export default AddImagesFormBlog;
+export default AddImagesFormAward;

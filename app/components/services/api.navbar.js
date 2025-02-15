@@ -22,9 +22,20 @@ export const fetchNavbar = async () => {
   return response.data.message;
 };
 
-export const updateNavbar = async ({ id, data }) => {
-  const response = await axios.post(`${ApiUrl}/navbar/update?id=${id}`, data, {
+export const updateNavbar = async ({ id, formData }) => {
+  const response = await axios.post(
+    `${ApiUrl}/navbar/update?id=${id}`,
+    formData,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const fetchNavbarById = async (id) => {
+  const response = await axios.get(`${ApiUrl}/navbar/get-by-id?_id=${id}`, {
     withCredentials: true,
   });
-  return response.data;
+  return response.data.message;
 };

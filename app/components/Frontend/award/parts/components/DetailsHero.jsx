@@ -9,7 +9,7 @@ import Group_2 from "../assets/Group_2.png";
 import Group_3 from "../assets/Group_3.png";
 import Group_4 from "../assets/Group_4.png";
 
-const checkupDetails = [
+const awardDetails = [
   {
     title: "Investigation",
     items: [
@@ -86,14 +86,14 @@ const DetailsHero = ({ id, data, isLoading }) => {
           color="black"
           fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
         >
-          {data?.title}
+          {data?.name}
         </Head1>
         <Typography
           color="#005900"
           fontSize={{ sm: "1.3rem", smm: "1.7rem", md: "2rem", lg: "2.5rem" }}
           fontWeight={"600"}
         >
-          ₹{data?.price}
+          {data?.year}
         </Typography>
         <ParaNormal
           color="#000000"
@@ -101,7 +101,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
           fontWeight={"400"}
           lineheight={"2.1rem"}
           padding={"0px 50px"}
-          dangerouslySetInnerHTML={{ __html: data?.description }}
+          dangerouslySetInnerHTML={{ __html: data?.about }}
         />
       </Stack>
       <Stack marginTop={2}>
@@ -111,7 +111,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
       </Stack>
       <Divider color={"#2D2D2D"} sx={{ margin: "30px 0" }} />
 
-      {/* Checkup Details */}
+      {/* Award Details */}
       <Stack
         direction={"row"}
         gap={4}
@@ -119,7 +119,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
         flexWrap={"wrap"}
         padding={{ xs: "12px" }}
       >
-        {checkupDetails.map((item) => (
+        {awardDetails.map((item) => (
           <Stack key={item.title} mb={2}>
             <ParaNormal
               color="#000000"

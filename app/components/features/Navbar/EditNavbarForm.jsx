@@ -1,87 +1,85 @@
-// import { useForm } from "react-hook-form";
-// import Input from "../../ui/Input";
-// import Form from "../../ui/Form";
-// import Button from "../../ui/Button";
-// import FormRow from "../../ui/FormRow";
-// import { useUpdateNavbar } from "../../admin/navbar/useNavbar";
-// import SpinnerMini from "../../ui/SpinnerMini";
-// import { Stack } from "@mui/material";
-// import Textarea from "../../ui/Textarea";
+import Input from "../../ui/Input";
+import Form from "../../ui/Form";
+import Button from "../../ui/Button";
+import FormRow from "../../ui/FormRow";
+import { useUpdateNavbar } from "../../admin/navbar/useNavbar";
+import SpinnerMini from "../../ui/SpinnerMini";
+import { Stack } from "@mui/material";
+import Textarea from "../../ui/Textarea";
 
-// function EditNavbarForm({ onCloseModal }) {
-//   const { isUpdating, createNavbars } = useUpdateNavbar();
-//   const isWorking = isUpdating;
+function EditNavbarForm({ onCloseModal, editData, setEditData, id }) {
+  const { mutate: updateNavbar, isPending: isUpdating } = useUpdateNavbar();
+  if (isUpdating) return <SpinnerMini />;
 
-//   function onSubmit(data) {
-//     const formData = {
-//       orderId: data.orderId,
-//       link: data.link,
-//       name: data.name,
-//     };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditData({ ...editData, [name]: value });
+  };
 
-//     createNavbars(formData, {
-//       onSuccess: (data) => {
-//         reset();
-//         onCloseModal?.();
-//       },
-//     });
-//   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-//   if (isUpdating) return <SpinnerMini />;
+    const formDataNavbar = {
+      orderId: editData.orderId,
+      name: editData.name,
+      link: editData.link,
+    };
 
-//   return (
-//     <>
-//       <Form
-//         onSubmit={handleSubmit(onSubmit, onError)}
-//         type={onCloseModal ? "modal" : "regular"}
-//       >
-//         <FormRow label={"Order Id"} error={errors?.title?.message}>
-//           <Input
-//             disabled={isWorking}
-//             type="text"
-//             id="orderId"
-//             {...register("orderId", {
-//               required: "This field is required",
-//             })}
-//           />
-//         </FormRow>
-//         <FormRow label={"Name"} error={errors?.title?.message}>
-//           <Input
-//             disabled={isWorking}
-//             type="text"
-//             id="name"
-//             {...register("name", {
-//               required: "This field is required",
-//             })}
-//           />
-//         </FormRow>
-//         <FormRow label={"Link"} error={errors?.title?.message}>
-//           <Input
-//             disabled={isWorking}
-//             type="text"
-//             id="link"
-//             {...register("link", {
-//               required: "This field is required",
-//             })}
-//           />
-//         </FormRow>
+    updateNavbar(
+      { id, formData: formDataNavbar },
+      {
+        onSuccess: () => onCloseModal?.(),
+      }
+    );
+  };
 
-//         <FormRow>
-//           <Button
-//             variation="secondary"
-//             type="reset"
-//             onClick={() => {
-//               reset();
-//               onCloseModal?.();
-//             }}
-//           >
-//             Cancel
-//           </Button>
-//           <Button disabled={isWorking}>{"Edit Navbar"}</Button>
-//         </FormRow>
-//       </Form>
-//     </>
-//   );
-// }
+  return (
+    <>
+      <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
+        <FormRow label={"Order Id"}>
+          <Input
+            type="text"
+            id="orderId"
+            name="orderId"
+            value={editData.orderId}
+            onChange={handleInputChange}
+          />
+        </FormRow>
+        <FormRow label={"Name"}>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={editData.name}
+            onChange={handleInputChange}
+          />
+        </FormRow>
+        <FormRow label={"Link"}>
+          <Input
+            type="text"
+            id="link"
+            name="link"
+            value={editData.link}
+            onChange={handleInputChange}
+          />
+        </FormRow>
 
-// export default EditNavbarForm;
+        <FormRow>
+          <Button
+            variation="secondary"
+            type="reset"
+            onClick={() => {
+              reset();
+              onCloseModal?.();
+            }}
+          >
+            Cancel
+          </Button>
+          <Button>{"Edit Navbar"}</Button>
+        </FormRow>
+      </Form>
+    </>
+  );
+}
+
+export default EditNavbarForm;

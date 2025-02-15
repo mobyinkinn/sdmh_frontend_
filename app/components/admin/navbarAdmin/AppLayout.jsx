@@ -216,7 +216,11 @@ function AppLayout({ children }) {
 
   let isPathnameValid = false;
   for (let i = 0; i < filteredNavData.length; i++) {
-    if (filteredNavData[i].link === pathname) {
+    // if (filteredNavData[i].link === pathname) {
+    //   isPathnameValid = true;
+    //   break;
+    // }
+    if (pathname.startsWith(filteredNavData[i].link)) {
       isPathnameValid = true;
       break;
     }

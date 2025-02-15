@@ -22,6 +22,7 @@ import { useBlockDoctor, useUnblockDoctor, useDeleteDoctor } from "./useDoctor";
 import EditDoctorForm from "@/app/components/features/Doctor/EditDoctorForm";
 import { useDepartment } from "../../departments/parts/useDepartment";
 import Spinner from "@/app/components/ui/Spinner";
+import { Stack } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -53,6 +54,7 @@ function DoctorsRow({
     availablity,
     status,
     created,
+    experience,
   },
 }) {
   let convertedStatus;
@@ -87,7 +89,7 @@ function DoctorsRow({
     active: "green",
     inactive: "silver",
   };
-
+  console.log(availablity);
   return (
     <Table.Row>
       <Stacked>
@@ -118,14 +120,14 @@ function DoctorsRow({
             gap: "4px",
           }}
         >
-          {availablity.map((el, i) => {
-            return (
-              <Button size="small" variation="secondary" key={i}>
-                {/* {el.day} - {el.at} */}
-                {el}
+          {Object.entries(availablity).map(([day, type]) => (
+            <Stack alignItems={"center"}>
+              <Button size="small" variation="secondary" key={day}>
+                {day}
               </Button>
-            );
-          })}
+              <span>{type}</span>
+            </Stack>
+          ))}
         </span>
       </Stacked>
 

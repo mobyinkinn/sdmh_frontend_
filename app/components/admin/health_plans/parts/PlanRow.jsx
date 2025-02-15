@@ -24,6 +24,8 @@ import {
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import ConfirmEdit from "@/app/components/ui/EditCheckupModal";
 import toast from "react-hot-toast";
+import { FaRegImages } from "react-icons/fa";
+import AddImagesFormCheckup from "@/app/components/features/Checkup/AddImagesFormCheckup";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -55,6 +57,8 @@ function PlanRow({
     banner,
     bannerImage,
     price,
+    smallDescription,
+    images,
   },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
@@ -104,6 +108,8 @@ function PlanRow({
     status,
     bannerImage,
     price,
+    smallDescription,
+    images,
   });
 
   const handleConfirmEdit = () => {
@@ -111,6 +117,7 @@ function PlanRow({
       title: editData.title,
       description: descContent,
       price: editData.price,
+      smallDescription: editData.smallDescription,
     };
 
     updateCheckup(
@@ -135,6 +142,10 @@ function PlanRow({
     <Table.Row>
       <Stacked>
         <span>{title}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>{smallDescription}</span>
       </Stacked>
 
       <Stacked>
@@ -188,6 +199,9 @@ function PlanRow({
           <Modal.Open opens="edit">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
+          <Modal.Open opens="image-form">
+            <Menus.Button icon={<FaRegImages />} />
+          </Modal.Open>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
@@ -210,6 +224,14 @@ function PlanRow({
             disabled={false}
             descContent={descContent}
             setDescContent={setDescContent}
+          />
+        </Modal.Window>
+        <Modal.Window name="image-form">
+          <AddImagesFormCheckup
+            id={_id}
+            resourceName="Checkup"
+            editData={editData}
+            setEditData={setEditData}
           />
         </Modal.Window>
       </Modal>

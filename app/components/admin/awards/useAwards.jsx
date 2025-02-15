@@ -5,6 +5,10 @@ import {
   updateAward,
   updateAwardImage,
   createAward,
+  fetchAwardById,
+  updateMultiImagesFromAward,
+  updateBanner,
+  removeMultiImageFromAward,
 } from "../../services/api.awards";
 import toast from "react-hot-toast";
 
@@ -15,6 +19,14 @@ export const useAwards = () => {
     staleTime: 5 * 60 * 1000,
   });
   return { data, isLoading, error };
+};
+
+export const useAwardById = (id) => {
+  return useQuery({
+    queryKey: ["Awards", id],
+    queryFn: () => fetchAwardById(id),
+    staleTime: 5 * 60 * 1000,
+  });
 };
 
 export const useDeleteAward = () => {
@@ -80,4 +92,52 @@ export const useCreateAward = () => {
   });
 
   return { createAwards, isCreating };
+};
+
+export const useUpdateAwardBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Awards"]);
+      toast.success("Award banner updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Award banner:", error);
+      toast.error("Failed to update Award banner. Please try again.");
+    },
+  });
+};
+
+export const useUpdateMultiImagesFromAward = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateMultiImagesFromAward,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Awards"]);
+      toast.success("Award multi images updated successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to update Award multi images:", error);
+      toast.error("Failed to update Award multi images. Please try again.");
+    },
+  });
+};
+
+export const useDeleteMultiImageFromAward = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: removeMultiImageFromAward,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Awards"]);
+      toast.success("Award multi image deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete award multi image:", error);
+      toast.error("Failed to delete award multi image. Please try again.");
+    },
+  });
 };

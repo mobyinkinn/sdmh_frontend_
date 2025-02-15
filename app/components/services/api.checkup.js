@@ -76,3 +76,25 @@ export const fetchCheckupById = async (id) => {
   });
   return response.data.message;
 };
+
+export const updateMultiImagesFromCheckup = async ({ id, images }) => {
+  const response = await axios.post(
+    `${ApiUrl}/checkup/update-images?id=${id}`,
+    images,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const removeMultiImageFromCheckup = async ({ id, data }) => {
+  const response = await axios.post(
+    `${ApiUrl}/checkup/delete-image?id=${id}`,
+    data,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

@@ -8,30 +8,50 @@ import FormRow from "../../ui/FormRow";
 import {
   useCreateNotice,
   useNotices,
-  useUpdateName,
+  useUpdateNotice,
   useUpdateNameFile,
 } from "../../admin/academic_notices/useNotices";
 import { Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useDepartment } from "../../admin/departments/parts/useDepartment";
+import styled from "styled-components";
 
-function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id }) {
+function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id, department }) {
   const { data, isLoading } = useNotices();
   const filteredData = data.filter((el) => el._id === id);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
+  const [formdata, setFormdata] = useState(filteredData[0] || {});
 
   const [name, setName] = useState(filteredData[0].name);
+  const [year, setYear] = useState(filteredData[0].year);
+  const [departmentValue, setDepartmentValue] = useState(department?.name);
 
   const { errors } = formState;
 
   const { isCreating, createNotice } = useCreateNotice();
-  const { isUpdating, updateName } = useUpdateName();
+  const { isUpdating, updatedNotice } = useUpdateNotice();
   const { isUpdatingFile, updateFile } = useUpdateNameFile();
-  if (isUpdatingFile) return <SpinnerMini />;
 
   const isWorking = isCreating;
+
+  const StyledSelect = styled.select`
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid
+      ${(props) =>
+        props.type === "white"
+          ? "var(--color-grey-100)"
+          : "var(--color-grey-300)"};
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-grey-0);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  `;
 
   function onUpdateFile(file, id) {
     const binFile = typeof file === "string" ? file : file[0];
@@ -41,19 +61,47 @@ function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id }) {
     updateFile({ formData, id });
   }
 
-  function onUpdateName(name, id) {
-    const formData = { name };
+  function updateDepartment(name) {
+    const newDepartment = departmentData.find((el) => el.name === name);
+    if (newDepartment) {
+      const updatedFormData = { ...formdata, department: newDepartment._id };
+      setFormdata(updatedFormData);
+      setDepartmentValue(newDepartment.name);
+      onUpdateDepartment(updatedFormData, id);
+    } else {
+      alert("No such department exists, hence department will not be updated!");
+    }
+  }
 
-    updateName(
+  function onUpdateDepartment(updatedFormData, id) {
+    updatedNotice({ formData: updatedFormData, id });
+  }
+
+  function onUpdateNotice(data) {
+    const formData = {
+      name,
+      year,
+    };
+
+    updatedNotice(
       { formData, id },
       {
-        onSuccess: () => {},
+        onSuccess: () => {
+          onCloseModal?.();
+        },
       }
     );
   }
-  function onError(errors) {}
+
+  function onError(errors) {
+    console.error(errors);
+  }
+
+  if (isUpdatingFile || isUpdating || isLoadingDepartment)
+    return <SpinnerMini />;
+
   return (
-    <Form type={onCloseModal ? "modal" : "regular"}>
+    <Form onSubmit={onUpdateNotice} type={onCloseModal ? "modal" : "regular"}>
       <FormRow label="Academic notice name" error={errors?.name?.message}>
         <Input
           disabled={isWorking}
@@ -66,9 +114,47 @@ function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id }) {
           onChange={(e) => {
             const updatedValue = e.target.value;
             setName(updatedValue);
-            onUpdateName(updatedValue, filteredData[0]._id);
           }}
         />
+      </FormRow>
+
+      <FormRow label="Year" error={errors?.year?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="year"
+          value={year}
+          {...register("year", {
+            required: "This field is required",
+          })}
+          onChange={(e) => {
+            const updatedValue = e.target.value;
+            setYear(updatedValue);
+          }}
+        />
+      </FormRow>
+
+      <FormRow label="Department" error={errors?.department?.message}>
+        <StyledSelect
+          disabled={isWorking}
+          id="department"
+          value={departmentValue}
+          {...register("department", {
+            required: "This field is required",
+          })}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            setDepartmentValue(newValue);
+            updateDepartment(newValue);
+          }}
+        >
+          <option value="">Select a department</option>
+          {departmentData?.map((department, index) => (
+            <option key={index} value={department.name}>
+              {department.name}
+            </option>
+          ))}
+        </StyledSelect>
       </FormRow>
 
       <FormRow label={"File"}>
@@ -86,15 +172,16 @@ function EditNoticeForm({ cabinToEdit = {}, onCloseModal, id }) {
         />
       </FormRow>
 
-      <Stack
-        direction="row"
-        sx={{
-          gap: "20px",
-          justifyContent: "end",
-        }}
-      >
-        <Button disabled={isWorking}>{"Done"}</Button>
-      </Stack>
+      <FormRow>
+        <Button
+          variation="secondary"
+          type="button"
+          onClick={() => onCloseModal?.()}
+        >
+          Cancel
+        </Button>
+        <Button type="submit">{"Update Notice"}</Button>
+      </FormRow>
     </Form>
   );
 }

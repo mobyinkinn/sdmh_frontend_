@@ -13,6 +13,8 @@ import { useState } from "react";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import { useAwards, useDeleteAward, useUpdateAward } from "../useAwards";
 import EditAwardForm from "@/app/components/features/Awards/EditAwardForm";
+import { FaRegImages } from "react-icons/fa";
+import AddImagesFormAward from "@/app/components/features/Awards/AddImagesFormAward";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -34,7 +36,18 @@ const Stacked = styled.div`
 `;
 
 function AwardsRow({
-  award: { _id, name, year, about, image, status, createdAt },
+  award: {
+    _id,
+    name,
+    year,
+    about,
+    image,
+    status,
+    createdAt,
+    smallDescription,
+    bannerImage,
+    images,
+  },
 }) {
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: updateAward, isLoading: isUpdating } = useUpdateAward();
@@ -45,13 +58,18 @@ function AwardsRow({
     year,
     about,
     image,
+    smallDescription,
+    bannerImage,
+    images,
   });
+  const [aboutContent, setAboutContent] = useState(about);
 
   const handleConfirmEdit = () => {
     const formData = {
       name: editData.name,
       year: editData.year,
-      about: editData.about,
+      about: aboutContent,
+      smallDescription: editData.smallDescription,
     };
 
     updateAward(
@@ -108,7 +126,17 @@ function AwardsRow({
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? about : about.slice(0, 70)} ...</span>
+        <span>{smallDescription}</span>
+      </Stacked>
+
+      <Stacked>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullDesc
+              ? about
+              : `${about.slice(0, 50)}${about.length > 50 ? "..." : ""}`,
+          }}
+        />
         <span onClick={expandDesc} style={{ cursor: "pointer" }}>
           {fullDesc ? "show less" : "show more"}
         </span>
@@ -136,10 +164,22 @@ function AwardsRow({
           <Modal.Open opens="edit">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
+          <Modal.Open opens="image-form">
+            <Menus.Button icon={<FaRegImages />} />
+          </Modal.Open>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
         </Menus.Menu>
+
+        <Modal.Window name="image-form">
+          <AddImagesFormAward
+            id={_id}
+            resourceName="Award"
+            editData={editData}
+            setEditData={setEditData}
+          />
+        </Modal.Window>
         <Modal.Window name="edit">
           <EditAwardForm
             id={_id}
@@ -149,6 +189,8 @@ function AwardsRow({
             onCloseModal={() => {}}
             onConfirm={handleConfirmEdit}
             disabled={isUpdating}
+            aboutContent={aboutContent}
+            setAboutContent={setAboutContent}
           />
         </Modal.Window>
         <Modal.Window name="delete">

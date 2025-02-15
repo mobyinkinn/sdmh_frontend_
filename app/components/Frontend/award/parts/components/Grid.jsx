@@ -9,13 +9,13 @@ import {
   ButtonMediumOutline,
   ButtonSmallOutline,
 } from "@/app/styledComponents/frontend/Buttons";
-import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useAwards } from "@/app/components/admin/awards/useAwards";
 
 export default function Grid() {
-  const { data, isLoading, error } = useCheckups();
+  const { data, isLoading, error } = useAwards();
   const filteredData = data?.filter((el, i) => el.status === true);
   const [visibleCount, setVisibleCount] = useState(4);
   const visibleData = data
@@ -38,14 +38,14 @@ export default function Grid() {
           color="black"
           fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "15px" }}
         >
-          Our Affordable
+          Our
         </Head1>
         <Head1
           color="#005900"
           fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
         >
           {" "}
-          Health checkup plans
+          Awards
         </Head1>
       </Stack>
       <Stack
@@ -58,7 +58,7 @@ export default function Grid() {
         display={{ xs: "none", md: "flex" }}
       >
         {filteredData.map((el, i) => {
-          return <CheckupCard el={el} />;
+          return <AwardCard el={el} />;
         })}
       </Stack>
       <Stack
@@ -71,7 +71,7 @@ export default function Grid() {
         display={{ xs: "flex", md: "none" }}
       >
         {visibleData.map((el, i) => {
-          return <CheckupCard el={el} />;
+          return <AwardCard el={el} />;
         })}
         <Stack alignItems={{ xs: "center", md: "start" }}>
           {visibleCount < data.length && (
@@ -88,7 +88,7 @@ export default function Grid() {
   );
 }
 
-function CheckupCard({ el }) {
+function AwardCard({ el }) {
   const router = useRouter();
 
   return (
@@ -125,29 +125,34 @@ function CheckupCard({ el }) {
               sm: "17px",
             }}
           >
-            {el.title}
+            {el.name}
           </ParaNormal>
           <ParaNormal
             fontSize={{ lg: "30px", md: "25px", smm: "22px", sm: "17px" }}
           >
-            ₹{el.price}
+            {el.year}
           </ParaNormal>
         </Stack>
         <ParaNormal
           fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "13px" }}
         >
           {el.smallDescription}
+          {/* <span
+            dangerouslySetInnerHTML={{
+              __html: `${el.about.slice(0, 84)}`,
+            }}
+          /> */}
         </ParaNormal>
         <Stack direction={"row"} gap={2}>
           <ButtonSmallOutline
             color="#007946"
-            // onClick={() => router.push(`/health-checkup/${el._id}`)}
+            // onClick={() => router.push(`/award/${el._id}`)}
           >
             Book Now
           </ButtonSmallOutline>
           <ButtonSmallOutline
             color="#000000"
-            onClick={() => router.push(`/health-checkup/${el._id}`)}
+            onClick={() => router.push(`/award/${el._id}`)}
           >
             Know More
           </ButtonSmallOutline>

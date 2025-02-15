@@ -114,6 +114,15 @@ const ConfirmEdit = ({
             onChange={handleInputChange}
           />
         </FormRow>
+        <FormRow label="Short Description">
+          <Input
+            disabled={disabled}
+            type="text"
+            name="smallDescription"
+            value={editData.smallDescription || ""}
+            onChange={handleInputChange}
+          />
+        </FormRow>
         <FormRow label="Description"></FormRow>
         <Jodit content={descContent} setContent={setDescContent} />
         <FormRow label="Price">

@@ -67,10 +67,11 @@ function AwardsTable() {
   if (!data.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 1fr 3fr 1fr 1fr 1fr 1fr">
+      <Table columns="1fr 1fr 1.5fr 2fr 1fr 1fr 1fr 1.5fr">
         <Table.Header>
           <div>Name</div>
           <div>Year</div>
+          <div>Short Description</div>
           <div>About</div>
           <div>Image</div>
           <div>Status</div>
