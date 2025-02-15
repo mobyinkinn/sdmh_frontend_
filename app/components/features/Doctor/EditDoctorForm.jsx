@@ -106,7 +106,9 @@ function EditDoctorForm({ onCloseModal, id, department }) {
 
   return (
     <Form
-      onSubmit={() => onUpdateDoctor({ ...formdata }, id)}
+      onSubmit={(e) => {
+        onUpdateDoctor({ ...formdata }, id);
+      }}
       type={onCloseModal ? "modal" : "regular"}
     >
       <FormRow label="Name" error={errors?.name?.message}>
@@ -120,6 +122,20 @@ function EditDoctorForm({ onCloseModal, id, department }) {
             if (!e || !e.target) return;
             const newName = e.target.value;
             setFormdata((prev) => ({ ...prev, name: newName }));
+          }}
+        />
+      </FormRow>
+      <FormRow label="Order" error={errors?.order?.message}>
+        <Input
+          disabled={isUpdating}
+          type="text"
+          id="order"
+          value={formdata.order || ""}
+          {...register("order", { required: "This field is required" })}
+          onChange={(e) => {
+            if (!e || !e.target) return;
+            const newOrder = e.target.value;
+            setFormdata((prev) => ({ ...prev, order: newOrder }));
           }}
         />
       </FormRow>
