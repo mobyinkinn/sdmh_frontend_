@@ -151,7 +151,8 @@ import { Stack } from "@mui/material";
 import Heading from "../../ui/Heading";
 import { useCreateOpening } from "../../admin/careers/parts/useOpening";
 import { useState } from "react";
-import Jodit from "./Jodit";
+import dynamic from "next/dynamic";
+const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);

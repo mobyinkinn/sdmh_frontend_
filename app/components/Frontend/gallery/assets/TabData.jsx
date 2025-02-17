@@ -142,7 +142,7 @@ const TabData = () => {
           <GalleryCard key={el.id} career={el} />
         ))}
       </Stack>
-      {visibleCount < data.length && (
+      {visibleCount < filteredData.length && (
         <Stack alignItems={"center"} pt={2}>
           <ButtonSmallOutline
             onClick={() => setVisibleCount(visibleCount + 3)}

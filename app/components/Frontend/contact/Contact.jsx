@@ -9,6 +9,7 @@ import Enquire_Now from "./parts/Enquire_Now";
 import Available from "./parts/Available";
 import Reach from "./parts/Reach";
 import Ambu from "./parts/Ambu";
+import { Stack } from "@mui/material";
 
 const Greeting = () => {
   return (

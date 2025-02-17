@@ -4,7 +4,6 @@ import Footer from "../footer/Footer";
 import banner from "./assets/bannerImage.png";
 import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import TabData from "./assets/TabData";
-import VirtualView from "./assets/VirtualView";
 
 const Gallery = () => {
   return (

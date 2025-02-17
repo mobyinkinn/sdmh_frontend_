@@ -21,12 +21,10 @@ const sideNavData = [
 export default function Hero() {
   const { data, isLoading, error } = useBannerByPage("contact us");
   const handleScroll = (id) => {
-    if (typeof window !== "undefined") {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth", // Smooth scrolling
+      block: "start", // Aligns to the top of the section
+    });
   };
 
   return (

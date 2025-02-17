@@ -108,7 +108,6 @@ function List({ id, children }) {
   }, false);
 
   if (openId !== id) return null;
-  if (typeof window === "undefined" || !document.body) return null;
   return createPortal(
     <StyledList ref={ref} position={position}>
       {children}
