@@ -54,6 +54,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
     const file = typeof data.image === "string" ? data.image : data.image[0];
     const formdata = new FormData();
     formdata.append("image", file);
+    formdata.append("order", data.order);
     formdata.append("name", data.name);
     formdata.append("designation", data.designation);
     formdata.append("experience", data.experience);
@@ -99,6 +100,16 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
+      <FormRow label="Order" error={errors?.page?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="order"
+          {...register("order", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
       <FormRow label="Name" error={errors?.page?.message}>
         <Input
           disabled={isWorking}

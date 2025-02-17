@@ -7,6 +7,7 @@ import {
   updateImage as updateTheImage,
   createDoctor as createTheDoctor,
   fetchDoctorById,
+  updateDoctorsOrder,
 } from "@/app/components/services/api.Doctor";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -135,3 +136,22 @@ export const useDoctorById = (_id) => {
   });
 };
 
+export const useUpdateDoctorsOrder = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateDoctorOrder, isPending: isOrderUpdating } = useMutation(
+    {
+      mutationFn: updateDoctorsOrder,
+      onSuccess: () => {
+        queryClient.invalidateQueries(["Doctors"]);
+        toast.success("Doctor updated successfully!");
+      },
+      onError: (error) => {
+        console.error("Failed to updated the doctor: ", error);
+        toast.error("Failed to updated doctor. Please try again!!!");
+      },
+    }
+  );
+
+  return { updateDoctorOrder, isOrderUpdating };
+};
