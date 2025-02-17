@@ -37,6 +37,7 @@ const menu = [
   "Health Tips",
   "Second Opinion",
   "navbar",
+  "Academics Teaching",
 ];
 
 const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];
