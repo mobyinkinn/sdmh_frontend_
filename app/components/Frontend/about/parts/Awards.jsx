@@ -17,6 +17,7 @@ import img6 from "./assets/award6.png";
 import img7 from "./assets/award7.png";
 import { useEffect, useState } from "react";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useRouter } from "next/navigation";
 
 const initialImages = [
   { img: img1, data: "data 1 for image 1" },
@@ -29,6 +30,7 @@ const initialImages = [
 ];
 
 export default function Awards() {
+  const router = useRouter();
   const [center, setCenter] = useState(initialImages);
   useEffect(() => {
     function RotateCenter() {
@@ -72,174 +74,180 @@ export default function Awards() {
   };
 
   return (
-    <ContainerMain padding="0" alignItems="center" id="awards">
-      <Stack
-        gap={"10px"}
-        padding={{ md: "50px", xs: "20px" }}
-        sx={{
-          paddingBottom: "20px",
-          borderBottom: "1px solid #2D2D2D",
-          width: { md: "90%" },
-        }}
-      >
-        <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
-          Awards & Accreditation
-        </Head1>
-        <Head3 color="black">
-          BEST PLACES TO WORK IN HEALTHCARE IN INDIA BY
-        </Head3>
-        <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
-          "HOSMAC" AND "PEOPLE STRONG"
-        </Head1>
-      </Stack>
-      <ParaNormal
-        width={{ sm: "100%", smm: "100%", md: "70%", lg: "70%" }}
-        textAlign="center"
-      >
-        {center[0].data}
-      </ParaNormal>
-      <Stack
-        width={"100%"}
-        position={"relative"}
-        height="60vh"
-        alignItems={"center"}
-        justifyContent={"end"}
-        marginTop={"30px"}
-        marginBottom={"40px"}
-        display={{ md: "flex", xs: "none" }}
-      >
+    <Stack overflow={"hidden"}>
+      <ContainerMain padding="0" alignItems="center" id="awards">
         <Stack
+          gap={"10px"}
+          padding={{ md: "50px", xs: "20px" }}
           sx={{
-            backgroundImage: `url(${center[0].img.src})`,
-            backgroundSize: "cover",
-            position: "absolute",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            width: "35%",
-            height: "50vh",
-            zIndex: "100",
-            border: "6px solid #476C9B",
+            paddingBottom: "20px",
+            borderBottom: "1px solid #2D2D2D",
+            width: { md: "90%" },
           }}
-          // onMouseEnter={changeImage}
-          className="0"
-        ></Stack>
+        >
+          <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
+            Awards & Accreditation
+          </Head1>
+          <Head3 color="black">
+            BEST PLACES TO WORK IN HEALTHCARE IN INDIA BY
+          </Head3>
+          <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
+            "HOSMAC" AND "PEOPLE STRONG"
+          </Head1>
+        </Stack>
+        <ParaNormal
+          width={{ sm: "100%", smm: "100%", md: "70%", lg: "70%" }}
+          textAlign="center"
+        >
+          {center[0].data}
+        </ParaNormal>
         <Stack
-          sx={{
-            backgroundImage: `url(${center[1].img.src})`,
-            backgroundSize: "cover",
-            position: "absolute",
-            backgroundPosition: "center top",
+          width={"100%"}
+          position={"relative"}
+          height="60vh"
+          alignItems={"center"}
+          justifyContent={"end"}
+          marginTop={"30px"}
+          marginBottom={"40px"}
+          display={{ md: "flex", xs: "none" }}
+        >
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[0].img.src})`,
+              backgroundSize: "cover",
+              position: "absolute",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              width: "35%",
+              height: "50vh",
+              zIndex: "100",
+              border: "6px solid #476C9B",
+            }}
+            // onMouseEnter={changeImage}
+            className="0"
+          ></Stack>
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[1].img.src})`,
+              backgroundSize: "cover",
+              position: "absolute",
+              backgroundPosition: "center top",
 
-            border: "6px solid #476C9B",
-            backgroundRepeat: "no-repeat",
-            width: "15%",
-            height: "40vh",
-            zIndex: "90",
-            left: "60%",
-          }}
-          // onMouseEnter={changeImage}
-          className="1"
-        ></Stack>
+              border: "6px solid #476C9B",
+              backgroundRepeat: "no-repeat",
+              width: "15%",
+              height: "40vh",
+              zIndex: "90",
+              left: "60%",
+            }}
+            // onMouseEnter={changeImage}
+            className="1"
+          ></Stack>
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[2].img.src})`,
+              backgroundSize: "cover",
+              position: "absolute",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              width: "15%",
+              border: "6px solid #476C9B",
+              height: "30vh",
+              zIndex: "80",
+              left: "68%",
+            }}
+            // onMouseEnter={changeImage}
+            className="2"
+          ></Stack>
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[3].img.src})`,
+              backgroundSize: "cover",
+              zIndex: "70",
+              position: "absolute",
+              border: "6px solid #476C9B",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              width: "15%",
+              height: "20vh",
+              zIndex: "70",
+              left: "75%",
+            }}
+            // onMouseEnter={changeImage}
+            className="3"
+          ></Stack>
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[4].img.src})`,
+              zIndex: "60",
+              backgroundSize: "cover",
+              border: "6px solid #476C9B",
+              position: "absolute",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              width: "15%",
+              height: "40vh",
+              zIndex: "70",
+              right: "60%",
+            }}
+            // onMouseEnter={changeImage}
+            className="4"
+          ></Stack>
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[5].img.src})`,
+              backgroundSize: "cover",
+              zIndex: "50",
+              border: "6px solid #476C9B",
+              position: "absolute",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              width: "15%",
+              height: "30vh",
+              zIndex: "60",
+              right: "68%",
+            }}
+            // onMouseEnter={changeImage}
+            className="5"
+          ></Stack>
+          <Stack
+            sx={{
+              backgroundImage: `url(${center[6].img.src})`,
+              backgroundSize: "cover",
+              zIndex: "50",
+              position: "absolute",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              border: "6px solid #476C9B",
+              width: "15%",
+              height: "20vh",
+              zIndex: "50",
+              right: "75%",
+            }}
+            // onMouseEnter={changeImage}
+            className="6"
+          ></Stack>
+        </Stack>
         <Stack
-          sx={{
-            backgroundImage: `url(${center[2].img.src})`,
-            backgroundSize: "cover",
-            position: "absolute",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            width: "15%",
-            border: "6px solid #476C9B",
-            height: "30vh",
-            zIndex: "80",
-            left: "68%",
-          }}
-          // onMouseEnter={changeImage}
-          className="2"
-        ></Stack>
-        <Stack
-          sx={{
-            backgroundImage: `url(${center[3].img.src})`,
-            backgroundSize: "cover",
-            zIndex: "70",
-            position: "absolute",
-            border: "6px solid #476C9B",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            width: "15%",
-            height: "20vh",
-            zIndex: "70",
-            left: "75%",
-          }}
-          // onMouseEnter={changeImage}
-          className="3"
-        ></Stack>
-        <Stack
-          sx={{
-            backgroundImage: `url(${center[4].img.src})`,
-            zIndex: "60",
-            backgroundSize: "cover",
-            border: "6px solid #476C9B",
-            position: "absolute",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            width: "15%",
-            height: "40vh",
-            zIndex: "70",
-            right: "60%",
-          }}
-          // onMouseEnter={changeImage}
-          className="4"
-        ></Stack>
-        <Stack
-          sx={{
-            backgroundImage: `url(${center[5].img.src})`,
-            backgroundSize: "cover",
-            zIndex: "50",
-            border: "6px solid #476C9B",
-            position: "absolute",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            width: "15%",
-            height: "30vh",
-            zIndex: "60",
-            right: "68%",
-          }}
-          // onMouseEnter={changeImage}
-          className="5"
-        ></Stack>
-        <Stack
-          sx={{
-            backgroundImage: `url(${center[6].img.src})`,
-            backgroundSize: "cover",
-            zIndex: "50",
-            position: "absolute",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            border: "6px solid #476C9B",
-            width: "15%",
-            height: "20vh",
-            zIndex: "50",
-            right: "75%",
-          }}
-          // onMouseEnter={changeImage}
-          className="6"
-        ></Stack>
-      </Stack>
-      <Stack
-        width={"100%"}
-        height={"30vh"}
-        display={{ md: "none", xs: "flex" }}
-      >
-        <Slider {...settings}>
-          {initialImages.map((img, index) => (
-            <ImageCard key={index} img={img.img} />
-          ))}
-        </Slider>
-      </Stack>
-      <ButtonMediumOutline margin="20px 0" color="#007946">
-        View More
-      </ButtonMediumOutline>
-    </ContainerMain>
+          width={"100%"}
+          height={"30vh"}
+          display={{ md: "none", xs: "flex" }}
+        >
+          <Slider {...settings}>
+            {initialImages.map((img, index) => (
+              <ImageCard key={index} img={img.img} />
+            ))}
+          </Slider>
+        </Stack>
+        <ButtonMediumOutline
+          margin="20px 0"
+          color="#007946"
+          onClick={() => router.push(`/award`)}
+        >
+          View More
+        </ButtonMediumOutline>
+      </ContainerMain>
+    </Stack>
   );
 }
 

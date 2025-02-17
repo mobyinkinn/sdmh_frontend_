@@ -88,3 +88,22 @@ export const updateDoctorsOrder = async (formdata) => {
   );
   return response.data;
 };
+//   const response = await axios.post(`${ApiUrl}/doctor/get`, {department:_id}, {
+//     withCredentials: true,
+//   });
+//   return response.data.message; 
+// };
+export const fetchDoctorBy = async (_id) => {
+  const response = await axios.get(`${ApiUrl}/doctor/getbyId?id=${_id}`, {
+    withCredentials: true,
+  });
+  return response.data.message; // Adjust based on the actual API response structure
+};
+
+
+export const fetchDoctorByID = async (_id) => {
+  const response = await axios.get(`${ApiUrl}/doctor/getdoctorbyId?id=${_id}`, {
+    withCredentials: true,
+  });
+  return response.data.message; // Adjust based on the actual API response structure
+};

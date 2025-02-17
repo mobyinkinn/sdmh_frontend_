@@ -197,18 +197,46 @@
 import { useState } from "react";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, Dialog, IconButton } from "@mui/material";
 import img1 from "../assets/stories/img1.png";
 import img2 from "../assets/stories/img2.png";
 import img3 from "../assets/stories/img3.png";
 import img4 from "../assets/stories/img4.png";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
+import CloseIcon from "@mui/icons-material/Close";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { useVideos } from "@/app/components/admin/videos/useVideos";
 
 export default function PatientStories() {
+  
+  const { data, isLoading, error } = useVideos();
   const [isHovered, setIsHovered] = useState(false);
-
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState("");
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+  const extractVideoId = (url) => {
+    const regex =
+      /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/(?:shorts\/|embed\/|v\/|watch\?.*v=)))([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+  const handleOpenModal = (videoUrl) => {
+    console.log("videourl",videoUrl)
+    const videoId = extractVideoId(videoUrl);
+    console.log("videoId", videoId);
+
+    if (videoId) {
+      setSelectedVideo(videoId);
+      setOpenModal(true);
+    }
+  };
+
+
+const handleCloseModal = () => {
+  setOpenModal(false);
+  setSelectedVideo("");
+};
 
   return (
     <ContainerMain marginTop={"40px"} alignItems="center">
@@ -225,8 +253,6 @@ export default function PatientStories() {
           width: "80%",
         }}
       >
-        {/* Center Image - Main */}
-
         {/* Left Side Image */}
         <Stack
           gap={1}
@@ -249,7 +275,24 @@ export default function PatientStories() {
               zIndex: 2,
               opacity: isHovered ? 1 : 0.7,
             }}
-          />
+          >
+            <IconButton
+              sx={{
+                position: "absolute",
+                top: "30%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                borderRadius: "50%",
+                transition: "all 0.3s ease",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+              }}
+              onClick={() => handleOpenModal(data[0].url)}
+            >
+              <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+            </IconButton>
+          </Box>
           <Box
             sx={{
               // width: isHovered ? "20%" : "35%",
@@ -263,7 +306,24 @@ export default function PatientStories() {
               zIndex: 2,
               opacity: isHovered ? 1 : 0.7,
             }}
-          />
+          >
+            <IconButton
+              sx={{
+                position: "absolute",
+                top: "80%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                borderRadius: "50%",
+                transition: "all 0.3s ease",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+              }}
+              onClick={() => handleOpenModal(data[1].url)}
+            >
+              <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+            </IconButton>
+          </Box>
         </Stack>
         <Box
           onMouseEnter={handleMouseEnter}
@@ -277,7 +337,24 @@ export default function PatientStories() {
             zIndex: 3,
             transition: "all 0.5s ease",
           }}
-        />
+        >
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              borderRadius: "50%",
+              transition: "all 0.3s ease",
+              "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+            }}
+            onClick={() => handleOpenModal(data[2].url)}
+          >
+            <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+          </IconButton>
+        </Box>
         {/* Right Side Image */}
         <Stack
           gap={1}
@@ -300,7 +377,24 @@ export default function PatientStories() {
               zIndex: 2,
               opacity: isHovered ? 1 : 0.7,
             }}
-          />
+          >
+            <IconButton
+              sx={{
+                position: "absolute",
+                top: "30%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                borderRadius: "50%",
+                transition: "all 0.3s ease",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+              }}
+              onClick={() => handleOpenModal(data[1].url)}
+            >
+              <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+            </IconButton>
+          </Box>
           <Box
             sx={{
               // width: "35%",
@@ -314,7 +408,24 @@ export default function PatientStories() {
               zIndex: 2,
               opacity: isHovered ? 1 : 0.7,
             }}
-          />
+          >
+            <IconButton
+              sx={{
+                position: "absolute",
+                top: "80%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                borderRadius: "50%",
+                transition: "all 0.3s ease",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+              }}
+              onClick={() => handleOpenModal(data[3].url)}
+            >
+              <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+            </IconButton>
+          </Box>
         </Stack>
 
         {/* Left-most Image */}
@@ -332,7 +443,24 @@ export default function PatientStories() {
             zIndex: 1,
             opacity: isHovered ? 1 : 0.2,
           }}
-        />
+        >
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              borderRadius: "50%",
+              transition: "all 0.3s ease",
+              "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+            }}
+            onClick={() => handleOpenModal(data[0].url)}
+          >
+            <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+          </IconButton>
+        </Box>
 
         {/* Right-most Image */}
         <Box
@@ -349,11 +477,60 @@ export default function PatientStories() {
             zIndex: 1,
             opacity: isHovered ? 1 : 0.2,
           }}
-        />
+        >
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              borderRadius: "50%",
+              transition: "all 0.3s ease",
+              "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+            }}
+            onClick={() => handleOpenModal(data[2].url)}
+          >
+            <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+          </IconButton>
+        </Box>
       </Stack>
       <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
         <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
       </Stack>
+      <Dialog
+        open={openModal}
+        onClose={handleCloseModal}
+        maxWidth="md"
+        fullWidth
+      >
+        <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: 5,
+              right: 2,
+              color: "white",
+              zIndex: 10,
+            }}
+            onClick={handleCloseModal}
+          >
+            <CloseIcon />
+          </IconButton>
+          {selectedVideo && (
+            <iframe
+              width="100%"
+              height="500px"
+              src={`https://www.youtube.com/embed/${selectedVideo}`}
+              title="YouTube Video"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
+          )}
+        </Box>
+      </Dialog>
     </ContainerMain>
   );
 }

@@ -16,13 +16,25 @@ export default function Hero() {
   return (
     <Stack direction={"row"}>
       <Box
+        display={{ lg: "flex", sm: "none" }}
         height={{ xs: "65vh", lg: "90vh" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${data?.banner})`,
           backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          backgroundPosition: "center center"
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+      <Box
+        display={{ lg: "none", sm: "flex" }}
+        height={{ xs: "65vh", lg: "90vh" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
         }}
       ></Box>
 

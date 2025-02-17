@@ -9,6 +9,7 @@ export default function Founder() {
     <ContainerMain
       flexDirection={{ md: "row", smm: "column", sm: "column" }}
       bgColor="#276923"
+      alignItems={"center"}
       padding={{
         lg: "50px 50px 0 50px",
         md: "50px 50px 0 50px",

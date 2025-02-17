@@ -8,6 +8,8 @@ import {
   createDoctor as createTheDoctor,
   fetchDoctorById,
   updateDoctorsOrder,
+  fetchDoctorBy,
+  fetchDoctorByID,
 } from "@/app/components/services/api.Doctor";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -131,7 +133,16 @@ export const useCreateDoctor = () => {
 export const useDoctorById = (_id) => {
   return useQuery({
     queryKey: ["Doctor", _id],
-    queryFn: () => fetchDoctorById(_id),
+    queryFn: () => fetchDoctorBy(_id),
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+
+export const useDoctorByID = (_id) => {
+  return useQuery({
+    queryKey: ["Doctor", _id],
+    queryFn: () => fetchDoctorByID(_id),
     staleTime: 5 * 60 * 1000,
   });
 };

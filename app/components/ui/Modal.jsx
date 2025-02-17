@@ -84,6 +84,7 @@ function Window({ children, name }) {
   const ref = useOutsideClick(close);
 
   if (name !== openName) return null;
+  if (typeof window === "undefined" || !document.body) return null;
   return createPortal(
     <Overlay>
       <StyledModal ref={ref}>
@@ -95,6 +96,7 @@ function Window({ children, name }) {
     </Overlay>,
     document.body
   );
+
 }
 
 Modal.Open = Open;

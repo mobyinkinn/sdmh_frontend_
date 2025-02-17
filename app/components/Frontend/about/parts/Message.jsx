@@ -10,7 +10,12 @@ import img from "./assets/Yogendra.png";
 
 export default function Message() {
   return (
-    <ContainerMain bgColor="#476C9B" dir="row" id="message">
+    <ContainerMain
+      bgColor="#476C9B"
+      dir="row"
+      id="message"
+      alignItems={"center"}
+    >
       <Stack alignItems="center" width={{ md: "30%" }} gap="10px">
         <Stack
           sx={{
@@ -35,14 +40,14 @@ export default function Message() {
         <Head1 color="white" textAlign="left">
           Secretary's Message
         </Head1>
-        <ParaNormal textAlign={{ sm: "center", smm: "center" }} color="white">
+        <ParaNormal textAlign={{lg:"justify", sm: "center", smm: "center" }} color="white">
           Empathy is the word that immediately comes to mind as I think of my
           father. Empathy is aptly defined as someone else’s pain in your heart.
           My father felt the pain of many in his. He was deeply affected by the
           plight of the pavement dwellers he drove past on his way to work – he
           would cover them with blankets during clandestine outings at night.
         </ParaNormal>
-        <ParaNormal textAlign={{ sm: "center", smm: "center" }} color="white">
+        <ParaNormal textAlign={{lg:"justify", sm: "center", smm: "center" }} color="white">
           That shared pain for those who dwelt on pavements, and lived on the
           periphery of life was evident at the hospital we know as Santokba.
           Santokba is the story of his vision which impacted a million lives. It
@@ -53,9 +58,6 @@ export default function Message() {
           about martyrdom or about sacrifice but about care, compassion and
           concern.
         </ParaNormal>
-        <Head4 color="white" textAlign={{ sm: "center", smm: "center" }}>
-          Read More
-        </Head4>{" "}
       </Stack>
     </ContainerMain>
   );

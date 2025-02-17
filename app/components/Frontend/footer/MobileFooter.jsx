@@ -82,7 +82,7 @@ export default function MobileFooter() {
   return (
     <Stack
       width="100%"
-      display={{ md: "none", xs: "flex" }}
+      display={{smm: "flex" }}
       sx={{
         backgroundImage: `url(${sdmh.src})`,
         backgroundSize: "cover",

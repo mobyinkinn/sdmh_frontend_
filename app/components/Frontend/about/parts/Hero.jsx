@@ -21,14 +21,21 @@ const sideNavData = [
 export default function Hero() {
   const { data, isLoading, error } = useBannerByPage("contact us");
   const handleScroll = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth", // Smooth scrolling
-      block: "start", // Aligns to the top of the section
-    });
+    if (typeof window !== "undefined") {
+      document.getElementById(id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
-    <ContainerMain gap="0" dir="row" padding="20px 0" id="about">
+    <ContainerMain
+      gap="0"
+      flexDirection={{ lg: "row",md:"column", smm: "column", sm: "column" }}
+      padding="20px 0"
+      id="about"
+    >
       <Stack
         width={{ md: "85%", sm: "90%", smm: "90%" }}
         height={{ md: "90vh" }}
@@ -41,15 +48,13 @@ export default function Hero() {
         }}
         justifyContent={"center"}
         gap={"10px"}
-        paddingLeft={{ md: "100px" }}
       >
         <Stack direction={"row"} margin={"0 auto"}>
           <Head1 color="black">About&nbsp;</Head1>
           <Head1 color="#476C9B">SDMH</Head1>
         </Stack>
         <ParaNormal
-          width={{ md: "60%" }}
-          textAlign={{ sm: "center", smm: "center", md: "left" }}
+          textAlign={{ sm: "center", smm: "center", md: "center" }}
         >
           It Is a Long Established Fact That a Reader Will Be Distracted By The
           Readable Content of a Page When Looking At Its Layout. The Point of
@@ -60,7 +65,7 @@ export default function Hero() {
       </Stack>
       <Stack
         justifyContent={"center"}
-        direction={{ md: "column", sm: "row", xs: "row" }}
+        direction={{lg:"column", md: "row", sm: "row", xs: "row" }}
         flexWrap="wrap"
       >
         {sideNavData.map((el, i) => {
@@ -68,6 +73,7 @@ export default function Hero() {
             <Stack key={i} width={{ lg: "100%", sm: "25%" }}>
               <Typography
                 key={i}
+                textAlign={"center"}
                 fontSize={{ lg: "1.2rem", sm: "0.7rem" }}
                 sx={{
                   padding: { md: "10px 15px", xs: "5px" },
