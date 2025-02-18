@@ -7,13 +7,25 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { PiYoutubeLogoBold } from "react-icons/pi";
 
 const social = [
-  { id: 0, data: <FaInstagram /> },
-  { id: 1, data: <FaFacebookF /> },
-  { id: 2, data: <FaLinkedinIn /> },
-  { id: 3, data: <FaXTwitter /> },
+  {
+    id: 0,
+    data: <FaInstagram />,
+    link: "https://www.instagram.com/sdmhjaipur?igsh=OHVvMGFhd3hwMjBy",
+  },
+  {
+    id: 1,
+    data: <FaFacebookF />,
+    link: "https://www.facebook.com/santokbadurlabhji?mibextid=ZbWKwL",
+  },
+  {
+    id: 2,
+    data: <FaLinkedinIn />,
+    link: "https://in.linkedin.com/company/santokba-durlabhji-memorial-hospital-jaipur",
+  },
+  { id: 3, data: <PiYoutubeLogoBold />, link: "https://youtube.com/@SDMHCARE" },
 ];
 
 const address = [
@@ -111,7 +123,11 @@ export default function Footer() {
             Center of Excellence
           </ParaNormal>
           {centerOfExcellence.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
         <Stack>
@@ -119,7 +135,11 @@ export default function Footer() {
             Support a cause
           </ParaNormal>
           {supportACause.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
       </Stack>
@@ -129,7 +149,11 @@ export default function Footer() {
             Patients & visitors
           </ParaNormal>
           {Patients.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
         <Stack>
@@ -137,7 +161,11 @@ export default function Footer() {
             Contact us
           </ParaNormal>
           {contactUs.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
       </Stack>
@@ -147,7 +175,11 @@ export default function Footer() {
             Online service
           </ParaNormal>
           {onlineService.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
         <Stack>
@@ -155,7 +187,11 @@ export default function Footer() {
             Quick links
           </ParaNormal>
           {quickLinks.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
       </Stack>
@@ -165,7 +201,11 @@ export default function Footer() {
             About us
           </ParaNormal>
           {aboutUs.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
+            return (
+              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+                {el.data}
+              </ParaNormal>
+            );
           })}
         </Stack>
         <Stack>
@@ -175,21 +215,32 @@ export default function Footer() {
           <Stack direction={"row"} gap={"5px"}>
             {social.map((el, i) => {
               return (
-                <Stack
+                <a
                   key={i}
-                  padding={"10px"}
-                  color={"white"}
-                  backgroundColor={"#379237"}
-                  sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "100px",
-                    width: "40px",
-                    height: "40px",
-                  }}
+                  href={el.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
                 >
-                  {el.data}
-                </Stack>
+                  <Stack
+                    padding={"10px"}
+                    color={"white"}
+                    backgroundColor={"#379237"}
+                    sx={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "100px",
+                      width: "40px",
+                      height: "40px",
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor: "#4CAF50",
+                      },
+                    }}
+                  >
+                    {el.data}
+                  </Stack>
+                </a>
               );
             })}
           </Stack>

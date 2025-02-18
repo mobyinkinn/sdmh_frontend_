@@ -164,6 +164,13 @@ const navData = [
     value: "navbar",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 22,
+    name: "Academics Teaching",
+    value: "teachings",
+    link: "/admin/academic_teachings",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 const NavList = styled.ul`

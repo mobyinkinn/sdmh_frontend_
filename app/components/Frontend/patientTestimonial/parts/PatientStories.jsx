@@ -83,43 +83,78 @@
 // }
 
 // export default PatientStories
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
-import { Stack } from "@mui/material";
-import React from "react";
+import { Box, Dialog, IconButton, Stack } from "@mui/material";
+import React, { useState } from "react";
 import img1 from "./assets/img1.png";
-import Image from "next/image";
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useVideos } from "@/app/components/admin/videos/useVideos";
+import Spinner from "@/app/components/ui/Spinner";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import CloseIcon from "@mui/icons-material/Close";
 
 const PatientStories = () => {
-  const data = [
-    { id: 1, image: img1, title: "Pre-term Babies" },
-    { id: 2, image: img1, title: "Pre-term Babies" },
-    { id: 3, image: img1, title: "Pre-term Babies" },
-    { id: 4, image: img1, title: "Pre-term Babies" },
-    { id: 5, image: img1, title: "Pre-term Babies" },
-    { id: 6, image: img1, title: "Pre-term Babies" },
-    { id: 7, image: img1, title: "Pre-term Babies" },
-    { id: 8, image: img1, title: "Pre-term Babies" },
-    { id: 9, image: img1, title: "Pre-term Babies" },
-    { id: 10, image: img1, title: "Pre-term Babies" },
-    { id: 11, image: img1, title: "Pre-term Babies" },
-    { id: 12, image: img1, title: "Pre-term Babies" },
-  ];
+  const { data, isLoading, error } = useVideos();
+  const [visibleCount, setVisibleCount] = useState(7);
+  const visibleData = data?.slice(0, visibleCount);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState("");
+
+  const extractVideoId = (url) => {
+    const regex =
+      /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/(?:shorts\/|embed\/|v\/|watch\?.*v=)))([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  if (isLoading) return <Spinner />;
+
+  const handleOpenModal = (videoUrl) => {
+    console.log("videourl", videoUrl);
+    const videoId = extractVideoId(videoUrl);
+    console.log("videoId", videoId);
+
+    if (videoId) {
+      setSelectedVideo(videoId);
+      setOpenModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedVideo("");
+  };
+
+  // const data = [
+  //   { id: 1, image: img1, title: "Pre-term Babies" },
+  //   { id: 2, image: img1, title: "Pre-term Babies" },
+  //   { id: 3, image: img1, title: "Pre-term Babies" },
+  //   { id: 4, image: img1, title: "Pre-term Babies" },
+  //   { id: 5, image: img1, title: "Pre-term Babies" },
+  //   { id: 6, image: img1, title: "Pre-term Babies" },
+  //   { id: 7, image: img1, title: "Pre-term Babies" },
+  //   { id: 8, image: img1, title: "Pre-term Babies" },
+  //   { id: 9, image: img1, title: "Pre-term Babies" },
+  //   { id: 10, image: img1, title: "Pre-term Babies" },
+  //   { id: 11, image: img1, title: "Pre-term Babies" },
+  //   { id: 12, image: img1, title: "Pre-term Babies" },
+  // ];
 
   // Function to split data into alternating rows
-  const splitData = (data) => {
+  const splitData = (visibleData) => {
     const rows = [];
     let toggle = true;
-    for (let i = 0; i < data.length; ) {
-      rows.push(data.slice(i, i + (toggle ? 4 : 3)));
+    for (let i = 0; i < visibleData.length; ) {
+      rows.push(visibleData.slice(i, i + (toggle ? 4 : 3)));
       i += toggle ? 4 : 3;
       toggle = !toggle;
     }
     return rows;
   };
 
-  const rows = splitData(data);
+  const rows = splitData(visibleData);
 
   return (
     <Stack bgcolor={"#D8E0EB"} padding={4}>
@@ -152,12 +187,35 @@ const PatientStories = () => {
                   borderRadius: "8px",
                 }}
               >
-                <Image
-                  src={item.image}
-                  width={220}
-                  height={300}
-                  alt={item.title}
-                />
+                <Box
+                  sx={{
+                    width: "220px",
+                    height: "300px",
+                    backgroundImage: `url(${img1.src})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: "20px",
+                    transition: "all 0.5s ease",
+                    zIndex: 1,
+                  }}
+                >
+                  <IconButton
+                    sx={{
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      color: "white",
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      borderRadius: "50%",
+                      transition: "all 0.3s ease",
+                      "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+                    }}
+                    onClick={() => handleOpenModal(item.url)}
+                  >
+                    <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+                  </IconButton>
+                </Box>
+
                 <ParaNormal>{item.title}</ParaNormal>
               </Stack>
             ))}
@@ -165,13 +223,48 @@ const PatientStories = () => {
         );
       })}
       <Stack alignItems={"center"}>
-        <ButtonSmallOutline
-          color="#007946"
-          style={{ border: "1px solid #007946" }}
-        >
-          View All
-        </ButtonSmallOutline>
+        {visibleCount < data.length && (
+          <ButtonSmallOutline
+            onClick={() => setVisibleCount(visibleCount + 7)}
+            color="#007946"
+            style={{ border: "1px solid #007946" }}
+          >
+            View All
+          </ButtonSmallOutline>
+        )}
       </Stack>
+      <Dialog
+        open={openModal}
+        onClose={handleCloseModal}
+        maxWidth="md"
+        fullWidth
+      >
+        <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: 5,
+              right: 2,
+              color: "white",
+              zIndex: 10,
+            }}
+            onClick={handleCloseModal}
+          >
+            <CloseIcon />
+          </IconButton>
+          {selectedVideo && (
+            <iframe
+              width="100%"
+              height="500px"
+              src={`https://www.youtube.com/embed/${selectedVideo}`}
+              title="YouTube Video"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
+          )}
+        </Box>
+      </Dialog>
     </Stack>
   );
 };

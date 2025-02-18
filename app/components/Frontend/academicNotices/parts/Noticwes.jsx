@@ -82,8 +82,7 @@ const Notices = () => {
         direction={"row"}
         gap={{ md: "20px", xs: "10px" }}
         flexWrap={"wrap"}
-        marginTop={"30px"}
-        marginLeft={"80px"}
+        p={4}
       >
         <DarkGreenButton
           bgColor="#379237"
