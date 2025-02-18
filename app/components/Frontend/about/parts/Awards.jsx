@@ -40,7 +40,7 @@ export default function Awards() {
       });
     }
 
-    const interval = setInterval(RotateCenter, 5000);
+    const interval = setInterval(RotateCenter, 2200);
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);

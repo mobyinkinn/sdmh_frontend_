@@ -38,7 +38,7 @@ export default function Todo() {
               borderRadius={"10px"}
               padding={"30px 10px"}
               alignItems={"center"}
-              width={{ md: "200px", xs: "140px" }}
+              width={{ md: "200px", xs: "180px" }}
               height={"180px"}
               gap={{ md: "20px", xs: "5px" }}
               justifyContent={"center"}

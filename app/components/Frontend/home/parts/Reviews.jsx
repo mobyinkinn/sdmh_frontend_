@@ -41,7 +41,7 @@ export default function Reviews() {
     autoplay: true,
     autoplaySpeed: 2000,
     speed: 1000,
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     arrows: false,

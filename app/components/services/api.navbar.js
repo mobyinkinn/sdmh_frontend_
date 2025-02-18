@@ -39,3 +39,22 @@ export const fetchNavbarById = async (id) => {
   });
   return response.data.message;
 };
+
+
+export const importCustomerData = async (file) => {
+  const formData = new FormData();
+  formData.append("csv", file);
+
+  const response = await axios.post(
+    `${ApiUrl}/navbar/import-customers`,
+    formData,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response.data;
+};

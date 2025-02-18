@@ -206,7 +206,9 @@ import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { useVideos } from "@/app/components/admin/videos/useVideos";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 export default function PatientStories() {
   
   const { data, isLoading, error } = useVideos();
@@ -221,6 +223,26 @@ export default function PatientStories() {
     const match = url.match(regex);
     return match ? match[1] : null;
   };
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    arrows: true,
+    slidesToShow: 1,
+    centerMode: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToScroll: 1,
+  };
+  const initialImages = [
+    { img: img1 },
+    { img: img2 },
+    { img: img3 },
+    { img: img4 },
+    { img: img1 },
+    { img: img3 },
+    { img: img2 },
+  ];
   const handleOpenModal = (videoUrl) => {
     console.log("videourl",videoUrl)
     const videoId = extractVideoId(videoUrl);
@@ -239,9 +261,10 @@ const handleCloseModal = () => {
 };
 
   return (
-    <ContainerMain marginTop={"40px"} alignItems="center">
+    <ContainerMain marginTop={"40px"} alignItems="center"padding={{sm:"5px"}}>
       <Head1>Patient Stories</Head1>
       <Stack
+        display={{ md: "flex", xs: "none" }}
         onMouseLeave={handleMouseLeave}
         direction="row"
         height="70vh"
@@ -496,7 +519,11 @@ const handleCloseModal = () => {
           </IconButton>
         </Box>
       </Stack>
-      <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
+      <Stack
+        alignItems={{ xs: "center", md: "start" }}
+        sx={{ mb: 5 }}
+        display={{ md: "flex", xs: "none" }}
+      >
         <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
       </Stack>
       <Dialog
@@ -532,5 +559,30 @@ const handleCloseModal = () => {
         </Box>
       </Dialog>
     </ContainerMain>
+  );
+}
+function ImageCard({ img }) {
+  return (
+    <Stack padding="5px">
+      <Stack
+        width="100%"
+        height="30vh"
+        padding="5px"
+        backgroundColor="#476C9B"
+        borderRadius="5px"
+      >
+        <Box
+          sx={{
+            backgroundImage: `url(${img.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            height: "100%",
+            width: "100%",
+          }}
+        >
+        </Box>
+        
+      </Stack>
+    </Stack>
   );
 }
