@@ -22,6 +22,12 @@ const ParaNormal = styled.span((props) => ({
   textAlign: props.textAlign || "left",
   margin: props.margin || props.margin?.lg || "0",
   backgroundColor: props.backgroundColor,
+  "&:hover": {
+    color: props.hoverColor || props.color,
+    backgroundColor: props.hoverBackgroundColor || props.backgroundColor,
+    fontWeight: props.hoverFontWeight || props.fontWeight,
+    cursor: props.cursor,
+  },
 
   // Breakpoint-specific values for textAlign
 

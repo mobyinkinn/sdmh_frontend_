@@ -3,8 +3,10 @@ import { Stack, Typography } from "@mui/material";
 import durlabhji from "../assets/dulabhji.png";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useRouter } from "next/navigation";
 
 export default function About() {
+  const router = useRouter();
   return (
     <ContainerMain
       flexDirection={{ sm: "column", smm: "column", md: "column", lg: "row" }}
@@ -49,7 +51,12 @@ export default function About() {
           The Avedna Ashram, the Rehabilitation and Limb Fitting Centre,
         </Typography>
         <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
-          <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
+          <ButtonMediumOutline
+            color="#379237"
+            onClick={() => router.push(`/about`)}
+          >
+            View All
+          </ButtonMediumOutline>
         </Stack>
       </Stack>
     </ContainerMain>

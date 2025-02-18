@@ -82,7 +82,7 @@ export default function MobileFooter() {
   return (
     <Stack
       width="100%"
-      display={{lg:"none",smm: "flex" }}
+      display={{ lg: "none", smm: "flex" }}
       sx={{
         backgroundImage: `url(${sdmh.src})`,
         backgroundSize: "cover",
@@ -120,6 +120,12 @@ export default function MobileFooter() {
                       fontSize={"0.8rem"}
                       marginTop={"6px"}
                       marginRight="15px"
+                      sx={{
+                        cursor: "pointer",
+                        "&:hover": {
+                          color: "#379237",
+                        },
+                      }}
                     >
                       {ele}
                     </Typography>

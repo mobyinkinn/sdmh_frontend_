@@ -209,8 +209,8 @@ import { useVideos } from "@/app/components/admin/videos/useVideos";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useRouter } from "next/navigation";
 export default function PatientStories() {
-  
   const { data, isLoading, error } = useVideos();
   const [isHovered, setIsHovered] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -223,6 +223,7 @@ export default function PatientStories() {
     const match = url.match(regex);
     return match ? match[1] : null;
   };
+  const router = useRouter();
   const settings = {
     dots: false,
     infinite: true,
@@ -244,7 +245,7 @@ export default function PatientStories() {
     { img: img2 },
   ];
   const handleOpenModal = (videoUrl) => {
-    console.log("videourl",videoUrl)
+    console.log("videourl", videoUrl);
     const videoId = extractVideoId(videoUrl);
     console.log("videoId", videoId);
 
@@ -254,14 +255,17 @@ export default function PatientStories() {
     }
   };
 
-
-const handleCloseModal = () => {
-  setOpenModal(false);
-  setSelectedVideo("");
-};
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedVideo("");
+  };
 
   return (
-    <ContainerMain marginTop={"40px"} alignItems="center"padding={{sm:"5px"}}>
+    <ContainerMain
+      marginTop={"40px"}
+      alignItems="center"
+      padding={{ sm: "5px" }}
+    >
       <Head1>Patient Stories</Head1>
       <Stack
         display={{ md: "flex", xs: "none" }}
@@ -524,7 +528,12 @@ const handleCloseModal = () => {
         sx={{ mb: 5 }}
         display={{ md: "flex", xs: "none" }}
       >
-        <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
+        <ButtonMediumOutline
+          color="#379237"
+          onClick={() => router.push(`/patient-testimonials`)}
+        >
+          View All
+        </ButtonMediumOutline>
       </Stack>
       <Dialog
         open={openModal}
@@ -579,9 +588,7 @@ function ImageCard({ img }) {
             height: "100%",
             width: "100%",
           }}
-        >
-        </Box>
-        
+        ></Box>
       </Stack>
     </Stack>
   );

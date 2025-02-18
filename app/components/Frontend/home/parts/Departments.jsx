@@ -139,7 +139,7 @@ export default function Departments() {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "40%", lg: "45%" }}
-          height={{lg:"60vh", sm:"35vh"}}
+          height={{ lg: "60vh", sm: "35vh" }}
           position={"relative"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -153,7 +153,11 @@ export default function Departments() {
         </Stack>
       </Stack>
       <Stack alignItems={{ xs: "center", md: "start" }}>
-        <ButtonMediumOutline margin="10px 50px" color="#379237">
+        <ButtonMediumOutline
+          margin="10px 50px"
+          color="#379237"
+          onClick={() => router.push(`/center-of-excellence`)}
+        >
           View All
         </ButtonMediumOutline>
       </Stack>

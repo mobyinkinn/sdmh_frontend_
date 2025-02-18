@@ -4,27 +4,32 @@ import speciality from "../assets/icons/speciality.png";
 import video from "../assets/icons/video.png";
 import { IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const filterData = [
   {
     id: 0,
     name: "Find a Doctor",
     icon: findDoc,
+    link: "find-a-doctor",
   },
   {
     id: 1,
     name: "Speciality",
     icon: speciality,
+    link: "",
   },
   {
     id: 0,
     name: "Video Consultation",
     icon: video,
+    link: "",
   },
   {
     id: 0,
     name: "Get Health Checkup",
     icon: findDoc,
+    link: "health-checkup",
   },
 ];
 
@@ -49,6 +54,7 @@ const specialityItems = [
 ];
 
 export default function FilterSection() {
+  const router = useRouter();
   return (
     <Stack
       direction={"row"}
@@ -68,13 +74,15 @@ export default function FilterSection() {
             key={i}
             sx={{
               borderRight: "1px solid white",
+              cursor: "pointer",
             }}
+            onClick={() => router.push(`${el.link}`)}
           >
             <Image src={el.icon} alt="" height={30} width={30} />
-            <Typography color="white" fontSize={"1rem"}>
+            <Typography color="white" fontSize={"1.2rem"}>
               {el.name}
             </Typography>
-            <IoIosArrowDown style={{ color: "white" }} />
+            {/* <IoIosArrowDown style={{ color: "white" }} /> */}
           </Stack>
         );
       })}

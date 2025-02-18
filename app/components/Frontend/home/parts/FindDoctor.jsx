@@ -29,7 +29,7 @@ export default function FindDoctor() {
         Good Heath Metal Physical And So Wel Being Not Just The Absence of
         Strong Connections And Gack Ancese To
       </Typography>
-      <ButtonSmallOutline color="#fff">View All</ButtonSmallOutline>
+      <ButtonSmallOutline color="#fff">Make Appointment</ButtonSmallOutline>
     </Stack>
   );
 }
