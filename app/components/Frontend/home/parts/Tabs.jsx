@@ -11,6 +11,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { useEvents } from "@/app/components/admin/events/useEvents";
 import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
 import Spinner from "@/app/components/ui/Spinner";
+import { useTpa } from "@/app/components/admin/tpa_index/useTpa";
+import { useAwards } from "@/app/components/admin/awards/useAwards";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 const tabs = [
   {
@@ -136,22 +140,36 @@ const tabs = [
 ];
 
 export default function Tabs() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState(0);
   const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { data: checkups, isLoading: isLoadingCheckups } = useCheckups();
+  const { data: awards, isLoading: isLoadingAwards } = useAwards();
+  const { data: tpas, isLoading: isLoadingTpas } = useTpa();
 
-  if (isLoadingCheckups || isLoadingEvents) return <Spinner />;
+  if (isLoadingCheckups || isLoadingEvents || isLoadingAwards || isLoadingTpas)
+    return <Spinner />;
 
   const tabsData = [
     {
       id: 0,
-      name: "Events",
+      name: "Latest Happening",
       data: [events],
     },
     {
       id: 1,
-      name: "Checkups",
+      name: "Health Checkup",
       data: [checkups],
+    },
+    {
+      id: 2,
+      name: "Awards",
+      data: [awards],
+    },
+    {
+      id: 3,
+      name: "TPA'S",
+      data: [tpas],
     },
   ];
 
@@ -200,7 +218,6 @@ export default function Tabs() {
           );
         })}
       </Stack>
-
       <Stack alignItems="center" display={{ xs: "flex", md: "none" }}>
         <Stack direction="row" flexWrap="wrap" justifyContent="start">
           {tabsData.map((el, i) => (
@@ -232,7 +249,7 @@ export default function Tabs() {
           ))}
         </Stack>
       </Stack>
-
+      {/* Mobile*/}
       <Stack
         direction={"row"}
         justifyContent={"center"}
@@ -249,6 +266,7 @@ export default function Tabs() {
         >
           {tabsData[activeTab].data[0]?.map((el, i) => {
             if (i >= 4) return null;
+            const isTPA = tabsData[activeTab].name === "TPA'S";
             return (
               <Stack
                 key={i}
@@ -264,7 +282,7 @@ export default function Tabs() {
                   width={"100%"}
                   height={"200px"}
                   sx={{
-                    backgroundImage: `url(${el.image})`,
+                    backgroundImage: `url(${isTPA ? el.logo : el.image})`,
                     backgroundSize: "cover",
                     borderRadius: "10px 10px 0 0",
                     backgroundPosition: "center center",
@@ -277,14 +295,19 @@ export default function Tabs() {
                     color={"#379237"}
                     fontWeight={"bold"}
                   >
-                    {el.title}
+                    {el.title} {el.name}
                   </Typography>
-                  <Typography
-                    textAlign={"center"}
-                    dangerouslySetInnerHTML={{
-                      __html: el.description.split(" ").slice(0, 25).join(" "),
-                    }}
-                  />
+                  {!isTPA && (
+                    <Typography
+                      textAlign={"center"}
+                      dangerouslySetInnerHTML={{
+                        __html: el.smallDescription
+                          .split(" ")
+                          .slice(0, 25)
+                          .join(" "),
+                      }}
+                    />
+                  )}
                   <Typography
                     sx={{
                       border: "1px solid black",
@@ -303,6 +326,7 @@ export default function Tabs() {
         </Slider>
       </Stack>
 
+      {/* Desktop*/}
       <Stack
         direction={"row"}
         gap={"20px"}
@@ -312,6 +336,11 @@ export default function Tabs() {
       >
         {tabsData[activeTab].data[0].map((el, i) => {
           if (i >= 4) return null;
+          const isTPA = tabsData[activeTab].name === "TPA'S";
+          const isHealthCheckup = tabsData[activeTab].name === "Health Checkup";
+          const isLatestHappening =
+            tabsData[activeTab].name === "Latest Happening";
+          const isAwards = tabsData[activeTab].name === "Awards";
           return (
             <Stack
               key={i}
@@ -325,7 +354,7 @@ export default function Tabs() {
                 width={"100%"}
                 height={"200px"}
                 sx={{
-                  backgroundImage: `url(${el.image})`,
+                  backgroundImage: `url(${isTPA ? el.logo : el.image})`,
                   backgroundSize: "cover",
                   borderRadius: "10px 10px 0 0",
                   backgroundPosition: "center center",
@@ -338,14 +367,19 @@ export default function Tabs() {
                   color={"#379237"}
                   fontWeight={"bold"}
                 >
-                  {el.title}
+                  {el.title} {el.name}
                 </Typography>
-                <Typography
-                  textAlign={"center"}
-                  dangerouslySetInnerHTML={{
-                    __html: el.description.split(" ").slice(0, 25).join(" "),
-                  }}
-                />
+                {!isTPA && (
+                  <Typography
+                    textAlign={"center"}
+                    dangerouslySetInnerHTML={{
+                      __html: el.smallDescription
+                        .split(" ")
+                        .slice(0, 25)
+                        .join(" "),
+                    }}
+                  />
+                )}
                 <Typography
                   sx={{
                     border: "1px solid black",
