@@ -139,7 +139,7 @@ export default function Departments() {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "40%", lg: "45%" }}
-          height={"60vh"}
+          height={{lg:"60vh", sm:"35vh"}}
           position={"relative"}
           justifyContent={"center"}
           alignItems={"center"}

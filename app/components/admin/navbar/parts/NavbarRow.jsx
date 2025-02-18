@@ -59,7 +59,7 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
         <span>{link}</span>
       </Stacked>
 
-      <Stacked>
+      {/* <Stacked>
         <Table columns="2fr 2fr 2fr">
           <Table.Header>
             <div>Item Order</div>
@@ -72,7 +72,7 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
             render={(item) => <ItemRow key={item.subItemOrderId} item={item} />}
           />
         </Table>
-      </Stacked>
+      </Stacked> */}
 
       <Stacked>
         <Menus.Menu>

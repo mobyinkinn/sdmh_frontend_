@@ -6,6 +6,7 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import Spinner from "@/app/components/ui/Spinner";
 
 export default function DetailsHero({ data, isLoading }) {
+  
   if (isLoading) {
     return <Spinner />;
   }
@@ -28,7 +29,13 @@ export default function DetailsHero({ data, isLoading }) {
         }}
       ></Box>
       <Stack gap={"20px"}>
-        <ParaNormal>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: data?.content,
+          }}
+        />
+
+        {/* <ParaNormal>
           Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting
           Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever
           Since The 1500s, When An Unknown Printer Took A Galley Of Type And
@@ -54,7 +61,7 @@ export default function DetailsHero({ data, isLoading }) {
           Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since The
           1500s, When An Unknown Printer Took A Galley Of Type And Essentially
           Unchanged.
-        </ParaNormal>
+        </ParaNormal> */}
       </Stack>
     </Stack>
   );

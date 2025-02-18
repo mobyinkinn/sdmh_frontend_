@@ -34,6 +34,7 @@ const theme = createTheme({
 });
 
 export default function RootLayout({ children }) {
+
   const [queryClient] = useState(() => new QueryClient());
   return (
     <html>

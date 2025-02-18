@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
@@ -10,8 +11,12 @@ import Available from "./parts/Available";
 import Reach from "./parts/Reach";
 import Ambu from "./parts/Ambu";
 import { Stack } from "@mui/material";
+import { useNavbar } from "../../admin/navbar/useNavbar";
+import Spinner from "../../ui/Spinner";
 
 const Greeting = () => {
+      const { isLoading } = useNavbar();
+      if (isLoading) return <Spinner />;
   return (
     <>
       <Navbar />

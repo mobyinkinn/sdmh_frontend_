@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import HoverYears from "./parts/HoverYears";
 import Navbar from "../navbar/Nav";
@@ -18,8 +19,13 @@ import MobileApp from "./parts/MoblieApp";
 import Qr from "./parts/Qr";
 import Footer from "../footer/Footer";
 import MobileFooter from "../footer/MobileFooter";
+import { useNavbar } from "../../admin/navbar/useNavbar";
+import Spinner from "../../ui/Spinner";
+import MobilePatient from "./parts/MobilePatient";
 
 const Home = () => {
+    const {isLoading} = useNavbar();
+    if(isLoading) return <Spinner/>
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
@@ -31,6 +37,7 @@ const Home = () => {
       <View />
       <HoverYears />
       <PatientStories />
+      <MobilePatient/>
       <Todo />
       <Tabs />
       <FindDoctor />
