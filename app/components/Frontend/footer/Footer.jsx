@@ -1,13 +1,13 @@
+"use client";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-
 import logo from "./parts/assets/logo.png";
 import { Box, Stack, Typography } from "@mui/material";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
-
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { PiYoutubeLogoBold } from "react-icons/pi";
+import { useRouter } from "next/navigation";
 
 const social = [
   {
@@ -38,61 +38,62 @@ const address = [
 ];
 
 const centerOfExcellence = [
-  { id: 0, data: "Cardiology" },
-  { id: 1, data: "Dermatology" },
-  { id: 2, data: "Nephrology" },
-  { id: 3, data: "Neurology" },
+  { id: 0, data: "Cardiology", link: "" },
+  { id: 1, data: "Dermatology", link: "" },
+  { id: 2, data: "Nephrology", link: "" },
+  { id: 3, data: "Neurology", link: "" },
 ];
 
 const supportACause = [
-  { id: 0, data: "Avedna Ashram" },
-  { id: 1, data: "Help little hearts" },
-  { id: 2, data: "Outreach" },
-  { id: 3, data: "Jaipur foot" },
+  { id: 0, data: "Avedna Ashram", link: "" },
+  { id: 1, data: "Help little hearts", link: "" },
+  { id: 2, data: "Outreach", link: "" },
+  { id: 3, data: "Jaipur foot", link: "" },
 ];
 
 const Patients = [
-  { id: 0, data: "Find a doctor" },
-  { id: 1, data: "Make an appointment" },
-  { id: 2, data: "Virtual tour" },
-  { id: 3, data: "Room tour" },
-  { id: 4, data: "Patient testimonial" },
-  { id: 5, data: "Timings" },
-  { id: 6, data: "Patient guide" },
+  { id: 0, data: "Find a doctor", link: "" },
+  { id: 1, data: "Make an appointment", link: "" },
+  { id: 2, data: "Virtual tour", link: "" },
+  { id: 3, data: "Room tour", link: "" },
+  { id: 4, data: "Patient testimonial", link: "/patient-testimonials" },
+  { id: 5, data: "Timings", link: "" },
+  { id: 6, data: "Patient guide", link: "" },
 ];
 
 const contactUs = [
-  { id: 0, data: "Enquiry" },
-  { id: 1, data: "Emergency" },
-  { id: 2, data: "Patient feedback" },
-  { id: 3, data: "Appointment" },
+  { id: 0, data: "Enquiry", link: "" },
+  { id: 1, data: "Emergency", link: "" },
+  { id: 2, data: "Patient testimonial", link: "/patient-testimonials" },
+  { id: 3, data: "Appointment", link: "/appointment" },
 ];
 
 const onlineService = [
-  { id: 0, data: "Video Consultation" },
-  { id: 1, data: "Lab reports" },
-  { id: 2, data: "Download our app" },
+  { id: 0, data: "Video Consultation", link: "" },
+  { id: 1, data: "Lab reports", link: "" },
+  { id: 2, data: "Download our app", link: "" },
 ];
 
 const quickLinks = [
-  { id: 0, data: "Academics" },
-  { id: 1, data: "Blog" },
-  { id: 2, data: "Events" },
-  { id: 3, data: "Terms & conditions" },
-  { id: 4, data: "Career" },
-  { id: 5, data: "News & press release" },
-  { id: 6, data: "Send a greeting" },
+  { id: 0, data: "Academics", link: "/academics/academics-deanery" },
+  { id: 1, data: "Blog", link: "/blog" },
+  { id: 2, data: "Events", link: "/event" },
+  { id: 3, data: "Terms & conditions", link: "/terms-and-conditions" },
+  { id: 4, data: "Career", link: "/career" },
+  { id: 5, data: "News & press release", link: "/news-press-release" },
+  { id: 6, data: "Send a greeting", link: "/send-a-greeting" },
 ];
 
 const aboutUs = [
-  { id: 0, data: "Our founders" },
-  { id: 1, data: "Vision & mission" },
-  { id: 2, data: "Secretary's message" },
-  { id: 3, data: "Awards & accredition" },
-  { id: 4, data: "Our founders" },
+  { id: 0, data: "Our founders", link: "" },
+  { id: 1, data: "Vision & mission", link: "" },
+  { id: 2, data: "Secretary's message", link: "" },
+  { id: 3, data: "Awards & accredition", link: "" },
+  { id: 4, data: "Our founders", link: "" },
 ];
 
 export default function Footer() {
+  const router = useRouter();
   return (
     <ContainerMain
       flexDirection={{ lg: "row" }}
@@ -124,7 +125,12 @@ export default function Footer() {
           </ParaNormal>
           {centerOfExcellence.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
@@ -136,7 +142,12 @@ export default function Footer() {
           </ParaNormal>
           {supportACause.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
@@ -150,7 +161,12 @@ export default function Footer() {
           </ParaNormal>
           {Patients.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
@@ -162,7 +178,12 @@ export default function Footer() {
           </ParaNormal>
           {contactUs.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
@@ -176,7 +197,12 @@ export default function Footer() {
           </ParaNormal>
           {onlineService.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
@@ -188,7 +214,12 @@ export default function Footer() {
           </ParaNormal>
           {quickLinks.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
@@ -202,7 +233,12 @@ export default function Footer() {
           </ParaNormal>
           {aboutUs.map((el, i) => {
             return (
-              <ParaNormal cursor="pointer" hoverColor="#379237" key={i}>
+              <ParaNormal
+                cursor="pointer"
+                hoverColor="#379237"
+                key={i}
+                onClick={() => router.push(`${el.link}`)}
+              >
                 {el.data}
               </ParaNormal>
             );
