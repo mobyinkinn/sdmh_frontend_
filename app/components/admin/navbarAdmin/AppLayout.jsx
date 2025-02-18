@@ -185,6 +185,13 @@ const navData = [
     link: "/admin/academic_teachings",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 23,
+    name: "Seo Meta Data",
+    link: "/admin/seo",
+    value: "seo",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 function AppLayout({ children }) {

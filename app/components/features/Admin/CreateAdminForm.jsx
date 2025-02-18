@@ -38,6 +38,7 @@ const options = [
   { value: "opinions", label: "Second Opinion" },
   { value: "navbar", label: "Navbar" },
   { value: "teachings", label: "Academics Teaching" },
+  { value: "seo", label: "Seo" },
 ];
 
 function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
@@ -146,7 +147,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
           options={options}
           className="basic-multi-select"
           classNamePrefix="select"
-          onChange={(e) => {
+          onClick={(e) => {
             handleMenu(e);
           }}
         />

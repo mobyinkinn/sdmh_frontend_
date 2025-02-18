@@ -164,7 +164,7 @@ const Enquire_Now = () => {
                 />
                 <ButtonMediumOutline color="green">Captcha</ButtonMediumOutline>
               </Stack> */}
-              <Stack alignItems={{ xs: "center", lg: "start" }}>
+              <Stack alignItems={{ xs: "center", lg: "center" }}>
                 <DarkGreenButton bgColor={"#379237"} borderRadius={"100px"}>
                   Submit
                 </DarkGreenButton>

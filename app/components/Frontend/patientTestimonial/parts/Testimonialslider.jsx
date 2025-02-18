@@ -161,7 +161,7 @@ const Testimonialslider = () => {
         padding="20px"
         paddinginner="10px"
       />
-      <Box
+      {/* <Box
         component="img"
         src={quotes.src}
         alt=""
@@ -175,64 +175,64 @@ const Testimonialslider = () => {
         {filteredData.map((el, i) => (
           <ReviewCard el={el} key={i} />
         ))}
-      </Slider>
+      </Slider> */}
     </Stack>
   );
 };
 
-function ReviewCard({ el }) {
-  return (
-    <Stack
-      direction={{ xs: "column", lg: "row" }}
-      gap={{ xs: "10px", lg: "10px" }}
-      width={{ md: "70%", xs: "100%" }}
-      margin={{ md: "0 auto" }}
-      alignItems={"center"}
-    >
-      <Box
-        component="img"
-        src={el.image}
-        alt=""
-        sx={{
-          borderRadius: "100%",
-          border: "4px solid",
-          borderColor: "#007946",
-          // width: { xs: "210px", lg: "160px" },
-          // height: { xs: "215px", lg: "160px" },
-          width: "160px",
-          height: "160px",
-        }}
-        // style={{
-        //   padding: "10px 30px",
-        //   paddingRight: "50px",
-        // }}
-      />
+// function ReviewCard({ el }) {
+//   return (
+//     <Stack
+//       direction={{ xs: "column", lg: "row" }}
+//       gap={{ xs: "10px", lg: "10px" }}
+//       width={{ md: "70%", xs: "100%" }}
+//       margin={{ md: "0 auto" }}
+//       alignItems={"center"}
+//     >
+//       <Box
+//         component="img"
+//         src={el.image}
+//         alt=""
+//         sx={{
+//           borderRadius: "100%",
+//           border: "4px solid",
+//           borderColor: "#007946",
+//           // width: { xs: "210px", lg: "160px" },
+//           // height: { xs: "215px", lg: "160px" },
+//           width: "160px",
+//           height: "160px",
+//         }}
+//         // style={{
+//         //   padding: "10px 30px",
+//         //   paddingRight: "50px",
+//         // }}
+//       />
 
-      <Stack
-        sx={{
-          borderLeft: { lg: "3px solid #379237" },
-          borderTop: { xs: "3px solid #379237", lg: "none" },
-        }}
-        gap={"10px"}
-        padding={"10px 30px"}
-        alignItems={{ xs: "center", lg: "normal" }}
-      >
-        <Typography
-          fontSize={{ xs: "0.8rem", lg: "1.2rem" }}
-          // width={{ xs: "90%", lg: "100%" }}
-          textAlign={{ md: "left", xs: "center" }}
-        >
-          {el.message}
-        </Typography>
-        <Head3 color="black" textAlign={"left"}>
-          {el.name}
-        </Head3>
-        <Typography fontSize={".9rem"} color={"#379237"}>
-          Happy Customer
-        </Typography>
-      </Stack>
-    </Stack>
-  );
-}
+//       <Stack
+//         sx={{
+//           borderLeft: { lg: "3px solid #379237" },
+//           borderTop: { xs: "3px solid #379237", lg: "none" },
+//         }}
+//         gap={"10px"}
+//         padding={"10px 30px"}
+//         alignItems={{ xs: "center", lg: "normal" }}
+//       >
+//         <Typography
+//           fontSize={{ xs: "0.8rem", lg: "1.2rem" }}
+//           // width={{ xs: "90%", lg: "100%" }}
+//           textAlign={{ md: "left", xs: "center" }}
+//         >
+//           {el.message}
+//         </Typography>
+//         <Head3 color="black" textAlign={"left"}>
+//           {el.name}
+//         </Head3>
+//         <Typography fontSize={".9rem"} color={"#379237"}>
+//           Happy Customer
+//         </Typography>
+//       </Stack>
+//     </Stack>
+//   );
+// }
 
 export default Testimonialslider;

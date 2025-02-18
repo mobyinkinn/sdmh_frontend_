@@ -115,14 +115,14 @@ function NavlinksTableOperations() {
           </>
         </Modal.Window>
       </Modal>
-      {/* <Modal>
+      <Modal>
         <Modal.Open opens="navlinks-form">
           <Button>Add Navbar Links</Button>
         </Modal.Open>
         <Modal.Window name="navlinks-form">
           <CreateNavlinksForm resourceName="Navbar Links" />
         </Modal.Window>
-      </Modal> */}
+      </Modal>
     </TableOperations>
   );
 }

@@ -38,6 +38,7 @@ const menu = [
   "Second Opinion",
   "navbar",
   "Academics Teaching",
+  "Seo",
 ];
 
 const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];

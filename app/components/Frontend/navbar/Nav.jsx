@@ -29,7 +29,7 @@ const navLinks = [
   { id: 0, name: "Appointment", link: "appointment" },
   { id: 0, name: "Academics", link: "academics/academics-deanery" },
   { id: 0, name: "Donation", link: "support-a-cause" },
-  { id: 0, name: "Contact Us" },
+  { id: 0, name: "Contact Us", link: "contact-us" },
   { id: 0, name: "Nursing college" },
 ];
 
@@ -324,9 +324,9 @@ export default function Navbar() {
                   <Stack
                     position="absolute"
                     bgcolor="white"
-                    boxShadow={3}
-                    padding={1}
-                    width={"10rem"}
+                    boxShadow={2}
+                    padding={2}
+                    width={"15rem"}
                     sx={{
                       opacity: openDropdown === i ? 1 : 0,
                       transform:

@@ -73,61 +73,67 @@ if (isLoading || !data?.length) {
  ];
 
   return (
-    <ContainerMain marginTop={"40px"} alignItems="center">
-      <Stack
-        width={"100%"}
-        height={"40vh"}
-        display={{ md: "none", xs: "flex" }}
-      >
-        <Slider {...settings}>
-          {initialImages.map((item, index) => (
-            <ImageCard
-              key={index}
-              img={item.img}
-              handleOpenModal={() => handleOpenModal(item.url)}
-            />
-          ))}
-        </Slider>
-      </Stack>
+    <Stack display={{ md: "none", xs: "flex" }}>
+      <ContainerMain marginTop={"40px"} alignItems="center">
+        <Stack
+          width={"100%"}
+          height={"40vh"}
+          display={{ md: "none", xs: "flex" }}
+        >
+          <Slider {...settings}>
+            {initialImages.map((item, index) => (
+              <ImageCard
+                key={index}
+                img={item.img}
+                handleOpenModal={() => handleOpenModal(item.url)}
+              />
+            ))}
+          </Slider>
+        </Stack>
 
-      <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
-        <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
-      </Stack>
+        <Stack
+          alignItems={{ xs: "center", md: "start" }}
+          sx={{ mb: 5 }}
+          display={{ md: "none", xs: "flex" }}
+        >
+          <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
+        </Stack>
 
-      {/* Video Modal */}
-      <Dialog
-        open={openModal}
-        onClose={handleCloseModal}
-        maxWidth="md"
-        fullWidth
-      >
-        <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-          <IconButton
-            sx={{
-              position: "absolute",
-              top: 5,
-              right: 2,
-              color: "white",
-              zIndex: 10,
-            }}
-            onClick={handleCloseModal}
-          >
-            <CloseIcon />
-          </IconButton>
-          {selectedVideo && (
-            <iframe
-              width="100%"
-              height="500px"
-              src={`https://www.youtube.com/embed/${selectedVideo}`}
-              title="YouTube Video"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            ></iframe>
-          )}
-        </Box>
-      </Dialog>
-    </ContainerMain>
+        {/* Video Modal */}
+        <Dialog
+          open={openModal}
+          onClose={handleCloseModal}
+          maxWidth="md"
+          fullWidth
+        >
+          <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+            <IconButton
+              sx={{
+                position: "absolute",
+                top: 5,
+                right: 2,
+                color: "white",
+                zIndex: 10,
+              }}
+              onClick={handleCloseModal}
+            >
+              <CloseIcon />
+            </IconButton>
+            {selectedVideo && (
+              <iframe
+                width="100%"
+                height="500px"
+                src={`https://www.youtube.com/embed/${selectedVideo}`}
+                title="YouTube Video"
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              ></iframe>
+            )}
+          </Box>
+        </Dialog>
+      </ContainerMain>
+    </Stack>
   );
 }
 

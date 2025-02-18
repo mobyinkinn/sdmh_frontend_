@@ -49,6 +49,7 @@ const options = [
   { value: "opinions", label: "Second Opinion" },
   { value: "navbar", label: "Navbar" },
   { value: "teachings", label: "Academics Teaching" },
+  { value: "seo", label: "Seo" },
 ];
 
 function EditAdminForm({ onCloseModal, id }) {
@@ -98,6 +99,7 @@ function EditAdminForm({ onCloseModal, id }) {
   function onError(errors) {}
   return (
     <Form
+      style={{ overflow: "visible" }}
       // onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >

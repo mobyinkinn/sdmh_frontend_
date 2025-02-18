@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
@@ -6,8 +7,12 @@ import BannerImage from "./parts/BannerImage";
 import Testimonialslider from "./parts/Testimonialslider";
 import PatientStories from "./parts/PatientStories";
 import MobileFooter from "../footer/MobileFooter";
+import { useNavbar } from "../../admin/navbar/useNavbar";
+import Spinner from "../../ui/Spinner";
 
 const PatientTestimonials = () => {
+      const { isLoading } = useNavbar();
+      if (isLoading) return <Spinner />;
   return (
     <>
       <Navbar />

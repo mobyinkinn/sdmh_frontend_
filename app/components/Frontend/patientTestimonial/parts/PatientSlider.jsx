@@ -78,6 +78,7 @@ const Designslider = ({
                 >
                   {group?.map((item) => (
                     <Stack
+                    padding={"40px"}
                       direction={"row"}
                       key={item?.id}
                       sx={{
@@ -93,20 +94,22 @@ const Designslider = ({
                           borderRadius: "100%",
                           border: "4px solid",
                           borderColor: "#007946",
-                          width: "160px",
-                          height: "160px",
+                          width: "25%",
+                          height: "140px",
                           backgroundImage: `url(${item?.image})`,
                           //   backgroundSize: "cover",
                           //   backgroundPosition: "center",
                           //   borderRadius: "10px",
                         }}
                       />
+                      <Stack width={"75%"}>
                       <Typography variant="h6" mt={2}>
                         {item?.title}
                       </Typography>
                       <Typography variant="body2" color="textSecondary">
                         {item?.message}
                       </Typography>
+                      </Stack>
                     </Stack>
                   ))}
                 </Stack>
