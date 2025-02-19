@@ -9,7 +9,7 @@ const breakpoints = {
 };
 const Head1 = styled.span((props) => ({
   position: props.position,
-  color: props.color || "#379237",
+  color: props.color || "#005900",
   fontWeight: props.fontWeight || "bold",
   width: props.width,
   textAlign: props.textAlign || "center",
@@ -42,7 +42,7 @@ const Head1 = styled.span((props) => ({
 }));
 
 const Head2 = styled.span((props) => ({
-  color: props.color || "#379237",
+  color: props.color || "#005900",
   fontWeight: props.fontWeight || "bold",
   width: props.width,
   textAlign: props.textAlign || "center",
@@ -63,7 +63,7 @@ const Head2 = styled.span((props) => ({
 }));
 
 const Head3 = styled.span((props) => ({
-  color: props.color || "#379237",
+  color: props.color || "#005900",
   fontWeight: props.fontWeight || "bold",
   textAlign: props.textAlign || "center",
   width: props.width,
@@ -86,7 +86,7 @@ const Head3 = styled.span((props) => ({
 }));
 
 const Head4 = styled.span((props) => ({
-  color: props.color || "#379237",
+  color: props.color || "#005900",
   fontWeight: props.fontWeight || "bold",
   textAlign: props.textAlign || "center",
   width: props.width,
