@@ -82,7 +82,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
     const doc = parser.parseFromString(htmlString, "text/html");
 
     const sections = [];
-    const headings = doc.querySelectorAll("h1 h2 h3 h4 h5 h6 ");
+    const headings = doc.querySelectorAll("h3");
 
     headings.forEach((heading) => {
       const section = {
