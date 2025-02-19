@@ -356,12 +356,18 @@ const Jodit = ({ content, setContent }) => {
     setContent(value);
   };
 
-  const toggleHtmlMode = () => {
+  // const toggleHtmlMode = () => {
+  //   setIsHtmlMode((prev) => !prev);
+  // };
+  const toggleHtmlMode = (event) => {
+    event.preventDefault(); // Prevent default behavior to avoid unintentional re-renders
     setIsHtmlMode((prev) => !prev);
   };
 
+
   const modules = {
     toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
       [{ font: [] }, { size: customFontSizes }],
       ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],
@@ -374,6 +380,7 @@ const Jodit = ({ content, setContent }) => {
   };
 
   const formats = [
+    "header",
     "font",
     "size",
     "bold",

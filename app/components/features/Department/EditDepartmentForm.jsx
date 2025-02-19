@@ -30,7 +30,8 @@ function EditDepartmentForm({ onCloseModal, id }) {
   });
 
   const [name, setName] = useState(filteredData[0].name);
-  const [content, setContent] = useState(filteredData[0].content);
+  // const [content, setContent] = useState(filteredData[0].content);
+const [content, setContent] = useState(filteredData?.[0]?.content || "");
 
   const { isUpdating, updateDepartment } = useUpdateDepartment();
   const { updateImage, isUpdatingImage } = useUpdateImage();
