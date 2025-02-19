@@ -1,16 +1,9 @@
 import { useForm } from "react-hook-form";
-
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
-import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-import {
-  useCreateBanner,
-  useBanner,
-  useUpdateBanner,
-} from "../../admin/banner/parts/useBanner";
 import { Stack } from "@mui/material";
 import {
   useDepartment,
@@ -38,7 +31,6 @@ function EditDepartmentForm({ onCloseModal, id }) {
 
   const { errors } = formState;
   if (isUpdating || isUpdatingImage || isUpdatingBanner) return <SpinnerMini />;
-  // const { isUpdating, updateBannerImage } = useUpdateBanner();
 
   function onUpdateDepartment(name, content, id) {
     const formdata = { name, content };

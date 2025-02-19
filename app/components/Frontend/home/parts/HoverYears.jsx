@@ -5,7 +5,7 @@ import hoverbg from "../assets/hoverbg.png";
 import { TfiArrowCircleUp } from "react-icons/tfi";
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import img1 from "../assets/HoverYears/1958.png"
+import img1 from "../assets/HoverYears/1958.png";
 import img2 from "../assets/HoverYears/1963.png";
 import img3 from "../assets/HoverYears/1969.png";
 import img4 from "../assets/HoverYears/1971.png";
@@ -289,8 +289,9 @@ const HoverYears = () => {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "60%" }}
+          height={{ md: "85vh", xs: "70vh" }}
           gap={"12px"}
-          padding={"40px 40px 10px 40px"}
+          padding={"30px 30px 10px 30px"}
           bgcolor={"#FBF6EE"}
           fontSize={{ md: "1rem", xs: "0.8rem" }}
         >
@@ -309,17 +310,25 @@ const HoverYears = () => {
               </Typography>
               <Typography fontWeight={"bold"}>{el.Title}</Typography>
               <Typography>{el.Desc}</Typography>
-              {el.img && (
-                <Box mt={2}>
-                  <Image
-                    src={el.img}
-                    alt={el.Title || "Image"}
-                    width={350} // Adjust width as per design needs
-                    height={250} // Adjust height as per design needs
-                    objectFit="contain"
-                  />
-                </Box>
-              )}
+              <Box>
+                {el.img && (
+                  <Box
+                    mt={2}
+                    sx={{
+                      backgroundImage: `url(${el.img.src})`,
+                      backgroundPosition: "center center",
+                      backgroundSize: "cover",
+                      width: { xs: "120px", md: "130px", lg: "285px" },
+                      height: {
+                        xs: "121px",
+                        md: "142px",
+                        lg: "367px",
+                        xl: "40vh",
+                      },
+                    }}
+                  ></Box>
+                )}
+              </Box>
               {/* <Image src={el.img} alt="" fill objectFit="contain" /> */}
             </Stack>
           ))}
