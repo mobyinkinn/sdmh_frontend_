@@ -19,7 +19,7 @@ export default function CoeDetails() {
       <Navbar />
       <ContainerMain bgColor={"#FBF6EE"}>
         <DetailsHero data={data} isLoading={isLoading} />
-        <Procedure />
+        <Procedure data ={data}/>
         <Doctors _id={_id} />
       </ContainerMain>
       <Footer />
