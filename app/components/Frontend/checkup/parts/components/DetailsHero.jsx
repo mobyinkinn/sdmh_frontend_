@@ -1,3 +1,4 @@
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Stack, Typography } from "@mui/material";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
@@ -8,6 +9,7 @@ import Group_1 from "../assets/Group_1.png";
 import Group_2 from "../assets/Group_2.png";
 import Group_3 from "../assets/Group_3.png";
 import Group_4 from "../assets/Group_4.png";
+import { useEffect, useState } from "react";
 
 const checkupDetails = [
   {
@@ -66,45 +68,49 @@ const groupImages = [
 ];
 
 const DetailsHero = ({ id, data, isLoading }) => {
-  const extractParagraphs = (htmlContent) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, "text/html");
-    const paragraphs = doc.querySelectorAll("p");
+  const [listItemsArray, setListItemsArray] = useState([]);
+  const [arrOfObj, setArrOfObj] = useState([]);
 
-    // Convert NodeList to an array of text content
-    return Array.from(paragraphs).map((item) => item.textContent.trim());
-  };
-
-  const listItemsArray = extractParagraphs(data?.description);
-
-  function extractSections(htmlString) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlString, "text/html");
-
-    const sections = [];
-    const headings = doc.querySelectorAll("h3");
-
-    headings.forEach((heading) => {
-      const section = {
-        title: heading.textContent.trim(),
-        items: [],
+  useEffect(() => {
+    if (typeof window !== "undefined" && data?.description) {
+      const extractParagraphs = (htmlContent) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        return Array.from(doc.querySelectorAll("p")).map((item) =>
+          item.textContent.trim()
+        );
       };
 
-      let nextElement = heading.nextElementSibling;
-      while (nextElement && nextElement.tagName === "UL") {
-        nextElement.querySelectorAll("li").forEach((li) => {
-          section.items.push(li.textContent.trim());
+      const extractSections = (htmlString) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, "text/html");
+        const sections = [];
+        const headings = doc.querySelectorAll("h1");
+
+        headings.forEach((heading) => {
+          const section = {
+            title: heading.textContent.trim(),
+            items: [],
+          };
+
+          let nextElement = heading.nextElementSibling;
+          while (nextElement && nextElement.tagName === "UL") {
+            nextElement.querySelectorAll("li").forEach((li) => {
+              section.items.push(li.textContent.trim());
+            });
+            nextElement = nextElement.nextElementSibling;
+          }
+
+          sections.push(section);
         });
-        nextElement = nextElement.nextElementSibling;
-      }
 
-      sections.push(section);
-    });
+        return sections;
+      };
 
-    return sections;
-  }
-
-  const arrOfObj = extractSections(data?.description);
+      setListItemsArray(extractParagraphs(data?.description));
+      setArrOfObj(extractSections(data?.description));
+    }
+  }, [data?.description]);
 
   if (isLoading) {
     return <Spinner />;
