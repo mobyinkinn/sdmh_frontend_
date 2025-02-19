@@ -308,17 +308,30 @@ export default function Tabs() {
                       }}
                     />
                   )}
-                  <Typography
-                    sx={{
-                      border: "1px solid black",
-                      padding: "10px 40px",
-                      borderRadius: "200px",
-                      cursor: "pointer",
-                      textAlign: "center",
-                    }}
-                  >
-                    Know More
-                  </Typography>
+                  {!isTPA && (
+                    <Typography
+                      sx={{
+                        border: "1px solid black",
+                        padding: "10px 40px",
+                        borderRadius: "200px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        const basePath = {
+                          "Latest Happening": "/event",
+                          "Health Checkup": "/health-checkup",
+                          Awards: "/award",
+                          "TPA'S": "/tpa",
+                        };
+
+                        router.push(
+                          `${basePath[tabsData[activeTab].name]}/${el._id}`
+                        );
+                      }}
+                    >
+                      Know More
+                    </Typography>
+                  )}
                 </Stack>
               </Stack>
             );
@@ -337,10 +350,7 @@ export default function Tabs() {
         {tabsData[activeTab].data[0].map((el, i) => {
           if (i >= 4) return null;
           const isTPA = tabsData[activeTab].name === "TPA'S";
-          const isHealthCheckup = tabsData[activeTab].name === "Health Checkup";
-          const isLatestHappening =
-            tabsData[activeTab].name === "Latest Happening";
-          const isAwards = tabsData[activeTab].name === "Awards";
+
           return (
             <Stack
               key={i}
@@ -380,23 +390,50 @@ export default function Tabs() {
                     }}
                   />
                 )}
-                <Typography
-                  sx={{
-                    border: "1px solid black",
-                    padding: "10px 40px",
-                    borderRadius: "200px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Know More
-                </Typography>
+                {!isTPA && (
+                  <Typography
+                    sx={{
+                      border: "1px solid black",
+                      padding: "10px 40px",
+                      borderRadius: "200px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      const basePath = {
+                        "Latest Happening": "/event",
+                        "Health Checkup": "/health-checkup",
+                        Awards: "/award",
+                        "TPA'S": "/tpa",
+                      };
+
+                      router.push(
+                        `${basePath[tabsData[activeTab].name]}/${el._id}`
+                      );
+                    }}
+                  >
+                    Know More
+                  </Typography>
+                )}
               </Stack>
             </Stack>
           );
         })}
       </Stack>
       <Stack alignItems="center">
-        <ButtonMediumOutline margin="0 50px" color="#379237">
+        <ButtonMediumOutline
+          margin="0 50px"
+          color="#379237"
+          onClick={() => {
+            const basePath = {
+              "Latest Happening": "/event",
+              "Health Checkup": "/health-checkup",
+              Awards: "/award",
+              "TPA'S": "/tpa",
+            };
+
+            router.push(`${basePath[tabsData[activeTab].name]}`);
+          }}
+        >
           View All
         </ButtonMediumOutline>
       </Stack>
