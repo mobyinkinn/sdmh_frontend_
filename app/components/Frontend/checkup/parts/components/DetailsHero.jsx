@@ -66,6 +66,46 @@ const groupImages = [
 ];
 
 const DetailsHero = ({ id, data, isLoading }) => {
+  const extractParagraphs = (htmlContent) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, "text/html");
+    const paragraphs = doc.querySelectorAll("p");
+
+    // Convert NodeList to an array of text content
+    return Array.from(paragraphs).map((item) => item.textContent.trim());
+  };
+
+  const listItemsArray = extractParagraphs(data?.description);
+
+  function extractSections(htmlString) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+
+    const sections = [];
+    const headings = doc.querySelectorAll("h1 h2 h3 h4 h5 h6 ");
+
+    headings.forEach((heading) => {
+      const section = {
+        title: heading.textContent.trim(),
+        items: [],
+      };
+
+      let nextElement = heading.nextElementSibling;
+      while (nextElement && nextElement.tagName === "UL") {
+        nextElement.querySelectorAll("li").forEach((li) => {
+          section.items.push(li.textContent.trim());
+        });
+        nextElement = nextElement.nextElementSibling;
+      }
+
+      sections.push(section);
+    });
+
+    return sections;
+  }
+
+  const arrOfObj = extractSections(data?.description);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -95,14 +135,18 @@ const DetailsHero = ({ id, data, isLoading }) => {
         >
           ₹{data?.price}
         </Typography>
-        <ParaNormal
-          color="#000000"
-          fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
-          fontWeight={"400"}
-          lineheight={"2.1rem"}
-          padding={"0px 50px"}
-          dangerouslySetInnerHTML={{ __html: data?.description }}
-        />
+        {listItemsArray.map((el, i) => (
+          <ParaNormal
+            key={i}
+            color="#000000"
+            fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+            fontWeight={"400"}
+            lineheight={"2.1rem"}
+            padding={"0px 50px"}
+          >
+            {el}
+          </ParaNormal>
+        ))}
       </Stack>
       <Stack marginTop={2}>
         <ButtonMediumOutline margin="auto" color="#007946">
@@ -119,7 +163,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
         flexWrap={"wrap"}
         padding={{ xs: "12px" }}
       >
-        {checkupDetails.map((item) => (
+        {arrOfObj.map((item) => (
           <Stack key={item.title} mb={2}>
             <ParaNormal
               color="#000000"
