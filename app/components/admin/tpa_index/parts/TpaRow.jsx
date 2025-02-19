@@ -41,7 +41,7 @@ const Stacked = styled.div`
   }
 `;
 
-function TpaRow({ academic: { _id, name, logo, status } }) {
+function TpaRow({ academic: { _id, name, logo, status, tag } }) {
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   const { mutate: deleteTpa, isLoading: isDeleting } = useDeleteTpa();
@@ -85,7 +85,9 @@ function TpaRow({ academic: { _id, name, logo, status } }) {
       <Stacked>
         <Image src={logo} alt={name} width={50} height={50} />
       </Stacked>
-
+ <Stacked>
+        <span>{tag}</span>
+      </Stacked>
       <Tag type={status ? "green" : "silver"}>
         {status ? "Active" : "Inactive"}
       </Tag>

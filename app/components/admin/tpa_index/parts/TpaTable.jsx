@@ -56,10 +56,11 @@ function TpaTable() {
   if (!tpaData.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 3fr 2fr 5.8fr 2fr 2.2rem">
+      <Table columns="2fr 3fr 2fr 2fr 5.8fr 2fr 2.2rem">
         <Table.Header>
           <div>Name</div>
           <div>Image</div>
+          <div>Tag</div>
           <div>Status</div>
           <div>id</div>
           <div>Actions</div>

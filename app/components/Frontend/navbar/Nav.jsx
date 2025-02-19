@@ -94,6 +94,9 @@ export default function Navbar() {
           </Stack>
           <Stack direction={"row"} gap={"25px"}>
             <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
+             Second Opinion
+            </Typography>
+            <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
               Lab Reports
             </Typography>
             <Box
