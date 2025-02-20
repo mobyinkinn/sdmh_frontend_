@@ -1,6 +1,6 @@
+"use client";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { IoIosSend } from "react-icons/io";
-
 import qr from "../assets/icons/qr.png";
 import {
   Head1,
@@ -12,8 +12,22 @@ import { Stack, Typography } from "@mui/material";
 import { DarkGreenButton } from "@/app/styledComponents/frontend/Buttons";
 import Image from "next/image";
 import { SearchInput, TextInput } from "@/app/styledComponents/frontend/Inputs";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import { useCreateNewsletter } from "@/app/components/admin/newsletter/useNewsletter";
+import SpinnerMini from "@/app/components/ui/SpinnerMini";
+import { useState } from "react";
 
 export default function Qr() {
+  const [email, setEmail] = useState("");
+  const { createNewsletters, isCreating } = useCreateNewsletter();
+  if (isCreating) return <SpinnerMini />;
+
+  const handleNewsletterClick = () => {
+    createNewsletters({ email });
+    alert("Newsletter subscription successful!");
+    setEmail("");
+  };
+
   return (
     <ContainerMain
       flexDirection={{ lg: "row", xs: "column", sm: "column", smm: "column" }}
@@ -37,14 +51,37 @@ export default function Qr() {
           The point of using Lorem Ipsum is that more-or-less normal
           distribution.
         </Typography>
-        <TextInput
-          bgColor={"#379237"}
-          borderRadius={"100px"}
-          width={"250px"}
-          margin={"0 auto"}
-          color="white"
-          placeholderColor={"white"}
+
+        <TextField
+          variant="outlined"
           placeholder="Enter Your Mail Id"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          sx={{
+            backgroundColor: "#005900",
+            borderRadius: "50px",
+            width: { xs: "254px", lg: "300px" },
+            "& input": { color: "white" },
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "50px",
+              "& fieldset": { border: "none" },
+            },
+            "& .MuiInputBase-input::placeholder": { color: "white" },
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  sx={{ color: "white" }}
+                  onClick={handleNewsletterClick}
+                  disabled={isCreating}
+                >
+                  <IoIosSend />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
       </Stack>
       <Stack
