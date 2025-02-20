@@ -55,6 +55,7 @@ function EventRow({
     featured,
     images,
     image,
+    tag,
   },
 }) {
   const [fullDesc, showFullDesc] = useState(false);
@@ -71,6 +72,7 @@ function EventRow({
     date,
     images,
     image,
+    tag,
   });
 
   const handleConfirmEdit = async () => {
@@ -80,6 +82,7 @@ function EventRow({
       smallDescription: editData.smallDescription,
       description: descContent,
       date: created,
+      tag: editData.tag,
     };
 
     updateEvent(

@@ -118,9 +118,10 @@ export const useUpdateSingleImageFromEvent = () => {
 };
 
 export const useEventById = (id) => {
-  return useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["Events", id],
     queryFn: () => fetchEventById(id),
     staleTime: 5 * 60 * 1000,
   });
+  return { data, isLoading, error };
 };

@@ -12,6 +12,7 @@ import { FaEdit } from "react-icons/fa";
 import { useUpdateSingleImageFromEvent } from "../../admin/events/useEvents";
 import { ConstantAlphaFactor } from "three";
 import SpinnerMini from "../../ui/SpinnerMini";
+import styled from "styled-components";
 
 const EditEventsForm = ({
   id,
@@ -26,6 +27,21 @@ const EditEventsForm = ({
 }) => {
   const { mutate: updateSingleImageFromEvent, isPending: isUpdatingImage } =
     useUpdateSingleImageFromEvent();
+
+  const StyledSelect = styled.select`
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid
+      ${(props) =>
+        props.type === "white"
+          ? "var(--color-grey-100)"
+          : "var(--color-grey-300)"};
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-grey-0);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  `;
+
   if (isUpdatingImage) return <SpinnerMini />;
 
   const handleImageChange = (e) => {
@@ -63,10 +79,8 @@ const EditEventsForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     onCloseModal?.();
-    onConfirm(); // Call the onConfirm function to handle the submission logic
+    onConfirm();
   };
-
-  // title, smallDescription, description, date, featured, status, images
 
   return (
     <form onSubmit={handleSubmit}>
@@ -94,16 +108,33 @@ const EditEventsForm = ({
             />
           </FormRow>
         </Stack>
-        <FormRow label="Small Description">
-          <Input
-            disabled={disabled}
-            type="text"
-            id="smallDescription"
-            name="smallDescription"
-            value={editData.smallDescription || ""}
-            onChange={handleInputChange}
-          />
-        </FormRow>
+        <Stack direction={"row"} justifyContent={"space-around"} columnGap={5}>
+          <FormRow label="Small Description">
+            <Input
+              disabled={disabled}
+              type="text"
+              id="smallDescription"
+              name="smallDescription"
+              value={editData.smallDescription || ""}
+              onChange={handleInputChange}
+            />
+          </FormRow>
+
+          <FormRow label="Tag">
+            <StyledSelect
+              id="tag"
+              name="tag"
+              value={editData.tag || ""}
+              onChange={handleInputChange}
+            >
+              <option value="">Select a tag</option>
+              <option value="Upcoming">Upcoming</option>
+              <option value="Recent">Recent</option>
+              <option value="Academics">Academics</option>
+              <option value="Public Awareness">Public Awareness</option>
+            </StyledSelect>
+          </FormRow>
+        </Stack>
 
         <FormRow label="Description"></FormRow>
         <Jodit content={descContent} setContent={setDescContent} />
