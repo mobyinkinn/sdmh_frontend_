@@ -46,12 +46,12 @@ export default function EventCard({ career }) {
         width={{ md: "30%", xs: "100%" }}
         height={{ md: "25vh", xs: "35vh" }}
         sx={{
-          backgroundImage: `url(${hovered ? hoverImg.src : img.src})`,
+          backgroundImage: `url(${hovered ? career.image : career.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
           "& :hover": {
-            backgroundImage: `url(${hoverImg.src})`,
+            backgroundImage: `url(${career.image})`,
           },
         }}
       ></Stack>

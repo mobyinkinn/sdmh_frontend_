@@ -8,7 +8,6 @@ import Spinner from "@/app/components/ui/Spinner";
 
 const Tabdata = () => {
   const { data, isLoading, error } = useEvents();
-  console.log("data",data);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const eventData = [
     {
@@ -67,16 +66,16 @@ const Tabdata = () => {
       status: true,
     },
   ];
-  const categories = [ ...new Set(data?.map((event) => event.tag))];
+  const categories = ["All", ...new Set(data?.map((event) => event.tag))];
 
   // Filter event data based on the selected category
   const filteredData =
     selectedCategory === "All"
       ? data
       : data.filter((event) => event.tag === selectedCategory);
-if (isLoading){
-  return <Spinner/>
-}
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <>
       {/* Tabs Section */}

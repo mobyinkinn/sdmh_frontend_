@@ -48,26 +48,33 @@
 //     </Stack>
 //   );
 // }
-
-
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Stack } from "@mui/material";
 import baloon from "../assets/bigHotAirBaloon.png";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import Spinner from "@/app/components/ui/Spinner";
+import { useEffect, useState } from "react";
 
 export default function DetailsHero({ data, isLoading }) {
-  const extractParagraphs = (htmlContent) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, "text/html");
-    const paragraphs = doc.querySelectorAll("p");
+  const [paragraphs, setParagraphs] = useState([]);
 
-    // Convert NodeList to an array of text content
-    return Array.from(paragraphs).map((item) => item.textContent.trim());
-  };
+  useEffect(() => {
+    if (typeof window === "undefined" || !data?.content) return;
 
-  const listItemsArray = extractParagraphs(data?.content);
-  console.log("Extracted Paragraphs:", listItemsArray);
+    const extractParagraphs = (htmlContent) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, "text/html");
+      const paragraphs = doc.querySelectorAll("p");
+
+      // Convert NodeList to an array of text content
+      return Array.from(paragraphs).map((item) => item.textContent.trim());
+    };
+
+    setParagraphs(extractParagraphs(data?.content));
+  }, [data]);
+
+  console.log("Extracted Paragraphs c1:", paragraphs);
 
   if (isLoading) {
     return <Spinner />;
@@ -92,7 +99,7 @@ export default function DetailsHero({ data, isLoading }) {
         }}
       ></Box>
       <Stack gap={"20px"}>
-        {listItemsArray.map((el, i) => (
+        {paragraphs.map((el, i) => (
           <ParaNormal key={i} textAlign={"justify"}>
             {el}
           </ParaNormal>

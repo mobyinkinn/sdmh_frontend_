@@ -7,45 +7,67 @@ import { useParams } from "next/navigation";
 import { Box, Stack } from "@mui/material";
 import BannerImage from "./assests/Image.png";
 import Recent from "./assests/recent1.png";
-
 import Image from "next/image";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
+import {
+  useEventById,
+  useEvents,
+} from "@/app/components/admin/events/useEvents";
+import moment from "moment";
+import Spinner from "@/app/components/ui/Spinner";
 
+const data = [
+  {
+    Img: Recent,
+    Title:
+      "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+    data: "13 Dec 2024",
+  },
+  {
+    Img: Recent,
+    Title:
+      "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+    data: "13 Dec 2024",
+  },
+  {
+    Img: Recent,
+    Title:
+      "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+    data: "13 Dec 2024",
+  },
+  {
+    Img: Recent,
+    Title:
+      "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
+    data: "13 Dec 2024",
+  },
+];
 const EventInner = () => {
-  const data = [
-    {
-      Img: Recent,
-      Title:
-        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-      data: "13 Dec 2024",
-    },
-    {
-      Img: Recent,
-      Title:
-        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-      data: "13 Dec 2024",
-    },
-    {
-      Img: Recent,
-      Title:
-        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-      data: "13 Dec 2024",
-    },
-    {
-      Img: Recent,
-      Title:
-        "First hospital in North India to as an “Active Emerging Lung Transplant Centre",
-      data: "13 Dec 2024",
-    },
-  ];
   const { _id } = useParams();
+  const { data: allEventsData, isLoading: isLoadingEvents } = useEvents();
+  const { data: eventData, isLoading: isLoadingEvent } = useEventById(_id);
+
+  console.log("All Events Data", allEventsData);
+
+  const filteredEvents = allEventsData
+    ?.filter((event) => event._id !== _id)
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date in descending order
+    .slice(0, 4); // Get the first four most recent events
+
+  console.log("Filtered Events Data", filteredEvents);
+
+  const formattedDate = eventData?.date
+    ? moment(eventData.date).format("MMMM Do YYYY")
+    : "Date not available";
+
+  if (isLoadingEvent || isLoadingEvents) return <Spinner />;
   return (
     <>
       <Navbar />
       <Stack
         direction={{ md: "row" }}
         gap={{ md: 5, xs: 2 }}
-        padding={{ md: 5, sm: 3, xs: 2 }}
+        padding={{ md: 5, sm: 3, xs: 0 }}
       >
         <Stack width={{ md: "70%" }}>
           <Stack
@@ -57,7 +79,7 @@ const EventInner = () => {
               borderRadius: "10px",
             }}
           >
-            <Image src={BannerImage.src} fill objectFit="cover" />
+            <Image src={eventData.image} fill objectFit="cover" />
           </Stack>
           <Stack
             direction={{ md: "row", xs: "column-reverse" }}
@@ -70,39 +92,18 @@ const EventInner = () => {
               color="black"
               style={{ fontSize: "20px" }}
             >
-              Upcoming {_id}
+              {eventData.tag}
             </Head1>
-            <ParaNormal color="#000000">13 Dec 2024</ParaNormal>
+            <ParaNormal color="#000000">{formattedDate}</ParaNormal>
           </Stack>
           <Stack>
             <Head1 color="#476C9B" style={{ textAlign: "left" }}>
-              ETHealthWorld NutriWell Conclave
+              {eventData.title}
             </Head1>
-            <ParaNormal textAlign={"justify"}>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English. Among these,
-              leukaemia is the most common, accounting for about 30% of all
-              childhood cancers. Leukaemia can occur at any age but it is mostly
-              seen in children aged 2 to 6 years, with 46% cases being seen in
-              2- and 3-year-olds, dropping to 9% by age 19. While the disease
-              can’t be prevented, its treatment has evolved over the years with
-              strides being made through Bone Marrow Transplantation (BMT) and
-              CAR T-cell therapy. While BMT from a fully matched sibling donor
-              has a success rate of over 90%, providing a potentially permanent
-              cure, cutting-edge immunotherapy called CAR T-cell therapy is an
-              emerging option for treatment of some of the most complex cases of
-              childhood leukaemias and lymphomas. CAR T-cell therapy harnesses
-              the body's own T cells, a type of immune cell, to target and
-              destroy cancer cells. Dr. Satya Prakash Yadav, Director of
-              Paediatric Bone Marrow Transplant at Medanta, Gurugram, stated,
-              “Despite advancements in treatment, blood cancer remains a
-              significant health concern in India. For many patients, bone
-              marrow or stem cell transplants become their only chance of
-              recovery.
-            </ParaNormal>
+            <ParaNormal
+              textAlign={"justify"}
+              dangerouslySetInnerHTML={{ __html: eventData.description }}
+            />
           </Stack>
         </Stack>
         <Stack
@@ -117,30 +118,30 @@ const EventInner = () => {
           <Head1 color="white" style={{ fontSize: "20px" }}>
             Recent Events
           </Head1>
-          {data.map((d, i) => (
+          {filteredEvents.map((d, i) => (
             <Stack gap={"5px"} key={i}>
               <Stack
                 sx={{
-                  width: "100%",
+                  width: { xs: "230px", md: "140px", lg: "250px" },
                   height: { sm: "300px", xs: "200px", md: "150px" },
                   position: "relative",
                 }}
               >
                 <Image
-                  src={d.Img.src}
+                  src={d.image}
                   fill
                   objectFit="cover"
-                  alt={d.Title}
+                  alt={d.image}
                   style={{ borderRadius: "15px" }}
                 />
               </Stack>
               <ParaNormal color="white" style={{ fontSize: "15px" }}>
-                {d.data}
+                {moment(d.date).format("DD MMM YYYY")}
               </ParaNormal>
               <Head1
                 style={{ fontSize: "18px", color: "white", textAlign: "left" }}
               >
-                {d.Title}
+                {d.title}
               </Head1>
             </Stack>
           ))}
