@@ -178,6 +178,13 @@ const navData = [
     value: "seo",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 24,
+    name: "Newsletters",
+    link: "/admin/newsletter",
+    value: "newsletter",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 const NavList = styled.ul`
