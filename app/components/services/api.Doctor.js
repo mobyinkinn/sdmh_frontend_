@@ -1,13 +1,14 @@
 import axios from "axios";
 import { ApiUrl } from "./Api";
 
-export const fetchDoctors = async () => {
+export const fetchDoctors = async ({ page = 1, limit = 5 }) => {
   const response = await axios.get(`${ApiUrl}/doctor/get-all`, {
+    params: { page, limit }, // Passing page and limit as query parameters
     withCredentials: true,
   });
-
-  return response.data.data;
+  return response.data.data; // Ensure the API response includes { data: [...], totalPages: X }
 };
+
 
 export const blockDoctor = async (id) => {
   const response = await axios.post(

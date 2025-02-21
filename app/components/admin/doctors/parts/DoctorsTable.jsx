@@ -3,22 +3,24 @@ import Table from "../../../ui/Table";
 import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
 import Spinner from "../../../ui/Spinner";
-import Pagination from "../../../ui/Pagination";
 import { useDoctorsContext } from "./DoctorsContext";
 import { useDoctors, useUpdateDoctorsOrder } from "./useDoctor";
 import { useDepartment } from "../../departments/parts/useDepartment";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { Pagination, Stack } from "@mui/material";
+import { useState } from "react";
 
 function DoctorsTable() {
   const { filter } = useDoctorsContext();
-  const { data, isLoading, error } = useDoctors();
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useDoctors(page);
   const { data: departmentData, isLoading: isLoadingDepartment } =
     useDepartment();
   const { updateDoctorOrder, isOrderUpdating } = useUpdateDoctorsOrder();
-  let filteredDoctors = data;
+  let filteredDoctors = data?.data;
 
   if (isLoading || isLoadingDepartment) return <Spinner />;
-  if (!filteredDoctors.length) return <Empty resourceName="Admins" />;
+  if (!filteredDoctors.length) return <Empty resourceName="Doctors" />;
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -66,6 +68,18 @@ function DoctorsTable() {
           </Droppable>
 
           <Table.Footer>
+            <Stack direction="row" justifyContent="center" marginTop={4}>
+              <Pagination
+                count={data?.totalPages} // Total number of pages
+                page={page}
+                onChange={(event, value) => setPage(value)} // Update page on click
+                variant="outlined"
+                shape="rounded"
+                showFirstButton
+                showLastButton
+                size="large"
+              />
+            </Stack>
             {/* <Pagination count={doctorsData.length} /> */}
           </Table.Footer>
         </Table>
