@@ -1,7 +1,7 @@
 "use client";
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import { Stack } from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
 import {
   DarkGreenButton,
   DarkGreenButtonSmall,
@@ -11,17 +11,20 @@ import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
 import { useDoctors } from "@/app/components/admin/doctors/parts/useDoctor";
 import Spinner from "@/app/components/ui/Spinner";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Doctors from "./Doctors";
 
 export default function AllDoctors() {
-  const { data, isLoading } = useDoctors();
+  const [page, setPage] = useState(1);
+  const { data, isLoading } = useDoctors(page);
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
   const [doctor, setDoctor] = useState("Search Doctor");
   const [department, setDepartment] = useState("Search Department");
   const [filteredDoctors, setFilteredDoctors] = useState(null);
-
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [page]);
   function clearDoctor() {
     setDoctor("");
   }
@@ -102,7 +105,19 @@ export default function AllDoctors() {
           {department}
         </SearchInputHero>
       </Stack>
-      <Doctors data={filteredDoctors || data} departments={departments} />
+      <Doctors data={data?.data} departments={departments} />
+      <Stack direction="row" justifyContent="center" marginTop={4}>
+        <Pagination
+          count={data?.totalPages} // Total number of pages
+          page={page}
+          onChange={(event, value) => setPage(value)} // Update page on click
+          variant="outlined"
+          shape="rounded"
+          showFirstButton
+          showLastButton
+          size="large"
+        />
+      </Stack>
     </ContainerMain>
   );
 }

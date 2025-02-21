@@ -14,14 +14,13 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useDoctors = () => {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["Doctors"],
-    queryFn: fetchDoctors,
+export const useDoctors = (page) => {
+  return useQuery({
+    queryKey: ["Doctors", page], // Include page in query key to refetch on page change
+    queryFn: () => fetchDoctors({ page, limit: 5 }), // Fetching paginated data
+    keepPreviousData: true, // Enables smooth pagination by keeping old data while fetching new
     staleTime: 5 * 60 * 1000,
   });
-
-  return { data, isLoading, error };
 };
 
 export const useBlockDoctor = () => {
