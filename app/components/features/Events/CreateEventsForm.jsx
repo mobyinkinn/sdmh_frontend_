@@ -11,6 +11,7 @@ import moment from "moment";
 import { useState } from "react";
 import Jodit from "../Openings/Jodit";
 import SpinnerMini from "../../ui/SpinnerMini";
+import styled from "styled-components";
 
 const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   const { register, handleSubmit, reset, formState } = useForm({
@@ -19,7 +20,6 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
   const { createEvents, isCreating } = useCreateEvent();
   const { errors } = formState;
   const [description, setDescription] = useState("");
-  if (isCreating) return <SpinnerMini />;
 
   function onSubmit(data) {
     const multipleFiles = data.images ? Array.from(data.images) : [];
@@ -32,6 +32,7 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
     const formattedDate = moment(data.date).format("YYYY-MM-DD");
 
     formdata.append("title", data.title);
+    formdata.append("tag", data.tag);
     formdata.append("smallDescription", data.smallDescription);
     formdata.append("description", description);
     formdata.append("date", formattedDate);
@@ -49,6 +50,21 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
     });
   }
 
+  const StyledSelect = styled.select`
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid
+      ${(props) =>
+        props.type === "white"
+          ? "var(--color-grey-100)"
+          : "var(--color-grey-300)"};
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-grey-0);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  `;
+
+  if (isCreating) return <SpinnerMini />;
   function onError(errors) {
     // console.log(errors);
   }
@@ -80,18 +96,34 @@ const CreateEventsForm = ({ onCloseModal, resourceName }) => {
             />
           </FormRow>
         </Stack>
-        <FormRow
-          label="Small Description"
-          error={errors?.smallDescription?.message}
-        >
-          <Input
-            type="text"
-            id="smallDescription"
-            {...register("smallDescription", {
-              required: "This field is required",
-            })}
-          />
-        </FormRow>
+        <Stack direction={"row"} columnGap={7}>
+          <FormRow
+            label="Small Description"
+            error={errors?.smallDescription?.message}
+          >
+            <Input
+              type="text"
+              id="smallDescription"
+              {...register("smallDescription", {
+                required: "This field is required",
+              })}
+            />
+          </FormRow>
+          <FormRow label="Tag" error={errors?.tag?.message}>
+            <StyledSelect
+              id="tag"
+              {...register("tag", {
+                required: "This field is required",
+              })}
+            >
+              <option value="">Select a tag</option>
+              <option value="Upcoming">Upcoming</option>
+              <option value="Recent">Recent</option>
+              <option value="Academics">Academics</option>
+              <option value="Public Awareness">Public Awareness</option>
+            </StyledSelect>
+          </FormRow>
+        </Stack>
 
         <FormRow label="Description" error={errors?.page?.message}></FormRow>
         <Jodit content={description} setContent={setDescription} />

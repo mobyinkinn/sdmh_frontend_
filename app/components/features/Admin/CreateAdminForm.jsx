@@ -39,6 +39,7 @@ const options = [
   { value: "navbar", label: "Navbar" },
   { value: "teachings", label: "Academics Teaching" },
   { value: "seo", label: "Seo" },
+  { value: "newsletter", label: "Newsletters" },
 ];
 
 function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {

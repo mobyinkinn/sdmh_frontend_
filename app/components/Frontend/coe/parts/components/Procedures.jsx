@@ -1,46 +1,60 @@
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Box, Stack } from "@mui/material";
+import { useEffect, useState } from "react";
 
-const prodedureData = [
-  { id: 0, name: "Cardiologist" },
-  { id: 1, name: "Neurology" },
-  { id: 2, name: "Gastroenterology (Endoscopy Procedures)" },
-  { id: 3, name: "GI Surgeries" },
-  { id: 4, name: "Pediatrics" },
-  { id: 5, name: "Orthopaedics" },
-  { id: 6, name: "General Surgeries" },
-  { id: 7, name: "Radiology (CT, MRI)-on Call" },
-  {
-    id: 8,
-    name: "Equipped with Modern Anaesthesia Work Stations & Monitors, Fibro Optic Bronchoscope, Sonosite for R.A. Block",
-  },
-  { id: 9, name: "Painless Deliveries" },
-  { id: 10, name: "CPR (Cardiac Pulmonary Resusciatation)" },
-  { id: 11, name: "TEE (Trans Esophageal Echo Cardiolography)" },
-];
+// const prodedureData = [
+//   { id: 0, name: "Cardiologist" },
+//   { id: 1, name: "Neurology" },
+//   { id: 2, name: "Gastroenterology (Endoscopy Procedures)" },
+//   { id: 3, name: "GI Surgeries" },
+//   { id: 4, name: "Pediatrics" },
+//   { id: 5, name: "Orthopaedics" },
+//   { id: 6, name: "General Surgeries" },
+//   { id: 7, name: "Radiology (CT, MRI)-on Call" },
+//   {
+//     id: 8,
+//     name: "Equipped with Modern Anaesthesia Work Stations & Monitors, Fibro Optic Bronchoscope, Sonosite for R.A. Block",
+//   },
+//   { id: 9, name: "Painless Deliveries" },
+//   { id: 10, name: "CPR (Cardiac Pulmonary Resusciatation)" },
+//   { id: 11, name: "TEE (Trans Esophageal Echo Cardiolography)" },
+// ];
 
-export default function Procedure({data}) {
-  console.log("data", data);
-  const extractListItems = (htmlContent) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, "text/html");
-    const listItems = doc.querySelectorAll("ul li");
+export default function Procedure({ data }) {
+  const [listItemsArray, setListItemsArray] = useState([]);
+  const [headingText, setHeadingText] = useState("");
 
-    // Convert NodeList to an array of text content
-    return Array.from(listItems).map((item) => item.textContent.trim());
-  };
- 
-  const listItemsArray = extractListItems(data?.content);
+  useEffect(() => {
+    if (typeof window === "undefined" || !data?.content) return;
+
+    const extractListItems = (htmlContent) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, "text/html");
+      const listItems = doc.querySelectorAll("ul li");
+
+      return Array.from(listItems).map((item) => item.textContent.trim());
+    };
+
+    const extractHeading = (htmlContent) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, "text/html");
+      const heading = doc.querySelector("h1");
+      return heading ? heading.textContent.trim() : "";
+    };
+
+    setListItemsArray(extractListItems(data.content));
+    setHeadingText(extractHeading(data.content));
+  }, [data]);
 
   return (
     <Stack marginTop={{ lg: "30px", md: "25px", sm: "20px" }}>
-      <Head1 color="black" textAlign="left">
-        Round the clock Anesthesiologist
-      </Head1>
-      <Head1 color="black" textAlign="left">
-        available for procedures in
-      </Head1>
+      {headingText && (
+        <Head1 color="black" textAlign="left">
+          {headingText}
+        </Head1>
+      )}
       <Stack
         marginTop={"20px"}
         direction={{ lg: "row", sm: "column" }}

@@ -1,3 +1,4 @@
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Stack, Typography } from "@mui/material";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
@@ -8,6 +9,7 @@ import Group_1 from "../assets/Group_1.png";
 import Group_2 from "../assets/Group_2.png";
 import Group_3 from "../assets/Group_3.png";
 import Group_4 from "../assets/Group_4.png";
+import { useEffect, useState } from "react";
 
 const checkupDetails = [
   {
@@ -66,6 +68,50 @@ const groupImages = [
 ];
 
 const DetailsHero = ({ id, data, isLoading }) => {
+  const [listItemsArray, setListItemsArray] = useState([]);
+  const [arrOfObj, setArrOfObj] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && data?.description) {
+      const extractParagraphs = (htmlContent) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        return Array.from(doc.querySelectorAll("p")).map((item) =>
+          item.textContent.trim()
+        );
+      };
+
+      const extractSections = (htmlString) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, "text/html");
+        const sections = [];
+        const headings = doc.querySelectorAll("h1");
+
+        headings.forEach((heading) => {
+          const section = {
+            title: heading.textContent.trim(),
+            items: [],
+          };
+
+          let nextElement = heading.nextElementSibling;
+          while (nextElement && nextElement.tagName === "UL") {
+            nextElement.querySelectorAll("li").forEach((li) => {
+              section.items.push(li.textContent.trim());
+            });
+            nextElement = nextElement.nextElementSibling;
+          }
+
+          sections.push(section);
+        });
+
+        return sections;
+      };
+
+      setListItemsArray(extractParagraphs(data?.description));
+      setArrOfObj(extractSections(data?.description));
+    }
+  }, [data?.description]);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -95,14 +141,18 @@ const DetailsHero = ({ id, data, isLoading }) => {
         >
           ₹{data?.price}
         </Typography>
-        <ParaNormal
-          color="#000000"
-          fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
-          fontWeight={"400"}
-          lineheight={"2.1rem"}
-          padding={"0px 50px"}
-          dangerouslySetInnerHTML={{ __html: data?.description }}
-        />
+        {listItemsArray.map((el, i) => (
+          <ParaNormal
+            key={i}
+            color="#000000"
+            fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+            fontWeight={"400"}
+            lineheight={"2.1rem"}
+            padding={"0px 50px"}
+          >
+            {el}
+          </ParaNormal>
+        ))}
       </Stack>
       <Stack marginTop={2}>
         <ButtonMediumOutline margin="auto" color="#007946">
@@ -119,7 +169,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
         flexWrap={"wrap"}
         padding={{ xs: "12px" }}
       >
-        {checkupDetails.map((item) => (
+        {arrOfObj.map((item) => (
           <Stack key={item.title} mb={2}>
             <ParaNormal
               color="#000000"

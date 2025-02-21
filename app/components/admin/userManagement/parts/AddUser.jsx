@@ -39,6 +39,7 @@ const menu = [
   "navbar",
   "Academics Teaching",
   "Seo",
+  "Newsletters",
 ];
 
 const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];
