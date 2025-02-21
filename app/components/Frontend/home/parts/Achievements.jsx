@@ -1,7 +1,10 @@
+
+"use client";
+
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head2, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Typography } from "@mui/material";
-
+import CountUp from "react-countup";
 import aids from "../assets/icons/aids.png";
 import findDoctor from "../assets/icons/findDoctor.png";
 import robot from "../assets/icons/robot.png";
@@ -25,7 +28,7 @@ export default function () {
         Unmatched Achievements
       </Head1>
       <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
-        in teh Medical Field
+        in the Medical Field
       </Head3>
 
       <Stack
@@ -37,12 +40,23 @@ export default function () {
       >
         {achievementData.map((el, i) => {
           return (
-            <Stack key={i} gap={"10px"} alignItems={"center"} width={"140px"}>
+            <Stack key={i} gap={"10px"} alignItems={"center"} width={"20%"}>
               <Image src={el.img} alt="" height={70} width={70} />
-              <Head1 color={"white"}>{el.count}+</Head1>
+              <CountUp
+                start={0}
+                end={el.count}
+                duration={2}
+                suffix="+"
+                useEasing
+                enableScrollSpy
+              >
+                {({ countUpRef }) => (
+                  <Head1 color={"white"} ref={countUpRef}></Head1>
+                )}
+              </CountUp>
               <Typography
                 color={"white"}
-                fontSize={{lg:"1.2rem", md:"1rem", sm:"0.8rem"}}
+                fontSize={{ lg: "1.2rem", md: "1rem", sm: "0.8rem" }}
                 textAlign={"center"}
               >
                 {el.data}

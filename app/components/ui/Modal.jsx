@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
+  max-height: 90vh;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -16,6 +17,7 @@ const StyledModal = styled.div`
   box-shadow: var(--shadow-lg);
   padding: 1.5rem 4rem;
   transition: all 0.5s;
+  overflow:scroll
 `;
 
 const Overlay = styled.div`
