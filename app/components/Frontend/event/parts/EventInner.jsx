@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../../navbar/Nav";
 import Footer from "../../footer/Footer";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Box, Stack } from "@mui/material";
 import BannerImage from "./assests/Image.png";
 import Recent from "./assests/recent1.png";
@@ -46,6 +46,7 @@ const EventInner = () => {
   const { _id } = useParams();
   const { data: allEventsData, isLoading: isLoadingEvents } = useEvents();
   const { data: eventData, isLoading: isLoadingEvent } = useEventById(_id);
+  const router = useRouter();
 
   console.log("All Events Data", allEventsData);
 
@@ -119,7 +120,14 @@ const EventInner = () => {
             Recent Events
           </Head1>
           {filteredEvents.map((d, i) => (
-            <Stack gap={"5px"} key={i}>
+            <Stack
+              gap={"5px"}
+              key={i}
+              onClick={() => router.push(`/event/${d._id}`)}
+              sx={{
+                cursor: "pointer",
+              }}
+            >
               <Stack
                 sx={{
                   width: { xs: "230px", md: "140px", lg: "250px" },

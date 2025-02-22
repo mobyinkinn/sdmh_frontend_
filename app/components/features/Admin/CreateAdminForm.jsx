@@ -40,6 +40,7 @@ const options = [
   { value: "teachings", label: "Academics Teaching" },
   { value: "seo", label: "Seo" },
   { value: "newsletter", label: "Newsletters" },
+  { value: "newspress", label: "Newspress" },
 ];
 
 function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {

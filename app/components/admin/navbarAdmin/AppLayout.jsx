@@ -199,6 +199,13 @@ const navData = [
     value: "newsletter",
     icon: ManageAccountsIcon,
   },
+  {
+    id: 25,
+    name: "Newspress",
+    link: "/admin/newspress",
+    value: "newspress",
+    icon: ManageAccountsIcon,
+  },
 ];
 
 function AppLayout({ children }) {
