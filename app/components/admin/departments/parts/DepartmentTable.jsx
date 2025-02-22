@@ -3,10 +3,11 @@ import Table from "../../../ui/Table";
 import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
 import Spinner from "../../../ui/Spinner";
-import Pagination from "../../../ui/Pagination";
 import departmentImg from "./assets/untitled.jpg";
 import { useDepartmentContext } from "./DepartmentContext";
 import { useDepartment } from "./useDepartment";
+import { useState } from "react";
+import { Pagination, Stack } from "@mui/material";
 
 const departmentData = [
   {
@@ -33,25 +34,37 @@ const departmentData = [
 ];
 
 function DepartmentTable() {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5; // Number of rows per page
+
   const { data, isLoading, error } = useDepartment();
-
   const { filter } = useDepartmentContext();
+
   if (isLoading) return <Spinner />;
+  if (error) return <p>Error loading data</p>;
 
-  let filteredDepartment = data;
-  let convertedFilter;
+  let filteredDepartment = data || [];
 
-  if (filter.toLowerCase() === "inactive") {
-    convertedFilter = false;
-  } else {
-    convertedFilter = true;
-  }
+  // Convert filter string to boolean
+  let convertedFilter = filter.toLowerCase() === "inactive" ? false : true;
 
   if (filter !== "All") {
-    filteredDepartment = data.filter((el, i) => el.status === convertedFilter);
+    filteredDepartment = filteredDepartment.filter(
+      (el) => el.status === convertedFilter
+    );
   }
 
   if (!filteredDepartment.length) return <Empty resourceName="departments" />;
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredDepartment.length / itemsPerPage);
+
+  // Get data for the current page
+  const paginatedData = filteredDepartment.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
   return (
     <Menus>
       <Table columns="3fr 2fr 2fr 2fr 2fr 1.5fr">
@@ -60,18 +73,31 @@ function DepartmentTable() {
           <div>Image</div>
           <div>Banner Image</div>
           <div>Status</div>
-          <div>created</div>
+          <div>Created</div>
           <div>Actions</div>
         </Table.Header>
 
         <Table.Body
-          data={filteredDepartment}
+          data={paginatedData}
           render={(department) => (
             <DepartmentRow key={department.id} department={department} />
           )}
         />
+
         <Table.Footer>
-          {/* <Pagination count={departmentData.length} /> */}
+          {/* Pagination Controls */}
+          <Stack direction="row" justifyContent="center" marginTop={4}>
+            <Pagination
+              count={totalPages} // Total number of pages
+              page={page}
+              onChange={(event, value) => setPage(value)} // Update page number
+              variant="outlined"
+              shape="rounded"
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          </Stack>
         </Table.Footer>
       </Table>
     </Menus>

@@ -2,8 +2,7 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import Image from "next/image";
-import { Height } from "@mui/icons-material";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Pagination } from "@mui/material";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import {
   ButtonMediumOutline,
@@ -12,15 +11,33 @@ import {
 import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Grid() {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 6;
   const { data, isLoading, error } = useCheckups();
-  const filteredData = data?.filter((el, i) => el.status === true);
+
+  // Filtered and paginated data
+  const filteredData = data?.filter((el) => el.status === true) || [];
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const paginatedData = filteredData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+  // For mobile "View All" functionality
   const [visibleCount, setVisibleCount] = useState(4);
-  const visibleData = data
-    ?.filter((el, i) => el.status === true)
-    .slice(0, visibleCount);
+  const visibleData = filteredData.slice(0, visibleCount);
+
+  // Reset pagination when data changes
+  useEffect(() => {
+    setPage(1);
+  }, [data]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
 
   if (isLoading) {
     return <Spinner />;
@@ -44,10 +61,11 @@ export default function Grid() {
           color="#005900"
           fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
         >
-          {" "}
           Health checkup plans
         </Head1>
       </Stack>
+
+      {/* Desktop View (Paginated) */}
       <Stack
         direction={"row"}
         flexWrap={"wrap"}
@@ -57,10 +75,31 @@ export default function Grid() {
         marginX={{ xs: "20px", md: "0" }}
         display={{ xs: "none", md: "flex" }}
       >
-        {filteredData.map((el, i) => {
-          return <CheckupCard el={el} />;
-        })}
+        {paginatedData.map((el) => (
+          <CheckupCard key={el._id} el={el} />
+        ))}
       </Stack>
+
+      {/* Pagination for Desktop */}
+      <Stack
+        direction="row"
+        justifyContent="center"
+        marginTop={4}
+        display={{ xs: "none", md: "flex" }}
+      >
+        <Pagination
+          count={totalPages || 1} // Ensure at least 1 page is displayed
+          page={page}
+          onChange={(event, value) => setPage(value)}
+          variant="outlined"
+          shape="rounded"
+          showFirstButton
+          showLastButton
+          size="large"
+        />
+      </Stack>
+
+      {/* Mobile View */}
       <Stack
         direction={"row"}
         flexWrap={"wrap"}
@@ -70,16 +109,16 @@ export default function Grid() {
         marginX={{ xs: "20px", md: "0" }}
         display={{ xs: "flex", md: "none" }}
       >
-        {visibleData.map((el, i) => {
-          return <CheckupCard el={el} />;
-        })}
+        {visibleData.map((el) => (
+          <CheckupCard key={el._id} el={el} />
+        ))}
         <Stack alignItems={{ xs: "center", md: "start" }}>
-          {visibleCount < data.length && (
+          {visibleCount < filteredData.length && (
             <ButtonMediumOutline
               onClick={() => setVisibleCount(visibleCount + 3)}
               color="#476C9B"
             >
-              View All
+              View More
             </ButtonMediumOutline>
           )}
         </Stack>
@@ -88,12 +127,13 @@ export default function Grid() {
   );
 }
 
+// Checkup Card Component
 function CheckupCard({ el }) {
   const router = useRouter();
 
   return (
     <Stack
-      width={{ lg: "29%", md: "46%", sm: "100%", sm: "100%" }}
+      width={{ lg: "29%", md: "46%", sm: "100%" }}
       height={"421px"}
       sx={{
         borderRadius: "10px",
@@ -139,12 +179,7 @@ function CheckupCard({ el }) {
           {el.smallDescription}
         </ParaNormal>
         <Stack direction={"row"} gap={2}>
-          <ButtonSmallOutline
-            color="#007946"
-            // onClick={() => router.push(`/health-checkup/${el._id}`)}
-          >
-            Book Now
-          </ButtonSmallOutline>
+          <ButtonSmallOutline color="#007946">Book Now</ButtonSmallOutline>
           <ButtonSmallOutline
             color="#000000"
             onClick={() => router.push(`/health-checkup/${el._id}`)}

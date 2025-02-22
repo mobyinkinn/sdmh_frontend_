@@ -2,11 +2,11 @@ import EventRow from "./EventRow";
 import Table from "../../../ui/Table";
 import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
-// import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
-import Pagination from "../../../ui/Pagination";
 import { useEventContext } from "./EventContext";
 import { useEvents } from "../useEvents";
+import { Pagination, Stack } from "@mui/material";
+import { useState } from "react";
 
 const eventData = [
   {
@@ -40,26 +40,32 @@ const eventData = [
 ];
 
 function EventTable() {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5; // Number of events per page
   const { filter } = useEventContext();
   const { data, isLoading } = useEvents();
   if (isLoading) return <Spinner />;
-  console.log("events", data);
   let filteredEvent = data;
 
   if (filter !== "All") {
     filteredEvent = data.filter((el) => {
       if (filter.toLowerCase() === "active") {
-        return el.status === true; // Show active testimonials
+        return el.status === true;
       } else if (filter.toLowerCase() === "inactive") {
-        return el.status === false; // Show inactive testimonials
+        return el.status === false;
       }
       return false;
     });
   }
 
-  //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!data.length) return <Empty resourceName="Admins" />;
+  const startIndex = (page - 1) * itemsPerPage;
+  const paginatedEvents = filteredEvent.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(filteredEvent.length / itemsPerPage);
+
+  if (!data.length) return <Empty resourceName="Events" />;
   return (
     <Menus>
       <Table columns="1fr 3fr 4fr 2fr 2fr 2fr 2fr">
@@ -74,12 +80,23 @@ function EventTable() {
         </Table.Header>
 
         <Table.Body
-          data={filteredEvent}
+          data={paginatedEvents}
           render={(event) => <EventRow key={event.id} event={event} />}
         />
 
         <Table.Footer>
-          {/* <Pagination count={eventData.length} /> */}
+          <Stack direction="row" justifyContent="center" marginTop={4}>
+            <Pagination
+              count={totalPages || 1}
+              page={page}
+              onChange={(event, value) => setPage(value)} // Update page on click
+              variant="outlined"
+              shape="rounded"
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          </Stack>
         </Table.Footer>
       </Table>
     </Menus>

@@ -17,14 +17,16 @@ import Doctors from "./Doctors";
 export default function AllDoctors() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useDoctors(page);
+  const filteredDoc = data?.data.filter((doc) => doc.status !== false);
+
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
   const [doctor, setDoctor] = useState("Search Doctor");
   const [department, setDepartment] = useState("Search Department");
   const [filteredDoctors, setFilteredDoctors] = useState(null);
-useEffect(() => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}, [page]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
   function clearDoctor() {
     setDoctor("");
   }
@@ -43,7 +45,7 @@ useEffect(() => {
   function searchDoctor(e) {
     let searchDoctor = e.target.textContent;
 
-    const newFilteredDoctors = data.filter((el) =>
+    const newFilteredDoctors = filteredDoc.filter((el) =>
       el.name.startsWith(searchDoctor)
     );
     setFilteredDoctors(newFilteredDoctors);
@@ -56,7 +58,7 @@ useEffect(() => {
       el.name.startsWith(searchDepartment)
     );
 
-    const newFilteredDoctors = data.filter((el) => {
+    const newFilteredDoctors = filteredDoc.filter((el) => {
       for (let i = 0; i < searchDepartment.length; i++) {
         if (el.department === searchedDepartment[i]?._id) {
           return el;
@@ -105,7 +107,7 @@ useEffect(() => {
           {department}
         </SearchInputHero>
       </Stack>
-      <Doctors data={data?.data} departments={departments} />
+      <Doctors data={filteredDoc} departments={departments} />
       <Stack direction="row" justifyContent="center" marginTop={4}>
         <Pagination
           count={data?.totalPages} // Total number of pages
