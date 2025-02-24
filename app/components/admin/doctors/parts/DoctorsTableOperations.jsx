@@ -5,6 +5,7 @@ import { useDoctorsContext } from "./DoctorsContext";
 import Modal from "@/app/components/ui/Modal";
 import CreateDoctorForm from "@/app/components/features/Doctor/CreateDoctorForm";
 import Button from "@/app/components/ui/Button";
+import ReorderDoctorForm from "@/app/components/features/Doctor/ReorderDoctorForm";
 
 function DoctorsTableOperations() {
   const { filter, setFilter } = useDoctorsContext();
@@ -36,6 +37,12 @@ function DoctorsTableOperations() {
         </Modal.Open>
         <Modal.Window name="department-form">
           <CreateDoctorForm />
+        </Modal.Window>
+        <Modal.Open opens="reorder-form">
+          <Button>Reorder Doctor</Button>
+        </Modal.Open>
+        <Modal.Window name="reorder-form">
+          <ReorderDoctorForm />
         </Modal.Window>
       </Modal>
     </TableOperations>
