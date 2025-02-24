@@ -1,12 +1,10 @@
 "use client";
-
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Pagination, Stack } from "@mui/material";
 import {
   DarkGreenButton,
   DarkGreenButtonSmall,
 } from "@/app/styledComponents/frontend/Buttons";
-import { SearchInput } from "@/app/styledComponents/admin/Inputs";
 import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
 import { useDoctors } from "@/app/components/admin/doctors/parts/useDoctor";
 import Spinner from "@/app/components/ui/Spinner";
@@ -16,17 +14,32 @@ import Doctors from "./Doctors";
 
 export default function AllDoctors() {
   const [page, setPage] = useState(1);
-  const { data, isLoading } = useDoctors(page);
-  const filteredDoc = data?.data.filter((doc) => doc.status !== false);
-
+  const itemsPerPage = 5;
+  const { data, isLoading } = useDoctors();
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
+
+  // Filter only active doctors and sort them by order
+  const filteredDoc = (data?.filter((doc) => doc.status !== false) || []).sort(
+    (a, b) => a.order - b.order
+  );
+  const totalPages = Math.ceil(filteredDoc.length / itemsPerPage);
+
+  // Paginated data
+  const paginatedDoctors = filteredDoc.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+  // Search states
   const [doctor, setDoctor] = useState("Search Doctor");
   const [department, setDepartment] = useState("Search Department");
   const [filteredDoctors, setFilteredDoctors] = useState(null);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
+
   function clearDoctor() {
     setDoctor("");
   }
@@ -40,33 +53,44 @@ export default function AllDoctors() {
     setDepartment("Search Department");
   }
 
-  if (isLoading || isLoadingDepartments) return <Spinner />;
-
   function searchDoctor(e) {
     let searchDoctor = e.target.textContent;
-
     const newFilteredDoctors = filteredDoc.filter((el) =>
-      el.name.startsWith(searchDoctor)
+      el.name.toLowerCase().startsWith(searchDoctor.toLowerCase())
     );
     setFilteredDoctors(newFilteredDoctors);
+    setPage(1); // Reset pagination on search
   }
 
   function searchDepartment(e) {
     let searchDepartment = e.target.textContent;
-
-    const searchedDepartment = departments.filter((el) =>
-      el.name.startsWith(searchDepartment)
+    const searchedDepartment = departments?.filter((el) =>
+      el.name.toLowerCase().startsWith(searchDepartment.toLowerCase())
     );
 
-    const newFilteredDoctors = filteredDoc.filter((el) => {
-      for (let i = 0; i < searchDepartment.length; i++) {
-        if (el.department === searchedDepartment[i]?._id) {
-          return el;
-        }
-      }
-    });
+    const newFilteredDoctors = filteredDoc.filter((el) =>
+      searchedDepartment.some((dept) => el.department === dept._id)
+    );
+
     setFilteredDoctors(newFilteredDoctors);
+    setPage(1); // Reset pagination on search
   }
+
+  // Sort filtered doctors if search is active
+  const sortedFilteredDoctors = filteredDoctors
+    ? [...filteredDoctors].sort((a, b) => a.order - b.order)
+    : null;
+
+  const doctorsToShow = sortedFilteredDoctors
+    ? sortedFilteredDoctors.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+      )
+    : paginatedDoctors;
+
+  const filteredTotalPages = sortedFilteredDoctors
+    ? Math.ceil(sortedFilteredDoctors.length / itemsPerPage)
+    : totalPages;
 
   return (
     <ContainerMain bgColor={"#FBF6EE"}>
@@ -78,7 +102,10 @@ export default function AllDoctors() {
         <DarkGreenButton
           bgColor="#379237"
           borderRadius="100px"
-          onClick={() => setFilteredDoctors(null)}
+          onClick={() => {
+            setFilteredDoctors(null);
+            setPage(1);
+          }}
         >
           All
         </DarkGreenButton>
@@ -107,12 +134,15 @@ export default function AllDoctors() {
           {department}
         </SearchInputHero>
       </Stack>
-      <Doctors data={filteredDoc} departments={departments} />
+
+      <Doctors data={doctorsToShow} departments={departments} />
+
+      {/* Pagination */}
       <Stack direction="row" justifyContent="center" marginTop={4}>
         <Pagination
-          count={data?.totalPages} // Total number of pages
+          count={filteredTotalPages || 1}
           page={page}
-          onChange={(event, value) => setPage(value)} // Update page on click
+          onChange={(event, value) => setPage(value)}
           variant="outlined"
           shape="rounded"
           showFirstButton

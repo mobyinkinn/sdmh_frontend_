@@ -234,8 +234,6 @@
 //   );
 // }
 
-
-
 // import { Box, Stack, Typography } from "@mui/material";
 
 // import img from "../assets/doc.png";
@@ -482,7 +480,6 @@
 //   );
 // }
 
-
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
@@ -594,11 +591,12 @@ export default function Doctors({ data, departments }) {
               </Stack>
 
               <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
-                <ButtonSmallOutline color={"#379237"}>
+                <ButtonSmallOutline color={"#379237"} hoverColor={"#fff"}>
                   Appointment
                 </ButtonSmallOutline>
                 <ButtonSmallOutline
                   color={"#000000"}
+                  hoverColor={"#fff"}
                   onClick={() => router.push(`/find-a-doctor/${el._id}`)}
                 >
                   View Profile

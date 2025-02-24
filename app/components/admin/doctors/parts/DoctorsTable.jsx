@@ -8,18 +8,28 @@ import { useDoctors, useUpdateDoctorsOrder } from "./useDoctor";
 import { useDepartment } from "../../departments/parts/useDepartment";
 import { Pagination, Stack } from "@mui/material";
 import { useState } from "react";
-
 function DoctorsTable() {
   const { filter } = useDoctorsContext();
-  // const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
   const { data, isLoading } = useDoctors();
   const { data: departmentData, isLoading: isLoadingDepartment } =
     useDepartment();
-  const { updateDoctorOrder, isOrderUpdating } = useUpdateDoctorsOrder();
-  let filteredDoctors = data;
 
   if (isLoading || isLoadingDepartment) return <Spinner />;
-  if (!filteredDoctors.length) return <Empty resourceName="Doctors" />;
+
+  if (!data || data.length === 0) return <Empty resourceName="Doctors" />;
+
+  // Sort doctors by order before pagination
+  const sortedDoctors = [...data].sort((a, b) => a.order - b.order);
+
+  // Pagination logic
+  const startIndex = (page - 1) * itemsPerPage;
+  const paginatedDoctors = sortedDoctors.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(sortedDoctors.length / itemsPerPage);
 
   return (
     <Menus>
@@ -29,7 +39,7 @@ function DoctorsTable() {
           <div>Name</div>
           <div>Department</div>
           <div>Image</div>
-          <div>floor</div>
+          <div>Floor</div>
           <div>Room</div>
           <div>Available On</div>
           <div>Status</div>
@@ -37,26 +47,25 @@ function DoctorsTable() {
         </Table.Header>
 
         <Table.Body
-          data={filteredDoctors}
+          data={paginatedDoctors}
           render={(doctor, index) => (
             <DoctorsRow key={doctor._id} doctor={doctor} index={index} />
           )}
         />
 
         <Table.Footer>
-          {/* <Stack direction="row" justifyContent="center" marginTop={4}>
-              <Pagination
-                count={data?.totalPages} // Total number of pages
-                page={page}
-                onChange={(event, value) => setPage(value)} // Update page on click
-                variant="outlined"
-                shape="rounded"
-                showFirstButton
-                showLastButton
-                size="large"
-              />
-            </Stack> */}
-          {/* <Pagination count={doctorsData.length} /> */}
+          <Stack direction="row" justifyContent="center" marginTop={4}>
+            <Pagination
+              count={totalPages || 1}
+              page={page}
+              onChange={(event, value) => setPage(value)}
+              variant="outlined"
+              shape="rounded"
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          </Stack>
         </Table.Footer>
       </Table>
     </Menus>
