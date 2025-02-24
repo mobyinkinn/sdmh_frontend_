@@ -1,44 +1,54 @@
+"use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import image from "./assests/Img1.png"; // Replace this with your actual image imports
+import image from "./assests/Img1.png";
 import Image from "next/image";
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useNewspress } from "@/app/components/admin/newspress/useNewspress";
+import Spinner from "@/app/components/ui/Spinner";
+import { useRouter } from "next/navigation";
 
+const data = [
+  {
+    id: 1,
+    img: image,
+    title: "Blood Donation Camp Through JSG GEM CITY",
+  },
+  {
+    id: 2,
+    img: image,
+    title: "Blood Donation Camp Through JSG GEM CITY",
+  },
+  {
+    id: 3,
+    img: image,
+    title: "Blood Donation Camp Through JSG GEM CITY Lab",
+  },
+  {
+    id: 4,
+    img: image,
+    title: "Blood Donation Camp Through JSG GEM CITYm",
+  },
+  {
+    id: 5,
+    img: image,
+    title: "Blood Donation Camp Through JSG GEM CITY",
+  },
+  {
+    id: 6,
+    img: image,
+    title: "Blood Donation Camp Through JSG GEM CITY",
+  },
+];
 const PmDm = () => {
-  const data = [
-    {
-      id: 1,
-      img: image,
-      title: "Blood Donation Camp Through JSG GEM CITY",
-    },
-    {
-      id: 2,
-      img: image,
-      title: "Blood Donation Camp Through JSG GEM CITY",
-    },
-    {
-      id: 3,
-      img: image,
-      title: "Blood Donation Camp Through JSG GEM CITY Lab",
-    },
-    {
-      id: 4,
-      img: image,
-      title: "Blood Donation Camp Through JSG GEM CITYm",
-    },
-    {
-      id: 5,
-      img: image,
-      title: "Blood Donation Camp Through JSG GEM CITY",
-    },
-    {
-      id: 6,
-      img: image,
-      title: "Blood Donation Camp Through JSG GEM CITY",
-    },
-  ];
+  const { data: pressData, isLoading } = useNewspress();
+  const filteredNewspress = pressData?.filter(
+    (newspress) => newspress.status !== false
+  );
+  const router = useRouter();
+  if (isLoading) return <Spinner />;
 
   return (
     <Stack p={{ md: 5, xs: 2 }}>
@@ -58,7 +68,7 @@ const PmDm = () => {
         gap={2}
         p={{ md: 3, xs: "10px 0" }}
       >
-        {data.map((item) => (
+        {filteredNewspress.map((item) => (
           <Box
             key={item.id}
             sx={{
@@ -71,7 +81,7 @@ const PmDm = () => {
             }}
           >
             <Image
-              src={item.img}
+              src={item.image}
               alt={item.title}
               layout="fill"
               objectFit="cover"
@@ -101,6 +111,7 @@ const PmDm = () => {
                   left: "22%",
                   transform: "translateX(-50%)",
                 }}
+                onClick={() => router.push(`/news-press-release/${item._id}`)}
               >
                 Read More
               </ButtonSmallOutline>
