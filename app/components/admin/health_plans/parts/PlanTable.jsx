@@ -4,9 +4,10 @@ import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
 // import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
-import Pagination from "../../../ui/Pagination";
 import { usePlanContext } from "./PlanContext";
 import { useCheckups } from "../useCheckups";
+import { Pagination, Stack } from "@mui/material";
+import { useState } from "react";
 
 const contactData = [
   {
@@ -36,6 +37,8 @@ const contactData = [
 ];
 
 function PlanTable() {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
   const { data, isLoading, error } = useCheckups();
   const { filter } = usePlanContext();
   if (isLoading) return <Spinner />;
@@ -44,13 +47,20 @@ function PlanTable() {
   if (filter !== "All") {
     filteredPlan = data.filter((el) => {
       if (filter.toLowerCase() === "active") {
-        return el.status === true; // Show active testimonials
+        return el.status === true;
       } else if (filter.toLowerCase() === "inactive") {
-        return el.status === false; // Show inactive testimonials
+        return el.status === false;
       }
       return false;
     });
   }
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const paginatedPlans = filteredPlan.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(filteredPlan.length / itemsPerPage);
 
   //   const { bookings, isLoading, count } = useUsers();
   //   if (isLoading) return <Spinner />;
@@ -70,11 +80,22 @@ function PlanTable() {
         </Table.Header>
 
         <Table.Body
-          data={filteredPlan}
-          render={(notice) => <PlanRow key={notice.id} academic={notice} />}
+          data={paginatedPlans}
+          render={(plan) => <PlanRow key={plan.id} academic={plan} />}
         />
         <Table.Footer>
-          {/* <Pagination count={contactData.length} /> */}
+          <Stack direction="row" justifyContent="center" marginTop={4}>
+            <Pagination
+              count={totalPages || 1}
+              page={page}
+              onChange={(event, value) => setPage(value)} // Update page on click
+              variant="outlined"
+              shape="rounded"
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          </Stack>
         </Table.Footer>
       </Table>
     </Menus>

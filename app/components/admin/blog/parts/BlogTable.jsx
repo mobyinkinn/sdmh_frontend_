@@ -4,10 +4,11 @@ import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
 // import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
-import Pagination from "../../../ui/Pagination";
 import { useBlogContext } from "./BlogContext";
 import BlogRow from "./BlogRow";
 import { useBlogs } from "../useBlogs";
+import { useState } from "react";
+import { Pagination, Stack } from "@mui/material";
 
 const eventData = [
   {
@@ -41,25 +42,33 @@ const eventData = [
 ];
 
 function BlogTable() {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5; // Number of blogs per page
+
   const { data, isLoading, error } = useBlogs();
   const { filter } = useBlogContext();
+
   if (isLoading) return <Spinner />;
-  if (error) return <div>Error loading testimonials: {error.message}</div>;
+  if (error) return <div>Error loading blogs: {error.message}</div>;
+  if (!data.length) return <Empty resourceName="Blogs" />;
+
   let filteredBlog = data;
   if (filter !== "All") {
-    filteredBlog = data.filter((el) => {
-      if (filter.toLowerCase() === "active") {
-        return el.status === true; // Show active testimonials
-      } else if (filter.toLowerCase() === "inactive") {
-        return el.status === false; // Show inactive testimonials
-      }
-      return false;
-    });
+    filteredBlog = data.filter((el) =>
+      filter.toLowerCase() === "active"
+        ? el.status === true
+        : el.status === false
+    );
   }
 
-  //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!data.length) return <Empty resourceName="Admins" />;
+  // Pagination logic: Slice the data to show only the current page's items
+  const startIndex = (page - 1) * itemsPerPage;
+  const paginatedBlogs = filteredBlog.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(filteredBlog.length / itemsPerPage);
+
   return (
     <Menus>
       <Table columns="1fr 1fr 1.2fr 1fr 0.8fr 0.8fr 1fr">
@@ -74,12 +83,23 @@ function BlogTable() {
         </Table.Header>
 
         <Table.Body
-          data={filteredBlog}
-          render={(doctor) => <BlogRow key={doctor.id} department={doctor} />}
+          data={paginatedBlogs}
+          render={(blog) => <BlogRow key={blog.id} department={blog} />}
         />
 
         <Table.Footer>
-          {/* <Pagination count={eventData.length} /> */}
+          <Stack direction="row" justifyContent="center" marginTop={4}>
+            <Pagination
+              count={totalPages || 1} // Always show at least 1 page
+              page={page}
+              onChange={(event, value) => setPage(value)}
+              variant="outlined"
+              shape="rounded"
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          </Stack>
         </Table.Footer>
       </Table>
     </Menus>

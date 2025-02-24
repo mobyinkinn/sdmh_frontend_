@@ -82,27 +82,30 @@
 
 // export default TestimonialTable;
 
-
 import TestimonialRow from "./TestimonialRow";
 import Table from "../../../ui/Table";
 import Menus from "../../../ui/Menus";
 import Empty from "../../../ui/Empty";
 // import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
-import Pagination from "../../../ui/Pagination";
+
 import departmentImg from "./assets/untitled.jpg";
 import { useTestimonialContext } from "./TestimonialContext";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTestimonials } from "./useTestimonial";
-
+import { Pagination, Stack } from "@mui/material";
 
 function TestimonialTable() {
-   const { data, isLoading, error } = useTestimonials();
-   
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
+
+  const { data, isLoading, error } = useTestimonials();
   const { filter } = useTestimonialContext();
-    if (isLoading) return <Spinner />;
-     if (error) return <div>Error loading testimonials: {error.message}</div>;
+
+  if (isLoading) return <Spinner />;
+  if (error) return <div>Error loading testimonials: {error.message}</div>;
+
   let filteredTestimonial = data;
   if (filter !== "All") {
     filteredTestimonial = data.filter((el) => {
@@ -115,11 +118,14 @@ function TestimonialTable() {
     });
   }
 
-  //   const { bookings, isLoading, count } = useUsers();
-  //   if (isLoading) return <Spinner />;
-  if (!data.length) return <Empty resourceName="Admins" />;
+  const startIndex = (page - 1) * itemsPerPage;
+  const paginatedTestimonials = filteredTestimonial.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(filteredTestimonial.length / itemsPerPage);
 
-  // useEffect to call the API when the component mounts
+  if (!data.length) return <Empty resourceName="Testimonial" />;
 
   return (
     <Menus>
@@ -135,12 +141,26 @@ function TestimonialTable() {
         </Table.Header>
 
         <Table.Body
-          data={filteredTestimonial}
-          render={(notice) => (
-            <TestimonialRow key={notice.id} academic={notice} />
+          data={paginatedTestimonials}
+          render={(testimonial) => (
+            <TestimonialRow key={testimonial.id} academic={testimonial} />
           )}
         />
-        <Table.Footer>{/* <Pagination count={data.length} /> */}</Table.Footer>
+        <Table.Footer>
+          {" "}
+          <Stack direction="row" justifyContent="center" marginTop={4}>
+            <Pagination
+              count={totalPages || 1} // Total number of pages
+              page={page}
+              onChange={(event, value) => setPage(value)} // Update page on click
+              variant="outlined"
+              shape="rounded"
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          </Stack>
+        </Table.Footer>
       </Table>
     </Menus>
   );
