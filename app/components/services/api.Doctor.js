@@ -1,14 +1,12 @@
 import axios from "axios";
 import { ApiUrl } from "./Api";
 
-export const fetchDoctors = async ({ page = 1, limit = 5 }) => {
+export const fetchDoctors = async () => {
   const response = await axios.get(`${ApiUrl}/doctor/get-all`, {
-    params: { page, limit }, // Passing page and limit as query parameters
     withCredentials: true,
   });
-  return response.data.data; // Ensure the API response includes { data: [...], totalPages: X }
+  return response.data.data;
 };
-
 
 export const blockDoctor = async (id) => {
   const response = await axios.post(
@@ -92,7 +90,7 @@ export const updateDoctorsOrder = async (formdata) => {
 //   const response = await axios.post(`${ApiUrl}/doctor/get`, {department:_id}, {
 //     withCredentials: true,
 //   });
-//   return response.data.message; 
+//   return response.data.message;
 // };
 export const fetchDoctorBy = async (_id) => {
   const response = await axios.get(`${ApiUrl}/doctor/getbyId?id=${_id}`, {
@@ -100,7 +98,6 @@ export const fetchDoctorBy = async (_id) => {
   });
   return response.data.message; // Adjust based on the actual API response structure
 };
-
 
 export const fetchDoctorByID = async (_id) => {
   const response = await axios.get(`${ApiUrl}/doctor/getdoctorbyId?id=${_id}`, {
