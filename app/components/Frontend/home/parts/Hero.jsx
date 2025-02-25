@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Box, Stack, Typography } from "@mui/material";
 import banner from "../assets/heroBanner.png";
 import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
@@ -11,13 +11,13 @@ import Image from "next/image";
 import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
 
 export default function Hero() {
-    const { data, isLoading, error } = useBannerByPage("home");
+  const { data, isLoading, error } = useBannerByPage("home");
 
   return (
     <Stack direction={"row"}>
       <Box
-        display={{ lg: "flex", sm: "none" }}
-        height={{ xs: "65vh", lg: "90vh" }}
+        display={{ md: "flex", sm: "none" }}
+        height={{ xs: "65vh", md: "50vh", lg: "50vh", xl: "90vh" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${data?.banner})`,
@@ -27,7 +27,7 @@ export default function Hero() {
         }}
       ></Box>
       <Box
-        display={{ lg: "none", sm: "flex" }}
+        display={{ md: "none", sm: "flex" }}
         height={{ xs: "65vh", lg: "90vh" }}
         width={"100%"}
         sx={{
