@@ -32,28 +32,28 @@ const data = [
   },
   {
     id: 2,
-    title: "Books",
-    des: "Approximately 20000",
+    title: "Bound vol. of journals",
+    des: "4500",
   },
   {
     id: 3,
-    title: "Books",
-    des: "Approximately 20000",
+    title: "Dissertation/ Theses",
+    des: "465",
   },
   {
     id: 4,
-    title: "Books",
-    des: "Approximately 20000",
+    title: "Compact disc (CD/ DVD)",
+    des: "650",
   },
   {
     id: 5,
-    title: "Books",
-    des: "Approximately 20000",
+    title: "Periodicals",
+    des: "40",
   },
   {
     id: 6,
-    title: "Books",
-    des: "Approximately 20000",
+    title: "North America Clinics",
+    des: "4000",
   },
 ];
 const SdmhLibrary = () => {
@@ -95,18 +95,26 @@ const SdmhLibrary = () => {
             }}
             textAlign={"left"}
           >
-            The academic wing of Santokba Durlabhji Memorial Hospital and
-            Research Centre is administered by the Academics Deanery: Dean of
-            Academics, Dr. Anupam Chaturvedi; Associate Dean, Dr. Ravi Sharma;
-            and Academics Administrator, Ms. Shiby K. John. Dr. Chaturvedi
-            serves as HOD and Senior Consultant in Paediatrics & Neonatology.
-            Dr. Ravi Sharma also holds the position of Consultant, in Paediatric
-            Intensive Care at SDMH.
+            The Medical Library in SDMH was established in 1972 as a reference
+            library. It is one of its kinds in the private sector research
+            hospitals in Jaipur. Over the years Medical Library has transformed
+            to full-fledged Digital Library with a facility to search and browse
+            all the subscribed and open access e-resources at single search
+            using Ovid Discovery Service (ODS). Ovid Discovery is the world’s
+            most advanced discovery platform developed specifically for health,
+            biomedical, and pharmaceutical electronic libraries—helping solve
+            the growing challenges of the digital library. It provides users
+            with a single-search, one-stop shop solution for all their research
+            needs.
             <br /> <br />
             Library also provides trusted, evidence based, clinical decisions
             support tool - BMJ Best Practice(CDSS Tool) to improve patient
             outcomes. Access is available through web and app to facilitate
-            Online and offline Access.
+            Online and offline Access. (
+            <a href="https://santokbadurlabhji.ovidds.com">
+              santokbadurlabhji.ovidds.com
+            </a>
+            )
           </ParaNormal>
           {/* slider lg */}
           <Stack
@@ -326,7 +334,7 @@ const SdmhLibrary = () => {
               width={{ xs: "100%", md: "45%", lg: "42%", xl: "30%" }}
               direction={"row"}
               gap={3}
-              justifyContent={{ xs: "left", lg: "center" }}
+              justifyContent={{ xs: "left", lg: "left" }}
               padding={{ xs: "20px", lg: "30px" }}
               borderRadius={"20px"}
               bgcolor={"white"}

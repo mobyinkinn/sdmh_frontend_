@@ -11,31 +11,31 @@ const Functions = () => {
     },
     {
       id: 2,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "For every batch of students, a lamp lighting and capping ceremony is held and the successful students are given proper uniform and they take the Florence Nightingale pledge.",
     },
     {
       id: 3,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "There is a Students Nurses association which is a subsidiary of Students Nurses association, Delhi at the national level.",
     },
     {
       id: 4,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "For holistic development of the nurses, due importance is given on students participation in various cultural activities and celebration of special occasions such as Independence Day, Republic Day etc.",
     },
     {
       id: 5,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "Academic periodical tests and examinations are conducted from time to time for the evaluation of the students.",
     },
     {
       id: 6,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "We have a total strength of 240 students on roll.",
     },
     {
       id: 7,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "Evaluation of the students through internal assessment",
     },
     {
       id: 8,
-      desc: "Sixty students are admitted every year in the month of September. After three months of admission, the students are examined to judge their suitability for continuing the training through PTS examination.",
+      desc: "State examinations are conducted as and when announced by Rajasthan Nursing Council.",
     },
   ];
   return (
@@ -53,8 +53,10 @@ const Functions = () => {
             direction={"row"}
             gap={3}
             justifyContent={"center"}
+            alignItems={"center"}
             paddingX={"30px"}
             borderRadius={"20px"}
+            bgcolor={"#F6F6FF6"}
             sx={{
               transition: "all 0.3s ease",
               "&:hover": {
@@ -75,7 +77,7 @@ const Functions = () => {
               height={"42px"}
               borderRadius={"50%"}
               fontSize={"25px"}
-              color={"#005900"}
+              // color={"#005900"}
               alignItems={"center"}
               justifyContent={"center"}
               border={"1px solid #E0E0E0"}
@@ -91,7 +93,7 @@ const Functions = () => {
             {/* Description */}
             <ParaNormal
               style={{ width: "90%", lineHeight: "1.5" }}
-              backgroundColor="white"
+              // backgroundColor="white"
               padding="10px"
             >
               {d.desc}

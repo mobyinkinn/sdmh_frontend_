@@ -27,16 +27,21 @@ const AcademicsDnb = () => {
 
   const rows1 = [
     { subject: "Anaesthesiology", intake: 4, session: "January" },
-    { subject: "General Medicine", intake: 3, session: "January" },
-    {
-      subject: "Immunohematology & Transfusion Medicine",
-      intake: 1,
-      session: "January",
-    },
     { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
     { subject: "Orthopedic Surgery", intake: 2, session: "July" },
     { subject: "Paediatrics", intake: 3, session: "January" },
     { subject: "Pathology", intake: 2, session: "January" },
+    { subject: "Radio-Diagnosis", intake: 2, session: "January" },
+    { subject: "Respiratory Diseases", intake: 2, session: "January" },
+  ];
+
+  const rows2 = [
+    { subject: "Cardiology", intake: 2, session: "January" },
+    { subject: "Gastroenterology", intake: 2, session: "January" },
+    { subject: "Neurosurgery", intake: 2, session: "January" },
+    { subject: "Neurology", intake: 2, session: "January" },
+    { subject: "Surgical Gastroenterology", intake: 2, session: "January" },
+    { subject: "Critical Care Medicine", intake: 3, session: "January" },
   ];
 
   return (
@@ -46,6 +51,7 @@ const AcademicsDnb = () => {
         align={"left"}
         image={banner.src}
         title="DNB-Courses"
+        subTitle="The Hospital That Cares"
         description="Contrary to popular belief,  not simply It has roots in Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked."
         color={"#476C9B"}
         descolor={"black"}
@@ -62,6 +68,9 @@ const AcademicsDnb = () => {
         column1={"Subjects"}
         column2={"Intake"}
         column3={"Session"}
+        name="National Board of Examinations - DNB Post MBBS Program"
+        eligibility="Eligibility – MBBS"
+        duration="Duration – 3 years"
       />
       <DNBTable
         rows={rows1}
@@ -71,15 +80,21 @@ const AcademicsDnb = () => {
         column1={"Subjects"}
         column2={"Intake"}
         column3={"Session"}
+        name="National Board of Examinations - DNB Post MBBS Program"
+        eligibility="Eligibility – MBBS+Diploma"
+        duration="Duration – 2 years"
       />
       <DNBTable
-        rows={rows1}
+        rows={rows2}
         title={"National Board of Examinations"}
         title1={"DNB Super Specialty Program"}
         title3={""}
         column1={"Subjects"}
         column2={"Intake"}
         column3={"Session"}
+        name="National Board of Examinations - DNB Post MBBS Program"
+        eligibility="Eligibility – MBBS + MD/MS/DNB"
+        duration="Duration – 3 years"
       />
       <InfraAndFacility />
       <Footer />

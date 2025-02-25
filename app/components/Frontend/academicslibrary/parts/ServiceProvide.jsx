@@ -13,33 +13,33 @@ const ServiceProvide = () => {
     },
     {
       id: 2,
-      item: "Reading Facilities:",
-      Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
+      item: "Reference Services:",
+      Desc: "Reference services are provided to the users. Users can refer printed documents and non printed materials like CD ROM data base, DVDs, video in the library during the specified period.",
     },
     {
       id: 3,
-      item: "Reading Facilities:",
-      Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
+      item: "Internet Facilities:",
+      Desc: "Internet facilities are provided to the users for accessing the Web, on line journals, searching facilities 24 hours, a day.",
     },
     {
       id: 4,
-      item: "Reading Facilities:",
-      Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
+      item: "Facilities for outsider:",
+      Desc: "outsider: With the permission of Assistant Medical Superintendent and a caution deposit of Rs. 5000/- as security money, the candidate is allowed to use the library as a reader as well as borrow books from the library as per rules.",
     },
     {
       id: 5,
-      item: "Reading Facilities:",
-      Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
+      item: "Self help collections:",
+      Desc: "collections: An important addition to our collection has been the materials from various self help groups. These constitutes both publications as well as extensive documentation files of library work, newspaper clippings, hospital news, hospital pictures and albums etc.",
     },
     {
       id: 6,
-      item: "Reading Facilities:",
-      Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
+      item: "Research Paper :",
+      Desc: "We maintain a large collection of theses and journal articles on various topics.",
     },
     {
       id: 7,
-      item: "Reading Facilities:",
-      Desc: "Room and Computer Section is available 24x7. Circulation section remains open between 9.00 am To 5.30 pm. on weekdays. On Sundays and holidays only reading facilities (magazine, newspapers etc.) are provided to the users for 24 hours in the library premises.",
+      item: "Audio Visuals:",
+      Desc: "We have a good collection of DVDs/CDs on hospital as well as on its various activities such as outreach programme and workshop.",
     },
   ];
   const [visibleCount, setVisibleCount] = useState(4);

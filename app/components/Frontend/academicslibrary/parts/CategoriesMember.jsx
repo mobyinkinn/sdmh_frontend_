@@ -30,11 +30,12 @@ const CategoriesMember = () => {
     },
     {
       img: doctor,
-      title: "Doctor",
+      title: "All other staff",
     },
     {
       img: doctor,
-      title: "Doctor",
+      title: "Special members ",
+      subtitle: "(Non- employee medical outsiders)",
     },
   ];
 
@@ -99,8 +100,23 @@ const CategoriesMember = () => {
               justifyContent={"center"}
             >
               <Stack alignItems={"center"}>
-                <Stack direction={"row"}>
-                  <Head1 color="white">{d.title}</Head1>
+                <Stack>
+                  <Head1
+                    color="white"
+                    fontSize={{
+                      xs: "15px",
+                      smm: "20px",
+                      md: "25px",
+                      lg: "30px",
+                    }}
+                  >
+                    {d.title}
+                  </Head1>
+                </Stack>
+                <Stack alignItems="center">
+                  {d.subtitle && (
+                    <ParaNormal color="white">{d.subtitle}</ParaNormal>
+                  )}
                 </Stack>
               </Stack>
             </Stack>
@@ -209,9 +225,8 @@ const SmSlider = ({ d }) => {
         display="flex"
       >
         <Stack alignItems="center">
-          <Stack direction="row">
-            <Head1 color="white">{d.title}</Head1>
-          </Stack>
+          <Head1 color="white">{d.title}</Head1>
+          {d.subtitle && <ParaNormal color="white">{d.subtitle}</ParaNormal>}
         </Stack>
       </Stack>
     </Stack>
