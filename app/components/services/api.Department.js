@@ -89,11 +89,27 @@ export const updateBanner = async ({ id, formdata }) => {
   return response.data;
 };
 
-
-
 export const fetchDepartmentById = async (_id) => {
   const response = await axios.get(`${ApiUrl}/department/getbyId?id=${_id}`, {
     withCredentials: true,
   });
   return response.data.message; // Adjust based on the actual API response structure
+};
+
+export const importDepartments = async (file) => {
+  const formData = new FormData();
+  formData.append("csv", file);
+
+  const response = await axios.post(
+    `${ApiUrl}/department/import-departments`,
+    formData,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response.data;
 };

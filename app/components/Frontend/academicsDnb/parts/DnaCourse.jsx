@@ -23,6 +23,9 @@ const DNBTable = ({
   column1,
   column2,
   column3,
+  name,
+  eligibility,
+  duration,
 }) => {
   return (
     <Stack bgcolor={"#dcefe9"} p={2}>
@@ -77,7 +80,11 @@ const DNBTable = ({
           display={{ xs: "none", lg: "flex" }}
         >
           <Typography fontSize={"18px"} component="div" align="center">
-            National Board of Examinations - DNB Post MBBS Program
+            {name}
+          </Typography>
+
+          <Typography fontSize={"18px"} component="div" align="center">
+            {eligibility}
           </Typography>
 
           <Typography
@@ -89,7 +96,7 @@ const DNBTable = ({
             {title4}
           </Typography>
           <Typography fontSize={"18px"} component="div" align="center">
-            Duration – 3 years
+            {duration}
           </Typography>
         </Stack>
 

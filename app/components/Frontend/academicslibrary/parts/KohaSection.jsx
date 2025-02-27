@@ -15,11 +15,11 @@ const KohaSection = () => {
         },
         {
           id: 2,
-          point: "Consultant (2)",
+          point: "DNB Students (3)",
         },
         {
           id: 3,
-          point: "Consultant (2)",
+          point: "Nursing/Hospital Staff (4)",
         },
         {
           id: 4,
@@ -32,11 +32,7 @@ const KohaSection = () => {
       points: [
         {
           id: 1,
-          point: "Consultant (2)",
-        },
-        {
-          id: 2,
-          point: "Consultant (2)",
+          point: "Ovid MD (www.ovidmd.ovid.com)",
         },
       ],
     },

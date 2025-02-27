@@ -125,20 +125,6 @@ function EditDoctorForm({ onCloseModal, id, department }) {
           }}
         />
       </FormRow>
-      <FormRow label="Order" error={errors?.order?.message}>
-        <Input
-          disabled={isUpdating}
-          type="text"
-          id="order"
-          value={formdata.order || ""}
-          {...register("order", { required: "This field is required" })}
-          onChange={(e) => {
-            if (!e || !e.target) return;
-            const newOrder = e.target.value;
-            setFormdata((prev) => ({ ...prev, order: newOrder }));
-          }}
-        />
-      </FormRow>
 
       <Stack direction={"row"} columnGap={12}>
         <FormRow label="Designation" error={errors?.designation?.message}>

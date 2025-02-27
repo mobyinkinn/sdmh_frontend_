@@ -20,12 +20,14 @@ const ReorderDoctorForm = () => {
 
   useEffect(() => {
     if (data && Array.isArray(data) && data.length > 0) {
-      // Ensure we have a proper array and add initial order if not present
-      const formattedDoctors = data.map((doctor, index) => ({
-        ...doctor,
-        order: doctor.order ?? index,
-        _id: doctor._id.toString(), // Ensure _id is a string
-      }));
+      const formattedDoctors = data
+        .map((doctor, index) => ({
+          ...doctor,
+          order: doctor.order ?? index,
+          _id: doctor._id.toString(),
+        }))
+        .sort((a, b) => a.order - b.order);
+
       setDoctors(formattedDoctors);
     }
   }, [data]);
@@ -49,10 +51,9 @@ const ReorderDoctorForm = () => {
 
     setDoctors(updatedDoctors);
 
-    // Prepare and send API update
-    const updatedOrder = updatedDoctors.map((doctor, index) => ({
+    const updatedOrder = updatedDoctors.map((doctor) => ({
       id: doctor._id,
-      order: index.toString(),
+      order: doctor.order.toString(),
     }));
 
     updateDoctorOrder(updatedOrder);

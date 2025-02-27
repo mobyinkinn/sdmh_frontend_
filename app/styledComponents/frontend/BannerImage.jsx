@@ -17,9 +17,10 @@ const BannerImage = ({
   heights,
   padding,
   sm_image,
+  subTitle,
 }) => {
   return (
-    <ContainerMain gap="0" dir="row" padding="0" id="about">
+    <ContainerMain gap="0" dir="row" padding={{ lg: "0" }} id="about">
       <Stack
         width={"100%"}
         height={heights || "90vh"}
@@ -46,9 +47,9 @@ const BannerImage = ({
             alignItems={align || "center"}
             gap={1}
           >
-            {/* <Typography fontSize={"1.2rem"} fontWeight={400}>
-              The Hospital That Cares
-            </Typography> */}
+            <Typography fontSize={"1.2rem"} fontWeight={400}>
+              {subTitle}
+            </Typography>
             <Stack direction={"row"}>
               <Head1 color={color || "white"}>{title}</Head1>
             </Stack>
