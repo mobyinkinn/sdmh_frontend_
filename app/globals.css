@@ -84,3 +84,81 @@
 .dragging {
   background-color: rgba(0, 0, 0, 0.1) !important;
 }
+.set{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  line-height: 1.7;
+}
+.set ul {
+    padding: 0;
+    list-style: none; /* Remove default bullets */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    counter-reset: li-counter; /* Reset counter */
+}
+
+.set ul li {
+    display: flex;
+    font-size: 18px;
+    width: 45%;  /* Slightly wider for breathing space */
+    align-items: center;
+    gap: 15px; 
+    margin-bottom: 12px;
+    position: relative; /* Useful if you want to add more styles later */
+}
+
+.set ul li::before {
+    content: counter(li-counter);
+    counter-increment: li-counter;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #54B435;
+
+    /* Force perfect circle */
+    width: 45px;
+    height: 45px;
+    min-width: 45px; /* This helps prevent shrinking */
+    min-height: 45px;
+
+    border: 2px solid #54B435;
+    border-radius: 50%;
+
+    font-size: 16px;
+    line-height: 1; /* Ensures numbers stay vertically centered */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .set ul li {
+        gap: 10px;
+    }
+    .set ul li::before {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .set ul li {
+        gap: 8px;
+        width: 100%; /* Full width for small screens */
+    }
+    .set ul li::before {
+        width: 25px;
+        height: 25px;
+        min-width: 25px;
+        min-height: 25px;
+        font-size: 12px;
+    }
+}
