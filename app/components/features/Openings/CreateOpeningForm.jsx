@@ -169,11 +169,10 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
   function onSubmit(data) {
     const payload = {
       position: data.position,
-      seats: data.seats,
-      lastDate: data.lastDate,
-      programmer: data.programmer,
+      category: data.category,
+      type: data.type,
+      location: data.location,
       jd: jdContent,
-      number: data.number,
       status: true,
     };
     createOpenings(payload, {
@@ -204,34 +203,34 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
               })}
             />
           </FormRow>
-          <FormRow label="Seats" error={errors?.page?.message}>
+          <FormRow label="Category" error={errors?.category?.message}>
             <Input
               disabled={isWorking}
               type="text"
-              id="seats"
-              {...register("seats", {
+              id="category"
+              {...register("category", {
                 required: "This field is required",
               })}
             />
           </FormRow>
         </Stack>
         <Stack direction={"row"} justifyContent={"space-around"} p={"0px 10px"}>
-          <FormRow label="Programmer" error={errors?.description?.message}>
+          <FormRow label="Type" error={errors?.type?.message}>
             <Input
               disabled={isWorking}
               type="text"
-              id="programmer"
-              {...register("programmer", {
+              id="type"
+              {...register("type", {
                 required: "This field is required",
               })}
             />
           </FormRow>
-          <FormRow label="Last Date" error={errors?.date?.message}>
+          <FormRow label="Location" error={errors?.location?.message}>
             <Input
               disabled={isWorking}
               type="text"
-              id="lastDate"
-              {...register("lastDate", {
+              id="location"
+              {...register("location", {
                 required: "This field is required",
               })}
             />
@@ -241,18 +240,6 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
           <FormRow label="JD" error={errors?.description?.message}></FormRow>
           <Jodit content={jdContent} setContent={setJdContent} />
         </Stack>
-        <Stack pl={3}>
-          <FormRow label="Ph Number" error={errors?.date?.message}>
-            <Input
-              disabled={isWorking}
-              type="text"
-              id="number"
-              {...register("number", {
-                required: "This field is required",
-              })}
-            />
-          </FormRow>
-        </Stack>
         <FormRow>
           <Button
             variation="secondary"
@@ -261,7 +248,7 @@ function CreateOpeningForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
           >
             Cancel
           </Button>
-          <Button disabled={isWorking}>{"Create new banner"}</Button>
+          <Button disabled={isWorking}>{"Create new opening"}</Button>
         </FormRow>
       </Stack>
     </Form>
