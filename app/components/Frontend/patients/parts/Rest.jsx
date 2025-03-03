@@ -31,11 +31,9 @@ const restData = [
     title: "Book & Newspaper Shop",
     img: bookShop,
     data: [
-      "Air-conditioned in campus accommodation facility is available for patient attendants inside the campus.",
-      "To confirm availability please cont : 141-5110200",
-      "Check-in and Check-out time : 12 noon(only two attendants are permitted in one room)",
-      "Attendant may pay at admission counter to avail the room facility. However due to heavy demand and limited rooms, attendant may have to wait till a room is vacated.",
-      "In case of non-availability of VishramGrah rooms, attendants may avail Bunk-Bed facility which is available on 12 hours basis at very nominal rates, inside hospital campus.",
+      "The Book & Newspaper shop is available near the Sarvdharm Temple.",
+      "The shop makes available the books and newspapers.",
+      "The facility is available Monday to Saturday from 7 am to 9 pm.",
     ],
   },
   {
@@ -43,11 +41,8 @@ const restData = [
     title: "Sarvdharm Temple",
     img: temple,
     data: [
-      "Air-conditioned in campus accommodation facility is available for patient attendants inside the campus.",
-      "To confirm availability please cont : 141-5110200",
-      "Check-in and Check-out time : 12 noon(only two attendants are permitted in one room)",
-      "Attendant may pay at admission counter to avail the room facility. However due to heavy demand and limited rooms, attendant may have to wait till a room is vacated.",
-      "In case of non-availability of VishramGrah rooms, attendants may avail Bunk-Bed facility which is available on 12 hours basis at very nominal rates, inside hospital campus.",
+      "Sarvdharm Temple is located near waiting area outside IPD.",
+      "The temple is open from 6 am to 8 pm every day.",
     ],
   },
   {
@@ -55,11 +50,9 @@ const restData = [
     title: "Salon",
     img: salon,
     data: [
-      "Air-conditioned in campus accommodation facility is available for patient attendants inside the campus.",
-      "To confirm availability please cont : 141-5110200",
-      "Check-in and Check-out time : 12 noon(only two attendants are permitted in one room)",
-      "Attendant may pay at admission counter to avail the room facility. However due to heavy demand and limited rooms, attendant may have to wait till a room is vacated.",
-      "In case of non-availability of VishramGrah rooms, attendants may avail Bunk-Bed facility which is available on 12 hours basis at very nominal rates, inside hospital campus.",
+      "S.D.M.H. encompasses a salon inside the campus.",
+      "The facility is available from 6 am to 10 pm every day.",
+      "The facility can be contacted at 141-2566251",
     ],
   },
 ];

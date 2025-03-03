@@ -40,23 +40,44 @@ export default function Message() {
         <Head1 color="white" textAlign="left">
           Secretary's Message
         </Head1>
-        <ParaNormal textAlign={{lg:"justify", sm: "center", smm: "center" }} color="white">
-          Empathy is the word that immediately comes to mind as I think of my
-          father. Empathy is aptly defined as someone else’s pain in your heart.
-          My father felt the pain of many in his. He was deeply affected by the
-          plight of the pavement dwellers he drove past on his way to work – he
-          would cover them with blankets during clandestine outings at night.
+        <ParaNormal
+          textAlign={{ lg: "justify", sm: "center", smm: "center" }}
+          color="white"
+        >
+          The word that instantly comes to mind when I think of my father is
+          "empathy." He felt others' pain deeply, and his life was shaped by
+          this compassion. He was profoundly moved by the plight of pavement
+          dwellers he saw on his way to work, often covering them with blankets
+          during his late-night outings.
         </ParaNormal>
-        <ParaNormal textAlign={{lg:"justify", sm: "center", smm: "center" }} color="white">
-          That shared pain for those who dwelt on pavements, and lived on the
-          periphery of life was evident at the hospital we know as Santokba.
-          Santokba is the story of his vision which impacted a million lives. It
-          is the story of the love and the dedication of a family that, for
-          almost 52 years now, has made Rajasthan a healthier place to live in.
-          It is the story of nurses, of technicians and doctors, of carpenters
-          and electricians, of patients, attendants and residents. It is not
-          about martyrdom or about sacrifice but about care, compassion and
-          concern.
+        <ParaNormal
+          textAlign={{ lg: "justify", sm: "center", smm: "center" }}
+          color="white"
+        >
+          This compassion became the foundation of Santokba Durlabhji Memorial
+          Hospital (SDMH). My father's vision has impacted millions of lives
+          over the last 54 years. It is a story of love, dedication, and care—a
+          family legacy that continues to make Rajasthan a healthier place.
+        </ParaNormal>
+        <ParaNormal
+          textAlign={{ lg: "justify", sm: "center", smm: "center" }}
+          color="white"
+        >
+          My father, Khelubhai, or Khailshanker ji, conceptualized SDMH during
+          his long walks with Dr. Tarachand ji Gangwal in the 1960s. In 1971,
+          the hospital was inaugurated by Smt. Indira Gandhi. My brother Rashmi
+          turned my father's vision into reality, translating it into physical
+          infrastructure and healthcare services.
+        </ParaNormal>
+        <ParaNormal
+          textAlign={{ lg: "justify", sm: "center", smm: "center" }}
+          color="white"
+        >
+          Through challenges and constraints, our family has carried on this
+          mission, maintaining a commitment to care, compassion, and
+          understanding. We are determined to carry the torch forward,
+          rededicating ourselves to the Santokba hospital my father always
+          envisioned.
         </ParaNormal>
       </Stack>
     </ContainerMain>

@@ -18,6 +18,8 @@ import img7 from "./assets/award7.png";
 import { useEffect, useState } from "react";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import { useRouter } from "next/navigation";
+import { useAwards } from "@/app/components/admin/awards/useAwards";
+import Spinner from "@/app/components/ui/Spinner";
 
 const initialImages = [
   { img: img1, data: "data 1 for image 1" },
@@ -31,6 +33,7 @@ const initialImages = [
 
 export default function Awards() {
   const router = useRouter();
+  const { data, isLoading, error } = useAwards();
   const [center, setCenter] = useState(initialImages);
   useEffect(() => {
     function RotateCenter() {
@@ -44,6 +47,8 @@ export default function Awards() {
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
+
+  if (isLoading) return <Spinner />;
 
   const settings = {
     dots: false,
@@ -234,8 +239,8 @@ export default function Awards() {
           display={{ md: "none", xs: "flex" }}
         >
           <Slider {...settings}>
-            {initialImages.map((img, index) => (
-              <ImageCard key={index} img={img.img} />
+            {data.map((award) => (
+              <ImageCard key={award._id} img={award.image} />
             ))}
           </Slider>
         </Stack>
@@ -263,7 +268,7 @@ function ImageCard({ img }) {
       >
         <Box
           sx={{
-            backgroundImage: `url(${img.src})`,
+            backgroundImage: `url(${img})`,
             backgroundSize: "cover",
             backgroundPosition: "center center",
             height: "100%",

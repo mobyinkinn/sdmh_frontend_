@@ -69,13 +69,13 @@ export default function CareerCard({ career }) {
           gap={{ md: "40px", xs: "5px" }}
         >
           <ParaNormalSmall color="inherit">
-            Seats: <b> {career.seats}</b>
+            Category: <b> {career.category}</b>
           </ParaNormalSmall>
           <ParaNormalSmall color="inherit">
-            Last Date:<b> {career.lastDate}</b>
+            Type:<b> {career.type}</b>
           </ParaNormalSmall>
           <ParaNormalSmall color="inherit">
-            Program coordinator:<b> {career.programmer}</b>
+            Location:<b> {career.location}</b>
           </ParaNormalSmall>
         </Stack>
         <ButtonSmallOutline
