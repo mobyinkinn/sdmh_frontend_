@@ -84,7 +84,7 @@ function BlogTable() {
 
         <Table.Body
           data={paginatedBlogs}
-          render={(blog) => <BlogRow key={blog.id} department={blog} />}
+          render={(blog) => <BlogRow key={blog._id} department={blog} />}
         />
 
         <Table.Footer>

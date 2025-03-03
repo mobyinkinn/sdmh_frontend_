@@ -80,7 +80,7 @@ function DepartmentTable() {
         <Table.Body
           data={paginatedData}
           render={(department) => (
-            <DepartmentRow key={department.id} department={department} />
+            <DepartmentRow key={department._id} department={department} />
           )}
         />
 
