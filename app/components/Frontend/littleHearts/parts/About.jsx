@@ -6,7 +6,7 @@ import {
   ParaNormalSmall,
 } from "@/app/styledComponents/frontend/Para";
 import Image from "next/image";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 export default function About() {
   return (
@@ -36,40 +36,54 @@ export default function About() {
         >
           About Help Little Hearts
         </Head1>
-        <ParaNormalSmall textAlign={"center"} width={"90%"}>
-          About 3-4 children in 1000 live births all over the world have
-          congenital heart anomaly and about 50% of such cases require medical
-          intervention at some point in their life. According to data some 1.75
-          lac children are born with Congenital Heart Disease in India every
-          year. Nearly 20% of the babies die every year for want of treatment at
-          appropriate time.
+        <ParaNormalSmall textAlign={"left"} width={"90%"}>
+          Every heartbeat carries the promise of life, yet for many children
+          with Congenital Heart Disease (CHD), this promise is at risk. In
+          India, 175,000 children are born with CHD annually, and nearly 20% die
+          due to a lack of access to treatment. Recognizing this gap, SDMH
+          launched Project Little Hearts—ensuring no child is denied life-saving
+          cardiac surgery due to financial constraints.
         </ParaNormalSmall>
-        <ParaNormalSmall width={"90%"} textAlign={"center"}>
-          Pediatric cardiac care is too expensive for the average Indian family.
-          Despite subsidy, it may cost 50,000 -60,000 rupees in government
-          hospital and four to five time cost in a private or semi-private
-          hospital. Approximately, only 10,000 pediatric cardiac surgeries are
-          performed in North India. There is huge dearth of pediatric cardiac
-          surgeons in India.
+        <Typography textAlign={"left"} width={"90%"} variant="h5">
+          Making a Difference, One Heart at a Time
+        </Typography>
+        <ParaNormalSmall width={"90%"} textAlign={"left"}>
+          The project began in 2017 with two paediatric cardiac surgery camps at
+          SDMH, in collaboration with U.S. doctors. Over two years, 38 complex
+          surgeries were performed free of cost, giving children from Rajasthan
+          and beyond a second chance at life.
         </ParaNormalSmall>
-        <ParaNormalSmall width={"90%"} textAlign={"center"}>
-          To address the issue, SDMH with support of doctors from USA help make
-          little but life saving contribution in the life of few children
-          suffering from Congenital Heart Disease. These children are screened
-          and shortlisted for surgery at no cost to them. These children come
-          from a family that may not afford payment for a complex surgery. Every
-          year a team of doctors visit SDMH and with the team of CTVS and
-          Cardiology at SDMH, surgeries are performed in the hospital. To know
-          more about such cases, you may download our book on the project Little
-          Heart.
+        <ParaNormalSmall width={"90%"} textAlign={"left"}>
+          Project Little Hearts relies on a robust screening process,
+          identifying children from underprivileged families through rural and
+          urban healthcare centers. SDMH’s comprehensive paediatric cardiac
+          team—including paediatricians, cardiologists, anaesthetists, and
+          surgeons—ensures a holistic approach to treatment.
         </ParaNormalSmall>
-        <ParaNormalSmall width={"90%"} textAlign={"center"}>
-          SDMH proudly announces a partnership with Genesis Foundation.
-          Together, we are committed to save little hearts and make a
-          difference. Together, we shall perform life-saving heart surgeries on
-          children with congenital heart defects and whose families would have
-          otherwise not been able to afford the cost of treatment. This will be
-          at no cost to patient's families.
+        <Typography textAlign={"left"} width={"90%"} variant="h5">
+          A Story of Hope: Divya’s Journey
+        </Typography>
+        <ParaNormalSmall width={"90%"} textAlign={"left"}>
+          Divya, an eight-year-old from Haryana, suffered from Patent Ductus
+          Arteriosus (PDA), causing fatigue and frequent illness. Her family
+          couldn’t afford surgery—until Project Little Hearts intervened. With
+          support from Genesis Foundation, she underwent a one-hour PDA Device
+          Closure at SDMH’s Cath Lab. Within two days, she was discharged, her
+          life transformed.
+        </ParaNormalSmall>
+        <Typography textAlign={"left"} width={"90%"} variant="h5">
+          A Mission of Compassion
+        </Typography>
+        <ParaNormalSmall width={"90%"} textAlign={"left"}>
+          With 100 surgeries performed and Rs. 40 lakh provided in subsidies and
+          freeships, Project Little Hearts has become a beacon of hope. SDMH
+          partners with NGOs and Rajasthan’s Bal Swasthya Karyakram to extend
+          its reach, stepping in when sponsorship isn’t available.
+        </ParaNormalSmall>
+        <ParaNormalSmall width={"90%"} textAlign={"left"}>
+          More than a program, Project Little Hearts is a movement—driven by
+          expertise, compassion, and an unwavering commitment to saving little
+          hearts. Because every child deserves a chance to live.
         </ParaNormalSmall>
       </Stack>
     </ContainerMain>
