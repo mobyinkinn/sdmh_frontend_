@@ -8,6 +8,13 @@ export const fetchBlogs = async () => {
   return response.data.message; // Adjust based on actual API structure
 };
 
+export const fetchBlogById = async (id) => {
+  const response = await axios.get(`${ApiUrl}/blogs/get-by-id?_id=${id}`, {
+    withCredentials: true,
+  });
+  return response.data.message;
+};
+
 export const deleteBlog = async (id) => {
   const response = await axios.get(`${ApiUrl}/blogs/delete?id=${id}`, {
     withCredentials: true,
