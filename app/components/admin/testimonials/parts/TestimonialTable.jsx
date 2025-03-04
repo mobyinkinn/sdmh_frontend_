@@ -143,7 +143,7 @@ function TestimonialTable() {
         <Table.Body
           data={paginatedTestimonials}
           render={(testimonial) => (
-            <TestimonialRow key={testimonial.id} academic={testimonial} />
+            <TestimonialRow key={testimonial._id} academic={testimonial} />
           )}
         />
         <Table.Footer>

@@ -81,7 +81,7 @@ function EventTable() {
 
         <Table.Body
           data={paginatedEvents}
-          render={(event) => <EventRow key={event.id} event={event} />}
+          render={(event) => <EventRow key={event._id} event={event} />}
         />
 
         <Table.Footer>

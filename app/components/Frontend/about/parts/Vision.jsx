@@ -16,7 +16,7 @@ const visionData = [
     id: 1,
     name: "Mission",
     img: mission,
-    data: "Sdmh Shall Be An Integrated Quaternary Healthcare Hub For Delivery Of Affordable Quality Medical Care In An Economically Viable, Regionally, Nationally And Internationally Positioned Institutional Environment.",
+    data: "SDMH is committed to providing high-quality healthcare at the most affordable rates, ensuring that all sections of society—regardless of caste, creed, or color—have access to compassionate care. We dedicate our energy and efforts to making this a reality, keeping the well-being of our patients as our highest priority.",
   },
 ];
 

@@ -44,13 +44,13 @@ const EditOpeningsForm = ({
               onChange={handleInputChange}
             />
           </FormRow>
-          <FormRow label="Seats">
+          <FormRow label="Category">
             <Input
               disabled={isUpdating}
               type="text"
-              id="seats"
-              name="seats"
-              value={editData.seats}
+              id="category"
+              name="category"
+              value={editData.category}
               onChange={handleInputChange}
             />
           </FormRow>
@@ -61,23 +61,23 @@ const EditOpeningsForm = ({
           p={"0px 24px"}
           gap={4}
         >
-          <FormRow label="Programmer">
+          <FormRow label="Type">
             <Input
               disabled={isUpdating}
               type="text"
-              id="programmer"
-              name="programmer"
-              value={editData.programmer}
+              id="type"
+              name="type"
+              value={editData.type}
               onChange={handleInputChange}
             />
           </FormRow>
-          <FormRow label="Last Date">
+          <FormRow label="Location">
             <Input
               disabled={isUpdating}
               type="text"
-              id="lastDate"
-              name="lastDate"
-              value={editData.lastDate}
+              id="location"
+              name="location"
+              value={editData.location}
               onChange={handleInputChange}
             />
           </FormRow>
@@ -85,18 +85,6 @@ const EditOpeningsForm = ({
         <Stack p={"0 24px"}>
           <FormRow label="JD"></FormRow>
           <Jodit content={jdContent} setContent={setJdContent} />
-        </Stack>
-        <Stack pl={3}>
-          <FormRow label="Ph Number">
-            <Input
-              disabled={isUpdating}
-              type="text"
-              id="number"
-              name="number"
-              value={editData.number}
-              onChange={handleInputChange}
-            />
-          </FormRow>
         </Stack>
         <FormRow>
           <Button
@@ -106,7 +94,7 @@ const EditOpeningsForm = ({
           >
             Cancel
           </Button>
-          <Button disabled={isUpdating}>{"Update banner"}</Button>
+          <Button disabled={isUpdating}>{"Update opening"}</Button>
         </FormRow>
       </Stack>
     </form>

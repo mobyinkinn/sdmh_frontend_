@@ -2,135 +2,193 @@ import { useForm } from "react-hook-form";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
-import FileInput from "../../ui/FileInput";
 import FormRow from "../../ui/FormRow";
-import { Stack } from "@mui/material";
 import {
-  useDepartment,
-  useUpdateDepartment,
   useUpdateImage,
   useBannerImage,
 } from "../../admin/departments/parts/useDepartment";
-import { useState } from "react";
 import Jodit from "../Openings/Jodit";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { Stack } from "@mui/material";
+import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
+import { FaEdit } from "react-icons/fa";
 
-function EditDepartmentForm({ onCloseModal, id }) {
-  const { data, isLoading } = useDepartment();
-  const filteredData = data.filter((el) => el._id === id);
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+function EditDepartmentForm({
+  onCloseModal,
+  id,
+  editData,
+  setEditData,
+  aboutContent,
+  setAboutContent,
+  onConfirm,
+  isUpdating,
+}) {
+  const { formState } = useForm({
     defaultValues: {},
   });
-
-  const [name, setName] = useState(filteredData[0].name);
-  // const [content, setContent] = useState(filteredData[0].content);
-const [content, setContent] = useState(filteredData?.[0]?.content || "");
-
-  const { isUpdating, updateDepartment } = useUpdateDepartment();
   const { updateImage, isUpdatingImage } = useUpdateImage();
   const { updateBanner, isUpdatingBanner } = useBannerImage();
-
   const { errors } = formState;
   if (isUpdating || isUpdatingImage || isUpdatingBanner) return <SpinnerMini />;
 
-  function onUpdateDepartment(name, content, id) {
-    const formdata = { name, content };
-    updateDepartment({ formdata, id });
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onCloseModal?.();
+    onConfirm();
+  };
 
-  function onUpdateImage(files, id) {
-    const file = typeof files === "string" ? files : files[0];
-    const formdata = new FormData();
-    formdata.append("image", file);
-    updateImage({ id, formdata });
-  }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditData({ ...editData, [name]: value });
+  };
 
-  function onUpdateBanner(files, id) {
-    const file = typeof files === "string" ? files : files[0];
-    const formdata = new FormData();
-    formdata.append("banner", file);
-    updateBanner({ id, formdata });
-  }
+  const handleImageChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    const formDataImage = new FormData();
+    formDataImage.append("image", file);
 
-  const handleContentClick = () => {
-    onUpdateDepartment(name, content, id);
+    updateImage(
+      {
+        id,
+        formdata: formDataImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Image updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Image:", error);
+          toast.error("Failed to update Image. Please try again.");
+        },
+      }
+    );
+
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
+  };
+
+  const handleBannerChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    const formDataBanner = new FormData();
+    formDataBanner.append("banner", file);
+    setEditData({ ...editData, [fieldName]: file });
+
+    updateBanner(
+      {
+        id,
+        formdata: formDataBanner,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Banner updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Banner:", error);
+          toast.error("Failed to update Banner. Please try again.");
+        },
+      }
+    );
+
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
   };
 
   function onError(errors) {}
   return (
-    <Form
-      // onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
-    >
-      <FormRow label="Name" error={errors?.page?.message}>
+    <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
+      <FormRow label="Name">
         <Input
-          // disabled={isUpdating}
+          name="name"
           type="text"
           id="name"
-          value={name}
-          {...register("name", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            const newName = e.target.value;
-            setName(newName);
-            onUpdateDepartment(newName, content, id);
-          }}
+          value={editData.name}
+          onChange={handleInputChange}
         />
       </FormRow>
 
       <FormRow label="Content"></FormRow>
-      <Jodit content={content} setContent={setContent} />
-      <Stack
-        direction="row"
-        sx={{
-          justifyContent: "end",
-          gap: "20px",
-          marginTop: "10px",
-        }}
-      >
-        <Button onClick={handleContentClick}>{"Update Content"}</Button>
+      <Jodit content={aboutContent} setContent={setAboutContent} />
+
+      <Stack marginLeft={2} direction={"row"} columnGap={7}>
+        <FormRow label="Image">
+          <ImagePreviewContainer>
+            {editData.image && (
+              <>
+                <img
+                  src={
+                    typeof editData.image === "string"
+                      ? editData.image
+                      : URL.createObjectURL(editData.image)
+                  }
+                  alt="Preview"
+                  width={200}
+                  height={110}
+                />
+                <div className="edit-icon">
+                  <label htmlFor="image-upload">
+                    <FaEdit size={16} />
+                  </label>
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(e) => handleImageChange(e, "image")}
+                  />
+                </div>
+              </>
+            )}
+          </ImagePreviewContainer>
+        </FormRow>
+        <FormRow label={"Banner"}>
+          <label>
+            <ImagePreviewContainer>
+              {editData.bannerImage && (
+                <>
+                  <img
+                    src={
+                      typeof editData.bannerImage === "string"
+                        ? editData.bannerImage
+                        : URL.createObjectURL(editData.bannerImage)
+                    }
+                    alt="Preview"
+                    width={200}
+                    height={110}
+                  />
+                  <div className="edit-icon">
+                    <label htmlFor="banner-upload">
+                      <FaEdit size={16} />
+                    </label>
+                    <input
+                      name="banner"
+                      id="banner-upload"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={(e) => handleBannerChange(e, "bannerImage")}
+                    />
+                  </div>
+                </>
+              )}
+            </ImagePreviewContainer>
+          </label>
+        </FormRow>
       </Stack>
 
-      <FormRow label={"Image"}>
-        <FileInput
-          id="image"
-          accept="image/*"
-          type="file"
-          {...register("Image", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            const updatedValue = e.target.files;
-            onUpdateImage(updatedValue, id);
-          }}
-        />
+      <FormRow marginLeft={2}>
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+        >
+          Cancel
+        </Button>
+        <Button>{"Update Department"}</Button>
       </FormRow>
-
-      <FormRow label={"Banner Image"}>
-        <FileInput
-          id="bannerImage"
-          accept="image/*"
-          type="file"
-          {...register("bannerImage", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            const updatedValue = e.target.files;
-            onUpdateBanner(updatedValue, id);
-          }}
-        />
-      </FormRow>
-
-      <Stack
-        direction="row"
-        sx={{
-          justifyContent: "end",
-          gap: "20px",
-        }}
-      >
-        <Button>{"Done"}</Button>
-      </Stack>
     </Form>
   );
 }
