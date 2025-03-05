@@ -113,10 +113,10 @@ import {
 import { useDepartmentById } from "@/app/components/admin/departments/parts/useDepartment";
 
 export default function DoctorProfileBanner({ data }) {
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  console.log("data",data)
-  const _id = data?.department
-    const { data:departmentData, isLoading, error } = useDepartmentById(_id);
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  console.log("data", data);
+  const _id = data?.department;
+  const { data: departmentData, isLoading, error } = useDepartmentById(_id);
   return (
     <Stack width="100%">
       <Stack
@@ -127,6 +127,7 @@ export default function DoctorProfileBanner({ data }) {
         justifyContent="start"
       >
         <Stack
+          backgroundColor={"#D8E0EB"}
           sx={{
             position: "relative",
             width: { md: "30%" },
@@ -139,8 +140,9 @@ export default function DoctorProfileBanner({ data }) {
           <Box
             sx={{
               backgroundImage: `url(${data?.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
+              backgroundSize: "contain",
+              backgroundPosition: "center top",
+              backgroundRepeat: "no-repeat",
               width: "100%",
               height: "100%",
               transform: "skew(-3deg)", // Reverse skew for the actual image
@@ -177,11 +179,11 @@ export default function DoctorProfileBanner({ data }) {
             <ParaNormal color="white">{data?.designation}</ParaNormal>
             <ParaNormalSmall color="white"></ParaNormalSmall>
             <ParaNormalSmall color="white">
-              Department: {departmentData?.name}
+              Department: {data?.department}
             </ParaNormalSmall>
-            <ParaNormalSmall color="white">
+            {/* <ParaNormalSmall color="white">
               Years of practice: {data?.experience}
-            </ParaNormalSmall>
+            </ParaNormalSmall> */}
 
             {/* Buttons for larger screens */}
             <Stack
