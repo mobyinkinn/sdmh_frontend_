@@ -57,7 +57,6 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("order", -1);
     formdata.append("name", data.name);
     formdata.append("designation", data.designation);
-    formdata.append("experience", data.experience);
     formdata.append("room", data.room);
     formdata.append("floor", data.floor);
     formdata.append("department", data.department);
@@ -112,7 +111,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow label="Department" error={errors?.department?.message}>
-        <StyledSelect
+        {/* <StyledSelect
           disabled={isWorking}
           id="department"
           {...register("department", {
@@ -125,7 +124,15 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
               {department.name}
             </option>
           ))}
-        </StyledSelect>
+        </StyledSelect> */}
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="department"
+          {...register("department", {
+            required: "This field is required",
+          })}
+        />
       </FormRow>
 
       <FormRow label="Designation" error={errors?.page?.message}>
@@ -134,16 +141,6 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           type="text"
           id="designation"
           {...register("designation", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
-      <FormRow label="Experience" error={errors?.page?.message}>
-        <Input
-          disabled={isWorking}
-          type="text"
-          id="experience"
-          {...register("experience", {
             required: "This field is required",
           })}
         />

@@ -59,14 +59,14 @@ function DoctorsRow({
   const { blockDoctor, isBlocking } = useBlockDoctor();
   const { unblockDoctor, isUnblocking } = useUnblockDoctor();
   const { deleteDoctor, isDeleting } = useDeleteDoctor();
-  const { data: departmentData, isLoading: isLoadingDepartment } =
-    useDepartment();
+  // const { data: departmentData, isLoading: isLoadingDepartment } =
+  //   useDepartment();
 
-  if (isLoadingDepartment || isDoctorsLoading) return <Spinner />;
+  if (isDoctorsLoading) return <Spinner />;
 
-  let filteredDepartment = departmentData.filter(
-    (el) => el._id === department
-  )[0];
+  // let filteredDepartment = departmentData.filter(
+  //   (el) => el._id === department
+  // )[0];
 
   if (status === true) {
     convertedStatus = "active";
@@ -99,7 +99,7 @@ function DoctorsRow({
       </Stacked>
 
       <Stacked>
-        <span>{filteredDepartment.name}</span>
+        <span>{department}</span>
       </Stacked>
 
       <Stacked>
@@ -150,8 +150,8 @@ function DoctorsRow({
           <Modal.Window name="banner-form">
             <EditDoctorForm
               id={id}
-              department={filteredDepartment}
-              departmentData={departmentData}
+              // department={filteredDepartment}
+              // departmentData={departmentData}
             />
           </Modal.Window>
           <Modal.Open opens="delete">
