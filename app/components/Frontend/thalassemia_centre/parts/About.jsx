@@ -6,7 +6,7 @@ import {
   ParaNormalSmall,
 } from "@/app/styledComponents/frontend/Para";
 import Image from "next/image";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Screened from "./screened";
 
 export default function About() {
@@ -36,47 +36,60 @@ export default function About() {
             color="black"
             fontSize={{ lg: "1.8rem", sm: "1.2rem" }}
           >
-            About Thalassemia Centre
+            About PRAYATNA – A Fight Against Thalassemia
           </Head1>
-          <ParaNormalSmall textAlign={"center"} width={"90%"}>
-            SDMH Blood Bank carries out regular transfusion for almost 100
-            children, free of cost. SDMH has taken initiative to eradicate
-            Thalassemia by screening 2.5 Lac units of blood that comes to SDMH
-            at no cost to patients.
+          <ParaNormalSmall textAlign={"left"} width={"90%"}>
+            Thousands of young individuals, full of dreams and ambition,
+            silently battle thalassemia, a genetic disorder that ties them to
+            lifelong transfusions and medical care. For over 25 years, the
+            Santokba Thalassemia Centre at SDMH has provided not just treatment
+            but a refuge, easing the financial and emotional burden on families.
           </ParaNormalSmall>
-          <ParaNormalSmall width={"90%"} textAlign={"center"}>
-            Similarly, the Santokba Durlabhji Thalassemia Centre was set up in
-            2002. It is the only source of NAT-tested blood in Rajasthan which
-            screens a patient for HIV, Hepatitis and other blood - borne agents.
-            Test facilities for screening of Thalassemia Major and Minor are
-            also available. Blood transfusion takes place in a dedicated,
-            congenial ward. The Centre carries out regular transfusion for
-            almost 100 children annually, free of cost. Every year, a
-            Thalassemia camp is also held at SDMH where blood is tested on the
-            spot. Over two lakh people have been screened in the last 09 years.
+          <ParaNormalSmall width={"90%"} textAlign={"left"}>
+            However, as more children were diagnosed, it became clear that
+            treatment alone wasn’t enough. Prayatna, meaning ‘endeavour,’ was
+            born to prevent thalassemia at its roots, sparing future generations
+            from its challenges.
+          </ParaNormalSmall>
+          <Typography textAlign={"left"} width={"90%"} variant="h5">
+            A Vision of Prevention
+          </Typography>
+          <ParaNormalSmall width={"90%"} textAlign={"left"}>
+            SDMH took prevention beyond treatment, offering free thalassemia
+            screening to students—India’s largest pool of voluntary blood
+            donors. Since 2006, over 4 lakh blood samples have been tested,
+            identifying 9,020 carriers. Those diagnosed receive not just
+            clinical results but guidance to make informed choices.
+          </ParaNormalSmall>
+          <ParaNormalSmall width={"90%"} textAlign={"left"}>
+            The initiative expanded to families, urging relatives of thalassemic
+            patients to undergo screening before marriage or pregnancy. SDMH
+            also partnered with gynaecologists and paediatricians to ensure
+            screening for expectant mothers, intervening before birth.
+          </ParaNormalSmall>
+          <ParaNormalSmall width={"90%"} textAlign={"left"}>
+            A mother who benefited from this initiative shared, "I didn’t know
+            about thalassemia until my niece was diagnosed. When I got married,
+            SDMH screened me. Today, my child is thalassemia-free."
           </ParaNormalSmall>
         </Stack>
       </ContainerMain>
       <Screened />
       <ContainerMain alignItems={"center"}>
-        <ParaNormal textAlign={"center"} width={"90%"}>
-          SDMH started Thalassemia Centre in the hospital in 1990, we recognized
-          that even though Thalassemia was a rare disorder, it wasn’t uncommon.
-          But the awareness was abysmal. Infrequent transfusion was the norm,
-          and a majority of children were not surviving.
+        <Typography textAlign={"left"} width={"90%"} variant="h5">
+          Innovation and Hope
+        </Typography>
+        <ParaNormal textAlign={"left"} width={"90%"}>
+          SDMH developed screening software to rapidly detect thalassemia traits
+          and offered it freely to blood banks across India, promoting a unified
+          prevention effort.
         </ParaNormal>
-        <ParaNormal width={"90%"} textAlign={"center"}>
-          Through its project Prayatna, SDMH decided to make effort in
-          eradicating Thalassemia, even though patient had very little
-          information about it. SDMH started free blood screening for
-          thalassemia train among all patients and blood donors. Counseling was
-          done for those who had the trait. FICCI has recently recognised our
-          Thalassemia screening Project as the “Best CSR Project in the Country”
-        </ParaNormal>
-        <ParaNormal width={"90%"} textAlign={"center"}>
-          To know more about our contribution in providing better life for
-          thalassemic patients and create awareness, you may get a copy of our
-          book on Thalassemia.
+        <ParaNormal width={"90%"} textAlign={"left"}>
+          In 2014, SDMH received the FICCI CSR Award for its contributions to
+          thalassemia prevention. However, as Secretary Yogendra Durlabhji
+          reflects, "Awards are temporary. But the sight of a healthy child,
+          free from thalassemia, is lasting. This work isn’t for
+          recognition—it’s for a future without thalassemia."
         </ParaNormal>
       </ContainerMain>
     </Stack>

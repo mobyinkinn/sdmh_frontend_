@@ -9,6 +9,7 @@ import {
   removeMultiImageFromBlog,
   updateSingleImageFromBlog,
   updateMultiImagesFromBlog,
+  fetchBlogById,
 } from "../../services/api.Blogs";
 import toast from "react-hot-toast";
 
@@ -146,4 +147,13 @@ export const useUpdateMultiImagesFromBlog = () => {
       toast.error("Failed to update blog multi images. Please try again.");
     },
   });
+};
+
+export const useBlogById = (id) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["blogs", id],
+    queryFn: () => fetchBlogById(id),
+    staleTime: 5 * 60 * 1000,
+  });
+  return { data, isLoading, error };
 };

@@ -7,31 +7,23 @@ const Screened = () => {
   const data = [
     {
       id: 1,
-      desc: "Approximately 240 million people are carrier of beta thalassemia worldwide.",
+      desc: "Rajasthan’s first NAT-tested blood facility, ensuring safe transfusions.",
     },
     {
       id: 2,
-      desc: "In India alone, the carrier population is pegged at about 30 million.",
+      desc: "A dedicated ward for 65 thalassemic children, managed by specialized nurses.",
     },
     {
       id: 3,
-      desc: "Nearly 12,000 infants are born with hemoglobin-related disorders every year in India.",
+      desc: "Among the first NABL-certified blood banks, ensuring top-quality care.",
     },
     {
       id: 4,
-      desc: "Every hour one child is born who will suffer from genetic disorder.",
+      desc: "Leader in bone marrow transplant preparation, with zero infection cases due to rigorous screening.",
     },
     {
       id: 5,
-      desc: "The carrier rate for beta thalassemia varies from 1-17 percent in India, with an average of 3.2 percent.",
-    },
-    {
-      id: 6,
-      desc: "This means 1 in every 25 Indian is a carrier. Reimplantation.",
-    },
-    {
-      id: 7,
-      desc: "The thalassemia gene is non uniform in India, its prevalence higher in certain communities and tribes in northern, western and eastern parts.",
+      desc: "Organizer of 300+ annual blood donation camps, securing a steady blood supply.",
     },
   ];
   return (
@@ -40,7 +32,7 @@ const Screened = () => {
         fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
         color="#005900"
       >
-        Over two lakh people have been screened in the last 09 years.
+        The Santokba Thalassemia Centre has set new standards in Rajasthan:
       </Head1>
       <Stack gap={4} marginY={"30px"}>
         {data.map((d) => (
