@@ -115,22 +115,26 @@ function DoctorsRow({
       </Stacked>
 
       <Stacked>
-        <span
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "4px",
-          }}
-        >
-          {Object.entries(availablity).map(([day, type]) => (
-            <Stack alignItems={"center"}>
-              <Button size="small" variation="secondary" key={day}>
-                {day}
-              </Button>
-              <span>{type}</span>
-            </Stack>
-          ))}
-        </span>
+        {availablity && Object.keys(availablity).length > 0 ? (
+          <span
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "4px",
+            }}
+          >
+            {Object.entries(availablity).map(([day, type]) => (
+              <Stack alignItems={"center"} key={day}>
+                <Button size="small" variation="secondary">
+                  {day}
+                </Button>
+                <span>{type}</span>
+              </Stack>
+            ))}
+          </span>
+        ) : (
+          <span>No availability</span>
+        )}
       </Stacked>
 
       <Tag type={statusToTagName[convertedStatus]}>
