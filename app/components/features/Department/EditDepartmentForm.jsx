@@ -12,6 +12,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 import { Stack } from "@mui/material";
 import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
 import { FaEdit } from "react-icons/fa";
+import FileInput from "../../ui/FileInput";
 
 function EditDepartmentForm({
   onCloseModal,
@@ -113,71 +114,80 @@ function EditDepartmentForm({
       <FormRow label="Content"></FormRow>
       <Jodit content={aboutContent} setContent={setAboutContent} />
 
-      <Stack marginLeft={2} direction={"row"} columnGap={7}>
-        <FormRow label="Image">
-          <ImagePreviewContainer>
-            {editData.image && (
-              <>
-                <img
-                  src={
-                    typeof editData.image === "string"
-                      ? editData.image
-                      : URL.createObjectURL(editData.image)
-                  }
-                  alt="Preview"
-                  width={200}
-                  height={110}
+      <FormRow label="Image">
+        <ImagePreviewContainer>
+          {editData.image ? (
+            <>
+              <img
+                src={
+                  typeof editData.image === "string"
+                    ? editData.image
+                    : URL.createObjectURL(editData.image)
+                }
+                alt="Preview"
+                width={200}
+                height={110}
+              />
+              <div className="edit-icon">
+                <label htmlFor="image-upload">
+                  <FaEdit size={16} />
+                </label>
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleImageChange(e, "image")}
                 />
-                <div className="edit-icon">
-                  <label htmlFor="image-upload">
-                    <FaEdit size={16} />
-                  </label>
-                  <input
-                    id="image-upload"
-                    type="file"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={(e) => handleImageChange(e, "image")}
-                  />
-                </div>
-              </>
-            )}
-          </ImagePreviewContainer>
-        </FormRow>
-        <FormRow label={"Banner"}>
-          <label>
-            <ImagePreviewContainer>
-              {editData.bannerImage && (
-                <>
-                  <img
-                    src={
-                      typeof editData.bannerImage === "string"
-                        ? editData.bannerImage
-                        : URL.createObjectURL(editData.bannerImage)
-                    }
-                    alt="Preview"
-                    width={200}
-                    height={110}
-                  />
-                  <div className="edit-icon">
-                    <label htmlFor="banner-upload">
-                      <FaEdit size={16} />
-                    </label>
-                    <input
-                      name="banner"
-                      id="banner-upload"
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={(e) => handleBannerChange(e, "bannerImage")}
-                    />
-                  </div>
-                </>
-              )}
-            </ImagePreviewContainer>
-          </label>
-        </FormRow>
-      </Stack>
+              </div>
+            </>
+          ) : (
+            <FileInput
+              id="image"
+              accept="image/*"
+              type="file"
+              onChange={(e) => handleImageChange(e, "image")}
+            />
+          )}
+        </ImagePreviewContainer>
+      </FormRow>
+      <FormRow label="Banner">
+        <ImagePreviewContainer>
+          {editData.bannerImage ? (
+            <>
+              <img
+                src={
+                  typeof editData.bannerImage === "string"
+                    ? editData.bannerImage
+                    : URL.createObjectURL(editData.bannerImage)
+                }
+                alt="Preview"
+                width={200}
+                height={110}
+              />
+              <div className="edit-icon">
+                <label htmlFor="banner-upload">
+                  <FaEdit size={16} />
+                </label>
+                <input
+                  id="banner-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleBannerChange(e, "bannerImage")}
+                />
+              </div>
+            </>
+          ) : (
+            <FileInput
+              id="banner"
+              accept="image/*"
+              type="file"
+              onChange={(e) => handleBannerChange(e, "bannerImage")}
+            />
+          )}
+        </ImagePreviewContainer>
+      </FormRow>
 
       <FormRow marginLeft={2}>
         <Button

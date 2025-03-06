@@ -63,13 +63,9 @@ export default function AllDoctors() {
   }
 
   function searchDepartment(e) {
-    let searchDepartment = e.target.textContent;
-    const searchedDepartment = departments?.filter((el) =>
-      el.name.toLowerCase().startsWith(searchDepartment.toLowerCase())
-    );
-
+    let searchDepartment = e.target.textContent.toLowerCase();
     const newFilteredDoctors = filteredDoc.filter((el) =>
-      searchedDepartment.some((dept) => el.department === dept._id)
+      el.department.toLowerCase().startsWith(searchDepartment)
     );
 
     setFilteredDoctors(newFilteredDoctors);
