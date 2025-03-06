@@ -14,26 +14,18 @@ import {
 } from "../../admin/doctors/parts/useDoctor";
 import SpinnerMini from "../../ui/SpinnerMini";
 import Jodit from "../Openings/Jodit";
-import { useDepartment } from "../../admin/departments/parts/useDepartment";
 import styled from "styled-components";
 
-function EditDoctorForm({ onCloseModal, id, department }) {
+function EditDoctorForm({ onCloseModal, id }) {
   const { data, isLoading } = useDoctors();
   const filteredData = data.filter((el) => el._id === id);
   const { register, formState } = useForm({ defaultValues: {} });
   const [formdata, setFormdata] = useState(filteredData[0] || {});
-  const [departmentValue, setDepartmentValue] = useState(
-    department?.name || ""
-  );
   const { isUpdating, updateDoctor } = useUpdateDoctor();
   const { updateImage, isUpdatingImage } = useUpdateImage();
   const [content, setContent] = useState(filteredData[0]?.about || "");
   const { errors } = formState;
-  const {
-    data: departmentData,
-    isLoading: isDepartmentLoading,
-    error,
-  } = useDepartment();
+
   const StyledSelect = styled.select`
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
@@ -66,16 +58,6 @@ function EditDoctorForm({ onCloseModal, id, department }) {
   const handleAboutClick = () => {
     onUpdateDoctor({ ...formdata, about: content }, id);
   };
-
-  function updateDepartment(name) {
-    let newDepartment = departmentData.find((el) => el.name === name);
-    if (newDepartment) {
-      setFormdata((prev) => ({ ...prev, department: newDepartment._id }));
-      onUpdateDoctor({ ...formdata, department: newDepartment._id }, id);
-    } else {
-      alert("No such department exists, hence department will not be updated!");
-    }
-  }
 
   function updateDay(day, value) {
     setFormdata((prevData) => {
@@ -126,37 +108,20 @@ function EditDoctorForm({ onCloseModal, id, department }) {
         />
       </FormRow>
 
-      <Stack direction={"row"} columnGap={12}>
-        <FormRow label="Designation" error={errors?.designation?.message}>
-          <Input
-            disabled={isUpdating}
-            type="text"
-            id="designation"
-            value={formdata.designation || ""}
-            {...register("designation", { required: "This field is required" })}
-            onChange={(e) => {
-              if (!e || !e.target) return;
-              const newDesignation = e.target.value;
-              setFormdata((prev) => ({ ...prev, designation: newDesignation }));
-            }}
-          />
-        </FormRow>
-
-        <FormRow label="Experience" error={errors?.experience?.message}>
-          <Input
-            disabled={isUpdating}
-            type="text"
-            id="experience"
-            value={formdata.experience || ""}
-            {...register("experience", { required: "This field is required" })}
-            onChange={(e) => {
-              if (!e || !e.target) return;
-              const newExperience = e.target.value;
-              setFormdata((prev) => ({ ...prev, experience: newExperience }));
-            }}
-          />
-        </FormRow>
-      </Stack>
+      <FormRow label="Designation" error={errors?.designation?.message}>
+        <Input
+          disabled={isUpdating}
+          type="text"
+          id="designation"
+          value={formdata.designation || ""}
+          {...register("designation", { required: "This field is required" })}
+          onChange={(e) => {
+            if (!e || !e.target) return;
+            const newDesignation = e.target.value;
+            setFormdata((prev) => ({ ...prev, designation: newDesignation }));
+          }}
+        />
+      </FormRow>
 
       <Stack direction={"row"} columnGap={12}>
         <FormRow label="Room" error={errors?.room?.message}>
@@ -189,32 +154,19 @@ function EditDoctorForm({ onCloseModal, id, department }) {
           />
         </FormRow>
       </Stack>
-
       <FormRow label="Department" error={errors?.department?.message}>
-        <StyledSelect
+        <Input
+          disabled={isUpdating}
+          type="text"
           id="department"
-          value={departmentValue}
-          {...register("department", {
-            required: "This field is required",
-          })}
+          value={formdata.department || ""}
+          {...register("department", { required: "This field is required" })}
           onChange={(e) => {
-            const newValue = e.target.value;
-            setDepartmentValue(newValue);
-            setFormdata((prev) => {
-              const updatedFormdata = { ...prev, department: newValue };
-              updateDepartment(newValue);
-              return updatedFormdata;
-            });
+            if (!e || !e.target) return;
+            const newDepartment = e.target.value;
+            setFormdata((prev) => ({ ...prev, department: newDepartment }));
           }}
-          onBlur={(e) => updateDepartment(e.target.value)}
-        >
-          <option value="">Select a department</option>
-          {departmentData?.map((department, index) => (
-            <option key={index} value={department.name}>
-              {department.name}
-            </option>
-          ))}
-        </StyledSelect>
+        />
       </FormRow>
 
       <FormRow label="Available on" error={errors?.availability?.message}>
