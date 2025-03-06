@@ -90,7 +90,8 @@
   flex-direction: column;
   line-height: 1.7;
 }
-.set ul {
+.set ul,
+.set ol  {
     padding: 0;
     list-style: none; /* Remove default bullets */
     display: flex;
@@ -100,7 +101,8 @@
     counter-reset: li-counter; /* Reset counter */
 }
 
-.set ul li {
+.set ul li,
+.set ol li {
     display: flex;
     font-size: 18px;
     width: 45%;  /* Slightly wider for breathing space */
@@ -110,7 +112,8 @@
     position: relative; /* Useful if you want to add more styles later */
 }
 
-.set ul li::before {
+.set ul li::before,
+.set ol li::before  {
     content: counter(li-counter);
     counter-increment: li-counter;
     
@@ -137,10 +140,12 @@
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .set ul li {
+    .set ul li,
+     .set ol li {
         gap: 10px;
     }
-    .set ul li::before {
+    .set ul li::before,
+    .set ol li::before {
         width: 35px;
         height: 35px;
         min-width: 35px;
@@ -150,11 +155,13 @@
 }
 
 @media (max-width: 480px) {
-    .set ul li {
+    .set ul li,
+    .set ol li {
         gap: 8px;
         width: 100%; /* Full width for small screens */
     }
-    .set ul li::before {
+    .set ul li::before,
+    .set ol li::before {
         width: 25px;
         height: 25px;
         min-width: 25px;
