@@ -86,7 +86,7 @@ export default function Blog() {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "45%" }}
-          gap={{ xs: "20px", md: "166px", lg: "20px" }}
+          gap={{ xs: "20px", md: "20px", lg: "20px" }}
           justifyContent={{ xs: "space-between", md: "unset" }}
           display={{ md: "flex", xs: "none" }}
         >
@@ -129,10 +129,11 @@ function BlogCard({ el }) {
       borderRadius={"5px"}
       // overflow="hidden"
       boxShadow={"2px 2px 8px 2px rgba(0, 0, 0, 0.1)"}
+      height={"100%"}
     >
       <Box
         width={"80%"}
-        height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "30vh" }}
+        height={{ xs: "100%", md: "217px", lg: "213px", xl: "206px" }}
         position={"relative"}
       >
         <Image src={el.img} alt="" fill objectFit="cover" />
@@ -141,7 +142,7 @@ function BlogCard({ el }) {
         backgroundColor={"white"}
         padding={"10px"}
         gap={"5px"}
-        height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "30vh" }}
+        // height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "30vh" }}
         justifyContent={{ xs: "unset", lg: "space-evenly" }}
       >
         <Typography align="left" fontSize="0.8rem">
