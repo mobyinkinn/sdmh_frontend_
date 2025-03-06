@@ -5,10 +5,22 @@ import hoverbg from "../assets/hoverbg.png";
 import { TfiArrowCircleUp } from "react-icons/tfi";
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import img1 from "../assets/HoverYears/1958.png";
-import img2 from "../assets/HoverYears/1963.png";
-import img3 from "../assets/HoverYears/1969.png";
-import img4 from "../assets/HoverYears/1971.png";
+import img1 from "../assets/HoverYears/1958.jpg";
+import img2 from "../assets/HoverYears/1963.jpg";
+import img3 from "../assets/HoverYears/1969.jpg";
+import img4 from "../assets/HoverYears/1971.jpg";
+import img5 from "../assets/HoverYears/1976.jpg";
+import img6 from "../assets/HoverYears/1985.jpg";
+import img7 from "../assets/HoverYears/1996.jpg";
+import img8 from "../assets/HoverYears/2008.jpg";
+import img9 from "../assets/HoverYears/2011.jpg";
+import img10 from "../assets/HoverYears/2014.jpg";
+import img11 from "../assets/HoverYears/2016.jpg";
+import img12 from "../assets/HoverYears/2017.jpg";
+import img13 from "../assets/HoverYears/2018.jpg";
+import img14 from "../assets/HoverYears/2019.jpg";
+import img15 from "../assets/HoverYears/2020.jpg";
+
 
 import Image from "next/image";
 const HoverYears = () => {
@@ -83,6 +95,7 @@ const HoverYears = () => {
         {
           Desc: "Santokba Durlabhji School of Nursing was founded to train Florence Nightingales of future. The school helped provide quality Nursing Care in the hospital.",
         },
+        { img: img5 },
       ],
     },
     {
@@ -92,6 +105,7 @@ const HoverYears = () => {
         {
           Desc: "The Department of Rehabilitation Aids and Limb Fitting Centre was founded in SDMH by Dr. P. K. Sethi, the founder of Jaipur Foot.",
         },
+        { img: img6 },
       ],
     },
     {
@@ -101,6 +115,7 @@ const HoverYears = () => {
         {
           Desc: "One of the few hospices in the country, Avedna Ashram was started in SDMH to help provide free care and accommodation to the terminally ill",
         },
+        { img: img7 },
       ],
     },
     {
@@ -110,6 +125,7 @@ const HoverYears = () => {
         {
           Desc: "2008 – NABL Accreditation SDMH Laboratories were among the first to be recognized by NABL for it high standards.",
         },
+        { img: img8 },
       ],
     },
     {
@@ -119,6 +135,7 @@ const HoverYears = () => {
         {
           Desc: "The only dedicated OPD building of the state, Rashmikant Durlabhji Medi Centre, was started.",
         },
+        { img: img9 },
       ],
     },
     {
@@ -128,6 +145,7 @@ const HoverYears = () => {
         {
           Desc: "The hospital received NABH Accreditation, an accreditation provided by Quality Council of India certifying the adherence to standard protocols for quality care to patients.",
         },
+        { img: img10 },
       ],
     },
     {
@@ -137,6 +155,7 @@ const HoverYears = () => {
         {
           Desc: "SDMH started its new Emergency Wing with an enhanced number of beds and improve infrastructure to cater to any medical emergency.",
         },
+        { img: img11 },
       ],
     },
     {
@@ -146,6 +165,7 @@ const HoverYears = () => {
         {
           Desc: "In addition to the Outreach Services, SDMH also started Free OPD Clinic, one of the very few clinics in the state to provide quality medical service to the weaker section of society at no cost to them",
         },
+        { img: img12 },
       ],
     },
     {
@@ -155,6 +175,7 @@ const HoverYears = () => {
         {
           Desc: "SDMH inaugurated its new offering to the state, Santokba Durlabhji College of Nursing and Paramedical Sciences to provide quality nursing and para-medical education.",
         },
+        { img: img13 },
       ],
     },
     {
@@ -164,6 +185,7 @@ const HoverYears = () => {
         {
           Desc: "SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore. https://youtu.be/vX1_m9or5cs",
         },
+        { img: img14 },
       ],
     },
     {
@@ -173,6 +195,7 @@ const HoverYears = () => {
         {
           Desc: "SDMH, the biggest and oldest private hospital of the state, added another feather in its cap today when it introduced its own IPD pharmacy services named ‘SDMH Pharmacy’ on Ground, 3rd and 4th floor. The pharmacy services shall function 24 x7 to provide the quality medicine at reasonable prices. Bedside medicine delivery to admitted patients will provide comfort to patient’s attendants during the tough time.",
         },
+        { img: img15 },
       ],
     },
   ];
@@ -219,8 +242,8 @@ const HoverYears = () => {
       >
         <Stack
           gap={{ md: "13px", xs: "10px" }}
-          width={{ xs: "100%", md: "40%" }}
-          height={{ md: "85vh", xs: "70vh" }}
+          width={{ xs: "100%", md: "50%" }}
+          height={{ md: "96vh", xs: "70vh" }}
           paddingLeft={"20px"}
           sx={{
             cursor: "pointer",
@@ -288,8 +311,8 @@ const HoverYears = () => {
           />
         </Stack>
         <Stack
-          width={{ xs: "100%", md: "60%" }}
-          height={{ md: "85vh", xs: "70vh" }}
+          width={{ xs: "100%", md: "50%" }}
+          height={{ md: "96vh", xs: "70vh" }}
           gap={"12px"}
           padding={"30px 30px 10px 30px"}
           bgcolor={"#FBF6EE"}
@@ -318,12 +341,12 @@ const HoverYears = () => {
                       backgroundImage: `url(${el.img.src})`,
                       backgroundPosition: "center center",
                       backgroundSize: "cover",
-                      width: { xs: "120px", md: "130px", lg: "285px" },
+                      width: { xs: "40%", md: "50%", lg: "100%" },
                       height: {
                         xs: "121px",
                         md: "142px",
-                        lg: "367px",
-                        xl: "40vh",
+                        lg: "340px",
+                        xl: "35vh",
                       },
                     }}
                   ></Box>
