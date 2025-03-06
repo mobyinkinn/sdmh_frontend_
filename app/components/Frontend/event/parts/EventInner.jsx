@@ -108,7 +108,7 @@ const EventInner = () => {
           </Stack>
         </Stack>
         <Stack
-          width={{ md: "24%", xs: "100%" }}
+          width={{ md: "20%", xs: "100%" }}
           bgcolor={"#476C9B"}
           marginTop="40px"
           p={2}

@@ -524,8 +524,8 @@ export default function Doctors({ data, departments }) {
                 src={el.image}
                 alt="Doctor Image"
                 fill
-                objectFit="cover"
-                objectPosition="center bottom"
+                objectFit="contain"
+                objectPosition="center top"
               />
             </Box>
             <Stack
@@ -546,22 +546,18 @@ export default function Doctors({ data, departments }) {
               <Stack>
                 <ParaNormal fontWeight={"bold"}>Department</ParaNormal>
                 <ParaNormalSmall>
-                  {departments?.find((dept) => dept._id === el.department)
-                    ?.name || "Unknown"}
+                  {/* {departments?.find((dept) => dept._id === el.department)
+                    ?.name || "Unknown"} */}
+                  {el.department}
                 </ParaNormalSmall>
               </Stack>
               <Stack>
                 <ParaNormal fontWeight={"bold"}>Expertise</ParaNormal>
                 <ParaNormalSmall
                   dangerouslySetInnerHTML={{
-                    __html: el.about,
+                    __html: el.about.slice(0, 150),
                   }}
                 />
-              </Stack>
-
-              <Stack>
-                <ParaNormal fontWeight={"bold"}>Years of experience</ParaNormal>
-                <ParaNormalSmall>{el.experience}</ParaNormalSmall>
               </Stack>
 
               {/* Availability Section */}

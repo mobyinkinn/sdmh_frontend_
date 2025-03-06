@@ -105,3 +105,21 @@ export const fetchDoctorByID = async (_id) => {
   });
   return response.data.message; // Adjust based on the actual API response structure
 };
+
+export const importDoctors = async (file) => {
+  const formData = new FormData();
+  formData.append("csv", file);
+
+  const response = await axios.post(
+    `${ApiUrl}/doctor/import-doctors`,
+    formData,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response.data;
+};

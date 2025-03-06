@@ -370,28 +370,36 @@ export default function Tabs() {
                   backgroundPosition: "center center",
                 }}
               ></Box>
-              <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
-                <Typography
-                  fontSize={"1.2rem"}
-                  textAlign={"center"}
-                  color={"#379237"}
-                  fontWeight={"bold"}
-                >
-                  {el.title} {el.name}
-                </Typography>
-                {!isTPA && (
+              <Stack
+                justifyContent={"space-between"}
+                minHeight={"455px"}
+                alignItems={"center"}
+                p={1.3}
+              >
+                <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
                   <Typography
+                    fontSize={"1.2rem"}
                     textAlign={"center"}
-                    dangerouslySetInnerHTML={{
-                      __html: el.smallDescription
-                        .split(" ")
-                        .slice(0, 25)
-                        .join(" "),
-                    }}
-                  />
-                )}
+                    color={"#379237"}
+                    fontWeight={"bold"}
+                  >
+                    {el.title} {el.name}
+                  </Typography>
+                  {!isTPA && (
+                    <Typography
+                      textAlign={"center"}
+                      dangerouslySetInnerHTML={{
+                        __html: el.smallDescription
+                          .split(" ")
+                          .slice(0, 25)
+                          .join(" "),
+                      }}
+                    />
+                  )}
+                </Stack>
                 {!isTPA && (
                   <Typography
+                    width={"fit-content"}
                     sx={{
                       border: "1px solid black",
                       padding: "10px 40px",

@@ -81,7 +81,7 @@ function PlanTable() {
 
         <Table.Body
           data={paginatedPlans}
-          render={(plan) => <PlanRow key={plan.id} academic={plan} />}
+          render={(plan) => <PlanRow key={plan._id} academic={plan} />}
         />
         <Table.Footer>
           <Stack direction="row" justifyContent="center" marginTop={4}>

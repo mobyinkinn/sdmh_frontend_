@@ -70,10 +70,9 @@ function OpeningTable() {
         <Table.Header>
           <div>position</div>
           <div>JD</div>
-          <div>Seats</div>
-          <div>Last date</div>
-          <div>Programers</div>
-          <div>Ph.Number</div>
+          <div>Category</div>
+          <div>Type</div>
+          <div>Location</div>
           <div>Status</div>
           <div>Action</div>
         </Table.Header>
