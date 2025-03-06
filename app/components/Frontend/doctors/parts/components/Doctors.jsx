@@ -560,11 +560,6 @@ export default function Doctors({ data, departments }) {
                 />
               </Stack>
 
-              <Stack>
-                <ParaNormal fontWeight={"bold"}>Years of experience</ParaNormal>
-                <ParaNormalSmall>{el.experience}</ParaNormalSmall>
-              </Stack>
-
               {/* Availability Section */}
               <Stack>
                 <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
