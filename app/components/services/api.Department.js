@@ -89,6 +89,17 @@ export const updateBanner = async ({ id, formdata }) => {
   return response.data;
 };
 
+export const updateMobileBanner = async ({ id, formdata }) => {
+  const response = await axios.post(
+    `${ApiUrl}/department/update-mobile-banner?id=${id}`,
+    formdata,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
 export const fetchDepartmentById = async (_id) => {
   const response = await axios.get(`${ApiUrl}/department/getbyId?id=${_id}`, {
     withCredentials: true,

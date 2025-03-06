@@ -34,7 +34,16 @@ const Stacked = styled.div`
 `;
 
 function DepartmentRow({
-  department: { _id: id, bannerImage, name, content, image, status, updatedAt },
+  department: {
+    _id: id,
+    bannerImage,
+    name,
+    content,
+    image,
+    status,
+    updatedAt,
+    mobileBanner,
+  },
 }) {
   const { mutate: blockDepartment, isLoading: isBlocking } =
     useBlockDepartment();
@@ -47,6 +56,7 @@ function DepartmentRow({
     content,
     image,
     bannerImage,
+    mobileBanner,
   });
   const [aboutContent, setAboutContent] = useState(content);
 
