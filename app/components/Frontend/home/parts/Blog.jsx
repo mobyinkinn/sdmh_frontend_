@@ -133,7 +133,7 @@ function BlogCard({ el }) {
     >
       <Box
         width={"80%"}
-        height={{ xs: "100%", md: "217px", lg: "213px", xl: "206px" }}
+        height={{ xs: "none", md: "217px", lg: "213px", xl: "206px" }}
         position={"relative"}
       >
         <Image src={el.img} alt="" fill objectFit="cover" />
