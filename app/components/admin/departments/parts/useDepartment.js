@@ -9,6 +9,7 @@ import {
   editDepartment,
   updateImage as updateTheImage,
   updateBanner as updateTheBanner,
+  updateMobileBanner as updateTheMobileBanner,
   fetchDepartmentById,
 } from "@/app/components/services/api.Department";
 
@@ -152,4 +153,23 @@ export const useBannerImage = () => {
   });
 
   return { updateBanner, isUpdatingBanner };
+};
+
+export const useMobileBannerImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateMobileBanner, isPending: isUpdatingMobileBanner } =
+    useMutation({
+      mutationFn: updateTheMobileBanner,
+      onSuccess: () => {
+        queryClient.invalidateQueries(["Departments"]);
+        toast.success("Department updated successfully!!!");
+      },
+      onError: (error) => {
+        console.error("Failed to update department: ", error);
+        toast.error("Failed to update department. Please try again.");
+      },
+    });
+
+  return { updateMobileBanner, isUpdatingMobileBanner };
 };

@@ -6,6 +6,7 @@ import FormRow from "../../ui/FormRow";
 import {
   useUpdateImage,
   useBannerImage,
+  useMobileBannerImage,
 } from "../../admin/departments/parts/useDepartment";
 import Jodit from "../Openings/Jodit";
 import SpinnerMini from "../../ui/SpinnerMini";
@@ -29,8 +30,15 @@ function EditDepartmentForm({
   });
   const { updateImage, isUpdatingImage } = useUpdateImage();
   const { updateBanner, isUpdatingBanner } = useBannerImage();
+  const { updateMobileBanner, isUpdatingMobileBanner } = useMobileBannerImage();
   const { errors } = formState;
-  if (isUpdating || isUpdatingImage || isUpdatingBanner) return <SpinnerMini />;
+  if (
+    isUpdating ||
+    isUpdatingImage ||
+    isUpdatingBanner ||
+    isUpdatingMobileBanner
+  )
+    return <SpinnerMini />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,6 +97,34 @@ function EditDepartmentForm({
         onError: (error) => {
           console.error("Failed to update Banner:", error);
           toast.error("Failed to update Banner. Please try again.");
+        },
+      }
+    );
+
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
+  };
+
+  const handleMobileBannerChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    const formDataMobileBanner = new FormData();
+    formDataMobileBanner.append("mobileBanner", file);
+    setEditData({ ...editData, [fieldName]: file });
+
+    updateMobileBanner(
+      {
+        id,
+        formdata: formDataMobileBanner,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Mobile Banner updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Mobile Banner:", error);
+          toast.error("Failed to update Mobile Banner. Please try again.");
         },
       }
     );
@@ -184,6 +220,44 @@ function EditDepartmentForm({
               accept="image/*"
               type="file"
               onChange={(e) => handleBannerChange(e, "bannerImage")}
+            />
+          )}
+        </ImagePreviewContainer>
+      </FormRow>
+
+      <FormRow label="Mobile Banner">
+        <ImagePreviewContainer>
+          {editData.mobileBanner ? (
+            <>
+              <img
+                src={
+                  typeof editData.mobileBanner === "string"
+                    ? editData.mobileBanner
+                    : URL.createObjectURL(editData.mobileBanner)
+                }
+                alt="Preview"
+                width={200}
+                height={110}
+              />
+              <div className="edit-icon">
+                <label htmlFor="mobile-banner-upload">
+                  <FaEdit size={16} />
+                </label>
+                <input
+                  id="mobile-banner-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleMobileBannerChange(e, "mobileBanner")}
+                />
+              </div>
+            </>
+          ) : (
+            <FileInput
+              id="mobile-banner"
+              accept="image/*"
+              type="file"
+              onChange={(e) => handleMobileBannerChange(e, "mobileBanner")}
             />
           )}
         </ImagePreviewContainer>
