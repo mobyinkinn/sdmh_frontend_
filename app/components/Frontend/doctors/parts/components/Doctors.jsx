@@ -525,7 +525,7 @@ export default function Doctors({ data, departments }) {
                 alt="Doctor Image"
                 fill
                 objectFit="contain"
-                objectPosition="center top"
+                objectPosition="center bottom"
               />
             </Box>
             <Stack
