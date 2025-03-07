@@ -9,9 +9,9 @@ import { useDepartment } from "../../departments/parts/useDepartment";
 import { Pagination, Stack } from "@mui/material";
 import { useState } from "react";
 function DoctorsTable() {
-  const { filter } = useDoctorsContext();
+  const { filter, sort } = useDoctorsContext();
   const [page, setPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 50;
   const { data, isLoading } = useDoctors();
   const { data: departmentData, isLoading: isLoadingDepartment } =
     useDepartment();
@@ -20,16 +20,36 @@ function DoctorsTable() {
 
   if (!data || data.length === 0) return <Empty resourceName="Doctors" />;
 
-  // Sort doctors by order before pagination
-  const sortedDoctors = [...data].sort((a, b) => a.order - b.order);
+  const sortedDoctors = [...data].sort((a, b) => {
+    if (sort === "startDate-desc")
+      return new Date(b.startDate) - new Date(a.startDate);
+    if (sort === "startDate-asc")
+      return new Date(a.startDate) - new Date(b.startDate);
+    if (sort === "name-dsc") return b.name.localeCompare(a.name);
+    if (sort === "name-asc") return a.name.localeCompare(b.name);
+    return 0;
+  });
+
+  let filteredDoctor = sortedDoctors;
+
+  if (filter !== "All") {
+    filteredDoctor = sortedDoctors.filter((el) => {
+      if (filter.toLowerCase() === "active") {
+        return el.status === true;
+      } else if (filter.toLowerCase() === "inactive") {
+        return el.status === false;
+      }
+      return false;
+    });
+  }
 
   // Pagination logic
   const startIndex = (page - 1) * itemsPerPage;
-  const paginatedDoctors = sortedDoctors.slice(
+  const paginatedDoctors = filteredDoctor.slice(
     startIndex,
     startIndex + itemsPerPage
   );
-  const totalPages = Math.ceil(sortedDoctors.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredDoctor.length / itemsPerPage);
 
   return (
     <Menus>
