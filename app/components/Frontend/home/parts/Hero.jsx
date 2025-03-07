@@ -17,7 +17,7 @@ export default function Hero() {
     <Stack direction={"row"}>
       <Box
         display={{ md: "flex", sm: "none" }}
-        height={{ xs: "65vh", md: "50vh", lg: "50vh", xl: "90vh" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${data?.banner})`,
@@ -26,7 +26,7 @@ export default function Hero() {
           backgroundPosition: "center center",
         }}
       ></Box>
-      <Box
+      {/* <Box
         display={{ md: "none", sm: "flex" }}
         height={{ xs: "65vh", lg: "90vh" }}
         width={"100%"}
@@ -34,6 +34,29 @@ export default function Hero() {
           backgroundImage: `url(${data?.mobileBanner})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box> */}
+      {/* <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "510px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box> */}
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "385px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
           backgroundPosition: "center center",
         }}
       ></Box>
