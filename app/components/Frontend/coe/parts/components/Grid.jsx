@@ -160,7 +160,7 @@ function CoeCard({ el }) {
     >
       <Box
         sx={{
-          height: "300px",
+          minHeight: { sm: "224px", md: "254px", lg: "215px", xl: "318px" },
           width: "100%",
           position: "relative",
         }}
