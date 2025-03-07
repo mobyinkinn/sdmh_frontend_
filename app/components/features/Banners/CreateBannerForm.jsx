@@ -84,7 +84,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
     const formdata = new FormData();
     formdata.append("link", data.link);
     formdata.append("banner", file);
-    formdata.append("mobileBanner", mobileFile);
+    if (mobileFile) return formdata.append("mobileBanner", mobileFile);
     formdata.append("page", data.page);
     formdata.append("status", true);
     console.log("formdata", formdata);
@@ -176,7 +176,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
             accept="image/*"
             type="file"
             {...register("mobileFile", {
-              required: "This field is required",
+              // required: "This field is required",
             })}
             onChange={(e) => {
               handleMobileImageChange(e);

@@ -33,7 +33,7 @@ const FileName = styled.p`
 `;
 
 function DoctorsTableOperations() {
-  const { filter, setFilter } = useDoctorsContext();
+  const { filter, setFilter, sort, setSort } = useDoctorsContext();
 
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -82,6 +82,8 @@ function DoctorsTableOperations() {
       />
 
       <SortBy
+        sort={sort}
+        setSort={setSort}
         options={[
           { value: "startDate-desc", label: "Sort by date (recent first)" },
           { value: "startDate-asc", label: "Sort by date (earlier first)" },

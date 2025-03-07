@@ -160,12 +160,12 @@ function CoeCard({ el }) {
     >
       <Box
         sx={{
-          minHeight: { sm: "224px", md: "254px", lg: "215px", xl: "318px" },
+          minHeight: { sm: "312px", md: "254px", lg: "215px", xl: "318px" },
           width: "100%",
           position: "relative",
         }}
       >
-        <Image src={el.image} alt="" fill objectFit="cover" />
+        <Image src={el.image} alt="" fill objectFit="contain" />
       </Box>
       <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
         {el.name}
