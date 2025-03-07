@@ -1,5 +1,6 @@
 import {
   blockTestimonial,
+  createTestimonial,
   deleteTestimonial,
   fetchTestimonials,
   unblockTestimonial,
@@ -62,4 +63,21 @@ export const useUnblockTestimonial = () => {
       toast.error("Failed to unblock testimonial. Please try again.");
     },
   });
+};
+
+export const useCreateTestimonial = () => {
+  const queryClient = useQueryClient();
+  const { mutate: createTestimonials, isPending: isCreating } = useMutation({
+    mutationFn: createTestimonial,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Testimonial"]);
+      toast.success("Testimonial Created successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to create Testimonial:", error);
+      toast.error("Failed to create Testimonial. Please try again.");
+    },
+  });
+
+  return { createTestimonials, isCreating };
 };

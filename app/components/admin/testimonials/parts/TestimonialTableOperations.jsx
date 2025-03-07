@@ -2,6 +2,9 @@ import SortBy from "../../../ui/SortBy";
 import Filter from "../../../ui/Filter";
 import TableOperations from "../../../ui/TableOperations";
 import { useTestimonialContext } from "./TestimonialContext";
+import CreateTestimonialForm from "@/app/components/features/Testimonial/createTestimonialForm";
+import Button from "@/app/components/ui/Button";
+import Modal from "@/app/components/ui/Modal";
 
 function TestimonialTableOperations() {
   const { filter, setFilter } = useTestimonialContext();
@@ -26,6 +29,15 @@ function TestimonialTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+
+      <Modal>
+        <Modal.Open opens="testimonial-form">
+          <Button>Add Testimonial</Button>
+        </Modal.Open>
+        <Modal.Window name="testimonial-form">
+          <CreateTestimonialForm resourceName={"Testimonial"} />
+        </Modal.Window>
+      </Modal>
     </TableOperations>
   );
 }

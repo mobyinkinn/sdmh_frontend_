@@ -141,7 +141,7 @@ export default function DoctorProfileBanner({ data }) {
             sx={{
               backgroundImage: `url(${data?.image})`,
               backgroundSize: "contain",
-              backgroundPosition: "center top",
+              backgroundPosition: "center bottom",
               backgroundRepeat: "no-repeat",
               width: "100%",
               height: "100%",

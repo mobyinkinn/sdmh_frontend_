@@ -8,10 +8,9 @@ export const fetchTestimonials = async () => {
   return response.data.message; // Adjust based on actual API structure
 };
 export const deleteTestimonial = async (id) => {
-  const response = await axios.get(
-    `${ApiUrl}/testimonials/delete?id=${id}`,
-    { withCredentials: true }
-  );
+  const response = await axios.get(`${ApiUrl}/testimonials/delete?id=${id}`, {
+    withCredentials: true,
+  });
   return response.data;
 };
 export const blockTestimonial = async (id) => {
@@ -29,5 +28,12 @@ export const unblockTestimonial = async (id) => {
     {},
     { withCredentials: true }
   );
+  return response.data;
+};
+
+export const createTestimonial = async (formdata) => {
+  const response = await axios.post(`${ApiUrl}/testimonials/create`, formdata, {
+    withCredentials: true,
+  });
   return response.data;
 };

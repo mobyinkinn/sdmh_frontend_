@@ -1,20 +1,10 @@
 import styled from "styled-components";
-import { format, isToday } from "date-fns";
-
 import Tag from "../../../ui/Tag";
 import Table from "../../../ui/Table";
 import Modal from "../../../ui/Modal";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
-
-// import { formatCurrency } from "../../../utils/helpers";
-// import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
-import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
-  HiEye,
-  HiTrash,
-} from "react-icons/hi2";
+import { HiEye, HiTrash } from "react-icons/hi2";
 import Image from "next/image";
 import { useState } from "react";
 import {
@@ -24,9 +14,6 @@ import {
 } from "./useTestimonial";
 import { HiEyeOff } from "react-icons/hi";
 import moment from "moment";
-// import { useNavigate } from "react-router-dom";
-// import { useCheckout } from "../check-in-out/useCheckout";
-// import useDeleteBooking from "./useDeleteBooking";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -87,8 +74,12 @@ function TestimonialRow({
       </Stacked>
 
       <Stacked>
-        <span>{fullDesc ? message : message.slice(0, 70)} ...</span>
-        <span onClick={expandDesc} style={{ cursor: "pointer" }}>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: fullDesc ? message : `${message.slice(0, 70)} ...`,
+          }}
+        />
+        <span onClick={expandDesc} style={{ cursor: "pointer", color: "blue" }}>
           {fullDesc ? "show less" : "show more"}
         </span>
       </Stacked>
