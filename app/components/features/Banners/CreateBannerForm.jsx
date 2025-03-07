@@ -138,9 +138,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
             disabled={isWorking}
             type="text"
             id="link"
-            {...register("link", {
-              required: "This field is required",
-            })}
+            {...register("link")}
           />
         </FormRow>
 

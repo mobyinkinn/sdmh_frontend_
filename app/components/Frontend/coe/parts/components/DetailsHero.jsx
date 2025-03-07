@@ -49,7 +49,6 @@
 //   );
 // }
 
-
 // "use client";
 // import { Head1 } from "@/app/styledComponents/frontend/Headings";
 // import { Box, Stack } from "@mui/material";
@@ -111,8 +110,6 @@
 //   );
 // }
 
-
-
 "use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Stack } from "@mui/material";
@@ -121,7 +118,6 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import Spinner from "@/app/components/ui/Spinner";
 import { useEffect, useState } from "react";
 export default function DetailsHero({ data, isLoading }) {
-  
   if (isLoading) {
     return <Spinner />;
   }
@@ -135,13 +131,26 @@ export default function DetailsHero({ data, isLoading }) {
         Best for Your Business?
       </Head1>
       <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "276px", lg: "386px", xl: "557px" }}
         sx={{
           backgroundImage: `url(${data?.bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           width: "100%",
-          height: "70vh",
           margin: "30px 0",
+        }}
+      ></Box>
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "334px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          margin: "25px 0",
         }}
       ></Box>
       <div
