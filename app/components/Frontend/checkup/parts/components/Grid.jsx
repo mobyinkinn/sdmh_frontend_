@@ -159,22 +159,22 @@ function CheckupCard({ el }) {
         <Stack>
           <ParaNormal
             fontSize={{
-              lg: "30px",
-              md: "22px",
-              smm: "22px",
+              lg: "22px",
+              md: "18px",
+              smm: "17px",
               sm: "17px",
             }}
           >
             {el.title}
           </ParaNormal>
           <ParaNormal
-            fontSize={{ lg: "30px", md: "25px", smm: "22px", sm: "17px" }}
+            fontSize={{ lg: "22px", md: "18px", smm: "17px", sm: "17px" }}
           >
             ₹{el.price}
           </ParaNormal>
         </Stack>
         <ParaNormal
-          fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "13px" }}
+          fontSize={{ lg: "18px", md: "17px", smm: "16px", sm: "13px" }}
         >
           {el.smallDescription}
         </ParaNormal>
@@ -182,6 +182,7 @@ function CheckupCard({ el }) {
           <ButtonSmallOutline color="#007946">Book Now</ButtonSmallOutline>
           <ButtonSmallOutline
             color="#000000"
+            hoverColor="white"
             onClick={() => router.push(`/health-checkup/${el._id}`)}
           >
             Know More

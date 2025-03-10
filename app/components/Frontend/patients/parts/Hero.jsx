@@ -3,13 +3,42 @@ import NavbarAdminVerticle from "@/app/components/admin/navbarAdmin/NavbarAdminV
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import NavUserVerticle from "./NavUserVerticle";
+import Spinner from "@/app/components/ui/Spinner";
+import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
 
 export default function Hero({ sectionsRef }) {
+  const { data, isLoading: isLoadingBanner } = useBannerByPage(
+    "patient care and services"
+  );
+  if (isLoadingBanner) return <Spinner />;
   return (
     <Stack direction={"row"}>
-      <ContainerMain
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+      {/* <ContainerMain
         gap={{ lg: "20px", sm: "10px" }}
         alignItems={{ sm: "center", lg: "left" }}
         bgColor="#D2E4D8"
@@ -35,7 +64,7 @@ export default function Hero({ sectionsRef }) {
           McClintock, a Latin professor at Hampden-Sydney College in Virginia,
           looked.
         </ParaNormal>
-      </ContainerMain>
+      </ContainerMain> */}
       <NavUserVerticle sectionsRef={sectionsRef} />
     </Stack>
   );

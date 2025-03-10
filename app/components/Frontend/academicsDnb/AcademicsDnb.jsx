@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
@@ -7,47 +8,51 @@ import sm_banner from "./parts/assests/sm_banner.png";
 import DNBTable from "./parts/DnaCourse";
 import InfraAndFacility from "./parts/InfraAndFacility";
 import MobileFooter from "../footer/MobileFooter";
+import { Box } from "@mui/material";
+import { useBannerByPage } from "../../admin/banner/parts/useBanner";
+import Spinner from "../../ui/Spinner";
 
+const rows = [
+  { subject: "Anaesthesiology", intake: 4, session: "January" },
+  { subject: "General Medicine", intake: 3, session: "January" },
+  {
+    subject: "Immunohematology & Transfusion Medicine",
+    intake: 1,
+    session: "January",
+  },
+  { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
+  { subject: "Orthopedic Surgery", intake: 2, session: "July" },
+  { subject: "Paediatrics", intake: 3, session: "January" },
+  { subject: "Pathology", intake: 2, session: "January" },
+  { subject: "Radio-Diagnosis", intake: 2, session: "January" },
+  { subject: "Respiratory Diseases", intake: 2, session: "January" },
+];
+
+const rows1 = [
+  { subject: "Anaesthesiology", intake: 4, session: "January" },
+  { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
+  { subject: "Orthopedic Surgery", intake: 2, session: "July" },
+  { subject: "Paediatrics", intake: 3, session: "January" },
+  { subject: "Pathology", intake: 2, session: "January" },
+  { subject: "Radio-Diagnosis", intake: 2, session: "January" },
+  { subject: "Respiratory Diseases", intake: 2, session: "January" },
+];
+
+const rows2 = [
+  { subject: "Cardiology", intake: 2, session: "January" },
+  { subject: "Gastroenterology", intake: 2, session: "January" },
+  { subject: "Neurosurgery", intake: 2, session: "January" },
+  { subject: "Neurology", intake: 2, session: "January" },
+  { subject: "Surgical Gastroenterology", intake: 2, session: "January" },
+  { subject: "Critical Care Medicine", intake: 3, session: "January" },
+];
 const AcademicsDnb = () => {
-  const rows = [
-    { subject: "Anaesthesiology", intake: 4, session: "January" },
-    { subject: "General Medicine", intake: 3, session: "January" },
-    {
-      subject: "Immunohematology & Transfusion Medicine",
-      intake: 1,
-      session: "January",
-    },
-    { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
-    { subject: "Orthopedic Surgery", intake: 2, session: "July" },
-    { subject: "Paediatrics", intake: 3, session: "January" },
-    { subject: "Pathology", intake: 2, session: "January" },
-    { subject: "Radio-Diagnosis", intake: 2, session: "January" },
-    { subject: "Respiratory Diseases", intake: 2, session: "January" },
-  ];
-
-  const rows1 = [
-    { subject: "Anaesthesiology", intake: 4, session: "January" },
-    { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
-    { subject: "Orthopedic Surgery", intake: 2, session: "July" },
-    { subject: "Paediatrics", intake: 3, session: "January" },
-    { subject: "Pathology", intake: 2, session: "January" },
-    { subject: "Radio-Diagnosis", intake: 2, session: "January" },
-    { subject: "Respiratory Diseases", intake: 2, session: "January" },
-  ];
-
-  const rows2 = [
-    { subject: "Cardiology", intake: 2, session: "January" },
-    { subject: "Gastroenterology", intake: 2, session: "January" },
-    { subject: "Neurosurgery", intake: 2, session: "January" },
-    { subject: "Neurology", intake: 2, session: "January" },
-    { subject: "Surgical Gastroenterology", intake: 2, session: "January" },
-    { subject: "Critical Care Medicine", intake: 3, session: "January" },
-  ];
-
+  const { data, isLoading, error } = useBannerByPage("academics dnb courses");
+  if (isLoading) return <Spinner />;
   return (
     <>
       <Navbar />
-      <BannerImage
+      {/* <BannerImage
         align={"left"}
         image={banner.src}
         title="DNB-Courses"
@@ -58,7 +63,30 @@ const AcademicsDnb = () => {
         padding={10}
         textcenter={"left"}
         sm_image={sm_banner.src}
-      />
+      /> */}
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <DNBTable
         rows={rows}
         title={"SDMH Runs an Active"}
