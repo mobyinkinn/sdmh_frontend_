@@ -2,10 +2,10 @@ import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 
-import img1 from "./assets/overview1.png";
-import img2 from "./assets/overview2.png";
-import img3 from "./assets/overview3.png";
-import img4 from "./assets/overview4.png";
+import img1 from "./assets/1971.jpg";
+import img2 from "./assets/2011.jpg";
+import img3 from "./assets/2014.jpg";
+import img4 from "./assets/p4.jpg";
 import { Stack } from "@mui/material";
 import Image from "next/image";
 
@@ -53,9 +53,9 @@ export default function Overview() {
         essential care.
       </ParaNormal>
       <Stack
-        direction="row"
+        direction={{ xs: "column", md: "row" }}
         marginTop={"40px"}
-        justifyContent={{ md: "space-between", xs: "center" }}
+        justifyContent={{ lg: "unset", md: "space-between", xs: "center" }}
         gap={{ xs: "30px", md: "none" }}
         flexWrap={"wrap"}
         width={"100%"}
@@ -65,8 +65,8 @@ export default function Overview() {
         {overviewImages.map((el, i) => {
           return (
             <Stack
-              width={{ md: "20%", xs: "40%" }}
-              height={"30vh"}
+              width={{ xl: "23%", lg: "48%", md: "47%", xs: "100%" }}
+              height={{ xs: "200px", md: "300px" }}
               position={"relative"}
               key={i}
             >
