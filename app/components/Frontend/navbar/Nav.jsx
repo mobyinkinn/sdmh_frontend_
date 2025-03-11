@@ -94,7 +94,7 @@ export default function Navbar() {
           </Stack>
           <Stack direction={"row"} gap={"25px"}>
             <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
-             Second Opinion
+              Second Opinion
             </Typography>
             <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
               Lab Reports
@@ -105,7 +105,6 @@ export default function Navbar() {
               gap={"25px"}
               justifyContent={{ xs: "flex-end", sm: "flex-start" }}
             >
-              <Typography>Downloads</Typography>
               <Stack direction={"row"} alignItems={"center"} gap={"5px"}>
                 <div
                   id="google_translate_element"

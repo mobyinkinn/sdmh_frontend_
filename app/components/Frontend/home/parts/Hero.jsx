@@ -3,15 +3,16 @@ import { Box, Stack, Typography } from "@mui/material";
 import banner from "../assets/heroBanner.png";
 import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
 import { FaSearch } from "react-icons/fa";
-
 import opinion from "../assets/icons/opinion.png";
 import query from "../assets/icons/query.png";
 import roomTour from "../assets/icons/roomTour.png";
 import Image from "next/image";
 import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
+import Spinner from "@/app/components/ui/Spinner";
 
 export default function Hero() {
   const { data, isLoading, error } = useBannerByPage("home");
+  if (isLoading) return <Spinner />;
 
   return (
     <Stack direction={"row"}>
@@ -26,32 +27,10 @@ export default function Hero() {
           backgroundPosition: "center center",
         }}
       ></Box>
-      {/* <Box
-        display={{ md: "none", sm: "flex" }}
-        height={{ xs: "65vh", lg: "90vh" }}
-        width={"100%"}
-        sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-        }}
-      ></Box> */}
-      {/* <Box
-        display={{ md: "none", sm: "flex" }}
-        minHeight={{ xs: "510px" }}
-        width={"100%"}
-        sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          backgroundPosition: "center center",
-        }}
-      ></Box> */}
 
       <Box
         display={{ md: "none", sm: "flex" }}
-        minHeight={{ xs: "385px" }}
+        minHeight={{ xs: "451px" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${data?.mobileBanner})`,

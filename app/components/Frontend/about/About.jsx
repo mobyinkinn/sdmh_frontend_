@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Stack } from "@mui/material";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
@@ -15,8 +15,8 @@ import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
 
 export default function About() {
-      const { isLoading } = useNavbar();
-      if (isLoading) return <Spinner />;
+  const { isLoading } = useNavbar();
+  if (isLoading) return <Spinner />;
   return (
     <Stack>
       <Navbar />

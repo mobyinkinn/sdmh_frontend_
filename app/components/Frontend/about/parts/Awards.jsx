@@ -119,7 +119,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[0].img.src})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               position: "absolute",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -134,7 +134,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[1].img.src})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               position: "absolute",
               backgroundPosition: "center top",
 
@@ -151,7 +151,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[2].img.src})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               position: "absolute",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -167,7 +167,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[3].img.src})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               zIndex: "70",
               position: "absolute",
               border: "6px solid #476C9B",
@@ -185,7 +185,7 @@ export default function Awards() {
             sx={{
               backgroundImage: `url(${center[4].img.src})`,
               zIndex: "60",
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               border: "6px solid #476C9B",
               position: "absolute",
               backgroundPosition: "center center",
@@ -201,7 +201,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[5].img.src})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               zIndex: "50",
               border: "6px solid #476C9B",
               position: "absolute",
@@ -218,7 +218,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[6].img.src})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               zIndex: "50",
               position: "absolute",
               backgroundPosition: "center center",
@@ -269,7 +269,7 @@ function ImageCard({ img }) {
         <Box
           sx={{
             backgroundImage: `url(${img})`,
-            backgroundSize: "cover",
+            backgroundSize: "contain",
             backgroundPosition: "center center",
             height: "100%",
             width: "100%",
