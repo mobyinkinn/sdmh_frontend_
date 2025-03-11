@@ -85,7 +85,7 @@ const TabData = () => {
   const visibleData = filteredData.slice(0, visibleCount);
 
   return (
-    <Stack>
+    <Stack bgcolor={"#F9F9F9"}>
       <Stack pt={3} alignItems={"center"} gap={1}>
         <ParaNormalSmall>Photo Gallery</ParaNormalSmall>
         <Head1
