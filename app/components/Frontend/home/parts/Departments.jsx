@@ -15,6 +15,10 @@ import img5 from "../assets/departments/bottomRight.png";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import image1 from "../assets/departments/1.jpg";
+import image2 from "../assets/departments/2.jpg";
+import image3 from "../assets/departments/3.jpg";
+import image4 from "../assets/departments/4.jpg";
 
 const departments = [
   { id: 0, name: "Heart", data: "Best In California", img: img1 },
@@ -144,6 +148,45 @@ export default function Departments() {
           justifyContent={"center"}
           alignItems={"center"}
         >
+          {/* <Stack width="100%" spacing={2}>
+            <Stack direction="row" spacing={2} justifyContent="center">
+              <Stack
+                flex={1}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Image src={image1} width={320} height={210} alt="Image 1" />
+              </Stack>
+              <Stack
+                flex={1}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Image src={image2} width={320} height={210} alt="Image 2" />
+              </Stack>
+            </Stack>
+            <Stack direction="row" spacing={2} justifyContent="center">
+              <Stack
+                flex={1}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Image src={image3} width={320} height={210} alt="Image 3" />
+              </Stack>
+              <Stack
+                flex={1}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Image src={image4} width={320} height={210} alt="Image 4" />
+              </Stack>
+            </Stack>
+          </Stack> */}
+
           <Image
             src={departments[activeTab].img}
             fill
