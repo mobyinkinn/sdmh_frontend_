@@ -32,7 +32,7 @@ const FileName = styled.p`
 `;
 
 function DepartmentTableOperations() {
-  const { filter, setFilter } = useDepartmentContext();
+  const { filter, setFilter, sort, setSort } = useDepartmentContext();
 
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -81,6 +81,8 @@ function DepartmentTableOperations() {
       />
 
       <SortBy
+        sort={sort}
+        setSort={setSort}
         options={[
           { value: "startDate-desc", label: "Sort by date (recent first)" },
           { value: "startDate-asc", label: "Sort by date (earlier first)" },

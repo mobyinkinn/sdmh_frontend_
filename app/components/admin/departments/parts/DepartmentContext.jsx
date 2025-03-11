@@ -6,9 +6,10 @@ const DepartmentContext = createContext();
 // Create the provider component
 export const DepartmentProvider = ({ children }) => {
   const [filter, setFilter] = useState("All");
+  const [sort, setSort] = useState("startDate-desc");
 
   return (
-    <DepartmentContext.Provider value={{ filter, setFilter }}>
+    <DepartmentContext.Provider value={{ filter, setFilter, sort, setSort }}>
       {children}
     </DepartmentContext.Provider>
   );
