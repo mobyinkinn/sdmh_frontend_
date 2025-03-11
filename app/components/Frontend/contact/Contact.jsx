@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
@@ -10,17 +10,24 @@ import Enquire_Now from "./parts/Enquire_Now";
 import Available from "./parts/Available";
 import Reach from "./parts/Reach";
 import Ambu from "./parts/Ambu";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
+import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 
 const Greeting = () => {
-      const { isLoading } = useNavbar();
-      if (isLoading) return <Spinner />;
+  const { isLoading } = useNavbar();
+  const {
+    data,
+    isLoading: isLoadingBanner,
+    error,
+  } = useBannerByPage("contact us");
+
+  if (isLoading || isLoadingBanner) return <Spinner />;
   return (
     <>
       <Navbar />
-      <Hero
+      {/* <Hero
         align={"left"}
         image={banner.src}
         subtitle="We are here for your care."
@@ -31,7 +38,30 @@ const Greeting = () => {
         sm_image={sm_banner.src}
         textcenter={"left"}
         marginTop={"50px"}
-      />
+      /> */}
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <Enquire_Now />
       <Available />
       <Reach />

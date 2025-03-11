@@ -2,7 +2,7 @@
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import banner from "./assets/bannerImage.png";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Head1, Head2, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
@@ -19,7 +19,7 @@ const sideNavData = [
 ];
 
 export default function Hero() {
-  const { data, isLoading, error } = useBannerByPage("contact us");
+  const { data, isLoading, error } = useBannerByPage("about-us");
   const handleScroll = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth", // Smooth scrolling
@@ -30,11 +30,11 @@ export default function Hero() {
   return (
     <ContainerMain
       gap="0"
-      flexDirection={{ lg: "row",md:"column", smm: "column", sm: "column" }}
+      flexDirection={{ lg: "row", md: "column", smm: "column", sm: "column" }}
       padding="20px 0"
       id="about"
     >
-      <Stack
+      {/* <Stack
         width={{ md: "85%", sm: "90%", smm: "90%" }}
         height={{ md: "90vh" }}
         margin="0 auto"
@@ -51,19 +51,40 @@ export default function Hero() {
           <Head1 color="black">About&nbsp;</Head1>
           <Head1 color="#476C9B">SDMH</Head1>
         </Stack>
-        <ParaNormal
-          textAlign={{ sm: "center", smm: "center", md: "center" }}
-        >
+        <ParaNormal textAlign={{ sm: "center", smm: "center", md: "center" }}>
           It Is a Long Established Fact That a Reader Will Be Distracted By The
           Readable Content of a Page When Looking At Its Layout. The Point of
           Using Lorem Ipsum Is That It Has a More-or-less Normal Distribution of
           Letters, As Opposed To Using 'content Here, Content Here', Making It
           Look Like Readable English.
         </ParaNormal>
-      </Stack>
+      </Stack> */}
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <Stack
         justifyContent={"center"}
-        direction={{lg:"column", md: "row", sm: "row", xs: "row" }}
+        direction={{ lg: "column", md: "row", sm: "row", xs: "row" }}
         flexWrap="wrap"
       >
         {sideNavData.map((el, i) => {

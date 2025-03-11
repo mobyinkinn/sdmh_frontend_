@@ -1,15 +1,44 @@
+"use client";
 import React from "react";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
 import banner from "./assets/bannerImage.png";
 import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import TabData from "./assets/TabData";
+import { Box } from "@mui/material";
+import Spinner from "../../ui/Spinner";
+import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 
 const Gallery = () => {
+  const { data, isLoading: isLoadingBanner } = useBannerByPage("gallery");
+  if (isLoadingBanner) return <Spinner />;
   return (
     <>
       <Navbar />
-      <BannerImage2 image={banner.src} />
+      {/* <BannerImage2 image={banner.src} /> */}
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <TabData />
       {/* <VirtualView/> */}
       <Footer />
