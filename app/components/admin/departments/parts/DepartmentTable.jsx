@@ -35,15 +35,25 @@ const departmentData = [
 
 function DepartmentTable() {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 5; // Number of rows per page
+  const itemsPerPage = 50; // Number of rows per page
 
   const { data, isLoading, error } = useDepartment();
-  const { filter } = useDepartmentContext();
+  const { filter, sort } = useDepartmentContext();
 
   if (isLoading) return <Spinner />;
   if (error) return <p>Error loading data</p>;
 
-  let filteredDepartment = data || [];
+  const sortedDepartments = [...data].sort((a, b) => {
+    if (sort === "startDate-desc")
+      return new Date(b.startDate) - new Date(a.startDate);
+    if (sort === "startDate-asc")
+      return new Date(a.startDate) - new Date(b.startDate);
+    if (sort === "name-dsc") return b.name.localeCompare(a.name);
+    if (sort === "name-asc") return a.name.localeCompare(b.name);
+    return 0;
+  });
+
+  let filteredDepartment = sortedDepartments || [];
 
   // Convert filter string to boolean
   let convertedFilter = filter.toLowerCase() === "inactive" ? false : true;
