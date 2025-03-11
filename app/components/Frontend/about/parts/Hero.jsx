@@ -31,7 +31,7 @@ export default function Hero() {
     <ContainerMain
       gap="0"
       flexDirection={{ lg: "row", md: "column", smm: "column", sm: "column" }}
-      padding="20px 0"
+      padding={{lg:"0", md:"20px 0"}}
       id="about"
     >
       {/* <Stack
