@@ -5,9 +5,9 @@ import React from "react";
 
 const Terms = () => {
   return (
-    <Stack p={{ md: "20px 72px", xs: "20px" }} gap={2}>
+    <Stack p={{ md: "20px 72px", xs: "20px" }} gap={2} bgcolor={"#FDFDFD"}>
       <Head1
-        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.1rem", lg: "2.5rem" }}
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#476C9B"
       >
@@ -15,7 +15,7 @@ const Terms = () => {
       </Head1>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         It is a long established fact that a reader will be distracted by the
         readable content of a page when looking at its layout. The point of
@@ -30,7 +30,7 @@ const Terms = () => {
         CAR T-cell therapy.
       </ParaNormal>
       <Head1
-        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.1rem", lg: "2.5rem" }}
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#476C9B"
       >
@@ -38,7 +38,7 @@ const Terms = () => {
       </Head1>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         We collect and store anonymous data from every visitor of the
         Website/application to monitor traffic and fix bugs on our server. For
@@ -48,7 +48,7 @@ const Terms = () => {
       </ParaNormal>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         We may ask you to log in and provide certain personal information (such
         as your name and email address) in order to be able to save your profile
@@ -61,7 +61,7 @@ const Terms = () => {
       </ParaNormal>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         we also use third party tools on our website to provide you with a
         seamless experience across different browsers, mobile phones and other
@@ -69,7 +69,7 @@ const Terms = () => {
         application.
       </ParaNormal>
       <Head1
-        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.1rem", lg: "2.5rem" }}
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#476C9B"
       >
@@ -77,7 +77,7 @@ const Terms = () => {
       </Head1>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         We collect and store anonymous data from every visitor of the
         Website/application to monitor traffic and fix bugs on our server. For
@@ -87,7 +87,7 @@ const Terms = () => {
       </ParaNormal>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         Kokilaben Hospital or its assoicates may contact you, by email or other
         means. For example, Kokilaben Hospital may send you promotional emails
@@ -102,7 +102,7 @@ const Terms = () => {
         Reliance Hospitals emails.
       </ParaNormal>
       <Head1
-        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.1rem", lg: "2.5rem" }}
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#476C9B"
       >
@@ -110,7 +110,7 @@ const Terms = () => {
       </Head1>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         We collect and store anonymous data from every visitor of the
         Website/application to monitor traffic and fix bugs on our server. For
@@ -119,7 +119,7 @@ const Terms = () => {
         type, the browser language, and a timestamp for the request.
       </ParaNormal>
       <Head1
-        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.1rem", lg: "2.5rem" }}
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#476C9B"
       >
@@ -127,7 +127,7 @@ const Terms = () => {
       </Head1>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         We may ask you to log in and provide certain personal information (such
         as your name and email address) in order to be able to save your profile
@@ -139,7 +139,7 @@ const Terms = () => {
         servers.
       </ParaNormal>
       <Head1
-        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
+        fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.1rem", lg: "2.5rem" }}
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#476C9B"
       >
@@ -147,7 +147,7 @@ const Terms = () => {
       </Head1>
       <ParaNormal
         style={{ textAlign: "justify" }}
-        fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
+        fontSize={{ sm: "15px", smm: "18px", md: "18px", lg: "20px" }}
       >
         For many patients, bone marrow or stem cell transplants become their
         only chance of recovery. However, with only 0.09% of the population

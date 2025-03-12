@@ -69,6 +69,7 @@ const EventInner = () => {
         direction={{ md: "row" }}
         gap={{ md: 5, xs: 2 }}
         padding={{ md: 5, sm: 3, xs: 0 }}
+        bgcolor={"#FDFDFD"}
       >
         <Stack width={{ md: "70%" }}>
           <Stack

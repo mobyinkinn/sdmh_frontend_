@@ -67,7 +67,7 @@ export default function CareerPosts() {
     return <Spinner />;
   }
   return (
-    <ContainerMain alignItems="center">
+    <ContainerMain alignItems="center" bgColor={"#FFFFFB"}>
       <Stack direction={"row"}>
         <Head3 color="black">Career in&nbsp;</Head3>
         <Head3 color="#007946">SDMH</Head3>

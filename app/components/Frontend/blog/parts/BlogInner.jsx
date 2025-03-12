@@ -64,6 +64,7 @@ const BlogInner = () => {
         direction={{ md: "row" }}
         gap={{ md: 4, xs: 2 }}
         padding={{ md: 5, sm: 3, xs: 2 }}
+        bgcolor={"#FDFDFD"}
       >
         <Stack width={{ md: "70%" }}>
           <Stack

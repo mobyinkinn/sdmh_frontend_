@@ -1,5 +1,5 @@
 "use client";
-import { Button, Pagination, Stack } from "@mui/material";
+import { Box, Button, Pagination, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { useEvents } from "@/app/components/admin/events/useEvents";
@@ -135,27 +135,28 @@ const Tabdata = () => {
           </Button>
         ))}
       </Stack>
+      <Box bgcolor={"#FDFDFD"}>
+        {/* Render Filtered & Paginated Event Cards */}
+        <Stack alignItems="center" pt={2}>
+          {paginatedData?.map((el) => (
+            <EventCard key={el.id} career={el} />
+          ))}
+        </Stack>
 
-      {/* Render Filtered & Paginated Event Cards */}
-      <Stack alignItems="center" pt={2}>
-        {paginatedData?.map((el) => (
-          <EventCard key={el.id} career={el} />
-        ))}
-      </Stack>
-
-      {/* Pagination */}
-      <Stack direction="row" justifyContent="center" marginTop={4}>
-        <Pagination
-          count={totalPages || 1} // Ensure at least 1 page is displayed
-          page={page}
-          onChange={(event, value) => setPage(value)}
-          variant="outlined"
-          shape="rounded"
-          showFirstButton
-          showLastButton
-          size="large"
-        />
-      </Stack>
+        {/* Pagination */}
+        <Stack direction="row" justifyContent="center" marginTop={4}>
+          <Pagination
+            count={totalPages || 1} // Ensure at least 1 page is displayed
+            page={page}
+            onChange={(event, value) => setPage(value)}
+            variant="outlined"
+            shape="rounded"
+            showFirstButton
+            showLastButton
+            size="large"
+          />
+        </Stack>
+      </Box>
     </>
   );
 };
