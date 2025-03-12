@@ -31,7 +31,7 @@ const Greet = () => {
   return (
     <>
       <ContainerMain
-        bgColor={"#FFFFFB"}
+        bgColor={"#F9F9F9"}
         gap={"70px"}
         flexDirection={{ sm: "column", smm: "column", md: "column", lg: "row" }}
         alignItems={"center"}

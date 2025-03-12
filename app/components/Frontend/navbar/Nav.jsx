@@ -222,7 +222,13 @@ export default function Navbar() {
                 </Stack>
                 {(el.items.length > 0 || el.name === "Center Of Excellence") &&
                   openDropdown === i && (
-                    <Stack bgcolor="white" boxShadow={3} p={1} width={"12rem"}>
+                    <Stack
+                      bgcolor="white"
+                      boxShadow={1}
+                      p={1}
+                      width={"17.5rem"}
+                      spacing={0.5}
+                    >
                       {el.name === "Center Of Excellence"
                         ? departmentData.map((dept) => (
                             <a
@@ -326,8 +332,12 @@ export default function Navbar() {
                     bgcolor="white"
                     boxShadow={2}
                     padding={2}
-                    width="15rem"
+                    width="max-content"
+                    maxHeight="34rem"
+                    flexWrap={"wrap"}
+                    spacing={0.5}
                     sx={{
+                      zIndex: 10,
                       opacity: openDropdown === i ? 1 : 0,
                       transform:
                         openDropdown === i
@@ -335,6 +345,8 @@ export default function Navbar() {
                           : "translateY(-10px)",
                       transition: "opacity 0.3s ease, transform 0.3s ease",
                       pointerEvents: openDropdown === i ? "auto" : "none",
+                      whiteSpace: "nowrap",
+                      columnGap: "2rem",
                     }}
                   >
                     {el.name === "Center Of Excellence"
@@ -342,7 +354,10 @@ export default function Navbar() {
                           <a
                             key={department._id}
                             href={`/center-of-excellence/${department._id}`}
-                            style={{ textDecoration: "none", color: "black" }}
+                            style={{
+                              textDecoration: "none",
+                              color: "black",
+                            }}
                           >
                             <Typography
                               sx={{
