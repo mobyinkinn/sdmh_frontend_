@@ -28,6 +28,7 @@ function CreateTpaForm({ cabinToEdit = {}, onCloseModal }) {
     const formdata = new FormData();
     formdata.append("logo", file);
     formdata.append("name", data.name);
+    formdata.append("tag", data.tag);
     formdata.append("status", true);
     console.log("formdata", formdata);
     console.log("Submitted data:", data);
@@ -53,6 +54,17 @@ function CreateTpaForm({ cabinToEdit = {}, onCloseModal }) {
           type="text"
           id="name"
           {...register("name", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
+      <FormRow label="Tag" error={errors?.tag?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="tag"
+          {...register("tag", {
             required: "This field is required",
           })}
         />

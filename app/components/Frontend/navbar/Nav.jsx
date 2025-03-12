@@ -22,6 +22,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
+import { useDepartment } from "../../admin/departments/parts/useDepartment";
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
   { id: 0, name: "Center Of Excellence", link: "center-of-excellence" },
@@ -37,6 +38,8 @@ const navLinks = [
 
 export default function Navbar() {
   const { data: navData, isLoading, error } = useNavbar();
+  const { data: departmentData, isLoading: isDepartmentLoading } =
+    useDepartment();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -66,7 +69,7 @@ export default function Navbar() {
     }
   }, []);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isDepartmentLoading) return <Spinner />;
   if (error) return <div>Error loading Navbar: {error.message}</div>;
 
   return (
@@ -168,127 +171,111 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
         </Stack>
+        {/** mobile navbar */}
         {isMenuOpen && (
-          <Box>
-            <Stack
-              direction={"column"}
-              padding={"25px"}
-              justifyContent={"center"}
-              gap={"15px"}
-              sx={{ display: { lg: "none" } }}
-            >
-              {navData.map((el, i) => (
-                <Box
-                  key={i}
-                  position="relative"
-                  onMouseEnter={() => setOpenDropdown(i)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+          <Stack
+            direction="column"
+            px={4}
+            py={2}
+            gap={2}
+            sx={{ display: { lg: "none" } }}
+          >
+            {navData.map((el, i) => (
+              <Box
+                key={i}
+                onMouseEnter={() => setOpenDropdown(i)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
                 >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    sx={{ cursor: "pointer" }}
+                  <a
+                    key={el._id}
+                    href={el.link}
+                    style={{ textDecoration: "none", color: "black" }}
                   >
-                    <a
-                      key={el._id}
-                      href={el.link}
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      <Typography>{el.name}</Typography>
-                    </a>
-                    {el.items.length > 0 && (
-                      <IoIosArrowDown
-                        style={{
-                          transform:
-                            openDropdown === i
-                              ? "rotate(180deg)"
-                              : "rotate(0deg)",
-                          transition: "transform 0.3s ease",
-                        }}
-                      />
-                    )}
-                  </Stack>
-                  {el.items.length > 0 && (
-                    <Stack
-                      position="absolute"
-                      bgcolor="white"
-                      boxShadow={3}
-                      padding={1}
-                      width={"10rem"}
+                    <Typography
                       sx={{
-                        opacity: openDropdown === i ? 1 : 0,
-                        transform:
-                          openDropdown === i
-                            ? "translateY(0)"
-                            : "translateY(-10px)",
-                        transition: "opacity 0.3s ease, transform 0.3s ease",
-                        pointerEvents: openDropdown === i ? "auto" : "none",
+                        "&:hover": {
+                          color: "green",
+                          cursor: "pointer",
+                        },
                       }}
                     >
-                      {el.items.map((subItem) => (
-                        <a
-                          key={subItem._id}
-                          href={subItem.itemLink}
-                          style={{ textDecoration: "none", color: "black" }}
-                        >
-                          <Typography>{subItem.itemName}</Typography>
-                        </a>
-                      ))}
+                      {el.name}
+                    </Typography>
+                  </a>
+                  {(el.items.length > 0 ||
+                    el.name === "Center Of Excellence") && (
+                    <IoIosArrowDown
+                      style={{
+                        transform:
+                          openDropdown === i
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                        transition: "transform 0.3s ease",
+                      }}
+                    />
+                  )}
+                </Stack>
+                {(el.items.length > 0 || el.name === "Center Of Excellence") &&
+                  openDropdown === i && (
+                    <Stack bgcolor="white" boxShadow={3} p={1} width={"12rem"}>
+                      {el.name === "Center Of Excellence"
+                        ? departmentData.map((dept) => (
+                            <a
+                              key={dept._id}
+                              href={`/center-of-excellence/${dept._id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              <Typography
+                                sx={{
+                                  "&:hover": {
+                                    color: "green",
+                                    cursor: "pointer",
+                                  },
+                                }}
+                              >
+                                {dept.name}
+                              </Typography>
+                            </a>
+                          ))
+                        : el.items.map((subItem) => (
+                            <a
+                              key={subItem._id}
+                              href={subItem.itemLink}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              <Typography
+                                sx={{
+                                  "&:hover": {
+                                    color: "green",
+                                    cursor: "pointer",
+                                  },
+                                }}
+                              >
+                                {subItem.itemName}
+                              </Typography>
+                            </a>
+                          ))}
                     </Stack>
                   )}
-                </Box>
-              ))}
-            </Stack>
-            <Stack
-              direction={"column"}
-              padding={"25px"}
-              justifyContent={"center"}
-              gap={"15px"}
-              sx={{ display: { lg: "none" }, mt: "40px", mb: "40px" }}
-            >
-              <Stack
-                direction={"row"}
-                spacing={1}
-                sx={{ color: "#005900", alignItems: "center" }}
-              >
-                <SearchIcon style={{ width: "20px", height: "20px" }} />
-                <Typography>Search Doctor</Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                spacing={1}
-                sx={{ color: "#005900", alignItems: "center" }}
-              >
-                <IoIosMail style={{ width: "20px", height: "20px" }} />
-                <Typography>info@sdmh.in</Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                spacing={1}
-                sx={{ color: "#005900", alignItems: "center" }}
-              >
-                <FaPhone style={{ width: "15px", height: "15px" }} />
-                <Typography>0141 352 4444</Typography>
-              </Stack>
-              <DarkGreenButton
-                bgColor={"#476C9B"}
-                borderRadius={"100px"}
-                style={{ padding: "10px 15px" }}
-              >
-                Lab Reports
-              </DarkGreenButton>
-            </Stack>
-          </Box>
+              </Box>
+            ))}
+          </Stack>
         )}
+        {/** desktop navbar */}
         <Stack
-          direction={"row"}
+          direction="row"
           padding={{ lg: "15px" }}
-          justifyContent={"center"}
-          alignItems={"center"}
+          justifyContent="center"
+          alignItems="center"
         >
           <Stack
-            direction={"row"}
-            gap={"25px"}
+            direction="row"
+            gap="25px"
             sx={{ display: { xs: "none", lg: "flex" } }}
           >
             {navData.map((el, i) => (
@@ -308,9 +295,19 @@ export default function Navbar() {
                     href={el.link}
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <Typography>{el.name}</Typography>
+                    <Typography
+                      sx={{
+                        "&:hover": {
+                          color: "green",
+                          cursor: "pointer",
+                        },
+                      }}
+                    >
+                      {el.name}
+                    </Typography>
                   </a>
-                  {el.items.length > 0 && (
+                  {(el.items.length > 0 ||
+                    el.name === "Center Of Excellence") && (
                     <IoIosArrowDown
                       style={{
                         transform:
@@ -322,13 +319,14 @@ export default function Navbar() {
                     />
                   )}
                 </Stack>
-                {el.items.length > 0 && (
+                {(el.items.length > 0 ||
+                  el.name === "Center Of Excellence") && (
                   <Stack
                     position="absolute"
                     bgcolor="white"
                     boxShadow={2}
                     padding={2}
-                    width={"15rem"}
+                    width="15rem"
                     sx={{
                       opacity: openDropdown === i ? 1 : 0,
                       transform:
@@ -339,15 +337,43 @@ export default function Navbar() {
                       pointerEvents: openDropdown === i ? "auto" : "none",
                     }}
                   >
-                    {el.items.map((subItem) => (
-                      <a
-                        key={subItem._id}
-                        href={subItem.itemLink}
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        <Typography>{subItem.itemName}</Typography>
-                      </a>
-                    ))}
+                    {el.name === "Center Of Excellence"
+                      ? departmentData.map((department) => (
+                          <a
+                            key={department._id}
+                            href={`/center-of-excellence/${department._id}`}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            <Typography
+                              sx={{
+                                "&:hover": {
+                                  color: "green",
+                                  cursor: "pointer",
+                                },
+                              }}
+                            >
+                              {department.name}
+                            </Typography>
+                          </a>
+                        ))
+                      : el.items.map((subItem) => (
+                          <a
+                            key={subItem._id}
+                            href={subItem.itemLink}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            <Typography
+                              sx={{
+                                "&:hover": {
+                                  color: "green",
+                                  cursor: "pointer",
+                                },
+                              }}
+                            >
+                              {subItem.itemName}
+                            </Typography>
+                          </a>
+                        ))}
                   </Stack>
                 )}
               </Box>

@@ -89,7 +89,7 @@ export default function AllDoctors() {
     : totalPages;
 
   return (
-    <ContainerMain bgColor={"#FBF6EE"}>
+    <ContainerMain bgColor={"#D8E0EB"}>
       <Stack
         direction={"row"}
         gap={{ md: "20px", xs: "10px" }}

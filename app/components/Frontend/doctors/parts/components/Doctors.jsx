@@ -516,7 +516,7 @@ export default function Doctors({ data, departments }) {
           >
             <Box
               height={"50%"}
-              backgroundColor={"#D9D9D9"}
+              backgroundColor={"#8EA5C3"}
               width={"100%"}
               position={"relative"}
             >

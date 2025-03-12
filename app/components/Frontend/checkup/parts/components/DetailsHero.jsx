@@ -116,7 +116,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
     return <Spinner />;
   }
   return (
-    <Stack>
+    <Stack bgcolor={"#F9F9F9"}>
       <Box
         sx={{
           backgroundImage: `url(${data?.bannerImage})`,

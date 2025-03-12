@@ -124,12 +124,13 @@ export default function DetailsHero({ data, isLoading }) {
 
   return (
     <Stack>
-      <Head1 textAlign="left" color="black">
+      <Head1
+        textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
+        color="black"
+      >
         {data?.name}
       </Head1>
-      <Head1 textAlign="left" color="black">
-        Best for Your Business?
-      </Head1>
+
       <Box
         display={{ md: "flex", sm: "none" }}
         minHeight={{ md: "276px", lg: "386px", xl: "557px" }}

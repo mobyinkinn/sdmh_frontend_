@@ -101,7 +101,7 @@ export default function Grid() {
 
   return (
     <ContainerMain
-      bgColor="#fff"
+      bgColor="#F9F9F9"
       padding={{ lg: "50px", md: "40px", smm: "30px", sm: "20px" }}
       gap={{ lg: "20px", sm: "8px" }}
     >
@@ -172,6 +172,7 @@ function CoeCard({ el }) {
       </ParaNormal>
       <ButtonSmallOutline
         color="#000000"
+        hoverColor="white"
         onClick={() => router.push(`/center-of-excellence/${el._id}`)}
       >
         Read More

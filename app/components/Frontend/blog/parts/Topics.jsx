@@ -32,7 +32,7 @@ const Topics = () => {
   );
 
   return (
-    <Stack p={{ md: "20px 50px" }} gap={2}>
+    <Stack p={{ md: "20px 50px" }} gap={2} bgcolor={"#F9F9F9"}>
       <Stack
         direction={"row"}
         p={2}

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Stack } from "@mui/material";
 import Navbar from "../../navbar/Nav";
 import Footer from "../../footer/Footer";
@@ -17,7 +17,7 @@ export default function CoeDetails() {
   return (
     <Stack>
       <Navbar />
-      <ContainerMain bgColor={"#FBF6EE"}>
+      <ContainerMain bgColor={"#F9F9F9"}>
         <DetailsHero data={data} isLoading={isLoading} />
         {/* <Procedure data ={data}/> */}
         <Doctors _id={_id} />

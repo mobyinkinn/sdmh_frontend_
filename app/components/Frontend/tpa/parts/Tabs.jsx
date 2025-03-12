@@ -12,25 +12,25 @@ const Tabs = () => {
   const { data, isLoading, error } = useTpa();
   const filteredData = data?.filter((el, i) => el.status === true);
   console.log("filtert", filteredData);
-const manipulatedData = filteredData?.reduce((acc, item) => {
-  // Check if the tag already exists in the accumulator
-  let existingTag = acc.find((obj) => obj.tag === item.tag);
+  const manipulatedData = filteredData?.reduce((acc, item) => {
+    // Check if the tag already exists in the accumulator
+    let existingTag = acc.find((obj) => obj.tag === item.tag);
 
-  // If the tag exists, add the object to its array
-  if (existingTag) {
-    existingTag.objects.push({ name: item.name, image: item.logo });
-  } else {
-    // Otherwise, create a new tag and add the object
-    acc.push({
-      tag: item.tag,
-      objects: [{ name: item.name, image: item.logo }],
-    });
-  }
+    // If the tag exists, add the object to its array
+    if (existingTag) {
+      existingTag.objects.push({ name: item.name, image: item.logo });
+    } else {
+      // Otherwise, create a new tag and add the object
+      acc.push({
+        tag: item.tag,
+        objects: [{ name: item.name, image: item.logo }],
+      });
+    }
 
-  return acc;
-}, []);
+    return acc;
+  }, []);
 
-console.log("Manipulated Data", manipulatedData);
+  console.log("Manipulated Data", manipulatedData);
 
   if (isLoading) {
     return <Spinner />;
@@ -52,21 +52,25 @@ console.log("Manipulated Data", manipulatedData);
           <Stack gap={3}>
             <Head1 textAlign={"center"}>{d.tag}</Head1>
 
-            <Stack direction={"row"} flexWrap={"wrap"} key={i} gap={2} justifyContent={"center"}>
+            <Stack
+              direction={"row"}
+              flexWrap={"wrap"}
+              key={i}
+              gap={2}
+              justifyContent={"center"}
+            >
               {d.objects.map((di) => (
-                <Stack bgcolor={"white"} p={2} borderRadius={"15px"}>
+                <Stack
+                  bgcolor={"white"}
+                  p={2}
+                  borderRadius={"15px"}
+                  width={300}
+                  height={270}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
                   <Image src={di.image} width={250} height={150} />
                   <Typography textAlign={"center"}>{di.name}</Typography>
-                  <Stack alignItems={"center"}>
-                    <ButtonSmallOutlineWithoutHover
-                      style={{
-                        border: "1px solid #005900",
-                        color: "#005900",
-                      }}
-                    >
-                      Download
-                    </ButtonSmallOutlineWithoutHover>
-                  </Stack>
                 </Stack>
               ))}
             </Stack>
