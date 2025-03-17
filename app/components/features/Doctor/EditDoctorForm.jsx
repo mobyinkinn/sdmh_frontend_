@@ -62,21 +62,12 @@ function EditDoctorForm({ onCloseModal, id, department }) {
     box-shadow: var(--shadow-sm);
   `;
 
-  if (isUpdating || isUpdatingImage) return <SpinnerMini />;
+  if (isUpdating || isUpdatingImage || isDepartmentLoading)
+    return <SpinnerMini />;
 
   const handleAboutClick = () => {
-    onUpdateDoctor({ ...formdata, about: content }, id);
+    onUpdateDoctor((prevFormdata) => ({ ...prevFormdata, about: content }), id);
   };
-
-  function updateDepartment(name) {
-    let newDepartment = departmentData.find((el) => el.name === name);
-    if (newDepartment) {
-      setFormdata((prev) => ({ ...prev, department: newDepartment._id }));
-      onUpdateDoctor({ ...formdata, department: newDepartment._id }, id);
-    } else {
-      alert("No such department exists, hence department will not be updated!");
-    }
-  }
 
   function updateDay(day, value) {
     setFormdata((prevData) => {
@@ -93,8 +84,8 @@ function EditDoctorForm({ onCloseModal, id, department }) {
     });
   }
 
-  function onUpdateDoctor(formdata, id) {
-    updateDoctor({ formdata, id });
+  function onUpdateDoctor(updatedFormdata, id) {
+    updateDoctor({ formdata: updatedFormdata, id });
   }
 
   function onUpdateImage(files, id) {
@@ -108,7 +99,11 @@ function EditDoctorForm({ onCloseModal, id, department }) {
   return (
     <Form
       onSubmit={(e) => {
-        onUpdateDoctor({ ...formdata }, id);
+        setFormdata((prevFormdata) => {
+          const updatedFormdata = { ...prevFormdata };
+          onUpdateDoctor(updatedFormdata, id);
+          return updatedFormdata;
+        });
       }}
       type={onCloseModal ? "modal" : "regular"}
     >
@@ -173,10 +168,10 @@ function EditDoctorForm({ onCloseModal, id, department }) {
           />
         </FormRow>
       </Stack>
-      <FormRow label="Department" error={errors?.department?.message}>
+      {/* <FormRow label="Department" error={errors?.department?.message}>
         <StyledSelect
           id="department"
-          value={departmentValue}
+          value={depValue?.name}
           {...register("department", {
             required: "This field is required",
           })}
@@ -198,6 +193,29 @@ function EditDoctorForm({ onCloseModal, id, department }) {
             </option>
           ))}
         </StyledSelect>
+      </FormRow> */}
+
+      {/**2 */}
+
+      <FormRow label="Department" error={errors?.department?.message}>
+        <StyledSelect
+          id="department"
+          value={formdata.department || ""}
+          {...register("department", { required: "This field is required" })}
+          onChange={(e) => {
+            setFormdata((prev) => ({ ...prev, department: e.target.value }));
+          }}
+        >
+          <option value="">Select a department</option>
+          {departmentData?.map((department, index) => (
+            <option key={index} value={department._id}>
+              {department.name}
+            </option>
+          ))}
+        </StyledSelect>
+        <Button onClick={() => onUpdateDoctor({ ...formdata }, id)}>
+          Update Department
+        </Button>
       </FormRow>
 
       <FormRow label="Available on" error={errors?.availability?.message}>
