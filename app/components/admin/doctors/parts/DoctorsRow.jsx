@@ -59,14 +59,14 @@ function DoctorsRow({
   const { blockDoctor, isBlocking } = useBlockDoctor();
   const { unblockDoctor, isUnblocking } = useUnblockDoctor();
   const { deleteDoctor, isDeleting } = useDeleteDoctor();
-  // const { data: departmentData, isLoading: isLoadingDepartment } =
-  //   useDepartment();
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
 
-  if (isDoctorsLoading) return <Spinner />;
+  if (isLoadingDepartment || isDoctorsLoading) return <Spinner />;
 
-  // let filteredDepartment = departmentData.filter(
-  //   (el) => el._id === department
-  // )[0];
+  let filteredDepartment = departmentData.filter(
+    (el) => el._id === department
+  )[0];
 
   if (status === true) {
     convertedStatus = "active";
@@ -99,7 +99,7 @@ function DoctorsRow({
       </Stacked>
 
       <Stacked>
-        <span>{department}</span>
+        <span>{filteredDepartment?.name}</span>
       </Stacked>
 
       <Stacked>

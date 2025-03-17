@@ -303,6 +303,7 @@ export default function Navbar() {
                   >
                     <Typography
                       sx={{
+                        fontSize: { xs: "12px", xl: "1rem" },
                         "&:hover": {
                           color: "green",
                           cursor: "pointer",
