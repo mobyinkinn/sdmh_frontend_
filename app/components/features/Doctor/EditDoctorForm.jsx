@@ -15,16 +15,25 @@ import {
 import SpinnerMini from "../../ui/SpinnerMini";
 import Jodit from "../Openings/Jodit";
 import styled from "styled-components";
+import { useDepartment } from "../../admin/departments/parts/useDepartment";
 
-function EditDoctorForm({ onCloseModal, id }) {
+function EditDoctorForm({ onCloseModal, id, department }) {
   const { data, isLoading } = useDoctors();
   const filteredData = data.filter((el) => el._id === id);
   const { register, formState } = useForm({ defaultValues: {} });
   const [formdata, setFormdata] = useState(filteredData[0] || {});
+  const [departmentValue, setDepartmentValue] = useState(
+    department?.name || ""
+  );
   const { isUpdating, updateDoctor } = useUpdateDoctor();
   const { updateImage, isUpdatingImage } = useUpdateImage();
   const [content, setContent] = useState(filteredData[0]?.about || "");
   const { errors } = formState;
+  const {
+    data: departmentData,
+    isLoading: isDepartmentLoading,
+    error,
+  } = useDepartment();
 
   const StyledSelect = styled.select`
     font-size: 1rem;
@@ -53,10 +62,11 @@ function EditDoctorForm({ onCloseModal, id }) {
     box-shadow: var(--shadow-sm);
   `;
 
-  if (isUpdatingImage) return <SpinnerMini />;
+  if (isUpdating || isUpdatingImage || isDepartmentLoading)
+    return <SpinnerMini />;
 
   const handleAboutClick = () => {
-    onUpdateDoctor({ ...formdata, about: content }, id);
+    onUpdateDoctor((prevFormdata) => ({ ...prevFormdata, about: content }), id);
   };
 
   function updateDay(day, value) {
@@ -74,8 +84,8 @@ function EditDoctorForm({ onCloseModal, id }) {
     });
   }
 
-  function onUpdateDoctor(formdata, id) {
-    updateDoctor({ formdata, id });
+  function onUpdateDoctor(updatedFormdata, id) {
+    updateDoctor({ formdata: updatedFormdata, id });
   }
 
   function onUpdateImage(files, id) {
@@ -89,7 +99,11 @@ function EditDoctorForm({ onCloseModal, id }) {
   return (
     <Form
       onSubmit={(e) => {
-        onUpdateDoctor({ ...formdata }, id);
+        setFormdata((prevFormdata) => {
+          const updatedFormdata = { ...prevFormdata };
+          onUpdateDoctor(updatedFormdata, id);
+          return updatedFormdata;
+        });
       }}
       type={onCloseModal ? "modal" : "regular"}
     >
@@ -154,19 +168,54 @@ function EditDoctorForm({ onCloseModal, id }) {
           />
         </FormRow>
       </Stack>
+      {/* <FormRow label="Department" error={errors?.department?.message}>
+        <StyledSelect
+          id="department"
+          value={depValue?.name}
+          {...register("department", {
+            required: "This field is required",
+          })}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            setDepartmentValue(newValue);
+            setFormdata((prev) => {
+              const updatedFormdata = { ...prev, department: newValue };
+              updateDepartment(newValue);
+              return updatedFormdata;
+            });
+          }}
+          onBlur={(e) => updateDepartment(e.target.value)}
+        >
+          <option value="">Select a department</option>
+          {departmentData?.map((department, index) => (
+            <option key={index} value={department.name}>
+              {department.name}
+            </option>
+          ))}
+        </StyledSelect>
+      </FormRow> */}
+
+      {/**2 */}
+
       <FormRow label="Department" error={errors?.department?.message}>
-        <Input
-          disabled={isUpdating}
-          type="text"
+        <StyledSelect
           id="department"
           value={formdata.department || ""}
           {...register("department", { required: "This field is required" })}
           onChange={(e) => {
-            if (!e || !e.target) return;
-            const newDepartment = e.target.value;
-            setFormdata((prev) => ({ ...prev, department: newDepartment }));
+            setFormdata((prev) => ({ ...prev, department: e.target.value }));
           }}
-        />
+        >
+          <option value="">Select a department</option>
+          {departmentData?.map((department, index) => (
+            <option key={index} value={department._id}>
+              {department.name}
+            </option>
+          ))}
+        </StyledSelect>
+        <Button onClick={() => onUpdateDoctor({ ...formdata }, id)}>
+          Update Department
+        </Button>
       </FormRow>
 
       <FormRow label="Available on" error={errors?.availability?.message}>

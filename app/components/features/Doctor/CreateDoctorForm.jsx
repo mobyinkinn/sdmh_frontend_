@@ -111,7 +111,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow label="Department" error={errors?.department?.message}>
-        {/* <StyledSelect
+        <StyledSelect
           disabled={isWorking}
           id="department"
           {...register("department", {
@@ -124,15 +124,15 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
               {department.name}
             </option>
           ))}
-        </StyledSelect> */}
-        <Input
+        </StyledSelect>
+        {/* <Input
           disabled={isWorking}
           type="text"
           id="department"
           {...register("department", {
             required: "This field is required",
           })}
-        />
+        /> */}
       </FormRow>
 
       <FormRow label="Designation" error={errors?.page?.message}>
