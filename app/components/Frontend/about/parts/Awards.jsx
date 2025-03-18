@@ -1,20 +1,20 @@
 "use client";
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import { Head1, Head3 } from "@/app/styledComponents/frontend/Headings";
+import { Head1, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { autocompleteClasses, Box, Stack } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import img1 from "./assets/award1.png";
-import img2 from "./assets/award2.png";
-import img3 from "./assets/award3.png";
-import img4 from "./assets/award4.png";
-import img5 from "./assets/award5.png";
-import img6 from "./assets/award6.png";
-import img7 from "./assets/award7.png";
+import img1 from "./assets/award1.jpg";
+import img2 from "./assets/award2.jpg";
+import img3 from "./assets/award3.jpg";
+import img4 from "./assets/award4.jpg";
+import img5 from "./assets/award5.jpg";
+import img6 from "./assets/award6.jpg";
+// import img7 from "./assets/award7.png";
 import { useEffect, useState } from "react";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import { useRouter } from "next/navigation";
@@ -22,13 +22,44 @@ import { useAwards } from "@/app/components/admin/awards/useAwards";
 import Spinner from "@/app/components/ui/Spinner";
 
 const initialImages = [
-  { img: img1, data: "data 1 for image 1" },
-  { img: img2, data: "data 2 for image 2" },
-  { img: img3, data: "data 3 for image 3" },
-  { img: img4, data: "data 4 for image 4" },
-  { img: img5, data: "data 5 for image 5" },
-  { img: img6, data: "data 6 for image 6" },
-  { img: img7, data: "data 7 for image 7" },
+  {
+    img: img1,
+    heading:
+      "Best Places to Work in Healthcare in India by “Hosmac” and “People Strong",
+    data: "SDMH was placed among the top three “Best Places to Work in Healthcare” in India by “Hosmac” and “People Strong” on 10th February, 2013.",
+  },
+  {
+    img: img2,
+    heading: "D.L. Shah Trust Award",
+    data: "SDMH received the D.L. Shah Award from Quality Council of India on the occasion of 12th National Quality Conclave 2017 for its Rehabilitation and Jaipur Foot Project. ",
+  },
+  {
+    img: img3,
+    heading:
+      "Prayatna – effort to eradicate Thalassemia through screening of blood",
+    data: "SDMH was awarded by FICCI for its programme “Prayatna – effort to eradicate Thalassemia through screening of blood” – on 1st September 2014",
+  },
+  {
+    img: img4,
+    heading: "Sat Paul Mittal National Award 2014",
+    data: "SDMH received the prestigious Sat Paul Mittal National Award 2014 for Outstanding Service to Humanity.",
+  },
+  {
+    img: img5,
+    heading: "World’s Best Hospitals 2024 by Newsweek",
+    data: "A HALF-CENTURY OF TRUST, NOW CELEBRATED GLOBALLY. We are excited to share that Santokba Durlabhji Memorial Hospital (SDMH) has been honored as one of the 'World’s Best Hospitals 2024' by Newsweek.",
+  },
+  {
+    img: img6,
+    heading: "Best Multi-Speciality Hospital in Jaipur award by The Week",
+    data: "SDMH has secured the No. 1 position as Jaipur's leading Multispeciality Private Hospital for the fourth consecutive year, receiving the Best Multi-speciality Hospital in Jaipur award from The Week Hansa Research Survey 2023.",
+  },
+  {
+    img: img1,
+    heading:
+      "Best Multi-Specialty Hospital in Rajasthan Award in the 2nd Innate Excellence Award, 2014",
+    data: "SDMH was presented the “Best Multi-Specialty Hospital in Rajasthan Award” in the 2nd Innate Excellence Award, 2014 organised on 7th September, 2014 by Dr. S. S. Agarwal, National President, and Indian Medical Association.",
+  },
 ];
 
 export default function Awards() {
@@ -80,12 +111,12 @@ export default function Awards() {
 
   return (
     <Stack overflow={"hidden"}>
-      <ContainerMain padding="0" alignItems="center" id="awards">
+      <ContainerMain padding={{ lg: 0 }} alignItems="center" id="awards">
         <Stack
           gap={"10px"}
-          padding={{ md: "50px", xs: "20px" }}
+          // padding={{ md: "50px", xs: "20px" }}
           sx={{
-            paddingBottom: "20px",
+            paddingBottom: "10px",
             borderBottom: "1px solid #2D2D2D",
             width: { md: "90%" },
           }}
@@ -93,13 +124,25 @@ export default function Awards() {
           <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
             Awards & Accreditation
           </Head1>
-          <Head3 color="black">
+          {/* <Head3 color="black">
             BEST PLACES TO WORK IN HEALTHCARE IN INDIA BY
           </Head3>
           <Head1 color="black" fontSize={{ lg: "3rem", sm: "0.8rem" }}>
             "HOSMAC" AND "PEOPLE STRONG"
-          </Head1>
+          </Head1> */}
         </Stack>
+        <Head4
+          textAlign={{
+            sm: "center",
+            smm: "center",
+            md: "center",
+            lg: "center",
+          }}
+          fontWeight={{ lg: "bold", sm: "bold" }}
+          color="black"
+        >
+          {center[0].heading}
+        </Head4>
         <ParaNormal
           width={{ sm: "100%", smm: "100%", md: "70%", lg: "70%" }}
           textAlign="center"
@@ -119,12 +162,12 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[0].img.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               position: "absolute",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
               width: "35%",
-              height: "50vh",
+              height: "60vh",
               zIndex: "100",
               border: "6px solid #476C9B",
             }}
@@ -134,9 +177,9 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[1].img.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               position: "absolute",
-              backgroundPosition: "center top",
+              backgroundPosition: "center center",
 
               border: "6px solid #476C9B",
               backgroundRepeat: "no-repeat",
@@ -151,7 +194,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[2].img.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               position: "absolute",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -167,7 +210,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[3].img.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               zIndex: "70",
               position: "absolute",
               border: "6px solid #476C9B",
@@ -185,7 +228,7 @@ export default function Awards() {
             sx={{
               backgroundImage: `url(${center[4].img.src})`,
               zIndex: "60",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               border: "6px solid #476C9B",
               position: "absolute",
               backgroundPosition: "center center",
@@ -201,7 +244,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[5].img.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               zIndex: "50",
               border: "6px solid #476C9B",
               position: "absolute",
@@ -218,7 +261,7 @@ export default function Awards() {
           <Stack
             sx={{
               backgroundImage: `url(${center[6].img.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               zIndex: "50",
               position: "absolute",
               backgroundPosition: "center center",
@@ -239,18 +282,21 @@ export default function Awards() {
           display={{ md: "none", xs: "flex" }}
         >
           <Slider {...settings}>
-            {data.map((award) => (
+            {/* {data.map((award) => (
               <ImageCard key={award._id} img={award.image} />
+            ))} */}
+            {initialImages.map((img, index) => (
+              <ImageCard key={index} img={img.img} />
             ))}
           </Slider>
         </Stack>
-        <ButtonMediumOutline
+        {/* <ButtonMediumOutline
           margin="20px 0"
           color="#007946"
           onClick={() => router.push(`/award`)}
         >
           View More
-        </ButtonMediumOutline>
+        </ButtonMediumOutline> */}
       </ContainerMain>
     </Stack>
   );
@@ -268,9 +314,10 @@ function ImageCard({ img }) {
       >
         <Box
           sx={{
-            backgroundImage: `url(${img})`,
+            backgroundImage: `url(${img.src})`,
             backgroundSize: "contain",
             backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
             height: "100%",
             width: "100%",
           }}
