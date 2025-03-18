@@ -1,7 +1,7 @@
 "use client";
 import { Box, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import hoverbg from "../assets/hoverbg.png";
+import hoverbg from "../assets/1958.jpg";
 import { TfiArrowCircleUp } from "react-icons/tfi";
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
