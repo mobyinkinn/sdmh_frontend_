@@ -351,6 +351,39 @@ export default function Tabs() {
           if (i >= 4) return null;
           const isTPA = tabsData[activeTab].name === "TPA'S";
 
+          let dynamicHeight;
+          if (tabsData[activeTab].name === "Latest Happening") {
+            dynamicHeight = "480px";
+          } else if (tabsData[activeTab].name === "Health Checkup") {
+            dynamicHeight = "420px";
+          } else if (tabsData[activeTab].name === "Awards") {
+            dynamicHeight = "450px";
+          } else if (tabsData[activeTab].name === "TPA'S") {
+            dynamicHeight = "300px";
+          }
+
+          let dynamicHeight_lg;
+          if (tabsData[activeTab].name === "Latest Happening") {
+            dynamicHeight_lg = "585px";
+          } else if (tabsData[activeTab].name === "Health Checkup") {
+            dynamicHeight_lg = "510px";
+          } else if (tabsData[activeTab].name === "Awards") {
+            dynamicHeight_lg = "565px";
+          } else if (tabsData[activeTab].name === "TPA'S") {
+            dynamicHeight_lg = "300px";
+          }
+
+          let dynaHeight;
+          if (tabsData[activeTab].name === "Latest Happening") {
+            dynaHeight = "200px";
+          } else if (tabsData[activeTab].name === "Health Checkup") {
+            dynaHeight = "200px";
+          } else if (tabsData[activeTab].name === "Awards") {
+            dynaHeight = "200px";
+          } else if (tabsData[activeTab].name === "TPA'S") {
+            dynaHeight = "350px";
+          }
+
           return (
             <Stack
               key={i}
@@ -359,10 +392,11 @@ export default function Tabs() {
               sx={{
                 borderRadius: "10px",
               }}
+              height={{ lg: dynamicHeight_lg, xl: dynamicHeight }}
             >
               <Box
                 width={"100%"}
-                height={"200px"}
+                height={dynaHeight}
                 sx={{
                   backgroundImage: `url(${isTPA ? el.logo : el.image})`,
                   backgroundSize: "cover",
@@ -370,6 +404,7 @@ export default function Tabs() {
                   backgroundPosition: "center center",
                 }}
               ></Box>
+
               <Stack
                 justifyContent={"space-between"}
                 // minHeight={"455px"}
@@ -384,7 +419,10 @@ export default function Tabs() {
                     color={"#379237"}
                     fontWeight={"bold"}
                   >
-                    {el.title} {el.name}
+                    {`${el.title ? el.title : ""} ${
+                      el.name ? el.name : ""
+                    }`.slice(0, 20)}
+                    ...
                   </Typography>
                   {!isTPA && (
                     <Typography

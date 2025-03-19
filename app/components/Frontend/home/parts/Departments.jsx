@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
-import img1 from "../assets/departments/topLeft.png";
+import img1 from "../assets/departments/ortho.jpg";
 import img2 from "../assets/departments/topRight.png";
 import img3 from "../assets/departments/center.png";
 import img4 from "../assets/departments/bottomLeft.png";
@@ -143,7 +143,7 @@ export default function Departments() {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "40%", lg: "45%" }}
-          height={{ lg: "60vh", sm: "35vh" }}
+          height={{ lg: "75vh", sm: "35vh" }}
           position={"relative"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -190,7 +190,7 @@ export default function Departments() {
           <Image
             src={departments[activeTab].img}
             fill
-            objectFit="contain"
+            objectFit="cover"
             alt=""
           />
         </Stack>

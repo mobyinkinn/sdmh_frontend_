@@ -8,15 +8,14 @@
 
 // export default MobilePatient
 
-
 import { useState } from "react";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Box, Dialog, IconButton } from "@mui/material";
-import img1 from "../assets/stories/img1.png";
-import img2 from "../assets/stories/img2.png";
-import img3 from "../assets/stories/img3.png";
-import img4 from "../assets/stories/img4.png";
+import img1 from "../assets/stories/img1.jpg";
+import img2 from "../assets/stories/img2.jpg";
+import img3 from "../assets/stories/img3.jpg";
+import img4 from "../assets/stories/img4.jpg";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
@@ -62,15 +61,15 @@ export default function MobilePatient() {
     autoplaySpeed: 2000,
     slidesToScroll: 1,
   };
-if (isLoading || !data?.length) {
-  return <Spinner/> // Show this until data is available
-}
- const initialImages = [
-   { img: img1, url: data[0]?.url || "" },
-   { img: img2, url: data[1]?.url || "" },
-   { img: img3, url: data[2]?.url || "" },
-   { img: img4, url: data[3]?.url || "" },
- ];
+  if (isLoading || !data?.length) {
+    return <Spinner />; // Show this until data is available
+  }
+  const initialImages = [
+    { img: img1, url: data[7]?.url || "" },
+    { img: img2, url: data[2]?.url || "" },
+    { img: img3, url: data[15]?.url || "" },
+    { img: img4, url: data[3]?.url || "" },
+  ];
 
   return (
     <Stack display={{ md: "none", xs: "flex" }}>

@@ -119,7 +119,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   margin: props.margin,
   marginBottom: props.marginBottom,
   "&:hover": {
-    backgroundColor: props.backgroundColor,
+    backgroundColor: props.color,
     color: props.hoverColor || "white",
   },
 
