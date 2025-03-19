@@ -234,11 +234,10 @@ export default function Tabs() {
                 sx={{
                   transition: "all 0.3s ease",
                   cursor: "pointer",
-
-                  // "&:hover": {
-                  //   backgroundColor: "#005900",
-                  //   color: "#54B435",
-                  // },
+                  "&:hover": {
+                    backgroundColor: "#005900",
+                    hoverColor: "#54B435",
+                  },
                   width: "100%",
                 }}
                 onClick={() => setActiveTab(el.id)}
@@ -249,6 +248,7 @@ export default function Tabs() {
           ))}
         </Stack>
       </Stack>
+
       {/* Mobile*/}
       <Stack
         direction={"row"}
@@ -354,7 +354,7 @@ export default function Tabs() {
           return (
             <Stack
               key={i}
-              width={"20%"}
+              width={{ lg: "25%", xl: "20%" }}
               backgroundColor={"#FBF6EE"}
               sx={{
                 borderRadius: "10px",
@@ -372,7 +372,8 @@ export default function Tabs() {
               ></Box>
               <Stack
                 justifyContent={"space-between"}
-                minHeight={"455px"}
+                // minHeight={"455px"}
+                height="100%"
                 alignItems={"center"}
                 p={1.3}
               >
@@ -402,15 +403,16 @@ export default function Tabs() {
                     width={"fit-content"}
                     sx={{
                       border: "1px solid black",
-                      padding: "10px 40px",
+                      padding: { lg: "10px 10px", xl: "10px 40px" },
                       borderRadius: "200px",
                       cursor: "pointer",
+                      marginTop: "auto",
                     }}
                     onClick={() => {
                       const basePath = {
                         "Latest Happening": "/event",
                         "Health Checkup": "/health-checkup",
-                        Awards: "/award",
+                        Awards: "/",
                         "TPA'S": "/tpa",
                       };
 

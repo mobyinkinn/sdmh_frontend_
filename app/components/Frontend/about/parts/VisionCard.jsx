@@ -12,6 +12,7 @@ export default function VisionCard({ el }) {
       padding={{ md: "40px", xs: "15px" }}
       alignItems={"center"}
       gap={"20px"}
+      height={{ lg: "480px", xs: "600px" }}
     >
       <Box
         position={"relative"}

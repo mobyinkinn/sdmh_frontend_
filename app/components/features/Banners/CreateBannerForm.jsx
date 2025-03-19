@@ -84,7 +84,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
     const formdata = new FormData();
     formdata.append("link", data.link);
     formdata.append("banner", file);
-    if (mobileFile) return formdata.append("mobileBanner", mobileFile);
+    formdata.append("mobileBanner", mobileFile);
     formdata.append("page", data.page);
     formdata.append("status", true);
     console.log("formdata", formdata);

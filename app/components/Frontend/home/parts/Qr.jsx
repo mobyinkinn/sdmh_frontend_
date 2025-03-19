@@ -86,12 +86,12 @@ export default function Qr() {
       </Stack>
       <Stack
         width={{ md: "50%", xs: "100%" }}
-        flexDirection="column-reverse"
+        flexDirection={{ xs: "column-reverse", md: "column" }}
         gap="15px"
         alignItems={"center"}
       >
         <Image src={qr} alt="" width={200} height={200} style={{}} />
-        <Stack gap="5px">
+        <Stack gap="5px" alignItems={"center"}>
           <Head4 color="black">Scan Qr</Head4>
           <Head1>Share Your Feedback</Head1>
         </Stack>

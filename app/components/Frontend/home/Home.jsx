@@ -22,10 +22,14 @@ import MobileFooter from "../footer/MobileFooter";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
 import MobilePatient from "./parts/MobilePatient";
+import { Box } from "@mui/material";
+import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 
 const Home = () => {
   const { isLoading } = useNavbar();
-  if (isLoading) return <Spinner />;
+  const { data, isLoading: isLoadingBanner } =
+    useBannerByPage("find your doctor");
+  if (isLoading || isLoadingBanner) return <Spinner />;
   return (
     <div style={{ width: "100%" }}>
       <Navbar />
@@ -40,7 +44,30 @@ const Home = () => {
       <MobilePatient />
       <Todo />
       <Tabs />
-      <FindDoctor />
+      {/* <FindDoctor /> */}
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "203px", lg: "270px", xl: "379px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "290px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <Blog />
       <Reviews />
       <Enquire />
