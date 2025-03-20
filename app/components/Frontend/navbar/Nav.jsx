@@ -6,6 +6,7 @@ import { AiFillInstagram } from "react-icons/ai";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { IoIosArrowDown } from "react-icons/io";
 import logo from "./assets/logo.png";
+import nabh from "./assets/nabh.png";
 import Image from "next/image";
 import { SearchInput } from "@/app/styledComponents/frontend/Inputs";
 import {
@@ -162,6 +163,24 @@ export default function Navbar() {
               <IoIosMail style={{ width: "20px", height: "20px" }} />{" "}
               info@sdmh.in
             </DarkGreenButtonSmallOutline>
+            <Box
+              component="img"
+              src={nabh.src}
+              alt=""
+              sx={{
+                width: { xs: "102px", smm: "150px", md: "47px" },
+                height: { xs: "38px", smm: "55px", md: "47px" },
+              }}
+            />
+            <Box
+              component="img"
+              src={nabh.src}
+              alt=""
+              sx={{
+                width: { xs: "102px", smm: "150px", md: "47px" },
+                height: { xs: "38px", smm: "55px", md: "47px" },
+              }}
+            />
           </Stack>
           <IconButton
             size="large"
