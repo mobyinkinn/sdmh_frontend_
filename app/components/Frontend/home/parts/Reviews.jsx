@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick-theme.css";
 import quotes from "../assets/icons/quotes.png";
 import cert from "../assets/cert.png";
 import { BorderTop } from "@mui/icons-material";
+import { useTestimonials } from "@/app/components/admin/testimonials/parts/useTestimonial";
+import Spinner from "@/app/components/ui/Spinner";
 
 const reviewData = [
   {
@@ -37,6 +39,8 @@ const reviewData = [
 ];
 
 export default function Reviews() {
+  const { data, isLoading } = useTestimonials();
+  if (isLoading) return <Spinner />;
   var settings = {
     autoplay: true,
     autoplaySpeed: 2000,
@@ -66,7 +70,7 @@ export default function Reviews() {
         style={{ margin: "20px auto" }}
       />
       <Slider {...settings}>
-        {reviewData.map((el, i) => (
+        {data.map((el, i) => (
           <ReviewCard el={el} key={i} />
         ))}
       </Slider>
@@ -110,14 +114,13 @@ function ReviewCard({ el }) {
           fontSize={{ xs: "0.8rem", lg: "1.2rem" }}
           // width={{ xs: "90%", lg: "100%" }}
           textAlign={{ md: "left", xs: "center" }}
-        >
-          {el.data}
-        </Typography>
+          dangerouslySetInnerHTML={{ __html: el.message }}
+        ></Typography>
         <Head3 color="black" textAlign={"left"}>
           {el.name}
         </Head3>
         <Typography fontSize={".9rem"} color={"#379237"}>
-          Happy Customer
+          {el.designation ? el.designation : "Happy Customer"}
         </Typography>
       </Stack>
     </Stack>
