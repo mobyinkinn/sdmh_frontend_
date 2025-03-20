@@ -9,6 +9,8 @@ import {
   ButtonSmallOutline,
   DarkGreenButton,
 } from "@/app/styledComponents/frontend/Buttons";
+import { useBlogs } from "@/app/components/admin/blog/useBlogs";
+import Spinner from "@/app/components/ui/Spinner";
 
 const blogData = [
   {
@@ -38,6 +40,8 @@ const blogData = [
 ];
 
 export default function Blog() {
+  const { data, isLoading: loadingAllBlogs } = useBlogs();
+  if (loadingAllBlogs) return <Spinner />;
   return (
     <ContainerMain bgColor={"#276923"} alignItems="center">
       <Head1 color="#FCF9C6">Blog</Head1>
@@ -84,6 +88,7 @@ export default function Blog() {
             </Stack>
           </Stack>
         </Stack>
+        {/**Desktop size */}
         <Stack
           width={{ xs: "100%", md: "45%" }}
           gap={{ xs: "20px", md: "20px", lg: "20px" }}
@@ -94,6 +99,7 @@ export default function Blog() {
             return <BlogCard el={el} key={i}></BlogCard>;
           })}
         </Stack>
+        {/**Mobile */}
         <Stack
           width={{ xs: "100%", md: "45%" }}
           gap={"20px"}

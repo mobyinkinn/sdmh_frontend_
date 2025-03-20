@@ -1,8 +1,7 @@
-import admission from "./assets/admission.png";
-import atm from "./assets/atm.png";
-import lounges from "./assets/lounges.png";
-import multi from "./assets/multi.png";
-import registration from "./assets/registration.png";
+import admission from "./assets/Admission.jpg";
+import discharge from "./assets/Discharge.jpg";
+import payment from "./assets/payment.jpg";
+import registration from "./assets/registration_consultation.jpg";
 
 export const careData = [
   {
@@ -33,7 +32,7 @@ export const careData = [
   {
     id: 2,
     title: "Discharge",
-    img: multi,
+    img: discharge,
     data: [
       "The discharge process is initiated only after the patient's consultant deems him/her fit for discharge.",
       "Discharge timing is prior to 12:00 noon.",
@@ -45,7 +44,7 @@ export const careData = [
   {
     id: 3,
     title: "Payment Guidelines",
-    img: multi,
+    img: payment,
     data: [
       "Hospital Charges are non-negotiable.",
       "Hospital Tariff is available at the OPD/IPD reception, enquiry counter and with Patient Welfare Officer.",
@@ -56,4 +55,4 @@ export const careData = [
     ],
     color: "#f9f6f6",
   },
-]
+];

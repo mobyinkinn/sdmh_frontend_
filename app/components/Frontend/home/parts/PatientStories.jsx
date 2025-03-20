@@ -198,10 +198,13 @@ import { useState } from "react";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Box, Dialog, IconButton } from "@mui/material";
-import img1 from "../assets/stories/img1.png";
-import img2 from "../assets/stories/img2.png";
-import img3 from "../assets/stories/img3.png";
-import img4 from "../assets/stories/img4.png";
+import img1 from "../assets/stories/img1.jpg";
+import img2 from "../assets/stories/img2.jpg";
+import img3 from "../assets/stories/img3.jpg";
+import img4 from "../assets/stories/img4.jpg";
+import first from "../assets/stories/first.jpg";
+import second from "../assets/stories/second.jpg";
+import third from "../assets/stories/third.jpg";
 import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
 import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
@@ -315,7 +318,7 @@ export default function PatientStories() {
                 transition: "all 0.3s ease",
                 "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
               }}
-              onClick={() => handleOpenModal(data[0].url)}
+              onClick={() => handleOpenModal(data[7].url)}
             >
               <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
             </IconButton>
@@ -346,7 +349,7 @@ export default function PatientStories() {
                 transition: "all 0.3s ease",
                 "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
               }}
-              onClick={() => handleOpenModal(data[1].url)}
+              onClick={() => handleOpenModal(data[2].url)}
             >
               <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
             </IconButton>
@@ -357,7 +360,7 @@ export default function PatientStories() {
           sx={{
             width: "30%",
             height: "70vh",
-            backgroundImage: `url(${img4.src})`,
+            backgroundImage: `url(${first.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "20px",
@@ -395,7 +398,7 @@ export default function PatientStories() {
             sx={{
               // width: "35%",
               height: "34vh",
-              backgroundImage: `url(${img2.src})`,
+              backgroundImage: `url(${img3.src})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: "20px",
@@ -417,7 +420,7 @@ export default function PatientStories() {
                 transition: "all 0.3s ease",
                 "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
               }}
-              onClick={() => handleOpenModal(data[1].url)}
+              onClick={() => handleOpenModal(data[15].url)}
             >
               <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
             </IconButton>
@@ -426,7 +429,7 @@ export default function PatientStories() {
             sx={{
               // width: "35%",
               height: "34vh",
-              backgroundImage: `url(${img3.src})`,
+              backgroundImage: `url(${img4.src})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: "20px",
@@ -462,7 +465,7 @@ export default function PatientStories() {
             left: isHovered ? "-10%" : "20%",
             width: "15%",
             height: "35vh",
-            backgroundImage: `url(${img4.src})`,
+            backgroundImage: `url(${second.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "20px",
@@ -483,7 +486,7 @@ export default function PatientStories() {
               transition: "all 0.3s ease",
               "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
             }}
-            onClick={() => handleOpenModal(data[0].url)}
+            onClick={() => handleOpenModal(data[11].url)}
           >
             <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
           </IconButton>
@@ -496,7 +499,7 @@ export default function PatientStories() {
             right: isHovered ? "-10%" : "20%",
             width: "15%",
             height: "35vh",
-            backgroundImage: `url(${img4.src})`,
+            backgroundImage: `url(${third.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "20px",
@@ -517,7 +520,7 @@ export default function PatientStories() {
               transition: "all 0.3s ease",
               "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
             }}
-            onClick={() => handleOpenModal(data[2].url)}
+            onClick={() => handleOpenModal(data[13].url)}
           >
             <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
           </IconButton>

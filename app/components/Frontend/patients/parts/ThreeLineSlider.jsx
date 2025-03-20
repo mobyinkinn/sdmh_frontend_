@@ -3,14 +3,16 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
 import React from "react";
 import Designslider from "./Designslider";
-import registration from "./assets/registration.png";
-import admission from "./assets/admission.png";
+import registration from "./assets/registration_consultation.jpg";
+import lounges from "./assets/lounges.jpg";
+import guidelines from "./assets/guidelines.jpg";
+import atm from "./assets/atm.jpg";
 
 const ThreeLineSlider = () => {
   const bannerImages = [
     {
       id: 1,
-      img: registration,
+      img: guidelines,
       des: [
         "We request our patient/attendant to keep their mobile phones on silent/vibration mode.",
         "Patients and their attendant are requested to avoid overcrowding in patient area / hospital premises.",
@@ -23,7 +25,7 @@ const ThreeLineSlider = () => {
     },
     {
       id: 2,
-      img: registration,
+      img: lounges,
       title: "Waiting lounges for attendants",
       des: [
         "S.D.M.H. Provides air-conditioned 24 x7 waiting lounges in OPD & IPD buildings for attendants at no cost to them.",
@@ -32,7 +34,7 @@ const ThreeLineSlider = () => {
     },
     {
       id: 3,
-      img: registration,
+      img: atm,
       title: "ATM and bank",
       des: [
         "Hospital has 24x7 ATM facilities located beneath the Auditorium facility and outside OPD (R.D.M.C) Buildings.",
