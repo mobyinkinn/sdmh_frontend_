@@ -24,6 +24,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
 import { useDepartment } from "../../admin/departments/parts/useDepartment";
+import { useDoctors } from "../../admin/doctors/parts/useDoctor";
+import { useRouter } from "next/navigation";
+
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
   { id: 0, name: "Center Of Excellence", link: "center-of-excellence" },
@@ -35,14 +38,17 @@ const navLinks = [
   { id: 0, name: "Nursing college" },
 ];
 
-//          <div id="google_translate_element" style={{ margin: "10px" }}></div>
-
 export default function Navbar() {
+  const router = useRouter();
   const { data: navData, isLoading, error } = useNavbar();
   const { data: departmentData, isLoading: isDepartmentLoading } =
     useDepartment();
+  const { data: doctorsData, isLoading: isLoadingDoctors } = useDoctors();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+
+  // State to capture the search input for doctor filtering
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     // Prevent duplicate script loading
@@ -70,8 +76,15 @@ export default function Navbar() {
     }
   }, []);
 
-  if (isLoading || isDepartmentLoading) return <Spinner />;
+  if (isLoading || isDepartmentLoading || isLoadingDoctors) return <Spinner />;
   if (error) return <div>Error loading Navbar: {error.message}</div>;
+
+  const filteredDoctors =
+    searchTerm.length >= 3
+      ? doctorsData.filter((doc) =>
+          doc.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : [];
 
   return (
     <>
@@ -80,7 +93,6 @@ export default function Navbar() {
           direction={"row"}
           justifyContent={{ xs: "end", smm: "end", lg: "space-between" }}
           alignItems={{ xs: "end", smm: "end", lg: "center" }}
-          // padding={"10px 100px"}
           backgroundColor={"#005900"}
           color={"white"}
           paddingX={{ xs: "40px", smm: "60px", lg: "100px" }}
@@ -114,7 +126,6 @@ export default function Navbar() {
                   id="google_translate_element"
                   style={{ backgroundColor: "black" }}
                 ></div>
-                {/* <IoIosArrowDown /> */}
               </Stack>
             </Box>
           </Stack>
@@ -123,7 +134,7 @@ export default function Navbar() {
           direction={"row"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          paddingX={{ xs: "40px", smm: "60px", lg: "100px" }}
+          paddingX={{ xs: "40px", smm: "60px", lg: "20px", xl: "100px" }}
           paddingY={"10px"}
           sx={{
             borderBottom: "1.5px solid #5F5F5F",
@@ -135,8 +146,20 @@ export default function Navbar() {
               src={logo.src}
               alt=""
               sx={{
-                width: { xs: "102px", smm: "150px", md: "195px" },
-                height: { xs: "38px", smm: "55px", md: "73px" },
+                width: {
+                  xs: "102px",
+                  smm: "150px",
+                  md: "195px",
+                  lg: "170px",
+                  xl: "195px",
+                },
+                height: {
+                  xs: "38px",
+                  smm: "55px",
+                  md: "73px",
+                  lg: "65px",
+                  xl: "73px",
+                },
               }}
             />
           </a>
@@ -144,23 +167,90 @@ export default function Navbar() {
             direction={"row"}
             gap={"20px"}
             sx={{ display: { xs: "none", lg: "flex" } }}
+            alignItems={"center"}
           >
-            <Stack direction={"row"}>
-              <SearchInput
-                placeholder="Search Doctor"
-                borderRadius={"10px 0 0 10px"}
-              />
-              <DarkGreenButtonSmall borderRadius={"0 10px 10px 0"}>
-                <SlArrowRight style={{ width: "15px", height: "15px" }} />
-              </DarkGreenButtonSmall>
-            </Stack>
-            <DarkGreenButtonSmallOutline>
+            <Box position="relative">
+              <Stack direction="row">
+                <SearchInput
+                  placeholder="Search Doctor"
+                  borderRadius="10px 0 0 10px"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <DarkGreenButtonSmall borderRadius="0 10px 10px 0">
+                  <SlArrowRight style={{ width: "15px", height: "15px" }} />
+                </DarkGreenButtonSmall>
+              </Stack>
+
+              {/** Search Doctor Dropdown */}
+              {searchTerm.length >= 3 && (
+                <Stack
+                  position="absolute"
+                  top="100%"
+                  left={0}
+                  bgcolor="white"
+                  padding={3}
+                  maxHeight="32rem"
+                  overflowY="auto"
+                  boxShadow={1}
+                  zIndex={1000}
+                  borderRadius="5px"
+                  flexWrap={"wrap"}
+                  columnGap={2}
+                  sx={{
+                    opacity: searchTerm ? 1 : 0,
+                    transform: searchTerm
+                      ? "translateY(0)"
+                      : "translateY(-10px)",
+                    transition: "opacity 0.3s ease, transform 0.3s ease",
+                    pointerEvents: searchTerm ? "auto" : "none",
+                    width: "max-content",
+                    minWidth: "100%",
+                    maxWidth: "max-content",
+                  }}
+                >
+                  {filteredDoctors.map((doc) => (
+                    <Box
+                      key={doc._id}
+                      p={1}
+                      borderBottom="1px solid #ccc"
+                      sx={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        router.push(`/find-a-doctor/${doc._id}`);
+                        setSearchTerm("");
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          width: "200px",
+                          color: "black",
+                          fontSize: "0.9rem",
+                          whiteSpace: "normal",
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          "&:hover": {
+                            color: "green",
+                            cursor: "pointer",
+                          },
+                        }}
+                      >
+                        {doc.name}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              )}
+            </Box>
+
+            <DarkGreenButtonSmallOutline padding="5px 5px">
               <span style={{ color: "red" }}>Emergency Number</span>
-              <FaPhone style={{ width: "15px", height: "15px" }} /> 0141 352
+              <FaPhone style={{ width: "15px", height: "25px" }} /> 0141 352
               4444
             </DarkGreenButtonSmallOutline>
-            <DarkGreenButtonSmallOutline>
-              <IoIosMail style={{ width: "20px", height: "20px" }} />{" "}
+            <DarkGreenButtonSmallOutline padding="5px 5px">
+              <IoIosMail style={{ width: "20px", height: "25px" }} />{" "}
               info@sdmh.in
             </DarkGreenButtonSmallOutline>
             <Box
@@ -190,7 +280,7 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
         </Stack>
-        {/** mobile navbar */}
+        {/* Mobile Navbar */}
         {isMenuOpen && (
           <Stack
             direction="column"
@@ -291,7 +381,7 @@ export default function Navbar() {
             ))}
           </Stack>
         )}
-        {/** desktop navbar */}
+        {/* Desktop Navbar */}
         <Stack
           direction="row"
           padding={{ lg: "15px" }}
@@ -375,10 +465,7 @@ export default function Navbar() {
                           <a
                             key={department._id}
                             href={`/center-of-excellence/${department._id}`}
-                            style={{
-                              textDecoration: "none",
-                              color: "black",
-                            }}
+                            style={{ textDecoration: "none", color: "black" }}
                           >
                             <Typography
                               sx={{

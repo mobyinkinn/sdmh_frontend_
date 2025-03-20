@@ -47,7 +47,7 @@ const DarkGreenButtonSmallOutline = styled.button((props) => ({
   width: "fit-content",
   outline: "none",
   border: "1px solid #005900",
-  padding: "5px 20px",
+  padding: props.padding || "5px 20px",
   color: "#005900",
   cursor: "pointer",
   borderRadius: "10px",
@@ -119,7 +119,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   margin: props.margin,
   marginBottom: props.marginBottom,
   "&:hover": {
-    backgroundColor: props.hcolor,
+    backgroundColor: props.hcolor || "white",
     color: props.hoverColor || "white",
   },
 

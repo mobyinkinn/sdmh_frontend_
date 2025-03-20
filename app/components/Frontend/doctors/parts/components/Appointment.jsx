@@ -25,7 +25,11 @@ export default function Appointment() {
         >
           Trust Us Be There To Help All & Make Things Well Done
         </Typography>
-        <ButtonMediumOutline color="white" hoverColor="rgb(0, 121, 70)">
+        <ButtonMediumOutline
+          hcolor="white"
+          color="white"
+          hoverColor="rgb(0, 121, 70)"
+        >
           Make Appointment
         </ButtonMediumOutline>
       </Stack>
