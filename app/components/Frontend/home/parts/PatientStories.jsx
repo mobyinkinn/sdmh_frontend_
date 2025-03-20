@@ -533,6 +533,7 @@ export default function PatientStories() {
       >
         <ButtonMediumOutline
           color="#379237"
+          hcolor="#005900"
           onClick={() => router.push(`/patient-testimonials`)}
         >
           View All

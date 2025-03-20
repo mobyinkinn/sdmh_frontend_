@@ -1,9 +1,9 @@
 "use client";
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import restroom from "./assets/restroom.png";
+import vishram from "./assets/vishram.jpg";
 import bookShop from "./assets/bookShop.png";
-import temple from "./assets/temple.png";
+import temple from "./assets/temple.jpg";
 import salon from "./assets/salon.png";
 import RestCard from "./RestCard";
 import { Box, Stack } from "@mui/material";
@@ -17,7 +17,7 @@ const restData = [
   {
     id: 0,
     title: "VishramGrah (Accommodation Facility in Campus)",
-    img: restroom,
+    img: vishram,
     data: [
       "Air-conditioned in campus accommodation facility is available for patient attendants inside the campus.",
       "To confirm availability please cont : 141-5110200",
