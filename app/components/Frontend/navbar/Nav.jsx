@@ -350,12 +350,13 @@ export default function Navbar() {
                   <Stack
                     position="absolute"
                     bgcolor="white"
-                    boxShadow={2}
-                    padding={2}
+                    // boxShadow={1}
+                    padding={3}
                     width="max-content"
-                    maxHeight="34rem"
+                    maxHeight="32rem"
                     flexWrap={"wrap"}
-                    spacing={0.5}
+                    columnGap="2.5rem"
+                    rowGap="0.6rem"
                     sx={{
                       zIndex: 10,
                       opacity: openDropdown === i ? 1 : 0,
@@ -365,8 +366,8 @@ export default function Navbar() {
                           : "translateY(-10px)",
                       transition: "opacity 0.3s ease, transform 0.3s ease",
                       pointerEvents: openDropdown === i ? "auto" : "none",
-                      whiteSpace: "nowrap",
-                      columnGap: "2rem",
+                      padding: "20px",
+                      borderRadius: "5px",
                     }}
                   >
                     {el.name === "Center Of Excellence"
@@ -381,6 +382,11 @@ export default function Navbar() {
                           >
                             <Typography
                               sx={{
+                                fontSize: "0.9rem",
+                                maxWidth: "200px",
+                                whiteSpace: "normal",
+                                wordWrap: "break-word",
+                                overflowWrap: "break-word",
                                 "&:hover": {
                                   color: "green",
                                   cursor: "pointer",
@@ -399,6 +405,7 @@ export default function Navbar() {
                           >
                             <Typography
                               sx={{
+                                fontSize: "0.9rem",
                                 "&:hover": {
                                   color: "green",
                                   cursor: "pointer",
