@@ -19,6 +19,8 @@ import image1 from "../assets/departments/1.jpg";
 import image2 from "../assets/departments/2.jpg";
 import image3 from "../assets/departments/3.jpg";
 import image4 from "../assets/departments/4.jpg";
+import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
+import Spinner from "@/app/components/ui/Spinner";
 
 const departments = [
   { id: 0, name: "Heart", data: "Best In California", img: img1 },
@@ -53,8 +55,13 @@ const departments = [
 ];
 
 export default function Departments() {
+  const { data: departmentData, isLoading: isLoadingDepartment } =
+    useDepartment();
   const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
+  if (isLoadingDepartment) return <Spinner />;
+
+  const activeDepartment = departmentData.find((el) => el._id === activeTab);
 
   return (
     <Stack
@@ -87,7 +94,7 @@ export default function Departments() {
             sx={{ overflowY: "scroll" }}
             height={{ md: "75vh" }}
           >
-            {departments.map((el, i) => {
+            {departmentData.map((el, i) => {
               return (
                 <Stack
                   width={"100%"}
@@ -98,7 +105,7 @@ export default function Departments() {
                   alignItems={"center"}
                   key={i}
                   sx={
-                    el.id === activeTab
+                    el._id === activeTab
                       ? {
                           color: "white",
                           backgroundColor: "#007946",
@@ -109,16 +116,16 @@ export default function Departments() {
                           borderBottom: "1px solid black",
                         }
                   }
-                  onMouseEnter={() => setActiveTab(el.id)}
+                  onMouseEnter={() => setActiveTab(el._id)}
                   onClick={() => router.push("/")}
                 >
                   <Stack>
                     <Typography fontSize={{ xs: "1rem", md: "1.5rem" }}>
                       {el.name}
                     </Typography>
-                    <Typography fontSize={{ xs: "0.9rem", md: "1.2rem" }}>
+                    {/* <Typography fontSize={{ xs: "0.9rem", md: "1.2rem" }}>
                       {el.data}
-                    </Typography>
+                    </Typography> */}
                   </Stack>
                   <Stack display={{ md: "flex", xs: "none" }}>
                     <FaArrowRight size={30} />
@@ -130,7 +137,7 @@ export default function Departments() {
                       setActiveTab(el.id);
                     }}
                   >
-                    {el.id === activeTab ? (
+                    {el._id === activeTab ? (
                       <IoIosArrowUp size={20} />
                     ) : (
                       <IoIosArrowDown size={20} />
@@ -148,50 +155,11 @@ export default function Departments() {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          {/* <Stack width="100%" spacing={2}>
-            <Stack direction="row" spacing={2} justifyContent="center">
-              <Stack
-                flex={1}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Image src={image1} width={320} height={210} alt="Image 1" />
-              </Stack>
-              <Stack
-                flex={1}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Image src={image2} width={320} height={210} alt="Image 2" />
-              </Stack>
-            </Stack>
-            <Stack direction="row" spacing={2} justifyContent="center">
-              <Stack
-                flex={1}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Image src={image3} width={320} height={210} alt="Image 3" />
-              </Stack>
-              <Stack
-                flex={1}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Image src={image4} width={320} height={210} alt="Image 4" />
-              </Stack>
-            </Stack>
-          </Stack> */}
-
           <Image
-            src={departments[activeTab].img}
+            src={activeDepartment?.homeImage}
             fill
             objectFit="cover"
-            alt=""
+            alt={activeDepartment?.name}
           />
         </Stack>
       </Stack>
