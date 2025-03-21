@@ -117,7 +117,7 @@ export default function Departments() {
                         }
                   }
                   onMouseEnter={() => setActiveTab(el._id)}
-                  onClick={() => router.push("/")}
+                  onClick={() => router.push(`/center-of-excellence/${el._id}`)}
                 >
                   <Stack>
                     <Typography fontSize={{ xs: "1rem", md: "1.5rem" }}>

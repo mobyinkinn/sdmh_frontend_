@@ -38,21 +38,45 @@ const address = [
 ];
 
 const centerOfExcellence = [
-  { id: 0, data: "Cardiology", link: "" },
-  { id: 1, data: "Dermatology", link: "" },
-  { id: 2, data: "Nephrology", link: "" },
-  { id: 3, data: "Neurology", link: "" },
+  {
+    id: 0,
+    data: "Cardiology",
+    link: "/center-of-excellence/67c148e9323e35a829c5697d",
+  },
+  {
+    id: 1,
+    data: "Dermatology",
+    link: "/center-of-excellence/67c04514d797f40db8325e88",
+  },
+  {
+    id: 2,
+    data: "Nephrology",
+    link: "/center-of-excellence/67c15ac9323e35a829c56a0e",
+  },
+  {
+    id: 3,
+    data: "Neurology",
+    link: "/center-of-excellence/67c15aca323e35a829c56a12",
+  },
 ];
 
 const supportACause = [
-  { id: 0, data: "Avedna Ashram", link: "" },
-  { id: 1, data: "Help little hearts", link: "" },
-  { id: 2, data: "Outreach", link: "" },
-  { id: 3, data: "Jaipur foot", link: "" },
+  { id: 0, data: "Avedna Ashram", link: "/support-a-cause/avedna-ashram" },
+  {
+    id: 1,
+    data: "Help little hearts",
+    link: "/support-a-cause/help-little-hearts",
+  },
+  { id: 2, data: "Outreach", link: "/support-a-cause/outreach" },
+  {
+    id: 3,
+    data: "Jaipur foot",
+    link: "/support-a-cause/jaipur-foot-polio-caliper",
+  },
 ];
 
 const Patients = [
-  { id: 0, data: "Find a doctor", link: "" },
+  { id: 0, data: "Find a doctor", link: "/find-a-doctor" },
   { id: 1, data: "Make an appointment", link: "" },
   { id: 2, data: "Virtual tour", link: "" },
   { id: 3, data: "Room tour", link: "" },
@@ -62,10 +86,10 @@ const Patients = [
 ];
 
 const contactUs = [
-  { id: 0, data: "Enquiry", link: "" },
-  { id: 1, data: "Emergency", link: "" },
+  { id: 0, data: "Enquiry", link: "/contact-us" },
+  { id: 1, data: "Emergency", link: "/contact-us" },
   { id: 2, data: "Patient testimonial", link: "/patient-testimonials" },
-  { id: 3, data: "Appointment", link: "/appointment" },
+  { id: 3, data: "Appointment", link: "" },
 ];
 
 const onlineService = [
@@ -85,11 +109,11 @@ const quickLinks = [
 ];
 
 const aboutUs = [
-  { id: 0, data: "Our founders", link: "" },
-  { id: 1, data: "Vision & mission", link: "" },
-  { id: 2, data: "Secretary's message", link: "" },
-  { id: 3, data: "Awards & accredition", link: "" },
-  { id: 4, data: "Our founders", link: "" },
+  { id: 0, data: "Our founders", link: "/about" },
+  { id: 1, data: "Vision & mission", link: "/about" },
+  { id: 2, data: "Secretary's message", link: "/about" },
+  { id: 3, data: "Awards & accredition", link: "/about" },
+  { id: 4, data: "Our founders", link: "/about" },
 ];
 
 export default function Footer() {
