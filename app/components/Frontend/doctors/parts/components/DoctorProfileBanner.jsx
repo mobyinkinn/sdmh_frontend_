@@ -192,10 +192,18 @@ export default function DoctorProfileBanner({ data }) {
               gap="20px"
               direction="row"
             >
-              <ButtonMediumOutline hoverColor="#005900" color="white">
+              <ButtonMediumOutline
+                hcolor="white"
+                hoverColor="#005900"
+                color="white"
+              >
                 Make Appointment
               </ButtonMediumOutline>
-              <ButtonMediumOutline hoverColor="#005900" color="white">
+              <ButtonMediumOutline
+                hcolor="white"
+                hoverColor="#005900"
+                color="white"
+              >
                 Video Consultation
               </ButtonMediumOutline>
             </Stack>
@@ -207,10 +215,18 @@ export default function DoctorProfileBanner({ data }) {
               gap="20px"
               direction="row"
             >
-              <ButtonSmallOutline hoverColor="#005900" color="white">
+              <ButtonSmallOutline
+                hcolor="white"
+                hoverColor="#005900"
+                color="white"
+              >
                 Make Appointment
               </ButtonSmallOutline>
-              <ButtonSmallOutline hoverColor="#005900" color="white">
+              <ButtonSmallOutline
+                hcolor="white"
+                hoverColor="#005900"
+                color="white"
+              >
                 Video Consultation
               </ButtonSmallOutline>
             </Stack>

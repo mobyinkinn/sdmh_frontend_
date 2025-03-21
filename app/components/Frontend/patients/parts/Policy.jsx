@@ -2,15 +2,16 @@ import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
-import visitor from "./assets/visitor.png";
+import visitor from "./assets/visitors.jpg";
 
 export default function Policy() {
   return (
     <ContainerMain bgColor="#CEDDCC">
       <Stack
-        backgroundColor="#476C9B"
-        flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
+        // backgroundColor="#476C9B"
+        flexDirection={{ lg: "row", md: "column", sm: "column", smm: "column" }}
         borderRadius={"10px"}
+        alignItems={{ md: "center", lg: "unset" }}
       >
         <Stack
           width={{ md: "70%" }}
@@ -69,23 +70,24 @@ export default function Policy() {
           </ul>
         </Stack>
         <Stack
-          width={{ md: "30%" }}
-          padding={{ md: "0", xs: "20px 20px 0 20px" }}
+          width={{ md: "70%", lg: "30%" }}
+          padding={{ lg: "0", xs: "20px 0 0 0" }}
           alignItems={"center"}
-          justifyContent={"end"}
+          justifyContent={{ xs: "end", lg: "center" }}
           sx={{
             overflow: "hidden",
           }}
         >
           <Stack
+            borderRadius={"10px"}
             sx={{
               backgroundImage: `url(${visitor.src})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
               overflow: "hidden",
               width: "100%",
-              height: "50vh",
+              height: "460px",
             }}
           ></Stack>
         </Stack>

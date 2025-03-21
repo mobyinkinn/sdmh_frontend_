@@ -199,6 +199,7 @@ export default function Departments() {
         <ButtonMediumOutline
           margin="10px 50px"
           color="#379237"
+          hcolor="#005900"
           onClick={() => router.push(`/center-of-excellence`)}
         >
           View All

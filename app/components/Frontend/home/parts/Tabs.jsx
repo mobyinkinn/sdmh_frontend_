@@ -230,14 +230,11 @@ export default function Tabs() {
               <ButtonMediumOutline
                 fontSize={{ xs: "1rem", lg: "1.2rem" }}
                 backgroundColor={el.id === activeTab ? "#005900" : "#000000"}
-                color={el.id === activeTab ? "#FFFFFF" : "#FFFFFF"}
+                color="#FFFFFF"
+                hcolor="#005900"
                 sx={{
                   transition: "all 0.3s ease",
                   cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "#005900",
-                    hoverColor: "#54B435",
-                  },
                   width: "100%",
                 }}
                 onClick={() => setActiveTab(el.id)}
@@ -471,6 +468,7 @@ export default function Tabs() {
         <ButtonMediumOutline
           margin="0 50px"
           color="#379237"
+          hcolor="#005900"
           onClick={() => {
             const basePath = {
               "Latest Happening": "/event",

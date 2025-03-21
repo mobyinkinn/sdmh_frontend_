@@ -1,11 +1,11 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Stack, Typography } from "@mui/material";
-
 import holi from "../assets/holi.png";
 import blood from "../assets/bloodDonation.png";
 import Image from "next/image";
 import {
+  ButtonMediumOutline,
   ButtonSmallOutline,
   DarkGreenButton,
 } from "@/app/styledComponents/frontend/Buttons";
@@ -42,6 +42,10 @@ const blogData = [
 export default function Blog() {
   const { data, isLoading: loadingAllBlogs } = useBlogs();
   if (loadingAllBlogs) return <Spinner />;
+
+  const filterFirstBlog = data.filter((el, index) => index === 0);
+  const filteredRemainingBlog = data.filter((el, index) => index !== 0);
+
   return (
     <ContainerMain bgColor={"#276923"} alignItems="center">
       <Head1 color="#FCF9C6">Blog</Head1>
@@ -70,20 +74,21 @@ export default function Blog() {
           display={{ md: "flex", xs: "none" }}
         >
           <Box width={"100%"} height={"400px"} position={"relative"}>
-            <Image src={blood} alt="" fill objectFit="cover" />
+            <Image
+              src={filterFirstBlog[0].image}
+              alt=""
+              fill
+              objectFit="cover"
+            />
           </Box>
           <Stack backgroundColor={"white"} padding={"30px"} gap={"20px"}>
-            <Head3 align="left">Blood Donation Camp Through Jsg Gem City</Head3>
+            <Head3 align="left">{filterFirstBlog[0].title}</Head3>
             <Typography fontSize={"1rem"}>
-              Following The Legacy Of 20 Years Of Saving Lives By Blood Donation
-              At Sdmh Through Jsg Gem City Blood Donation Camp.
+              {filterFirstBlog[0].smallDescription}
             </Typography>
-            <Stack direction={"row"} gap={"10px"} justifyContent={"center"}>
-              <ButtonSmallOutline color="#379237">
-                28-04-2024
-              </ButtonSmallOutline>
-              <ButtonSmallOutline color="#379237">
-                Typesetting Industry
+            <Stack direction={"row"} gap={"10px"} justifyContent={"start"}>
+              <ButtonSmallOutline color="#379237" hoverColor="white">
+                {filterFirstBlog[0].date}
               </ButtonSmallOutline>
             </Stack>
           </Stack>
@@ -95,7 +100,7 @@ export default function Blog() {
           justifyContent={{ xs: "space-between", md: "unset" }}
           display={{ md: "flex", xs: "none" }}
         >
-          {blogData.map((el, i) => {
+          {filteredRemainingBlog.map((el, i) => {
             return <BlogCard el={el} key={i}></BlogCard>;
           })}
         </Stack>
@@ -109,12 +114,14 @@ export default function Blog() {
           padding="15px"
           borderRadius="5px"
         >
-          {blogData.map((el, i) => {
+          {data.map((el, i) => {
             return <BlogCard key={i} el={el}></BlogCard>;
           })}
 
           <Stack display={{ md: "none" }} margin="0px auto" marginTop="20px">
-            <DarkGreenButton borderRadius="300px">View All</DarkGreenButton>
+            <DarkGreenButton borderRadius="300px" padding="10px 20px">
+              View All
+            </DarkGreenButton>
           </Stack>
         </Stack>
       </Stack>
@@ -122,7 +129,9 @@ export default function Blog() {
         alignItems={{ xs: "center", md: "start" }}
         display={{ md: "flex", xs: "none" }}
       >
-        <ButtonSmallOutline color="#fff">View All</ButtonSmallOutline>
+        <ButtonMediumOutline color="#fff" hcolor="white" hoverColor="black">
+          View All
+        </ButtonMediumOutline>
       </Stack>
     </ContainerMain>
   );
@@ -142,7 +151,7 @@ function BlogCard({ el }) {
         height={{ xs: "none", md: "217px", lg: "213px", xl: "206px" }}
         position={"relative"}
       >
-        <Image src={el.img} alt="" fill objectFit="cover" />
+        <Image src={el.image} alt="" fill objectFit="cover" />
       </Box>
       <Stack
         backgroundColor={"white"}
@@ -151,19 +160,20 @@ function BlogCard({ el }) {
         // height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "30vh" }}
         justifyContent={{ xs: "unset", lg: "space-evenly" }}
       >
-        <Typography align="left" fontSize="0.8rem">
+        <Typography align="left" fontSize={{ md: "1rem", xs: "0.7rem" }}>
           {el.title}
         </Typography>
-        <Typography fontSize={{ md: "0.9rem", xs: "0.6rem" }}>
-          {el.data}
+        <Typography fontSize={{ md: "0.8rem", xs: "0.6rem" }}>
+          {el.smallDescription}
         </Typography>
         <Stack
           direction={"row"}
           gap={"10px"}
           display={{ md: "flex", xs: "none" }}
         >
-          <ButtonSmallOutline color="#379237">{el.date}</ButtonSmallOutline>
-          <ButtonSmallOutline color="#379237">{el.tag}</ButtonSmallOutline>
+          <ButtonSmallOutline color="#379237" hoverColor="white">
+            {el.date}
+          </ButtonSmallOutline>
         </Stack>
       </Stack>
     </Stack>

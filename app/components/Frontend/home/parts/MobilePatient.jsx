@@ -95,7 +95,9 @@ export default function MobilePatient() {
           sx={{ mb: 5 }}
           display={{ md: "none", xs: "flex" }}
         >
-          <ButtonMediumOutline color="#379237">View All</ButtonMediumOutline>
+          <ButtonMediumOutline color="#379237" hcolor="#005900">
+            View All
+          </ButtonMediumOutline>
         </Stack>
 
         {/* Video Modal */}

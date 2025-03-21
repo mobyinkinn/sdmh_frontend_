@@ -53,6 +53,7 @@ export default function About() {
         <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
           <ButtonMediumOutline
             color="#379237"
+            hcolor="#005900"
             onClick={() => router.push(`/about`)}
           >
             View All
