@@ -78,6 +78,17 @@ export const updateImage = async ({ id, formdata }) => {
   return response.data;
 };
 
+export const updateHomeImage = async ({ id, formdata }) => {
+  const response = await axios.post(
+    `${ApiUrl}/department/update-home-image?id=${id}`,
+    formdata,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
 export const updateBanner = async ({ id, formdata }) => {
   const response = await axios.post(
     `${ApiUrl}/department/update-banner?id=${id}`,

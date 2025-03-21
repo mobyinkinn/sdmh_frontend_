@@ -7,6 +7,7 @@ import {
   useUpdateImage,
   useBannerImage,
   useMobileBannerImage,
+  useUpdateHomeImage,
 } from "../../admin/departments/parts/useDepartment";
 import Jodit from "../Openings/Jodit";
 import SpinnerMini from "../../ui/SpinnerMini";
@@ -29,6 +30,7 @@ function EditDepartmentForm({
     defaultValues: {},
   });
   const { updateImage, isUpdatingImage } = useUpdateImage();
+  const { updateHomeImage, isUpdatingHomeImage } = useUpdateHomeImage();
   const { updateBanner, isUpdatingBanner } = useBannerImage();
   const { updateMobileBanner, isUpdatingMobileBanner } = useMobileBannerImage();
   const { errors } = formState;
@@ -36,7 +38,8 @@ function EditDepartmentForm({
     isUpdating ||
     isUpdatingImage ||
     isUpdatingBanner ||
-    isUpdatingMobileBanner
+    isUpdatingMobileBanner ||
+    isUpdatingHomeImage
   )
     return <SpinnerMini />;
 
@@ -69,6 +72,33 @@ function EditDepartmentForm({
         onError: (error) => {
           console.error("Failed to update Image:", error);
           toast.error("Failed to update Image. Please try again.");
+        },
+      }
+    );
+
+    if (file) {
+      setEditData({ ...editData, [fieldName]: file });
+    }
+  };
+
+  const handleHomeImageChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    const formDataHomeImage = new FormData();
+    formDataHomeImage.append("homeImage", file);
+
+    updateHomeImage(
+      {
+        id,
+        formdata: formDataHomeImage,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Home Image updated successfully!");
+          onCloseModal();
+        },
+        onError: (error) => {
+          console.error("Failed to update Home Image:", error);
+          toast.error("Failed to update Home Image. Please try again.");
         },
       }
     );
@@ -187,6 +217,7 @@ function EditDepartmentForm({
           )}
         </ImagePreviewContainer>
       </FormRow>
+
       <FormRow label="Banner">
         <ImagePreviewContainer>
           {editData.bannerImage ? (
@@ -258,6 +289,44 @@ function EditDepartmentForm({
               accept="image/*"
               type="file"
               onChange={(e) => handleMobileBannerChange(e, "mobileBanner")}
+            />
+          )}
+        </ImagePreviewContainer>
+      </FormRow>
+
+      <FormRow label="Home Image">
+        <ImagePreviewContainer>
+          {editData.homeImage ? (
+            <>
+              <img
+                src={
+                  typeof editData.homeImage === "string"
+                    ? editData.homeImage
+                    : URL.createObjectURL(editData.homeImage)
+                }
+                alt="Preview"
+                width={200}
+                height={110}
+              />
+              <div className="edit-icon">
+                <label htmlFor="home-upload">
+                  <FaEdit size={16} />
+                </label>
+                <input
+                  id="home-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleHomeImageChange(e, "homeImage")}
+                />
+              </div>
+            </>
+          ) : (
+            <FileInput
+              id="home-upload"
+              accept="image/*"
+              type="file"
+              onChange={(e) => handleHomeImageChange(e, "homeImage")}
             />
           )}
         </ImagePreviewContainer>

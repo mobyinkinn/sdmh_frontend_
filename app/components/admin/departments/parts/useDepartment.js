@@ -8,6 +8,7 @@ import {
   createDepartment as createTheDepartment,
   editDepartment,
   updateImage as updateTheImage,
+  updateHomeImage as updateTheHomeImage,
   updateBanner as updateTheBanner,
   updateMobileBanner as updateTheMobileBanner,
   fetchDepartmentById,
@@ -135,6 +136,25 @@ export const useUpdateImage = () => {
   });
 
   return { updateImage, isUpdatingImage };
+};
+
+export const useUpdateHomeImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateHomeImage, isPending: isUpdatingHomeImage } =
+    useMutation({
+      mutationFn: updateTheHomeImage,
+      onSuccess: () => {
+        queryClient.invalidateQueries(["Departments"]);
+        toast.success("Department updated successfully!!!");
+      },
+      onError: (error) => {
+        console.error("Failed to update department: ", error);
+        toast.error("Failed to update department. Please try again.");
+      },
+    });
+
+  return { updateHomeImage, isUpdatingHomeImage };
 };
 
 export const useBannerImage = () => {
