@@ -1,75 +1,76 @@
 "use client";
-import { useState } from "react";
 import { Stack, Typography } from "@mui/material";
-import CollapsibleSection from "./parts/CollapsibleSection";
 import sdmh from "./parts/assets/bannerImage.png";
 import logo from "./parts/assets/logo.png";
+import { useRouter } from "next/navigation";
 
 export default function MobileFooter() {
+  const router = useRouter();
+
   const centerOfExcellence = [
-    "Cardiology",
-    "Dermatology",
-    "Nephrology",
-    "Neurology",
-  ];
-  const patients = [
-    "Find a doctor",
-    "Make an appointment",
-    "Virtual tour",
-    "Room tour",
-    "Patient testimonial",
-    "Timings",
-    "Patient guide",
-  ];
-  const donation = [
-    "Avedna Ashram",
-    "Help Little Hearts",
-    "Outreach",
-    "Jaipur Foot & Polio Caliper",
-    "SDMH Free Clinic",
-    "Thalassemia Centre",
+    {
+      id: 0,
+      data: "Cardiology",
+      link: "/center-of-excellence/67c148e9323e35a829c5697d",
+    },
+    {
+      id: 1,
+      data: "Dermatology",
+      link: "/center-of-excellence/67c04514d797f40db8325e88",
+    },
+    {
+      id: 2,
+      data: "Nephrology",
+      link: "/center-of-excellence/67c15ac9323e35a829c56a0e",
+    },
+    {
+      id: 3,
+      data: "Neurology",
+      link: "/center-of-excellence/67c15aca323e35a829c56a12",
+    },
   ];
 
-  const onlineService = [
-    "Video Consultation",
-    "Lab reports",
-    "Download our app",
+  const donation = [
+    { id: 0, data: "Avedna Ashram", link: "/support-a-cause/avedna-ashram" },
+    {
+      id: 1,
+      data: "Help Little Hearts",
+      link: "/support-a-cause/help-little-hearts",
+    },
+    { id: 2, data: "Outreach", link: "/support-a-cause/outreach" },
+    {
+      id: 3,
+      data: "Jaipur Foot & Polio Caliper",
+      link: "/support-a-cause/jaipur-foot-polio-caliper",
+    },
+    {
+      id: 4,
+      data: "SDMH Free Clinic",
+      link: "/support-a-cause/sdmh-free-clinic",
+    },
+    {
+      id: 5,
+      data: "Thalassemia Centre",
+      link: "/support-a-cause/thalassemia-centre",
+    },
   ];
-  const aboutUs = [
-    "Our founders",
-    "Vision & mission",
-    "Secretary's message",
-    "Awards & accreditation",
-  ];
-  const supportACause = [
-    "Avedna Ashram",
-    "Help little hearts",
-    "Outreach",
-    "Jaipur foot",
-  ];
-  const contactUs = ["Enquiry", "Emergency", "Patient feedback", "Appointment"];
+
   const quickLinks = [
-    "About SDMH",
-    "Patient Care & Service",
-    "Academics",
-    "Appoinment",
-    "Blog",
-    "Terms & conditions",
-  ];
-  const social = [
-    "Follow us on Instagram",
-    "Like us on Facebook",
-    "Connect on LinkedIn",
-    "Follow us on Twitter",
+    { id: 0, data: "About SDMH", link: "/about" },
+    { id: 1, data: "Patient Care & Service", link: "/patients" },
+    { id: 2, data: "Academics", link: "/academics/academics-deanery" },
+    { id: 3, data: "Appoinment", link: "" },
+    { id: 4, data: "Blog", link: "/blog" },
+    { id: 5, data: "Terms & conditions", link: "/terms-and-conditions" },
   ];
 
   const other = [
-    "Enquiry",
-    "Career",
-    "News & Press Release",
-    "Feedback",
-    "Health Check-Up plans",
-    "Send a Greeting",
+    { id: 0, data: "Enquiry", link: "/contact-us" },
+    { id: 1, data: "Career", link: "/career" },
+    { id: 2, data: "News & Press Release", link: "/news-press-release" },
+    { id: 3, data: "Feedback", link: "/contact-us" },
+    { id: 4, data: "Health Check-Up plans", link: "/health-checkup" },
+    { id: 5, data: "Send a Greeting", link: "/send-a-greeting" },
   ];
 
   const footerData = [
@@ -119,7 +120,8 @@ export default function MobileFooter() {
                       key={i}
                       fontSize={"0.8rem"}
                       marginTop={"6px"}
-                      marginRight="15px"
+                      marginRight={"15px"}
+                      onClick={() => router.push(ele.link)}
                       sx={{
                         cursor: "pointer",
                         "&:hover": {
@@ -127,7 +129,7 @@ export default function MobileFooter() {
                         },
                       }}
                     >
-                      {ele}
+                      {ele.data}
                     </Typography>
                   );
                 })}

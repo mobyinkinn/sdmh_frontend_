@@ -7,6 +7,11 @@ import { autocompleteClasses, Box, Stack } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { forwardRef, useEffect, useState } from "react";
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useRouter } from "next/navigation";
+import { useAwards } from "@/app/components/admin/awards/useAwards";
+import Spinner from "@/app/components/ui/Spinner";
 
 import img1 from "./assets/award1.jpg";
 import img2 from "./assets/award2.jpg";
@@ -15,11 +20,6 @@ import img4 from "./assets/award4.jpg";
 import img5 from "./assets/award5.jpg";
 import img6 from "./assets/award6.jpg";
 // import img7 from "./assets/award7.png";
-import { useEffect, useState } from "react";
-import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
-import { useRouter } from "next/navigation";
-import { useAwards } from "@/app/components/admin/awards/useAwards";
-import Spinner from "@/app/components/ui/Spinner";
 
 const initialImages = [
   {
@@ -62,10 +62,11 @@ const initialImages = [
   },
 ];
 
-export default function Awards() {
+const Awards = forwardRef((props, ref) => {
   const router = useRouter();
   const { data, isLoading, error } = useAwards();
   const [center, setCenter] = useState(initialImages);
+
   useEffect(() => {
     function RotateCenter() {
       setCenter((prev) => {
@@ -75,8 +76,7 @@ export default function Awards() {
     }
 
     const interval = setInterval(RotateCenter, 2200);
-
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, []);
 
   if (isLoading) return <Spinner />;
@@ -111,7 +111,12 @@ export default function Awards() {
 
   return (
     <Stack overflow={"hidden"}>
-      <ContainerMain padding={{ lg: 0 }} alignItems="center" id="awards">
+      <ContainerMain
+        ref={ref}
+        padding={{ lg: 0 }}
+        alignItems="center"
+        id="awards"
+      >
         <Stack
           gap={"10px"}
           // padding={{ md: "50px", xs: "20px" }}
@@ -171,7 +176,6 @@ export default function Awards() {
               zIndex: "100",
               border: "6px solid #476C9B",
             }}
-            // onMouseEnter={changeImage}
             className="0"
           ></Stack>
           <Stack
@@ -180,7 +184,6 @@ export default function Awards() {
               backgroundSize: "cover",
               position: "absolute",
               backgroundPosition: "center center",
-
               border: "6px solid #476C9B",
               backgroundRepeat: "no-repeat",
               width: "15%",
@@ -188,7 +191,6 @@ export default function Awards() {
               zIndex: "90",
               left: "60%",
             }}
-            // onMouseEnter={changeImage}
             className="1"
           ></Stack>
           <Stack
@@ -204,7 +206,6 @@ export default function Awards() {
               zIndex: "80",
               left: "68%",
             }}
-            // onMouseEnter={changeImage}
             className="2"
           ></Stack>
           <Stack
@@ -221,7 +222,6 @@ export default function Awards() {
               zIndex: "70",
               left: "75%",
             }}
-            // onMouseEnter={changeImage}
             className="3"
           ></Stack>
           <Stack
@@ -238,7 +238,6 @@ export default function Awards() {
               zIndex: "70",
               right: "60%",
             }}
-            // onMouseEnter={changeImage}
             className="4"
           ></Stack>
           <Stack
@@ -255,7 +254,6 @@ export default function Awards() {
               zIndex: "60",
               right: "68%",
             }}
-            // onMouseEnter={changeImage}
             className="5"
           ></Stack>
           <Stack
@@ -272,7 +270,6 @@ export default function Awards() {
               zIndex: "50",
               right: "75%",
             }}
-            // onMouseEnter={changeImage}
             className="6"
           ></Stack>
         </Stack>
@@ -300,7 +297,9 @@ export default function Awards() {
       </ContainerMain>
     </Stack>
   );
-}
+});
+
+export default Awards;
 
 function ImageCard({ img }) {
   return (

@@ -13,21 +13,57 @@ import Awards from "./parts/Awards";
 import MobileFooter from "../footer/MobileFooter";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
+import { useEffect, useRef } from "react";
 
 export default function About() {
   const { isLoading } = useNavbar();
+
+  const founderRef = useRef(null);
+  const visionRef = useRef(null);
+  const messageRef = useRef(null);
+  const awardsRef = useRef(null);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const hash = window.location.hash;
+    let targetRef;
+
+    switch (hash) {
+      case "#founder":
+        targetRef = founderRef;
+        break;
+      case "#vision":
+        targetRef = visionRef;
+        break;
+      case "#message":
+        targetRef = messageRef;
+        break;
+      case "#awards":
+        targetRef = awardsRef;
+        break;
+      default:
+        return;
+    }
+
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isLoading]);
+
   if (isLoading) return <Spinner />;
+
   return (
     <Stack>
       <Navbar />
       <Hero />
       <Overview />
       <Inspiration />
-      <Founder />
-      <Vision />
+      <Founder ref={founderRef} />
+      <Vision ref={visionRef} id="vision" />
       <Values />
-      <Message />
-      <Awards />
+      <Message ref={messageRef} id="message" />
+      <Awards ref={awardsRef} id="awards" />
       <Footer />
       <MobileFooter />
     </Stack>

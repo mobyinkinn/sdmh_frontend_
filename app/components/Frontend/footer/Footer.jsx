@@ -109,11 +109,10 @@ const quickLinks = [
 ];
 
 const aboutUs = [
-  { id: 0, data: "Our founders", link: "/about" },
-  { id: 1, data: "Vision & mission", link: "/about" },
-  { id: 2, data: "Secretary's message", link: "/about" },
-  { id: 3, data: "Awards & accredition", link: "/about" },
-  { id: 4, data: "Our founders", link: "/about" },
+  { id: 0, data: "Our founders", link: "/about#founder" },
+  { id: 1, data: "Vision & mission", link: "/about#vision" },
+  { id: 2, data: "Secretary's message", link: "/about#message" },
+  { id: 3, data: "Awards & accreditation", link: "/about#awards" },
 ];
 
 export default function Footer() {
