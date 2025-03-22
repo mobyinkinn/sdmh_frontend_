@@ -41,10 +41,14 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
         ? data.mobileBannerFile
         : data.mobileBannerFile[0];
 
+    const homeFile =
+      typeof data.homeFile === "string" ? data.homeFile : data.homeFile[0];
+
     const formdata = new FormData();
     formdata.append("image", file);
     formdata.append("bannerImage", bannerFile);
     formdata.append("mobileBanner", mobileBannerFile);
+    formdata.append("homeImage", homeFile);
     formdata.append("name", data.name);
     formdata.append("content", content);
     formdata.append("status", true);
@@ -108,6 +112,17 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
           accept="image/*"
           type="file"
           {...register("mobileBannerFile", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
+      <FormRow label={"Home Image"}>
+        <FileInput
+          id="file"
+          accept="image/*"
+          type="file"
+          {...register("homeFile", {
             required: "This field is required",
           })}
         />

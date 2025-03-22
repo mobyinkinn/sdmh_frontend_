@@ -43,6 +43,7 @@ function DepartmentRow({
     status,
     updatedAt,
     mobileBanner,
+    homeImage,
   },
 }) {
   const { mutate: blockDepartment, isLoading: isBlocking } =
@@ -57,6 +58,7 @@ function DepartmentRow({
     image,
     bannerImage,
     mobileBanner,
+    homeImage,
   });
   const [aboutContent, setAboutContent] = useState(content);
 
@@ -156,7 +158,7 @@ function DepartmentRow({
         </Menus.Menu>
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="Banner"
+            resourceName="Department"
             disabled={isDeleting}
             onConfirm={() => deleteDepartment(id)}
           />
