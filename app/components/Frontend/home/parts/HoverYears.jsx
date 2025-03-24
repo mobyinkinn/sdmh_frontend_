@@ -1,7 +1,7 @@
 "use client";
 import { Box, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import hoverbg from "../assets/1958.jpg";
+import hoverbg from "../assets/years.jpg";
 import { TfiArrowCircleUp } from "react-icons/tfi";
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
@@ -20,7 +20,6 @@ import img12 from "../assets/HoverYears/2017.jpg";
 import img13 from "../assets/HoverYears/2018.jpg";
 import img14 from "../assets/HoverYears/2019.jpg";
 import img15 from "../assets/HoverYears/2020.jpg";
-
 
 import Image from "next/image";
 const HoverYears = () => {
@@ -254,7 +253,7 @@ const HoverYears = () => {
           }}
         >
           <TfiArrowCircleUp
-            color="white"
+            color="green"
             style={{
               width: { md: "22px", xs: "10px" },
               height: { md: "22px", xs: "10px" },
@@ -279,7 +278,7 @@ const HoverYears = () => {
                   width: hoveredIndex === index ? "22px" : "15px", // Adjusted for better visibility
                   height: hoveredIndex === index ? "22px" : "15px",
                   borderRadius: "100%",
-                  border: "2px solid white",
+                  border: "2px solid green",
                   backgroundColor: "transparent",
                   transition: "all 0.3s ease-in-out",
                 }}
@@ -289,7 +288,7 @@ const HoverYears = () => {
                     width: "15px", // Adjusted for better visibility
                     height: "15px",
                     borderRadius: "100%",
-                    bgcolor: "#fff",
+                    bgcolor: "green",
                   }}
                 />
               </Stack>
@@ -297,7 +296,7 @@ const HoverYears = () => {
                 sx={{
                   cursor: "pointer",
                   fontWeight: planetData === index ? "bold" : "normal",
-                  color: "white",
+                  color: "green",
                 }}
               >
                 {year}
@@ -305,7 +304,7 @@ const HoverYears = () => {
             </Stack>
           ))}
           <TfiArrowCircleDown
-            color="white"
+            color="green"
             style={{ width: "22px", height: "22px" }}
             onClick={clickDownArrow}
           />
