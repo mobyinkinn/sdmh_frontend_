@@ -1,12 +1,13 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { Stack } from "@mui/material";
-
 import founder from "./assets/founder.png";
+import { forwardRef } from "react";
 
-export default function Founder() {
+const Founder = forwardRef((props, ref) => {
   return (
     <ContainerMain
+      ref={ref}
       flexDirection={{ md: "row", smm: "column", sm: "column" }}
       bgColor="#276923"
       alignItems={"center"}
@@ -41,4 +42,6 @@ export default function Founder() {
       ></Stack>
     </ContainerMain>
   );
-}
+});
+
+export default Founder;

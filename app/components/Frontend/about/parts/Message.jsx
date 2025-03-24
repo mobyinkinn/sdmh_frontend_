@@ -5,12 +5,13 @@ import {
   ParaNormalSmall,
 } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
-
 import img from "./assets/Yogendra.png";
+import { forwardRef } from "react";
 
-export default function Message() {
+const Message = forwardRef((props, ref) => {
   return (
     <ContainerMain
+      ref={ref}
       bgColor="#476C9B"
       dir="row"
       id="message"
@@ -82,4 +83,6 @@ export default function Message() {
       </Stack>
     </ContainerMain>
   );
-}
+});
+
+export default Message;

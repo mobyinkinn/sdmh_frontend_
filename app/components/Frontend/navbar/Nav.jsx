@@ -109,7 +109,18 @@ export default function Navbar() {
             <AiFillInstagram />
           </Stack>
           <Stack direction={"row"} gap={"25px"}>
-            <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
+            <Typography
+              sx={{
+                display: { sm: "none", lg: "flex" },
+                "&:hover": {
+                  // color: "black",
+                  cursor: "pointer",
+                },
+              }}
+              onClick={() => {
+                router.push(`/second-opinion`);
+              }}
+            >
               Second Opinion
             </Typography>
             <Typography sx={{ display: { sm: "none", lg: "flex" } }}>

@@ -4,6 +4,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import VisionCard from "./VisionCard";
 import vision from "./assets/visionIcon.png";
 import mission from "./assets/missionIcon.png";
+import { forwardRef } from "react";
 
 const visionData = [
   {
@@ -20,9 +21,10 @@ const visionData = [
   },
 ];
 
-export default function Vision() {
+const Vision = forwardRef((props, ref) => {
   return (
     <ContainerMain
+      ref={ref}
       position="relative"
       gap="30px"
       alignItems="center"
@@ -53,4 +55,6 @@ export default function Vision() {
       </Stack>
     </ContainerMain>
   );
-}
+});
+
+export default Vision;

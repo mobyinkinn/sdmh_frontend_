@@ -1,5 +1,5 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import oldMan from "./assets/oldMan.png";
+import thalassemia from "./assets/thalassemia.jpg";
 import { Head1, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import {
   ParaNormal,
@@ -12,14 +12,21 @@ import Screened from "./screened";
 export default function About() {
   return (
     <Stack>
-      <ContainerMain flexDirection={{ lg: "row", sm: "column-reverse" }}>
+      <ContainerMain
+        flexDirection={{
+          lg: "row",
+          md: "column-reverse",
+          sm: "column-reverse",
+        }}
+        alignItems={"center"}
+      >
         <Stack
           position="relative"
-          height={"40vh"}
-          width={{ lg: "40%", sm: "100%" }}
+          height={"500px"}
+          width={{ lg: "600px", sm: "100%" }}
         >
           <Image
-            src={oldMan}
+            src={thalassemia}
             alt=""
             fill
             objectFit="contain"
