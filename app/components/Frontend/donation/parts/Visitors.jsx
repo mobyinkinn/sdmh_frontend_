@@ -19,38 +19,38 @@ import VisitorCard from "./VisitorCard";
 const visitorsData = [
   {
     id: 0,
-    name: "Dr Apj Abdul Kalam",
+    name: "DR APJ ABDUL KALAM",
     img: img8,
     content:
       "It is inspiring, divine and dynamic. The Durlabhji Avedna Ashram is the work of God.",
   },
   {
     id: 0,
-    name: "Dr Apj Abdul Kalam",
+    name: "DILIP KUMAR AND SAIRA BANU",
     img: img7,
     content:
-      "It is inspiring, divine and dynamic. The Durlabhji Avedna Ashram is the work of God.",
+      "A heart-warming experience! Our visit to Avedna was most moving; in a sense, it touched the innermost chords of humanism.",
   },
   {
     id: 0,
-    name: "Dr Apj Abdul Kalam",
+    name: "ELA R BHATT",
     img: img6,
     content:
-      "It is inspiring, divine and dynamic. The Durlabhji Avedna Ashram is the work of God.",
+      "Avedna Ashram is the living embodiment of Gandhiji’s trusteeship philosophy. The Durlabhji family has carried forward the tradition of the rich sharing and caring for the poorest and neediest in society.",
   },
   {
     id: 0,
-    name: "Dr Apj Abdul Kalam",
+    name: "LEANDER PAES",
     img: img4,
     content:
-      "It is inspiring, divine and dynamic. The Durlabhji Avedna Ashram is the work of God.",
+      "The greatest joy in life, is life itself...and the care and love that you give. Your patients and staff members make life worth living. My heart and prayers go out to each one of you for the service you are doing towards humanity. I am truly humbled. Keep up the extraordinary work you do.",
   },
   {
     id: 0,
-    name: "Dr Apj Abdul Kalam",
+    name: "MR. NARAYANA MURTHY",
     img: img5,
     content:
-      "It is inspiring, divine and dynamic. The Durlabhji Avedna Ashram is the work of God.",
+      "Visiting Avedna Ashram was one of the most moving experiences of my life. The kindness of the family and the nurses is extraordinary.",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function Visitors() {
   return (
     <ContainerMain bgColor="#6A88AF">
       <Head1 color="white">Some Comments by Visitors</Head1>
-      <ParaNormal
+      {/* <ParaNormal
         color="white"
         width={{ lg: "60%", sm: "100%" }}
         textAlign={{ lg: "center", sm: "center" }}
@@ -67,7 +67,7 @@ export default function Visitors() {
         Contrary to popular belief, Lorem Ipsum is not simply random text. It
         has roots in a piece of classical Latin literature from 45 BC, making it
         over 2000 years old.
-      </ParaNormal>
+      </ParaNormal> */}
       <Stack alignItems={"center"}>
         <AvatarGroup total={5} spacing="small">
           <Avatar
