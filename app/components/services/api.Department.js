@@ -135,3 +135,13 @@ export const importDepartments = async (file) => {
 
   return response.data;
 };
+
+export const deleteBanner = async (id) => {
+  const response = await axios.delete(
+    `${ApiUrl}/department/delete-banner?id=${id}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

@@ -11,6 +11,7 @@ import {
   updateHomeImage as updateTheHomeImage,
   updateBanner as updateTheBanner,
   updateMobileBanner as updateTheMobileBanner,
+  deleteBanner as deleteTheBanner,
   fetchDepartmentById,
 } from "@/app/components/services/api.Department";
 
@@ -192,4 +193,22 @@ export const useMobileBannerImage = () => {
     });
 
   return { updateMobileBanner, isUpdatingMobileBanner };
+};
+
+export const useDeleteBanner = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteBanner, isPending: isDeleting } = useMutation({
+    mutationFn: deleteTheBanner,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Departments"]);
+      toast.success("Banner deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete banner: ", error);
+      toast.error("Failed to delete banner. Please try again.");
+    },
+  });
+
+  return { deleteBanner, isDeleting };
 };
