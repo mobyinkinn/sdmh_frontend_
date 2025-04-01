@@ -155,12 +155,16 @@ export default function Departments() {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Image
-            src={activeDepartment?.homeImage}
-            fill
-            objectFit="cover"
-            alt={activeDepartment?.name}
-          />
+          {activeDepartment?.homeImage ? (
+            <Image
+              src={activeDepartment?.homeImage}
+              fill
+              objectFit="cover"
+              alt={activeDepartment?.name}
+            />
+          ) : (
+            <div>Image not available for {activeDepartment?.name}</div>
+          )}
         </Stack>
       </Stack>
       <Stack alignItems={{ xs: "center", md: "start" }}>

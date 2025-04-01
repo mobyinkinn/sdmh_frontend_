@@ -8,12 +8,15 @@ import {
   useBannerImage,
   useMobileBannerImage,
   useUpdateHomeImage,
+  useDeleteBanner,
+  useDeleteImage,
+  useDeleteMobileBannerImage,
+  useDeleteHomeImage,
 } from "../../admin/departments/parts/useDepartment";
 import Jodit from "../Openings/Jodit";
 import SpinnerMini from "../../ui/SpinnerMini";
-import { Stack } from "@mui/material";
 import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import FileInput from "../../ui/FileInput";
 
 function EditDepartmentForm({
@@ -32,14 +35,25 @@ function EditDepartmentForm({
   const { updateImage, isUpdatingImage } = useUpdateImage();
   const { updateHomeImage, isUpdatingHomeImage } = useUpdateHomeImage();
   const { updateBanner, isUpdatingBanner } = useBannerImage();
+  const { deleteBanner, isDeleting: isDeletingBanner } = useDeleteBanner();
   const { updateMobileBanner, isUpdatingMobileBanner } = useMobileBannerImage();
+  const { deleteImage, isDeleting: isDeletingImage } = useDeleteImage();
+  const { deleteMobileBanner, isDeleting: isDeletingMobileBanner } =
+    useDeleteMobileBannerImage();
+  const { deleteHomeImage, isDeleting: isDeletingHomeImage } =
+    useDeleteHomeImage();
   const { errors } = formState;
+
   if (
     isUpdating ||
     isUpdatingImage ||
     isUpdatingBanner ||
     isUpdatingMobileBanner ||
-    isUpdatingHomeImage
+    isUpdatingHomeImage ||
+    isDeletingBanner ||
+    isDeletingImage ||
+    isDeletingMobileBanner ||
+    isDeletingHomeImage
   )
     return <SpinnerMini />;
 
@@ -60,10 +74,7 @@ function EditDepartmentForm({
     formDataImage.append("image", file);
 
     updateImage(
-      {
-        id,
-        formdata: formDataImage,
-      },
+      { id, formdata: formDataImage },
       {
         onSuccess: () => {
           toast.success("Image updated successfully!");
@@ -87,10 +98,7 @@ function EditDepartmentForm({
     formDataHomeImage.append("homeImage", file);
 
     updateHomeImage(
-      {
-        id,
-        formdata: formDataHomeImage,
-      },
+      { id, formdata: formDataHomeImage },
       {
         onSuccess: () => {
           toast.success("Home Image updated successfully!");
@@ -112,13 +120,9 @@ function EditDepartmentForm({
     const file = e.target.files[0];
     const formDataBanner = new FormData();
     formDataBanner.append("banner", file);
-    setEditData({ ...editData, [fieldName]: file });
 
     updateBanner(
-      {
-        id,
-        formdata: formDataBanner,
-      },
+      { id, formdata: formDataBanner },
       {
         onSuccess: () => {
           toast.success("Banner updated successfully!");
@@ -140,13 +144,9 @@ function EditDepartmentForm({
     const file = e.target.files[0];
     const formDataMobileBanner = new FormData();
     formDataMobileBanner.append("mobileBanner", file);
-    setEditData({ ...editData, [fieldName]: file });
 
     updateMobileBanner(
-      {
-        id,
-        formdata: formDataMobileBanner,
-      },
+      { id, formdata: formDataMobileBanner },
       {
         onSuccess: () => {
           toast.success("Mobile Banner updated successfully!");
@@ -164,7 +164,76 @@ function EditDepartmentForm({
     }
   };
 
+  const handleDeleteBanner = () => {
+    const originalBannerImage = editData.bannerImage;
+    setEditData({ ...editData, bannerImage: null });
+
+    deleteBanner(id, {
+      onSuccess: () => {
+        toast.success("Banner deleted successfully!");
+        onCloseModal?.();
+      },
+      onError: (error) => {
+        console.error("Failed to delete banner:", error);
+        toast.error("Failed to delete banner. Please try again.");
+        setEditData({ ...editData, bannerImage: originalBannerImage });
+      },
+    });
+  };
+
+  const handleDeleteImage = () => {
+    const originalImage = editData.image;
+    setEditData({ ...editData, image: null });
+
+    deleteImage(id, {
+      onSuccess: () => {
+        toast.success("Image deleted successfully!");
+        onCloseModal?.();
+      },
+      onError: (error) => {
+        console.error("Failed to delete image:", error);
+        toast.error("Failed to delete image. Please try again.");
+        setEditData({ ...editData, image: originalImage });
+      },
+    });
+  };
+
+  const handleDeleteMobileBanner = () => {
+    const originalMobileBanner = editData.mobileBanner;
+    setEditData({ ...editData, mobileBanner: null });
+
+    deleteMobileBanner(id, {
+      onSuccess: () => {
+        toast.success("Mobile Banner deleted successfully!");
+        onCloseModal?.();
+      },
+      onError: (error) => {
+        console.error("Failed to delete mobile banner:", error);
+        toast.error("Failed to delete mobile banner. Please try again.");
+        setEditData({ ...editData, mobileBanner: originalMobileBanner });
+      },
+    });
+  };
+
+  const handleDeleteHomeImage = () => {
+    const originalHomeImage = editData.homeImage;
+    setEditData({ ...editData, homeImage: null });
+
+    deleteHomeImage(id, {
+      onSuccess: () => {
+        toast.success("Home Image deleted successfully!");
+        onCloseModal?.();
+      },
+      onError: (error) => {
+        console.error("Failed to delete home image:", error);
+        toast.error("Failed to delete home image. Please try again.");
+        setEditData({ ...editData, homeImage: originalHomeImage });
+      },
+    });
+  };
+
   function onError(errors) {}
+
   return (
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
       <FormRow label="Name">
@@ -194,10 +263,39 @@ function EditDepartmentForm({
                 width={200}
                 height={110}
               />
-              <div className="edit-icon">
-                <label htmlFor="image-upload">
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+                  display: "flex",
+                  gap: "8px",
+                  backgroundColor: "white",
+                  padding: "4px",
+                  borderRadius: "4px",
+                }}
+              >
+                <label
+                  htmlFor="image-upload"
+                  style={{ cursor: "pointer", color: "black" }}
+                >
                   <FaEdit size={16} />
                 </label>
+                <div
+                  type="button"
+                  onClick={handleDeleteImage}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "#ff4d4f",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: 0,
+                  }}
+                >
+                  <FaTrash size={16} />
+                </div>
                 <input
                   id="image-upload"
                   type="file"
@@ -232,10 +330,39 @@ function EditDepartmentForm({
                 width={200}
                 height={110}
               />
-              <div className="edit-icon">
-                <label htmlFor="banner-upload">
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+                  display: "flex",
+                  gap: "8px",
+                  backgroundColor: "white",
+                  padding: "4px",
+                  borderRadius: "4px",
+                }}
+              >
+                <label
+                  htmlFor="banner-upload"
+                  style={{ cursor: "pointer", color: "black" }}
+                >
                   <FaEdit size={16} />
                 </label>
+                <div
+                  type="button"
+                  onClick={handleDeleteBanner}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "#ff4d4f",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: 0,
+                  }}
+                >
+                  <FaTrash size={16} />
+                </div>
                 <input
                   id="banner-upload"
                   type="file"
@@ -270,10 +397,39 @@ function EditDepartmentForm({
                 width={200}
                 height={110}
               />
-              <div className="edit-icon">
-                <label htmlFor="mobile-banner-upload">
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+                  display: "flex",
+                  gap: "8px",
+                  backgroundColor: "white",
+                  padding: "4px",
+                  borderRadius: "4px",
+                }}
+              >
+                <label
+                  htmlFor="mobile-banner-upload"
+                  style={{ cursor: "pointer", color: "black" }}
+                >
                   <FaEdit size={16} />
                 </label>
+                <div
+                  type="button"
+                  onClick={handleDeleteMobileBanner}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "#ff4d4f",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: 0,
+                  }}
+                >
+                  <FaTrash size={16} />
+                </div>
                 <input
                   id="mobile-banner-upload"
                   type="file"
@@ -308,10 +464,39 @@ function EditDepartmentForm({
                 width={200}
                 height={110}
               />
-              <div className="edit-icon">
-                <label htmlFor="home-upload">
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+                  display: "flex",
+                  gap: "8px",
+                  backgroundColor: "white",
+                  padding: "4px",
+                  borderRadius: "4px",
+                }}
+              >
+                <label
+                  htmlFor="home-upload"
+                  style={{ cursor: "pointer", color: "black" }}
+                >
                   <FaEdit size={16} />
                 </label>
+                <div
+                  type="button"
+                  onClick={handleDeleteHomeImage}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "#ff4d4f",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: 0,
+                  }}
+                >
+                  <FaTrash size={16} />
+                </div>
                 <input
                   id="home-upload"
                   type="file"

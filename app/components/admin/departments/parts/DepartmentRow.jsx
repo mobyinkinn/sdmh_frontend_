@@ -116,11 +116,25 @@ function DepartmentRow({
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        {image ? (
+          <Image src={image} alt={name} width={50} height={50} />
+        ) : (
+          <div>No Image</div>
+        )}
       </Stacked>
 
       <Stacked>
-        <Image src={bannerImage} alt={name} width={50} height={50} />
+        {bannerImage ? (
+          <Image
+            src={bannerImage}
+            alt={name}
+            width={50}
+            height={50}
+            style={{ objectFit: "cover" }}
+          />
+        ) : (
+          <div>No Banner</div>
+        )}
       </Stacked>
 
       <Tag type={statusToTagName[convertedStatus]}>
