@@ -145,3 +145,33 @@ export const deleteBanner = async (id) => {
   );
   return response.data;
 };
+
+export const deleteImage = async (id) => {
+  const response = await axios.delete(
+    `${ApiUrl}/department/delete-image?id=${id}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const deleteMobileBanner = async (id) => {
+  const response = await axios.delete(
+    `${ApiUrl}/department/delete-mobile-banner?id=${id}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const deleteHomeImage = async (id) => {
+  const response = await axios.delete(
+    `${ApiUrl}/department/delete-home-image?id=${id}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

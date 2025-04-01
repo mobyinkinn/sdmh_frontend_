@@ -116,7 +116,11 @@ function DepartmentRow({
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        {image ? (
+          <Image src={image} alt={name} width={50} height={50} />
+        ) : (
+          <div>No Image</div>
+        )}
       </Stacked>
 
       <Stacked>
