@@ -196,27 +196,36 @@ function EditDoctorForm({ onCloseModal, id, department }) {
       </FormRow> */}
 
       {/**2 */}
-
-      <FormRow label="Department" error={errors?.department?.message}>
-        <StyledSelect
-          id="department"
-          value={formdata.department || ""}
-          {...register("department", { required: "This field is required" })}
-          onChange={(e) => {
-            setFormdata((prev) => ({ ...prev, department: e.target.value }));
-          }}
-        >
-          <option value="">Select a department</option>
-          {departmentData?.map((department, index) => (
-            <option key={index} value={department._id}>
-              {department.name}
-            </option>
-          ))}
-        </StyledSelect>
-        <Button onClick={() => onUpdateDoctor({ ...formdata }, id)}>
+      <Stack direction={"row"}>
+        <FormRow label="Department" error={errors?.department?.message}>
+          <select
+            style={{
+              fontSize: "1rem",
+              width: "90%",
+              padding: "0.6rem 1.2rem",
+              backgroundColor: "var(--color-grey-0)",
+              border: "1px solid lightgray",
+              borderRadius: "5px",
+            }}
+            id="department"
+            value={formdata.department || ""}
+            {...register("department", { required: "This field is required" })}
+            onChange={(e) => {
+              setFormdata((prev) => ({ ...prev, department: e.target.value }));
+            }}
+          >
+            <option value="">Select a department</option>
+            {departmentData?.map((department, index) => (
+              <option key={index} value={department._id}>
+                {department.name}
+              </option>
+            ))}
+          </select>
+        </FormRow>
+        <Button style={{height:"50px"}} onClick={() => onUpdateDoctor({ ...formdata }, id)}>
           Update Department
         </Button>
-      </FormRow>
+      </Stack>
 
       <FormRow label="Available on" error={errors?.availability?.message}>
         <Stack direction="row" gap="20px">
