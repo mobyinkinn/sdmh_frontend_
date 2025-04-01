@@ -12,6 +12,9 @@ import {
   updateBanner as updateTheBanner,
   updateMobileBanner as updateTheMobileBanner,
   deleteBanner as deleteTheBanner,
+  deleteImage as deleteTheImage,
+  deleteMobileBanner as deleteTheMobileBanner,
+  deleteHomeImage as deleteTheHomeImage,
   fetchDepartmentById,
 } from "@/app/components/services/api.Department";
 
@@ -211,4 +214,58 @@ export const useDeleteBanner = () => {
   });
 
   return { deleteBanner, isDeleting };
+};
+
+export const useDeleteImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteImage, isPending: isDeletingImage } = useMutation({
+    mutationFn: deleteTheImage,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Departments"]);
+      toast.success("Banner deleted successfully!");
+    },
+    onError: (error) => {
+      console.error("Failed to delete banner: ", error);
+      toast.error("Failed to delete banner. Please try again.");
+    },
+  });
+
+  return { deleteImage, isDeletingImage };
+};
+export const useDeleteMobileBannerImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteMobileBanner, isPending: isDeletingMobileBannerImage } =
+    useMutation({
+      mutationFn: deleteTheMobileBanner,
+      onSuccess: () => {
+        queryClient.invalidateQueries(["Departments"]);
+        toast.success("Mobile Banner deleted successfully!");
+      },
+      onError: (error) => {
+        console.error("Failed to delete Mobile Banner: ", error);
+        toast.error("Failed to delete Mobile Banner. Please try again.");
+      },
+    });
+
+  return { deleteMobileBanner, isDeletingMobileBannerImage };
+};
+export const useDeleteHomeImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteHomeImage, isPending: isDeletingHomeImage } =
+    useMutation({
+      mutationFn: deleteTheHomeImage,
+      onSuccess: () => {
+        queryClient.invalidateQueries(["Departments"]);
+        toast.success("Home Image deleted successfully!");
+      },
+      onError: (error) => {
+        console.error("Failed to delete Home Image: ", error);
+        toast.error("Failed to delete Home Image. Please try again.");
+      },
+    });
+
+  return { deleteHomeImage, isDeletingHomeImage };
 };
