@@ -133,7 +133,7 @@ export default function DetailsHero({ data, isLoading }) {
 
       <Box
         display={{ md: "flex", sm: "none" }}
-        minHeight={{ md: "276px", lg: "386px", xl: "557px" }}
+        minHeight={{ md: "276px", lg: "386px", xl: "557px", xxxl:"730px" }}
         sx={{
           backgroundImage: `url(${data?.bannerImage})`,
           backgroundSize: "cover",

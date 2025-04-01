@@ -8,6 +8,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { PiYoutubeLogoBold } from "react-icons/pi";
 import { useRouter } from "next/navigation";
+import sdmh from "./parts/assets/bannerImage.png";
 
 const social = [
   {
@@ -118,193 +119,210 @@ const aboutUs = [
 export default function Footer() {
   const router = useRouter();
   return (
-    <ContainerMain
-      flexDirection={{ lg: "row" }}
-      gap="30px"
-      justifyContent={"space-between"}
-      display={{ sm: "none", smm: "none", md: "none" }}
+    <Stack
+      width="100%"
+      sx={{
+        backgroundImage: `url(${sdmh.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
     >
-      <Stack gap={"50px"} width={"20%"}>
-        <Stack
-          sx={{
-            backgroundImage: `url(${logo.src})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "left center",
-            width: "247.87px",
-            height: "83.11px",
-          }}
-        ></Stack>
-        <Stack>
-          {address.map((el, i) => {
-            return <ParaNormal key={i}>{el.data}</ParaNormal>;
-          })}
-        </Stack>
-      </Stack>
-      <Stack gap={"50px"}>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Center of Excellence
-          </ParaNormal>
-          {centerOfExcellence.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
+      <Stack
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+        }}
+        padding="40px 35px"
+        gap="20px"
+      >
+        <ContainerMain
+          flexDirection={{ lg: "row" }}
+          gap="30px"
+          justifyContent={"space-between"}
+          display={{ sm: "none", smm: "none", md: "none" }}
+        >
+          <Stack gap={"50px"} width={"20%"}>
+            <Stack
+              sx={{
+                backgroundImage: `url(${logo.src})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "left center",
+                width: "247.87px",
+                height: "83.11px",
+              }}
+            ></Stack>
+            <Stack>
+              {address.map((el, i) => {
+                return <ParaNormal key={i}>{el.data}</ParaNormal>;
+              })}
+            </Stack>
+          </Stack>
+          <Stack gap={"50px"}>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Center of Excellence
               </ParaNormal>
-            );
-          })}
-        </Stack>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Support a cause
-          </ParaNormal>
-          {supportACause.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
-              </ParaNormal>
-            );
-          })}
-        </Stack>
-      </Stack>
-      <Stack gap={"50px"}>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Patients & visitors
-          </ParaNormal>
-          {Patients.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
-              </ParaNormal>
-            );
-          })}
-        </Stack>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Contact us
-          </ParaNormal>
-          {contactUs.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
-              </ParaNormal>
-            );
-          })}
-        </Stack>
-      </Stack>
-      <Stack gap={"50px"}>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Online service
-          </ParaNormal>
-          {onlineService.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
-              </ParaNormal>
-            );
-          })}
-        </Stack>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Quick links
-          </ParaNormal>
-          {quickLinks.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
-              </ParaNormal>
-            );
-          })}
-        </Stack>
-      </Stack>
-      <Stack gap={"50px"}>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            About us
-          </ParaNormal>
-          {aboutUs.map((el, i) => {
-            return (
-              <ParaNormal
-                cursor="pointer"
-                hoverColor="#379237"
-                key={i}
-                onClick={() => router.push(`${el.link}`)}
-              >
-                {el.data}
-              </ParaNormal>
-            );
-          })}
-        </Stack>
-        <Stack>
-          <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-            Get in touch
-          </ParaNormal>
-          <Stack direction={"row"} gap={"5px"}>
-            {social.map((el, i) => {
-              return (
-                <a
-                  key={i}
-                  href={el.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Stack
-                    padding={"10px"}
-                    color={"white"}
-                    backgroundColor={"#379237"}
-                    sx={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "100px",
-                      width: "40px",
-                      height: "40px",
-                      cursor: "pointer",
-                      "&:hover": {
-                        backgroundColor: "#4CAF50",
-                      },
-                    }}
+              {centerOfExcellence.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
                   >
                     {el.data}
-                  </Stack>
-                </a>
-              );
-            })}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Support a cause
+              </ParaNormal>
+              {supportACause.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
+                  >
+                    {el.data}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
           </Stack>
-        </Stack>
+          <Stack gap={"50px"}>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Patients & visitors
+              </ParaNormal>
+              {Patients.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
+                  >
+                    {el.data}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Contact us
+              </ParaNormal>
+              {contactUs.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
+                  >
+                    {el.data}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
+          </Stack>
+          <Stack gap={"50px"}>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Online service
+              </ParaNormal>
+              {onlineService.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
+                  >
+                    {el.data}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Quick links
+              </ParaNormal>
+              {quickLinks.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
+                  >
+                    {el.data}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
+          </Stack>
+          <Stack gap={"50px"}>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                About us
+              </ParaNormal>
+              {aboutUs.map((el, i) => {
+                return (
+                  <ParaNormal
+                    cursor="pointer"
+                    hoverColor="#379237"
+                    key={i}
+                    onClick={() => router.push(`${el.link}`)}
+                  >
+                    {el.data}
+                  </ParaNormal>
+                );
+              })}
+            </Stack>
+            <Stack>
+              <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
+                Get in touch
+              </ParaNormal>
+              <Stack direction={"row"} gap={"5px"}>
+                {social.map((el, i) => {
+                  return (
+                    <a
+                      key={i}
+                      href={el.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Stack
+                        padding={"10px"}
+                        color={"white"}
+                        backgroundColor={"#379237"}
+                        sx={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "100px",
+                          width: "40px",
+                          height: "40px",
+                          cursor: "pointer",
+                          "&:hover": {
+                            backgroundColor: "#4CAF50",
+                          },
+                        }}
+                      >
+                        {el.data}
+                      </Stack>
+                    </a>
+                  );
+                })}
+              </Stack>
+            </Stack>
+          </Stack>
+        </ContainerMain>
       </Stack>
-    </ContainerMain>
+    </Stack>
   );
 }

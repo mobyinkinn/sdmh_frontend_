@@ -18,7 +18,7 @@ export default function Hero() {
     <Stack direction={"row"}>
       <Box
         display={{ md: "flex", sm: "none" }}
-        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px",xxxl:"800px" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${data?.banner})`,
