@@ -511,18 +511,11 @@ export default function Doctors({ data, departments }) {
         return (
           <Stack
             key={i}
-            height={{
-              xl: "750px",
-              lg: "700px",
-              md: "600px",
-              sm: "550px",
-              xs: "600px",
-            }}
             width={{ lg: "30%", md: "46%", xs: "100%" }}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
             <Box
-              height={{ xl: "50%", lg: "25%", md: "25%", xs: "30%" }}
+              height={{ xl: "227px", lg: "175px", md: "175px", xs: "165px" }}
               backgroundColor={"#8EA5C3"}
               width={"100%"}
               position={"relative"}
@@ -536,15 +529,21 @@ export default function Doctors({ data, departments }) {
               />
             </Box>
             <Stack
+              height={{ md: "450px", lg: "505px", xl: "460px" }}
               padding={{ lg: "20px 35px", md: "15px 25px", xs: "10px 15px" }}
               gap={"10px"}
               sx={{
                 cursor: "pointer",
                 backgroundColor: "white",
                 borderRadius: "0 0 15px 15px",
+                justifyContent: "space-evenly",
               }}
             >
-              <Head3 textAlign={"left"} color="black">
+              <Head3
+                fontSize={{ sm: "", smm: "", md: "1.3rem", lg: "1.6rem" }}
+                textAlign={"left"}
+                color="black"
+              >
                 {el.name}
               </Head3>
               <Head4 textAlign={"left"} fontWeight={"400"}>
@@ -595,7 +594,7 @@ export default function Doctors({ data, departments }) {
 
               <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
                 <ButtonSmallOutline
-                  padding={"10px 20px"}
+                  padding={"8px 10px"}
                   color={"#379237"}
                   hoverColor={"#fff"}
                 >
@@ -603,7 +602,7 @@ export default function Doctors({ data, departments }) {
                 </ButtonSmallOutline>
                 <ButtonSmallOutline
                   color={"#000000"}
-                  padding={"10px 20px"}
+                  padding={"8px 10px"}
                   hoverColor={"#fff"}
                   onClick={() => router.push(`/find-a-doctor/${el._id}`)}
                 >
