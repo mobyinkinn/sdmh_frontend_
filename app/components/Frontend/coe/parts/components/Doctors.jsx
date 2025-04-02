@@ -109,7 +109,6 @@
 //   );
 // }
 
-
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
@@ -123,13 +122,17 @@ import {
 } from "@/app/styledComponents/frontend/Buttons";
 import { useDoctorById } from "@/app/components/admin/doctors/parts/useDoctor";
 import { useRouter } from "next/navigation";
+import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export default function Doctors({ departments, _id }) {
+export default function Doctors({ _id }) {
   const { data, isLoading, error } = useDoctorById(_id);
+  const { data: departments, isLoading: isLoadingDepartments } =
+    useDepartment();
   console.log("data", data);
-const router = useRouter()
+
+  const router = useRouter();
   return (
     <Stack
       direction={"row"}
@@ -142,13 +145,19 @@ const router = useRouter()
         return (
           <Stack
             key={i}
-            height={"100vh"}
-            width={{ lg: "30%", md: "45%", xs: "100%" }}
+            height={{
+              xl: "750px",
+              lg: "700px",
+              md: "600px",
+              sm: "550px",
+              xs: "600px",
+            }}
+            width={{ lg: "30%", md: "46%", xs: "100%" }}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
             <Box
-              height={"50%"}
-              backgroundColor={"#D9D9D9"}
+              height={{ xl: "50%", lg: "25%", md: "25%", xs: "30%" }}
+              backgroundColor={"#8EA5C3"}
               width={"100%"}
               position={"relative"}
             >
@@ -156,7 +165,7 @@ const router = useRouter()
                 src={el.image}
                 alt="Doctor Image"
                 fill
-                objectFit="cover"
+                objectFit="contain"
                 objectPosition="center bottom"
               />
             </Box>
@@ -176,20 +185,24 @@ const router = useRouter()
                 {el.designation}
               </Head4>
               <Stack>
-                <ParaNormal>Department</ParaNormal>
+                <ParaNormal fontWeight={"bold"}>Department</ParaNormal>
                 <ParaNormalSmall>
                   {departments?.find((dept) => dept._id === el.department)
-                    ?.name || "Unknown"}
+                    ?.name || "Not Available"}
+                  {/* {el.department} */}
                 </ParaNormalSmall>
               </Stack>
               <Stack>
-                <ParaNormal>Expertise</ParaNormal>
-                <ParaNormalSmall>{el.about}</ParaNormalSmall>
+                <ParaNormal fontWeight={"bold"}>About</ParaNormal>
+                <ParaNormalSmall
+                  dangerouslySetInnerHTML={{
+                    __html: el.about.slice(0, 150),
+                  }}
+                />
               </Stack>
 
               {/* Availability Section */}
               <Stack>
-                <ParaNormal>Availability</ParaNormal>
                 <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
                   {days.map((day, i) => (
                     <Stack>
@@ -215,11 +228,17 @@ const router = useRouter()
               </Stack>
 
               <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
-                <ButtonSmallOutline color={"#379237"}>
+                <ButtonSmallOutline
+                  padding={"10px 20px"}
+                  color={"#379237"}
+                  hoverColor={"#fff"}
+                >
                   Appointment
                 </ButtonSmallOutline>
                 <ButtonSmallOutline
                   color={"#000000"}
+                  padding={"10px 20px"}
+                  hoverColor={"#fff"}
                   onClick={() => router.push(`/find-a-doctor/${el._id}`)}
                 >
                   View Profile

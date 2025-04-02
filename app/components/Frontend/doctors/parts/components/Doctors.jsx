@@ -498,6 +498,7 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function Doctors({ data, departments }) {
   const router = useRouter();
+
   return (
     <Stack
       direction={"row"}
@@ -510,12 +511,18 @@ export default function Doctors({ data, departments }) {
         return (
           <Stack
             key={i}
-            height={"100vh"}
-            width={{ lg: "30%", md: "45%", xs: "100%" }}
+            height={{
+              xl: "750px",
+              lg: "700px",
+              md: "600px",
+              sm: "550px",
+              xs: "600px",
+            }}
+            width={{ lg: "30%", md: "46%", xs: "100%" }}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
             <Box
-              height={"50%"}
+              height={{ xl: "50%", lg: "25%", md: "25%", xs: "30%" }}
               backgroundColor={"#8EA5C3"}
               width={"100%"}
               position={"relative"}
@@ -546,13 +553,13 @@ export default function Doctors({ data, departments }) {
               <Stack>
                 <ParaNormal fontWeight={"bold"}>Department</ParaNormal>
                 <ParaNormalSmall>
-                  {/* {departments?.find((dept) => dept._id === el.department)
-                    ?.name || "Unknown"} */}
-                  {el.department}
+                  {departments?.find((dept) => dept._id === el.department)
+                    ?.name || "Not Available"}
+                  {/* {el.department} */}
                 </ParaNormalSmall>
               </Stack>
               <Stack>
-                <ParaNormal fontWeight={"bold"}>Expertise</ParaNormal>
+                <ParaNormal fontWeight={"bold"}>About</ParaNormal>
                 <ParaNormalSmall
                   dangerouslySetInnerHTML={{
                     __html: el.about.slice(0, 150),
@@ -587,11 +594,16 @@ export default function Doctors({ data, departments }) {
               </Stack>
 
               <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
-                <ButtonSmallOutline color={"#379237"} hoverColor={"#fff"}>
+                <ButtonSmallOutline
+                  padding={"10px 20px"}
+                  color={"#379237"}
+                  hoverColor={"#fff"}
+                >
                   Appointment
                 </ButtonSmallOutline>
                 <ButtonSmallOutline
                   color={"#000000"}
+                  padding={"10px 20px"}
                   hoverColor={"#fff"}
                   onClick={() => router.push(`/find-a-doctor/${el._id}`)}
                 >

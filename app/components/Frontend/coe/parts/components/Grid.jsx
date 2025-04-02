@@ -165,7 +165,11 @@ function CoeCard({ el }) {
           position: "relative",
         }}
       >
-        <Image src={el.image} alt="" fill objectFit="contain" />
+        {el.image ? (
+          <Image src={el.image} alt={el.name} fill objectFit="contain" />
+        ) : (
+          <div>Image Unavailable</div>
+        )}
       </Box>
       <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
         {el.name}
