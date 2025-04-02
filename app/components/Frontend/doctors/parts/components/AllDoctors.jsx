@@ -14,7 +14,7 @@ import Doctors from "./Doctors";
 
 export default function AllDoctors() {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 9;
   const { data, isLoading } = useDoctors();
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
