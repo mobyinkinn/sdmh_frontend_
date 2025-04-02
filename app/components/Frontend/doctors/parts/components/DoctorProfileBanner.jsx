@@ -110,13 +110,19 @@ import {
   ButtonSmallOutline,
   ButtonVerySmallOutline,
 } from "@/app/styledComponents/frontend/Buttons";
-import { useDepartmentById } from "@/app/components/admin/departments/parts/useDepartment";
+import {
+  useDepartment,
+  useDepartmentById,
+} from "@/app/components/admin/departments/parts/useDepartment";
+import Spinner from "@/app/components/ui/Spinner";
 
 export default function DoctorProfileBanner({ data }) {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   console.log("data", data);
   const _id = data?.department;
-  const { data: departmentData, isLoading, error } = useDepartmentById(_id);
+  const { data: departmentData, isLoading: isLoadingDepartments } =
+    useDepartment();
+  if (isLoadingDepartments) return <Spinner />;
   return (
     <Stack width="100%">
       <Stack
@@ -179,7 +185,10 @@ export default function DoctorProfileBanner({ data }) {
             <ParaNormal color="white">{data?.designation}</ParaNormal>
             <ParaNormalSmall color="white"></ParaNormalSmall>
             <ParaNormalSmall color="white">
-              Department: {data?.department}
+              Department:{" "}
+              {departmentData?.find((dept) => dept._id === data?.department)
+                ?.name || "Not Available"}
+              {/* Department: {data?.department} */}
             </ParaNormalSmall>
             {/* <ParaNormalSmall color="white">
               Years of practice: {data?.experience}
@@ -239,6 +248,7 @@ export default function DoctorProfileBanner({ data }) {
                     backgroundColor={
                       data?.availablity?.[day] ? "#379237" : "transparent"
                     }
+                    hoverColor="#379237"
                   >
                     {day}
                   </ButtonMediumOutline>

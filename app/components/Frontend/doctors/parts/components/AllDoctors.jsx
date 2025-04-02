@@ -88,6 +88,8 @@ export default function AllDoctors() {
     ? Math.ceil(sortedFilteredDoctors.length / itemsPerPage)
     : totalPages;
 
+  if (isLoading || isLoadingDepartments) return <Spinner />;
+
   return (
     <ContainerMain bgColor={"#D8E0EB"}>
       <Stack
