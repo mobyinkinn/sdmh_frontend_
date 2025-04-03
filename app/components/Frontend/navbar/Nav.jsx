@@ -76,6 +76,8 @@ export default function Navbar() {
     }
   }, []);
 
+  const filteredData = departmentData?.filter((el) => el.status === true) || [];
+
   if (isLoading || isDepartmentLoading || isLoadingDoctors) return <Spinner />;
   if (error) return <div>Error loading Navbar: {error.message}</div>;
 
@@ -350,7 +352,7 @@ export default function Navbar() {
                       spacing={0.5}
                     >
                       {el.name === "Center Of Excellence"
-                        ? departmentData.map((dept) => (
+                        ? filteredData.map((dept) => (
                             <a
                               key={dept._id}
                               href={`/center-of-excellence/${dept._id}`}
@@ -472,7 +474,7 @@ export default function Navbar() {
                     }}
                   >
                     {el.name === "Center Of Excellence"
-                      ? departmentData.map((department) => (
+                      ? filteredData.map((department) => (
                           <a
                             key={department._id}
                             href={`/center-of-excellence/${department._id}`}

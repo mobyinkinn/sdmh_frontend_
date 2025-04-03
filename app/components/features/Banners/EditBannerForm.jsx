@@ -7,6 +7,7 @@ import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
 import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
 import { FaEdit } from "react-icons/fa";
+import FileInput from "../../ui/FileInput";
 
 function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
   const { isUpdating, updateBanners } = useUpdateBanner();
@@ -91,68 +92,120 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
       </FormRow>
 
       <Stack>
-        <label>
+        <label htmlFor="banner-upload" style={{ display: "block" }}>
           Banner:
           <ImagePreviewContainer>
-            {editData.banner && (
-              <>
+            {editData?.banner ? (
+              <div style={{ position: "relative", display: "inline-block" }}>
                 <img
                   src={
                     typeof editData.banner === "string"
                       ? editData.banner
                       : URL.createObjectURL(editData.banner)
                   }
-                  alt="Preview"
+                  alt="Banner preview"
                   width={200}
                   height={110}
+                  style={{
+                    objectFit: "cover",
+                    borderRadius: "4px",
+                  }}
                 />
-                <div className="edit-icon">
-                  <label htmlFor="image-upload">
+                <div
+                  className="edit-icon"
+                  style={{
+                    position: "absolute",
+                    top: "8px",
+                    right: "8px",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    borderRadius: "4px",
+                    padding: "4px",
+                  }}
+                >
+                  <label
+                    htmlFor="banner-upload"
+                    style={{ cursor: "pointer", display: "flex" }}
+                    aria-label="Edit banner"
+                  >
                     <FaEdit size={16} />
                   </label>
                   <input
-                    id="image-upload"
+                    id="banner-upload"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={handleBannerChange}
                   />
                 </div>
-              </>
+              </div>
+            ) : (
+              <FileInput
+                id="banner-upload-fallback"
+                type="file"
+                accept="image/*"
+                onChange={handleBannerChange}
+                aria-label="Upload banner image"
+              />
             )}
           </ImagePreviewContainer>
         </label>
       </Stack>
 
       <Stack>
-        <label>
+        <label htmlFor="mobile-banner-upload" style={{ display: "block" }}>
           Mobile Banner:
           <ImagePreviewContainer>
-            {editData.mobileBanner && (
-              <>
+            {editData?.mobileBanner ? (
+              <div style={{ position: "relative", display: "inline-block" }}>
                 <img
                   src={
                     typeof editData.mobileBanner === "string"
                       ? editData.mobileBanner
                       : URL.createObjectURL(editData.mobileBanner)
                   }
-                  alt="Preview"
+                  alt="Mobile banner preview"
                   width={200}
                   height={110}
+                  style={{
+                    objectFit: "cover",
+                    borderRadius: "4px",
+                  }}
                 />
-                <div className="edit-icon">
-                  <label htmlFor="mobile-image-upload">
+                <div
+                  className="edit-icon"
+                  style={{
+                    position: "absolute",
+                    top: "8px",
+                    right: "8px",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    borderRadius: "4px",
+                    padding: "4px",
+                  }}
+                >
+                  <label
+                    htmlFor="mobile-banner-upload"
+                    style={{ cursor: "pointer", display: "flex" }}
+                    aria-label="Edit mobile banner"
+                  >
                     <FaEdit size={16} />
                   </label>
                   <input
-                    id="mobile-image-upload"
+                    id="mobile-banner-upload"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={handleMobileBannerChange}
                   />
                 </div>
-              </>
+              </div>
+            ) : (
+              <FileInput
+                id="mobile-banner-upload-fallback"
+                type="file"
+                accept="image/*"
+                onChange={handleMobileBannerChange}
+                aria-label="Upload mobile banner image"
+              />
             )}
           </ImagePreviewContainer>
         </label>
