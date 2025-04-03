@@ -1,4 +1,5 @@
-import { Stack } from "@mui/material";
+"use client";
+import { Box, Stack } from "@mui/material";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
 import BannerImage from "../patientTestimonial/parts/BannerImage";
@@ -6,12 +7,39 @@ import banner from "./parts/assets/bannerImage.png";
 import Hero from "./parts/Hero";
 import Enquire_Now from "./parts/Enquire_Now";
 import Reach from "./parts/Reach";
+import { useBannerByPage } from "../../admin/banner/parts/useBanner";
+import Spinner from "../../ui/Spinner";
 
 export default function SecondOpinion() {
+  const { data, isLoading: isLoadingBanner } =
+    useBannerByPage("second-opinion");
+  if (isLoadingBanner) return <Spinner />;
   return (
     <Stack>
       <Navbar />
-      <Hero />
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <Enquire_Now />
       <Reach />
       <Stack height={"90vh"} width="100%">
