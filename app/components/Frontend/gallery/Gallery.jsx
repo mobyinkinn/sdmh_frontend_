@@ -8,6 +8,7 @@ import TabData from "./assets/TabData";
 import { Box } from "@mui/material";
 import Spinner from "../../ui/Spinner";
 import { useBannerByPage } from "../../admin/banner/parts/useBanner";
+import Gallerychnage from "./assets/Gallery";
 
 const Gallery = () => {
   const { data, isLoading: isLoadingBanner } = useBannerByPage("gallery");
@@ -40,7 +41,7 @@ const Gallery = () => {
         }}
       ></Box>
       <TabData />
-      {/* <VirtualView/> */}
+     
       <Footer />
     </>
   );

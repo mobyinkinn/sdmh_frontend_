@@ -134,8 +134,8 @@ const VirtualView = () => {
     <div style={{ width: "100%", height: "60vh" }}>
       <Canvas>
         <OrbitControls
-          minDistance={100} // Minimum zoom-in distance
-          maxDistance={400} // Maximum zoom-out distance
+          minDistance={100} 
+          maxDistance={400} 
         />
         <mesh>
           <sphereGeometry args={[500, 60, 40]} />
