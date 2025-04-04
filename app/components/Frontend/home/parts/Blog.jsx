@@ -11,6 +11,7 @@ import {
 } from "@/app/styledComponents/frontend/Buttons";
 import { useBlogs } from "@/app/components/admin/blog/useBlogs";
 import Spinner from "@/app/components/ui/Spinner";
+import { useRouter } from "next/navigation";
 
 const blogData = [
   {
@@ -42,13 +43,15 @@ const blogData = [
 export default function Blog() {
   const { data, isLoading: loadingAllBlogs } = useBlogs();
   if (loadingAllBlogs) return <Spinner />;
-
+const router = useRouter();
   const filterFirstBlog = data.filter((el, index) => index === 0);
   const filteredRemainingBlog = data.filter((el, index) => index !== 0);
+console.log("filterFirstBlog", filterFirstBlog);
+console.log("filteredRemainingBlog", filteredRemainingBlog);
 
   return (
     <ContainerMain bgColor={"#276923"} alignItems="center">
-      <Head1 color="#FCF9C6">Blog</Head1>
+      <Head1 color="#FCF9C6">Blogs</Head1>
       <Typography
         width={"80%"}
         textAlign={"center"}
@@ -56,9 +59,8 @@ export default function Blog() {
         fontSize={"1.4rem"}
         display={{ md: "block", xs: "none" }}
       >
-        Providing Best Health Services With Expert Diagnoses & Treatment Plans
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
+        Read our health blogs to stay informed and updated on the latest in
+        medical care and wellness.
       </Typography>
       <Stack
         width={"100%"}
@@ -89,6 +91,13 @@ export default function Blog() {
             <Stack direction={"row"} gap={"10px"} justifyContent={"start"}>
               <ButtonSmallOutline color="#379237" hoverColor="white">
                 {filterFirstBlog[0].date}
+              </ButtonSmallOutline>
+              <ButtonSmallOutline
+                color="#379237"
+                hoverColor="white"
+                onClick={() => router.push(`/blog/${filterFirstBlog[0]._id}`)}
+              >
+                Read More
               </ButtonSmallOutline>
             </Stack>
           </Stack>
@@ -128,6 +137,7 @@ export default function Blog() {
       <Stack
         alignItems={{ xs: "center", md: "start" }}
         display={{ md: "flex", xs: "none" }}
+        onClick={() => router.push("/blog")}
       >
         <ButtonMediumOutline color="#fff" hcolor="white" hoverColor="black">
           View All
@@ -138,6 +148,7 @@ export default function Blog() {
 }
 
 function BlogCard({ el }) {
+  const router = useRouter()
   return (
     <Stack
       direction={"row"}
@@ -160,7 +171,11 @@ function BlogCard({ el }) {
         // height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "30vh" }}
         justifyContent={{ xs: "unset", lg: "space-evenly" }}
       >
-        <Typography align="left" fontSize={{ md: "1rem", xs: "0.7rem" }}>
+        <Typography
+          align="left"
+          fontSize={{ md: "1rem", xs: "0.7rem" }}
+          color="#266923"
+        >
           {el.title}
         </Typography>
         <Typography fontSize={{ md: "0.8rem", xs: "0.6rem" }}>
@@ -173,6 +188,13 @@ function BlogCard({ el }) {
         >
           <ButtonSmallOutline color="#379237" hoverColor="white">
             {el.date}
+          </ButtonSmallOutline>
+          <ButtonSmallOutline
+            color="#379237"
+            hoverColor="white"
+            onClick={() => router.push(`/blog/${el._id}`)}
+          >
+            Read More
           </ButtonSmallOutline>
         </Stack>
       </Stack>

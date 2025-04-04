@@ -75,7 +75,7 @@ export default function MobileFooter() {
 
   const footerData = [
     { name: "Quick links", links: quickLinks },
-    { name: "Center Of Excellence", links: centerOfExcellence },
+    { name: "Centre Of Excellence", links: centerOfExcellence },
     { name: "Donation", links: donation },
     { name: "Other Links", links: other },
   ];

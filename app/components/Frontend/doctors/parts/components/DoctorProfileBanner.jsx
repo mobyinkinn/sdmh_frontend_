@@ -185,11 +185,27 @@ export default function DoctorProfileBanner({ data }) {
             <ParaNormal color="white">{data?.designation}</ParaNormal>
             <ParaNormalSmall color="white"></ParaNormalSmall>
             <ParaNormalSmall color="white">
-              Department:{" "}
+             <span style={{ fontWeight: "bold" }}>  Department :{" "}</span>
               {departmentData?.find((dept) => dept._id === data?.department)
                 ?.name || "Not Available"}
               {/* Department: {data?.department} */}
             </ParaNormalSmall>
+            <Stack direction={"row"} gap={"20px"}>
+              <ParaNormalSmall color="white">
+                <span style={{ fontWeight: "bold" }}> Room </span>:{" "}
+                {data?.room || "-"}
+                {/* {departmentData?.find((dept) => dept._id === data?.department)
+                ?.name || "Not Available"} */}
+                {/* Department: {data?.department} */}
+              </ParaNormalSmall>
+              <ParaNormalSmall color="white">
+                <span style={{ fontWeight: "bold" }}>Floor </span> :{" "}
+                {data?.floor || "-"}
+                {/* {departmentData?.find((dept) => dept._id === data?.department)
+                ?.name || "Not Available"} */}
+                {/* Department: {data?.department} */}
+              </ParaNormalSmall>
+            </Stack>
             {/* <ParaNormalSmall color="white">
               Years of practice: {data?.experience}
             </ParaNormalSmall> */}

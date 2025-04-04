@@ -78,19 +78,19 @@ const coeData = [
 
 export default function Grid() {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 6; // Adjust as needed
+  // const itemsPerPage = 6; // Adjust as needed
 
   const { data, isLoading, error } = useDepartment();
   const filteredData = data?.filter((el) => el.status === true) || [];
 
   // Calculate total pages
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  // const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   // Get the data for the current page
-  const paginatedData = filteredData.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
+  // const paginatedData = filteredData.slice(
+  //   (page - 1) * itemsPerPage,
+  //   page * itemsPerPage
+  // );
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -110,7 +110,7 @@ export default function Grid() {
           color="black"
           fontSize={{ lg: "50px", md: "40px", smm: "30px", sm: "25px" }}
         >
-          Center of
+          Centre of
         </Head1>
         <Head1
           color="#005900"
@@ -127,13 +127,13 @@ export default function Grid() {
         justifyContent={"center"}
         marginTop={"20px"}
       >
-        {paginatedData.map((el) => (
+        {filteredData.map((el) => (
           <CoeCard key={el._id} el={el} />
         ))}
       </Stack>
 
       {/* Pagination Controls */}
-      <Stack direction="row" justifyContent="center" marginTop={4}>
+      {/* <Stack direction="row" justifyContent="center" marginTop={4}>
         <Pagination
           count={totalPages}
           page={page}
@@ -144,7 +144,7 @@ export default function Grid() {
           showLastButton
           size="large"
         />
-      </Stack>
+      </Stack> */}
     </ContainerMain>
   );
 }
@@ -171,7 +171,7 @@ function CoeCard({ el }) {
           <div>Image Unavailable</div>
         )}
       </Box>
-      <ParaNormal textAlign={{ lg: "left", sm: "center" }}>
+      <ParaNormal textAlign={{ lg: "center", sm: "center" }} color={"#005900"} fontWeight={'bold'}>
         {el.name}
       </ParaNormal>
       <ButtonSmallOutline
@@ -179,7 +179,7 @@ function CoeCard({ el }) {
         hoverColor="white"
         onClick={() => router.push(`/center-of-excellence/${el._id}`)}
       >
-        Read More
+        View More
       </ButtonSmallOutline>
     </Stack>
   );

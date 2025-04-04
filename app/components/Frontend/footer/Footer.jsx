@@ -140,7 +140,7 @@ export default function Footer() {
           justifyContent={"space-between"}
           display={{ sm: "none", smm: "none", md: "none" }}
         >
-          <Stack gap={"50px"} width={"20%"}>
+          <Stack gap={"10px"} width={"20%"}>
             <Stack
               sx={{
                 backgroundImage: `url(${logo.src})`,
@@ -160,7 +160,7 @@ export default function Footer() {
           <Stack gap={"50px"}>
             <Stack>
               <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
-                Center of Excellence
+                Centre of Excellence
               </ParaNormal>
               {centerOfExcellence.map((el, i) => {
                 return (

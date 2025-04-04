@@ -15,9 +15,9 @@ const filterData = [
   },
   {
     id: 1,
-    name: "Speciality",
+    name: "Second Opinion",
     icon: speciality,
-    link: "",
+    link: "second-opinion",
   },
   {
     id: 0,
@@ -68,8 +68,9 @@ export default function FilterSection() {
           <Stack
             width={"25%"}
             direction={"row"}
-            padding={{ lg: "40px", md: "30px" }}
+            padding={{ lg: "40px 0", md: "30px 0" }}
             alignItems={"center"}
+            justifyContent={"center"}
             gap={"10px"}
             key={i}
             sx={{

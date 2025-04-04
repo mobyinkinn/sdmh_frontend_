@@ -14,6 +14,7 @@ import cert from "../assets/cert.png";
 import { BorderTop } from "@mui/icons-material";
 import { useTestimonials } from "@/app/components/admin/testimonials/parts/useTestimonial";
 import Spinner from "@/app/components/ui/Spinner";
+import { IoStarSharp } from "react-icons/io5";
 
 const reviewData = [
   {
@@ -120,7 +121,14 @@ function ReviewCard({ el }) {
           {el.name}
         </Head3>
         <Typography fontSize={".9rem"} color={"#379237"}>
-          {el.designation ? el.designation : "Happy Customer"}
+          {"Happy Patient"}
+        </Typography>
+        <Typography>
+          <IoStarSharp color="#005901" />
+          <IoStarSharp color="#005901" />
+          <IoStarSharp color="#005901" />
+          <IoStarSharp color="#005901" />
+          <IoStarSharp color="#005901" />
         </Typography>
       </Stack>
     </Stack>

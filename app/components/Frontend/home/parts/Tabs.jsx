@@ -411,24 +411,26 @@ export default function Tabs() {
               >
                 <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
                   <Typography
-                    fontSize={"1.2rem"}
+                    fontSize={"1rem"}
                     textAlign={"center"}
                     color={"#379237"}
                     fontWeight={"bold"}
+                    height={"48px"}
                   >
                     {`${el.title ? el.title : ""} ${
                       el.name ? el.name : ""
-                    }`.slice(0, 20)}
-                    ...
+                    }`}
+                    
                   </Typography>
                   {!isTPA && (
                     <Typography
                       textAlign={"center"}
+                      fontSize={"0.8rem"}
                       dangerouslySetInnerHTML={{
                         __html: el.smallDescription
-                          .split(" ")
-                          .slice(0, 25)
-                          .join(" "),
+                          // .split(" ")
+                          // .slice(0, 15)
+                          // .join(" "),
                       }}
                     />
                   )}

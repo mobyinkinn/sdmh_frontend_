@@ -71,7 +71,7 @@ const TextArea = styled.textarea((props) => ({
   outline: "none",
   border: "1px solid #ddd",
   borderRadius: "30px",
-  padding: props.padding?.lg || "25px 55px",
+  padding: props.padding?.lg || "25px 25px",
   fontSize: "1.2rem",
   color: "#000",
   backgroundColor: props.bgColor,

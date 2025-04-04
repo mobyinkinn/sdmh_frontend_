@@ -93,11 +93,11 @@
 .set ul,
 .set ol  {
     padding: 0;
+    column-gap: 150px;
     list-style: none; /* Remove default bullets */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     counter-reset: li-counter; /* Reset counter */
 }
 
@@ -105,7 +105,7 @@
 .set ol li {
     display: flex;
     font-size: 18px;
-    width: 45%;  /* Slightly wider for breathing space */
+    width: 37%;  /* Slightly wider for breathing space */
     align-items: center;
     gap: 15px; 
     margin-bottom: 12px;
@@ -169,3 +169,6 @@
         font-size: 12px;
     }
 }
+
+
+

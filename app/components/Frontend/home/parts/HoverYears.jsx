@@ -55,6 +55,7 @@ const HoverYears = () => {
           Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai ",
         },
         { img: img1 },
+        { height: "50vh" },
       ],
     },
     {
@@ -65,6 +66,7 @@ const HoverYears = () => {
           Desc: "As the modest beginning, a diagnostic clinic was established in front of SMS Hospital.",
         },
         { img: img2 },
+        { height: "40vh" },
       ],
     },
     {
@@ -75,6 +77,7 @@ const HoverYears = () => {
           Desc: "The trust started a Nursing Home with only three specialties.",
         },
         { img: img3 },
+        { height: "45vh" },
       ],
     },
     {
@@ -85,6 +88,7 @@ const HoverYears = () => {
           Desc: "Santokba Durlabhji Memorial Hospital, the institute that redefined healthcare in Rajasthan was inaugurated with only six specialties and 70 beds by then Prime Minister Smt. Indira Gandhi.",
         },
         { img: img4 },
+        { height: "40vh" },
       ],
     },
     {
@@ -95,6 +99,7 @@ const HoverYears = () => {
           Desc: "Santokba Durlabhji School of Nursing was founded to train Florence Nightingales of future. The school helped provide quality Nursing Care in the hospital.",
         },
         { img: img5 },
+        { height: "40vh" },
       ],
     },
     {
@@ -105,6 +110,7 @@ const HoverYears = () => {
           Desc: "The Department of Rehabilitation Aids and Limb Fitting Centre was founded in SDMH by Dr. P. K. Sethi, the founder of Jaipur Foot.",
         },
         { img: img6 },
+        { height: "40vh" },
       ],
     },
     {
@@ -115,6 +121,7 @@ const HoverYears = () => {
           Desc: "One of the few hospices in the country, Avedna Ashram was started in SDMH to help provide free care and accommodation to the terminally ill",
         },
         { img: img7 },
+        { height: "40vh" },
       ],
     },
     {
@@ -125,6 +132,7 @@ const HoverYears = () => {
           Desc: "2008 – NABL Accreditation SDMH Laboratories were among the first to be recognized by NABL for it high standards.",
         },
         { img: img8 },
+        { height: "40vh" },
       ],
     },
     {
@@ -135,6 +143,7 @@ const HoverYears = () => {
           Desc: "The only dedicated OPD building of the state, Rashmikant Durlabhji Medi Centre, was started.",
         },
         { img: img9 },
+        { height: "40vh" },
       ],
     },
     {
@@ -145,6 +154,7 @@ const HoverYears = () => {
           Desc: "The hospital received NABH Accreditation, an accreditation provided by Quality Council of India certifying the adherence to standard protocols for quality care to patients.",
         },
         { img: img10 },
+        { height: "40vh" },
       ],
     },
     {
@@ -155,6 +165,7 @@ const HoverYears = () => {
           Desc: "SDMH started its new Emergency Wing with an enhanced number of beds and improve infrastructure to cater to any medical emergency.",
         },
         { img: img11 },
+        { height: "40vh" },
       ],
     },
     {
@@ -165,6 +176,7 @@ const HoverYears = () => {
           Desc: "In addition to the Outreach Services, SDMH also started Free OPD Clinic, one of the very few clinics in the state to provide quality medical service to the weaker section of society at no cost to them",
         },
         { img: img12 },
+        { height: "40vh" },
       ],
     },
     {
@@ -185,6 +197,7 @@ const HoverYears = () => {
           Desc: "SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore. https://youtu.be/vX1_m9or5cs",
         },
         { img: img14 },
+        { height: "40vh" },
       ],
     },
     {
@@ -195,6 +208,7 @@ const HoverYears = () => {
           Desc: "SDMH, the biggest and oldest private hospital of the state, added another feather in its cap today when it introduced its own IPD pharmacy services named ‘SDMH Pharmacy’ on Ground, 3rd and 4th floor. The pharmacy services shall function 24 x7 to provide the quality medicine at reasonable prices. Bedside medicine delivery to admitted patients will provide comfort to patient’s attendants during the tough time.",
         },
         { img: img15 },
+        { height: "40vh" },
       ],
     },
   ];
@@ -332,8 +346,11 @@ const HoverYears = () => {
               </Typography>
               <Typography fontWeight={"bold"}>{el.Title}</Typography>
               <Typography>{el.Desc}</Typography>
+              {console.log("el.height:", el.height)}
               <Box>
+{console.log("el:", el)} 
                 {el.img && (
+                  
                   <Box
                     mt={2}
                     sx={{
@@ -345,7 +362,7 @@ const HoverYears = () => {
                         xs: "121px",
                         md: "142px",
                         lg: "340px",
-                        xl: "35vh",
+                        xl: el.height,
                       },
                     }}
                   ></Box>

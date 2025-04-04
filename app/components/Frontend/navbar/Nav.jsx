@@ -1,5 +1,5 @@
 "use client";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
@@ -29,7 +29,7 @@ import { useRouter } from "next/navigation";
 
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
-  { id: 0, name: "Center Of Excellence", link: "center-of-excellence" },
+  { id: 0, name: "Centre Of Excellence", link: "center-of-excellence" },
   { id: 0, name: "Patient Care & Service", link: "patients" },
   { id: 0, name: "Appointment", link: "appointment" },
   { id: 0, name: "Academics", link: "academics/academics-deanery" },
@@ -82,7 +82,7 @@ export default function Navbar() {
   if (error) return <div>Error loading Navbar: {error.message}</div>;
 
   const filteredDoctors =
-    searchTerm.length >= 3
+    searchTerm.length >= 2
       ? doctorsData.filter((doc) =>
           doc.name.toLowerCase().includes(searchTerm.toLowerCase())
         )
@@ -105,10 +105,44 @@ export default function Navbar() {
             gap={"10px"}
             sx={{ display: { sm: "none", lg: "flex" } }}
           >
-            <FaFacebookF />
-            <FaYoutube />
-            <FaXTwitter />
-            <AiFillInstagram />
+            <a
+              href={
+                "https://www.facebook.com/santokbadurlabhji?mibextid=ZbWKwL"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <FaFacebookF style={{ color: "white" }} />
+            </a>
+            <a
+              href={"https://youtube.com/@SDMHCARE"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <FaYoutube style={{ color: "white" }} />
+            </a>
+            <a
+              href={
+                "https://in.linkedin.com/company/santokba-durlabhji-memorial-hospital-jaipur"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <FaLinkedinIn style={{ color: "white" }} />
+            </a>
+            <a
+              href={
+                "https://www.instagram.com/sdmhjaipur?igsh=OHVvMGFhd3hwMjBy"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <AiFillInstagram style={{ color: "white" }} />
+            </a>
           </Stack>
           <Stack direction={"row"} gap={"25px"}>
             <Typography
@@ -164,7 +198,7 @@ export default function Navbar() {
                   smm: "150px",
                   md: "195px",
                   lg: "170px",
-                  xl: "195px",
+                  xl: "185px",
                 },
                 height: {
                   xs: "38px",
@@ -196,7 +230,7 @@ export default function Navbar() {
               </Stack>
 
               {/** Search Doctor Dropdown */}
-              {searchTerm.length >= 3 && (
+              {searchTerm.length >= 2 && (
                 <Stack
                   position="absolute"
                   top="100%"
@@ -237,6 +271,7 @@ export default function Navbar() {
                     >
                       <Typography
                         sx={{
+                          textTransform:"capitalize",
                           width: "200px",
                           color: "black",
                           fontSize: "0.9rem",
@@ -330,7 +365,7 @@ export default function Navbar() {
                     </Typography>
                   </a>
                   {(el.items.length > 0 ||
-                    el.name === "Center Of Excellence") && (
+                    el.name === "Centre Of Excellence") && (
                     <IoIosArrowDown
                       style={{
                         transform:

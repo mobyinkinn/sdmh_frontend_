@@ -111,7 +111,7 @@
 
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
+import { Head1, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import {
   ParaNormal,
   ParaNormalSmall,
@@ -141,6 +141,12 @@ export default function Doctors({ _id }) {
       justifyContent={"center"}
       marginTop={{ md: "50px", xs: "15px" }}
     >
+      <Head1
+        textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
+        color="#005900"
+      >
+        Meet Our Experts in the Department
+      </Head1>
       {data?.map((el, i) => {
         return (
           <Stack

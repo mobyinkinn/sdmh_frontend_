@@ -6,8 +6,10 @@ import img from "../assets/mobile.png";
 import play from "../assets/icons/googlePlay.png";
 import app from "../assets/icons/appStore.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function MobileApp() {
+  const router = useRouter();
   return (
     <ContainerMain
       flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
@@ -48,7 +50,13 @@ export default function MobileApp() {
             direction={"row"}
             height={{ md: "20vh", xs: "5vh" }}
             width={{ md: "40%", xs: "50%" }}
+            onClick={() =>
+              router.push(
+                "https://apps.apple.com/in/app/santokba-durlabhji-patient-app/id6740079657"
+              )
+            }
             sx={{
+              cursor: "pointer",
               backgroundImage: `url(${app.src})`,
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
@@ -59,7 +67,13 @@ export default function MobileApp() {
             direction={"row"}
             height={{ md: "20vh", xs: "5vh" }}
             width={{ md: "40%", xs: "50%" }}
+            onClick={() =>
+              router.push(
+                "https://play.google.com/store/apps/details?id=com.sdmh_patient_app"
+              )
+            }
             sx={{
+              cursor: "pointer",
               backgroundImage: `url(${play.src})`,
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",

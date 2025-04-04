@@ -7,15 +7,22 @@ import book from "../assets/icons/book.png";
 import consult from "../assets/icons/consult.png";
 import lab from "../assets/icons/lab.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const todoData = [
-  { id: 0, title: "Book Appointment", icon: appointment },
-  { id: 1, title: "Book Health Check-up", icon: book },
-  { id: 2, title: "Consult Online", icon: consult },
-  { id: 3, title: "Lab Report", icon: lab },
+  { id: 0, title: "Book Appointment", icon: appointment, link: "" },
+  { id: 1, title: "Book Health Check-up", icon: book, link: "health-checkup" },
+  { id: 2, title: "Consult Online", icon: consult, link: "" },
+  {
+    id: 3,
+    title: "Lab Report",
+    icon: lab,
+    link: "https://www.sdmh.in/patientlogin/",
+  },
 ];
 
 export default function Todo() {
+  const router = useRouter();
   return (
     <ContainerMain bgColor={"#8EA5C3"}>
       <Stack direction={{ xs: "column", lg: "row" }} justifyContent={"center"}>
@@ -33,6 +40,7 @@ export default function Todo() {
         {todoData.map((el, i) => {
           return (
             <Stack
+            sx={{cursor:"pointer"}}
               key={i}
               backgroundColor={"white"}
               borderRadius={"10px"}
@@ -42,6 +50,7 @@ export default function Todo() {
               height={"180px"}
               gap={{ md: "20px", xs: "5px" }}
               justifyContent={"center"}
+              onClick={() => router.push(`${el.link}`)}
             >
               <Image src={el.icon} width={60} height={60} alt="" />
               <Typography

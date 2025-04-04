@@ -126,14 +126,14 @@ export default function DetailsHero({ data, isLoading }) {
     <Stack>
       <Head1
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
-        color="black"
+        color="#486c9c"
       >
         {data?.name}
       </Head1>
 
       <Box
         display={{ md: "flex", sm: "none" }}
-        minHeight={{ md: "276px", lg: "386px", xl: "557px", xxxl:"730px" }}
+        minHeight={{ md: "276px", lg: "386px", xl: "557px", xxxl: "730px" }}
         sx={{
           backgroundImage: `url(${data?.bannerImage})`,
           backgroundSize: "cover",

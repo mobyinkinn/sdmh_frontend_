@@ -5,17 +5,17 @@ import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1, Head2, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { Stack, Typography } from "@mui/material";
 import CountUp from "react-countup";
-import aids from "../assets/icons/aids.png";
-import findDoctor from "../assets/icons/findDoctor.png";
-import robot from "../assets/icons/robot.png";
-import liver from "../assets/icons/liver.png";
+import aids from "../assets/icons/Heart.png";
+import findDoctor from "../assets/icons/Baby.png";
+import robot from "../assets/icons/Patients.png";
+import liver from "../assets/icons/Blood-Drops.png";
 import Image from "next/image";
 
 const achievementData = [
-  { id: 0, count: 21022, data: "Complex Cancer Surgeries", img: aids },
-  { id: 1, count: 410, data: "Doctors From All Departments", img: findDoctor },
-  { id: 2, count: 283, data: "Liver Transplants", img: liver },
-  { id: 3, count: 3615, data: "Robotic Surgeries", img: robot },
+  { id: 0, count: 7, suffix:" Million+", data: "⁠Lives Touched", img: aids },
+  { id: 1, count: 35000,suffix:" +", data: "Births", img: findDoctor },
+  { id: 2, count: 4,suffix:" Lac+", data: "Blood Units Processed", img: liver },
+  { id: 3, count: 2.5,suffix:" Lac+", data: "⁠Rural Camp Patient", img: robot },
 ];
 
 export default function () {
@@ -41,12 +41,12 @@ export default function () {
         {achievementData.map((el, i) => {
           return (
             <Stack key={i} gap={"10px"} alignItems={"center"} width={"20%"}>
-              <Image src={el.img} alt="" height={70} width={70} />
+              <Image src={el.img} alt="" height={100} width={100} style={{color:"white"}} />
               <CountUp
                 start={0}
                 end={el.count}
                 duration={2}
-                suffix="+"
+                suffix={el.suffix}
                 useEasing
                 enableScrollSpy
               >

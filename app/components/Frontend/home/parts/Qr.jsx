@@ -1,7 +1,7 @@
 "use client";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { IoIosSend } from "react-icons/io";
-import qr from "../assets/icons/qr.png";
+import qr from "../assets/icons/qrwhite.png";
 import {
   Head1,
   Head2,
@@ -48,8 +48,8 @@ export default function Qr() {
           textAlign={"center"}
           width={{ md: "70%", xs: "90%" }}
         >
-          The point of using Lorem Ipsum is that more-or-less normal
-          distribution.
+          Stay informed with expert health tips and hospital updates—join our
+          newsletter today.
         </Typography>
 
         <TextField
@@ -90,9 +90,11 @@ export default function Qr() {
         gap="15px"
         alignItems={"center"}
       >
-        <Image src={qr} alt="" width={200} height={200} style={{}} />
+        <Stack sx={{bgcolor:"#005901", padding:"40px", borderRadius:"20px"}}>
+          <Image src={qr} alt="" width={200} height={200} style={{}} />
+        </Stack>
         <Stack gap="5px" alignItems={"center"}>
-          <Head4 color="black">Scan Qr</Head4>
+          <Head4 color="black">Scan QR</Head4>
           <Head1>Share Your Feedback</Head1>
         </Stack>
       </Stack>
