@@ -12,7 +12,7 @@ export default function CareCard({ el, type }) {
       bgColor={type === "white" && "white"}
       border={type === "white" ? "none" : "1px solid rgba(45, 45, 45, 0.5)"}
     >
-      <Stack width={{ md: "70%" }} gap={"20px"}>
+      <Stack width={{ md: "50%" }} gap={"20px"}>
         <Head3 color="black" textAlign="left">
           {el.title}
         </Head3>
@@ -28,7 +28,7 @@ export default function CareCard({ el, type }) {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           height: "80vh",
-          width: { md: "30%", xs: "100%" },
+          width: { md: "50%", xs: "100%" },
           borderRadius: "10px",
         }}
       ></Stack>

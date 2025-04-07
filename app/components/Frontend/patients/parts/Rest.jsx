@@ -41,8 +41,10 @@ const restData = [
     title: "Sarvdharm Temple",
     img: temple,
     data: [
-      "Sarvdharm Temple is located near waiting area outside IPD.",
-      "The temple is open from 6 am to 8 pm every day.",
+      `Sarv Dharm Temple – A Sanctuary of Unity and Faith
+In the heart of SDMH stands a sanctuary of hope – the Sarv Dharm Temple, a place where prayers transcend boundaries, offering solace to patients and their families. SDMH recognizes that healing is not only physical but spiritual, and during times of uncertainty, faith often becomes the strongest anchor.
+To honor the diverse beliefs of those we serve, SDMH has created prayer spaces for all religions – a temple, namaz area, and church – reflecting the unity and cultural richness of our nation. During festivals, these spaces light up with vibrant celebrations, bringing together people from all walks of life in shared faith and solidarity.
+This sacred space within our “Temple of Healing” reminds us that, while doctors and nurses work tirelessly, it is often the power of prayer that uplifts the spirits of those facing hardship.`,
     ],
   },
   {

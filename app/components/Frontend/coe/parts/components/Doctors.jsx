@@ -147,113 +147,129 @@ export default function Doctors({ _id }) {
       >
         Meet Our Experts in the Department
       </Head1>
-      {data?.map((el, i) => {
-        return (
-          <Stack
-            key={i}
-            height={{
-              xl: "750px",
-              lg: "700px",
-              md: "600px",
-              sm: "550px",
-              xs: "600px",
-            }}
-            width={{ lg: "30%", md: "46%", xs: "100%" }}
-            sx={{ borderRadius: "15px", overflow: "hidden" }}
-          >
-            <Box
-              height={{ xl: "50%", lg: "25%", md: "25%", xs: "30%" }}
-              backgroundColor={"#8EA5C3"}
-              width={"100%"}
-              position={"relative"}
-            >
-              <Image
-                src={el.image}
-                alt="Doctor Image"
-                fill
-                objectFit="contain"
-                objectPosition="center bottom"
-              />
-            </Box>
-            <Stack
-              padding={{ lg: "20px 35px", md: "15px 25px", xs: "10px 15px" }}
-              gap={"10px"}
-              sx={{
-                cursor: "pointer",
-                backgroundColor: "white",
-                borderRadius: "0 0 15px 15px",
-              }}
-            >
-              <Head3 textAlign={"left"} color="black">
-                {el.name}
-              </Head3>
-              <Head4 textAlign={"left"} fontWeight={"400"}>
-                {el.designation}
-              </Head4>
-              <Stack>
-                <ParaNormal fontWeight={"bold"}>Department</ParaNormal>
-                <ParaNormalSmall>
-                  {departments?.find((dept) => dept._id === el.department)
-                    ?.name || "Not Available"}
-                  {/* {el.department} */}
-                </ParaNormalSmall>
-              </Stack>
-              <Stack>
-                <ParaNormal fontWeight={"bold"}>About</ParaNormal>
-                <ParaNormalSmall
-                  dangerouslySetInnerHTML={{
-                    __html: el.about.slice(0, 150),
-                  }}
-                />
-              </Stack>
+     {data?.map((el, i) => {
+             return (
+               <Stack
+                 key={i}
+                 width={{ lg: "30%", md: "46%", xs: "100%" }}
+                 sx={{ borderRadius: "15px", overflow: "hidden" }}
+               >
+                 <Box
+                   height={{
+                     xl: "227px",
+                     lg: "175px",
+                     md: "175px",
+                     xs: "165px",
+                   }}
+                   backgroundColor={"#8EA5C3"}
+                   width={"100%"}
+                   position={"relative"}
+                 >
+                   <Image
+                     src={el.image}
+                     alt="Doctor Image"
+                     fill
+                     objectFit="contain"
+                     objectPosition="center bottom"
+                   />
+                 </Box>
+                 <Stack
+                   height={{ md: "450px", lg: "505px", xl: "460px" }}
+                   padding={{
+                     lg: "20px 35px",
+                     md: "15px 25px",
+                     xs: "10px 15px",
+                   }}
+                   gap={"10px"}
+                   sx={{
+                     cursor: "pointer",
+                     backgroundColor: "white",
+                     borderRadius: "0 0 15px 15px",
+                     justifyContent: "space-evenly",
+                   }}
+                 >
+                   <Head3
+                     fontSize={{ sm: "", smm: "", md: "1.3rem", lg: "1.3rem" }}
+                     textAlign={"left"}
+                     color="#486c9c"
+                   >
+                     {el.name}
+                   </Head3>
+                   <Head4
+                     textAlign={"left"}
+                     fontWeight={"400"}
+                     fontSize={{ sm: "", smm: "", md: "1.3rem", lg: "1rem" }}
+                   >
+                     {el.designation}
+                   </Head4>
+                   <Stack>
+                     <ParaNormal fontWeight={"bold"} color={"#486c9c"}>
+                       Department
+                     </ParaNormal>
+                     <ParaNormalSmall>
+                       {departments?.find((dept) => dept._id === el.department)
+                         ?.name || "Not Available"}
+                       {/* {el.department} */}
+                     </ParaNormalSmall>
+                   </Stack>
+                   <Stack>
+                     <ParaNormal fontWeight={"bold"} color={"#486c9c"}>
+                       About
+                     </ParaNormal>
+                     <ParaNormalSmall
+                       dangerouslySetInnerHTML={{
+                         __html: el.about.slice(0, 150),
+                       }}
+                     />
+                   </Stack>
 
-              {/* Availability Section */}
-              <Stack>
-                <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
-                  {days.map((day, i) => (
-                    <Stack>
-                      <ButtonVerySmallOutline
-                        key={i}
-                        color={el.availablity?.[day] ? "white" : "#379237"}
-                        bgColor={
-                          el.availablity?.[day] ? "#379237" : "transparent"
-                        }
-                      >
-                        {day}
-                      </ButtonVerySmallOutline>
-                      <Typography
-                        fontSize={"8px"}
-                        color={"black"}
-                        textAlign={"center"}
-                      >
-                        {el.availablity?.[day] || "-"}
-                      </Typography>
-                    </Stack>
-                  ))}
-                </Stack>
-              </Stack>
+                   {/* Availability Section */}
+                   <Stack>
+                     <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
+                       {days.map((day, i) => (
+                         <Stack>
+                           <ButtonVerySmallOutline
+                             key={i}
+                             color={el.availablity?.[day] ? "white" : "#379237"}
+                             bgColor={
+                               el.availablity?.[day] ? "#379237" : "transparent"
+                             }
+                           >
+                             {day}
+                           </ButtonVerySmallOutline>
+                           <Typography
+                             fontSize={"8px"}
+                             color={"black"}
+                             textAlign={"center"}
+                           >
+                             {el.availablity?.[day] || "-"}
+                           </Typography>
+                         </Stack>
+                       ))}
+                     </Stack>
+                   </Stack>
 
-              <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
-                <ButtonSmallOutline
-                  padding={"10px 20px"}
-                  color={"#379237"}
-                  hoverColor={"#fff"}
-                >
-                  Appointment
-                </ButtonSmallOutline>
-                <ButtonSmallOutline
-                  color={"#000000"}
-                  padding={"10px 20px"}
-                  hoverColor={"#fff"}
-                  onClick={() => router.push(`/find-a-doctor/${el._id}`)}
-                >
-                  View Profile
-                </ButtonSmallOutline>
-              </Stack>
-            </Stack>
-          </Stack>
-        );
-      })}
+                   <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
+                     <ButtonSmallOutline
+                       padding={"8px 10px"}
+                       color={"#379237"}
+                       hoverColor={"#fff"}
+                     >
+                       Appointment
+                     </ButtonSmallOutline>
+                     <ButtonSmallOutline
+                       color={"#486c9c"}
+                       padding={"8px 10px"}
+                       hoverColor={"#fff"}
+                       onClick={() => router.push(`/find-a-doctor/${el._id}`)}
+                     >
+                       View Profile
+                     </ButtonSmallOutline>
+                   </Stack>
+                 </Stack>
+               </Stack>
+             );
+           })}
     </Stack>
   );
 }

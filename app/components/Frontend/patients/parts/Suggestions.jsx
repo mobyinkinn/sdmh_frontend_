@@ -14,7 +14,7 @@ export default function Suggestions() {
       flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
     >
       <Stack width={{ md: "70%" }} gap={"5px"}>
-        <Head1 color="white" textAlign="left">
+        <Head1 color="white" textAlign={{lg:"left"}}>
           Your suggestions are welcome at
         </Head1>
         <ParaNormal color="white">

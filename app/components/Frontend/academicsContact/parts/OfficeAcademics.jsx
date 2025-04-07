@@ -12,20 +12,17 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 const OfficeAcademics = () => {
   const data = [
     {
-      icon: SlLocationPin,
-      text: "Santokba Durlabhji Memorial Hospital, Bhawani Singh Marg, Rambagh Circle, 302015",
-    },
-    {
       icon: MdOutlineWifiCalling3,
-      text: "0141-2566251-58",
+      text: "0141-2566251-58 (378)",
     },
+
     {
       icon: HiOutlineMailOpen,
       text: "info@sdmh.in",
     },
     {
-      icon: RiHome4Line,
-      text: "378",
+      icon: SlLocationPin,
+      text: "Santokba Durlabhji Memorial Hospital, Bhawani Singh Marg, Rambagh Circle, 302015",
     },
   ];
   return (
@@ -56,6 +53,7 @@ const OfficeAcademics = () => {
           width={"65%"}
           flexWrap={"wrap"}
           direction={"row"}
+          justifyContent={"center"}
           position={"absolute"}
           bottom={100}
           borderRadius={2}
@@ -72,7 +70,7 @@ const OfficeAcademics = () => {
               <Stack bgcolor={"#007946"} p={"18px"} borderRadius={2}>
                 <d.icon size={60} color="white" />
               </Stack>
-              <ParaNormal>{d.text}</ParaNormal>
+              <ParaNormal textAlign={{lg:"center"}}>{d.text}</ParaNormal>
             </Stack>
           ))}
         </Stack>

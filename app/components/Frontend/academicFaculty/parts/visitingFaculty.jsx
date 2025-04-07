@@ -98,7 +98,7 @@ const visitingFaculty = () => {
           display={{ xs: "none", md: "flex" }}
           position="relative"
         >
-          <Slider ref={TwosliderRef} {...lg_Settings}>
+          <Slider ref={TwosliderRef} {...lg_Settings} >
             {Faculty.map((d, i) => (
               <LgSlider key={i} d={d} />
             ))}
@@ -108,8 +108,8 @@ const visitingFaculty = () => {
             direction="row"
             gap="10px"
             position="absolute"
-            bottom="50%"
-            left="9%"
+            top="0%"
+            right="9%"
             zIndex={1}
           >
             <Stack
@@ -137,8 +137,8 @@ const visitingFaculty = () => {
             direction="row"
             gap="10px"
             position="absolute"
-            bottom="50%"
-            right="9%"
+            top="0%"
+            right="5%"
             zIndex={1}
           >
             <Stack
@@ -181,8 +181,8 @@ const visitingFaculty = () => {
             direction="row"
             gap="10px"
             position="absolute"
-            bottom="50%"
-            left="9%"
+            top="0%"
+            right="9%"
             zIndex={1}
           >
             <Stack
@@ -210,8 +210,8 @@ const visitingFaculty = () => {
             direction="row"
             gap="10px"
             position="absolute"
-            bottom="50%"
-            right="9%"
+            bottom="0%"
+            right="5%"
             zIndex={1}
           >
             <Stack
@@ -282,6 +282,54 @@ const visitingFaculty = () => {
             continue this collaboration with Dr. McKee and the GMNC, University
             of Manchester, UK.
           </ParaNormalSmall>
+        </Stack>
+      </ContainerMain>
+      <ContainerMain flexDirection={{ lg: "row", sm: "column-reverse" }}>
+        <Stack
+          width={{ lg: "60%", sm: "100%" }}
+          gap={"10px"}
+          alignItems={"center"}
+        >
+          <Head1
+            textAlign="left"
+            color="black"
+            fontSize={{ lg: "1.8rem", sm: "1.2rem" }}
+          >
+            Dr. Ed Wilkins
+          </Head1>
+          <ParaNormalSmall textAlign={"center"} width={"90%"}>
+            The Santokba Durlabhji Institute of Neurosciences (SDIN) and
+            Santokba Durlabhji Memorial Hospital (SDMH) express their gratitude
+            to Dr. Edmund Wilkins, Senior Consultant and renowned infectious
+            diseases specialist at North Manchester General Hospital, NHS Trust,
+            United Kingdom. Dr. Wilkins had trained in infectious diseases in
+            UK, tropical medicine in Africa, clinical microbiology and virology
+            with the UK health Protection Agency. Dr. Edmund Wilkins has
+            extensive teaching experience and has many national and
+            international papers to his credit. Dr. Wilkins delivered a guest
+            lecture on Tuberculosis and Immune Reconstitution Inflammatory
+            Syndrome (IRIS) on 10 th October, 2016 Monday at 8.30 p.m. at Hotel
+            Country Inn, Khasa Kothi Circle, Jaipur Rajasthan. During the rest
+            of the week, Dr. Wilkins kindly conducted teaching ward rounds, took
+            teaching classes of Department of Pediatrics and visited various
+            department facilities at SDMH. The Academics Office SDMH and faculty
+            of SDIN remain beholden to Dr. Wilkins for having readily given SDMH
+            so much of his valuable time. We hope to continue this collaboration
+            with Dr. Wilkins and the GMNC, University of Manchester, UK.
+          </ParaNormalSmall>
+        </Stack>
+        <Stack
+          position="relative"
+          height={"40vh"}
+          width={{ lg: "40%", sm: "100%" }}
+        >
+          <Image
+            src={oldMan}
+            alt=""
+            fill
+            objectFit="contain"
+            objectPosition="center center"
+          />
         </Stack>
       </ContainerMain>
     </Stack>

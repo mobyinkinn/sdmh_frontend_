@@ -10,9 +10,8 @@ import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 import Spinner from "../../ui/Spinner";
 
 export default function Donation() {
-  const { data, isLoading: isLoadingBanner } = useBannerByPage(
-    "support a cause avedna ashram"
-  );
+  const { data, isLoading: isLoadingBanner } =
+    useBannerByPage("Help Little Hearts");
   if (isLoadingBanner) return <Spinner />;
   return (
     <Stack>

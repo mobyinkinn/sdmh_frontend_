@@ -542,7 +542,7 @@ export default function Doctors({ data, departments }) {
               <Head3
                 fontSize={{ sm: "", smm: "", md: "1.3rem", lg: "1.6rem" }}
                 textAlign={"left"}
-                color="black"
+                color="#486c9c"
               >
                 {el.name}
               </Head3>
@@ -550,7 +550,9 @@ export default function Doctors({ data, departments }) {
                 {el.designation}
               </Head4>
               <Stack>
-                <ParaNormal fontWeight={"bold"}>Department</ParaNormal>
+                <ParaNormal fontWeight={"bold"} color={"#486c9c"}>
+                  Department
+                </ParaNormal>
                 <ParaNormalSmall>
                   {departments?.find((dept) => dept._id === el.department)
                     ?.name || "Not Available"}
@@ -558,7 +560,9 @@ export default function Doctors({ data, departments }) {
                 </ParaNormalSmall>
               </Stack>
               <Stack>
-                <ParaNormal fontWeight={"bold"}>About</ParaNormal>
+                <ParaNormal fontWeight={"bold"} color={"#486c9c"}>
+                  About
+                </ParaNormal>
                 <ParaNormalSmall
                   dangerouslySetInnerHTML={{
                     __html: el.about.slice(0, 150),
@@ -601,7 +605,7 @@ export default function Doctors({ data, departments }) {
                   Appointment
                 </ButtonSmallOutline>
                 <ButtonSmallOutline
-                  color={"#000000"}
+                  color={"#486c9c"}
                   padding={"8px 10px"}
                   hoverColor={"#fff"}
                   onClick={() => router.push(`/find-a-doctor/${el._id}`)}

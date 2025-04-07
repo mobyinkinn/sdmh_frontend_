@@ -14,16 +14,36 @@ import CardScroll from "./parts/CardsScroll";
 import TabData from "./parts/TabData";
 import ThreeLineSlider from "./parts/ThreeLineSlider";
 import NavbarAdminVerticle from "@/app/components/admin/navbarAdmin/NavbarAdminVerticle";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 export default function Patients() {
   const sectionsRef = {
     tabData: useRef(null),
-    threeLineSlider: useRef(null),
-    policy: useRef(null),
+    admission: useRef(null),
+    discharge: useRef(null),
     rest: useRef(null),
+    threeLineSlider: useRef(null),
+    loungeAttendants: useRef(null),
+    atmWithdrawal: useRef(null),
+    policy: useRef(null),
+    vishram: useRef(null),
     suggestions: useRef(null),
   };
+const setAdmissionAndDischargeRef = useCallback((node) => {
+  if (node) {
+    sectionsRef.tabData.current = node;
+    sectionsRef.admission.current = node;
+    sectionsRef.discharge.current = node;
+    sectionsRef.rest.current = node;
+  }
+}, []);
+const setSecondSection = useCallback((node) => {
+  if (node) {
+    sectionsRef.threeLineSlider.current = node;
+    sectionsRef.loungeAttendants.current = node;
+    sectionsRef.atmWithdrawal.current = node;
+  }
+}, []);
 
   return (
     <Stack>
@@ -31,16 +51,16 @@ export default function Patients() {
       <Hero sectionsRef={sectionsRef} />
 
       {/* Sections with refs */}
-      <div ref={sectionsRef.tabData}>
+      <div ref={setAdmissionAndDischargeRef}>
         <TabData />
       </div>
-      <div ref={sectionsRef.threeLineSlider}>
+      <div ref={setSecondSection}>
         <ThreeLineSlider />
       </div>
       <div ref={sectionsRef.policy}>
         <Policy />
       </div>
-      <div ref={sectionsRef.rest}>
+      <div ref={sectionsRef.vishram}>
         <Rest />
       </div>
       <div ref={sectionsRef.suggestions}>

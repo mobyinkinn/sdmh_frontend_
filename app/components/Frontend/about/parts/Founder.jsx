@@ -8,7 +8,7 @@ const Founder = forwardRef((props, ref) => {
   return (
     <ContainerMain
       ref={ref}
-      flexDirection={{ md: "row", smm: "column", sm: "column" }}
+      flexDirection={{lg:"row", md: "row", smm: "column", sm: "column" }}
       bgColor="#276923"
       alignItems={"center"}
       padding={{

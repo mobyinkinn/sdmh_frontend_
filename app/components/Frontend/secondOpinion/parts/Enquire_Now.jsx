@@ -16,6 +16,8 @@ import {
 import { useCreateOpinion } from "@/app/components/admin/opinions/useOpinions";
 import FileInput from "./FileInput";
 import Spinner from "@/app/components/ui/Spinner";
+import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
+import FormRow from "@/app/components/ui/FormRow";
 
 const Enquire_Now = () => {
   const { register, handleSubmit, reset, formState } = useForm();
@@ -23,7 +25,11 @@ const Enquire_Now = () => {
   const { isCreating, createOpinions } = useCreateOpinion();
   const isWorking = isCreating;
   if (isCreating) return <Spinner />;
-
+  const {
+    data: departmentData,
+    isLoading: isDepartmentLoading,
+    error,
+  } = useDepartment();
   function onSubmit(data) {
     const file = typeof data.file === "string" ? data.file : data.file[0];
     // const formData = {
@@ -58,9 +64,9 @@ const Enquire_Now = () => {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Stack width={{ sm: "100%", lg: "45%" }} gap={2} alignItems={"center"}>
+        <Stack width={{ sm: "100%", lg: "60%" }} gap={2} alignItems={"center"}>
           <Head1
-            color="#000000"
+            color="#486c9c"
             textAlign={{
               sm: "center",
               smm: "center",
@@ -68,7 +74,7 @@ const Enquire_Now = () => {
               lg: "start",
             }}
           >
-            GET AN APPOINTMENT
+            GET A SECOND OPINION
           </Head1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack
@@ -81,7 +87,27 @@ const Enquire_Now = () => {
               width={{ xs: "95vw", smm: "90vw", md: "95vh", lg: "135vh" }}
             >
               <Stack>
-                <Label>Full Name</Label>
+                <Label>Patient's Full Name</Label>
+                <TextInput
+                  bgColor={"white"}
+                  padding={{
+                    xs: "6px 15px",
+                    sm: "10px 25px",
+                    smm: "10px 25px",
+                    md: "10px 25px",
+                    lg: "15px 30px",
+                  }}
+                  placeholder="Enter Your Full Name"
+                  {...register("name", { required: "Full name is required" })}
+                  disabled={isWorking}
+                />
+
+                {errors.name && (
+                  <Typography color="red">{errors.name.message}</Typography>
+                )}
+              </Stack>
+              <Stack>
+                <Label>Attendent's Full Name</Label>
                 <TextInput
                   bgColor={"white"}
                   padding={{
@@ -141,8 +167,36 @@ const Enquire_Now = () => {
                   disabled={isWorking}
                 />
               </Stack>
-              <Stack>
-                <Label>Speciality</Label>
+              <Stack direction={"column"}>
+                <Label style={{ width: "100%" }}>
+                  Speciality to seek second opinion form
+                </Label>
+                <select
+                  style={{
+                    border: "1px solid rgba(45, 45, 45, 0.2)",
+                    borderRadius: "100px",
+                    fontSize: "1rem",
+                    padding:"15px 30px",
+                    border: "1px solid lightgray",
+                    bgColor:"white"
+                  }}
+                  id="department"
+                  {...register("speciality", {
+                    required: "speciality is required",
+                  })}
+                >
+                  <option value="">Select a department</option>
+                  {departmentData?.map((department, index) => (
+                    <option key={index} value={department._id}>
+                      {department.name}
+                    </option>
+                  ))}
+                </select>
+              </Stack>
+              {/* <Stack>
+                <Label style={{ width: "100%" }}>
+                  Speciality to seek second opinion form
+                </Label>
                 <TextInput
                   padding={{
                     xs: "6px 15px",
@@ -159,7 +213,7 @@ const Enquire_Now = () => {
                   })}
                   disabled={isWorking}
                 />
-              </Stack>
+              </Stack> */}
 
               <Stack>
                 <Label>Upload Prescription</Label>
@@ -168,6 +222,25 @@ const Enquire_Now = () => {
                   type="file"
                   {...register("file", {
                     required: "File is required",
+                  })}
+                  disabled={isWorking}
+                />
+              </Stack>
+              <Stack>
+                <Label>Mention Your Queries</Label>
+                <TextArea
+                  padding={{
+                    xs: "6px 15px",
+                    sm: "10px 25px",
+                    smm: "10px 25px",
+                    md: "10px 25px",
+                    lg: "15px 30px",
+                  }}
+                  placeholder="Type Here"
+                  rows={4}
+                  bgColor={"white"}
+                  {...register("message", {
+                    required: "Message is required",
                   })}
                   disabled={isWorking}
                 />

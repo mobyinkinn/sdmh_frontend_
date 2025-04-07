@@ -90,7 +90,7 @@ function ReviewCard({ el }) {
     >
       <Box
         component="img"
-        src={cert.src}
+        src={el.image}
         alt=""
         sx={{
           width: { xs: "210px", lg: "243.95px" },

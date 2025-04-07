@@ -4,27 +4,7 @@
   box-sizing: border-box;
 }
 
-/* Entire scrollbar */
-::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
-  height: 8px; /* Height of the scrollbar (for horizontal scrollbars) */
-}
 
-/* Track (background of the scrollbar) */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle (the draggable part of the scrollbar) */
-::-webkit-scrollbar-thumb {
-  background: #888; /* Scrollbar color */
-  border-radius: 2px; /* Rounded corners */
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker color on hover */
-}
 
 :root {
   /* Indigo */
@@ -172,3 +152,75 @@
 
 
 
+
+/* Global CSS (e.g., globals.css) */
+
+/* Set scrollbar background color */
+.section-scroll-1::-webkit-scrollbar {
+  width: 12px; /* width of the scrollbar */
+  height: 12px; /* height for horizontal scrollbar */
+}
+
+/* Set scrollbar track (background) color */
+.section-scroll-1::-webkit-scrollbar-track {
+  background: #D2E4D8; /* light grey track */
+}
+
+/* Set scrollbar thumb (the bar) color */
+.section-scroll-1::-webkit-scrollbar-thumb {
+  background: #A6C9B2; /* grey color for the thumb */
+  border-radius: 10px; /* round edges for the thumb */
+}
+
+/* Set scrollbar thumb hover color */
+.section-scroll-1::-webkit-scrollbar-thumb:hover {
+  background: #A6C9B2; /* dark grey for hover effect */
+}
+
+
+/* Global CSS (e.g., globals.css) */
+
+/* Set scrollbar background color */
+.section-scroll-2::-webkit-scrollbar {
+  width: 2px; /* width of the scrollbar */
+  height: 2px; /* height for horizontal scrollbar */
+  margin-left: 10px;
+}
+
+/* Set scrollbar track (background) color */
+.section-scroll-2::-webkit-scrollbar-track {
+  background: #D2E4D8; /* light grey track */
+
+}
+
+/* Set scrollbar thumb (the bar) color */
+.section-scroll-2::-webkit-scrollbar-thumb {
+  background: #A6C9B2; /* grey color for the thumb */
+  border-radius: 6px; /* round edges for the thumb */
+
+}
+
+/* Set scrollbar thumb hover color */
+.section-scroll-2::-webkit-scrollbar-thumb:hover {
+  background: #A6C9B2; /* dark grey for hover effect */
+
+}
+
+.new{
+  list-style: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0.8rem 0.5rem;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+.new:hover{
+     background-color: #e0e0e0;
+}
+.new .active{
+   background-color: #007946;
+    color: white;
+}

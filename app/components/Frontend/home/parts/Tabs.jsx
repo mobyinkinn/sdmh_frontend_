@@ -15,7 +15,7 @@ import { useTpa } from "@/app/components/admin/tpa_index/useTpa";
 import { useAwards } from "@/app/components/admin/awards/useAwards";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
-
+import image from "../assets/bannerImage.png";
 const tabs = [
   {
     id: 0,
@@ -138,7 +138,58 @@ const tabs = [
     ],
   },
 ];
-
+ const eventData = [
+   {
+     id: 0,
+     image: image,
+     title: "Canteen",
+   },
+   {
+     id: 1,
+     image: image,
+     title: "Conference Store",
+   },
+   {
+     id: 2,
+     image: image,
+     title: "Pharmacy",
+   },
+   {
+     id: 3,
+     image: image,
+     title: "Reception",
+   },
+   {
+     id: 4,
+     image: image,
+     title: "Interior",
+   },
+   {
+     id: 5,
+     image: image,
+     title: "Interior",
+   },
+   {
+     id: 6,
+     image: image,
+     title: "Blood Donation Camp Through JSG GEM CITY",
+   },
+   {
+     id: 7,
+     image: image,
+     title: "Blood Donation Camp Through JSG GEM CITY",
+   },
+   {
+     id: 8,
+     image: image,
+     title: "Blood Donation Camp Through JSG GEM CITY",
+   },
+   {
+     id: 9,
+     image: image,
+     title: "Blood Donation Camp Through JSG GEM CITY",
+   },
+ ];
 export default function Tabs() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(0);
@@ -146,6 +197,8 @@ export default function Tabs() {
   const { data: checkups, isLoading: isLoadingCheckups } = useCheckups();
   const { data: awards, isLoading: isLoadingAwards } = useAwards();
   const { data: tpas, isLoading: isLoadingTpas } = useTpa();
+
+  console.log("imp", events, checkups, awards, tpas);
 
   if (isLoadingCheckups || isLoadingEvents || isLoadingAwards || isLoadingTpas)
     return <Spinner />;
@@ -170,6 +223,11 @@ export default function Tabs() {
       id: 3,
       name: "TPA'S",
       data: [tpas],
+    },
+    {
+      id: 4,
+      name: "Gallery",
+      data: [eventData],
     },
   ];
 
@@ -264,6 +322,8 @@ export default function Tabs() {
           {tabsData[activeTab].data[0]?.map((el, i) => {
             if (i >= 4) return null;
             const isTPA = tabsData[activeTab].name === "TPA'S";
+          const isGallery = tabsData[activeTab].name === "Gallery";
+
             return (
               <Stack
                 key={i}
@@ -294,7 +354,7 @@ export default function Tabs() {
                   >
                     {el.title} {el.name}
                   </Typography>
-                  {!isTPA && (
+                  {!isTPA && !isGallery && (
                     <Typography
                       textAlign={"center"}
                       dangerouslySetInnerHTML={{
@@ -347,17 +407,19 @@ export default function Tabs() {
         {tabsData[activeTab].data[0].map((el, i) => {
           if (i >= 4) return null;
           const isTPA = tabsData[activeTab].name === "TPA'S";
+          const isGallery= tabsData[activeTab].name === "Gallery";
+
 
           let dynamicHeight;
           if (tabsData[activeTab].name === "Latest Happening") {
-            dynamicHeight = "480px";
+            dynamicHeight = "fit-content";
           } else if (tabsData[activeTab].name === "Health Checkup") {
             dynamicHeight = "420px";
           } else if (tabsData[activeTab].name === "Awards") {
             dynamicHeight = "450px";
           } else if (tabsData[activeTab].name === "TPA'S") {
             dynamicHeight = "300px";
-          }
+          } 
 
           let dynamicHeight_lg;
           if (tabsData[activeTab].name === "Latest Happening") {
@@ -368,34 +430,42 @@ export default function Tabs() {
             dynamicHeight_lg = "565px";
           } else if (tabsData[activeTab].name === "TPA'S") {
             dynamicHeight_lg = "300px";
-          }
+          } 
+
 
           let dynaHeight;
           if (tabsData[activeTab].name === "Latest Happening") {
-            dynaHeight = "200px";
+            dynaHeight = "25vh";
           } else if (tabsData[activeTab].name === "Health Checkup") {
             dynaHeight = "200px";
           } else if (tabsData[activeTab].name === "Awards") {
             dynaHeight = "200px";
           } else if (tabsData[activeTab].name === "TPA'S") {
             dynaHeight = "350px";
-          }
+          } else if (tabsData[activeTab].name === "Gallery") {
+            dynaHeight = "155px";
+          } 
 
           return (
             <Stack
               key={i}
-              width={{ lg: "25%", xl: "20%" }}
+              width={{ lg: "25%", xl: "23%" }}
               backgroundColor={"#FBF6EE"}
               sx={{
                 borderRadius: "10px",
               }}
               height={{ lg: dynamicHeight_lg, xl: dynamicHeight }}
+              onClick={() => {isGallery?
+                router.push(`${"/gallery"}`):""
+              }}
             >
               <Box
                 width={"100%"}
                 height={dynaHeight}
                 sx={{
-                  backgroundImage: `url(${isTPA ? el.logo : el.image})`,
+                  backgroundImage: `url(${
+                    isTPA ? el.logo : isGallery ? el.image.src : el.image
+                  })`,
                   backgroundSize: "cover",
                   borderRadius: "10px 10px 0 0",
                   backgroundPosition: "center center",
@@ -405,37 +475,39 @@ export default function Tabs() {
               <Stack
                 justifyContent={"space-between"}
                 // minHeight={"455px"}
-                height="100%"
                 alignItems={"center"}
-                p={1.3}
+                p={1.5}
+                gap={"30px"}
               >
-                <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
+                <Stack padding={"0 20px"} gap={"10px"} alignItems={"center"}>
                   <Typography
-                    fontSize={"1rem"}
+                    fontSize={"0.9rem"}
                     textAlign={"center"}
                     color={"#379237"}
                     fontWeight={"bold"}
-                    height={"48px"}
+                    height={!isGallery ? "80px" : "25px"}
+                    display={"flex"}
+                    alignItems={"center"}
                   >
-                    {`${el.title ? el.title : ""} ${
-                      el.name ? el.name : ""
-                    }`}
-                    
+                    {`${el.title ? el.title : ""} ${el.name ? el.name : ""}`}
                   </Typography>
-                  {!isTPA && (
+                  {!isTPA && !isGallery && (
                     <Typography
+                      height={"76px"}
+                      className="section-scroll-2"
+                      overflow={"auto"}
                       textAlign={"center"}
                       fontSize={"0.8rem"}
                       dangerouslySetInnerHTML={{
-                        __html: el.smallDescription
-                          // .split(" ")
-                          // .slice(0, 15)
-                          // .join(" "),
+                        __html: el.smallDescription,
+                        // .split(" ")
+                        // .slice(0, 15)
+                        // .join(" "),
                       }}
                     />
                   )}
                 </Stack>
-                {!isTPA && (
+                {!isTPA && !isGallery && (
                   <Typography
                     width={"fit-content"}
                     sx={{
@@ -477,6 +549,7 @@ export default function Tabs() {
               "Health Checkup": "/health-checkup",
               Awards: "/award",
               "TPA'S": "/tpa",
+              Gallery: "/gallery",
             };
 
             router.push(`${basePath[tabsData[activeTab].name]}`);

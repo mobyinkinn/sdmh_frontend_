@@ -13,7 +13,7 @@ const Message = forwardRef((props, ref) => {
     <ContainerMain
       ref={ref}
       bgColor="#476C9B"
-      dir="row"
+      flexDirection={{ lg: "row", md: "row", smm: "column", sm: "column" }}
       id="message"
       alignItems={"center"}
     >

@@ -24,7 +24,7 @@ const AcademicsLibrary = () => {
       <SdmhLibrary />
       <KohaSection />
       <ServiceProvide />
-      <CategoriesMember />
+      {/* <CategoriesMember /> */}
       <Footer />
       <MobileFooter />
     </>
