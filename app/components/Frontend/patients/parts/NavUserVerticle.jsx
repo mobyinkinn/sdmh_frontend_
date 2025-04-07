@@ -157,13 +157,9 @@ const StyledNavItem = styled.li`
   transition: background-color 0.3s;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 
   &:hover {
-    background-color: #e0e0e0;
-  }
-
-  &.active {
     background-color: #007946;
     color: white;
   }
@@ -209,7 +205,6 @@ export default function NavUserVerticle({ sectionsRef }) {
           <StyledNavItem
             key={item.id}
             onClick={() => handleScrollToSection(item.id)}
-            className={activeSection === item.id ? "active" : ""}
           >
             {item.name}
             <TfiArrowCircleRight style={{ fontSize: "20px", color: "white" }} />

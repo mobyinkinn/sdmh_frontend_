@@ -40,7 +40,7 @@ export default function () {
       >
         {achievementData.map((el, i) => {
           return (
-            <Stack key={i} gap={"10px"} alignItems={"center"} width={"20%"}>
+            <Stack key={i} gap={"10px"} alignItems={"center"} width={{md:"20%", sm:"44%"}}>
               <Image src={el.img} alt="" height={100} width={100} style={{color:"white"}} />
               <CountUp
                 start={0}

@@ -46,9 +46,10 @@ export default function Reviews() {
     autoplay: true,
     autoplaySpeed: 2000,
     speed: 1000,
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
+
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,

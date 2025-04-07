@@ -46,7 +46,7 @@ export default function Todo() {
               borderRadius={"10px"}
               padding={"30px 10px"}
               alignItems={"center"}
-              width={{ md: "200px", xs: "180px" }}
+              width={{ md: "200px", xs: "157px" }}
               height={"180px"}
               gap={{ md: "20px", xs: "5px" }}
               justifyContent={"center"}
@@ -54,6 +54,7 @@ export default function Todo() {
             >
               <Image src={el.icon} width={60} height={60} alt="" />
               <Typography
+              height={"38px"}
                 fontSize={{ md: "1rem", xs: "0.8rem" }}
                 textAlign={"center"}
               >

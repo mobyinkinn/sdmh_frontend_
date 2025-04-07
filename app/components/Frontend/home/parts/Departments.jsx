@@ -199,7 +199,7 @@ export default function Departments() {
             width={"100%"}
             className="section-scroll-1"
             sx={{ overflowY: "scroll" }}
-            height={{ md: "75vh" }}
+            height={{ md: "85vh",sm:"50vh" }}
           >
             {filteredDepartment.map((el, i) => {
               return (
@@ -254,7 +254,7 @@ export default function Departments() {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "40%", lg: "45%" }}
-          height={{ lg: "75vh", sm: "35vh" }}
+          height={{ lg: "85vh", sm: "67vh" }}
           position={"relative"}
           justifyContent={"center"}
           alignItems={"center"}

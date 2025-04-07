@@ -73,7 +73,7 @@ export default function MobilePatient() {
 
   return (
     <Stack display={{ md: "none", xs: "flex" }}>
-      <ContainerMain marginTop={"40px"} alignItems="center">
+      <ContainerMain marginTop={"40px"} alignItems="center" padding={"5px"}>
         <Stack
           width={"100%"}
           height={"40vh"}

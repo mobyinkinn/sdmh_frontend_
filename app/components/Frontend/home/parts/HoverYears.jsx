@@ -53,6 +53,8 @@ const responsibility = [
     Desc: "Santokba Durlabhji Trust was created with an objective to help mankind. The Trust was named after Late. Smt. Santokba and Late Shree Durlabhji Bhai.",
     img: img1,
     height: "50vh",
+    mobileheight: "65vh",
+    mobile: "21vh",
   },
   {
     Year: "1963",
@@ -60,6 +62,8 @@ const responsibility = [
     Desc: "As the modest beginning, a diagnostic clinic was established in front of SMS Hospital.",
     img: img2,
     height: "54vh",
+    mobileheight: "56vh",
+    mobile: "21vh",
   },
   {
     Year: "1969",
@@ -67,6 +71,8 @@ const responsibility = [
     Desc: "The trust started a Nursing Home with only three specialties.",
     img: img3,
     height: "58vh",
+    mobileheight: "53vh",
+    mobile: "21vh",
   },
   {
     Year: "1971",
@@ -74,6 +80,8 @@ const responsibility = [
     Desc: "Santokba Durlabhji Memorial Hospital, the institute that redefined healthcare in Rajasthan was inaugurated with only six specialties and 70 beds by then Prime Minister Smt. Indira Gandhi.",
     img: img4,
     height: "47vh",
+    mobileheight: "68vh",
+    mobile: "21vh",
   },
   {
     Year: "1976",
@@ -81,6 +89,8 @@ const responsibility = [
     Desc: "Santokba Durlabhji School of Nursing was founded to train Florence Nightingales of future. The school helped provide quality Nursing Care in the hospital.",
     img: img5,
     height: "50vh",
+    mobileheight: "61vh",
+    mobile: "21vh",
   },
   {
     Year: "1985",
@@ -88,6 +98,8 @@ const responsibility = [
     Desc: "The Department of Rehabilitation Aids and Limb Fitting Centre was founded in SDMH by Dr. P. K. Sethi, the founder of Jaipur Foot.",
     img: img6,
     height: "50vh",
+    mobileheight: "61vh",
+    mobile: "21vh",
   },
   {
     Year: "1996",
@@ -95,6 +107,8 @@ const responsibility = [
     Desc: "One of the few hospices in the country, Avedna Ashram was started in SDMH to help provide free care and accommodation to the terminally ill",
     img: img7,
     height: "50vh",
+    mobileheight: "60vh",
+    mobile: "21vh",
   },
   {
     Year: "2008",
@@ -102,6 +116,8 @@ const responsibility = [
     Desc: "2008 – NABL Accreditation SDMH Laboratories were among the first to be recognized by NABL for its high standards.",
     img: img8,
     height: "53vh",
+    mobileheight: "56vh",
+    mobile: "21vh",
   },
   {
     Year: "2011",
@@ -109,6 +125,8 @@ const responsibility = [
     Desc: "The only dedicated OPD building of the state, Rashmikant Durlabhji Medi Centre, was started.",
     img: img9,
     height: "53vh",
+    mobileheight: "54vh",
+    mobile: "21vh",
   },
   {
     Year: "2014",
@@ -116,6 +134,8 @@ const responsibility = [
     Desc: "The hospital received NABH Accreditation, an accreditation provided by Quality Council of India certifying the adherence to standard protocols for quality care to patients.",
     img: img10,
     height: "50vh",
+    mobileheight: "64vh",
+    mobile: "21vh",
   },
   {
     Year: "2016",
@@ -123,6 +143,8 @@ const responsibility = [
     Desc: "SDMH started its new Emergency Wing with an enhanced number of beds and improved infrastructure to cater to any medical emergency.",
     img: img11,
     height: "50vh",
+    mobileheight: "60vh",
+    mobile: "21vh",
   },
   {
     Year: "2017",
@@ -130,6 +152,8 @@ const responsibility = [
     Desc: "In addition to the Outreach Services, SDMH also started Free OPD Clinic, one of the very few clinics in the state to provide quality medical service to the weaker section of society at no cost to them",
     img: img12,
     height: "46vh",
+    mobileheight: "67vh",
+    mobile: "21vh",
   },
   {
     Year: "2018",
@@ -137,6 +161,8 @@ const responsibility = [
     Desc: "SDMH inaugurated its new offering to the state, Santokba Durlabhji College of Nursing and Paramedical Sciences to provide quality nursing and para-medical education.",
     img: img13,
     height: "49vh",
+    mobileheight: "64vh",
+    mobile: "21vh",
   },
   {
     Year: "2019",
@@ -144,6 +170,8 @@ const responsibility = [
     Desc: "SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore. https://youtu.be/vX1_m9or5cs",
     img: img14,
     height: "43vh",
+    mobileheight: "78vh",
+    mobile: "21vh",
   },
   {
     Year: "2020",
@@ -151,6 +179,8 @@ const responsibility = [
     Desc: "SDMH, the biggest and oldest private hospital of the state, added another feather in its cap today when it introduced its own IPD pharmacy services named ‘SDMH Pharmacy’ on Ground, 3rd and 4th floor. The pharmacy services shall function 24 x7 to provide the quality medicine at reasonable prices. Bedside medicine delivery to admitted patients will provide comfort to patient’s attendants during the tough time.",
     img: img15,
     height: "39vh",
+    mobileheight: "89vh",
+    mobile: "21vh",
   },
 ];
 
@@ -415,7 +445,7 @@ return (
       </Stack>
       <Stack
         width={{ xs: "100%", md: "50%" }}
-        height={{ md: "96vh", xs: "70vh" }}
+        height={{ md: "96vh", xs: responsibility[planetData].mobileheight }}
         gap={"12px"}
         padding={"30px 30px 10px 30px"}
         bgcolor={"#FBF6EE"}
@@ -446,8 +476,11 @@ return (
                   backgroundImage: `url(${responsibility[planetData].img.src})`,
                   backgroundPosition: "center center",
                   backgroundSize: "cover",
-                  width: { xs: "40%", md: "50%", lg: "100%" },
-                  height: responsibility[planetData].height, // Use the height of the selected year
+                  width: { xs: "100%", md: "50%", lg: "100%" },
+                  height: {
+                    lg: responsibility[planetData].height,
+                    xs: responsibility[planetData].mobile,
+                  }, // Use the height of the selected year
                 }}
               />
             )}

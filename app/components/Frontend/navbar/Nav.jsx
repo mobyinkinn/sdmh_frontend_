@@ -201,7 +201,7 @@ export default function Navbar() {
                 smm: "55px",
                 md: "73px",
                 lg: "65px",
-                xl: "73px",
+                xl: "84px",
               },
             }}
           />
