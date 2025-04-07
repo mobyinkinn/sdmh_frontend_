@@ -30,7 +30,7 @@ import Modal from "../../ui/Modal";
 
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
-  { id: 0, name: "Centre Of Excellence", link: "center-of-excellence" },
+  { id: 0, name: "Centre Of Excellence", link: "centre-of-excellence" },
   { id: 0, name: "Patient Care & Service", link: "patients" },
   { id: 0, name: "Appointment", link: "appointment" },
   { id: 0, name: "Academics", link: "academics/academics-deanery" },
@@ -77,7 +77,10 @@ export default function Navbar() {
     }
   }, []);
 
-  const filteredData = departmentData?.filter((el) => el.status === true) || [];
+  const filteredData =
+    departmentData
+      ?.filter((el) => el.status === true)
+      .sort((a, b) => a.name.localeCompare(b.name)) || [];
 
   if (isLoading || isDepartmentLoading || isLoadingDoctors) return <Spinner />;
   if (error) return <div>Error loading Navbar: {error.message}</div>;
@@ -385,7 +388,7 @@ export default function Navbar() {
                       ? filteredData.map((dept) => (
                           <a
                             key={dept._id}
-                            href={`/center-of-excellence/${dept._id}`}
+                            href={`/centre-of-excellence/${dept._id}`}
                             style={{ textDecoration: "none", color: "black" }}
                           >
                             <Typography
@@ -477,7 +480,7 @@ export default function Navbar() {
                   </a>
                 )}
                 {(el.items.length > 0 ||
-                  el.name === "Center Of Excellence") && (
+                  el.name === "Centre Of Excellence") && (
                   <IoIosArrowDown
                     style={{
                       transform:
@@ -488,7 +491,7 @@ export default function Navbar() {
                 )}
               </Stack>
 
-              {(el.items.length > 0 || el.name === "Center Of Excellence") && (
+              {(el.items.length > 0 || el.name === "Centre Of Excellence") && (
                 <Stack
                   position="absolute"
                   bgcolor="white"
@@ -510,11 +513,11 @@ export default function Navbar() {
                     borderRadius: "5px",
                   }}
                 >
-                  {el.name === "Center Of Excellence"
+                  {el.name === "Centre Of Excellence"
                     ? filteredData.map((department) => (
                         <a
                           key={department._id}
-                          href={`/center-of-excellence/${department._id}`}
+                          href={`/centre-of-excellence/${department._id}`}
                           style={{ textDecoration: "none", color: "black" }}
                         >
                           <Typography
@@ -554,16 +557,16 @@ export default function Navbar() {
 
       <Modal.Window name="appointment">
         <div>
-          <Typography fontSize={"2rem"} color="green">
+          <Typography textAlign={"center"} fontSize={"2rem"} color="green">
             Book an Appointment
           </Typography>
-          <Typography>
+          <Typography textAlign={"center"}>
             Appointments can currently be booked by calling 7073111911 between
             7:00 AM and 4:00 PM. This service allows patients or their
             attendants to choose a preferred time slot for consultation with the
             doctor.
           </Typography>
-          <Typography>
+          <Typography textAlign={"center"} marginTop={2}>
             <b>Please note:</b> Appointment slots are subject to availability.
             If a preferred slot is not available, patients will be attended
             through the regular OPD system.
