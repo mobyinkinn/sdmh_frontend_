@@ -27,7 +27,7 @@ export default function GalleryCard({ career }) {
         alt={career.title}
         layout="fill"
         objectFit="cover"
-        style={{ filter: "brightness(0.8)" }}
+        style={{ filter: "brightness(0.8) blur(2px)" }}
       />
 
       <Box

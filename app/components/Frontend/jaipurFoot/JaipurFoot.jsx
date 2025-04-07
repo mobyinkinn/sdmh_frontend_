@@ -11,7 +11,7 @@ import Spinner from "../../ui/Spinner";
 
 export default function JaipurFoot() {
   const { data, isLoading: isLoadingBanner } = useBannerByPage(
-    "support a cause avedna ashram"
+    "Jaipur Foot & Polio Caliper"
   );
   if (isLoadingBanner) return <Spinner />;
   return (

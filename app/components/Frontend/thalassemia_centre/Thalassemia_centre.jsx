@@ -10,9 +10,8 @@ import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 import Spinner from "../../ui/Spinner";
 
 export default function Thalassemia_centre() {
-  const { data, isLoading: isLoadingBanner } = useBannerByPage(
-    "support a cause avedna ashram"
-  );
+  const { data, isLoading: isLoadingBanner } =
+    useBannerByPage("Thalassemia Centre");
   if (isLoadingBanner) return <Spinner />;
   return (
     <Stack>

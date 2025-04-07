@@ -11,7 +11,7 @@ import React from "react";
 const Tabs = () => {
   const { data, isLoading, error } = useTpa();
   const filteredData = data?.filter((el, i) => el.status === true);
-  console.log("filtert", filteredData);
+  console.log("filter Data", filteredData);
   const manipulatedData = filteredData?.reduce((acc, item) => {
     // Check if the tag already exists in the accumulator
     let existingTag = acc.find((obj) => obj.tag === item.tag);
@@ -51,6 +51,10 @@ const Tabs = () => {
         {manipulatedData?.map((d, i) => (
           <Stack gap={3}>
             <Head1 textAlign={"center"}>{d.tag}</Head1>
+            <Typography textAlign="center">
+              For any queries related to TPA, please feel free to reach out to
+              us at sdmhjp5@gmail.com.
+            </Typography>
 
             <Stack
               direction={"row"}
