@@ -91,16 +91,16 @@ const Home = () => {
         {/* Modal Content */}
         <Modal.Window name="appointment">
           <div>
-            <Typography fontSize={"2rem"} color="green">
+            <Typography textAlign={"center"} fontSize={"2rem"} color="green">
               Book an Appointment
             </Typography>
-            <Typography>
+            <Typography textAlign={"center"}>
               Appointments can currently be booked by calling 7073111911 between
               7:00 AM and 4:00 PM. This service allows patients or their
               attendants to choose a preferred time slot for consultation with
               the doctor.
             </Typography>
-            <Typography>
+            <Typography textAlign={"center"} marginTop={2}>
               <b>Please note:</b> Appointment slots are subject to availability.
               If a preferred slot is not available, patients will be attended
               through the regular OPD system.
