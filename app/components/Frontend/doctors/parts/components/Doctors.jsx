@@ -546,7 +546,7 @@ export default function Doctors({ data, departments }) {
               >
                 {el.name}
               </Head3>
-              <Head4 textAlign={"left"} fontWeight={"400"}>
+              <Head4 textAlign={"left"} fontWeight={"400"} height={"50px"}>
                 {el.designation}
               </Head4>
               <Stack>
@@ -564,8 +564,11 @@ export default function Doctors({ data, departments }) {
                   About
                 </ParaNormal>
                 <ParaNormalSmall
+                  className="section-scroll-2"
+                  height={"100px"}
+                  overflow={"auto"}
                   dangerouslySetInnerHTML={{
-                    __html: el.about.slice(0, 150),
+                    __html: el.about,
                   }}
                 />
               </Stack>

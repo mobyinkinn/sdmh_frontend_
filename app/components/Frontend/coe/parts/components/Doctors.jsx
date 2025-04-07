@@ -217,8 +217,11 @@ export default function Doctors({ _id }) {
                        About
                      </ParaNormal>
                      <ParaNormalSmall
+                       className="section-scroll-2"
+                       height={"100px"}
+                       overflow={"auto"}
                        dangerouslySetInnerHTML={{
-                         __html: el.about.slice(0, 150),
+                         __html: el.about,
                        }}
                      />
                    </Stack>

@@ -496,7 +496,8 @@ export default function Tabs() {
                       height={"76px"}
                       className="section-scroll-2"
                       overflow={"auto"}
-                      textAlign={"center"}
+                      textAlign={"justify"}
+                      paddingRight={"13px"}
                       fontSize={"0.8rem"}
                       dangerouslySetInnerHTML={{
                         __html: el.smallDescription,

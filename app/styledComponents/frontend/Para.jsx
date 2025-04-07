@@ -61,7 +61,9 @@ const ParaNormalSmall = styled.span((props) => ({
   fontWeight: props.fontWeight,
   textAlign: props.textAlign || "left",
   width: props.width,
+  height: props.height,
   margin: props.margin,
+  overflow:props.overflow,
   lineHeight: props.lineHeight || "1.5",
   fontSize: props.fontSize?.lg || "1rem",
 
@@ -70,18 +72,21 @@ const ParaNormalSmall = styled.span((props) => ({
     margin: props.margin?.md,
     fontSize: props.fontSize?.md || "0.8rem",
     width: props.width?.md,
+    height: props.height?.md,
   },
   [breakpoints.smm]: {
     textAlign: props.textAlign?.smm,
     margin: props.margin?.smm,
     fontSize: props.fontSize?.smm || "0.8rem",
     width: props.width?.smm,
+    height: props.height?.smm,
   },
   [breakpoints.sm]: {
     textAlign: props.textAlign?.sm,
     margin: props.margin?.sm,
     fontSize: props.fontSize?.sm || "0.8rem",
     width: props.width?.sm,
+    height: props.height?.sm,
   },
 }));
 
