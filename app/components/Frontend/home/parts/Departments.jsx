@@ -22,7 +22,6 @@ import image4 from "../assets/departments/4.jpg";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 import Spinner from "@/app/components/ui/Spinner";
 
-
 // export default function Departments() {
 //   const { data: departmentData, isLoading: isLoadingDepartment } =
 //     useDepartment();
@@ -155,17 +154,21 @@ export default function Departments() {
     useDepartment();
   const [activeTab, setActiveTab] = useState(null); // Initialize as null to set on load
   const router = useRouter();
+  const filteredDepartment =
+    departmentData?.filter((el) => el.status === true) || [];
 
   useEffect(() => {
-    if (departmentData && departmentData.length > 0) {
+    if (filteredDepartment && filteredDepartment.length > 0) {
       // Set the first department as active on load
-      setActiveTab(departmentData[0]._id);
+      setActiveTab(filteredDepartment[0]._id);
     }
-  }, [departmentData]); // Trigger when departmentData is available
+  }, [filteredDepartment]); // Trigger when filteredDepartment is available
 
   if (isLoadingDepartment) return <Spinner />;
 
-  const activeDepartment = departmentData.find((el) => el._id === activeTab);
+  const activeDepartment = filteredDepartment.find(
+    (el) => el._id === activeTab
+  );
 
   return (
     <Stack
@@ -198,7 +201,7 @@ export default function Departments() {
             sx={{ overflowY: "scroll" }}
             height={{ md: "75vh" }}
           >
-            {departmentData.map((el, i) => {
+            {filteredDepartment.map((el, i) => {
               return (
                 <Stack
                   width={"100%"}
