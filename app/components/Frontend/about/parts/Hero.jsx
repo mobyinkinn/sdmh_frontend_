@@ -226,14 +226,14 @@ export default function Hero() {
         </Stack>
         {sideNavData.map((el, i) => {
           return (
-            <Stack key={i} width={{ lg: "100%", sm: "25%" }}>
+            <Stack key={i} width={{ lg: "100%", sm: "25%" }} alignItems={{sm:"center", md:"start"}}>
               <Typography
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={{ lg: "space-between", sm: "none" }}
                 key={i}
                 textAlign={"center"}
-                fontSize={{ lg: "0.8rem", sm: "0.7rem" }}
+                fontSize={{ lg: "0.8rem", sm: "0.9rem" }}
                 sx={{
                   padding: { md: "10px 15px", xs: "5px" },
                   cursor: "pointer",

@@ -8,6 +8,7 @@ import DoctorTabs from "./parts/components/DoctorTabs";
 import Appointment from "./parts/components/Appointment";
 import { useParams } from "next/navigation";
 import { useDoctorByID } from "../../admin/doctors/parts/useDoctor";
+import MobileFooter from "../footer/MobileFooter";
 
 export default function DoctorProfile() {
     const { _id } = useParams();
@@ -21,6 +22,7 @@ export default function DoctorProfile() {
       {/* <DoctorTabs /> */}
       <Appointment />
       <Footer />
+      <MobileFooter/>
     </Stack>
   );
 }

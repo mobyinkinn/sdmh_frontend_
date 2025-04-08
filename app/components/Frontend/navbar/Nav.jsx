@@ -3,7 +3,7 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
-import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, IconButton, Stack, Typography } from "@mui/material";
 import { IoIosArrowDown } from "react-icons/io";
 import logo from "./assets/logo.png";
 import nabh from "./assets/nabh.png";
@@ -17,8 +17,8 @@ import {
 } from "@/app/styledComponents/frontend/Buttons";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
-import { SlArrowRight } from "react-icons/sl";
-import { useEffect, useState } from "react";
+import { SlArrowRight, SlMagnifier } from "react-icons/sl";
+import { useEffect, useRef, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavbar } from "../../admin/navbar/useNavbar";
@@ -27,6 +27,10 @@ import { useDepartment } from "../../admin/departments/parts/useDepartment";
 import { useDoctors } from "../../admin/doctors/parts/useDoctor";
 import { useRouter } from "next/navigation";
 import Modal from "../../ui/Modal";
+import { FaLanguage } from "react-icons/fa";
+import { RiMenu3Fill } from "react-icons/ri";
+
+
 
 const navLinks = [
   { id: 0, name: "About Us", link: "about" },
@@ -50,32 +54,46 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   // State to capture the search input for doctor filtering
   const [searchTerm, setSearchTerm] = useState("");
+ const widgetRef = useRef(null);
+ const [loaded, setLoaded] = useState(false);
+   const [showSearch, setShowSearch] = useState(false);
 
-  useEffect(() => {
-    // Prevent duplicate script loading
-    if (!document.querySelector('script[src*="translate.google.com"]')) {
-      const script = document.createElement("script");
-      script.src =
-        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      document.body.appendChild(script);
+ useEffect(() => {
+   // Define init globally
+   window.googleTranslateElementInit = () => {
+     new window.google.translate.TranslateElement(
+       {
+         pageLanguage: "en",
+         includedLanguages:
+           "as,bn,brx,doi,gu,hi,kn,ks,gom,mai,ml,mni,mr,ne,or,pa,sa,sat,sd,ta,te,ur",
 
-      window.googleTranslateElementInit = () => {
-        if (!window.googleTranslateInstance) {
-          window.googleTranslateInstance =
-            new window.google.translate.TranslateElement(
-              {
-                pageLanguage: "en",
-                includedLanguages:
-                  "as,bn,brx,doi,gu,hi,kn,ks,gom,mai,ml,mni,mr,ne,or,pa,sa,sat,sd,ta,te,ur",
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-              },
-              "google_translate_element"
-            );
-        }
-      };
-    }
-  }, []);
+         layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+         autoDisplay: false,
+       },
+       "google_translate_element"
+     );
+     setLoaded(true);
+   };
+
+   // Add script
+   const script = document.createElement("script");
+   script.src =
+     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+   script.async = true;
+   document.body.appendChild(script);
+ }, []);
+
+ const triggerDropdown = () => {
+   const iframe = document.querySelector("iframe.goog-te-menu-frame");
+   if (iframe) {
+     const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+     const firstLangOption = innerDoc.querySelector(".goog-te-menu2-item span");
+     firstLangOption?.click(); // triggers dropdown
+   } else {
+     // fallback: click the container
+     widgetRef.current?.querySelector("span")?.click();
+   }
+ };
 
   const filteredData =
     departmentData
@@ -143,7 +161,7 @@ export default function Navbar() {
             <AiFillInstagram style={{ color: "white" }} />
           </a>
         </Stack>
-        <Stack direction={"row"} gap={"25px"}>
+        <Stack direction={"row"} gap={{ lg: "25px", sm: "10px" }}>
           <Typography
             sx={{
               display: { sm: "none", lg: "flex" },
@@ -161,7 +179,7 @@ export default function Navbar() {
           <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
             Lab Reports
           </Typography>
-          <Box
+          {/* <Box
             display={"flex"}
             direction={"row"}
             gap={"25px"}
@@ -173,7 +191,144 @@ export default function Navbar() {
                 style={{ backgroundColor: "black" }}
               ></div>
             </Stack>
+          </Box> */}
+          <Box position="relative" display={"flex"} alignItems={"center"}>
+            {/* Toggle between icon and input */}
+            {!showSearch ? (
+              <Stack direction="row" alignItems="center" gap={1}>
+                <IconButton onClick={() => setShowSearch(true)}>
+                  <SlMagnifier style={{ color: "white", fontSize: 20 }} />
+                </IconButton>
+              </Stack>
+            ) : (
+              <Stack direction="row">
+                <input
+                  type="text"
+                  placeholder="Search Doctor"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "10px 0 0 10px",
+                    border: "1px solid #ccc",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  style={{
+                    borderRadius: "0 10px 10px 0",
+                    backgroundColor: "#1e441e",
+                    color: "white",
+                    border: "none",
+                    padding: "6px 10px",
+                  }}
+                >
+                  <SlArrowRight style={{ width: "15px", height: "15px" }} />
+                </button>
+              </Stack>
+            )}
+
+            {/* Dropdown */}
+            {showSearch && searchTerm.length >= 2 && (
+              <Stack
+                position="absolute"
+                top="100%"
+                left={0}
+                bgcolor="white"
+                padding={3}
+                maxHeight="32rem"
+                overflowY="auto"
+                boxShadow={1}
+                zIndex={1000}
+                borderRadius="5px"
+                flexWrap={"wrap"}
+                columnGap={2}
+                sx={{
+                  opacity: 1,
+                  transform: "translateY(0)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  pointerEvents: "auto",
+                  width: "max-content",
+                  minWidth: "100%",
+                  maxWidth: "max-content",
+                }}
+              >
+                {filteredDoctors.map((doc) => (
+                  <Box
+                    key={doc._id}
+                    p={1}
+                    borderBottom="1px solid #ccc"
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => {
+                      router.push(`/find-a-doctor/${doc._id}`);
+                      setSearchTerm("");
+                      setShowSearch(false);
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        textTransform: "capitalize",
+                        width: "200px",
+                        color: "black",
+                        fontSize: "0.9rem",
+                        whiteSpace: "normal",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
+                        "&:hover": {
+                          color: "green",
+                          cursor: "pointer",
+                        },
+                      }}
+                    >
+                      {doc.name}
+                    </Typography>
+                  </Box>
+                ))}
+              </Stack>
+            )}
           </Box>
+          <Box display="flex" alignItems="center" gap="8px">
+            {/* Language icon trigger */}
+            <IconButton onClick={triggerDropdown}>
+              <FaLanguage style={{ color: "white", fontSize: 24 }} />
+            </IconButton>
+
+            {/* Hidden Google Widget */}
+            <Box
+              id="google_translate_element"
+              ref={widgetRef}
+              sx={{
+                position: "absolute",
+                top: 50,
+                left: 20,
+                visibility: "hidden",
+              }}
+            />
+          </Box>
+          <Stack
+            sx={{ display: { sm: "flex", lg: "none" } }}
+            direction={"row"}
+            gap={"10px"}
+          >
+            <Box
+              component="img"
+              src={nabh.src}
+              alt=""
+              sx={{
+                width: "50px",
+                height: "50px",
+              }}
+            />
+            <Box
+              component="img"
+              src={nabh.src}
+              alt=""
+              sx={{
+                width: "50px",
+                height: "50px",
+              }}
+            />
+          </Stack>
         </Stack>
       </Stack>
       <Stack
@@ -193,19 +348,19 @@ export default function Navbar() {
             alt=""
             sx={{
               width: {
-                xs: "102px",
+                xs: "43%",
                 smm: "150px",
                 md: "195px",
                 lg: "170px",
                 xl: "185px",
               },
-              height: {
-                xs: "38px",
-                smm: "55px",
-                md: "73px",
-                lg: "65px",
-                xl: "84px",
-              },
+              // height: {
+              //   xs: "38px",
+              //   smm: "55px",
+              //   md: "73px",
+              //   lg: "65px",
+              //   xl: "84px",
+              // },
             }}
           />
         </a>
@@ -320,7 +475,7 @@ export default function Navbar() {
           sx={{ display: { xs: "flex", lg: "none" } }}
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
-          <MenuIcon />
+          <RiMenu3Fill style={{color:"#005900"}} />
         </IconButton>
       </Stack>
       {/* Mobile Navbar */}
@@ -554,6 +709,58 @@ export default function Navbar() {
           ))}
         </Stack>
       </Stack>
+      <Box
+        sx={{ display: { sm: "flex", lg: "none" }, backgroundColor: "#f9f9f9" }}
+        justifyContent="space-between"
+        alignItems="center"
+        borderTop="1px solid #ddd"
+        borderBottom="1px solid #ddd"
+        padding="5px"
+      >
+        {/* LEFT SECTION */}
+        <Box textAlign="center" maxWidth="33%">
+          <Typography color="error" fontWeight="600" fontSize="0.6rem">
+            Book Appointment <br /> For Teleconsultation <br />
+            Or Call On- 70731-11811
+          </Typography>
+        </Box>
+
+        {/* CENTER - BUTTON */}
+        <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
+        <Box textAlign="center">
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#285a1c",
+              borderRadius: "10px",
+              px: 3,
+              py: 1,
+              textTransform: "none",
+              fontWeight: "bold",
+              fontSize: "0.8rem",
+              "&:hover": {
+                backgroundColor: "#1e4414",
+              },
+            }}
+          >
+            Lab <br /> Reports
+          </Button>
+        </Box>
+
+        {/* RIGHT SECTION */}
+        <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
+        <Box textAlign="center" maxWidth="33%">
+          <Typography color="error" fontWeight="500" fontSize="0.7rem">
+            Emergency Number
+          </Typography>
+          <Typography color="error" fontWeight="700" fontSize="0.8rem">
+            0141-352-4444
+          </Typography>
+          <Typography fontWeight="500" fontSize="0.7rem" color="black">
+            info@sdmh.in
+          </Typography>
+        </Box>
+      </Box>
 
       <Modal.Window name="appointment">
         <div>

@@ -7,6 +7,7 @@ import GlobalStyles from "./components/styles/GlobalStyles";
 import { useEffect, useState } from "react";
 import { Query, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import MobileBottomBar from "./components/Frontend/navbar/MobileNav";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -42,8 +43,8 @@ export default function RootLayout({ children }) {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <body className={montserrat.className}>
-            <ReactQueryDevtools initialIsOpen={false} />
             {children}
+            <MobileBottomBar />
           </body>
         </QueryClientProvider>
       </ThemeProvider>

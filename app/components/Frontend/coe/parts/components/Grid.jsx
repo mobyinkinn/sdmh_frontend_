@@ -177,7 +177,7 @@ function CoeCard({ el }) {
       <ButtonSmallOutline
         color="#000000"
         hoverColor="white"
-        onClick={() => router.push(`/center-of-excellence/${el._id}`)}
+        onClick={() => router.push(`/centre-of-excellence/${el._id}`)}
       >
         View More
       </ButtonSmallOutline>

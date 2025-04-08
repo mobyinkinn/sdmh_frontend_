@@ -42,22 +42,22 @@ const centerOfExcellence = [
   {
     id: 0,
     data: "Cardiology",
-    link: "/center-of-excellence/67c148e9323e35a829c5697d",
+    link: "/centre-of-excellence/67c148e9323e35a829c5697d",
   },
   {
     id: 1,
     data: "Dermatology",
-    link: "/center-of-excellence/67c04514d797f40db8325e88",
+    link: "/centre-of-excellence/67c04514d797f40db8325e88",
   },
   {
     id: 2,
     data: "Nephrology",
-    link: "/center-of-excellence/67c15ac9323e35a829c56a0e",
+    link: "/centre-of-excellence/67c15ac9323e35a829c56a0e",
   },
   {
     id: 3,
     data: "Neurology",
-    link: "/center-of-excellence/67c15aca323e35a829c56a12",
+    link: "/centre-of-excellence/67c15aca323e35a829c56a12",
   },
 ];
 
@@ -120,6 +120,7 @@ export default function Footer() {
   const router = useRouter();
   return (
     <Stack
+    display={{md:"flex", sm:"none"}}
       width="100%"
       sx={{
         backgroundImage: `url(${sdmh.src})`,

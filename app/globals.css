@@ -212,7 +212,6 @@
   cursor: pointer;
   padding: 0.8rem 0.5rem;
   transition: background-color 0.3s;
-  display: flex;
   align-items: center;
   text-align: center;
   justify-content: space-between;
@@ -224,3 +223,4 @@
    background-color: #007946;
     color: white;
 }
+

@@ -85,7 +85,7 @@ import Spinner from "@/app/components/ui/Spinner";
 //                         }
 //                   }
 //                   onMouseEnter={() => setActiveTab(el._id)}
-//                   onClick={() => router.push(`/center-of-excellence/${el._id}`)}
+//                   onClick={() => router.push(`/centre-of-excellence/${el._id}`)}
 //                 >
 //                   <Stack>
 //                     <Typography fontSize={{ xs: "1rem", md: "1.5rem" }}>
@@ -140,7 +140,7 @@ import Spinner from "@/app/components/ui/Spinner";
 //           margin="10px 50px"
 //           color="#379237"
 //           hcolor="#005900"
-//           onClick={() => router.push(`/center-of-excellence`)}
+//           onClick={() => router.push(`/centre-of-excellence`)}
 //         >
 //           View All
 //         </ButtonMediumOutline>
@@ -224,7 +224,7 @@ export default function Departments() {
                         }
                   }
                   onMouseEnter={() => setActiveTab(el._id)}
-                  onClick={() => router.push(`/center-of-excellence/${el._id}`)}
+                  onClick={() => router.push(`/centre-of-excellence/${el._id}`)}
                 >
                   <Stack>
                     <Typography fontSize={{ xs: "1rem", md: "1.5rem" }}>
@@ -276,7 +276,7 @@ export default function Departments() {
           margin="10px 50px"
           color="#379237"
           hcolor="#005900"
-          onClick={() => router.push(`/center-of-excellence`)}
+          onClick={() => router.push(`/centre-of-excellence`)}
         >
           View All
         </ButtonMediumOutline>

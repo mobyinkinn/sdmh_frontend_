@@ -139,8 +139,8 @@ export default function DoctorProfileBanner({ data }) {
             width: { md: "30%" },
             height: "350px",
             overflow: "hidden",
-            transform: "skew(3deg)", // Skew the image container
-            transformOrigin: "bottom right",
+            transform: { md: "skew(3deg)", sm: "none" }, // Skew the image container
+            transformOrigin: { md: "bottom right", sm: "none" },
           }}
         >
           <Box
@@ -151,8 +151,8 @@ export default function DoctorProfileBanner({ data }) {
               backgroundRepeat: "no-repeat",
               width: "100%",
               height: "100%",
-              transform: "skew(-3deg)", // Reverse skew for the actual image
-              transformOrigin: "bottom right",
+              transform: { md: "skew(3deg)", sm: "none" }, // Skew the image container
+              transformOrigin: { md: "bottom right", sm: "none" },
             }}
           />
         </Stack>
@@ -166,14 +166,14 @@ export default function DoctorProfileBanner({ data }) {
             gap: "5px",
             width: { md: "70%" },
             overflow: "hidden",
-            transform: "skew(3deg)", // Skew the background
-            transformOrigin: "top left",
+            transform: { md: "skew(3deg)", sm: "none" }, // Skew the image container
+            transformOrigin: { md: "top left", sm: "none" },
           }}
         >
           <Stack
             sx={{
-              transform: "skew(-3deg)", // Reverse skew for content
-              transformOrigin: "top left",
+              transform: { md: "skew(-3deg)", sm: "none" }, // Skew the image container
+              transformOrigin: { md: "top left", sm: "none" },
             }}
           >
             <Head1
@@ -185,7 +185,7 @@ export default function DoctorProfileBanner({ data }) {
             <ParaNormal color="white">{data?.designation}</ParaNormal>
             <ParaNormalSmall color="white"></ParaNormalSmall>
             <ParaNormalSmall color="white">
-             <span style={{ fontWeight: "bold" }}>  Department :{" "}</span>
+              <span style={{ fontWeight: "bold" }}> Department : </span>
               {departmentData?.find((dept) => dept._id === data?.department)
                 ?.name || "Not Available"}
               {/* Department: {data?.department} */}

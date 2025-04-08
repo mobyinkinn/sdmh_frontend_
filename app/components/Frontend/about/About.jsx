@@ -14,6 +14,7 @@ import MobileFooter from "../footer/MobileFooter";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
 import { useEffect, useRef } from "react";
+import CustomSlider from "./parts/Animation";
 
 export default function About() {
   const { isLoading } = useNavbar();
@@ -57,6 +58,9 @@ export default function About() {
     <Stack>
       <Navbar />
       <Hero />
+      <Stack height={"50vh"} justifyContent={"center"}>
+        <CustomSlider />
+      </Stack>
       <Overview />
       <Inspiration />
       <Founder ref={founderRef} />
