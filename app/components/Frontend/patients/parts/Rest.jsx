@@ -4,7 +4,7 @@ import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import vishram from "./assets/vishram.jpg";
 import bookShop from "./assets/bookShop.png";
 import temple from "./assets/temple.jpg";
-import salon from "./assets/salon.png";
+import emergency from "./assets/emergency.jpg";
 import RestCard from "./RestCard";
 import { Box, Stack } from "@mui/material";
 import { useState } from "react";
@@ -49,12 +49,19 @@ This sacred space within our “Temple of Healing” reminds us that, while doct
   },
   {
     id: 3,
-    title: "Salon",
-    img: salon,
+    title: "Emergency Department",
+    img: emergency,
     data: [
-      "S.D.M.H. encompasses a salon inside the campus.",
-      "The facility is available from 6 am to 10 pm every day.",
-      "The facility can be contacted at 141-2566251",
+      "24x7 Critical Care The Emergency Department at SDMH provides round-the-clock, expert care for all medical and surgical emergencies with speed, precision, and compassion.",
+      "14-bed Emergency Unit with 2 ICU beds and a dedicated resuscitation area",
+      "Staffed by experienced emergency doctors and trained nursing personnel",
+      "Handles over 100 patients daily, across all age groups and emergency types",
+      "Equipped with in-house diagnostic facilities",
+      "Portable radiology investigations available at bedside",
+      "Well-defined protocols for trauma, cardiac arrest, stroke, and other emergencies",
+      "24x7 ambulance services with trained paramedics",
+      "Emergency pharmacy for instant medication support",
+      "Infection control and safety protocols strictly followed",
     ],
   },
 ];
