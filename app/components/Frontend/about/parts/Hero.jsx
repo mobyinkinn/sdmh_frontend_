@@ -233,12 +233,11 @@ export default function Hero() {
                 justifyContent={{ lg: "space-between", sm: "none" }}
                 key={i}
                 textAlign={"center"}
-                fontSize={{ lg: "1rem", sm: "0.7rem" }}
+                fontSize={{ lg: "0.8rem", sm: "0.7rem" }}
                 sx={{
                   padding: { md: "10px 15px", xs: "5px" },
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  fontSize: { md: "1.2rem", xs: "0.9rem" },
                   "&:hover": {
                     backgroundColor: { md: "#007946" },
                     color: { md: "white", xs: "#007946" },
