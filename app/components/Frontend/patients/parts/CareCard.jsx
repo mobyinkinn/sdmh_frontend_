@@ -27,7 +27,7 @@ export default function CareCard({ el, type }) {
           backgroundImage: `url(${el.img.src})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
-          height: "80vh",
+          height: "60vh",
           width: { md: "50%", xs: "100%" },
           borderRadius: "10px",
         }}

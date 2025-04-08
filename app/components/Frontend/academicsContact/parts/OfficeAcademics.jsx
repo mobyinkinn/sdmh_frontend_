@@ -2,7 +2,7 @@ import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Stack } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import durlabhji from "./assests/sdmhContact.png";
+import durlabhji from "./assests/academic_contact_us.jpg";
 import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineWifiCalling3 } from "react-icons/md";
 import { HiOutlineMailOpen } from "react-icons/hi";
@@ -70,7 +70,7 @@ const OfficeAcademics = () => {
               <Stack bgcolor={"#007946"} p={"18px"} borderRadius={2}>
                 <d.icon size={60} color="white" />
               </Stack>
-              <ParaNormal textAlign={{lg:"center"}}>{d.text}</ParaNormal>
+              <ParaNormal textAlign={{ lg: "center" }}>{d.text}</ParaNormal>
             </Stack>
           ))}
         </Stack>
