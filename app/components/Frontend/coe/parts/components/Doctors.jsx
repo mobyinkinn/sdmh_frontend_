@@ -134,24 +134,26 @@ export default function Doctors({ _id }) {
 
   const router = useRouter();
   return (
-    <Stack
-      direction={"row"}
-      flexWrap={"wrap"}
-      gap={{ md: "30px", xs: "10px" }}
-      justifyContent={"center"}
-      marginTop={{ md: "50px", xs: "15px" }}
-    >
-      <Head1
+    <>
+    <Head1
         textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
         color="#005900"
       >
         Meet Our Experts in the Department
       </Head1>
+    <Stack
+      direction={"row"}
+      flexWrap={"wrap"}
+      gap={{ md: "30px", xs: "10px" }}
+      justifyContent={"space-between"}
+      marginTop={{ md: "50px", xs: "15px" }}
+    >
+      
      {data?.map((el, i) => {
              return (
                <Stack
                  key={i}
-                 width={{ lg: "30%", md: "46%", xs: "100%" }}
+                 width={{ lg: "31%", md: "46%", xs: "100%" }}
                  sx={{ borderRadius: "15px", overflow: "hidden" }}
                >
                  <Box
@@ -274,5 +276,6 @@ export default function Doctors({ _id }) {
              );
            })}
     </Stack>
+    </>
   );
 }
