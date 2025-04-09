@@ -228,6 +228,7 @@ export default function Hero() {
           return (
             <Stack key={i} width={{ lg: "100%", sm: "25%" }} alignItems={{sm:"center", md:"start"}}>
               <Typography
+              width={"100%"}
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={{ lg: "space-between", sm: "none" }}

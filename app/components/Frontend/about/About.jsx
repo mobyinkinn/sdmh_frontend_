@@ -58,16 +58,15 @@ export default function About() {
     <Stack>
       <Navbar />
       <Hero />
-      <Stack height={"50vh"} justifyContent={"center"}>
-        <CustomSlider />
-      </Stack>
+      <Stack justifyContent={"center"}></Stack>
       <Overview />
       <Inspiration />
       <Founder ref={founderRef} />
       <Vision ref={visionRef} id="vision" />
       <Values />
       <Message ref={messageRef} id="message" />
-      <Awards ref={awardsRef} id="awards" />
+      {/* <Awards ref={awardsRef} id="awards" /> */}
+      <CustomSlider ref={messageRef} id="message" />
       <Footer />
       <MobileFooter />
     </Stack>

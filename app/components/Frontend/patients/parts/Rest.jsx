@@ -2,7 +2,7 @@
 
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import vishram from "./assets/vishram.jpg";
-import bookShop from "./assets/bookShop.png";
+import bookShop from "./assets/11.jpeg";
 import temple from "./assets/temple.jpg";
 import emergency from "./assets/emergency.jpg";
 import RestCard from "./RestCard";
@@ -28,12 +28,11 @@ const restData = [
   },
   {
     id: 1,
-    title: "Book & Newspaper Shop",
+    title: "Patient Care and Service",
     img: bookShop,
     data: [
-      "The Book & Newspaper shop is available near the Sarvdharm Temple.",
-      "The shop makes available the books and newspapers.",
-      "The facility is available Monday to Saturday from 7 am to 9 pm.",
+      "SDMH offers a dedicated Recreation Centre for patients (with doctor’s approval) and their authorized attendants.",
+      "The space provides light activities such as foosball, chess, carrom, billiards, a quiet library, and a salon for self-care—designed to promote relaxation and well-being during their hospital stay.",
     ],
   },
   {

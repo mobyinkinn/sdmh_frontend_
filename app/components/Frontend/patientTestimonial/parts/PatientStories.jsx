@@ -97,6 +97,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const PatientStories = () => {
   const { data, isLoading, error } = useVideos();
+  console.log("data",data)
   const [visibleCount, setVisibleCount] = useState(7);
   const visibleData = data?.slice(0, visibleCount);
   const [openModal, setOpenModal] = useState(false);
@@ -127,22 +128,6 @@ const PatientStories = () => {
     setSelectedVideo("");
   };
 
-  // const data = [
-  //   { id: 1, image: img1, title: "Pre-term Babies" },
-  //   { id: 2, image: img1, title: "Pre-term Babies" },
-  //   { id: 3, image: img1, title: "Pre-term Babies" },
-  //   { id: 4, image: img1, title: "Pre-term Babies" },
-  //   { id: 5, image: img1, title: "Pre-term Babies" },
-  //   { id: 6, image: img1, title: "Pre-term Babies" },
-  //   { id: 7, image: img1, title: "Pre-term Babies" },
-  //   { id: 8, image: img1, title: "Pre-term Babies" },
-  //   { id: 9, image: img1, title: "Pre-term Babies" },
-  //   { id: 10, image: img1, title: "Pre-term Babies" },
-  //   { id: 11, image: img1, title: "Pre-term Babies" },
-  //   { id: 12, image: img1, title: "Pre-term Babies" },
-  // ];
-
-  // Function to split data into alternating rows
   const splitData = (visibleData) => {
     const rows = [];
     let toggle = true;

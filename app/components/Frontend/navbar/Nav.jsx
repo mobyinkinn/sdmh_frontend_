@@ -161,7 +161,11 @@ export default function Navbar() {
             <AiFillInstagram style={{ color: "white" }} />
           </a>
         </Stack>
-        <Stack direction={"row"} gap={{ lg: "25px", sm: "10px" }}>
+        <Stack
+          direction={"row"}
+          gap={{ lg: "25px", sm: "10px" }}
+          alignItems={"center"}
+        >
           <Typography
             sx={{
               display: { sm: "none", lg: "flex" },
@@ -192,7 +196,11 @@ export default function Navbar() {
               ></div>
             </Stack>
           </Box> */}
-          <Box position="relative" display={"flex"} alignItems={"center"}>
+          <Box
+            position="relative"
+            sx={{ display: { sm: "flex", lg: "none" } }}
+            alignItems={"center"}
+          >
             {/* Toggle between icon and input */}
             {!showSearch ? (
               <Stack direction="row" alignItems="center" gap={1}>
@@ -475,7 +483,7 @@ export default function Navbar() {
           sx={{ display: { xs: "flex", lg: "none" } }}
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
-          <RiMenu3Fill style={{color:"#005900"}} />
+          <RiMenu3Fill style={{ color: "#005900" }} />
         </IconButton>
       </Stack>
       {/* Mobile Navbar */}

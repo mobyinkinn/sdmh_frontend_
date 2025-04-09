@@ -16,6 +16,11 @@ import { useAwards } from "@/app/components/admin/awards/useAwards";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import image from "../assets/bannerImage.png";
+import canteen from "../assets/canteen.jpg";
+import conference_center from "../assets/conference_center.jpg";
+import semi_deluxe_room from "../assets/semi_deluxe_room.jpg";
+import pharmacy from "../assets/pharmacy.jpg";
+
 const tabs = [
   {
     id: 0,
@@ -141,23 +146,23 @@ const tabs = [
  const eventData = [
    {
      id: 0,
-     image: image,
+     image: canteen,
      title: "Canteen",
    },
    {
      id: 1,
-     image: image,
+     image: conference_center,
      title: "Conference Store",
    },
    {
      id: 2,
-     image: image,
-     title: "Pharmacy",
+     image: semi_deluxe_room,
+     title: "Executive Rooms",
    },
    {
      id: 3,
-     image: image,
-     title: "Reception",
+     image: pharmacy,
+     title: "Pharmacy",
    },
    {
      id: 4,

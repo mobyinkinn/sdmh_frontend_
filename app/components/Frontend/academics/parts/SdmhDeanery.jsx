@@ -3,11 +3,15 @@ import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
 import React from "react";
-import Imag from "./assets/deanery.png";
+import Imag1 from "./assets/1.jpg";
+import Imag2 from "./assets/2.jpg";
+import Imag3 from "./assets/3.jpg";
+import Imag4 from "./assets/4.jpg";
+
 import Image from "next/image";
 
 const SdmhDeanery = () => {
-  const bannerImage = [Imag, Imag, Imag, Imag];
+  const bannerImage = [Imag1, Imag2, Imag3, Imag4];
   return (
     <>
       <ContainerMain style={{ backgroundColor: "#D2E4D8" }}>
@@ -44,7 +48,7 @@ const SdmhDeanery = () => {
               height={{ md: "100%", xs: "40vh" }}
               key={i}
             >
-              <Image src={d.src} fill objectFit="contain" />
+              <Image src={d.src} fill objectFit="contain" style={{borderRadius:"10px"}}/>
             </Stack>
           ))}
         </Stack>

@@ -1,7 +1,10 @@
 "use client";
 import { Stack, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
-import Imag from "./assets/deanery.png";
+import Imag1 from "./assets/1.jpg";
+import Imag2 from "./assets/2.jpg";
+import Imag3 from "./assets/3.jpg";
+import Imag4 from "./assets/4.jpg";
 import Image from "next/image";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
@@ -23,7 +26,8 @@ const hoverStyle = {
   width: "20px",
   color: "white",
 };
-const bannerImage = [Imag, Imag, Imag, Imag];
+  const bannerImage = [Imag1, Imag2, Imag3, Imag4];
+
 const data = [
   {
     id: 1,
@@ -158,7 +162,7 @@ const SdmhLibrary = () => {
               ))}
             </Slider>
 
-            <Stack
+            {/* <Stack
               direction="row"
               gap="10px"
               position="absolute"
@@ -212,7 +216,7 @@ const SdmhLibrary = () => {
                   onMouseLeave={() => setArrowStyle2(normalStyle)}
                 />
               </Stack>
-            </Stack>
+            </Stack> */}
           </Stack>
           {/* slider sm */}
           <Stack
@@ -256,7 +260,7 @@ const SdmhLibrary = () => {
               ))}
             </Slider>
 
-            <Stack
+            {/* <Stack
               direction="row"
               gap="10px"
               position="absolute"
@@ -310,7 +314,7 @@ const SdmhLibrary = () => {
                   onMouseLeave={() => setArrowStyle2(normalStyle)}
                 />
               </Stack>
-            </Stack>
+            </Stack> */}
           </Stack>
         </Stack>
       </ContainerMain>

@@ -85,13 +85,13 @@ const visitingFaculty = () => {
   };
   return (
     <Stack>
-      <Stack sx={{ bgcolor: "#CEDDCCF2" }}>
-        <Stack direction={"row"} p={1} justifyContent={"center"}>
+      <Stack >
+        <Stack direction={"row"} py={3} justifyContent={"center"}>
           <Head1 style={{ textAlign: "center" }}>Visiting&nbsp;</Head1>
           <Head1 color="black">Faculty</Head1>
         </Stack>
         {/** Slider for md and above */}
-        <Stack
+        {/* <Stack
           justifyContent={"center"}
           p={"30px 0"}
           gap={2}
@@ -104,7 +104,7 @@ const visitingFaculty = () => {
             ))}
           </Slider>
 
-          <Stack
+           <Stack
             direction="row"
             gap="10px"
             position="absolute"
@@ -160,13 +160,12 @@ const visitingFaculty = () => {
                 onMouseLeave={() => setArrowStyle2(normalStyle)}
               />
             </Stack>
-          </Stack>
-        </Stack>
+          </Stack> 
+        </Stack> */}
 
         {/** sm slider */}
         <Stack
           justifyContent={"center"}
-          p={"30px 0"}
           gap={2}
           display={{ xs: "flex", md: "none" }}
           position="relative"

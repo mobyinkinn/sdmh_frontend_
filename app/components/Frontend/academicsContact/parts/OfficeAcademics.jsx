@@ -18,7 +18,7 @@ const OfficeAcademics = () => {
 
     {
       icon: HiOutlineMailOpen,
-      text: "info@sdmh.in",
+      text: "deansdmh@gmail.com",
     },
     {
       icon: SlLocationPin,

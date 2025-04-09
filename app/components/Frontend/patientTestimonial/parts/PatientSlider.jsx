@@ -78,7 +78,7 @@ const Designslider = ({
                 >
                   {group?.map((item) => (
                     <Stack
-                    padding={"40px"}
+                      padding={"40px"}
                       direction={"row"}
                       key={item?.id}
                       sx={{
@@ -103,12 +103,14 @@ const Designslider = ({
                         }}
                       />
                       <Stack width={"75%"}>
-                      <Typography variant="h6" mt={2}>
+                        <Typography variant="h6" mt={2}>
                         {item?.title}
                       </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {item?.message}
-                      </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          dangerouslySetInnerHTML={{ __html: item.message }}
+                        />
                       </Stack>
                     </Stack>
                   ))}
@@ -146,9 +148,11 @@ const Designslider = ({
                 <Typography variant="h6" mt={2}>
                   {item?.title}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {item?.message}
-                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  dangerouslySetInnerHTML={{ __html: item.message }}
+                />
               </Box>
             ))}
           </Stack>
