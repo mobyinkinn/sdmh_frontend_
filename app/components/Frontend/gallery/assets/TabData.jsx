@@ -43,7 +43,6 @@ import Room8 from "../assets/SDMH/Executive-Romm/8.jpg";
 
 
 const TabData = () => {
-  const [visibleCount, setVisibleCount] = useState(6);
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); // for later if you want different images
 
@@ -80,7 +79,7 @@ const TabData = () => {
       id: 3,
       img: entrance_reception,
       title: "Entrance Reception",
-      imgrotate: [image1, image2],
+      imgrotate: [Room1, Room2, Room3, Room4, Room5, Room6, Room7, Room8],
     },
     {
       id: 4,
@@ -160,14 +159,14 @@ const TabData = () => {
       {/* Cards */}
       <Stack
         alignItems="center"
-        pt={2}
+        py={10}
         justifyContent={"center"}
         width={"100%"}
         flexWrap={"wrap"}
         direction={"row"}
         gap={{ md: 3, xs: 1 }}
       >
-        {eventData.slice(0, visibleCount).map((el) => (
+        {eventData.map((el) => (
           <div
             key={el.id}
             onClick={() => handleCardClick(el)}
@@ -178,21 +177,6 @@ const TabData = () => {
         ))}
       </Stack>
 
-      {/* View More */}
-      {visibleCount < eventData.length && (
-        <Stack alignItems={"center"} py={5}>
-          <ButtonSmallOutline
-            onClick={() => setVisibleCount(visibleCount + 3)}
-            style={{
-              backgroundColor: "white",
-              border: "1px solid green",
-              color: "black",
-            }}
-          >
-            View More
-          </ButtonSmallOutline>
-        </Stack>
-      )}
 
       {/* 3D View Modal */}
       {openModal && (

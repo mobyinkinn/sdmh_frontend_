@@ -138,8 +138,7 @@ const Testimonialslider = () => {
         textAlign={{ lg: "left", md: "left", smm: "center", sm: "center" }}
         style={{ paddingLeft: "20px" }}
       >
-        It is a long established fact that a reader will be distracted by the
-        readable
+        Hear directly from our patients about their experiences.
       </ParaNormal>
       {/* <Designslider
         groups={filteredData}

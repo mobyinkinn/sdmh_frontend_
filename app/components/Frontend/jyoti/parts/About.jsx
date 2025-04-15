@@ -1,5 +1,5 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import oldMan from "./assets/oldMan.png";
+import oldMan from "./assets/oldMan.jpg";
 import { Head1, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import {
   ParaNormal,
@@ -15,14 +15,25 @@ export default function About() {
         position="relative"
         height={"40vh"}
         width={{ lg: "40%", sm: "100%" }}
+        borderRadius={"10px"}
+        sx={{
+            height: { md: "60vh", xs: "40vh" },
+            margin: { md: "0 0 0 50px", xs: "auto" },
+            width: { md: "40%", xs: "90%" },
+            backgroundImage: `url(${oldMan.src})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center bottom",
+          }}
       >
-        <Image
+        {/* <Image
           src={oldMan}
           alt=""
           fill
           objectFit="contain"
           objectPosition="center center"
-        />
+          style={{borderRadius:"10px"}}
+        /> */}
       </Stack>
       <Stack
         width={{ lg: "60%", sm: "100%" }}

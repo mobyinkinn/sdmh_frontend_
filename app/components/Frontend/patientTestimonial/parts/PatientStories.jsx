@@ -150,8 +150,7 @@ const PatientStories = () => {
           width={{ lg: "50%", md: "50%", smm: "90%", sm: "90%" }}
           style={{ textAlign: "center" }}
         >
-          It is a long established fact that a reader will be distracted by the
-          readable
+          Hear directly from our patients about their experiences.
         </ParaNormal>
       </Stack>
       {rows.map((row, index) => {

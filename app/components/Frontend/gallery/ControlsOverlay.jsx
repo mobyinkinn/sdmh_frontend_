@@ -192,12 +192,17 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 
 const ControlsOverlay = () => {
   const { camera } = useThree();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [minZoom] = useState(300);
   const [maxZoom] = useState(700);
+  const [angle, setAngle] = useState(0);
+  const radius = 500; // keep same as initial z-pos of camera
 
   useEffect(() => {
     camera.position.set(0, 0, 500);
@@ -218,6 +223,24 @@ const ControlsOverlay = () => {
       camera.updateProjectionMatrix();
     }
   };
+  const turnLeft = () => {
+    const newAngle = angle - Math.PI / 18; // 10 degrees
+    setAngle(newAngle);
+    camera.position.x = radius * Math.sin(newAngle);
+    camera.position.z = radius * Math.cos(newAngle);
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+  };
+
+  const turnRight = () => {
+    const newAngle = angle + Math.PI / 18;
+    setAngle(newAngle);
+    camera.position.x = radius * Math.sin(newAngle);
+    camera.position.z = radius * Math.cos(newAngle);
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+  };
+
 
   const moveUp = () => {
     camera.position.y += 5;
@@ -272,6 +295,12 @@ const ControlsOverlay = () => {
         </IconButton>
         <IconButton onClick={moveDown}>
           <ArrowDownwardIcon />
+        </IconButton>
+        <IconButton onClick={turnLeft}>
+          <ArrowBackIcon />
+        </IconButton>
+        <IconButton onClick={turnRight}>
+          <ArrowForwardIcon />
         </IconButton>
         <IconButton onClick={resetCamera}>
           <RestartAltIcon />
