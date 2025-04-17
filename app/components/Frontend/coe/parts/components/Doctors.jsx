@@ -123,6 +123,7 @@ import {
 import { useDoctorById } from "@/app/components/admin/doctors/parts/useDoctor";
 import { useRouter } from "next/navigation";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
+import Modal from "@/app/components/ui/Modal";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -136,7 +137,7 @@ export default function Doctors({ _id }) {
   return (
     <>
     <Head1
-        textAlign={{ sm: "left", smm: "left", md: "left", lg: "left" }}
+        textAlign={{ sm: "left", smm: "left", md: "center", lg: "center" }}
         color="#005900"
       >
         Meet Our Experts in the Department
@@ -145,7 +146,7 @@ export default function Doctors({ _id }) {
       direction={"row"}
       flexWrap={"wrap"}
       gap={{ md: "30px", xs: "10px" }}
-      justifyContent={"space-between"}
+      justifyContent={"center"}
       marginTop={{ md: "50px", xs: "15px" }}
     >
       
@@ -253,24 +254,50 @@ export default function Doctors({ _id }) {
                        ))}
                      </Stack>
                    </Stack>
-
-                   <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
-                     <ButtonSmallOutline
-                       padding={"8px 10px"}
-                       color={"#379237"}
-                       hoverColor={"#fff"}
-                     >
-                       Appointment
-                     </ButtonSmallOutline>
-                     <ButtonSmallOutline
-                       color={"#486c9c"}
-                       padding={"8px 10px"}
-                       hoverColor={"#fff"}
-                       onClick={() => router.push(`/find-a-doctor/${el._id}`)}
-                     >
-                       View Profile
-                     </ButtonSmallOutline>
-                   </Stack>
+                   <Modal>
+                     <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
+                       <Modal.Open opens="appointment">
+                         <ButtonSmallOutline
+                           padding={"8px 10px"}
+                           color={"#379237"}
+                           hoverColor={"#fff"}
+                         >
+                           Appointment
+                         </ButtonSmallOutline>
+                       </Modal.Open>
+                       <ButtonSmallOutline
+                         color={"#486c9c"}
+                         padding={"8px 10px"}
+                         hoverColor={"#fff"}
+                         onClick={() => router.push(`/find-a-doctor/${el._id}`)}
+                       >
+                         View Profile
+                       </ButtonSmallOutline>
+                     </Stack>
+                     <Modal.Window name="appointment">
+                       <div>
+                         <Typography
+                           textAlign={"center"}
+                           fontSize={"2rem"}
+                           color="green"
+                         >
+                           Book an Appointment
+                         </Typography>
+                         <Typography textAlign={"center"}>
+                           Appointments can currently be booked by calling
+                           7073111911 between 7:00 AM and 4:00 PM. This service
+                           allows patients or their attendants to choose a
+                           preferred time slot for consultation with the doctor.
+                         </Typography>
+                         <Typography textAlign={"center"} marginTop={2}>
+                           <b>Please note:</b> Appointment slots are subject to
+                           availability. If a preferred slot is not available,
+                           patients will be attended through the regular OPD
+                           system.
+                         </Typography>
+                       </div>
+                     </Modal.Window>
+                   </Modal>
                  </Stack>
                </Stack>
              );

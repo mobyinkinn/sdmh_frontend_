@@ -6,6 +6,9 @@ import MobileFooter from "../footer/MobileFooter";
 import Hero from "./parts/Hero";
 import banner from "./parts/assets/contact_banner.png";
 import sm_banner from "./parts/assets/sm_contact_banner.png";
+import mobileBanner from "./parts/assets/1.jpg";
+import bannerDesk from "./parts/assets/2.jpg";
+
 import Enquire_Now from "./parts/Enquire_Now";
 import Available from "./parts/Available";
 import Reach from "./parts/Reach";
@@ -63,7 +66,31 @@ const Greeting = () => {
         }}
       ></Box>
       <Enquire_Now />
-      <Available />
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "203px", lg: "270px", xl: "379px" }}
+        width="100%"
+        sx={{
+          backgroundImage: `url(${bannerDesk.src})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          cursor: "pointer",
+        }}
+      />
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "290px" }}
+        width="100%"
+        sx={{
+          backgroundImage: `url(${mobileBanner.src})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          cursor: "pointer",
+        }}
+      />
+      {/* <Available /> */}
       <Reach />
       <Ambu />
       <Stack height={"90vh"} width="100%">

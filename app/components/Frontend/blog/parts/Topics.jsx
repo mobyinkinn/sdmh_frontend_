@@ -33,12 +33,7 @@ const Topics = () => {
 
   return (
     <Stack p={{ md: "20px 50px" }} gap={2} bgcolor={"#F9F9F9"}>
-      <Stack
-        direction={"row"}
-        p={2}
-        mt={4}
-        justifyContent={{ sm: "center", md: "start" }}
-      >
+      <Stack direction={"row"} p={2} mt={4} justifyContent={"center"}>
         <Head1
           fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.4rem" }}
           color="#007946"
@@ -87,11 +82,14 @@ const Topics = () => {
             </Box>
             <Typography
               fontWeight={{ xs: "normal", md: "bold" }}
-              fontSize={{ sm: "20px", smm: "23px", md: "26px", lg: "28px" }}
+              fontSize={{ sm: "12px", smm: "15px", md: "18px", lg: "19px" }}
+              color="#486c9c"
             >
               {blog.title}
             </Typography>
-            <ParaNormal>{blog.smallDescription.slice(0, 150)}....</ParaNormal>
+            <ParaNormal fontSize={{ lg: "1rem", md: "1rem", sm: "0.8ren" }}>
+              {blog.smallDescription.slice(0, 150)}....
+            </ParaNormal>
             <Stack direction={"row"} gap={2}>
               <ButtonSmallOutlineWithoutHover
                 style={{ border: "1px solid lightgrey" }}
@@ -100,8 +98,9 @@ const Topics = () => {
               </ButtonSmallOutlineWithoutHover>
               <ButtonSmallOutlineWithoutHover
                 style={{ border: "1px solid lightgrey" }}
+                onClick={() => router.push(`/blog/${blog._id}`)}
               >
-                Topic
+                Read More
               </ButtonSmallOutlineWithoutHover>
             </Stack>
           </Stack>

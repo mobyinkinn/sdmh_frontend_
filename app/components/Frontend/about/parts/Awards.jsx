@@ -221,6 +221,7 @@ import img3 from "./assets/award3.jpg";
 import img4 from "./assets/award4.jpg";
 import img5 from "./assets/award5.jpg";
 import img6 from "./assets/award6.jpg";
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
 
 const allImages = [
   {
@@ -308,6 +309,7 @@ const Slider = () => {
 
   return (
     <Stack width="100%" alignItems="center" spacing={2}>
+     
       <Typography variant="h5" textAlign="center" fontWeight={600}>
         {currentText.heading}
       </Typography>

@@ -5,18 +5,12 @@ import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import banner from "./parts/assets/bannerImage.png";
 import Noticwes from "./parts/Noticwes";
 import MobileFooter from "../footer/MobileFooter";
+import Hero from "./parts/Hero";
 const AcademicsNotices = () => {
   return (
     <>
       <Navbar />
-      <BannerImage2
-        image={banner.src}
-        overlayColor="#476C9BE5"
-        title="Academic Notices"
-        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        align="center"
-        textcenter={"center"}
-      />
+      <Hero/>
       <Noticwes />
       <Footer />
       <MobileFooter />

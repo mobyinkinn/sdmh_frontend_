@@ -2,7 +2,7 @@
 // import { ParaNormal } from '@/app/styledComponents/frontend/Para';
 // import { Stack } from '@mui/material'
 // import React from 'react'
-// import img1 from "./assets/img1.png"
+// import img1 from "./assets/img1.jpg"
 // import Image from 'next/image';
 // const PatientStories = () => {
 //     const data = [
@@ -83,17 +83,38 @@
 // }
 
 // export default PatientStories
+
 "use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Box, Dialog, IconButton, Stack } from "@mui/material";
 import React, { useState } from "react";
-import img1 from "./assets/img1.png";
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
 import { useVideos } from "@/app/components/admin/videos/useVideos";
 import Spinner from "@/app/components/ui/Spinner";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
+import img1 from "./assets/zip/1.jpg";
+import img2 from "./assets/zip/2.jpg";
+import img3 from "./assets/zip/3.jpg";
+import img4 from "./assets/zip/4.jpg";
+import img5 from "./assets/zip/5.jpg";
+import img6 from "./assets/zip/6.jpg";
+import img7 from "./assets/zip/7.jpg";
+import img8 from "./assets/zip/8.jpg";
+import img9 from "./assets/zip/9.jpg";
+import img10 from "./assets/zip/10.jpg";
+import img11 from "./assets/zip/11.jpg";
+import img12 from "./assets/zip/12.jpg";
+import img13 from "./assets/zip/13.jpg";
+import img14 from "./assets/zip/14.jpg";
+import img15 from "./assets/zip/15.jpg";
+import img16 from "./assets/zip/16.jpg";
+import img17 from "./assets/zip/17.jpg";
+import img18 from "./assets/zip/18.jpg";
+
+
+
 
 const PatientStories = () => {
   const { data, isLoading, error } = useVideos();
@@ -140,6 +161,27 @@ const PatientStories = () => {
   };
 
   const rows = splitData(visibleData);
+const backgroundImages = [
+  img3,
+  img6,
+  img1,
+  img2,
+  img4,
+  img5,
+
+  img7,
+  img8,
+  img9,
+  img10,
+  img11,
+  img12,
+  img13,
+  img14,
+  img15,
+  img16,
+  img17,
+  img18,
+];
 
   return (
     <Stack bgcolor={"#D8E0EB"} padding={4}>
@@ -153,7 +195,7 @@ const PatientStories = () => {
           Hear directly from our patients about their experiences.
         </ParaNormal>
       </Stack>
-      {rows.map((row, index) => {
+      {/* {rows.map((row, index) => {
         return (
           <Stack
             key={index}
@@ -175,7 +217,7 @@ const PatientStories = () => {
                   sx={{
                     width: "220px",
                     height: "300px",
-                    backgroundImage: `url(${img1.src})`,
+                    backgroundImage: `url(${backgroundImages[index].src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     borderRadius: "20px",
@@ -205,7 +247,72 @@ const PatientStories = () => {
             ))}
           </Stack>
         );
+      })} */}
+      {rows.map((row, rowIndex) => {
+        return (
+          <Stack
+            key={rowIndex}
+            direction={"row"}
+            gap={3}
+            justifyContent={"center"}
+            flexWrap={"wrap"}
+          >
+            {row.map((item, itemIndexInRow) => {
+              const globalIndex =
+                row.slice(0, itemIndexInRow).reduce((acc, _, i) => acc + 1, 0) +
+                rows
+                  .slice(0, rowIndex)
+                  .reduce((acc, row) => acc + row.length, 0);
+
+              const backgroundImage = backgroundImages[globalIndex]?.src;
+
+              return (
+                <Stack
+                  key={item.id}
+                  alignItems={"center"}
+                  sx={{
+                    padding: 2,
+                    borderRadius: "8px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "220px",
+                      height: "300px",
+                      backgroundImage: `url(${backgroundImage})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      borderRadius: "20px",
+                      transition: "all 0.5s ease",
+                      zIndex: 1,
+                      position: "relative",
+                    }}
+                  >
+                    <IconButton
+                      sx={{
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        color: "white",
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        borderRadius: "50%",
+                        transition: "all 0.3s ease",
+                        "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+                        position: "absolute",
+                      }}
+                      onClick={() => handleOpenModal(item.url)}
+                    >
+                      <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
+                    </IconButton>
+                  </Box>
+                  <ParaNormal>{item.title}</ParaNormal>
+                </Stack>
+              );
+            })}
+          </Stack>
+        );
       })}
+
       <Stack alignItems={"center"}>
         {visibleCount < data.length && (
           <ButtonSmallOutline

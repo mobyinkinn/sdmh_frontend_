@@ -171,7 +171,7 @@ function CoeCard({ el }) {
           <div>Image Unavailable</div>
         )}
       </Box>
-      <ParaNormal textAlign={{ lg: "center", sm: "center" }} color={"#005900"} fontWeight={'bold'}>
+      <ParaNormal textAlign={{ lg: "center", sm: "center" }} color={"#005900"} fontWeight={'bold'} height ={{lg:"60px"}} display={{lg:"flex"}} alignItems={{lg:"center"}}>
         {el.name}
       </ParaNormal>
       <ButtonSmallOutline

@@ -9,8 +9,10 @@ import roomTour from "../assets/icons/roomTour.png";
 import Image from "next/image";
 import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
 import Spinner from "@/app/components/ui/Spinner";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
+    const router = useRouter();
   const { data, isLoading, error } = useBannerByPage("home");
   if (isLoading) return <Spinner />;
 
@@ -18,13 +20,16 @@ export default function Hero() {
     <Stack direction={"row"}>
       <Box
         display={{ md: "flex", sm: "none" }}
-        minHeight={{ md: "322px", lg: "434px", xl: "600px",xxxl:"800px" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
         width={"100%"}
         sx={{
           backgroundImage: `url(${data?.banner})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
+        }}
+        onClick={() => {
+          router.push('/about');
         }}
       ></Box>
 

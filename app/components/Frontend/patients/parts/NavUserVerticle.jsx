@@ -131,13 +131,14 @@ import styled from "styled-components";
 import { Stack } from "@mui/material";
 import { TfiArrowCircleRight } from "react-icons/tfi"; // Arrow icon
 import { useState } from "react";
+import { HiOutlinePlusSmall } from "react-icons/hi2";
 
 const navData = [
   { id: "tabData", name: "Registration" },
   { id: "admission", name: "Admission" },
   { id: "discharge", name: "Discharge" },
   { id: "rest", name: "Payment Guidelines" },
-  { id: "threeLineSlider", name: "General Guidelines" }, // Fixed ID
+  { id: "threeLineSlider", name: "General Guidelines" },
   { id: "loungeAttendants", name: "Lounge Attendants" }, // Fixed ID
   { id: "atmWithdrawal", name: "ATM & Withdrawal" }, // Fixed ID
   { id: "policy", name: "Visitors Policy" }, // Fixed ID
@@ -193,21 +194,33 @@ export default function NavUserVerticle({ sectionsRef }) {
   };
 
   return (
-    <Stack bgcolor={"#f4f4f4"} display={{ lg: "flex", sm: "none" }} width={"18%"}>
+    <Stack
+      bgcolor={"#f4f4f4"}
+      display={{ lg: "flex", sm: "none" }}
+      width={"21%"}
+    >
       <NavList>
-        <StyledTitle
-            className="active" style={{justifyContent:"center"}}
-            
-          >
-            Patient Care & Services
-          </StyledTitle>
+        {/* <StyledTitle className="active" style={{ justifyContent: "center" }}>
+          Patient Care & Services
+        </StyledTitle> */}
+        <Stack
+          bgcolor={"#027845"}
+          color={"white"}
+          display={{ md: "flex", sm: "none" }}
+          className="new active"
+          direction={"row"}
+          sx={{ justifyContent: "space-between" }}
+        >
+          Patient Care & Services
+          <TfiArrowCircleRight style={{ fontSize: "20px", color: "white" }} />
+        </Stack>
         {navData.map((item) => (
           <StyledNavItem
             key={item.id}
             onClick={() => handleScrollToSection(item.id)}
           >
             {item.name}
-            <TfiArrowCircleRight style={{ fontSize: "20px", color: "white" }} />
+            <HiOutlinePlusSmall style={{ fontSize: "20px", color: "white" }} />
           </StyledNavItem>
         ))}
       </NavList>

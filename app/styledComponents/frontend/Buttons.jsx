@@ -82,7 +82,7 @@ const ButtonSmallOutline = styled.button((props) => ({
   backgroundColor: "transparent",
   width: "fit-content",
   outline: "none",
-  border: `1px solid ${props.color}`,
+  border: `1px solid #486c9c`,
   padding: props.padding || "10px 30px",
   color: props.color,
   cursor: "pointer",
@@ -93,7 +93,7 @@ const ButtonSmallOutline = styled.button((props) => ({
   alignItems: "center",
   transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: props.color,
+    backgroundColor: "#486c9c",
     color: props.hoverColor || "#486c9c",
   },
 

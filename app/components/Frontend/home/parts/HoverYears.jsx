@@ -379,6 +379,7 @@ return (
         height={{ md: "96vh", xs: "70vh" }}
         paddingLeft={"20px"}
         sx={{
+          position: "relative",
           cursor: "pointer",
           backgroundImage: `url(${hoverbg.src})`,
           backgroundSize: "cover",
@@ -386,6 +387,7 @@ return (
           justifyContent: "center",
         }}
       >
+
         <TfiArrowCircleUp
           color="green"
           style={{

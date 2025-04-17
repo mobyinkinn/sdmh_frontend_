@@ -433,6 +433,7 @@ import img2 from "./assets/award2.jpg";
 import img3 from "./assets/award3.jpg";
 import img4 from "./assets/award4.jpg";
 import img5 from "./assets/award5.jpg";
+import { Head1 } from "@/app/styledComponents/frontend/Headings";
 
 const allImages = [
   {
@@ -515,6 +516,9 @@ const Slider = () => {
 
   return (
     <Stack width="100%" alignItems="center" spacing={2} py={10}>
+       <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
+              Awards & Accreditation 
+            </Head1>
       <Typography variant="h5" textAlign="center" fontWeight={600}>
         {currentText.heading}
       </Typography>

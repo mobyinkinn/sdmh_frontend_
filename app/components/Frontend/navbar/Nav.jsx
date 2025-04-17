@@ -44,6 +44,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+   const handleMailClick = () => {
+     window.location.href = "mailto:info@sdmh.in";
+   };
   const router = useRouter();
   const { data: navData, isLoading, error } = useNavbar();
   const { data: departmentData, isLoading: isDepartmentLoading } =
@@ -180,7 +183,12 @@ export default function Navbar() {
           >
             Second Opinion
           </Typography>
-          <Typography sx={{ display: { sm: "none", lg: "flex" } }}>
+          <Typography
+            sx={{ display: { sm: "none", lg: "flex" }, cursor: "pointer" }}
+            onClick={() => {
+              router.push(`https://www.sdmh.in/patientlogin/`);
+            }}
+          >
             Lab Reports
           </Typography>
           {/* <Box
@@ -456,8 +464,12 @@ export default function Navbar() {
             <span style={{ color: "red" }}>Emergency Number</span>
             <FaPhone style={{ width: "15px", height: "25px" }} /> 0141 352 4444
           </DarkGreenButtonSmallOutline>
-          <DarkGreenButtonSmallOutline padding="5px 5px">
-            <IoIosMail style={{ width: "20px", height: "25px" }} /> info@sdmh.in
+          <DarkGreenButtonSmallOutline
+            padding="5px 5px"
+            onClick={handleMailClick}
+          >
+            <IoIosMail style={{ width: "20px", height: "25px" }} href="" />{" "}
+            info@sdmh.in
           </DarkGreenButtonSmallOutline>
           <Box
             component="img"

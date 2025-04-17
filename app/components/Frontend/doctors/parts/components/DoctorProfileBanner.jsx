@@ -115,6 +115,7 @@ import {
   useDepartmentById,
 } from "@/app/components/admin/departments/parts/useDepartment";
 import Spinner from "@/app/components/ui/Spinner";
+import Modal from "@/app/components/ui/Modal";
 
 export default function DoctorProfileBanner({ data }) {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -139,7 +140,7 @@ export default function DoctorProfileBanner({ data }) {
             width: { md: "30%" },
             height: "350px",
             overflow: "hidden",
-            transform: { md: "skew(3deg)", sm: "none" }, // Skew the image container
+            transform: { md: "skew(1deg)", sm: "none" }, // Skew the image container
             transformOrigin: { md: "bottom right", sm: "none" },
           }}
         >
@@ -151,8 +152,6 @@ export default function DoctorProfileBanner({ data }) {
               backgroundRepeat: "no-repeat",
               width: "100%",
               height: "100%",
-              transform: { md: "skew(3deg)", sm: "none" }, // Skew the image container
-              transformOrigin: { md: "bottom right", sm: "none" },
             }}
           />
         </Stack>
@@ -166,19 +165,15 @@ export default function DoctorProfileBanner({ data }) {
             gap: "5px",
             width: { md: "70%" },
             overflow: "hidden",
-            transform: { md: "skew(3deg)", sm: "none" }, // Skew the image container
+            transform: { md: "skew(1deg)", sm: "none" }, // Skew the image container
             transformOrigin: { md: "top left", sm: "none" },
           }}
         >
-          <Stack
-            sx={{
-              transform: { md: "skew(-3deg)", sm: "none" }, // Skew the image container
-              transformOrigin: { md: "top left", sm: "none" },
-            }}
-          >
+          <Stack>
             <Head1
               color="white"
               textAlign={{ lg: "left", md: "left", smm: "left", sm: "left" }}
+              fontSize={{ lg: "2rem", md: "2rem", smm: "2rem", sm: "2rem" }}
             >
               {data?.name}
             </Head1>
@@ -211,54 +206,83 @@ export default function DoctorProfileBanner({ data }) {
             </ParaNormalSmall> */}
 
             {/* Buttons for larger screens */}
-            <Stack
-              marginTop="20px"
-              display={{ md: "flex", xs: "none" }}
-              gap="20px"
-              direction="row"
-            >
-              <ButtonMediumOutline
-                hcolor="white"
-                hoverColor="#005900"
-                color="white"
+            <Modal>
+              <Stack
+                marginTop="20px"
+                display={{ md: "flex", xs: "none" }}
+                gap="45px"
+                direction="row"
               >
-                Make Appointment
-              </ButtonMediumOutline>
-              <ButtonMediumOutline
-                hcolor="white"
-                hoverColor="#005900"
-                color="white"
-              >
-                Video Consultation
-              </ButtonMediumOutline>
-            </Stack>
+                <Modal.Open opens="appointment">
+                  <ButtonMediumOutline
+                    padding={"11px 27px"}
+                    hcolor="white"
+                    hoverColor="#005900"
+                    color="white"
+                  >
+                    Make Appointment
+                  </ButtonMediumOutline>
+                </Modal.Open>
+                <ButtonMediumOutline
+                  padding={"11px 27px"}
+                  hcolor="white"
+                  hoverColor="#005900"
+                  color="white"
+                >
+                  Video Consultation
+                </ButtonMediumOutline>
+              </Stack>
 
-            {/* Buttons for smaller screens */}
-            <Stack
-              marginTop="20px"
-              display={{ md: "none", xs: "flex" }}
-              gap="20px"
-              direction="row"
-            >
-              <ButtonSmallOutline
-                hcolor="white"
-                hoverColor="#005900"
-                color="white"
+              {/* Buttons for smaller screens */}
+              <Stack
+                marginTop="20px"
+                display={{ md: "none", xs: "flex" }}
+                gap="20px"
+                direction="row"
               >
-                Make Appointment
-              </ButtonSmallOutline>
-              <ButtonSmallOutline
-                hcolor="white"
-                hoverColor="#005900"
-                color="white"
-              >
-                Video Consultation
-              </ButtonSmallOutline>
-            </Stack>
+                <Modal.Open opens="appointment">
+                  <ButtonMediumOutline
+                    padding={"11px 27px"}
+                    hcolor="white"
+                    hoverColor="#005900"
+                    color="white"
+                  >
+                    Make Appointment
+                  </ButtonMediumOutline>
+                </Modal.Open>
+                <ButtonSmallOutline
+                  padding={"11px 27px"}
+                  hcolor="white"
+                  hoverColor="#005900"
+                  color="white"
+                >
+                  Video Consultation
+                </ButtonSmallOutline>
+              </Stack>
+              <Modal.Window name="appointment">
+                      <div>
+                        <Typography textAlign={"center"} fontSize={"2rem"} color="green">
+                          Book an Appointment
+                        </Typography>
+                        <Typography textAlign={"center"}>
+                          Appointments can currently be booked by calling 7073111911 between
+                          7:00 AM and 4:00 PM. This service allows patients or their
+                          attendants to choose a preferred time slot for consultation with the
+                          doctor.
+                        </Typography>
+                        <Typography textAlign={"center"} marginTop={2}>
+                          <b>Please note:</b> Appointment slots are subject to availability.
+                          If a preferred slot is not available, patients will be attended
+                          through the regular OPD system.
+                        </Typography>
+                      </div>
+                    </Modal.Window>
+            </Modal>
             <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"} pt={2}>
               {days.map((day, i) => (
                 <Stack>
                   <ButtonMediumOutline
+                    padding={"7px 28px"}
                     key={i}
                     color={data?.availablity?.[day] ? "white" : "white"}
                     backgroundColor={

@@ -69,7 +69,7 @@ useEffect(() => {
           <Stack
             width={"100%"}
             sx={{ overflowY: "scroll" }}
-            height={{ md: "75vh" }}
+            height={{ md: "75vh", sm:"290px" }}
           >
             {filteredDepartment.map((el, i) => {
               return (

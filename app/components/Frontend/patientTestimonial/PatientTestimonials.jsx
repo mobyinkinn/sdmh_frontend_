@@ -11,6 +11,7 @@ import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
 import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 import { Box, Stack } from "@mui/material";
+import Reviews from "./parts/Reviews";
 
 const PatientTestimonials = () => {
   const { isLoading } = useNavbar();
@@ -53,7 +54,8 @@ const PatientTestimonials = () => {
         image={banner}
         textcenter={"left"}
       /> */}
-      <Testimonialslider />
+      {/* <Testimonialslider /> */}
+      <Reviews />
       <PatientStories />
       <Footer />
       <MobileFooter />

@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 
 export default function Hero() {
    const { data, isLoading: isLoadingBanner } =
-     useBannerByPage("Academic Deanery");
+     useBannerByPage("Academic Library");
    if (isLoadingBanner) return <Spinner />;
   return (
     // <BannerImage2

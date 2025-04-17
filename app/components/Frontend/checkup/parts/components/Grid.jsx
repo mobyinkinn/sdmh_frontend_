@@ -21,14 +21,14 @@ export default function Grid() {
   // Filtered and paginated data
   const filteredData = data?.filter((el) => el.status === true) || [];
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  const paginatedData = filteredData.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
+  // const paginatedData = filteredData.slice(
+  //   (page - 1) * itemsPerPage,
+  //   page * itemsPerPage
+  // );
 
   // For mobile "View All" functionality
-  const [visibleCount, setVisibleCount] = useState(4);
-  const visibleData = filteredData.slice(0, visibleCount);
+  // const [visibleCount, setVisibleCount] = useState(4);
+  // const visibleData = filteredData.slice(0, visibleCount);
 
   // Reset pagination when data changes
   useEffect(() => {
@@ -75,13 +75,13 @@ export default function Grid() {
         marginX={{ xs: "20px", md: "0" }}
         display={{ xs: "none", md: "flex" }}
       >
-        {paginatedData.map((el) => (
+        {filteredData.map((el) => (
           <CheckupCard key={el._id} el={el} />
         ))}
       </Stack>
 
       {/* Pagination for Desktop */}
-      <Stack
+      {/* <Stack
         direction="row"
         justifyContent="center"
         marginTop={4}
@@ -97,7 +97,7 @@ export default function Grid() {
           showLastButton
           size="large"
         />
-      </Stack>
+      </Stack> */}
 
       {/* Mobile View */}
       <Stack
@@ -109,18 +109,16 @@ export default function Grid() {
         marginX={{ xs: "20px", md: "0" }}
         display={{ xs: "flex", md: "none" }}
       >
-        {visibleData.map((el) => (
+        {filteredData.map((el) => (
           <CheckupCard key={el._id} el={el} />
         ))}
         <Stack alignItems={{ xs: "center", md: "start" }}>
-          {visibleCount < filteredData.length && (
             <ButtonMediumOutline
               onClick={() => setVisibleCount(visibleCount + 3)}
               color="#476C9B"
             >
               View More
             </ButtonMediumOutline>
-          )}
         </Stack>
       </Stack>
     </ContainerMain>
@@ -158,12 +156,15 @@ function CheckupCard({ el }) {
       >
         <Stack>
           <ParaNormal
+            color={"#486c9c"}
+            fontWeight={"bold"}
             fontSize={{
               lg: "22px",
               md: "18px",
               smm: "17px",
               sm: "17px",
             }}
+            height={"70px"}
           >
             {el.title}
           </ParaNormal>
@@ -174,12 +175,14 @@ function CheckupCard({ el }) {
           </ParaNormal>
         </Stack>
         <ParaNormal
-          fontSize={{ lg: "18px", md: "17px", smm: "16px", sm: "13px" }}
+          fontSize={{ lg: "16px", md: "17px", smm: "16px", sm: "13px" }}
         >
           {el.smallDescription}
         </ParaNormal>
         <Stack direction={"row"} gap={2}>
-          <ButtonSmallOutline color="#007946">Book Now</ButtonSmallOutline>
+          <ButtonSmallOutline color={"#007946"} hoverColor="white">
+            Book Now
+          </ButtonSmallOutline>
           <ButtonSmallOutline
             color="#000000"
             hoverColor="white"
