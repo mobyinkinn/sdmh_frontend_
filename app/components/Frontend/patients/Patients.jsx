@@ -15,6 +15,7 @@ import TabData from "./parts/TabData";
 import ThreeLineSlider from "./parts/ThreeLineSlider";
 import NavbarAdminVerticle from "@/app/components/admin/navbarAdmin/NavbarAdminVerticle";
 import { useCallback, useRef } from "react";
+import MobileFooter from "../footer/MobileFooter";
 
 export default function Patients() {
   const sectionsRef = {
@@ -67,6 +68,7 @@ const setSecondSection = useCallback((node) => {
         <Suggestions />
       </div>
       <Footer />
+      <MobileFooter/>
     </Stack>
   );
 }

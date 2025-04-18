@@ -42,6 +42,7 @@ const blogData = [
 
 export default function Blog() {
   const { data, isLoading: loadingAllBlogs } = useBlogs();
+  const another = data?.slice(0,3)
   if (loadingAllBlogs) return <Spinner />;
 const router = useRouter();
   const filterFirstBlog = data.filter((el, index) => index === 0);
@@ -123,7 +124,7 @@ console.log("filteredRemainingBlog", filteredRemainingBlog);
           padding="15px"
           borderRadius="5px"
         >
-          {data.map((el, i) => {
+          {another.map((el, i) => {
             return <BlogCard key={i} el={el}></BlogCard>;
           })}
 
@@ -170,11 +171,13 @@ function BlogCard({ el }) {
         gap={"5px"}
         // height={{ xs: "100%", md: "35vh", lg: "30vh", xl: "30vh" }}
         justifyContent={{ xs: "unset", lg: "space-evenly" }}
+        onClick={() => router.push(`/blog/${el._id}`)}
       >
         <Typography
           align="left"
-          fontSize={{ md: "1rem", xs: "0.7rem" }}
+          fontSize={{ md: "1rem", xs: "0.9rem" }}
           color="#266923"
+          fontWeight={"bold"}
         >
           {el.title}
         </Typography>

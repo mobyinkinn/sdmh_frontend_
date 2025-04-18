@@ -27,13 +27,15 @@ export default function About() {
         }}
       ></Stack>
       <Stack width={{ xs: "90%", md: "50%", lg: "60%" }} gap={"20px"}>
-        <Stack direction={"row"}>
-          <Head1 color="black">About &nbsp;</Head1>
-          <Head1>SDMH</Head1>
+        <Stack direction={"row"} justifyContent={"center"}>
+          <Head1 color="black" fontSize={{ sm: "1.5rem" }}>
+            About &nbsp;
+          </Head1>
+          <Head1 fontSize={{ sm: "1.5rem" }}>SDMH</Head1>
         </Stack>
         <Typography
           fontSize={{ xs: "1rem", smm: "1.2rem" }}
-          textAlign={"justify"}
+          textAlign={"center"}
         >
           The Santokba Durlabhji Trust was founded in 1958 with a vision to
           provide quality care to the common man – without favour or
@@ -42,21 +44,23 @@ export default function About() {
           Indira Gandhi, the hospital was dedicated to the Armed Forces as the
           nation was then in the throes of a war with Pakistan.
         </Typography>
-        <Typography
+        {/* <Typography
           fontSize={{ xs: "1rem", smm: "1.2rem" }}
-          textAlign={"justify"}
+          textAlign={"center"}
         >
           Since then, S.D.M.H. has continued to provide affordable health care
           through the several philanthropic initiatives it has undertaken e.g.
           The Avedna Ashram, the Rehabilitation and Limb Fitting Centre,
-        </Typography>
-        <Stack alignItems={{ xs: "center", md: "start" }} sx={{ mb: 5 }}>
+        </Typography> */}
+        <Stack alignItems={{ xs: "center", md: "start" }}>
           <ButtonMediumOutline
-            color="#379237"
+            margin="10px 20px"
+            color="#fff"
             hcolor="#005900"
+            backgroundColor="#007946"
             onClick={() => router.push(`/about`)}
           >
-            View All
+            Read More
           </ButtonMediumOutline>
         </Stack>
       </Stack>

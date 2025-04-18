@@ -2,13 +2,15 @@ import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Box, Stack } from "@mui/material";
 import React from "react";
-import Image1 from "./assets/Ach1.png";
-import Image2 from "./assets/Ach1.png";
-import Image3 from "./assets/Ach1.png";
+import Image1 from "./assets/a1.jpg";
+import Image2 from "./assets/a2.jpg";
+import Image3 from "./assets/a3.jpg";
+import Image4 from "./assets/a4.jpg";
+
 import Image from "next/image";
 
 const Achievements = () => {
-  const data = [Image1, Image2, Image3, Image3];
+  const data = [Image1, Image2, Image3, Image4];
   return (
     <Stack
       bgcolor={"#D8E0EB"}

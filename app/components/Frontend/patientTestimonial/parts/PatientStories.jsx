@@ -124,24 +124,55 @@ const PatientStories = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState("");
 
+  // const extractVideoId = (url) => {
+  //   const regex =
+  //     /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/(?:shorts\/|embed\/|v\/|watch\?.*v=)))([a-zA-Z0-9_-]{11})/;
+  //   const match = url.match(regex);
+  //   return match ? match[1] : null;
+  // };
+
   const extractVideoId = (url) => {
-    const regex =
-      /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/(?:shorts\/|embed\/|v\/|watch\?.*v=)))([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
+    try {
+      // Handle URLs like https://youtube.com/shorts/PD9Kf02uykw?si=XArbUH3QFtjiJgzX
+      const shortsMatch = url.match(
+        /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/
+      );
+      if (shortsMatch) return shortsMatch[1];
+
+      // Handle URLs like https://www.youtube.com/watch?v=PD9Kf02uykw
+      const standardMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+      if (standardMatch) return standardMatch[1];
+
+      // Handle embed URLs or youtu.be links
+      const embedMatch = url.match(/(?:embed|youtu\.be)\/([a-zA-Z0-9_-]{11})/);
+      if (embedMatch) return embedMatch[1];
+    } catch (e) {
+      console.error("Error parsing video URL", e);
+    }
+    return null;
   };
 
   if (isLoading) return <Spinner />;
 
-  const handleOpenModal = (videoUrl) => {
-    console.log("videourl", videoUrl);
-    const videoId = extractVideoId(videoUrl);
-    console.log("videoId", videoId);
+  // const handleOpenModal = (videoUrl) => {
+  //   console.log("videourl", videoUrl);
+  //   const videoId = extractVideoId(videoUrl);
+  //   console.log("videoId", videoId);
 
-    if (videoId) {
-      setSelectedVideo(videoId);
-      setOpenModal(true);
+  //   if (videoId) {
+  //     setSelectedVideo(videoId);
+  //     setOpenModal(true);
+  //   }
+  // };
+
+  const handleOpenModal = (videoUrl) => {
+    const videoId = extractVideoId(videoUrl);
+    if (!videoId) {
+      console.error("Invalid video URL:", videoUrl);
+      return;
     }
+    setSelectedVideo(videoId);
+    setOpenModal(true);
   };
 
   const handleCloseModal = () => {
@@ -164,23 +195,22 @@ const PatientStories = () => {
 const backgroundImages = [
   img3,
   img6,
-  img1,
-  img2,
-  img4,
-  img5,
-
   img7,
-  img8,
   img9,
   img10,
   img11,
+  img5,
+  img4,
   img12,
   img13,
+  img8,
   img14,
   img15,
   img16,
   img17,
   img18,
+  img1,
+  img2,
 ];
 
   return (

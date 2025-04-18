@@ -49,15 +49,17 @@ useEffect(() => {
         // display: { md: "flex", xs: "none" },
       }}
     >
-      <Head1
-        position="center"
-        width={{ sm: "100%", md: "777px" }}
-        color="black"
-      >
-        World-class Speciality Care
-      </Head1>
-      <Head1>At Your Fingertips</Head1>
-
+      <Stack py={{ xl: 0, sm: "10px" }} gap={1}>
+        <Head1
+          position="center"
+          width={{ sm: "100%", md: "777px" }}
+          color="black"
+          fontSize={{ sm: "1.3rem" }}
+        >
+          World-Class Speciality Care
+        </Head1>
+        <Head1 fontSize={{ sm: "1.3rem" }}>At Your Fingertips</Head1>
+      </Stack>
       <Stack
         width={{ md: "100%", xs: "100vw" }}
         height={"fit-content"}
@@ -69,7 +71,7 @@ useEffect(() => {
           <Stack
             width={"100%"}
             sx={{ overflowY: "scroll" }}
-            height={{ md: "75vh", sm:"290px" }}
+            height={{ md: "75vh", sm: "290px" }}
           >
             {filteredDepartment.map((el, i) => {
               return (
@@ -147,8 +149,9 @@ useEffect(() => {
       <Stack alignItems={{ xs: "center", md: "start" }}>
         <ButtonMediumOutline
           margin="10px 50px"
-          color="#379237"
+          color="#fff"
           hcolor="#005900"
+          backgroundColor="#50a65f"
           onClick={() => router.push(`/centre-of-excellence`)}
         >
           View All

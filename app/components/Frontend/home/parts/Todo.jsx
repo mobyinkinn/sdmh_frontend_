@@ -147,7 +147,7 @@ export default function Todo() {
       alignItems={"center"}
       width={{ md: "200px", xs: "157px" }}
       height={"180px"}
-      gap={{ md: "20px", xs: "5px" }}
+      gap={{ md: "20px", xs: "14px" }}
       justifyContent={"center"}
       onClick={() => {
         if (el.link) {
@@ -162,7 +162,7 @@ export default function Todo() {
       <Image src={el.icon} width={60} height={60} alt="" />
       <Typography
         height={"38px"}
-        fontSize={{ md: "1rem", xs: "0.8rem" }}
+        fontSize={{ md: "1rem", xs: "1rem" }}
         textAlign={"center"}
       >
         {el.title}
@@ -173,8 +173,12 @@ export default function Todo() {
   return (
     <ContainerMain bgColor={"#8EA5C3"}>
       <Stack direction={{ xs: "column", lg: "row" }} justifyContent={"center"}>
-        <Head1 color="#000000">What would you like&nbsp;</Head1>
-        <Head1 color="#ffffff">To Do today?</Head1>
+        <Head1 color="#000000" fontSize={{ sm: "1.4rem" }}>
+          What would you like&nbsp;
+        </Head1>
+        <Head1 color="#ffffff" fontSize={{ sm: "1.4rem" }}>
+          To Do today?
+        </Head1>
       </Stack>
 
       <Modal>

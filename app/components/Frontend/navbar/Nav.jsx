@@ -60,6 +60,7 @@ export default function Navbar() {
  const widgetRef = useRef(null);
  const [loaded, setLoaded] = useState(false);
    const [showSearch, setShowSearch] = useState(false);
+const [activeMobileItem, setActiveMobileItem] = useState(null);
 
  useEffect(() => {
    // Define init globally
@@ -502,9 +503,8 @@ export default function Navbar() {
       {isMenuOpen && (
         <Stack
           direction="column"
-          px={4}
           py={2}
-          gap={2}
+          gap={1}
           sx={{ display: { lg: "none" } }}
         >
           {navData.map((el, i) => (
@@ -517,6 +517,10 @@ export default function Navbar() {
                 direction="row"
                 alignItems="center"
                 sx={{ cursor: "pointer" }}
+                bgcolor={openDropdown === i ? "#50a65f" : "white"}
+                color={openDropdown === i ? "white" : "black"}
+                padding={"9px"}
+                justifyContent={"space-between"}
               >
                 {el.name === "Appointment" ? (
                   <Modal.Open opens="appointment">
@@ -533,7 +537,8 @@ export default function Navbar() {
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <Typography
-                      sx={{ "&:hover": { color: "green", cursor: "pointer" } }}
+                      color={openDropdown === i ? "white" : "black"}
+                      // sx={{ "&:hover": { color: "green", cursor: "pointer" } }}
                     >
                       {el.name}
                     </Typography>
@@ -554,10 +559,11 @@ export default function Navbar() {
                 openDropdown === i && (
                   <Stack
                     bgcolor="white"
-                    boxShadow={1}
-                    p={1}
-                    width={"17.5rem"}
+                    height={"250px"}
+                    overflow={"scroll"}
+                    p={"10px 20px"}
                     spacing={0.5}
+                    boxShadow={1}
                   >
                     {el.name === "Centre Of Excellence"
                       ? filteredData.map((dept) => (

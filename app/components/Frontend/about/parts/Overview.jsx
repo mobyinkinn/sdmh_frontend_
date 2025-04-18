@@ -58,7 +58,7 @@ export default function Overview() {
         </ParaNormal>
       </Stack>
       <Stack
-        direction={{ xs: "column", md: "row" }}
+        direction={{ xs: "row", md: "row" }}
         marginTop={"40px"}
         justifyContent={{ lg: "unset", md: "space-between", xs: "center" }}
         gap={{ xs: "30px", md: "none" }}
@@ -70,8 +70,8 @@ export default function Overview() {
         {overviewImages.map((el, i) => {
           return (
             <Stack
-              width={{ xl: "23%", lg: "48%", md: "47%", xs: "100%" }}
-              height={{ xs: "200px", md: "300px" }}
+              width={{ xl: "23%", lg: "48%", md: "47%", xs: "45%" }}
+              height={{ xs: "131px", md: "300px" }}
               position={"relative"}
               key={i}
             >

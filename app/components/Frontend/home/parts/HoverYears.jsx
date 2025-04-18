@@ -167,10 +167,10 @@ const responsibility = [
   {
     Year: "2019",
     Title: "Telemedicine",
-    Desc: "SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore. https://youtu.be/vX1_m9or5cs",
+    Desc: `SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore.<a> https://youtu.be/vX1_m9or5cs </a>`,
     img: img14,
     height: "43vh",
-    mobileheight: "78vh",
+    mobileheight: "84vh",
     mobile: "21vh",
   },
   {
@@ -353,7 +353,7 @@ const responsibility = [
 //     </ContainerMain>
 //   );
 return (
-  <ContainerMain bgColor={"#476C9B"}>
+  <ContainerMain bgColor={"#476C9B"} gap={{sm:"8px"}}>
     <Typography
       color="#FFFFFF"
       fontSize={{ xs: "20px", smm: "40px", md: "55px" }}
@@ -376,7 +376,7 @@ return (
       <Stack
         gap={{ md: "13px", xs: "10px" }}
         width={{ xs: "100%", md: "50%" }}
-        height={{ md: "96vh", xs: "70vh" }}
+        height={{ md: "96vh", xs: "75vh" }}
         paddingLeft={"20px"}
         sx={{
           position: "relative",

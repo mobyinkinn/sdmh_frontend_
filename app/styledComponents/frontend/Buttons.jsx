@@ -106,9 +106,9 @@ const ButtonMediumOutline = styled.button((props) => ({
   backgroundColor: props.backgroundColor || "transparent",
   width: props.width || "fit-content",
   outline: "none",
-  border: `1px solid ${props.color}`,
+  border: `1px solid #007946`,
   padding: props.padding || "15px 40px",
-  fontSize: props.fontSize || "1.2rem",
+  fontSize: props.fontSize || "1rem",
   color: props.color,
   cursor: "pointer",
   borderRadius: "200px",
@@ -124,7 +124,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   },
 
   "@media (max-width: 600px)": {
-    padding: "10px 20px", // padding for smaller screens
+    padding: "7px 20px", // padding for smaller screens
   },
 }));
 

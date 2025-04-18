@@ -24,8 +24,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Spinner from "@/app/components/ui/Spinner";
+import { useRouter } from "next/navigation";
 
 export default function MobilePatient() {
+  const router = useRouter();
   const { data, isLoading, error } = useVideos();
   const [openModal, setOpenModal] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState("");
@@ -92,10 +94,16 @@ export default function MobilePatient() {
 
         <Stack
           alignItems={{ xs: "center", md: "start" }}
-          sx={{ mb: 5 }}
+          sx={{ mb: 2 }}
           display={{ md: "none", xs: "flex" }}
         >
-          <ButtonMediumOutline color="#379237" hcolor="#005900">
+          <ButtonMediumOutline
+            margin="10px 20px"
+            color="#fff"
+            hcolor="#005900"
+            backgroundColor="#007946"
+            onClick={() => router.push(`/patient-testimonials`)}
+          >
             View All
           </ButtonMediumOutline>
         </Stack>

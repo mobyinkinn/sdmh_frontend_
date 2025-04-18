@@ -2,15 +2,15 @@ import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
 import React from "react";
-import one from "./assets/five1.png";
-import two from "./assets/five1.png";
-import three from "./assets/five1.png";
-import four from "./assets/five1.png";
-import five from "./assets/five1.png";
+import one from "./assets/p1.jpg";
+import two from "./assets/p2.jpg";
+import three from "./assets/p3.jpg";
+import four from "./assets/p4.jpg";
+import five from "./assets/p5.jpg";
 import Image from "next/image";
 
 const Philosophy = () => {
-  const images = [one, two, three, four, five];
+  const images = [two, three, four, five];
   return (
     <Stack
       bgcolor={"#D2E4D8"}
@@ -42,13 +42,13 @@ const Philosophy = () => {
 
       <Stack
         direction={"row"}
-        gap={1}
+        gap={2}
         flexWrap={"wrap"}
         alignContent={"center"}
         justifyContent={"center"}
       >
         {images.map((d, i) => (
-          <Image src={d} key={i} width={240} />
+          <Image src={d} key={i} width={280} />
         ))}
       </Stack>
     </Stack>

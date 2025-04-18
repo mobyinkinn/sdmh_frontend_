@@ -15,8 +15,15 @@ export default function Inspiration() {
   const [grayWoman, setGrayWoman] = useState(1);
   return (
     <ContainerMain bgColor="#D2E4D8" id="inspiration" alignItems={"center"}>
-      <Head1 color="black">Inspiration</Head1>
-      <Head3 width={{ md: "100%", sm: "60%" }} margin="0 auto" color="black">
+      <Head1 color="black" fontSize={{ sm: "1.5rem" }}>
+        Inspiration
+      </Head1>
+      <Head3
+        width={{ md: "100%", sm: "95%" }}
+        margin="0 auto"
+        color="#486c9c"
+        fontSize={{ sm: "1.2rem" }}
+      >
         Behind Santokba Durlabhji Memorial Hospital
       </Head3>
       <ParaNormal width="80%" margin="0 auto" textAlign="center">
@@ -31,7 +38,6 @@ export default function Inspiration() {
         direction={{ md: "row" }}
         justifyContent={"center"}
         gap={{ md: "100px", xs: "30px" }}
-        marginTop={"50px"}
       >
         <Stack alignItems={"center"} position={"relative"}>
           <Box

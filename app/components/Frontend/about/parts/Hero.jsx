@@ -138,12 +138,11 @@ import { TfiArrowCircleRight } from "react-icons/tfi";
 import { HiOutlinePlusSmall } from "react-icons/hi2";
 
 const sideNavData = [
-  { id: 0, name: "About", idName: "about" },
   { id: 1, name: "Overview", idName: "overview" },
   { id: 2, name: "Inspiration", idName: "inspiration" },
-  { id: 3, name: "Founder", idName: "founder" },
+  { id: 3, name: "Our Founder", idName: "founder" },
   { id: 4, name: "Vision And Mission", idName: "vision" },
-  { id: 5, name: "Our Mission", idName: "mission" },
+  { id: 5, name: "Our Values", idName: "mission" },
   { id: 6, name: "Secretery's Message", idName: "message" },
   { id: 7, name: "Awards", idName: "awards" },
 ];
@@ -209,7 +208,7 @@ export default function Hero() {
       ></Box>
       <Stack
         width={{ lg: "21%", sm: "none" }}
-        justifyContent={"flex-start"}
+        justifyContent={{lg:"flex-start", sm:"center"}}
         direction={{ lg: "column", md: "row", sm: "row", xs: "row" }}
         flexWrap="wrap"
       >
@@ -226,7 +225,7 @@ export default function Hero() {
         </Stack>
         {sideNavData.map((el, i) => {
           return (
-            <Stack key={i} width={{ lg: "100%", sm: "25%" }} alignItems={{sm:"center", md:"start"}}>
+            <Stack key={i} width={{ lg: "100%", sm: "none" }} alignItems={{sm:"center", md:"start"}} >
               <Typography
               width={"100%"}
                 display={"flex"}
@@ -234,7 +233,7 @@ export default function Hero() {
                 justifyContent={{ lg: "space-between", sm: "none" }}
                 key={i}
                 textAlign={"center"}
-                fontSize={{ lg: "0.8rem", sm: "0.9rem" }}
+                fontSize={{ lg: "0.8rem", sm: "0.8rem" }}
                 sx={{
                   padding: { md: "10px 15px", xs: "5px" },
                   cursor: "pointer",

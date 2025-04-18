@@ -16,8 +16,12 @@ const SdmhDeanery = () => {
     <>
       <ContainerMain style={{ backgroundColor: "#D2E4D8" }}>
         <Stack direction={"row"} justifyContent={"center"}>
-          <Head1 color="#005900">Academics Deanery,&nbsp;</Head1>
-          <Head1 color="black">SDMH</Head1>
+          <Head1 color="#005900" fontSize={{ sm: "1.2rem" }}>
+            Academics Deanery,&nbsp;
+          </Head1>
+          <Head1 color="black" fontSize={{ sm: "1.2rem" }}>
+            SDMH
+          </Head1>
         </Stack>
         <ParaNormal
           style={{
@@ -38,17 +42,24 @@ const SdmhDeanery = () => {
         <Stack
           width={"100%"}
           height={{ md: "40vh" }}
-          direction={{ md: "row", xs: "column" }}
+          justifyContent={{ lg: "unset", md: "space-between", xs: "center" }}
+          direction={{ md: "row", xs: "row" }}
           gap={2}
+          flexWrap={"wrap"}
         >
           {bannerImage.map((d, i) => (
             <Stack
               position={"relative"}
-              width={{ md: "25%" }}
-              height={{ md: "100%", xs: "40vh" }}
+              width={{ xl: "23%", lg: "48%", md: "47%", xs: "45%" }}
+              height={{ xs: "131px", md: "300px" }}
               key={i}
             >
-              <Image src={d.src} fill objectFit="contain" style={{borderRadius:"10px"}}/>
+              <Image
+                src={d.src}
+                fill
+                objectFit="contain"
+                style={{ borderRadius: "10px" }}
+              />
             </Stack>
           ))}
         </Stack>

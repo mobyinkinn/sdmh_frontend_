@@ -74,6 +74,7 @@ export default function Enquire() {
           // alignItems={{ xs: "center", md: "left" }}
         >
           <Head1
+            fontSize={{ sm: "1.5rem" }}
             color="#005900"
             textAlign={{
               sm: "center",

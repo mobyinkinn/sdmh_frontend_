@@ -123,7 +123,7 @@ export default function Grid() {
       <Stack
         direction={"row"}
         flexWrap={"wrap"}
-        gap={"50px"}
+        gap={{lg:"50px", sm:"20px"}}
         justifyContent={"center"}
         marginTop={"20px"}
       >

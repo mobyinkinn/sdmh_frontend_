@@ -12,18 +12,20 @@ export default function VisionCard({ el }) {
       padding={{ md: "40px", xs: "15px" }}
       alignItems={"center"}
       gap={"20px"}
-      height={{ lg: "480px", xs: "600px" }}
+      height={{ lg: "480px", xs: "0" }}
     >
       <Box
         position={"relative"}
-        width={"100%"}
+        width={{ lg: "100%", sm: "40%" }}
         backgroundColor={"#476D9B"}
         borderRadius={"10px"}
-        height={{ md: "140px", xs: "180px" }}
+        height={{ md: "140px", xs: "80px" }}
       >
         <Image fill objectFit="contain" src={el.img} alt="" />
       </Box>
-      <Head4 color="black">{el.name}</Head4>
+      <Head4 color="black" fontWeight={{sm:"bold"}}>
+        {el.name}
+      </Head4>
       <ParaNormalSmall textAlign="center">{el.data}</ParaNormalSmall>
     </Stack>
   );

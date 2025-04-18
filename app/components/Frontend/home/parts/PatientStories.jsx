@@ -72,9 +72,11 @@ export default function PatientStories() {
     <ContainerMain
       marginTop={"40px"}
       alignItems="center"
-      padding={{ sm: "5px" }}
+      padding={{ sm: "15px" }}
     >
-      <Head1>Patient Stories</Head1>
+      <Box pt={1}>
+        <Head1 fontSize={{ sm: "1.5rem" }}>Patient Stories</Head1>
+      </Box>
       <Stack
         display={{ md: "flex", xs: "none" }}
         onMouseLeave={handleMouseLeave}

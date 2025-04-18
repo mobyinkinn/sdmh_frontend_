@@ -1,6 +1,6 @@
 "use client";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import { Pagination, Stack } from "@mui/material";
+import { Box, Pagination, Stack, Typography } from "@mui/material";
 import {
   DarkGreenButton,
   DarkGreenButtonSmall,
@@ -11,6 +11,9 @@ import Spinner from "@/app/components/ui/Spinner";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 import { useEffect, useState } from "react";
 import Doctors from "./Doctors";
+import { SearchInput, SearchInputFordoctor } from "@/app/styledComponents/admin/Inputs";
+import { SlArrowRight } from "react-icons/sl";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function AllDoctors() {
   const [page, setPage] = useState(1);
@@ -18,6 +21,7 @@ export default function AllDoctors() {
   const { data, isLoading } = useDoctors();
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
+    
 
   // Filter only active doctors and sort them by order
   const filteredDoc = (data?.filter((doc) => doc.status !== false) || []).sort(
@@ -35,6 +39,9 @@ export default function AllDoctors() {
   const [doctor, setDoctor] = useState("Search Doctor");
   const [department, setDepartment] = useState("Search Department");
   const [filteredDoctors, setFilteredDoctors] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(false);
+const [departmentId, setDepartmentId] = useState(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -89,15 +96,26 @@ export default function AllDoctors() {
     : totalPages;
 
   if (isLoading || isLoadingDepartments) return <Spinner />;
+ const filteredDoct =
+   searchTerm.length >= 2
+     ? data.filter((doc) =>
+         doc.name.toLowerCase().includes(searchTerm.toLowerCase())
+       )
+     : [];
 
+       const filteredDepartments = (departments || [])
+    .filter((el) => el.status === true)
+    .sort((a, b) => a.name.localeCompare(b.name));
   return (
     <ContainerMain bgColor={"#D8E0EB"}>
       <Stack
         direction={"row"}
         gap={{ md: "20px", xs: "10px" }}
         flexWrap={"wrap"}
+        alignItems={"center"}
+        pl={"36px"}
       >
-        <DarkGreenButton
+        {/* <DarkGreenButton
           bgColor="#379237"
           borderRadius="100px"
           onClick={() => {
@@ -106,31 +124,249 @@ export default function AllDoctors() {
           }}
         >
           All
-        </DarkGreenButton>
-        <SearchInputHero
-          contentEditable
-          suppressContentEditableWarning={true}
-          width={"300px"}
-          color="black"
-          bgColor={"transparent"}
-          onClick={clearDoctor}
-          onBlur={unclearDoctor}
-          onInput={(e) => searchDoctor(e)}
+        </DarkGreenButton> */}
+        <Typography fontSize={"2rem"} color="#486c9c">
+          Search By:{" "}
+        </Typography>
+        <Box position="relative">
+          <Stack direction="row">
+            <SearchInputFordoctor
+              placeholder="Doctor's Name"
+              borderRadius="10px 0 0 10px"
+              border="1px solid #005900"
+              value={searchTerm}
+              backgroundColor="transparent"
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </Stack>
+          {searchTerm.length >= 2 && (
+            <Stack
+              position="absolute"
+              top="100%"
+              left={0}
+              bgcolor="white"
+              padding={3}
+              maxHeight="32rem"
+              overflowY="auto"
+              boxShadow={1}
+              zIndex={1000}
+              borderRadius="5px"
+              flexWrap={"wrap"}
+              columnGap={2}
+              sx={{
+                opacity: searchTerm ? 1 : 0,
+                transform: searchTerm ? "translateY(0)" : "translateY(-10px)",
+                transition: "opacity 0.3s ease, transform 0.3s ease",
+                pointerEvents: searchTerm ? "auto" : "none",
+                width: "max-content",
+                minWidth: "100%",
+                maxWidth: "max-content",
+              }}
+            >
+              {filteredDoct.map((doc) => (
+                <Box
+                  key={doc._id}
+                  p={1}
+                  borderBottom="1px solid #ccc"
+                  sx={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    router.push(`/find-a-doctor/${doc._id}`);
+                    setSearchTerm("");
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      textTransform: "capitalize",
+                      width: "200px",
+                      color: "black",
+                      fontSize: "0.9rem",
+                      whiteSpace: "normal",
+                      wordWrap: "break-word",
+                      overflowWrap: "break-word",
+                      "&:hover": {
+                        color: "green",
+                        cursor: "pointer",
+                      },
+                    }}
+                  >
+                    {doc.name}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          )}
+        </Box>
+
+        {/* <Box
+          position="relative"
+          onMouseEnter={() => setOpenDropdown(true)}
+          onMouseLeave={() => setOpenDropdown(false)}
+          sx={{ width: "fit-content" }}
         >
-          {doctor}
-        </SearchInputHero>
-        <SearchInputHero
-          width={"300px"}
-          color="black"
-          bgColor={"transparent"}
-          contentEditable
-          suppressContentEditableWarning={true}
-          onClick={clearDepartment}
-          onBlur={unclearDepartment}
-          onInput={(e) => searchDepartment(e)}
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={1}
+            sx={{
+              width: "300px",
+              padding: "15px",
+              border: "1px solid #005900",
+              borderRadius: "20px",
+              backgroundColor: "transparent",
+              color: "black",
+              cursor: "pointer",
+            }}
+          >
+            <Typography
+              sx={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                flexGrow: 1,
+              }}
+            >
+              {department}
+            </Typography>
+            <IoIosArrowDown
+              style={{
+                transition: "transform 0.3s ease",
+                transform: openDropdown ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </Stack>
+
+          {openDropdown && (
+            <Stack
+              position="absolute"
+              top="141%"
+              right="-120%"
+              bgcolor="white"
+              padding={2}
+              flexWrap="wrap"
+              maxHeight="32rem"
+              columnGap="2.5rem"
+              overflowY="auto"
+              boxShadow={2}
+              zIndex={1000}
+              borderRadius="5px"
+              sx={{
+                width: "max-content",
+                maxHeight: "32rem",
+              }}
+            >
+              {filteredDepartments.map((dept) => (
+                <Box
+                  key={dept._id}
+                  p={1}
+                  borderBottom="1px solid #eee"
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setDepartment(dept.name);
+                    searchDepartment({ target: { textContent: dept.name } });
+                    setOpenDropdown(false);
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "0.9rem",
+                      "&:hover": { color: "green" },
+                      maxWidth: "200px",
+                    }}
+                  >
+                    {dept.name}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          )}
+        </Box> */}
+        <Box
+          position="relative"
+          sx={{ width: "fit-content" }}
+          onMouseEnter={() => setOpenDropdown(true)}
+          onMouseLeave={() => setOpenDropdown(false)}
         >
-          {department}
-        </SearchInputHero>
+          {/* Trigger Button */}
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={1}
+            sx={{
+              width: "300px",
+              padding: "15px",
+              border: "1px solid #005900",
+              borderRadius: "20px",
+              backgroundColor: "transparent",
+              color: "black",
+              cursor: "pointer",
+            }}
+          >
+            <Typography
+              sx={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                flexGrow: 1,
+              }}
+            >
+              {department}
+            </Typography>
+            <IoIosArrowDown
+              style={{
+                transition: "transform 0.3s ease",
+                transform: openDropdown ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </Stack>
+
+          {/* Dropdown List */}
+          {openDropdown && (
+            <Stack
+              position="absolute"
+              top="111%"
+              right="-125%"
+              bgcolor="white"
+              padding={2}
+              flexWrap="wrap"
+              maxHeight="32rem"
+              columnGap="2.5rem"
+              overflowY="auto"
+              boxShadow={2}
+              zIndex={1000}
+              borderRadius="15px"
+              sx={{
+                width: "max-content",
+                maxHeight: "32rem",
+              }}
+            >
+              {filteredDepartments.map((dept) => (
+                <Box
+                  key={dept._id}
+                  p={1}
+                  borderBottom="1px solid #eee"
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setDepartment(dept.name); // for label
+                    setDepartmentId(dept._id); // NEW: used for filtering
+                    setOpenDropdown(false);
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "0.9rem",
+                      "&:hover": { color: "green" },
+                      maxWidth: "250px",
+                    }}
+                  >
+                    {dept.name}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          )}
+        </Box>
       </Stack>
 
       <Doctors data={doctorsToShow} departments={departments} />

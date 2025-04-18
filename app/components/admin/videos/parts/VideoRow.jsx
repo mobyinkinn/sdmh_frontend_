@@ -27,7 +27,14 @@ const Stacked = styled.div`
 
 function VideoRow({ videos: { _id, title, url } }) {
   const id = _id;
-  const videoId = url.split("v=")[1]?.split("&")[0];
+  // const videoId = url.split("v=")[1]?.split("&")[0];
+  let videoId = "";
+  if (url.includes("watch?v=")) {
+    videoId = url.split("v=")[1]?.split("&")[0];
+  } else if (url.includes("/shorts/")) {
+    videoId = url.split("/shorts/")[1]?.split("?")[0];
+  }
+
   const { deleteVideos, isDeleting } = useDeleteVideo();
   const { updateVideos, isUpdating } = useUpdateVideo();
   const [editData, setEditData] = useState({

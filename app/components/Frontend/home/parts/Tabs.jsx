@@ -240,15 +240,14 @@ export default function Tabs() {
     autoplay: true,
     autoplaySpeed: 2000,
     speed: 1000,
-    dots: true,
     infinite: true,
     speed: 500,
-    arrows: false,
+    arrows: true,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
   return (
-    <ContainerMain bgColor={"#CEDDCC"}>
+    <ContainerMain bgColor={"#CEDDCC"} gap={{ sm: 0 }}>
       <Stack
         display={{ xs: "none", md: "flex" }}
         direction={"row"}
@@ -282,7 +281,7 @@ export default function Tabs() {
         })}
       </Stack>
       <Stack alignItems="center" display={{ xs: "flex", md: "none" }}>
-        <Stack direction="row" flexWrap="wrap" justifyContent="start">
+        <Stack direction="row" flexWrap="wrap" justifyContent="center">
           {tabsData.map((el, i) => (
             <Stack
               key={el.id}
@@ -292,8 +291,8 @@ export default function Tabs() {
             >
               <ButtonMediumOutline
                 fontSize={{ xs: "1rem", lg: "1.2rem" }}
-                backgroundColor={el.id === activeTab ? "#005900" : "#000000"}
-                color="#FFFFFF"
+                backgroundColor={el.id === activeTab ? "#005900" : "#fffff"}
+                color={el.id === activeTab ? "white" : "black"}
                 hcolor="#005900"
                 sx={{
                   transition: "all 0.3s ease",
@@ -327,12 +326,12 @@ export default function Tabs() {
           {tabsData[activeTab].data[0]?.map((el, i) => {
             if (i >= 4) return null;
             const isTPA = tabsData[activeTab].name === "TPA'S";
-          const isGallery = tabsData[activeTab].name === "Gallery";
+            const isGallery = tabsData[activeTab].name === "Gallery";
 
             return (
               <Stack
                 key={i}
-                width={"calc(50% - 20px)"}
+                width={"100%"}
                 backgroundColor={"#FBF6EE"}
                 sx={{
                   borderRadius: "10px",
@@ -352,6 +351,7 @@ export default function Tabs() {
                 ></Box>
                 <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
                   <Typography
+                    height={!isGallery ? "45px" : "15px"}
                     fontSize={"1.2rem"}
                     textAlign={"center"}
                     color={"#379237"}
@@ -365,7 +365,7 @@ export default function Tabs() {
                       dangerouslySetInnerHTML={{
                         __html: el.smallDescription
                           .split(" ")
-                          .slice(0, 25)
+                          .slice(0, 15)
                           .join(" "),
                       }}
                     />
@@ -412,8 +412,7 @@ export default function Tabs() {
         {tabsData[activeTab].data[0].map((el, i) => {
           if (i >= 4) return null;
           const isTPA = tabsData[activeTab].name === "TPA'S";
-          const isGallery= tabsData[activeTab].name === "Gallery";
-
+          const isGallery = tabsData[activeTab].name === "Gallery";
 
           let dynamicHeight;
           if (tabsData[activeTab].name === "Latest Happening") {
@@ -424,7 +423,7 @@ export default function Tabs() {
             dynamicHeight = "450px";
           } else if (tabsData[activeTab].name === "TPA'S") {
             dynamicHeight = "300px";
-          } 
+          }
 
           let dynamicHeight_lg;
           if (tabsData[activeTab].name === "Latest Happening") {
@@ -435,8 +434,7 @@ export default function Tabs() {
             dynamicHeight_lg = "565px";
           } else if (tabsData[activeTab].name === "TPA'S") {
             dynamicHeight_lg = "300px";
-          } 
-
+          }
 
           let dynaHeight;
           if (tabsData[activeTab].name === "Latest Happening") {
@@ -449,7 +447,7 @@ export default function Tabs() {
             dynaHeight = "350px";
           } else if (tabsData[activeTab].name === "Gallery") {
             dynaHeight = "155px";
-          } 
+          }
 
           return (
             <Stack
@@ -460,8 +458,8 @@ export default function Tabs() {
                 borderRadius: "10px",
               }}
               height={{ lg: dynamicHeight_lg, xl: dynamicHeight }}
-              onClick={() => {isGallery?
-                router.push(`${"/gallery"}`):""
+              onClick={() => {
+                isGallery ? router.push(`${"/gallery"}`) : "";
               }}
             >
               <Box

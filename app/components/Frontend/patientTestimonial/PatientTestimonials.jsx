@@ -54,7 +54,7 @@ const PatientTestimonials = () => {
         image={banner}
         textcenter={"left"}
       /> */}
-      {/* <Testimonialslider /> */}
+      <Testimonialslider />
       <Reviews />
       <PatientStories />
       <Footer />

@@ -1,6 +1,7 @@
 "use client";
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import oldMan from "./assests/sm_banner.png";
+import oldMan from "./assests/1.jpg";
+import oldMan2 from "./assests/2.jpg";
 import { Head1, Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
 import {
   ParaNormal,
@@ -85,7 +86,7 @@ const visitingFaculty = () => {
   };
   return (
     <Stack>
-      <Stack >
+      <Stack>
         <Stack direction={"row"} py={3} justifyContent={"center"}>
           <Head1 style={{ textAlign: "center" }}>Visiting&nbsp;</Head1>
           <Head1 color="black">Faculty</Head1>
@@ -235,33 +236,33 @@ const visitingFaculty = () => {
           </Stack>
         </Stack>
       </Stack>
-      <ContainerMain flexDirection={{ lg: "row", sm: "column-reverse" }}>
-        <Stack
-          position="relative"
-          height={"40vh"}
-          width={{ lg: "40%", sm: "100%" }}
-        >
+      <ContainerMain
+        flexDirection={{ lg: "row", sm: "column-reverse" }}
+        gap={{ lg: "65px", md: "65%", sm: "20px" }}
+      >
+        <Stack position="relative" width={{ lg: "41%", sm: "100%" }}>
           <Image
             src={oldMan}
             alt=""
             fill
-            objectFit="contain"
+            objectFit="cover"
             objectPosition="center center"
           />
         </Stack>
         <Stack
-          width={{ lg: "60%", sm: "100%" }}
+          width={{ lg: "56%", sm: "100%" }}
           gap={"10px"}
-          alignItems={"center"}
+          alignItems={"left"}
+          justifyContent={"left"}
         >
           <Head1
-            textAlign="left"
+            textAlign={{ lg: "left", md: "left", sm: "center" }}
             color="black"
             fontSize={{ lg: "1.8rem", sm: "1.2rem" }}
           >
             Dr.David McKee
           </Head1>
-          <ParaNormalSmall textAlign={"center"} width={"90%"}>
+          <ParaNormalSmall textAlign={"justify"} width={"90%"}>
             The Santokba Durlabhji Institute of Neurosciences (SDIN) and
             Santokba Durlabhji Memorial Hospital (SDMH) express their gratitude
             to Dr. David McKee, Consultant Neurologist and Clinical Lead,
@@ -283,11 +284,15 @@ const visitingFaculty = () => {
           </ParaNormalSmall>
         </Stack>
       </ContainerMain>
-      <ContainerMain flexDirection={{ lg: "row", sm: "column-reverse" }}>
+      <ContainerMain
+        flexDirection={{ lg: "row", sm: "column-reverse" }}
+        gap={{ lg: "65px", md: "65%", sm: "20px" }}
+      >
         <Stack
-          width={{ lg: "60%", sm: "100%" }}
+          width={{ lg: "56%", sm: "100%" }}
           gap={"10px"}
-          alignItems={"center"}
+          alignItems={"end"}
+          justifyContent={"end"}
         >
           <Head1
             textAlign="left"
@@ -296,7 +301,7 @@ const visitingFaculty = () => {
           >
             Dr. Ed Wilkins
           </Head1>
-          <ParaNormalSmall textAlign={"center"} width={"90%"}>
+          <ParaNormalSmall textAlign={"justify"} width={"90%"}>
             The Santokba Durlabhji Institute of Neurosciences (SDIN) and
             Santokba Durlabhji Memorial Hospital (SDMH) express their gratitude
             to Dr. Edmund Wilkins, Senior Consultant and renowned infectious
@@ -317,16 +322,12 @@ const visitingFaculty = () => {
             with Dr. Wilkins and the GMNC, University of Manchester, UK.
           </ParaNormalSmall>
         </Stack>
-        <Stack
-          position="relative"
-          height={"40vh"}
-          width={{ lg: "40%", sm: "100%" }}
-        >
+        <Stack position="relative" width={{ lg: "41%", sm: "100%" }}>
           <Image
-            src={oldMan}
+            src={oldMan2}
             alt=""
             fill
-            objectFit="contain"
+            objectFit="cover"
             objectPosition="center center"
           />
         </Stack>

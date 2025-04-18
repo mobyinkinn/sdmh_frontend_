@@ -146,7 +146,7 @@ const TabData = () => {
   return (
     <Stack bgcolor={"#F9F9F9"}>
       {/* Heading */}
-      <Stack pt={3} alignItems={"center"} gap={1}>
+      {/* <Stack pt={3} alignItems={"center"} gap={1}>
         <ParaNormalSmall>Photo Gallery</ParaNormalSmall>
         <Head1
           width={{ lg: "40%", md: "40%", sm: "90%", smm: "90%" }}
@@ -154,12 +154,12 @@ const TabData = () => {
         >
           Relationship We Have With You Special
         </Head1>
-      </Stack>
+      </Stack> */}
 
       {/* Cards */}
       <Stack
         alignItems="center"
-        py={10}
+        py={{lg:10, sm:3}}
         justifyContent={"center"}
         width={"100%"}
         flexWrap={"wrap"}

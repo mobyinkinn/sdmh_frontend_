@@ -32,7 +32,7 @@ const Head1 = styled.span((props) => ({
     textAlign: props.textAlign?.smm || "center",
   },
   [breakpoints.sm]: {
-    fontSize: props.fontSize?.sm || "1.1rem",
+    fontSize: props.fontSize?.sm || "1.5rem",
     textAlign: props.textAlign?.sm || "center",
     width: props.width?.sm,
   },

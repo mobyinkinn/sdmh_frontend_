@@ -78,7 +78,7 @@ const Notices = () => {
 
   return (
     <Stack bgcolor={"#F9F9F9"}>
-      <Stack
+      {/* <Stack
         direction={"row"}
         gap={{ md: "20px", xs: "10px" }}
         flexWrap={"wrap"}
@@ -127,7 +127,7 @@ const Notices = () => {
         >
           {year}
         </SearchInputHero>
-      </Stack>
+      </Stack> */}
       <Stack
         direction={{ xs: "column", md: "row" }}
         justifyContent={"center"}

@@ -6,10 +6,19 @@ const SearchInput = styled.input((props) => ({
   width: "300px",
   outline: "none",
   border: "1px solid #ddd",
-
   padding: "5px 10px",
   borderRadius: "3px",
   color: "#000",
+}));
+const SearchInputFordoctor = styled.input((props) => ({
+  width: "300px",
+  outline: "none",
+  border: "1px solid #005900",
+  padding: "15px",
+  borderRadius: "20px",
+  color: "#000",
+  fontSize:"20px",
+  background:"transparent"
 }));
 
 const TextInput = styled.input((props) => ({
@@ -47,4 +56,12 @@ const CheckboxLabel = styled.span((props) => ({
   fontSize: "0.9rem",
 }));
 
-export { SearchInput, TextInput, Label, InputSection, Checkbox, CheckboxLabel };
+export {
+  SearchInput,
+  TextInput,
+  Label,
+  InputSection,
+  Checkbox,
+  CheckboxLabel,
+  SearchInputFordoctor,
+};

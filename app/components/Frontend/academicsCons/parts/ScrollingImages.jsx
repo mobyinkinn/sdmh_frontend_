@@ -1,11 +1,9 @@
 "use client"
 import React, { useState } from "react";
 import "./ScrollingImages.css"; // CSS file for styles
-import Image1 from "./assets/1.jpg";
-import Image2 from "./assets/2.jpg";
-import Image3 from "./assets/3.jpg";
-import Image4 from "./assets/4.jpg";
-import Image5 from "./assets/5.jpg";
+import Image1 from "./assets/f.jpg";
+import Image2 from "./assets/f1.jpg";
+import Image3 from "./assets/f2.jpg";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 

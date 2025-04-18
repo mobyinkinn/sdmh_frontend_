@@ -3,9 +3,9 @@ import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Box, Stack } from "@mui/material";
 import React, { useRef, useState } from "react";
-import Image1 from "./assets/Image1.png";
-import Image2 from "./assets/Image2.png";
-import Image3 from "./assets/Image3.png";
+import Image1 from "./assets/i1.png";
+import Image2 from "./assets/i2.png";
+import Image3 from "./assets/i3.png";
 import Image from "next/image";
 import Slider from "react-slick";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -97,6 +97,7 @@ const Scholarship = () => {
 
                 backgroundImage: `url(${d.src})`,
                 backgroundRepeat: "no-repeat",
+                backgroundSize:"cover"
                 // backgroundPosition: "center",
               }}
             ></Box>

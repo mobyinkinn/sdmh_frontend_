@@ -56,10 +56,12 @@ export default function Reviews() {
   };
 
   return (
-    <ContainerMain bgColor={"#fff"} margin="20px 0">
+    <ContainerMain bgColor={"#fff"} margin="20px 0" gap={{ sm: "11px" }}>
       <Stack direction={"row"} margin={"0 auto"}>
-        <Head1 color="black">What Our &nbsp;</Head1>
-        <Head1>Patients Say</Head1>
+        <Head1 color="black" fontSize={{ sm: "1.5rem" }}>
+          What Our &nbsp;
+        </Head1>
+        <Head1 fontSize={{ sm: "1.5rem" }}>Patients Say</Head1>
       </Stack>
       <Box
         component="img"
@@ -71,11 +73,30 @@ export default function Reviews() {
         }}
         style={{ margin: "20px auto" }}
       />
-      <Slider {...settings}>
-        {data.map((el, i) => (
-          <ReviewCard el={el} key={i} />
-        ))}
-      </Slider>
+      <Box
+        sx={{
+          ".slick-dots": {
+            position: "relative",
+            bottom: "0px",
+            marginTop: "30px",
+            textAlign: "center",
+            right:"19px"
+          },
+          ".slick-dots li button:before": {
+            fontSize: "12px",
+            color: "#ccc",
+          },
+          ".slick-dots li.slick-active button:before": {
+            color: "#333", // or your brand green: "#005900"
+          },
+        }}
+      >
+        <Slider {...settings}>
+          {data.map((el, i) => (
+            <ReviewCard el={el} key={i} />
+          ))}
+        </Slider>
+      </Box>
     </ContainerMain>
   );
 }

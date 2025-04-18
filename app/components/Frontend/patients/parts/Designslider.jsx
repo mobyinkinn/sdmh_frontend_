@@ -93,7 +93,7 @@ const Designslider = ({
                     ))}
                   </Stack>
                 </Stack>
-                <Image src={group.img} width={450} height={400} />
+                <Image src={group.img} width={450} height={400} objectFit="cover"/>
               </Stack>
             </Box>
           ))}

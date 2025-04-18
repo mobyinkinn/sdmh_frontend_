@@ -20,14 +20,24 @@ const achievementData = [
 
 export default function () {
   return (
-    <ContainerMain bgColor={"#276923"} dir="column">
-      <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
+    <ContainerMain bgColor={"#276923"} dir="column" gap={{ sm: "10px" }}>
+      <Head3
+        color="white"
+        textAlign={"center"}
+        fontWeight={"400"}
+        fontSize={{ sm: "1.2rem" }}
+      >
         Our
       </Head3>
-      <Head1 color="#FCF9C6" textAlign={"center"}>
+      <Head1 color="#FCF9C6" textAlign={"center"} fontSize={{ sm: "1.4rem" }}>
         Unmatched Achievements
       </Head1>
-      <Head3 color="white" textAlign={"center"} fontWeight={"400"}>
+      <Head3
+        color="white"
+        textAlign={"center"}
+        fontWeight={"400"}
+        fontSize={{ sm: "1.2rem" }}
+      >
         in the Medical Field
       </Head3>
 
@@ -40,8 +50,19 @@ export default function () {
       >
         {achievementData.map((el, i) => {
           return (
-            <Stack key={i} gap={"10px"} alignItems={"center"} width={{md:"20%", sm:"44%"}}>
-              <Image src={el.img} alt="" height={100} width={100} style={{color:"white"}} />
+            <Stack
+              key={i}
+              gap={"10px"}
+              alignItems={"center"}
+              width={{ md: "20%", sm: "42%" }}
+            >
+              <Image
+                src={el.img}
+                alt=""
+                height={100}
+                width={100}
+                style={{ color: "white" }}
+              />
               <CountUp
                 start={0}
                 end={el.count}
