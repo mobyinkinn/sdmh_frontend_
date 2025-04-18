@@ -167,7 +167,7 @@ const responsibility = [
   {
     Year: "2019",
     Title: "Telemedicine",
-    Desc: `SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore.<a> https://youtu.be/vX1_m9or5cs </a>`,
+    Desc: `SDMH has initiated the introduction of Telemedicine in different villages of the state, and also in neighboring states, so that the gap between rural and urban care is greatly reduced. Connect with doctors of SDMH digitally. Download SDMH Teleconsultation App from playstore. <a href="https://youtu.be/vX1_m9or5cs" target="_blank" style="color: #007946; text-decoration: underline;">Watch Video</a>`,
     img: img14,
     height: "43vh",
     mobileheight: "84vh",
@@ -353,7 +353,7 @@ const responsibility = [
 //     </ContainerMain>
 //   );
 return (
-  <ContainerMain bgColor={"#476C9B"} gap={{sm:"8px"}}>
+  <ContainerMain bgColor={"#476C9B"} gap={{ sm: "8px" }}>
     <Typography
       color="#FFFFFF"
       fontSize={{ xs: "20px", smm: "40px", md: "55px" }}
@@ -387,7 +387,6 @@ return (
           justifyContent: "center",
         }}
       >
-
         <TfiArrowCircleUp
           color="green"
           style={{
@@ -469,7 +468,12 @@ return (
           <Typography fontWeight={"bold"}>
             {responsibility[planetData].Title}
           </Typography>
-          <Typography>{responsibility[planetData].Desc}</Typography>
+          <Typography
+            dangerouslySetInnerHTML={{
+              __html: responsibility[planetData].Desc,
+            }}
+          />
+
           <Box>
             {responsibility[planetData].img && (
               <Box

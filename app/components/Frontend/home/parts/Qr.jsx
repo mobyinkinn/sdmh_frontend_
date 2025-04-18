@@ -91,7 +91,7 @@ export default function Qr() {
         alignItems={"center"}
       >
         <Stack sx={{bgcolor:"#005901", padding:"40px", borderRadius:"20px"}}>
-          <Image src={qr} alt="" width={200} height={200} style={{}} />
+          <Image src={qr} alt="" width={150} height={150} style={{}} />
         </Stack>
         <Stack gap="5px" alignItems={"center"}>
           <Head4 color="black">Scan QR</Head4>

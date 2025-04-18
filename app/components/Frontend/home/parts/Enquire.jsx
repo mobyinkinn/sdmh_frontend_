@@ -157,6 +157,7 @@ export default function Enquire() {
               <Stack>
                 <Label>Message</Label>
                 <TextArea
+                padding={{sm:"20px"}}
                   placeholder="Message"
                   rows={7}
                   bgColor={"#EFF3F8"}

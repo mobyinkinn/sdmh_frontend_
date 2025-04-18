@@ -122,8 +122,8 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
         alignItems={{ xs: "end", smm: "end", lg: "center" }}
         backgroundColor={"#005900"}
         color={"white"}
-        paddingX={{ xs: "40px", smm: "60px", lg: "100px" }}
-        paddingY={"10px"}
+        p={{ xs: "0 0 0 40px", smm: "0 60px", lg: "0 100px" }}
+        py={{xs:"10px"}}
       >
         <Stack
           direction={"row"}
@@ -214,6 +214,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
             {!showSearch ? (
               <Stack direction="row" alignItems="center" gap={1}>
                 <IconButton onClick={() => setShowSearch(true)}>
+                  
                   <SlMagnifier style={{ color: "white", fontSize: 20 }} />
                 </IconButton>
               </Stack>
@@ -225,7 +226,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   style={{
-                    padding: "6px 12px",
+                    padding: "6px 0 6px 12px",
                     borderRadius: "10px 0 0 10px",
                     border: "1px solid #ccc",
                     outline: "none",

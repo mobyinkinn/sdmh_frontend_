@@ -522,7 +522,7 @@ const Slider = () => {
       <Typography variant="h6" textAlign="center" fontWeight={600}>
         {currentText.heading}
       </Typography>
-      <Typography variant="body1" maxWidth="800px" textAlign="center">
+      <Typography fontSize={"0.8rem"} maxWidth="800px" textAlign="center">
         {currentText.data}
       </Typography>
       <Box

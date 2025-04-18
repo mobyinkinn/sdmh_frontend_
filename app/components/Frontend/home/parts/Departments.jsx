@@ -113,7 +113,7 @@ useEffect(() => {
                     display={{ xs: "flex", md: "none" }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setActiveTab(el.id);
+                      setActiveTab(el._id);
                     }}
                   >
                     {el._id === activeTab ? (

@@ -145,7 +145,7 @@ export default function Todo() {
       borderRadius={"10px"}
       padding={"30px 10px"}
       alignItems={"center"}
-      width={{ md: "200px", xs: "157px" }}
+      width={{ md: "200px", xs: "150px" }}
       height={"180px"}
       gap={{ md: "20px", xs: "14px" }}
       justifyContent={"center"}
@@ -174,7 +174,7 @@ export default function Todo() {
     <ContainerMain bgColor={"#8EA5C3"}>
       <Stack direction={{ xs: "column", lg: "row" }} justifyContent={"center"}>
         <Head1 color="#000000" fontSize={{ sm: "1.4rem" }}>
-          What would you like&nbsp;
+          What Would You like&nbsp;
         </Head1>
         <Head1 color="#ffffff" fontSize={{ sm: "1.4rem" }}>
           To Do today?

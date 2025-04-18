@@ -90,7 +90,7 @@ const TextArea = styled.textarea((props) => ({
   },
   [breakpoints.sm]: {
     fontSize: props.fontSize?.sm || "0.9rem",
-    padding: props.padding?.sm || "5px",
+    padding: props.padding?.sm || "20px",
   },
 }));
 

@@ -237,17 +237,18 @@ export default function Tabs() {
   ];
 
   var settings = {
-    autoplay: true,
-    autoplaySpeed: 2000,
+    autoplay: false,
+    autoplaySpeed: 3000,
     speed: 1000,
     infinite: true,
     speed: 500,
     arrows: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    
   };
   return (
-    <ContainerMain bgColor={"#CEDDCC"} gap={{ sm: 0 }}>
+    <ContainerMain bgColor={"#CEDDCC"} gap={{ sm: 0 }} padding={{sm:"20px 0px"}}>
       <Stack
         display={{ xs: "none", md: "flex" }}
         direction={"row"}
@@ -329,71 +330,75 @@ export default function Tabs() {
             const isGallery = tabsData[activeTab].name === "Gallery";
 
             return (
-              <Stack
-                key={i}
-                width={"100%"}
-                backgroundColor={"#FBF6EE"}
-                sx={{
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <Box
+              <Stack padding="5px">
+                <Stack
+                  key={i}
+                  padding={"5px"}
                   width={"100%"}
-                  height={"200px"}
+                  backgroundColor={"#FBF6EE"}
                   sx={{
-                    backgroundImage: `url(${isTPA ? el.logo : el.image})`,
-                    backgroundSize: "cover",
-                    borderRadius: "10px 10px 0 0",
-                    backgroundPosition: "center center",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
                   }}
-                ></Box>
-                <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
-                  <Typography
-                    height={!isGallery ? "45px" : "15px"}
-                    fontSize={"1.2rem"}
-                    textAlign={"center"}
-                    color={"#379237"}
-                    fontWeight={"bold"}
-                  >
-                    {el.title} {el.name}
-                  </Typography>
-                  {!isTPA && !isGallery && (
+                >
+                  <Box
+                    width={"100%"}
+                    height={"200px"}
+                    sx={{
+                      backgroundImage: `url(${isTPA ? el.logo : el.image})`,
+                      backgroundSize: "cover",
+                      borderRadius: "10px 10px 0 0",
+                      backgroundPosition: "center center",
+                    }}
+                  ></Box>
+                  <Stack padding={"20px"} gap={"10px"} alignItems={"center"}>
                     <Typography
+                      height={!isGallery ? "45px" : "15px"}
+                      fontSize={"0.9rem"}
                       textAlign={"center"}
-                      dangerouslySetInnerHTML={{
-                        __html: el.smallDescription
-                          .split(" ")
-                          .slice(0, 15)
-                          .join(" "),
-                      }}
-                    />
-                  )}
-                  {!isTPA && (
-                    <Typography
-                      sx={{
-                        border: "1px solid black",
-                        padding: "10px 40px",
-                        borderRadius: "200px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        const basePath = {
-                          "Latest Happening": "/event",
-                          "Health Checkup": "/health-checkup",
-                          Awards: "/award",
-                          "TPA'S": "/tpa",
-                        };
-
-                        router.push(
-                          `${basePath[tabsData[activeTab].name]}/${el._id}`
-                        );
-                      }}
+                      color={"#379237"}
+                      fontWeight={"bold"}
                     >
-                      Know More
+                      {el.title} {el.name}
                     </Typography>
-                  )}
+                    {!isTPA && !isGallery && (
+                      <Typography
+                        fontSize={"0.8rem"}
+                        textAlign={"center"}
+                        dangerouslySetInnerHTML={{
+                          __html: el.smallDescription
+                            .split(" ")
+                            .slice(0, 15)
+                            .join(" "),
+                        }}
+                      />
+                    )}
+                    {!isTPA && (
+                      <Typography
+                        sx={{
+                          border: "1px solid black",
+                          padding: "10px 40px",
+                          borderRadius: "200px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          const basePath = {
+                            "Latest Happening": "/event",
+                            "Health Checkup": "/health-checkup",
+                            Awards: "/award",
+                            "TPA'S": "/tpa",
+                          };
+
+                          router.push(
+                            `${basePath[tabsData[activeTab].name]}/${el._id}`
+                          );
+                        }}
+                      >
+                        Know More
+                      </Typography>
+                    )}
+                  </Stack>
                 </Stack>
               </Stack>
             );
@@ -544,7 +549,7 @@ export default function Tabs() {
       </Stack>
       <Stack alignItems="center">
         <ButtonMediumOutline
-          margin="0 50px"
+          margin="20px 50px 0 50px"
           color="#379237"
           hcolor="#005900"
           onClick={() => {
