@@ -27,9 +27,13 @@ const OfficeAcademics = () => {
   ];
   return (
     <Stack bgcolor={"#CEDDCC"} alignItems={"center"} gap={1}>
-      <Stack direction={"row"} p={2}>
-        <Head1 color="black">Office of the &nbsp;</Head1>
-        <Head1 style={{ textAlign: "center" }}>Dean Academics,</Head1>
+      <Stack direction={"row"} p={"30px 16px"}>
+        <Head1 color="black" fontSize={{ sm: "1.2rem" }}>
+          Office of the &nbsp;
+        </Head1>
+        <Head1 style={{ textAlign: "center" }} fontSize={{ sm: "1.2rem" }}>
+          Dean Academics
+        </Head1>
       </Stack>
       <Stack
         width={"100%"}

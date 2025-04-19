@@ -52,7 +52,7 @@ export default function About() {
           through the several philanthropic initiatives it has undertaken e.g.
           The Avedna Ashram, the Rehabilitation and Limb Fitting Centre,
         </Typography> */}
-        <Stack alignItems={{ xs: "center", md: "start" }}>
+        <Stack alignItems={{ xs: "center", md: "center" }}>
           <ButtonMediumOutline
             margin="10px 20px"
             color="#fff"

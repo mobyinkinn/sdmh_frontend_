@@ -12,6 +12,7 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { useBlogById, useBlogs } from "@/app/components/admin/blog/useBlogs";
 import Spinner from "@/app/components/ui/Spinner";
 import moment from "moment";
+import MobileFooter from "../../footer/MobileFooter";
 
 const data = [
   {
@@ -98,7 +99,7 @@ const BlogInner = () => {
               {blogData.title}
             </Head1>
             <ParaNormal textAlign={"justify"}>
-              <span
+              <div className="blogs"
                 dangerouslySetInnerHTML={{
                   __html: `${blogData.description}`,
                 }}
@@ -107,7 +108,8 @@ const BlogInner = () => {
           </Stack>
         </Stack>
         <Stack
-          maxWidth={{ md: "20%", xs: "100%" }}
+          maxWidth={{ md: "27%", xs: "100%" }}
+          height={"fit-content"}
           bgcolor={"#476C9B"}
           marginTop="40px"
           p={2}
@@ -129,7 +131,7 @@ const BlogInner = () => {
             >
               <Stack
                 sx={{
-                  width: { xs: "230px", md: "140px", lg: "250px" },
+                  width: { xs: "100%", md: "100%", lg: "100%" },
                   height: { sm: "300px", xs: "200px", md: "150px" },
                   position: "relative",
                 }}
@@ -155,6 +157,7 @@ const BlogInner = () => {
         </Stack>
       </Stack>
       <Footer />
+      <MobileFooter/>
     </>
   );
 };

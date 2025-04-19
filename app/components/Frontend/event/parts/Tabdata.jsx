@@ -67,20 +67,14 @@ const Tabdata = () => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 5; // Number of items per page
   const { data, isLoading, error } = useEvents();
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const categories = ["All", ...new Set(data?.map((event) => event.tag))];
 
   // Filter event data based on the selected category
-  let filteredData =
-    selectedCategory === "All"
-      ? data
-      : data?.filter((event) => event.tag === selectedCategory);
+  const filteredData = data?.filter((el) => el.status === true) || [];
 
   // Reset page to 1 when category changes
   useEffect(() => {
     setPage(1);
-  }, [selectedCategory]);
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -101,7 +95,7 @@ const Tabdata = () => {
   return (
     <>
       {/* Tabs Section */}
-      <Stack
+      {/* <Stack
         direction="row"
         gap={{ md: 2, xs: 1 }}
         padding={{ md: 5, xs: 2 }}
@@ -134,7 +128,7 @@ const Tabdata = () => {
             {category}
           </Button>
         ))}
-      </Stack>
+      </Stack> */}
       <Box bgcolor={"#FDFDFD"}>
         {/* Render Filtered & Paginated Event Cards */}
         <Stack alignItems="center" pt={2}>

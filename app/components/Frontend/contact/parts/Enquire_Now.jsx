@@ -50,7 +50,7 @@ const Enquire_Now = () => {
       >
         <Stack width={{ sm: "100%", lg: "45%" }} gap={2} alignItems={"center"}>
           <Head1
-            color="#000000"
+            color="#005900"
             textAlign={{
               sm: "center",
               smm: "center",

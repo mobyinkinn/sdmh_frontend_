@@ -1,5 +1,5 @@
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
-import { Head3 } from "@/app/styledComponents/frontend/Headings";
+import { Head1, Head3 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack } from "@mui/material";
 import visitor from "./assets/visitors.jpg";
@@ -20,9 +20,9 @@ export default function Policy() {
           gap="10px"
           borderRadius={"10px"}
         >
-          <Head3 color="black" textAlign="left">
+          <Head1 textAlign="center">
             Visitor's Policy
-          </Head3>
+          </Head1>
           <ParaNormal>
             SDMH Visitor Policy has been established to provide a supportive and
             caring atmosphere for the patient. Visitor may visit between the

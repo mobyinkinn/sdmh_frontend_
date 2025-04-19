@@ -180,13 +180,25 @@ function CheckupCard({ el }) {
           {el.smallDescription}
         </ParaNormal>
         <Stack direction={"row"} gap={2}>
-          <ButtonSmallOutline
+          {/* <ButtonSmallOutline
             color={"#007946"}
             hoverColor="white"
             onClick={() => router.push(`/Health-checkup-form`)}
           >
             Book Now
+          </ButtonSmallOutline> */}
+          <ButtonSmallOutline
+            color={"#007946"}
+            hoverColor="white"
+            onClick={() =>
+              router.push(
+                `/Health-checkup-form?planname=${encodeURIComponent(el.title)}`
+              )
+            }
+          >
+            Book Now
           </ButtonSmallOutline>
+
           <ButtonSmallOutline
             color="#000000"
             hoverColor="white"

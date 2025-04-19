@@ -623,6 +623,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           sx={{ display: { xs: "none", lg: "flex" } }}
         >
           {navData.map((el, i) => (
+            el.name === "Second Opinion" ? null : (
             <Box
               key={i}
               position="relative"
@@ -733,6 +734,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
                 </Stack>
               )}
             </Box>
+            )
           ))}
         </Stack>
       </Stack>

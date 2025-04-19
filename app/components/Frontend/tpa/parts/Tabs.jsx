@@ -4,7 +4,7 @@ import Spinner from "@/app/components/ui/Spinner";
 import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/Buttons";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
@@ -64,18 +64,40 @@ const Tabs = () => {
               justifyContent={"center"}
             >
               {d.objects.map((di) => (
-                <Stack
-                  bgcolor={"white"}
-                  p={2}
-                  borderRadius={"15px"}
-                  width={300}
-                  height={270}
-                  justifyContent={"center"}
-                  alignItems={"center"}
+                // <Stack
+                //   bgcolor={"white"}
+                //   p={2}
+                //   borderRadius={"15px"}
+                //   width={300}
+                //   height={270}
+                //   justifyContent={"center"}
+                //   alignItems={"center"}
+                // >
+                //   {/* <Image src={di.image} width={250} height={150} /> */}
+                //   <Image
+                //     src={di.image}
+                //     fill
+                //     style={{ objectFit: "cover" }}
+                //   />
+                //   <Typography textAlign={"center"}>{di.name}</Typography>
+                // </Stack>
+                <Box
+                  sx={{
+                    width: { xs: "45%", md: "45%" },
+                    height: { xs: "140px", md: "400px" },
+                    position: "relative",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                  }}
                 >
-                  <Image src={di.image} width={250} height={150} />
+                  <Image
+                    src={di.image}
+                    alt={di.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
                   <Typography textAlign={"center"}>{di.name}</Typography>
-                </Stack>
+                </Box>
               ))}
             </Stack>
           </Stack>

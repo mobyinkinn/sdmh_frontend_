@@ -8,6 +8,7 @@ import Tabs from "./parts/Tabs";
 import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 import { Box } from "@mui/material";
 import Spinner from "../../ui/Spinner";
+import MobileFooter from "../footer/MobileFooter";
 
 const Tpa = () => {
   const { data, isLoading: isLoadingBanner } = useBannerByPage("tpas");
@@ -46,6 +47,7 @@ const Tpa = () => {
       ></Box>
       <Tabs />
       <Footer />
+      <MobileFooter/>
     </>
   );
 };

@@ -56,50 +56,46 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Stack, Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Image from "next/image";
-import image from "./assests/image1.png"; // Replace this with your actual image imports
+import image1 from "./assests/1.jpg"; 
+import image2 from "./assests/2.jpg"; 
+import image3 from "./assests/3.jpg"; 
+import image4 from "./assests/4.jpg"; 
+import image5 from "./assests/5.jpg"; 
+import image6 from "./assests/6.jpg"; 
+
 import { ButtonSmallOutline } from "@/app/styledComponents/frontend/Buttons";
 
 const InfraAndFacility = () => {
   const data = [
     {
       id: 1,
-      img: image,
+      img: image1,
       title: "Training Facilities",
     },
     {
       id: 2,
-      img: image,
+      img: image2,
       title: "Auditorium",
     },
     {
       id: 3,
-      img: image,
+      img: image3,
       title: "Simulation Lab",
     },
     {
       id: 4,
-      img: image,
+      img: image4,
       title: "PPG Training Room",
     },
     {
       id: 5,
-      img: image,
+      img: image5,
       title: "Counselling Room",
     },
     {
       id: 6,
-      img: image,
+      img: image6,
       title: "SIM Room",
-    },
-    {
-      id: 7,
-      img: image,
-      title: "Covid Training",
-    },
-    {
-      id: 8,
-      img: image,
-      title: "Statistician Services",
     },
   ];
   const [visibleCount, setVisibleCount] = useState(4);
@@ -189,7 +185,7 @@ const InfraAndFacility = () => {
             key={item.id}
             sx={{
               position: "relative",
-              width: "300px",
+              width: "400px",
               height: "200px",
               overflow: "hidden",
               borderRadius: "8px",

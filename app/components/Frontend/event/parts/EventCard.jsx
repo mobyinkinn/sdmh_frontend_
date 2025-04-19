@@ -55,7 +55,7 @@ export default function EventCard({ career }) {
           },
         }}
       ></Stack>
-      <Stack gap={1} width={"70%"}>
+      <Stack gap={1} width={{lg:"70%", sm:"100%"}}>
         <ParaNormalSmall color="inherit">{career.tag}</ParaNormalSmall>
         <Head3 textAlign="left" color="inherit">
           {career.title}

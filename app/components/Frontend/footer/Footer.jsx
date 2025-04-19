@@ -59,6 +59,11 @@ const centerOfExcellence = [
     data: "Neurology",
     link: "/centre-of-excellence/67c15aca323e35a829c56a12",
   },
+  {
+    id: 4,
+    data: "View All",
+    link: "/centre-of-excellence",
+  },
 ];
 
 const supportACause = [

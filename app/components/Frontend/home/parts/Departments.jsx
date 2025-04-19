@@ -129,7 +129,7 @@ useEffect(() => {
         </Stack>
         <Stack
           width={{ xs: "100%", md: "40%", lg: "45%" }}
-          height={{ lg: "75vh", sm: "35vh" }}
+          height={{ lg: "75vh", sm: "63vh" }}
           position={"relative"}
           justifyContent={"center"}
           alignItems={"center"}

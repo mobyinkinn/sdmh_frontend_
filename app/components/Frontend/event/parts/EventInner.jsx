@@ -15,6 +15,7 @@ import {
 } from "@/app/components/admin/events/useEvents";
 import moment from "moment";
 import Spinner from "@/app/components/ui/Spinner";
+import MobileFooter from "../../footer/MobileFooter";
 
 const data = [
   {
@@ -109,7 +110,8 @@ const EventInner = () => {
           </Stack>
         </Stack>
         <Stack
-          width={{ md: "20%", xs: "100%" }}
+          width={{ md: "27%", xs: "100%" }}
+          height={"fit-content"}
           bgcolor={"#476C9B"}
           marginTop="40px"
           p={2}
@@ -126,12 +128,13 @@ const EventInner = () => {
               key={i}
               onClick={() => router.push(`/event/${d._id}`)}
               sx={{
+                width: { xs: "100%", md: "100%", lg: "100%" },
                 cursor: "pointer",
               }}
             >
               <Stack
                 sx={{
-                  width: { xs: "230px", md: "140px", lg: "250px" },
+                  width: { xs: "100%", md: "100%", lg: "100%" },
                   height: { sm: "300px", xs: "200px", md: "150px" },
                   position: "relative",
                 }}
@@ -157,6 +160,7 @@ const EventInner = () => {
         </Stack>
       </Stack>
       <Footer />
+      <MobileFooter/>
     </>
   );
 };

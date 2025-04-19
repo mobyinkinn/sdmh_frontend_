@@ -19,11 +19,15 @@ import Navbar from "../../../navbar/Nav";
 import Footer from "../../../footer/Footer";
 import MobileFooter from "../../../footer/MobileFooter";
 import { useCreateCheckup } from "@/app/components/admin/checkupform/useCheckForm";
+import { useSearchParams } from "next/navigation";
 
 const CheckupForm = () => {
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
   const { isCreating, createCheckups } = useCreateCheckup();
+  const searchParams = useSearchParams();
+  const planname = searchParams.get("planname") || "";
+
   const isWorking = isCreating;
   if (isCreating) return <Spinner />;
   function onSubmit(data) {
@@ -31,7 +35,8 @@ const CheckupForm = () => {
       name: data.name,
       phone: data.phone,
       email: data.email,
-      text: data.text
+      text: data.text,
+      planname: planname, 
     };
 
     createCheckups(formdata, {
@@ -66,6 +71,12 @@ const CheckupForm = () => {
           >
             Book A Health Check Up
           </Head1>
+          <Stack>
+            <Typography fontWeight="bold" color="#005900">
+              {planname}
+            </Typography>
+          </Stack>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack
               marginTop={"20px"}

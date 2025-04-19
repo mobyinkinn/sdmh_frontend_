@@ -128,7 +128,12 @@ console.log("filteredRemainingBlog", filteredRemainingBlog);
             return <BlogCard key={i} el={el}></BlogCard>;
           })}
 
-          <Stack display={{ md: "none" }} margin="0px auto" marginTop="20px">
+          <Stack
+            display={{ md: "none" }}
+            margin="0px auto"
+            marginTop="20px"
+            onClick={() => router.push("/blog")}
+          >
             <DarkGreenButton borderRadius="300px" padding="10px 20px">
               View All
             </DarkGreenButton>
@@ -140,7 +145,7 @@ console.log("filteredRemainingBlog", filteredRemainingBlog);
         display={{ md: "flex", xs: "none" }}
         onClick={() => router.push("/blog")}
       >
-        <ButtonMediumOutline color="#fff" hcolor="white" hoverColor="black">
+        <ButtonMediumOutline color="#fff" hcolor="white" hoverColor="black" border ="1px solid #fff">
           View All
         </ButtonMediumOutline>
       </Stack>

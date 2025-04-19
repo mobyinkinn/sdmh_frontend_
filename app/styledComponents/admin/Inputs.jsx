@@ -14,12 +14,18 @@ const SearchInputFordoctor = styled.input((props) => ({
   width: "300px",
   outline: "none",
   border: "1px solid #005900",
-  padding: "15px",
+  padding: "22px",
   borderRadius: "20px",
   color: "#000",
-  fontSize:"20px",
-  background:"transparent"
+  fontSize: "20px",
+  background: "transparent",
+  "@media (max-width: 768px)": {
+    width: "150px",
+    fontSize: "16px", // Optional: slightly smaller font on mobile
+    padding: "10px", // Optional: smaller padding on mobile
+  },
 }));
+
 
 const TextInput = styled.input((props) => ({
   width: "300px",

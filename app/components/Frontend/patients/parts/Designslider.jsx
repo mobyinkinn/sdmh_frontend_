@@ -131,7 +131,6 @@ useEffect(() => {
                     sx={{
                       width: { xs: "100%", md: "45%" },
                     }}
-                    gap={2}
                   >
                     <Head1
                       color="#005900"
@@ -195,15 +194,20 @@ useEffect(() => {
                         transition: "max-height 0.3s ease",
                       }}
                     >
-                      {group.des.map((d, i) => (
-                        <ul key={i}>
+                      <ul style={{ paddingLeft: "20px", margin: 0 }}>
+                        {group.des.map((d, i) => (
                           <li
-                            style={{ fontSize: "15px", textAlign: "justify" }}
+                            key={i}
+                            style={{
+                              fontSize: "15px",
+                              textAlign: "justify",
+                              marginBottom: "5px",
+                            }}
                           >
                             {d}
                           </li>
-                        </ul>
-                      ))}
+                        ))}
+                      </ul>
 
                       {isMobile && !expanded[group.id] && (
                         <Box
@@ -230,10 +234,9 @@ useEffect(() => {
                         }}
                         onClick={() => toggleExpand(group.id)}
                       >
-                        {expanded[group.id] ? "Show Less ▲" : "Read More ▼"}
+                        {expanded[group.id] ? "Show Less" : "Read More"}
                       </Typography>
                     )}
-
                   </Stack>
 
                   <Box

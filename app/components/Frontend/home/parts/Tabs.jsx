@@ -235,6 +235,7 @@ export default function Tabs() {
       data: [eventData],
     },
   ];
+            const isAward = tabsData[activeTab].name === "Awards";
 
   var settings = {
     autoplay: false,
@@ -348,7 +349,9 @@ export default function Tabs() {
                     width={"100%"}
                     height={"200px"}
                     sx={{
-                      backgroundImage: `url(${isTPA ? el.logo : isGallery? el.image.src : el.image})`,
+                      backgroundImage: `url(${
+                        isTPA ? el.logo : isGallery ? el.image.src : el.image
+                      })`,
                       backgroundSize: "cover",
                       borderRadius: "10px 10px 0 0",
                       backgroundPosition: "center center",
@@ -369,16 +372,17 @@ export default function Tabs() {
                         fontSize={"0.9rem"}
                         textAlign={"center"}
                         dangerouslySetInnerHTML={{
-                          __html: el.smallDescription
-                            .split(" ")
-                            .slice(0, 15)
-                            .join(" "),
+                          __html:
+                            el.smallDescription
+                              .split(" ")
+                              .slice(0, 15)
+                              .join(" ") + " ...",
                         }}
                       />
                     )}
-                    {!isTPA && !isAward &&(
+                    {!isTPA && !isAward && (
                       <Typography
-                      fontSize={"0.8rem"}
+                        fontSize={"0.8rem"}
                         sx={{
                           border: "1px solid black",
                           padding: "5px 20px",
@@ -550,7 +554,7 @@ export default function Tabs() {
           );
         })}
       </Stack>
-      <Stack alignItems="center">
+      <Stack alignItems="center" display={isAward?"none":"flex"}>
         <ButtonMediumOutline
           margin="20px 50px 0 50px"
           color="#379237"

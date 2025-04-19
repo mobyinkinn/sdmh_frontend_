@@ -48,7 +48,19 @@ const Philosophy = () => {
         justifyContent={"center"}
       >
         {images.map((d, i) => (
-          <Image src={d} key={i} width={280} />
+          <Stack
+              width={{ xl: "23%", lg: "48%", md: "47%", xs: "45%" }}
+              height={{ xs: "131px", md: "300px" }}
+              position={"relative"}
+              key={i}
+            >
+               <Image
+                              src={d}
+                              fill
+                              objectFit="cover"
+                              objectPosition="center center"
+                            />
+          </Stack>
         ))}
       </Stack>
     </Stack>

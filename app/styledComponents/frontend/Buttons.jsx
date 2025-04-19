@@ -106,7 +106,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   backgroundColor: props.backgroundColor || "transparent",
   width: props.width || "fit-content",
   outline: "none",
-  border: `1px solid #007946`,
+  border: props.border || "1px solid #007946",
   padding: props.padding || "15px 40px",
   fontSize: props.fontSize || "1rem",
   color: props.color,

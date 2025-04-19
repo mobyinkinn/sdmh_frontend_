@@ -4,7 +4,7 @@ import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import { Box, Stack } from "@mui/material";
 import React, { useRef, useState } from "react";
 import Image1 from "./assets/i1.png";
-import Image2 from "./assets/i2.png";
+import Image2 from "./assets/i4.png";
 import Image3 from "./assets/i3.png";
 import Image from "next/image";
 import Slider from "react-slick";
