@@ -14,6 +14,7 @@ const Head1 = styled.span((props) => ({
   width: props.width,
   textAlign: props.textAlign || "center",
   paddingBottom: props.paddingBottom,
+  height: props.height,
 
   // Default font size
 
@@ -35,6 +36,7 @@ const Head1 = styled.span((props) => ({
     fontSize: props.fontSize?.sm || "1.5rem",
     textAlign: props.textAlign?.sm || "center",
     width: props.width?.sm,
+    height: props.height?.sm,
   },
   // [breakpoints.xs]: {
   //   fontSize: props.fontSize?.xs || "0.4rem",

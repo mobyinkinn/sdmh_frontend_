@@ -469,6 +469,7 @@ return (
             {responsibility[planetData].Title}
           </Typography>
           <Typography
+          fontSize={"0.9rem"}
             dangerouslySetInnerHTML={{
               __html: responsibility[planetData].Desc,
             }}

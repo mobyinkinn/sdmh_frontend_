@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Query, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import MobileBottomBar from "./components/Frontend/navbar/MobileNav";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <body className={montserrat.className}>
+            <Toaster position="bottom-center" reverseOrder={false} />
             {children}
             <MobileBottomBar />
           </body>

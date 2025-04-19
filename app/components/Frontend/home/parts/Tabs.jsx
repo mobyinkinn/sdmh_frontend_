@@ -328,6 +328,8 @@ export default function Tabs() {
             if (i >= 4) return null;
             const isTPA = tabsData[activeTab].name === "TPA'S";
             const isGallery = tabsData[activeTab].name === "Gallery";
+            const isAward = tabsData[activeTab].name === "Awards";
+
 
             return (
               <Stack padding="5px">
@@ -346,7 +348,7 @@ export default function Tabs() {
                     width={"100%"}
                     height={"200px"}
                     sx={{
-                      backgroundImage: `url(${isTPA ? el.logo : el.image})`,
+                      backgroundImage: `url(${isTPA ? el.logo : isGallery? el.image.src : el.image})`,
                       backgroundSize: "cover",
                       borderRadius: "10px 10px 0 0",
                       backgroundPosition: "center center",
@@ -364,7 +366,7 @@ export default function Tabs() {
                     </Typography>
                     {!isTPA && !isGallery && (
                       <Typography
-                        fontSize={"0.8rem"}
+                        fontSize={"0.9rem"}
                         textAlign={"center"}
                         dangerouslySetInnerHTML={{
                           __html: el.smallDescription
@@ -374,11 +376,12 @@ export default function Tabs() {
                         }}
                       />
                     )}
-                    {!isTPA && (
+                    {!isTPA && !isAward &&(
                       <Typography
+                      fontSize={"0.8rem"}
                         sx={{
                           border: "1px solid black",
-                          padding: "10px 40px",
+                          padding: "5px 20px",
                           borderRadius: "200px",
                           cursor: "pointer",
                         }}

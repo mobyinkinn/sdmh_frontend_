@@ -123,7 +123,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
         backgroundColor={"#005900"}
         color={"white"}
         p={{ xs: "0 0 0 40px", smm: "0 60px", lg: "0 100px" }}
-        py={{xs:"10px"}}
+        py={{ xs: "10px" }}
       >
         <Stack
           direction={"row"}
@@ -214,7 +214,6 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
             {!showSearch ? (
               <Stack direction="row" alignItems="center" gap={1}>
                 <IconButton onClick={() => setShowSearch(true)}>
-                  
                   <SlMagnifier style={{ color: "white", fontSize: 20 }} />
                 </IconButton>
               </Stack>
@@ -511,8 +510,9 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           {navData.map((el, i) => (
             <Box
               key={i}
-              onMouseEnter={() => setOpenDropdown(i)}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onClick={() => setOpenDropdown((prev) => (prev === i ? null : i))}
+              // onMouseEnter={() => setOpenDropdown(i)}
+              // onMouseLeave={() => setOpenDropdown(null)}
             >
               <Stack
                 direction="row"

@@ -44,7 +44,7 @@ const ThreeLineSlider = () => {
   ];
 
   return (
-    <Stack bgcolor={"#D8E0EB"} p={5}>
+    <Stack bgcolor={"#D8E0EB"} p={{lg:5, sm:2}}>
       <Designslider
         bannerImages={bannerImages}
         position={"relative"}

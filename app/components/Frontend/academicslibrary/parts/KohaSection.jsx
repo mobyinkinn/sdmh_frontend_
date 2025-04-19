@@ -77,7 +77,7 @@ const KohaSection = () => {
         {data.map((d, i) => (
           <Stack
             key={i}
-            bgcolor={"white"}
+            bgcolor={"#f1f1f1"}
             width={{ xs: "90%", md: "45%" }}
             padding={{ xs: 3, md: 5 }}
             borderRadius={"10px"}
@@ -103,7 +103,7 @@ const KohaSection = () => {
                   alignItems={"center"}
                   paddingY={"10px"}
                   borderRadius={"20px"}
-                  bgcolor={"white"}
+                  bgcolor={"f1f1f1"}
                 >
                   {/* Circle Number */}
                   <Stack

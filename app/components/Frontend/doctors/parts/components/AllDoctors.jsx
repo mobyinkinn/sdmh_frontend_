@@ -22,66 +22,45 @@ export default function AllDoctors() {
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
     
+  const [doctor, setDoctor] = useState("Search Doctor");
+  const [department, setDepartment] = useState("Search Department");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [departmentId, setDepartmentId] = useState(null);
+const filteredDoct = (
+  data?.filter((doc) => {
+    const isActive = doc.status !== false;
+    const matchesSearch = searchTerm
+      ? doc.name.toLowerCase().includes(searchTerm.toLowerCase())
+      : true;
+    const matchesDept = departmentId ? doc.department === departmentId : true;
 
-  // Filter only active doctors and sort them by order
-  const filteredDoc = (data?.filter((doc) => doc.status !== false) || []).sort(
-    (a, b) => a.order - b.order
-  );
-  const totalPages = Math.ceil(filteredDoc.length / itemsPerPage);
+    return isActive && matchesSearch && matchesDept;
+  }) || []
+).sort((a, b) => a.order - b.order);
+
+ const filteredDepartments = (departments || [])
+   .filter((el) => el.status === true)
+   .sort((a, b) => a.name.localeCompare(b.name));
+  const totalPages = Math.ceil(filteredDoct.length / itemsPerPage);
 
   // Paginated data
-  const paginatedDoctors = filteredDoc.slice(
+  const paginatedDoctors = filteredDoct.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
 
   // Search states
-  const [doctor, setDoctor] = useState("Search Doctor");
-  const [department, setDepartment] = useState("Search Department");
-  const [filteredDoctors, setFilteredDoctors] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [openDropdown, setOpenDropdown] = useState(false);
-const [departmentId, setDepartmentId] = useState(null);
+
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  function clearDoctor() {
-    setDoctor("");
-  }
-  function unclearDoctor() {
-    setDoctor("Search Doctor");
-  }
-  function clearDepartment() {
-    setDepartment("");
-  }
-  function unclearDepartment() {
-    setDepartment("Search Department");
-  }
-
-  function searchDoctor(e) {
-    let searchDoctor = e.target.textContent;
-    const newFilteredDoctors = filteredDoc.filter((el) =>
-      el.name.toLowerCase().startsWith(searchDoctor.toLowerCase())
-    );
-    setFilteredDoctors(newFilteredDoctors);
-    setPage(1); // Reset pagination on search
-  }
-
-  function searchDepartment(e) {
-    let searchDepartment = e.target.textContent.toLowerCase();
-    const newFilteredDoctors = filteredDoc.filter((el) =>
-      el.department.toLowerCase().startsWith(searchDepartment)
-    );
-
-    setFilteredDoctors(newFilteredDoctors);
-    setPage(1); // Reset pagination on search
-  }
 
   // Sort filtered doctors if search is active
-  const sortedFilteredDoctors = filteredDoctors
-    ? [...filteredDoctors].sort((a, b) => a.order - b.order)
+  const sortedFilteredDoctors = filteredDoct
+    ? [...filteredDoct].sort((a, b) => a.order - b.order)
     : null;
 
   const doctorsToShow = sortedFilteredDoctors
@@ -96,16 +75,7 @@ const [departmentId, setDepartmentId] = useState(null);
     : totalPages;
 
   if (isLoading || isLoadingDepartments) return <Spinner />;
- const filteredDoct =
-   searchTerm.length >= 2
-     ? data.filter((doc) =>
-         doc.name.toLowerCase().includes(searchTerm.toLowerCase())
-       )
-     : [];
 
-       const filteredDepartments = (departments || [])
-    .filter((el) => el.status === true)
-    .sort((a, b) => a.name.localeCompare(b.name));
   return (
     <ContainerMain bgColor={"#D8E0EB"}>
       <Stack
@@ -115,16 +85,7 @@ const [departmentId, setDepartmentId] = useState(null);
         alignItems={"center"}
         pl={"36px"}
       >
-        {/* <DarkGreenButton
-          bgColor="#379237"
-          borderRadius="100px"
-          onClick={() => {
-            setFilteredDoctors(null);
-            setPage(1);
-          }}
-        >
-          All
-        </DarkGreenButton> */}
+        
         <Typography fontSize={"2rem"} color="#486c9c">
           Search By:{" "}
         </Typography>
@@ -199,89 +160,7 @@ const [departmentId, setDepartmentId] = useState(null);
           )}
         </Box>
 
-        {/* <Box
-          position="relative"
-          onMouseEnter={() => setOpenDropdown(true)}
-          onMouseLeave={() => setOpenDropdown(false)}
-          sx={{ width: "fit-content" }}
-        >
-          <Stack
-            direction="row"
-            alignItems="center"
-            gap={1}
-            sx={{
-              width: "300px",
-              padding: "15px",
-              border: "1px solid #005900",
-              borderRadius: "20px",
-              backgroundColor: "transparent",
-              color: "black",
-              cursor: "pointer",
-            }}
-          >
-            <Typography
-              sx={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                flexGrow: 1,
-              }}
-            >
-              {department}
-            </Typography>
-            <IoIosArrowDown
-              style={{
-                transition: "transform 0.3s ease",
-                transform: openDropdown ? "rotate(180deg)" : "rotate(0deg)",
-              }}
-            />
-          </Stack>
-
-          {openDropdown && (
-            <Stack
-              position="absolute"
-              top="141%"
-              right="-120%"
-              bgcolor="white"
-              padding={2}
-              flexWrap="wrap"
-              maxHeight="32rem"
-              columnGap="2.5rem"
-              overflowY="auto"
-              boxShadow={2}
-              zIndex={1000}
-              borderRadius="5px"
-              sx={{
-                width: "max-content",
-                maxHeight: "32rem",
-              }}
-            >
-              {filteredDepartments.map((dept) => (
-                <Box
-                  key={dept._id}
-                  p={1}
-                  borderBottom="1px solid #eee"
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setDepartment(dept.name);
-                    searchDepartment({ target: { textContent: dept.name } });
-                    setOpenDropdown(false);
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: "0.9rem",
-                      "&:hover": { color: "green" },
-                      maxWidth: "200px",
-                    }}
-                  >
-                    {dept.name}
-                  </Typography>
-                </Box>
-              ))}
-            </Stack>
-          )}
-        </Box> */}
+        
         <Box
           position="relative"
           sx={{ width: "fit-content" }}

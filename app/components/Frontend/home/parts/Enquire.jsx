@@ -199,7 +199,7 @@ export default function Enquire() {
           >
             How To Reach
           </Head1>
-          <Typography fontWeight={"bold"}>
+          <Typography fontWeight={"bold"} textAlign={"center"}>
             Santokba Durlabhji Meorial Hospital
           </Typography>
           {address.map((el, i) => {

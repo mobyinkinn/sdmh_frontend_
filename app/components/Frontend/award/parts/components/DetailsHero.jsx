@@ -111,52 +111,6 @@ const DetailsHero = ({ id, data, isLoading }) => {
       </Stack>
       <Divider color={"#2D2D2D"} sx={{ margin: "30px 0" }} />
 
-      {/* Award Details */}
-      <Stack
-        direction={"row"}
-        gap={4}
-        justifyContent={"space-around"}
-        flexWrap={"wrap"}
-        padding={{ xs: "12px" }}
-      >
-        {awardDetails.map((item) => (
-          <Stack key={item.title} mb={2}>
-            <ParaNormal
-              color="#000000"
-              fontSize={{ sm: "20px", smm: "23px", md: "26px", lg: "30px" }}
-              fontWeight={"500"}
-            >
-              {item.title}
-            </ParaNormal>
-            <Stack direction="column" gap={2} width={"100%"} marginTop={1}>
-              {item.items.map((subItem) => (
-                <list>
-                  <Typography
-                    fontSize={{
-                      sm: "15px",
-                      smm: "18px",
-                      md: "21px",
-                      lg: "25px",
-                    }}
-                    sx={{
-                      listStyle: "none",
-                      "& li::before": {
-                        content: '"\\2022"',
-                        color: "#005900",
-                        fontWeight: "bold",
-                        display: "inline-block",
-                        width: "12px",
-                      },
-                    }}
-                  >
-                    <li color="#000000">{subItem}</li>
-                  </Typography>
-                </list>
-              ))}
-            </Stack>
-          </Stack>
-        ))}
-      </Stack>
 
       {/* Images */}
       <Stack

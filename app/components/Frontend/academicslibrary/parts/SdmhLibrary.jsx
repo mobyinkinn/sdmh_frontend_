@@ -87,7 +87,7 @@ const SdmhLibrary = () => {
   return (
     <>
       <ContainerMain style={{ backgroundColor: "#D2E4D8" }}>
-        <Stack direction={"row"} marginLeft={1}>
+        <Stack direction={"row"} marginLeft={1} justifyContent={"center"}>
           <Head1 color="black">About&nbsp;</Head1>
           <Head1 color="#005900">Library</Head1>
         </Stack>
@@ -319,7 +319,7 @@ const SdmhLibrary = () => {
         </Stack>
       </ContainerMain>
 
-      <Stack bgcolor={"#007946"} padding={{ xs: 7, md: 5, lg: 10 }} gap={1}>
+      <Stack bgcolor={"#007946"} padding={{ xs:"30px 56px 56px 56px", md: 5, lg: 10 }} gap={4}>
         <Head1
           fontSize={{ sm: "1.5rem", smm: "2rem", md: "2.5rem", lg: "3.5rem" }}
           color="white"

@@ -137,7 +137,7 @@ export default function Doctors({ _id }) {
   return (
     <>
     <Head1
-        textAlign={{ sm: "left", smm: "left", md: "center", lg: "center" }}
+        textAlign={{ sm: "center", smm: "left", md: "center", lg: "center" }}
         color="#005900"
       >
         Meet Our Experts in the Department

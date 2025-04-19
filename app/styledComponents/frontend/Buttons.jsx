@@ -124,7 +124,7 @@ const ButtonMediumOutline = styled.button((props) => ({
   },
 
   "@media (max-width: 600px)": {
-    padding: "7px 20px", // padding for smaller screens
+    padding: "8px 35px", // padding for smaller screens
   },
 }));
 
