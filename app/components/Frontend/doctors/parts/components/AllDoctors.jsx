@@ -85,10 +85,21 @@ const filteredDoct = (
         alignItems={"center"}
         pl={"36px"}
       >
-        
         <Typography fontSize={"2rem"} color="#486c9c">
           Search By:{" "}
         </Typography>
+        <DarkGreenButton
+          bgColor="#379237"
+          borderRadius="100px"
+          onClick={() => {
+            setSearchTerm("");
+            setDepartment("Search Department");
+            setDepartmentId(null);
+            setPage(1);
+          }}
+        >
+         All
+        </DarkGreenButton>
         <Box position="relative">
           <Stack direction="row">
             <SearchInputFordoctor
@@ -160,7 +171,6 @@ const filteredDoct = (
           )}
         </Box>
 
-        
         <Box
           position="relative"
           sx={{ width: "fit-content" }}
