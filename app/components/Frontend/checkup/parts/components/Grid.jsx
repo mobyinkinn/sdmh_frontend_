@@ -10,8 +10,8 @@ import {
 } from "@/app/styledComponents/frontend/Buttons";
 import { useCheckups } from "@/app/components/admin/health_plans/useCheckups";
 import Spinner from "@/app/components/ui/Spinner";
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Grid() {
   const [page, setPage] = useState(1);
@@ -183,7 +183,13 @@ function CheckupCard({ el }) {
           {/* <ButtonSmallOutline
             color={"#007946"}
             hoverColor="white"
-            onClick={() => router.push(`/Health-checkup-form`)}
+            // onClick={() => router.push(`/Health-checkup-form`)}
+            onClick={() =>
+              router.push({
+                pathname: "/Health-checkup-form",
+                query: { planname: el.title }, // pass title as query param
+              })
+            }
           >
             Book Now
           </ButtonSmallOutline> */}
@@ -198,7 +204,6 @@ function CheckupCard({ el }) {
           >
             Book Now
           </ButtonSmallOutline>
-
           <ButtonSmallOutline
             color="#000000"
             hoverColor="white"

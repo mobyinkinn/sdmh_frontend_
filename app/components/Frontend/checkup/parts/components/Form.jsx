@@ -1,4 +1,5 @@
 "use client";
+
 import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
 import { Box, Modal, Stack, Typography } from "@mui/material";
@@ -7,7 +8,7 @@ import {
   TextArea,
   TextInput,
 } from "@/app/styledComponents/frontend/Inputs";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   ButtonMediumOutline,
@@ -19,15 +20,12 @@ import Navbar from "../../../navbar/Nav";
 import Footer from "../../../footer/Footer";
 import MobileFooter from "../../../footer/MobileFooter";
 import { useCreateCheckup } from "@/app/components/admin/checkupform/useCheckForm";
-import { useSearchParams } from "next/navigation";
 
 const CheckupForm = () => {
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
   const { isCreating, createCheckups } = useCreateCheckup();
-  const searchParams = useSearchParams();
-  const planname = searchParams.get("planname") || "";
-
+  const [planname, setplanname] = useState("")
   const isWorking = isCreating;
   if (isCreating) return <Spinner />;
   function onSubmit(data) {
@@ -49,6 +47,13 @@ const CheckupForm = () => {
       },
     });
   }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const plan = params.get("planname");
+      if (plan) setplanname(plan);
+    }
+  }, []);
   return (
     <>
       <Navbar />
