@@ -114,7 +114,7 @@ const quickLinks = [
   { id: 2, data: "Events", link: "/event" },
   { id: 3, data: "Terms & conditions", link: "/terms-and-conditions" },
   { id: 4, data: "Career", link: "/career" },
-  { id: 5, data: "News & press release", link: "/news-press-release" },
+  { id: 5, data: "News & press release", link: "" },
   { id: 6, data: "Send a greeting", link: "/send-a-greeting" },
 ];
 

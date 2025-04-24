@@ -98,6 +98,7 @@ const filteredDoct = (
                 borderRadius="10px 0 0 10px"
                 border="1px solid #005900"
                 value={searchTerm}
+                padding="15px"
                 backgroundColor="transparent"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -174,7 +175,7 @@ const filteredDoct = (
               alignItems="center"
               gap={1}
               width={{ lg: "300px", sm: "150px" }}
-              padding={{ lg: "15px", sm: "8px" }}
+              padding={{ lg: "11px", sm: "8px" }}
               sx={{
                 border: "1px solid #005900",
                 borderRadius: "20px",
@@ -185,7 +186,7 @@ const filteredDoct = (
             >
               <Typography
               color="grey"
-                fontSize={{ lg: "1.5rem", sm: "16px" }}
+                fontSize={{ lg: "20px", sm: "16px" }}
                 sx={{
                   whiteSpace: "nowrap",
                   overflow: "hidden",
@@ -209,7 +210,7 @@ const filteredDoct = (
                 <Stack
                   display={{ lg: "flex", sm: "none" }}
                   position="absolute"
-                  top="111%"
+                  top="100%"
                   right="-125%"
                   bgcolor="white"
                   padding={2}
@@ -298,8 +299,8 @@ const filteredDoct = (
         </Stack>
         <DarkGreenButton
           bgColor="#379237"
-          padding="7px 28px"
-          borderRadius="100px"
+          padding="15px 20px"
+          borderRadius="20px"
           onClick={() => {
             setSearchTerm("");
             setDepartment("Search Department");

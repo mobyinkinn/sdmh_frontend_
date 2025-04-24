@@ -223,14 +223,16 @@ export default function DoctorProfileBanner({ data }) {
                     Make Appointment
                   </ButtonMediumOutline>
                 </Modal.Open>
-                <ButtonMediumOutline
-                  padding={"11px 27px"}
-                  hcolor="white"
-                  hoverColor="#005900"
-                  color="white"
-                >
-                  Video Consultation
-                </ButtonMediumOutline>
+                <Modal.Open opens="video">
+                  <ButtonMediumOutline
+                    padding={"11px 27px"}
+                    hcolor="white"
+                    hoverColor="#005900"
+                    color="white"
+                  >
+                    Video Consultation
+                  </ButtonMediumOutline>
+                </Modal.Open>
               </Stack>
 
               {/* Buttons for smaller screens */}
@@ -250,33 +252,56 @@ export default function DoctorProfileBanner({ data }) {
                     Make Appointment
                   </ButtonMediumOutline>
                 </Modal.Open>
-                <ButtonSmallOutline
-                  padding={"11px 27px"}
-                  hcolor="white"
-                  hoverColor="#005900"
-                  color="white"
-                >
-                  Video Consultation
-                </ButtonSmallOutline>
+                <Modal.Open opens="video">
+                  <ButtonMediumOutline
+                    padding={"11px 27px"}
+                    hcolor="white"
+                    hoverColor="#005900"
+                    color="white"
+                  >
+                    Video Consultation
+                  </ButtonMediumOutline>
+                </Modal.Open>
               </Stack>
               <Modal.Window name="appointment">
-                      <div>
-                        <Typography textAlign={"center"} fontSize={"2rem"} color="green">
-                          Book an Appointment
-                        </Typography>
-                        <Typography textAlign={"center"}>
-                          Appointments can currently be booked by calling 7073111911 between
-                          7:00 AM and 4:00 PM. This service allows patients or their
-                          attendants to choose a preferred time slot for consultation with the
-                          doctor.
-                        </Typography>
-                        <Typography textAlign={"center"} marginTop={2}>
-                          <b>Please note:</b> Appointment slots are subject to availability.
-                          If a preferred slot is not available, patients will be attended
-                          through the regular OPD system.
-                        </Typography>
-                      </div>
-                    </Modal.Window>
+                <div>
+                  <Typography
+                    textAlign={"center"}
+                    fontSize={"2rem"}
+                    color="green"
+                  >
+                    Book an Appointment
+                  </Typography>
+                  <Typography textAlign={"center"}>
+                    Appointments can currently be booked by calling 7073111911
+                    between 7:00 AM and 4:00 PM. This service allows patients or
+                    their attendants to choose a preferred time slot for
+                    consultation with the doctor.
+                  </Typography>
+                  <Typography textAlign={"center"} marginTop={2}>
+                    <b>Please note:</b> Appointment slots are subject to
+                    availability. If a preferred slot is not available, patients
+                    will be attended through the regular OPD system.
+                  </Typography>
+                </div>
+              </Modal.Window>
+              <Modal.Window name="video">
+                <Stack gap={2}>
+                  <Typography
+                    textAlign={"center"}
+                    fontSize={"2rem"}
+                    color="green"
+                  >
+                    Video Consultation
+                  </Typography>
+                  <Typography textAlign={"center"}>
+                    Video consultations are currently available only for
+                    follow-up patients, as advised by our doctors. For
+                    assistance with scheduling a video consultation, please
+                    contact us at 707311-11911.
+                  </Typography>
+                </Stack>
+              </Modal.Window>
             </Modal>
             <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"} pt={2}>
               {days.map((day, i) => (

@@ -335,7 +335,7 @@ const backgroundImages = [
                       <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
                     </IconButton>
                   </Box>
-                  <ParaNormal>{item.title}</ParaNormal>
+                  {/* <ParaNormal>{item.title}</ParaNormal> */}
                 </Stack>
               );
             })}

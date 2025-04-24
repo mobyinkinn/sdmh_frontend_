@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import banner from "./parts/assests/banner.png";
 import Navbar from "../navbar/Nav";
@@ -5,19 +6,40 @@ import Footer from "../footer/Footer";
 import Tabdata from "./parts/Tabdata";
 import MobileFooter from "../footer/MobileFooter";
 import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
+import Spinner from "../../ui/Spinner";
+import { useBannerByPage } from "../../admin/banner/parts/useBanner";
+import { Box } from "@mui/material";
 
 const Event = () => {
+   const { data, isLoading: isLoadingBanner } =
+     useBannerByPage("Latest happening");
+   if (isLoadingBanner) return <Spinner />;
   return (
     <>
       <Navbar />
-      <BannerImage2
-        color={"#476C9B"}
-        descolor={"black"}
-        image={banner.src}
-        overlayColor="#FFFFFFE5"
-        title="Our Hospital Events"
-        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-      />
+      <Box
+        display={{ md: "flex", sm: "none" }}
+        minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.banner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
+
+      <Box
+        display={{ md: "none", sm: "flex" }}
+        minHeight={{ xs: "451px" }}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+        }}
+      ></Box>
       <Tabdata />
       <Footer />
       <MobileFooter />

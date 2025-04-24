@@ -72,7 +72,7 @@ export default function MobileFooter() {
   const other = [
     { id: 0, data: "Enquiry", link: "/contact-us" },
     { id: 1, data: "Career", link: "/career" },
-    { id: 2, data: "News & Press Release", link: "/news-press-release" },
+    { id: 2, data: "News & Press Release", link: "" },
     { id: 3, data: "Feedback", link: "/contact-us" },
     { id: 4, data: "Health Check-Up plans", link: "/health-checkup" },
     { id: 5, data: "Send a Greeting", link: "/send-a-greeting" },

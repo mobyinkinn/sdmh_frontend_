@@ -46,8 +46,9 @@ const Designslider = ({
   const settings = {
     dots: false, // Add dots for debugging
     infinite: true,
-    speed: 500,
-    // autoplay: true,
+    speed: 1500,
+    autoplaySpeed: 1500,
+    autoplay: true,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: false,
@@ -131,6 +132,7 @@ useEffect(() => {
                     sx={{
                       width: { xs: "100%", md: "45%" },
                     }}
+                    gap={"20px"}
                   >
                     <Head1
                       color="#005900"
@@ -201,7 +203,7 @@ useEffect(() => {
                             style={{
                               fontSize: "15px",
                               textAlign: "justify",
-                              marginBottom: "5px",
+                              marginBottom: "10px",
                             }}
                           >
                             {d}

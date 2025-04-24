@@ -34,7 +34,7 @@ export default function Reach() {
       >
         How To Reach
       </Typography>
-      <Typography textAlign={"center"} width={{ md: "40%" }}>
+      <Typography textAlign={"left"} width={{ md: "40%" }}>
         Santokba Durlabhji Memorial Hospital Cum Medical Research Institute
       </Typography>
       <Stack
