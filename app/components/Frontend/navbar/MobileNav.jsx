@@ -47,7 +47,7 @@
 //           {
 //             icon: <FaMicroscope size={30} />,
 //             label: "Lab Reports",
-//             link: "https://www.sdmh.in/patientlogin/",
+//             link: "https://labreports.sdmh.in/patientlogin/",
 //           },
 //           {
 //             icon: <IoCall size={30} />,
@@ -127,7 +127,7 @@ const MobileBottomBar = () => {
     {
       icon: <FaMicroscope size={30} />,
       label: "Lab Reports",
-      link: "https://www.sdmh.in/patientlogin/",
+      link: "https://labreports.sdmh.in/patientlogin/",
     },
     {
       icon: <IoCall size={30} />,

@@ -14,7 +14,7 @@ export default function MobileApp() {
     <ContainerMain
       flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
       bgColor="#A6C9B2"
-      gap={{sm:"5px"}}
+      gap={{ sm: "5px" }}
     >
       <Stack
         sx={{
@@ -32,7 +32,7 @@ export default function MobileApp() {
           height: { md: "80vh" },
           gap: { md: "20px", xs: "10px" },
           justifyContent: "center",
-          alignItems:"center"
+          alignItems: "center",
         }}
       >
         <Head3 color="black" textAlign={{ md: "left", sm: "center" }}>
@@ -41,47 +41,49 @@ export default function MobileApp() {
         <Head1 textAlign={{ lg: "left", sm: "center" }} color="#007946">
           SDMH Mobile App
         </Head1>
-      </Stack>
-      <Stack
-        direction={"row"}
-        gap={"10px"}
-        marginTop={{ xs: "20px", md: "0" }}
-        alignItems={"center"}
-      >
         <Stack
+        width={"100%"}
           direction={"row"}
-          height={{ md: "20vh", xs: "7vh" }}
-          width={{ md: "40%", xs: "50%" }}
-          onClick={() =>
-            router.push(
-              "https://apps.apple.com/in/app/santokba-durlabhji-patient-app/id6740079657"
-            )
-          }
-          sx={{
-            cursor: "pointer",
-            backgroundImage: `url(${app.src})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center center",
-          }}
-        ></Stack>
-        <Stack
-          direction={"row"}
-          height={{ md: "20vh", xs: "7vh" }}
-          width={{ md: "40%", xs: "50%" }}
-          onClick={() =>
-            router.push(
-              "https://play.google.com/store/apps/details?id=com.sdmh_patient_app"
-            )
-          }
-          sx={{
-            cursor: "pointer",
-            backgroundImage: `url(${play.src})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center center",
-          }}
-        ></Stack>
+          gap={"10px"}
+          marginTop={{ xs: "20px", md: "0" }}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Stack
+            direction={"row"}
+            height={{ md: "20vh", xs: "7vh" }}
+            width={{ md: "40%", xs: "50%" }}
+            onClick={() =>
+              router.push(
+                "https://apps.apple.com/in/app/santokba-durlabhji-patient-app/id6740079657"
+              )
+            }
+            sx={{
+              cursor: "pointer",
+              backgroundImage: `url(${app.src})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+            }}
+          ></Stack>
+          <Stack
+            direction={"row"}
+            height={{ md: "20vh", xs: "7vh" }}
+            width={{ md: "40%", xs: "50%" }}
+            onClick={() =>
+              router.push(
+                "https://play.google.com/store/apps/details?id=com.sdmh_patient_app"
+              )
+            }
+            sx={{
+              cursor: "pointer",
+              backgroundImage: `url(${play.src})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+            }}
+          ></Stack>
+        </Stack>
       </Stack>
     </ContainerMain>
   );

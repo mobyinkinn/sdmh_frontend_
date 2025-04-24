@@ -9,6 +9,7 @@ import Enquire_Now from "./parts/Enquire_Now";
 import Reach from "./parts/Reach";
 import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 import Spinner from "../../ui/Spinner";
+import MobileFooter from "../footer/MobileFooter";
 
 export default function SecondOpinion() {
   const { data, isLoading: isLoadingBanner } =
@@ -56,6 +57,7 @@ export default function SecondOpinion() {
         ></iframe>
       </Stack>
       <Footer />
+      <MobileFooter/>
     </Stack>
   );
 }

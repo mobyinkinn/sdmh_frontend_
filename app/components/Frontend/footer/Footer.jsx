@@ -100,7 +100,11 @@ const contactUs = [
 
 const onlineService = [
   { id: 0, data: "Video Consultation", link: "" },
-  { id: 1, data: "Lab reports", link: "" },
+  {
+    id: 1,
+    data: "Lab reports",
+    link: "https://labreports.sdmh.in/patientlogin/",
+  },
   { id: 2, data: "Download our app", link: "" },
 ];
 

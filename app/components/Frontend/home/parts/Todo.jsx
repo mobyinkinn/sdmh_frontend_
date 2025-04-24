@@ -18,7 +18,7 @@
 //     id: 3,
 //     title: "Lab Report",
 //     icon: lab,
-//     link: "https://www.sdmh.in/patientlogin/",
+//     link: "https://labreports.sdmh.in/patientlogin/",
 //   },
 // ];
 
@@ -128,9 +128,9 @@ const todoData = [
   { id: 2, title: "Consult Online", icon: consult, link: "", open: "Video" },
   {
     id: 3,
-    title: "Lab Report",
+    title: "Lab Reports",
     icon: lab,
-    link: "https://www.sdmh.in/patientlogin/",
+    link: "https://labreports.sdmh.in/patientlogin/",
   },
 ];
 

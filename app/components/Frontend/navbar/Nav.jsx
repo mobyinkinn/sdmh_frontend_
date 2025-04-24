@@ -187,7 +187,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           <Typography
             sx={{ display: { sm: "none", lg: "flex" }, cursor: "pointer" }}
             onClick={() => {
-              router.push(`https://www.sdmh.in/patientlogin/`);
+              router.push(`https://labreports.sdmh.in/patientlogin/`);
             }}
           >
             Lab Reports
