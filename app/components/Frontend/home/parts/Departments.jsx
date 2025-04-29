@@ -21,6 +21,7 @@ import image3 from "../assets/departments/3.jpg";
 import image4 from "../assets/departments/4.jpg";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 import Spinner from "@/app/components/ui/Spinner";
+import { useDefaultDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 
 export default function Departments() {
   const { data: departmentData, isLoading: isLoadingDepartment } =
@@ -29,12 +30,24 @@ export default function Departments() {
   const router = useRouter();
 const filteredDepartment =
   departmentData?.filter((el) => el.status === true) || [];
+const { data: defaultDepartment, isLoading: isLoadingDefault } =
+  useDefaultDepartment();
 
+// useEffect(() => {
+//   if (filteredDepartment.length > 0 && !activeTab) {
+//     setActiveTab(filteredDepartment[0]._id);
+//   }
+// }, [filteredDepartment]);
 useEffect(() => {
-  if (filteredDepartment.length > 0 && !activeTab) {
-    setActiveTab(filteredDepartment[0]._id);
+  if (filteredDepartment.length > 0) {
+    if (defaultDepartment) {
+      setActiveTab(defaultDepartment._id);
+    } else {
+      setActiveTab(filteredDepartment[0]._id); // fallback if no default set
+    }
   }
-}, [filteredDepartment]);
+}, [filteredDepartment, defaultDepartment]);
+
 
   if (isLoadingDepartment) return <Spinner />;
 

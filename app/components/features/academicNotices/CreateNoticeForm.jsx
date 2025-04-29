@@ -79,7 +79,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow label="Year" error={errors?.year?.message}>
+      {/* <FormRow label="Year" error={errors?.year?.message}>
         <Input
           disabled={isWorking}
           type="text"
@@ -88,9 +88,9 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
             required: "This field is required",
           })}
         />
-      </FormRow>
+      </FormRow> */}
 
-      <FormRow label="Department" error={errors?.department?.message}>
+      {/* <FormRow label="Department" error={errors?.department?.message}>
         <StyledSelect
           disabled={isWorking}
           id="department"
@@ -105,7 +105,7 @@ function CreateNoticeForm({ cabinToEdit = {}, onCloseModal }) {
             </option>
           ))}
         </StyledSelect>
-      </FormRow>
+      </FormRow> */}
 
       <FormRow label={"File"}>
         <FileInput

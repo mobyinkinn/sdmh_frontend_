@@ -175,3 +175,21 @@ export const deleteHomeImage = async (id) => {
   );
   return response.data;
 };
+
+
+
+export const setDefaultDepartment = async (index) => {
+  const response = await axios.get(
+    `${ApiUrl}/department/set-default?index=${index}`,
+    { withCredentials: true }
+  );
+  return response.data;
+};
+
+export const fetchDefaultDepartment = async () => {
+  const response = await axios.get(`${ApiUrl}/department/get-default`, {
+    withCredentials: true,
+  });
+
+  return response.data.data; 
+};

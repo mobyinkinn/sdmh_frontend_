@@ -61,6 +61,8 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("floor", data.floor);
     formdata.append("department", data.department);
     formdata.append("about", about);
+    formdata.append("isHod", data.isHod);
+    
 
     const availability = Object.fromEntries(
       Object.entries({
@@ -165,7 +167,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           ))}
         </Stack>
       </FormRow>
-
+<Stack>
       <FormRow label="Room" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
@@ -187,6 +189,13 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
+      <FormRow label={"HOD"} error={errors?.isHod?.message}>
+        <label>
+          <input type="checkbox" {...register("isHod")} />
+          
+        </label>
+      </FormRow>
+      </Stack>
 
       <FormRow label="About" error={errors?.page?.message}></FormRow>
       <Jodit content={about} setContent={setAbout} />

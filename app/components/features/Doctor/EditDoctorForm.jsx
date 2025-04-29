@@ -168,6 +168,18 @@ function EditDoctorForm({ onCloseModal, id, department }) {
           />
         </FormRow>
       </Stack>
+      <FormRow label="HOD">
+        <label>
+          <input
+            type="checkbox"
+            {...register("isHod")}
+            checked={formdata.isHod || false}
+            onChange={(e) =>
+              setFormdata((prev) => ({ ...prev, isHod: e.target.checked }))
+            }
+          />
+        </label>
+      </FormRow>
       {/* <FormRow label="Department" error={errors?.department?.message}>
         <StyledSelect
           id="department"
@@ -222,7 +234,10 @@ function EditDoctorForm({ onCloseModal, id, department }) {
             ))}
           </select>
         </FormRow>
-        <Button style={{height:"50px"}} onClick={() => onUpdateDoctor({ ...formdata }, id)}>
+        <Button
+          style={{ height: "50px" }}
+          onClick={() => onUpdateDoctor({ ...formdata }, id)}
+        >
           Update Department
         </Button>
       </Stack>

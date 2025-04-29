@@ -16,6 +16,7 @@ import {
   deleteMobileBanner as deleteTheMobileBanner,
   deleteHomeImage as deleteTheHomeImage,
   fetchDepartmentById,
+  fetchDefaultDepartment,
 } from "@/app/components/services/api.Department";
 
 export const useDepartment = () => {
@@ -268,4 +269,36 @@ export const useDeleteHomeImage = () => {
     });
 
   return { deleteHomeImage, isDeletingHomeImage };
+};
+
+
+
+import { setDefaultDepartment as setDefaultDepartmentApiCall } from "@/app/components/services/api.Department";
+
+export const useSetDefaultDepartment = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: setDefaultDepartment, isPending: isSettingDefault } =
+    useMutation({
+      mutationFn: setDefaultDepartmentApiCall,
+      onSuccess: () => {
+        queryClient.invalidateQueries(["Departments"]);
+        toast.success("Default department set successfully!");
+      },
+      onError: (error) => {
+        console.error("Failed to set default department: ", error);
+        toast.error("Failed to set default department. Please try again.");
+      },
+    });
+
+  return { setDefaultDepartment, isSettingDefault };
+};
+
+
+export const useDefaultDepartment = () => {
+  return useQuery({
+    queryKey: ["DefaultDepartment"],
+    queryFn: fetchDefaultDepartment,
+    staleTime: 5 * 60 * 1000, // optional: 5 mins cache
+  });
 };

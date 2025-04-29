@@ -8,10 +8,12 @@ import CreateDepartmentForm from "@/app/components/features/Department/CreateDep
 import styled from "styled-components";
 import { useState } from "react";
 import toast from "react-hot-toast";
+
 import {
   fetchAllDepartments,
   importDepartments,
 } from "@/app/components/services/api.Department";
+import { useDepartment, useSetDefaultDepartment } from "./useDepartment";
 
 const DragDropContainer = styled.div`
   border: 2px dashed #ccc;
@@ -66,7 +68,17 @@ function DepartmentTableOperations() {
       setIsUploading(false);
     }
   };
+const [selectedIndex, setSelectedIndex] = useState(null);
+const { data: departments = [] } = useDepartment();
+const { setDefaultDepartment, isSettingDefault } = useSetDefaultDepartment();
 
+const handleSetDefault = () => {
+  if (selectedIndex !== null) {
+    setDefaultDepartment(selectedIndex);
+  } else {
+    toast.error("Please select a department first.");
+  }
+};
   return (
     <TableOperations>
       <Filter
@@ -90,7 +102,42 @@ function DepartmentTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
-
+      <Modal>
+        <Modal.Open opens="set-default">
+          <Button variation="primary" size="medium">
+            Set Default
+          </Button>
+        </Modal.Open>
+        <Modal.Window name="set-default">
+          <>
+            <h3 style={{ marginBottom: "1rem" }}>
+              Select Department to Set as Default
+            </h3>
+            <select
+              value={selectedIndex ?? ""}
+              onChange={(e) => setSelectedIndex(Number(e.target.value))}
+              style={{ width: "100%", padding: "10px", marginBottom: "1rem" }}
+            >
+              <option value="" disabled>
+                Select a department
+              </option>
+              {departments.map((dept, idx) => (
+                <option key={dept._id} value={idx}>
+                  {dept.name}
+                </option>
+              ))}
+            </select>
+            <Button
+              variation="primary"
+              size="medium"
+              onClick={handleSetDefault}
+              disabled={selectedIndex === null || isSettingDefault}
+            >
+              {isSettingDefault ? "Setting..." : "Set Default"}
+            </Button>
+          </>
+        </Modal.Window>
+      </Modal>
       <Modal>
         <Modal.Open opens="import-form">
           <Button variation="primary" size="medium">
