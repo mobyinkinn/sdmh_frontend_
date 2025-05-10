@@ -1,88 +1,3 @@
-// import { Head1 } from '@/app/styledComponents/frontend/Headings'
-// import { ParaNormal } from '@/app/styledComponents/frontend/Para';
-// import { Stack } from '@mui/material'
-// import React from 'react'
-// import img1 from "./assets/img1.jpg"
-// import Image from 'next/image';
-// const PatientStories = () => {
-//     const data = [
-//       {
-//         id: 1,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 2,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 3,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 4,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//       {
-//         id: 5,
-//         image: img1,
-//         title: "Pre-term Babies",
-//       },
-//     ];
-//   return (
-//     <Stack bgcolor={"#D8E0EB"}>
-//       <Stack alignItems={"center"} p={4}>
-//         <Head1 color="#005900">Patient Stories</Head1>
-//         <ParaNormal color="black" style={{ width: "50%", textAlign: "center" }}>
-//           It is a long established fact that a reader will be distracted by the
-//           readable
-//         </ParaNormal>
-//       </Stack>
-//       <Stack direction={"row"} flexWrap={"wrap"} gap={3} justifyContent={"center"}>
-//         {data.map((d) => (
-//           <Stack>
-//             <Image src={d.image} width={300}/>
-//           </Stack>
-//         ))}
-//       </Stack>
-//     </Stack>
-//   );
-// }
-
-// export default PatientStories
 
 "use client";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
@@ -124,12 +39,7 @@ const PatientStories = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState("");
 
-  // const extractVideoId = (url) => {
-  //   const regex =
-  //     /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/(?:shorts\/|embed\/|v\/|watch\?.*v=)))([a-zA-Z0-9_-]{11})/;
-  //   const match = url.match(regex);
-  //   return match ? match[1] : null;
-  // };
+
 
   const extractVideoId = (url) => {
     try {
@@ -154,16 +64,6 @@ const PatientStories = () => {
 
   if (isLoading) return <Spinner />;
 
-  // const handleOpenModal = (videoUrl) => {
-  //   console.log("videourl", videoUrl);
-  //   const videoId = extractVideoId(videoUrl);
-  //   console.log("videoId", videoId);
-
-  //   if (videoId) {
-  //     setSelectedVideo(videoId);
-  //     setOpenModal(true);
-  //   }
-  // };
 
   const handleOpenModal = (videoUrl) => {
     const videoId = extractVideoId(videoUrl);
@@ -225,59 +125,7 @@ const backgroundImages = [
           Hear directly from our patients about their experiences.
         </ParaNormal>
       </Stack>
-      {/* {rows.map((row, index) => {
-        return (
-          <Stack
-            key={index}
-            direction={"row"}
-            gap={3}
-            justifyContent={"center"}
-            flexWrap={"wrap"}
-          >
-            {row.map((item) => (
-              <Stack
-                key={item.id}
-                alignItems={"center"}
-                sx={{
-                  padding: 2,
-                  borderRadius: "8px",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "220px",
-                    height: "300px",
-                    backgroundImage: `url(${backgroundImages[index].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    borderRadius: "20px",
-                    transition: "all 0.5s ease",
-                    zIndex: 1,
-                  }}
-                >
-                  <IconButton
-                    sx={{
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      color: "white",
-                      backgroundColor: "rgba(0, 0, 0, 0.5)",
-                      borderRadius: "50%",
-                      transition: "all 0.3s ease",
-                      "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
-                    }}
-                    onClick={() => handleOpenModal(item.url)}
-                  >
-                    <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
-                  </IconButton>
-                </Box>
-
-                <ParaNormal>{item.title}</ParaNormal>
-              </Stack>
-            ))}
-          </Stack>
-        );
-      })} */}
+   
       {rows.map((row, rowIndex) => {
         return (
           <Stack

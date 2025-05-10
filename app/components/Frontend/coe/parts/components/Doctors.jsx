@@ -132,7 +132,7 @@ export default function Doctors({ _id }) {
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
   console.log("data", data);
-
+const filteredData = data?.filter((el, i) => el.status === true);
   const router = useRouter();
   return (
     <>
@@ -149,7 +149,7 @@ export default function Doctors({ _id }) {
         justifyContent={"center"}
         marginTop={{ md: "50px", xs: "15px" }}
       >
-        {data
+        {filteredData
           ?.slice()
           .sort((a, b) => {
             if (a.isHod && !b.isHod) return -1;

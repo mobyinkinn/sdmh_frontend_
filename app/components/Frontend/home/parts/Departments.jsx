@@ -32,21 +32,26 @@ const filteredDepartment =
   departmentData?.filter((el) => el.status === true) || [];
 const { data: defaultDepartment, isLoading: isLoadingDefault } =
   useDefaultDepartment();
-
+console.log("defal",defaultDepartment)
 // useEffect(() => {
 //   if (filteredDepartment.length > 0 && !activeTab) {
 //     setActiveTab(filteredDepartment[0]._id);
 //   }
 // }, [filteredDepartment]);
 useEffect(() => {
-  if (filteredDepartment.length > 0) {
-    if (defaultDepartment) {
-      setActiveTab(defaultDepartment._id);
-    } else {
-      setActiveTab(filteredDepartment[0]._id); // fallback if no default set
+  if (!activeTab && filteredDepartment.length > 0) {
+    // Wait until defaultDepartment is loaded or failed
+    if (!isLoadingDefault) {
+      if (defaultDepartment?._id) {
+        setActiveTab(defaultDepartment._id);
+      } else {
+        setActiveTab(filteredDepartment[0]._id); // fallback
+      }
     }
   }
-}, [filteredDepartment, defaultDepartment]);
+}, [filteredDepartment, defaultDepartment, isLoadingDefault, activeTab]);
+
+
 
 
   if (isLoadingDepartment) return <Spinner />;
