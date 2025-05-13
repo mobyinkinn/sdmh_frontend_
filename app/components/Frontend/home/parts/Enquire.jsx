@@ -251,8 +251,7 @@ export default function Enquire() {
             Thank You!
           </Typography>
           <Typography id="thank-you-modal-description" sx={{ mt: 2 }}>
-            Thank you for your application. Our HR team will contact you
-            shortly.
+            Query Submitted
           </Typography>
           <DarkGreenButton sx={{ mt: 3 }} onClick={() => setShowModal(false)}>
             Close

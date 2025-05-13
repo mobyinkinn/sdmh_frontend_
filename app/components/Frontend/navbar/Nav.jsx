@@ -387,6 +387,12 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           sx={{ display: { xs: "none", lg: "flex" } }}
           alignItems={"center"}
         >
+          <Box textAlign="center" maxWidth="33%">
+            <Typography color="error" fontWeight="600" fontSize="0.8rem">
+              Book Appointment <br /> For Teleconsultation <br />
+              Or Call On- 70731-11811
+            </Typography>
+          </Box>
           <Box position="relative">
             <Stack direction="row">
               <SearchInput
@@ -622,120 +628,129 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           gap="25px"
           sx={{ display: { xs: "none", lg: "flex" } }}
         >
-          {navData.map((el, i) => (
+          {navData.map((el, i) =>
             el.name === "Second Opinion" ? null : (
-            <Box
-              key={i}
-              position="relative"
-              onMouseEnter={() => setOpenDropdown(i)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <Stack
-                direction="row"
-                alignItems="center"
-                sx={{ cursor: "pointer" }}
+              <Box
+                key={i}
+                position="relative"
+                onMouseEnter={() => setOpenDropdown(i)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                {el.name === "Appointment" ? (
-                  <Modal.Open opens="appointment">
-                    <Typography
-                      sx={{
-                        fontSize: { xs: "12px", xl: "1rem" },
-                        "&:hover": { color: "green", cursor: "pointer" },
-                      }}
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  {el.name === "Appointment" ? (
+                    <Modal.Open opens="appointment">
+                      <Typography
+                        sx={{
+                          fontSize: { xs: "12px", xl: "1rem" },
+                          "&:hover": { color: "green", cursor: "pointer" },
+                        }}
+                      >
+                        {el.name}
+                      </Typography>
+                    </Modal.Open>
+                  ) : (
+                    <a
+                      key={el._id}
+                      href={el.link}
+                      style={{ textDecoration: "none", color: "black" }}
                     >
-                      {el.name}
-                    </Typography>
-                  </Modal.Open>
-                ) : (
-                  <a
-                    key={el._id}
-                    href={el.link}
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: { xs: "12px", xl: "1rem" },
-                        "&:hover": { color: "green", cursor: "pointer" },
+                      <Typography
+                        sx={{
+                          fontSize: { xs: "12px", xl: "1rem" },
+                          "&:hover": { color: "green", cursor: "pointer" },
+                        }}
+                      >
+                        {el.name}
+                      </Typography>
+                    </a>
+                  )}
+                  {(el.items.length > 0 ||
+                    el.name === "Centre Of Excellence") && (
+                    <IoIosArrowDown
+                      style={{
+                        transform:
+                          openDropdown === i
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                        transition: "transform 0.3s ease",
                       }}
-                    >
-                      {el.name}
-                    </Typography>
-                  </a>
-                )}
+                    />
+                  )}
+                </Stack>
+
                 {(el.items.length > 0 ||
                   el.name === "Centre Of Excellence") && (
-                  <IoIosArrowDown
-                    style={{
+                  <Stack
+                    position="absolute"
+                    bgcolor="white"
+                    padding={3}
+                    width="max-content"
+                    maxHeight="32rem"
+                    flexWrap="wrap"
+                    columnGap="2.5rem"
+                    rowGap="0.6rem"
+                    sx={{
+                      zIndex: 10,
+                      opacity: openDropdown === i ? 1 : 0,
                       transform:
-                        openDropdown === i ? "rotate(180deg)" : "rotate(0deg)",
-                      transition: "transform 0.3s ease",
+                        openDropdown === i
+                          ? "translateY(0)"
+                          : "translateY(-10px)",
+                      transition: "opacity 0.3s ease, transform 0.3s ease",
+                      pointerEvents: openDropdown === i ? "auto" : "none",
+                      borderRadius: "5px",
                     }}
-                  />
+                  >
+                    {el.name === "Centre Of Excellence"
+                      ? filteredData.map((department) => (
+                          <a
+                            key={department._id}
+                            href={`/centre-of-excellence/${department._id}`}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: "0.9rem",
+                                maxWidth: "200px",
+                                wordWrap: "break-word",
+                                "&:hover": {
+                                  color: "green",
+                                  cursor: "pointer",
+                                },
+                              }}
+                            >
+                              {department.name}
+                            </Typography>
+                          </a>
+                        ))
+                      : el.items.map((subItem) => (
+                          <a
+                            key={subItem._id}
+                            href={subItem.itemLink}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: "0.9rem",
+                                "&:hover": {
+                                  color: "green",
+                                  cursor: "pointer",
+                                },
+                              }}
+                            >
+                              {subItem.itemName}
+                            </Typography>
+                          </a>
+                        ))}
+                  </Stack>
                 )}
-              </Stack>
-
-              {(el.items.length > 0 || el.name === "Centre Of Excellence") && (
-                <Stack
-                  position="absolute"
-                  bgcolor="white"
-                  padding={3}
-                  width="max-content"
-                  maxHeight="32rem"
-                  flexWrap="wrap"
-                  columnGap="2.5rem"
-                  rowGap="0.6rem"
-                  sx={{
-                    zIndex: 10,
-                    opacity: openDropdown === i ? 1 : 0,
-                    transform:
-                      openDropdown === i
-                        ? "translateY(0)"
-                        : "translateY(-10px)",
-                    transition: "opacity 0.3s ease, transform 0.3s ease",
-                    pointerEvents: openDropdown === i ? "auto" : "none",
-                    borderRadius: "5px",
-                  }}
-                >
-                  {el.name === "Centre Of Excellence"
-                    ? filteredData.map((department) => (
-                        <a
-                          key={department._id}
-                          href={`/centre-of-excellence/${department._id}`}
-                          style={{ textDecoration: "none", color: "black" }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "0.9rem",
-                              maxWidth: "200px",
-                              wordWrap: "break-word",
-                              "&:hover": { color: "green", cursor: "pointer" },
-                            }}
-                          >
-                            {department.name}
-                          </Typography>
-                        </a>
-                      ))
-                    : el.items.map((subItem) => (
-                        <a
-                          key={subItem._id}
-                          href={subItem.itemLink}
-                          style={{ textDecoration: "none", color: "black" }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "0.9rem",
-                              "&:hover": { color: "green", cursor: "pointer" },
-                            }}
-                          >
-                            {subItem.itemName}
-                          </Typography>
-                        </a>
-                      ))}
-                </Stack>
-              )}
-            </Box>
+              </Box>
             )
-          ))}
+          )}
         </Stack>
       </Stack>
       <Box

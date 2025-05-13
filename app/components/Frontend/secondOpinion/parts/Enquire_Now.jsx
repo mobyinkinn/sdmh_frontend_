@@ -308,15 +308,16 @@ const Enquire_Now = () => {
   const isWorking = isCreating;
 
   function onSubmit(data) {
-    const file = typeof data.file === "string" ? data.file : data.file[0];
+    const multipleFiles = data.images ? Array.from(data.images) : [];
     const formdata = new FormData();
     formdata.append("name", data.name);
     formdata.append("phone", data.phone);
     formdata.append("email", data.email);
     formdata.append("speciality", data.speciality);
-    formdata.append("file", file);
     formdata.append("text", data.text);
-
+multipleFiles.forEach((file) => {
+  formdata.append("images", file);
+});
     createOpinions(formdata, {
       onSuccess: () => {
         reset();
@@ -478,15 +479,37 @@ const Enquire_Now = () => {
                 </select>
               </Stack>
 
-              <Stack>
+              {/* <Stack>
                 <Label>Upload Prescription</Label>
                 <FileInput
                   placeholder="Upload file"
                   type="file"
+                  multiple
                   {...register("file", {
                     required: "File is required",
                   })}
                   disabled={isWorking}
+                />
+              </Stack> */}
+              <Stack marginLeft={2}>
+                <Label>Upload Prescription</Label>
+                {/* <FileInput
+                  placeholder="Upload file"
+                  type="file"
+                  multiple
+                  {...register("images", {
+                    required: "This field is required",
+                  })}
+                  disabled={isWorking}
+                /> */}
+                <FileInput
+                  placeholder="Upload file"
+                  id="images"
+                  type="file"
+                  multiple
+                  {...register("images", {
+                    required: "This field is required",
+                  })}
                 />
               </Stack>
 
