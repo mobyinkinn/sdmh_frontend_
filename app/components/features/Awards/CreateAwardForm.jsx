@@ -107,6 +107,9 @@ const CreateAwardForm = ({ onCloseModal, resourceName }) => {
               })}
             />
           </FormRow>
+          <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+            <p>Image size will be: 1000 * 900</p>
+          </Stack>
         </Stack>
         <Stack marginLeft={2}>
           <FormRow label={"Banner Image"}>
@@ -119,6 +122,9 @@ const CreateAwardForm = ({ onCloseModal, resourceName }) => {
               })}
             />
           </FormRow>
+          <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+            <p>Image size will be: 1000 * 900</p>
+          </Stack>
         </Stack>
 
         <Stack marginLeft={2}>
@@ -133,6 +139,9 @@ const CreateAwardForm = ({ onCloseModal, resourceName }) => {
               })}
             />
           </FormRow>
+          <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+            <p>Image size will be: 1000 * 900</p>
+          </Stack>
         </Stack>
 
         <FormRow marginLeft={2}>

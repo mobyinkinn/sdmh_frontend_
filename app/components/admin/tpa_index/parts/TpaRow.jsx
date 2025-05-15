@@ -117,7 +117,10 @@ function TpaRow({ academic: { _id, name, logo, status, tag } }) {
           <ConfirmDelete
             resourceName="tpa"
             disabled={isDeleting}
-            onConfirm={handleDelete}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

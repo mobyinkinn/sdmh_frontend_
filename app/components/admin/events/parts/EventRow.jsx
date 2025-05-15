@@ -220,6 +220,9 @@ function EventRow({
             resourceName="event"
             disabled={isDeleting}
             onConfirm={() => deleteEvent(id)}
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

@@ -101,7 +101,10 @@ function NavbarRow({ navbar: { _id, orderId, name, link, items } }) {
           />
         </Modal.Window>
         <Modal.Window name="delete">
-          <ConfirmDelete resourceName="Navbar" onConfirm={handleDelete} />
+          <ConfirmDelete resourceName="Navbar" onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }} />
         </Modal.Window>
       </Modal>
     </Table.Row>

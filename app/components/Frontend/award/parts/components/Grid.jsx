@@ -94,15 +94,14 @@ function AwardCard({ el }) {
   return (
     <Stack
       width={{ lg: "29%", md: "46%", sm: "100%", sm: "100%" }}
-      height={"421px"}
+      height={"600px"}
       sx={{
-        borderRadius: "10px",
         overflow: "hidden",
       }}
     >
       <Box
         sx={{
-          height: { xs: "50%", md: "40%" },
+          height: { xs: "50%", md: "100%" },
           width: "100%",
           position: "relative",
           alignSelf: "center",
@@ -111,15 +110,14 @@ function AwardCard({ el }) {
         <Image src={el.image} alt="" fill objectFit="cover" />
       </Box>
       <Stack
-        bgcolor={"#FFFFFF"}
         height={{ xs: "50%", md: "60%" }}
-        paddingX={2.5}
-        justifyContent={"space-evenly"}
+        gap={1}
+        pt={3}
       >
-        <Stack>
+        <Stack gap={1}>
           <ParaNormal
             fontSize={{
-              lg: "30px",
+              lg: "20px",
               md: "22px",
               smm: "22px",
               sm: "17px",
@@ -127,14 +125,9 @@ function AwardCard({ el }) {
           >
             {el.name}
           </ParaNormal>
-          <ParaNormal
-            fontSize={{ lg: "30px", md: "25px", smm: "22px", sm: "17px" }}
-          >
-            {el.year}
-          </ParaNormal>
         </Stack>
         <ParaNormal
-          fontSize={{ lg: "20px", md: "17px", smm: "16px", sm: "13px" }}
+          fontSize={{ lg: "15px", md: "17px", smm: "16px", sm: "13px" }}
         >
           {el.smallDescription}
           {/* <span
@@ -143,20 +136,6 @@ function AwardCard({ el }) {
             }}
           /> */}
         </ParaNormal>
-        <Stack direction={"row"} gap={2}>
-          <ButtonSmallOutline
-            color="#007946"
-            // onClick={() => router.push(`/award/${el._id}`)}
-          >
-            Book Now
-          </ButtonSmallOutline>
-          <ButtonSmallOutline
-            color="#000000"
-            onClick={() => router.push(`/award/${el._id}`)}
-          >
-            Know More
-          </ButtonSmallOutline>
-        </Stack>
       </Stack>
     </Stack>
   );

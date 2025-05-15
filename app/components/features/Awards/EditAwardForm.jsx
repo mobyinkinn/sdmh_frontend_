@@ -173,7 +173,11 @@ const EditAwardForm = ({
                 </>
               )}
             </ImagePreviewContainer>
+            <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+              <p>Image size will be: 1000 * 900</p>
+            </Stack>
           </FormRow>
+
           <FormRow label={"Banner"}>
             <label>
               <ImagePreviewContainer>
@@ -206,6 +210,9 @@ const EditAwardForm = ({
                 )}
               </ImagePreviewContainer>
             </label>
+            <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+              <p>Image size will be: 1000 * 900</p>
+            </Stack>
           </FormRow>
         </Stack>
 

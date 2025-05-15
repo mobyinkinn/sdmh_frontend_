@@ -113,6 +113,9 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
               })}
             />
           </FormRow>
+          <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+            <p>Image size will be: 2000 * 2000</p>
+          </Stack>
           <FormRow label="Images">
             <FileInput
               id="images"
@@ -124,6 +127,9 @@ function CreateBlogForm({ cabinToEdit = {}, onCloseModal, resourceName }) {
               })}
             />
           </FormRow>
+          <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+            <p>Image size will be: 2000 * 3000</p>
+          </Stack>
         </Stack>
         <FormRow>
           <Button

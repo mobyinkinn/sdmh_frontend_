@@ -123,9 +123,13 @@ function BannerRow({
           <ConfirmDelete
             resourceName="Banner"
             disabled={isDeleting}
-            onConfirm={handleDelete}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
+        
       </Modal>
     </Table.Row>
   );

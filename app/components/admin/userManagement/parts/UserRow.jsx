@@ -113,6 +113,9 @@ function UserRow({ user: { _id: id, menu, name, username, status } }) {
             resourceName="Banner"
             disabled={isDeleting}
             onConfirm={() => deleteAdmin(id)}
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

@@ -167,6 +167,9 @@ const ConfirmEdit = ({
                 )}
               </ImagePreviewContainer>
             </label>
+            <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+              <p>Image size will be: 1500 * 1000</p>
+            </Stack>
           </FormRow>
 
           <FormRow label={"Banner"}>
@@ -201,6 +204,9 @@ const ConfirmEdit = ({
                 )}
               </ImagePreviewContainer>
             </label>
+            <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+              <p>Image size will be: 1500 * 1000</p>
+            </Stack>
           </FormRow>
         </Stack>
 

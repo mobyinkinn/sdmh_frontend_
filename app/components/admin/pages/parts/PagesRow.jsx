@@ -105,7 +105,10 @@ function PagesRow({ page: { _id, name, status } }) {
           <ConfirmDelete
             resourceName="page"
             disabled={isDeleting}
-            onConfirm={handleDelete}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

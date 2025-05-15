@@ -1,74 +1,436 @@
+// "use client";
+// import { Box, Stack, Typography } from "@mui/material";
+// import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
+// import Spinner from "@/app/components/ui/Spinner";
+// import { useRouter } from "next/navigation";
+
+// export default function Hero() {
+//     const router = useRouter();
+//   const { data, isLoading, error } = useBannerByPage("dummy");
+//   if (isLoading) return <Spinner />;
+// console.log("data", data);
+//   return (
+//     <Stack direction={"row"}>
+//       <Box
+//         display={{ md: "flex", sm: "none" }}
+//         minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
+//         width={"100%"}
+//         sx={{
+//           backgroundImage: `url(${data?.images[0]})`,
+//           backgroundRepeat: "no-repeat",
+//           backgroundSize: "cover",
+//           backgroundPosition: "center center",
+//         }}
+//         onClick={() => {
+//           router.push('/about');
+//         }}
+//       ></Box>
+
+//       <Box
+//         display={{ md: "none", sm: "flex" }}
+//         minHeight={{ xs: "451px" }}
+//         width={"100%"}
+//         sx={{
+//           backgroundImage: `url(${data?.mobileBanner})`,
+//           backgroundRepeat: "no-repeat",
+//           backgroundSize: "contain",
+//           backgroundPosition: "center center",
+//         }}
+//       ></Box>
+
+      
+//     </Stack>
+//   );
+// }
+
+
+// "use client";
+// import { Box, Stack, Typography } from "@mui/material";
+// import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
+// import Spinner from "@/app/components/ui/Spinner";
+// import { useRouter } from "next/navigation";
+// import Slider from "react-slick"; // Importing the Slider component
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// export default function Hero() {
+//   const router = useRouter();
+//   const { data, isLoading, error } = useBannerByPage("dummy");
+  
+//   // If data is still loading, show a spinner
+//   if (isLoading) return <Spinner />;
+  
+//   console.log("data", data);
+
+//   // Slider settings for React Slick
+//   const sliderSettings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     autoplay: true, // Optional: To autoplay the slider
+//   };
+
+//   // If images is an array and has more than one image, use a slider
+//   const images = data?.images || [];
+
+//   return (
+//     <Stack direction={"row"}>
+//       {images.length > 1 ? (
+//         <Box
+//           display={{ md: "flex", sm: "none" }}
+//           minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
+//           width={"100%"}
+//         >
+//           <Slider {...sliderSettings}>
+//             {images.map((image, index) => (
+//               <div key={index}>
+//                 <Box
+//                   sx={{
+//                     backgroundImage: `url(${image})`, // Use image directly
+//                     backgroundRepeat: "no-repeat",
+//                     backgroundSize: "cover",
+//                     backgroundPosition: "center center",
+//                     height: "100%",
+//                     width: "100%",
+//                   }}
+//                   onClick={() => {
+//                     router.push("/about");
+//                   }}
+//                 ></Box>
+//               </div>
+//             ))}
+//           </Slider>
+//         </Box>
+//       ) : (
+//         <Box
+//           display={{ md: "flex", sm: "none" }}
+//           minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
+//           width={"100%"}
+//           sx={{
+//             backgroundImage: `url(${images[0]})`, // Show the single image
+//             backgroundRepeat: "no-repeat",
+//             backgroundSize: "cover",
+//             backgroundPosition: "center center",
+//           }}
+//           onClick={() => {
+//             router.push("/about");
+//           }}
+//         ></Box>
+//       )}
+
+//       {/* Conditional rendering for mobile view */}
+//       {images.length > 1 ? (
+//         <Box
+//           display={{ md: "none", sm: "flex" }}
+//           minHeight={{ xs: "451px" }}
+//           width={"100%"}
+//         >
+//           <Slider {...sliderSettings}>
+//             {images.map((image, index) => (
+//               <div key={index}>
+//                 <Box
+//                   sx={{
+//                     backgroundImage: `url(${image})`, // Use image directly
+//                     backgroundRepeat: "no-repeat",
+//                     backgroundSize: "contain",
+//                     backgroundPosition: "center center",
+//                     height: "100%",
+//                     width: "100%",
+//                   }}
+//                 ></Box>
+//               </div>
+//             ))}
+//           </Slider>
+//         </Box>
+//       ) : (
+//         <Box
+//           display={{ md: "none", sm: "flex" }}
+//           minHeight={{ xs: "451px" }}
+//           width={"100%"}
+//           sx={{
+//             backgroundImage: `url(${images[0]})`, // Show the single image
+//             backgroundRepeat: "no-repeat",
+//             backgroundSize: "contain",
+//             backgroundPosition: "center center",
+//           }}
+//         ></Box>
+//       )}
+//     </Stack>
+//   );
+// }
+
+
+// "use client";
+// import { Box, Stack, Typography } from "@mui/material";
+// import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
+// import Spinner from "@/app/components/ui/Spinner";
+// import { useRouter } from "next/navigation";
+// import Slider from "react-slick"; // Importing the Slider component
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// export default function Hero() {
+//   const router = useRouter();
+//   const { data, isLoading, error } = useBannerByPage("dummy");
+
+//   // If data is still loading, show a spinner
+//   if (isLoading) return <Spinner />;
+
+//   // Debugging: Check if images are being returned correctly
+//   console.log("Image URLs:", data?.images);
+
+//   // Slider settings for React Slick
+//   const sliderSettings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     autoplay: true, // Optional: To autoplay the slider
+//   };
+
+//   // Ensure images is an array and has images
+//   const images = Array.isArray(data?.images) ? data?.images : [];
+//   const mobileImages = Array.isArray(data?.mobileimages)
+//     ? data?.mobileimages
+//     : [];
+
+//   return (
+//     <Stack direction={"row"}>
+//       {/* Conditional rendering for desktop view */}
+//       {images.length > 1 ? (
+//         <Box
+//           display={{ xl: "block", lg: "block", md: "block", sm: "none" }}
+//         >
+//           <Slider {...sliderSettings}>
+//             {images.map((image, index) => (
+//               <div key={index}>
+//                 <Box
+//                   sx={{
+//                     backgroundImage: `url(${image})`, // Use image URL directly
+//                     backgroundRepeat: "no-repeat",
+//                     backgroundSize: "cover",
+//                     backgroundPosition: "center center",
+//                     height: "100%",
+//                     width: "100%",
+//                   }}
+//                   onClick={() => {
+//                     router.push("/about");
+//                   }}
+//                 ></Box>
+//               </div>
+//             ))}
+//           </Slider>
+//         </Box>
+//       ) : (
+//         <Box
+//           display={{ md: "flex", sm: "none" }}
+//           minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
+//           width={"100%"}
+//           sx={{
+//             backgroundImage: `url(${images[0]})`, // Show the single image
+//             backgroundRepeat: "no-repeat",
+//             backgroundSize: "cover",
+//             backgroundPosition: "center center",
+//           }}
+//           onClick={() => {
+//             router.push("/about");
+//           }}
+//         ></Box>
+//       )}
+
+//       {/* Conditional rendering for mobile view */}
+//       {mobileImages.length > 1 ? (
+//         <Box
+//           display={{ md: "none", sm: "flex" }}
+//           minHeight={{ xs: "451px" }}
+//           width={"100%"}
+//         >
+//           <Slider {...sliderSettings}>
+//             {mobileImages.map((image, index) => (
+//               <div key={index}>
+//                 <Box
+//                   sx={{
+//                     backgroundImage: `url(${image})`, // Use image URL directly
+//                     backgroundRepeat: "no-repeat",
+//                     backgroundSize: "contain",
+//                     backgroundPosition: "center center",
+//                     height: "100%",
+//                     width: "100%",
+//                   }}
+//                 ></Box>
+//               </div>
+//             ))}
+//           </Slider>
+//         </Box>
+//       ) : (
+//         <Box
+//           display={{ md: "none", sm: "flex" }}
+//           minHeight={{ xs: "451px" }}
+//           width={"100%"}
+//           sx={{
+//             backgroundImage: `url(${mobileImages[0]})`, // Show the single mobile image
+//             backgroundRepeat: "no-repeat",
+//             backgroundSize: "contain",
+//             backgroundPosition: "center center",
+//           }}
+//         ></Box>
+//       )}
+//     </Stack>
+//   );
+// }
+
+
 "use client";
 import { Box, Stack, Typography } from "@mui/material";
-import banner from "../assets/heroBanner.png";
-import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
-import { FaSearch } from "react-icons/fa";
-import opinion from "../assets/icons/opinion.png";
-import query from "../assets/icons/query.png";
-import roomTour from "../assets/icons/roomTour.png";
-import Image from "next/image";
 import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
+import Slider from "react-slick"; // Importing the Slider component
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useRef, useState } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-export default function Hero() {
-    const router = useRouter();
-  const { data, isLoading, error } = useBannerByPage("home");
+const normalStyle = {
+  height: "20px",
+  cursor: "pointer",
+  width: "20px",
+  color: "white",
+};
+
+const hoverStyle = {
+  height: "20px",
+  cursor: "pointer",
+  width: "20px",
+  color: "white",
+};
+
+
+const Hero = () => {
+  const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
+  const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
+  const sliderRef = useRef(null);
+  const { data, isLoading, error } = useBannerByPage("dummy");
+
   if (isLoading) return <Spinner />;
 
-  return (
-    <Stack direction={"row"}>
-      <Box
-        display={{ md: "flex", sm: "none" }}
-        minHeight={{ md: "322px", lg: "434px", xl: "600px", xxxl: "800px" }}
-        width={"100%"}
-        sx={{
-          backgroundImage: `url(${data?.banner})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-        }}
-        onClick={() => {
-          router.push('/about');
-        }}
-      ></Box>
+  console.log("Image URLs:", data?.images);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay:true,
+    arrows: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+    const images = Array.isArray(data?.images) ? data?.images : [];
+    const mobileImages = Array.isArray(data?.mobileimages)
+      ? data?.mobileimages
+      : [];
 
+  return (
+    <Stack width={"100%"}>
+      <Box
+        display={{
+          xxl: "block",
+          xl: "block",
+          lg: "block",
+          md: "block",
+          sm: "none",
+        }}
+      >
+        <Slider ref={sliderRef} {...settings}>
+          {images.map((img, index) => (
+            <Stack
+              key={index}
+              width="100vw"
+              height="100vh"
+              sx={{
+                backgroundImage: `url(${img})`, // Directly use the image path
+                backgroundSize: "contain",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                display: "flex",
+              }}
+            ></Stack>
+          ))}
+        </Slider>
+      </Box>
       <Box
         display={{ md: "none", sm: "flex" }}
         minHeight={{ xs: "451px" }}
         width={"100%"}
-        sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          backgroundPosition: "center center",
-        }}
-      ></Box>
-
-      {/* <Stack
-        backgroundColor={"#379237"}
-        width={"20%"}
-        color="white"
-        alignItems={"center"}
-        justifyContent={"center"}
-        gap={"20px"}
       >
-        <SearchInputHero contentEditable>
-          <FaSearch /> Search
-        </SearchInputHero>
-        <Stack direction={"row"} gap={"20px"}>
-          <Image src={roomTour} alt="" height={25} width={25} />
-          <Typography fontSize={"1.2rem"}>Room Tour</Typography>
+        <Slider {...settings}>
+          {mobileImages.map((image, index) => (
+            <div key={index}>
+              <Box
+                sx={{
+                  backgroundImage: `url(${image})`, // Use image URL directly
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center center",
+                  height: "100%",
+                  width: "100%",
+                }}
+              ></Box>
+            </div>
+          ))}
+        </Slider>
+      </Box>
+      {/* <Stack direction="row" gap="10px" position="absolute" top="50%" left="1%">
+        <Stack
+          sx={{
+            border: "2px solid white",
+            borderRadius: "100px",
+            justifyContent: "center",
+            alignItems: "center",
+            "&:hover": {
+              backgroundColor: "transparent",
+            },
+          }}
+          onClick={() => sliderRef.current.slickPrev()}
+        >
+          <IoIosArrowBack
+            style={arrowStyle1}
+            onMouseEnter={() => setArrowStyle1(hoverStyle)}
+            onMouseLeave={() => setArrowStyle1(normalStyle)}
+          />
         </Stack>
-        <Stack direction={"row"} gap={"20px"}>
-          <Image src={opinion} alt="" height={20} width={30} />
-          <Typography fontSize={"1.2rem"}>II Opinion</Typography>
-        </Stack>
-        <Stack direction={"row"} gap={"20px"}>
-          <Image src={query} alt="" height={20} width={25} />
-          <Typography fontSize={"1.2rem"}>Query Us</Typography>
+      </Stack>
+
+      <Stack
+        direction="row"
+        gap="10px"
+        position="absolute"
+        top="50%"
+        right="1%"
+      >
+        <Stack
+          sx={{
+            border: "2px solid white",
+            borderRadius: "100px",
+            justifyContent: "center",
+            alignItems: "center",
+            "&:hover": {
+              backgroundColor: "transparent",
+            },
+          }}
+          onClick={() => sliderRef.current.slickNext()}
+        >
+          <IoIosArrowForward
+            style={arrowStyle2}
+            onMouseEnter={() => setArrowStyle2(hoverStyle)}
+            onMouseLeave={() => setArrowStyle2(normalStyle)}
+          />
         </Stack>
       </Stack> */}
     </Stack>
   );
-}
+};
+
+export default Hero;

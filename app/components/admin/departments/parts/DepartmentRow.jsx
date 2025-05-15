@@ -175,6 +175,9 @@ function DepartmentRow({
             resourceName="Department"
             disabled={isDeleting}
             onConfirm={() => deleteDepartment(id)}
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

@@ -110,7 +110,10 @@ function TestimonialRow({
           <ConfirmDelete
             resourceName="testimonial"
             disabled={isDeleting} // Disable button while deleting
-            onConfirm={handleDelete} // Call the delete function on confirm
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }} // Call the delete function on confirm
           />
         </Modal.Window>
       </Modal>

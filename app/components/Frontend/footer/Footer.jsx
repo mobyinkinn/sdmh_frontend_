@@ -41,29 +41,30 @@ const address = [
 const centerOfExcellence = [
   {
     id: 0,
-    data: "Cardiology",
+    data: "Medical Oncology",
     link: "/centre-of-excellence/67c148e9323e35a829c5697d",
   },
   {
     id: 1,
-    data: "Dermatology",
+    data: "Surgical Gastroenterology",
     link: "/centre-of-excellence/67c04514d797f40db8325e88",
   },
   {
     id: 2,
-    data: "Nephrology",
+    data: "Neuro and spine",
     link: "/centre-of-excellence/67c15ac9323e35a829c56a0e",
   },
   {
     id: 3,
-    data: "Neurology",
+    data: "Orthopaedic",
     link: "/centre-of-excellence/67c15aca323e35a829c56a12",
   },
   {
     id: 4,
-    data: "View All",
+    data: "Paediatric and neonatology",
     link: "/centre-of-excellence",
   },
+
 ];
 
 const supportACause = [
@@ -79,13 +80,27 @@ const supportACause = [
     data: "Jaipur foot",
     link: "/support-a-cause/jaipur-foot-polio-caliper",
   },
+  {
+    id: 4,
+    data: "SDMH Free Clinic",
+    link: "/support-a-cause/sdmh-free-clinic",
+  },
+  {
+    id: 5,
+    data: "Thalassemia Centre",
+    link: "/support-a-cause/thalassemia-centre",
+  },
+  {
+    id: 6,
+    data: "Project Jyoti",
+    link: "/support-a-cause/project-jyoti",
+  },
 ];
 
 const Patients = [
   { id: 0, data: "Find a doctor", link: "/find-a-doctor" },
   { id: 1, data: "Make an appointment", link: "" },
   { id: 2, data: "Virtual tour", link: "" },
-  { id: 3, data: "Room tour", link: "" },
   { id: 4, data: "Patient testimonial", link: "/patient-testimonials" },
   { id: 5, data: "Timings", link: "" },
   { id: 6, data: "Patient guide", link: "" },
@@ -129,7 +144,7 @@ export default function Footer() {
   const router = useRouter();
   return (
     <Stack
-    display={{md:"flex", sm:"none"}}
+      display={{ md: "flex", sm: "none" }}
       width="100%"
       sx={{
         backgroundImage: `url(${sdmh.src})`,
@@ -174,16 +189,26 @@ export default function Footer() {
               </ParaNormal>
               {centerOfExcellence.map((el, i) => {
                 return (
-                  <ParaNormal
-                    cursor="pointer"
-                    hoverColor="#379237"
-                    key={i}
-                    onClick={() => router.push(`${el.link}`)}
-                  >
-                    {el.data}
-                  </ParaNormal>
+                  <>
+                    <ParaNormal
+                      cursor="pointer"
+                      hoverColor="#379237"
+                      key={i}
+                      onClick={() => router.push(`${el.link}`)}
+                    >
+                      {el.data}
+                    </ParaNormal>
+                  </>
                 );
               })}
+              <ParaNormal
+                fontSize={{lg:"1rem"}}
+                cursor="pointer"
+                hoverColor="#379237"
+                onClick={() => router.push("/coe")}
+              >
+                View All
+              </ParaNormal>
             </Stack>
             <Stack>
               <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">

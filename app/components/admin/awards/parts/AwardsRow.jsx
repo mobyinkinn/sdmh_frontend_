@@ -193,11 +193,15 @@ function AwardsRow({
             setAboutContent={setAboutContent}
           />
         </Modal.Window>
+       
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="award"
             disabled={isDeleting}
-            onConfirm={() => deleteAward(id)}
+            onConfirm={() => deleteAward(id)} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

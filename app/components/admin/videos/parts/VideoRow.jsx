@@ -96,7 +96,7 @@ function VideoRow({ videos: { _id, title, url } }) {
             resourceName="video"
             id={_id}
             editData={editData}
-            setEditData={setEditData}
+          setEditData={setEditData}
             onCloseModal={() => {}}
             onConfirm={handleConfirmEdit}
             disabled={isUpdating}
@@ -107,6 +107,9 @@ function VideoRow({ videos: { _id, title, url } }) {
             resourceName="video"
             disabled={isDeleting}
             onConfirm={() => deleteVideos(id)}
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

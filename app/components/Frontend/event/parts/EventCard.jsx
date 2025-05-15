@@ -38,6 +38,7 @@ export default function EventCard({ career }) {
         "&:hover": {
           color: "white",
           backgroundColor: "#476C9B",
+          border:"1px solid white"
         },
       }}
     >

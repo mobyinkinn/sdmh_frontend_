@@ -167,34 +167,33 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           ))}
         </Stack>
       </FormRow>
-<Stack>
-      <FormRow label="Room" error={errors?.page?.message}>
-        <Input
-          disabled={isWorking}
-          type="text"
-          id="room"
-          {...register("room", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
+      <Stack>
+        <FormRow label="Room" error={errors?.page?.message}>
+          <Input
+            disabled={isWorking}
+            type="text"
+            id="room"
+            {...register("room", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
 
-      <FormRow label="Floor" error={errors?.page?.message}>
-        <Input
-          disabled={isWorking}
-          type="text"
-          id="floor"
-          {...register("floor", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
-      <FormRow label={"HOD"} error={errors?.isHod?.message}>
-        <label>
-          <input type="checkbox" {...register("isHod")} />
-          
-        </label>
-      </FormRow>
+        <FormRow label="Floor" error={errors?.page?.message}>
+          <Input
+            disabled={isWorking}
+            type="text"
+            id="floor"
+            {...register("floor", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
+        <FormRow label={"HOD"} error={errors?.isHod?.message}>
+          <label>
+            <input type="checkbox" {...register("isHod")} />
+          </label>
+        </FormRow>
       </Stack>
 
       <FormRow label="About" error={errors?.page?.message}></FormRow>
@@ -210,6 +209,9 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size for Desktop & Mobile will be: 700 * 500</p>
+      </Stack>
 
       <Stack
         direction="row"

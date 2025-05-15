@@ -434,7 +434,8 @@ import img3 from "./assets/award3.jpg";
 import img4 from "./assets/award4.jpg";
 import img5 from "./assets/award5.jpg";
 import { Head1 } from "@/app/styledComponents/frontend/Headings";
-
+import { ButtonMediumOutline } from "@/app/styledComponents/frontend/Buttons";
+import { useRouter } from "next/navigation";
 const allImages = [
   {
     img: img1,
@@ -465,6 +466,7 @@ const allImages = [
   },
 ];
 const Slider = () => {
+  const router = useRouter();
   const [images, setImages] = useState(allImages);
   const [direction, setDirection] = useState(null);
     const [currentText, setCurrentText] = useState(allImages[0]);
@@ -516,9 +518,9 @@ const Slider = () => {
 
   return (
     <Stack width="100%" alignItems="center" spacing={2} py={5} px={2}>
-       <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
-              Awards & Accreditation 
-            </Head1>
+      <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
+        Awards & Accreditation
+      </Head1>
       <Typography variant="h6" textAlign="center" fontWeight={600}>
         {currentText.heading}
       </Typography>
@@ -616,6 +618,13 @@ const Slider = () => {
           <ArrowForwardIos />
         </IconButton>
       </Box>
+      <ButtonMediumOutline
+          margin="20px 0"
+          color="#007946"
+          onClick={() => router.push(`/award`)}
+        >
+          View More
+        </ButtonMediumOutline>
     </Stack>
   );
 };

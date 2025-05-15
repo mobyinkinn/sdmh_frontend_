@@ -210,6 +210,9 @@ function DownloadRow({
             resourceName="Banner"
             disabled={isDeleting}
             onConfirm={() => deleteDownloadables(id)}
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

@@ -107,6 +107,9 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
             })}
           />
         </FormRow>
+        <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+          <p>Image size will be: 1500 * 1000</p>
+        </Stack>
         <FormRow label={"Banner Image"}>
           <FileInput
             id="file"
@@ -117,6 +120,9 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
             })}
           />
         </FormRow>
+        <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+          <p>Image size will be: 1500 * 1000</p>
+        </Stack>
 
         <FormRow label="Images">
           <FileInput
@@ -129,7 +135,9 @@ const CreateHealthCheckupForm = ({ onCloseModal, resourceName }) => {
             })}
           />
         </FormRow>
-
+        <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+          <p>Image size will be: 1000 * 1000</p>
+        </Stack>
         <FormRow>
           <Button
             variation="secondary"

@@ -284,7 +284,9 @@ function EditDoctorForm({ onCloseModal, id, department }) {
           }}
         />
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size for Desktop & Mobile will be: 700 * 500</p>
+      </Stack>
       <FormRow>
         <Button
           variation="secondary"

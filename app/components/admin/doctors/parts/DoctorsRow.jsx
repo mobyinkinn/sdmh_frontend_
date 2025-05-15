@@ -167,6 +167,9 @@ function DoctorsRow({
             resourceName="Banner"
             disabled={isDeleting}
             onConfirm={() => deleteDoctor(id)}
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

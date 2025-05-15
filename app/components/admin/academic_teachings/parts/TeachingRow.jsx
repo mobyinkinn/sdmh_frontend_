@@ -122,8 +122,11 @@ function TeachingRow({
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="notice"
-            disabled={isDeleting} // Disable button while deleting
-            onConfirm={handleDelete} // Call the delete function on confirm
+            disabled={isDeleting}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

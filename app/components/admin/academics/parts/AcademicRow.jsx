@@ -90,11 +90,14 @@ function AcademicRow({ department: { id: id, name, status, created } }) {
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
+       
         <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="academics"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
       </Modal>

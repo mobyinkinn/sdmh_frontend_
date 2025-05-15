@@ -130,13 +130,27 @@ function AcademicRow({
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
         </Menus.Menu>
-        <Modal.Window name="delete">
+        {/* <Modal.Window name="delete">
           <ConfirmDelete
             resourceName="notice"
             disabled={isDeleting} // Disable button while deleting
-            onConfirm={handleDelete} // Call the delete function on confirm
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }} // Call the delete function on confirm
+          />
+        </Modal.Window> */}
+        <Modal.Window name="delete">
+          <ConfirmDelete
+            resourceName="notice"
+            disabled={isDeleting}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
+
         {/* <Modal.Window name="edit">
           <ConfirmEdit
             resourceName="blog"

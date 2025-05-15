@@ -70,6 +70,55 @@
   flex-direction: column;
   line-height: 1.7;
 }
+.sett {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 1.7;
+}
+
+.sett ul {
+  list-style: none; /* Remove default bullets from <ul> */
+  padding-left: 0;  /* Remove padding */
+  margin: 0; /* Remove any margin */
+}
+
+.sett ul li {
+  font-size: 1.5rem;
+  color: #555; /* Optional: You can adjust the color */
+  margin-bottom: 10px; /* Space between list items */
+}
+
+/* For nested list items (with .ql-indent-1 class) */
+.sett .ql-indent-1 {
+  margin-left: 20px; /* Indentation for nested items */
+  list-style: circle; /* Circle bullet for nested items */
+}
+
+/* Custom styling for bullets */
+.sett ul li::before {
+  content: "\2022"; /* Default bullet */
+  color: #007946; /* Green bullet color */
+  font-size: 1.5rem; /* Bullet size */
+  position: absolute;
+  left: -20px; /* Adjust to position the bullet properly */
+  top: 0;
+}
+
+/* Flex layout for individual groups inside <ul> */
+.sett ul div {
+  display: flex;
+  flex-direction: column; /* Ensure each div stacks items vertically */
+  gap: 5px;
+  width: 25%; /* Adjust the width of each div */
+}
+
+/* Make sure items wrap properly if the screen is small */
+.sett ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .set ul,
 .set ol  {
     padding: 0;

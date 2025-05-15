@@ -94,7 +94,9 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size for desktop will be: 1000 * 800</p>
+      </Stack>
       <FormRow label={"Banner Image"}>
         <FileInput
           id="file"
@@ -105,7 +107,9 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size for desktop will be: 2880 * 1200</p>
+      </Stack>
       <FormRow label={"Mobile Banner Image"}>
         <FileInput
           id="file"
@@ -116,7 +120,9 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size for desktop will be: 1000 * 1200</p>
+      </Stack>
       <FormRow label={"Home Image"}>
         <FileInput
           id="file"
@@ -127,7 +133,9 @@ function CreateDepartmentForm({ cabinToEdit = {}, onCloseModal }) {
           })}
         />
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size for desktop will be: 1800 * 2100</p>
+      </Stack>
       <Stack
         direction="row"
         sx={{

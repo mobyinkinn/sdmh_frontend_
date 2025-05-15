@@ -95,6 +95,7 @@ const ButtonSmallOutline = styled.button((props) => ({
   "&:hover": {
     backgroundColor: "#486c9c",
     color: props.hoverColor || "#486c9c",
+    border:props.border || "white"
   },
 
   "@media (max-width: 600px)": {

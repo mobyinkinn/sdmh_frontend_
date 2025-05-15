@@ -18,6 +18,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import FileInput from "../../ui/FileInput";
+import { Stack } from "@mui/material";
 
 function EditDepartmentForm({
   onCloseModal,
@@ -315,7 +316,9 @@ function EditDepartmentForm({
           )}
         </ImagePreviewContainer>
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size will be: 1000 * 800</p>
+      </Stack>
       <FormRow label="Banner">
         <ImagePreviewContainer>
           {editData.bannerImage ? (
@@ -382,7 +385,9 @@ function EditDepartmentForm({
           )}
         </ImagePreviewContainer>
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size  will be: 2880 * 1200</p>
+      </Stack>
       <FormRow label="Mobile Banner">
         <ImagePreviewContainer>
           {editData.mobileBanner ? (
@@ -448,8 +453,10 @@ function EditDepartmentForm({
             />
           )}
         </ImagePreviewContainer>
-      </FormRow>
-
+    </FormRow>
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size will be: 1000 * 1200</p>
+      </Stack>
       <FormRow label="Home Image">
         <ImagePreviewContainer>
           {editData.homeImage ? (
@@ -516,7 +523,9 @@ function EditDepartmentForm({
           )}
         </ImagePreviewContainer>
       </FormRow>
-
+      <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+        <p>Image size will be: 1800 * 2100</p>
+      </Stack>
       <FormRow marginLeft={2}>
         <Button
           variation="secondary"

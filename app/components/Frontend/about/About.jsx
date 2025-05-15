@@ -66,7 +66,7 @@ export default function About() {
       <Values />
       <Message ref={messageRef} id="message" />
       {/* <Awards ref={awardsRef} id="awards" /> */}
-      <CustomSlider ref={messageRef} id="message" />
+      <CustomSlider ref={awardsRef} id="awards" />
       <Footer />
       <MobileFooter />
     </Stack>

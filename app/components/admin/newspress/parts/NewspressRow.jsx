@@ -179,7 +179,10 @@ function NewspressRow({
           <ConfirmDelete
             resourceName="Newspress"
             disabled={isDeleting}
-            onConfirm={handleDelete}
+            onConfirm={() => handleDelete()} // Close modal after delete
+            onCloseModal={() => {
+              // Make sure modal closes
+            }}
           />
         </Modal.Window>
         <Modal.Window name="edit">

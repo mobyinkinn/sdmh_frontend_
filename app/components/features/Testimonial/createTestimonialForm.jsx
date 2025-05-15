@@ -82,7 +82,9 @@ const CreateTestimonialForm = ({ onCloseModal, resourceName }) => {
             })}
           />
         </FormRow>
-
+        <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+          <p>Image size will be: 1000 * 1000</p>
+        </Stack>
         <FormRow>
           <Button
             variation="secondary"

@@ -142,6 +142,7 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
               <FileInput
                 id="banner-upload-fallback"
                 type="file"
+                multiple
                 accept="image/*"
                 onChange={handleBannerChange}
                 aria-label="Upload banner image"
@@ -149,6 +150,9 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
             )}
           </ImagePreviewContainer>
         </label>
+        <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+          <p>Banner size for desktop will be: 2880 * 1200</p>
+        </Stack>
       </Stack>
 
       <Stack>
@@ -209,6 +213,9 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
             )}
           </ImagePreviewContainer>
         </label>
+        <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+          <p>Banner size for desktop will be: 1000 * 1200</p>
+        </Stack>
       </Stack>
 
       <Stack
