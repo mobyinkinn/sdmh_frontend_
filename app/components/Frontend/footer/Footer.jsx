@@ -9,6 +9,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { PiYoutubeLogoBold } from "react-icons/pi";
 import { useRouter } from "next/navigation";
 import sdmh from "./parts/assets/bannerImage.png";
+import Modal from "../../ui/Modal";
 
 const social = [
   {
@@ -99,10 +100,10 @@ const supportACause = [
 
 const Patients = [
   { id: 0, data: "Find a doctor", link: "/find-a-doctor" },
-  { id: 1, data: "Make an appointment", link: "" },
+  { id: 1, data: "Make an appointment", link: "appointment" },
   { id: 2, data: "Virtual tour", link: "" },
   { id: 4, data: "Patient testimonial", link: "/patient-testimonials" },
-  { id: 5, data: "Timings", link: "" },
+  { id: 5, data: "Timings", link: "/patient#founder" },
   { id: 6, data: "Patient guide", link: "" },
 ];
 
@@ -143,6 +144,7 @@ const aboutUs = [
 export default function Footer() {
   const router = useRouter();
   return (
+    <Modal>
     <Stack
       display={{ md: "flex", sm: "none" }}
       width="100%"
@@ -233,7 +235,8 @@ export default function Footer() {
               <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
                 Patients & visitors
               </ParaNormal>
-              {Patients.map((el, i) => {
+              {Patients.map((el, i) => 
+              {
                 return (
                   <ParaNormal
                     cursor="pointer"
@@ -244,7 +247,9 @@ export default function Footer() {
                     {el.data}
                   </ParaNormal>
                 );
-              })}
+              }
+              
+              )}
             </Stack>
             <Stack>
               <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
@@ -359,5 +364,24 @@ export default function Footer() {
         </ContainerMain>
       </Stack>
     </Stack>
+      <Modal.Window name="appointment">
+            <div>
+              <Typography textAlign={"center"} fontSize={"2rem"} color="green">
+                Book an Appointment
+              </Typography>
+              <Typography textAlign={"center"}>
+                Appointments can currently be booked by calling 7073111911 between
+                7:00 AM and 4:00 PM. This service allows patients or their
+                attendants to choose a preferred time slot for consultation with the
+                doctor.
+              </Typography>
+              <Typography textAlign={"center"} marginTop={2}>
+                <b>Please note:</b> Appointment slots are subject to availability.
+                If a preferred slot is not available, patients will be attended
+                through the regular OPD system.
+              </Typography>
+            </div>
+          </Modal.Window>
+    </Modal>
   );
 }
