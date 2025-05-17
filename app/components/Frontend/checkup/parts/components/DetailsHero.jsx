@@ -290,7 +290,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
         alignItems={"center"}
         display={{ xs: "none", lg: "flex" }}
       >
-        {data.images.map((item, index) => {
+        {data?.images.map((item, index) => {
           return (
             <Box
               key={index}

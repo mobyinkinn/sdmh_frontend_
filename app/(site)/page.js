@@ -3,15 +3,8 @@
 import Home from "../components/Frontend/home/Home";
 
 
-// export default function Homepage() {
-//   return <Home />;
-// }
-
-
-
 export const dynamic = "force-dynamic"; // Optional: remove this if not needed
 
-// ✅ Hardcoded metadata
 export async function generateMetadata() {
   return {
     title: "Santokba Durlabhji Memorial Hospital - SDMH",

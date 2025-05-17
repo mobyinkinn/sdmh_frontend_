@@ -66,12 +66,12 @@ const AcademicsFnb = () => {
       <DNBTable
         rows={rows1}
         title={"National Board of Examinations"}
-        title1={"FNB Fellowship PROGRAM"}
+        title1={"FNB Fellowship Program"}
         title3={""}
         title4={""}
-        column1={"First"}
-        column2={"Last"}
-        column3={"Handle"}
+        column1={"Subject"}
+        column2={"Intake"}
+        column3={"Session"}
         name="FNB Fellowship Program"
         eligibility="Eligibility – MS/MD/MCh/DNB in broad or super specialty"
         duration="Duration – 2 years"

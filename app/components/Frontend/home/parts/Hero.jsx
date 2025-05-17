@@ -322,7 +322,7 @@ const Hero = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay:true,
+    // autoplay:true,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -361,24 +361,23 @@ const Hero = () => {
         </Slider>
       </Box>
       <Box
-        display={{ md: "none", sm: "flex" }}
-        minHeight={{ xs: "451px" }}
-        width={"100%"}
+        display={{ md: "none", sm: "block" }}
+        height={"66vh"}
       >
         <Slider {...settings}>
-          {mobileImages.map((image, index) => (
-            <div key={index}>
-              <Box
-                sx={{
-                  backgroundImage: `url(${image})`, // Use image URL directly
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "contain",
-                  backgroundPosition: "center center",
-                  height: "100%",
-                  width: "100%",
-                }}
-              ></Box>
-            </div>
+          {mobileImages.map((img, index) => (
+            <Stack
+              key={index}
+              width="100vw"
+              height="66vh"
+              sx={{
+                backgroundImage: `url(${img})`, // Directly use the image path
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                display: "flex",
+              }}
+            ></Stack>
           ))}
         </Slider>
       </Box>

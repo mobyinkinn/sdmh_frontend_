@@ -15,15 +15,10 @@ import Spinner from "../../ui/Spinner";
 const rows = [
   { subject: "Anaesthesiology", intake: 4, session: "January" },
   { subject: "General Medicine", intake: 3, session: "January" },
-  {
-    subject: "Immunohematology & Transfusion Medicine",
-    intake: 1,
-    session: "January",
-  },
-  { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
+  { subject: "Obstetrics & Gynecology", intake: 1, session: "January" },
   { subject: "Orthopedic Surgery", intake: 2, session: "July" },
   { subject: "Paediatrics", intake: 3, session: "January" },
-  { subject: "Pathology", intake: 2, session: "January" },
+  { subject: "Pathology", intake: 1, session: "January" },
   { subject: "Radio-Diagnosis", intake: 2, session: "January" },
   { subject: "Respiratory Diseases", intake: 2, session: "January" },
 ];
@@ -39,12 +34,14 @@ const rows1 = [
 ];
 
 const rows2 = [
-  { subject: "Cardiology", intake: 2, session: "January" },
+  { subject: "Medical", intake: 1, session: "January" },
   { subject: "Gastroenterology", intake: 2, session: "January" },
   { subject: "Neurosurgery", intake: 2, session: "January" },
   { subject: "Neurology", intake: 2, session: "January" },
   { subject: "Surgical Gastroenterology", intake: 2, session: "January" },
   { subject: "Critical Care Medicine", intake: 3, session: "January" },
+  { subject: "Urology", intake: 2, session: "January" },
+  { subject: "Nephrology", intake: 2, session: "January" },
 ];
 const AcademicsDnb = () => {
   const { data, isLoading, error } = useBannerByPage("academics dnb courses");
@@ -90,7 +87,7 @@ const AcademicsDnb = () => {
       <DNBTable
         rows={rows}
         title={"SDMH Runs an Active"}
-        title1={"DNB Training Programme"}
+        title1={"DNB Training Program"}
         title2={""}
         title3={"in various Departments Listed Below"}
         column1={"Subjects"}
@@ -115,12 +112,12 @@ const AcademicsDnb = () => {
       <DNBTable
         rows={rows2}
         title={"National Board of Examinations"}
-        title1={"DNB Super Specialty Program"}
+        title1={"DrNB Super Specialty Program"}
         title3={""}
         column1={"Subjects"}
         column2={"Intake"}
         column3={"Session"}
-        name="National Board of Examinations - DNB Post MBBS Program"
+        name="National Board of Examinations - Post MD/MS/DNB Program"
         eligibility="Eligibility – MBBS + MD/MS/DNB"
         duration="Duration – 3 years"
       />

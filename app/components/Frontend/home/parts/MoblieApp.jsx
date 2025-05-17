@@ -15,6 +15,7 @@ export default function MobileApp() {
       flexDirection={{ lg: "row", md: "row", sm: "column", smm: "column" }}
       bgColor="#A6C9B2"
       gap={{ sm: "5px" }}
+      id="download-app"
     >
       <Stack
         sx={{
@@ -42,7 +43,7 @@ export default function MobileApp() {
           SDMH Mobile App
         </Head1>
         <Stack
-        width={"100%"}
+          width={"100%"}
           direction={"row"}
           gap={"10px"}
           marginTop={{ xs: "20px", md: "0" }}

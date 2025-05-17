@@ -109,13 +109,12 @@ function AwardCard({ el }) {
       >
         <Image src={el.image} alt="" fill objectFit="cover" />
       </Box>
-      <Stack
-        height={{ xs: "50%", md: "60%" }}
-        gap={1}
-        pt={3}
-      >
+      <Stack height={{ xs: "50%", md: "60%" }} gap={1} pt={3}>
         <Stack gap={1}>
           <ParaNormal
+            fontWeight={"bold"}
+            color="#005900"
+            textAlign="center"
             fontSize={{
               lg: "20px",
               md: "22px",
@@ -127,6 +126,7 @@ function AwardCard({ el }) {
           </ParaNormal>
         </Stack>
         <ParaNormal
+          textAlign="center"
           fontSize={{ lg: "15px", md: "17px", smm: "16px", sm: "13px" }}
         >
           {el.smallDescription}
