@@ -82,7 +82,7 @@ const ButtonSmallOutline = styled.button((props) => ({
   backgroundColor: "transparent",
   width: "fit-content",
   outline: "none",
-  border: `1px solid #486c9c`,
+  border:  props.border|| "1px solid #486c9c",
   padding: props.padding || "10px 30px",
   color: props.color,
   cursor: "pointer",
@@ -94,8 +94,8 @@ const ButtonSmallOutline = styled.button((props) => ({
   transition: "all 0.3s ease",
   "&:hover": {
     backgroundColor: "#486c9c",
-    color: props.hoverColor || "#486c9c",
-    border:props.border || "white"
+    color: "#ffffff",
+    border: "1px solid white",
   },
 
   "@media (max-width: 600px)": {

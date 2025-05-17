@@ -25,23 +25,23 @@ const rows = [
 
 const rows1 = [
   { subject: "Anaesthesiology", intake: 4, session: "January" },
-  { subject: "Obstetrics & Gynecology", intake: 2, session: "January" },
+  { subject: "Obstetrics & Gynecology", intake: 1, session: "January" },
   { subject: "Orthopedic Surgery", intake: 2, session: "July" },
   { subject: "Paediatrics", intake: 3, session: "January" },
-  { subject: "Pathology", intake: 2, session: "January" },
+  { subject: "Pathology", intake: 1, session: "January" },
   { subject: "Radio-Diagnosis", intake: 2, session: "January" },
   { subject: "Respiratory Diseases", intake: 2, session: "January" },
 ];
 
 const rows2 = [
-  { subject: "Medical", intake: 1, session: "January" },
-  { subject: "Gastroenterology", intake: 2, session: "January" },
+  { subject: "Medical Gastroenterology", intake: 2, session: "January" },
   { subject: "Neurosurgery", intake: 2, session: "January" },
   { subject: "Neurology", intake: 2, session: "January" },
   { subject: "Surgical Gastroenterology", intake: 2, session: "January" },
   { subject: "Critical Care Medicine", intake: 3, session: "January" },
   { subject: "Urology", intake: 2, session: "January" },
   { subject: "Nephrology", intake: 2, session: "January" },
+  { subject: "CTVS ( Cardio vascular Thoracic surgery )", intake: 2, session: "January" },
 ];
 const AcademicsDnb = () => {
   const { data, isLoading, error } = useBannerByPage("academics dnb courses");

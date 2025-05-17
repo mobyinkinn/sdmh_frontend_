@@ -46,7 +46,7 @@ const Stacked = styled.div`
 `;
 
 function BannerRow({
-  academic: { _id, page, banner, status, link, mobileBanner },
+  academic: { _id, page, banner, images, status, link, mobileBanner, mobileimages },
 }) {
   const { mutate: blockbanner, isLoading: isBlocking } = useBlockBanners();
   const { mutate: unblockbanner, isLoading: isUnblocking } =
@@ -82,11 +82,11 @@ function BannerRow({
       </Stacked>
 
       <Stacked>
-        <Image src={banner} alt={page} width={50} height={50} />
+        <Image src={banner || images[0]} alt={page} width={50} height={50} />
       </Stacked>
 
       <Stacked>
-        <Image src={mobileBanner} alt={page} width={50} height={50} />
+        <Image src={mobileBanner|| mobileimages[0]} alt={page} width={50} height={50} />
       </Stacked>
 
       <Stacked>
@@ -129,7 +129,6 @@ function BannerRow({
             }}
           />
         </Modal.Window>
-        
       </Modal>
     </Table.Row>
   );

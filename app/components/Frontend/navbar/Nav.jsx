@@ -336,15 +336,6 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
                 height: "50px",
               }}
             />
-            <Box
-              component="img"
-              src={nabh.src}
-              alt=""
-              sx={{
-                width: "50px",
-                height: "50px",
-              }}
-            />
           </Stack>
         </Stack>
       </Stack>
@@ -387,12 +378,16 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           sx={{ display: { xs: "none", lg: "flex" } }}
           alignItems={"center"}
         >
-          <Box textAlign="center" maxWidth="33%">
+          {/* <Box textAlign="center" maxWidth="33%">
             <Typography color="error" fontWeight="600" fontSize="0.8rem">
               Book Appointment <br /> For Teleconsultation <br />
               Or Call On- 70731-11811
             </Typography>
-          </Box>
+          </Box> */}
+          <DarkGreenButtonSmallOutline padding="5px 5px">
+            <span style={{ color: "red" }}>Book Appointment</span>
+            <FaPhone style={{ width: "15px", height: "25px" }} /> 70731-11811
+          </DarkGreenButtonSmallOutline>
           <Box position="relative">
             <Stack direction="row">
               <SearchInput
@@ -478,15 +473,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
             <IoIosMail style={{ width: "20px", height: "25px" }} href="" />{" "}
             info@sdmh.in
           </DarkGreenButtonSmallOutline>
-          <Box
-            component="img"
-            src={nabh.src}
-            alt=""
-            sx={{
-              width: { xs: "102px", smm: "150px", md: "47px" },
-              height: { xs: "38px", smm: "55px", md: "47px" },
-            }}
-          />
+
           <Box
             component="img"
             src={nabh.src}

@@ -29,7 +29,10 @@ export default function Departments() {
   const [activeTab, setActiveTab] = useState(null);
   const router = useRouter();
 const filteredDepartment =
-  departmentData?.filter((el) => el.status === true) || [];
+  departmentData
+    ?.filter((el) => el.status === true)
+    .sort((a, b) => a.name.localeCompare(b.name)) || [];
+
 const { data: defaultDepartment, isLoading: isLoadingDefault } =
   useDefaultDepartment();
 console.log("defal",defaultDepartment)

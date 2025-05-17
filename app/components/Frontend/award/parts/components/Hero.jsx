@@ -7,6 +7,7 @@ import { ContainerMain } from "@/app/styledComponents/frontend/Container";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 
 export default function Hero() {
+    
   return (
     <Stack
       paddingTop={{ xs: 4, lg: 0 }}
