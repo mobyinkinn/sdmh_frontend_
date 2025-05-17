@@ -313,7 +313,7 @@ const Hero = () => {
   const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
   const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
   const sliderRef = useRef(null);
-  const { data, isLoading, error } = useBannerByPage("dummy");
+  const { data, isLoading, error } = useBannerByPage("home");
 
   if (isLoading) return <Spinner />;
 

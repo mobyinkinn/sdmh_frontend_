@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic"; // Optional: remove this if not needed
 
 export async function generateMetadata() {
   return {
-    title: "Santokba Durlabhji Memorial Hospital - SDMH",
+    title: "SDMH - Santokba Durlabhji Memorial Hospital",
     description:
       "Trusted multispeciality hospital offering advanced medical care with compassion.",
     keywords:
