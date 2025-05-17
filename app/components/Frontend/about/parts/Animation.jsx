@@ -517,7 +517,7 @@ const Slider = () => {
   };
 
   return (
-    <Stack width="100%" alignItems="center" spacing={2} py={5} px={2}>
+    <Stack width="100%" alignItems="center" spacing={2} py={5} px={2} id="awards">
       <Head1 fontSize={{ md: "2rem", sm: "1.4rem" }}>
         Awards & Accreditation
       </Head1>

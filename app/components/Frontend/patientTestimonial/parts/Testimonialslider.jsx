@@ -123,7 +123,7 @@ const Testimonialslider = () => {
     return <Spinner />;
   }
   return (
-    <Stack bgcolor={"#D2E4D8"} p={5}>
+    <Stack bgcolor={"#D2E4D8"} p={"40px 20px"}>
       <Stack
         direction={"row"}
         p={2}
@@ -156,7 +156,6 @@ const Testimonialslider = () => {
         position="relative"
         width="100%"
         slidesToShow={1} // Show 4 slides at a time
-        bottom="-6%"
         padding="20px"
         paddinginner="10px"
       />

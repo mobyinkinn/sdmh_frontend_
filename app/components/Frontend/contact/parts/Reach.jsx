@@ -26,6 +26,7 @@ export default function Reach() {
       padding="50px 10px"
       backgroundColor="#4B9369"
       color="white"
+      id="Reach"
     >
       <Typography
         sx={{

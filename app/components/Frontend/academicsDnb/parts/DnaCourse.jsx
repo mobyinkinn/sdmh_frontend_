@@ -48,7 +48,7 @@ const DNBTable = ({
           align="center"
           display={{ xs: "block", lg: "none" }}
         >
-          Eligibility – MS/MD/MCh/DNB in broad or super specialty
+          {eligibility}&nbsp;
         </Typography>
         <Typography
           fontSize={{ xs: "15px", md: "18px" }}

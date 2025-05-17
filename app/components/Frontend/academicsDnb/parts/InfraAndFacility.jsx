@@ -105,7 +105,7 @@ const InfraAndFacility = () => {
     <>
       <Stack bgcolor={"#F9F9F9"} px={5} pt={5} gap={1}>
         <Head1 color="#476C9B">Infrastructure & Facilities</Head1>
-        <ParaNormal
+        {/* <ParaNormal
           padding={{ xs: "0", lg: "0 100px" }}
           color="black"
           style={{ textAlign: "center" }}
@@ -113,7 +113,7 @@ const InfraAndFacility = () => {
           Sixty students are admitted every year in the month of September.
           After three months of admission, the students are examined to judge
           their suitability for continuing the training through PTS examination.
-        </ParaNormal>
+        </ParaNormal> */}
       </Stack>
       <Stack
         direction={"row"}
