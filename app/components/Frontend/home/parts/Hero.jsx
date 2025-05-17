@@ -322,7 +322,7 @@ const Hero = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    // autoplay:true,
+    autoplay:true,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -333,7 +333,7 @@ const Hero = () => {
       : [];
 
   return (
-    <Stack width={"100%"}>
+    <Stack width={"100%"} height={"100vh"}>
       <Box
         display={{
           xxl: "block",
@@ -342,6 +342,7 @@ const Hero = () => {
           md: "block",
           sm: "none",
         }}
+        height={"100vh"}
       >
         <Slider ref={sliderRef} {...settings}>
           {images.map((img, index) => (
@@ -350,8 +351,8 @@ const Hero = () => {
               width="100vw"
               height="100vh"
               sx={{
-                backgroundImage: `url(${img})`, // Directly use the image path
-                backgroundSize: "contain",
+                backgroundImage: `url(${img})`,
+                backgroundSize: "cover", // ✅ Fills the height completely
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
                 display: "flex",
@@ -360,20 +361,16 @@ const Hero = () => {
           ))}
         </Slider>
       </Box>
-      <Box
-        display={{ md: "none", sm: "block" }}
-        height={"66vh"}
-      >
+      <Box display={{ md: "none", sm: "block" }} height={"470px"}>
         <Slider {...settings}>
           {mobileImages.map((img, index) => (
             <Stack
               key={index}
               width="100vw"
-              height="66vh"
+              height="100vh"
               sx={{
                 backgroundImage: `url(${img})`, // Directly use the image path
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
+                backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 display: "flex",
               }}
@@ -381,53 +378,6 @@ const Hero = () => {
           ))}
         </Slider>
       </Box>
-      {/* <Stack direction="row" gap="10px" position="absolute" top="50%" left="1%">
-        <Stack
-          sx={{
-            border: "2px solid white",
-            borderRadius: "100px",
-            justifyContent: "center",
-            alignItems: "center",
-            "&:hover": {
-              backgroundColor: "transparent",
-            },
-          }}
-          onClick={() => sliderRef.current.slickPrev()}
-        >
-          <IoIosArrowBack
-            style={arrowStyle1}
-            onMouseEnter={() => setArrowStyle1(hoverStyle)}
-            onMouseLeave={() => setArrowStyle1(normalStyle)}
-          />
-        </Stack>
-      </Stack>
-
-      <Stack
-        direction="row"
-        gap="10px"
-        position="absolute"
-        top="50%"
-        right="1%"
-      >
-        <Stack
-          sx={{
-            border: "2px solid white",
-            borderRadius: "100px",
-            justifyContent: "center",
-            alignItems: "center",
-            "&:hover": {
-              backgroundColor: "transparent",
-            },
-          }}
-          onClick={() => sliderRef.current.slickNext()}
-        >
-          <IoIosArrowForward
-            style={arrowStyle2}
-            onMouseEnter={() => setArrowStyle2(hoverStyle)}
-            onMouseLeave={() => setArrowStyle2(normalStyle)}
-          />
-        </Stack>
-      </Stack> */}
     </Stack>
   );
 };

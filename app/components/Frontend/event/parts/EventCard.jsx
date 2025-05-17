@@ -38,7 +38,7 @@ export default function EventCard({ career }) {
         "&:hover": {
           color: "white",
           backgroundColor: "#476C9B",
-          border:"1px solid white"
+          border: "1px solid white",
         },
       }}
     >
@@ -56,7 +56,7 @@ export default function EventCard({ career }) {
           },
         }}
       ></Stack>
-      <Stack gap={1} width={{lg:"70%", sm:"100%"}}>
+      <Stack gap={1} width={{ lg: "70%", sm: "100%" }}>
         <ParaNormalSmall color="inherit">{career.tag}</ParaNormalSmall>
         <Head3 textAlign="left" color="inherit">
           {career.title}
@@ -67,14 +67,14 @@ export default function EventCard({ career }) {
         <Stack direction={"row"} gap={{ md: 3, xs: 1 }}>
           <ButtonSmallOutline
             color={hovered ? "white" : "#476C9B"}
-            hoverColor="#476C9B"
+            border={hovered ? "1px solid white" : "1px solid #486c9c"}
           >
             {dateOnly}
           </ButtonSmallOutline>
           <ButtonSmallOutline
             onClick={() => router.push(`/event/${career._id}`)}
             color={hovered ? "white" : "#476C9B"}
-            hoverColor="#476C9B"
+            border={hovered ? "1px solid white" : "1px solid #486c9c"}
           >
             View Event details
           </ButtonSmallOutline>

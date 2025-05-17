@@ -43,29 +43,28 @@ const centerOfExcellence = [
   {
     id: 0,
     data: "Medical Oncology",
-    link: "/centre-of-excellence/67c148e9323e35a829c5697d",
+    link: "/centre-of-excellence/67c15ac9323e35a829c56a0c",
   },
   {
     id: 1,
     data: "Surgical Gastroenterology",
-    link: "/centre-of-excellence/67c04514d797f40db8325e88",
+    link: "/centre-of-excellence/67c15acd323e35a829c56a2a",
   },
   {
     id: 2,
     data: "Neuro and spine",
-    link: "/centre-of-excellence/67c15ac9323e35a829c56a0e",
+    link: "/centre-of-excellence/67c15aca323e35a829c56a10",
   },
   {
     id: 3,
     data: "Orthopaedic",
-    link: "/centre-of-excellence/67c15aca323e35a829c56a12",
+    link: "/centre-of-excellence/67ef66f1748736a26205e4f3",
   },
   {
     id: 4,
     data: "Paediatric and neonatology",
-    link: "/centre-of-excellence",
+    link: "/centre-of-excellence/67c15acb323e35a829c56a18",
   },
-
 ];
 
 const supportACause = [
@@ -103,7 +102,7 @@ const Patients = [
   { id: 1, data: "Make an appointment", link: "appointment" },
   { id: 2, data: "Virtual tour", link: "/gallery" },
   { id: 4, data: "Patient testimonial", link: "/patient-testimonials" },
-  { id: 5, data: "Timings", link: "/patient-care-and-services" },
+  { id: 5, data: "Timings", link: "/patient-care-and-services#visitor" },
   { id: 6, data: "Patient guide", link: "/patient-care-and-services" },
 ];
 
@@ -129,7 +128,7 @@ const quickLinks = [
   { id: 1, data: "Blog", link: "/blog" },
   { id: 2, data: "Events", link: "/event" },
   { id: 3, data: "Terms & conditions", link: "/terms-and-conditions" },
-  { id: 4, data: "Career", link: "/career" },
+  { id: 4, data: "Career", link: "/careers" },
   { id: 5, data: "News & press release", link: "/news-press-release" },
   { id: 6, data: "Send a greeting", link: "/send-a-greeting" },
 ];

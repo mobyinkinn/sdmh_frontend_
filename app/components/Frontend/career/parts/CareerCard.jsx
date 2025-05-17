@@ -22,7 +22,7 @@ export default function CareerCard({ career }) {
       gap={"30px"}
       alignItems={"center"}
       width={{ md: "80vw", xs: "90vw" }}
-      onClick={() => router.push(`/career/${career._id}`)}
+      onClick={() => router.push(`/careers/${career._id}`)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       sx={{
@@ -79,7 +79,7 @@ export default function CareerCard({ career }) {
           </ParaNormalSmall>
         </Stack>
         <ButtonSmallOutline
-          onClick={() => router.push(`/career/${career._id}`)}
+          onClick={() => router.push(`/careers/${career._id}`)}
           color={hovered ? "white" : "#476C9B"}
           hoverColor="#476C9B"
         >

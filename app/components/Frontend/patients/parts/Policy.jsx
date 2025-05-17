@@ -6,7 +6,7 @@ import visitor from "./assets/visitors.jpg";
 
 export default function Policy() {
   return (
-    <ContainerMain bgColor="#CEDDCC">
+    <ContainerMain bgColor="#CEDDCC" id="visitor">
       <Stack
         // backgroundColor="#476C9B"
         flexDirection={{ lg: "row", md: "column", sm: "column", smm: "column" }}

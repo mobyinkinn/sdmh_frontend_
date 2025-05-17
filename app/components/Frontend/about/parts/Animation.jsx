@@ -441,7 +441,9 @@ const allImages = [
     img: img1,
     heading:
       'Best Places to Work in Healthcare in India by "Hosmac" and "People Strong"',
-    data: "SDMH was placed among the top three “Best Places to Work in Healthcare” in India by “Hosmac” and “People Strong” on 10th February, 2013.",
+    heading:
+      "Prayatna – effort to eradicate Thalassemia through screening of blood",
+    data: "SDMH was awarded by FICCI for its programme “Prayatna – effort to eradicate Thalassemia through screening of blood” – on 1st September 2014",
   },
   {
     img: img2,
@@ -451,8 +453,8 @@ const allImages = [
   {
     img: img3,
     heading:
-      "Prayatna – effort to eradicate Thalassemia through screening of blood",
-    data: "SDMH was awarded by FICCI for its programme “Prayatna – effort to eradicate Thalassemia through screening of blood” – on 1st September 2014",
+      'Best Places to Work in Healthcare in India by "Hosmac" and "People Strong"',
+    data: "SDMH was placed among the top three “Best Places to Work in Healthcare” in India by “Hosmac” and “People Strong” on 10th February, 2013.",
   },
   {
     img: img4,

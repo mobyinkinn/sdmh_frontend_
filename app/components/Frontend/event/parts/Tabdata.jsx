@@ -94,41 +94,7 @@ const Tabdata = () => {
 
   return (
     <>
-      {/* Tabs Section */}
-      {/* <Stack
-        direction="row"
-        gap={{ md: 2, xs: 1 }}
-        padding={{ md: 5, xs: 2 }}
-        justifyContent={{ md: "center", xs: "start" }}
-        flexWrap="wrap"
-        bgcolor={"#476C9B"}
-      >
-        {categories.map((category, i) => (
-          <Button
-            key={i}
-            variant={selectedCategory === category ? "contained" : "outlined"}
-            color="primary"
-            onClick={() => setSelectedCategory(category)}
-            sx={{
-              padding: { lg: "5px 30px", xs: "5px 17px" },
-              backgroundColor:
-                selectedCategory === category ? "white" : "transparent",
-              color: selectedCategory === category ? "#476C9B" : "white",
-              border: "1px solid white",
-              borderRadius: "30px",
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                backgroundColor:
-                  selectedCategory === category ? "white" : "#5A7EB6",
-                color: selectedCategory === category ? "#476C9B" : "white",
-              },
-            }}
-          >
-            {category}
-          </Button>
-        ))}
-      </Stack> */}
+      
       <Box bgcolor={"#FDFDFD"}>
         {/* Render Filtered & Paginated Event Cards */}
         <Stack alignItems="center" pt={2}>

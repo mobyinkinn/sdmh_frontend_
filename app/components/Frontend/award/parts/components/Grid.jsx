@@ -34,18 +34,10 @@ export default function Grid() {
     >
       <Stack justifyContent={"center"} gap={1}>
         <Head1
-          fontWeight="none"
-          color="black"
-          fontSize={{ lg: "30px", md: "25px", smm: "20px", sm: "15px" }}
-        >
-          Our
-        </Head1>
-        <Head1
           color="#005900"
           fontSize={{ sm: "1.3rem", smm: "2rem", md: "2.2rem", lg: "3.4rem" }}
         >
-          {" "}
-          Awards
+          Our Awards
         </Head1>
       </Stack>
       <Stack

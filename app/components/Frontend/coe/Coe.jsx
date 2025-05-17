@@ -2,26 +2,21 @@
 import { Box, Stack } from "@mui/material";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
-import Hero from "./parts/components/Hero";
 import Grid from "./parts/components/Grid";
 import MobileFooter from "../footer/MobileFooter";
 import { useNavbar } from "../../admin/navbar/useNavbar";
 import Spinner from "../../ui/Spinner";
 import { useBannerByPage } from "../../admin/banner/parts/useBanner";
+import Hero from "./parts/Hero";
 
 export default function Coe() {
   const { isLoading } = useNavbar();
-  const {
-    data,
-    isLoading: isLoadingBanner,
-    error,
-  } = useBannerByPage("centre of excellence");
-  if (isLoading || isLoadingBanner) return <Spinner />;
+  if (isLoading) return <Spinner />;
   return (
     <Stack>
       <Navbar />
-      {/* <Hero /> */}
-      <Box
+      <Hero />
+      {/* <Box
         display={{ md: "flex", sm: "none" }}
         minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
         width={"100%"}
@@ -43,7 +38,7 @@ export default function Coe() {
           backgroundSize: "contain",
           backgroundPosition: "center center",
         }}
-      ></Box>
+      ></Box> */}
       <Grid />
       <Footer />
       <MobileFooter />

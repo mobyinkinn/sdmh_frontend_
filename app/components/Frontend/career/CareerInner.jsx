@@ -58,7 +58,7 @@ export default function CareerInner() {
         />
         <Stack alignItems={"center"}>
           <ButtonSmallOutlineWithoutHover
-            onClick={() => router.push(`/career/${_id}/${data.position}`)}
+            onClick={() => router.push(`/careers/${_id}/${data.position}`)}
             style={{ border: "1px solid #005900", color: "#005900" }}
           >
             Apply now
