@@ -1,3 +1,4 @@
+"use client"
 import { Stack } from "@mui/material";
 import React from "react";
 import Navbar from "../navbar/Nav";
@@ -5,8 +6,13 @@ import Footer from "../footer/Footer";
 import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import PmDm from "./parts/PmDm";
 import DiffernceTab from "./parts/DiffernceTab";
+import MobileFooter from "../footer/MobileFooter";
+import Spinner from "../../ui/Spinner";
+import { useNavbar } from "../../admin/navbar/useNavbar";
 
 const NewsandPress = () => {
+    const { isLoading } = useNavbar();
+    if (isLoading) return <Spinner />;
   return (
     <Stack>
       <Navbar />
@@ -18,6 +24,7 @@ const NewsandPress = () => {
       <PmDm />
       {/* <DiffernceTab /> */}
       <Footer />
+      <MobileFooter/>
     </Stack>
   );
 };

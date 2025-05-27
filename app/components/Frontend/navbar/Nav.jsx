@@ -615,7 +615,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           gap="25px"
           sx={{ display: { xs: "none", lg: "flex" } }}
         >
-          {navData.map((el, i) =>
+          {navData?.map((el, i) =>
             el.name === "Second Opinion" ? null : (
               <Box
                 key={i}

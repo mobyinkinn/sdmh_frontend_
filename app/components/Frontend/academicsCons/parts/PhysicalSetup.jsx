@@ -25,7 +25,7 @@ const PhysicalSetup = () => {
             norms.
           </ParaNormal>
         </Stack>
-        <Stack bgcolor={"#02814B"} p={1} borderRadius={2}>
+        {/* <Stack bgcolor={"#02814B"} p={1} borderRadius={2}>
           <ParaNormal
             fontSize={{ sm: "15px", smm: "17px", md: "20px", lg: "25px" }}
             style={{ textAlign: "center", color: "White" }}
@@ -35,7 +35,7 @@ const PhysicalSetup = () => {
             Rana, the school was re-named as “SDMH Chand Behari Sita Devi Rana
             School of Nursing” in 1995.
           </ParaNormal>
-        </Stack>
+        </Stack> */}
       </Stack>
     </Stack>
   );
