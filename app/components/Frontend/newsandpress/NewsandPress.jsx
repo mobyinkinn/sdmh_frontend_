@@ -1,5 +1,5 @@
 "use client"
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
 import Navbar from "../navbar/Nav";
 import Footer from "../footer/Footer";
@@ -13,13 +13,11 @@ import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 
 const NewsandPress = () => {
     const { isLoading } = useNavbar();
-    if (isLoading) return <Spinner />;
       const {
         data,
         isLoading: BannerLoading,
         error,
       } = useBannerByPage("news press release");
-
       if (isLoading) return <Spinner />;
   return (
     <Stack>
@@ -34,7 +32,7 @@ const NewsandPress = () => {
         minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.banner})`,
+          backgroundImage: `url(${data?.images})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -46,7 +44,7 @@ const NewsandPress = () => {
         minHeight={{ xs: "451px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundImage: `url(${data?.mobileimages})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPosition: "center center",
