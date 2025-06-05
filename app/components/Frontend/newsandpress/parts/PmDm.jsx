@@ -162,6 +162,7 @@ import Image from "next/image";
 import { useNewspress } from "@/app/components/admin/newspress/useNewspress";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
+import { getUrl } from "@/app/utils/getUrl";
 
 const PmDm = () => {
   const { data: pressData, isLoading } = useNewspress();
@@ -230,7 +231,7 @@ const PmDm = () => {
               }}
             >
               <Image
-                src={item.image}
+                src={getUrl(item.image)}
                 alt={item.title}
                 layout="fill"
                 objectFit="cover"
@@ -295,11 +296,11 @@ const PmDm = () => {
           </IconButton>
           {openImage && (
             <Image
-              src={openImage}
+              src={getUrl(openImage)}
               alt="Full view"
               width={isMobile ? 350 : 800}
               height={isMobile ? 250 : 600}
-              style={{ borderRadius: 8, objectFit: "contain", width:"100%" }}
+              style={{ borderRadius: 8, objectFit: "contain", width: "100%" }}
               priority
             />
           )}

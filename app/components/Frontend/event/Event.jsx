@@ -9,11 +9,14 @@ import BannerImage2 from "@/app/styledComponents/frontend/BannerImage2";
 import Spinner from "../../ui/Spinner";
 import { useBannerByPage } from "../../admin/banner/parts/useBanner";
 import { Box } from "@mui/material";
+import { getUrl } from "@/app/utils/getUrl";
 
 const Event = () => {
    const { data, isLoading: isLoadingBanner } =
      useBannerByPage("Latest happening");
    if (isLoadingBanner) return <Spinner />;
+
+
   return (
     <>
       <Navbar />
@@ -22,7 +25,7 @@ const Event = () => {
         minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.banner})`,
+          backgroundImage: `url(${getUrl(data?.banner)})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -34,7 +37,7 @@ const Event = () => {
         minHeight={{ xs: "451px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundImage: `url(${getUrl(data?.mobileBanner)})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPosition: "center center",

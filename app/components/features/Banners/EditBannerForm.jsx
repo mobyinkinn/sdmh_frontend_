@@ -78,6 +78,13 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
     };
     updateBanners({ pageName, formdata: formDataLink });
   };
+ const getImageUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("/uploads/")) {
+      return `${MediaUrl}${url.substring(url.lastIndexOf("/") + 1)}`;
+    }
+    return `${MediaUrl}${url}`;
+  };
 
   return (
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
@@ -100,7 +107,7 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
                 <img
                   src={
                     typeof editData.banner === "string"
-                      ? editData.banner
+                      ? getImageUrl(editData.banner) // Use the updated getImageUrl function
                       : URL.createObjectURL(editData.banner)
                   }
                   alt="Banner preview"
@@ -164,7 +171,7 @@ function EditBannerForm({ onCloseModal, pageName, id, editData, setEditData }) {
                 <img
                   src={
                     typeof editData.mobileBanner === "string"
-                      ? editData.mobileBanner
+                      ? getImageUrl(editData.mobileBanner) // Use the updated getImageUrl function
                       : URL.createObjectURL(editData.mobileBanner)
                   }
                   alt="Mobile banner preview"

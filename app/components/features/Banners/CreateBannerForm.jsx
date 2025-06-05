@@ -1,3 +1,4 @@
+
 // import { useState } from "react";
 // import { useForm } from "react-hook-form";
 // import Input from "../../ui/Input";
@@ -27,37 +28,29 @@
 //   z-index: 9999;
 // `;
 // function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
-//   const { register, handleSubmit, reset, getValues, formState } = useForm({
+//   const { register, handleSubmit, reset, formState } = useForm({
 //     defaultValues: {},
 //   });
 //   const { errors } = formState;
 
 //   const { isCreating, createBanners } = useCreateBanner();
 //   const { data, isLoading, error } = usePages();
-//   console.log("Data", data);
 //   const isWorking = isCreating;
 
-//   // State to store the selected image
-//   const [imagePreview, setImagePreview] = useState(null);
-//   const [mobileImagePreview, setMobileImagePreview] = useState(null);
+//   // State to store the selected image previews
+//   const [imagePreviews, setImagePreviews] = useState([]);
+//   const [mobileImagePreviews, setMobileImagePreviews] = useState([]);
 
-//   // Function to handle image file selection
+//   // Function to handle image file selection for banner
 //   const handleImageChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       setImagePreview(URL.createObjectURL(file));
-//     } else {
-//       setImagePreview(null);
-//     }
+//     const files = Array.from(e.target.files);
+//     setImagePreviews(files.map((file) => URL.createObjectURL(file)));
 //   };
 
+//   // Function to handle mobile banner image file selection
 //   const handleMobileImageChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       setMobileImagePreview(URL.createObjectURL(file));
-//     } else {
-//       setMobileImagePreview(null);
-//     }
+//     const files = Array.from(e.target.files);
+//     setMobileImagePreviews(files.map((file) => URL.createObjectURL(file)));
 //   };
 
 //   const StyledSelect = styled.select`
@@ -74,31 +67,45 @@
 //     box-shadow: var(--shadow-sm);
 //   `;
 
+//   // On form submit, handle multiple file uploads correctly
 //   function onSubmit(data) {
-//     const file = typeof data.file === "string" ? data.file : data.file[0];
-//     const mobileFile =
-//       typeof data.mobileFile === "string"
-//         ? data.mobileFile
-//         : data.mobileFile[0];
+//     // Ensure files are arrays (even if only one file is selected)
+//     const files = data.file; // Files from desktop banner input
+//     const mobileFiles = data.mobileFile; // Files from mobile banner input
 
 //     const formdata = new FormData();
 //     formdata.append("link", data.link);
-//     formdata.append("banner", file);
-//     formdata.append("mobileBanner", mobileFile);
 //     formdata.append("page", data.page);
 //     formdata.append("status", true);
-//     console.log("formdata", formdata);
-//     console.log("Submitted data:", data);
 
+//     // Append each file to the FormData (for desktop images)
+//     if (files) {
+//       Array.from(files).forEach((file) => {
+//         formdata.append("images", file);
+//       });
+//     }
+
+//     // Append each file to the FormData (for mobile images)
+//     if (mobileFiles) {
+//       Array.from(mobileFiles).forEach((file) => {
+//         formdata.append("mobileimages", file);
+//       });
+//     }
+
+//     console.log("FormData content", formdata); // You can log this to inspect the content before submitting (optional)
+
+//     // Send FormData to backend
 //     createBanners(formdata, {
-//       onSuccess: (data) => {
+//       onSuccess: () => {
 //         reset();
-//         setImagePreview(null); // Reset image preview
+//         setImagePreviews([]); // Reset image preview
+//         setMobileImagePreviews([]); // Reset mobile image preview
 //         onCloseModal?.();
 //       },
 //     });
 //   }
 
+//   // Handle errors
 //   function onError(errors) {
 //     console.log(errors);
 //   }
@@ -142,11 +149,13 @@
 //           />
 //         </FormRow>
 
-//         <FormRow label={"Banner"}>
+//         {/* Banner Images */}
+//         <FormRow label={"Banner Images"}>
 //           <FileInput
 //             id="file"
 //             accept="image/*"
 //             type="file"
+//             multiple
 //             {...register("file", {
 //               required: "This field is required",
 //             })}
@@ -155,57 +164,72 @@
 //               register("file").onChange(e);
 //             }}
 //           />
+
 //           <Stack>
-//             {imagePreview && (
+//             {imagePreviews.length > 0 && (
 //               <div style={{ marginTop: "0.5rem" }}>
 //                 <strong>Preview:</strong>
-//                 <img
-//                   src={imagePreview}
-//                   alt="Preview"
-//                   width={100}
-//                   style={{ borderRadius: "8px", marginTop: "0.5rem" }}
-//                 />
+//                 <div style={{ display: "flex", gap: "10px" }}>
+//                   {imagePreviews.map((image, index) => (
+//                     <img
+//                       key={index}
+//                       src={image}
+//                       alt={`Preview ${index + 1}`}
+//                       width={100}
+//                       style={{ borderRadius: "8px" }}
+//                     />
+//                   ))}
+//                 </div>
 //               </div>
 //             )}
 //           </Stack>
 //         </FormRow>
-
-//         <FormRow label={"Mobile Banner"}>
+//         <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+//           <p>Banner size for desktop will be: 2880 * 1200</p>
+//         </Stack>
+//         {/* Mobile Banner Images */}
+//         <FormRow label={"Mobile Banner Images"}>
 //           <FileInput
 //             id="mobileFile"
 //             accept="image/*"
 //             type="file"
-//             {...register("mobileFile", {
-//               // required: "This field is required",
-//             })}
+//             multiple
+//             {...register("mobileFile")}
 //             onChange={(e) => {
-//               handleMobileImageChange(e);
+//               handleMobileImageChange(e); // Update preview on file change
 //               register("mobileFile").onChange(e);
 //             }}
 //           />
 //           <Stack>
-//             {mobileImagePreview && (
+//             {mobileImagePreviews.length > 0 && (
 //               <div style={{ marginTop: "0.5rem" }}>
 //                 <strong>Preview:</strong>
-//                 <img
-//                   src={mobileImagePreview}
-//                   alt="Mobile Preview"
-//                   width={100}
-//                   style={{ borderRadius: "8px", marginTop: "0.5rem" }}
-//                 />
+//                 <div style={{ display: "flex", gap: "10px" }}>
+//                   {mobileImagePreviews.map((image, index) => (
+//                     <img
+//                       key={index}
+//                       src={image}
+//                       alt={`Mobile Preview ${index + 1}`}
+//                       width={100}
+//                       style={{ borderRadius: "8px" }}
+//                     />
+//                   ))}
+//                 </div>
 //               </div>
 //             )}
 //           </Stack>
 //         </FormRow>
-
+//         <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
+//           <p>Banner size for Mobile will be: 1000 * 1200</p>
+//         </Stack>
 //         <FormRow>
 //           <Button
 //             variation="secondary"
 //             type="reset"
 //             onClick={() => {
 //               reset();
-//               setImagePreview(null); // Clear preview on reset
-//               setMobileImagePreview(null);
+//               setImagePreviews([]); // Clear preview on reset
+//               setMobileImagePreviews([]);
 //               onCloseModal?.();
 //             }}
 //           >
@@ -248,6 +272,7 @@ const OverlaySpinner = styled.div`
   align-items: center;
   z-index: 9999;
 `;
+
 function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
   const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: {},
@@ -261,6 +286,7 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
   // State to store the selected image previews
   const [imagePreviews, setImagePreviews] = useState([]);
   const [mobileImagePreviews, setMobileImagePreviews] = useState([]);
+  const [sliderChecked, setSliderChecked] = useState(false);
 
   // Function to handle image file selection for banner
   const handleImageChange = (e) => {
@@ -299,18 +325,29 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
     formdata.append("page", data.page);
     formdata.append("status", true);
 
-    // Append each file to the FormData (for desktop images)
-    if (files) {
-      Array.from(files).forEach((file) => {
-        formdata.append("images", file);
-      });
-    }
+    // Append images if slider is checked
+    if (sliderChecked) {
+      // Append each file to the FormData (for desktop images)
+      if (files) {
+        Array.from(files).forEach((file) => {
+          formdata.append("images", file);
+        });
+      }
 
-    // Append each file to the FormData (for mobile images)
-    if (mobileFiles) {
-      Array.from(mobileFiles).forEach((file) => {
-        formdata.append("mobileimages", file);
-      });
+      // Append each file to the FormData (for mobile images)
+      if (mobileFiles) {
+        Array.from(mobileFiles).forEach((file) => {
+          formdata.append("mobileimages", file);
+        });
+      }
+    } else {
+      // For the banner and mobile banner, send only the first image
+      if (data.banner) {
+        formdata.append("banner", data.banner[0]); // single file for banner
+      }
+      if (data.mobileBanner) {
+        formdata.append("mobileBanner", data.mobileBanner[0]); // single file for mobile banner
+      }
     }
 
     console.log("FormData content", formdata); // You can log this to inspect the content before submitting (optional)
@@ -370,21 +407,49 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
           />
         </FormRow>
 
+        {/* Slider Checkbox */}
+        <FormRow>
+          <label htmlFor="slider" style={{ fontSize: "1rem", color: "#333" }}>
+            Is this a Slider Banner?
+          </label>
+          <input
+            type="checkbox"
+            id="slider"
+            name="slider"
+            checked={sliderChecked}
+            onChange={() => setSliderChecked(!sliderChecked)}
+          />
+        </FormRow>
+
         {/* Banner Images */}
         <FormRow label={"Banner Images"}>
-          <FileInput
-            id="file"
-            accept="image/*"
-            type="file"
-            multiple
-            {...register("file", {
-              required: "This field is required",
-            })}
-            onChange={(e) => {
-              handleImageChange(e); // Update preview on file change
-              register("file").onChange(e);
-            }}
-          />
+          {sliderChecked ? (
+            <FileInput
+              id="images"
+              accept="image/*"
+              type="file"
+              multiple
+              {...register("images", {
+                required: "This field is required",
+              })}
+              onChange={(e) => {
+                handleImageChange(e); // Update preview on file change
+                register("images").onChange(e);
+              }}
+            />
+          ) : (
+            <FileInput
+              id="banner"
+              accept="image/*"
+              type="file"
+              {...register("banner", {
+                required: "This field is required",
+              })}
+              onChange={(e) => {
+                register("banner").onChange(e);
+              }}
+            />
+          )}
 
           <Stack>
             {imagePreviews.length > 0 && (
@@ -405,22 +470,36 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
             )}
           </Stack>
         </FormRow>
+
         <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
           <p>Banner size for desktop will be: 2880 * 1200</p>
         </Stack>
+
         {/* Mobile Banner Images */}
         <FormRow label={"Mobile Banner Images"}>
-          <FileInput
-            id="mobileFile"
-            accept="image/*"
-            type="file"
-            multiple
-            {...register("mobileFile")}
-            onChange={(e) => {
-              handleMobileImageChange(e); // Update preview on file change
-              register("mobileFile").onChange(e);
-            }}
-          />
+          {sliderChecked ? (
+            <FileInput
+              id="mobileimages"
+              accept="image/*"
+              type="file"
+              multiple
+              {...register("mobileimages")}
+              onChange={(e) => {
+                handleMobileImageChange(e); // Update preview on file change
+                register("mobileimages").onChange(e);
+              }}
+            />
+          ) : (
+            <FileInput
+              id="mobileBanner"
+              accept="image/*"
+              type="file"
+              {...register("mobileBanner")}
+              onChange={(e) => {
+                register("mobileBanner").onChange(e);
+              }}
+            />
+          )}
           <Stack>
             {mobileImagePreviews.length > 0 && (
               <div style={{ marginTop: "0.5rem" }}>
@@ -440,9 +519,11 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
             )}
           </Stack>
         </FormRow>
+
         <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
           <p>Banner size for Mobile will be: 1000 * 1200</p>
         </Stack>
+
         <FormRow>
           <Button
             variation="secondary"
@@ -464,4 +545,3 @@ function CreateBannerForm({ cabinToEdit = {}, onCloseModal }) {
 }
 
 export default CreateBannerForm;
-

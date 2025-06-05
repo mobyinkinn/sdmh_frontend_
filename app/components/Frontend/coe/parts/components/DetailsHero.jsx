@@ -117,11 +117,14 @@ import baloon from "../assets/bigHotAirBaloon.png";
 import { ParaNormal } from "@/app/styledComponents/frontend/Para";
 import Spinner from "@/app/components/ui/Spinner";
 import { useEffect, useState } from "react";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
+import { getUrl } from "@/app/utils/getUrl";
 export default function DetailsHero({ data, isLoading }) {
   if (isLoading) {
     return <Spinner />;
   }
-
+  const bannerImage = getUrl(data.bannerImage);
+  const mobileBanner = getUrl(data.mobileBanner);
   return (
     <Stack>
       <Head1
@@ -135,7 +138,7 @@ export default function DetailsHero({ data, isLoading }) {
         display={{ md: "flex", sm: "none" }}
         minHeight={{ md: "276px", lg: "386px", xl: "557px", xxxl: "730px" }}
         sx={{
-          backgroundImage: `url(${data?.bannerImage})`,
+          backgroundImage: `url(${bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           width: "100%",
@@ -147,7 +150,7 @@ export default function DetailsHero({ data, isLoading }) {
         minHeight={{ xs: "334px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundImage: `url(${mobileBanner})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",

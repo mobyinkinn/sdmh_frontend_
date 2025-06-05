@@ -480,6 +480,171 @@
 //   );
 // }
 
+// import { Box, Stack, Typography } from "@mui/material";
+// import Image from "next/image";
+// import { Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
+// import {
+//   ParaNormal,
+//   ParaNormalSmall,
+// } from "@/app/styledComponents/frontend/Para";
+// import {
+//   ButtonSmallOutline,
+//   ButtonVerySmallOutline,
+// } from "@/app/styledComponents/frontend/Buttons";
+// import { useDoctorById } from "@/app/components/admin/doctors/parts/useDoctor";
+// import { useRouter } from "next/navigation";
+// import { AnotherUrl } from "@/app/components/services/AnotherUrl";
+
+// const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+// export default function Doctors({ data, departments }) {
+//   const router = useRouter();
+//  const getBannerUrl = (url) => {
+//     if (!url) return "";
+//     const fileName = url.substring(url.lastIndexOf("/") + 1);
+//     return AnotherUrl(fileName);
+
+    
+//   };
+//   const imagess = getBannerUrl(data.image);
+//   console.log("imagessss", data);
+//   return (
+//     <Stack
+//       direction={"row"}
+//       flexWrap={"wrap"}
+//       gap={{ md: "30px", xs: "10px" }}
+//       justifyContent={"center"}
+//       marginTop={{ md: "50px", xs: "15px" }}
+//     >
+//       {data?.map((el, i) => {
+//         return (
+//           <Stack
+//             key={i}
+//             width={{ lg: "30%", md: "46%", xs: "100%" }}
+//             sx={{ borderRadius: "15px", overflow: "hidden" }}
+//           >
+//             <Box
+//               height={{ xl: "227px", lg: "175px", md: "175px", xs: "165px" }}
+//               backgroundColor={"#8EA5C3"}
+//               width={"100%"}
+//               position={"relative"}
+//             >
+//               {/* <Image
+//                 src={el.image}
+//                 alt="Doctor Image"
+//                 fill
+//                 objectFit="contain"
+//                 objectPosition="center bottom"
+//               /> */}
+//               {imagess ? (
+//                 <Image
+//                   src={imagess}
+//                   alt={data.name}
+//                   fill
+//                   style={{ objectFit: "contain" }}
+//                 />
+//               ) : (
+//                 <div>Image Unavailable</div>
+//               )}
+//             </Box>
+//             <Stack
+//               height={{ md: "450px", lg: "505px", xl: "460px" }}
+//               padding={{ lg: "20px 35px", md: "15px 25px", xs: "10px 15px" }}
+//               gap={"10px"}
+//               sx={{
+//                 cursor: "pointer",
+//                 backgroundColor: "white",
+//                 borderRadius: "0 0 15px 15px",
+//                 justifyContent: "space-evenly",
+//               }}
+//             >
+//               <Head3
+//                 fontSize={{ sm: "", smm: "", md: "1.3rem", lg: "1.6rem" }}
+//                 textAlign={"left"}
+//                 color="#486c9c"
+//               >
+//                 {el.name}
+//               </Head3>
+//               <Head4 textAlign={"left"} fontWeight={"400"} height={"50px"}>
+//                 {el.designation}
+//               </Head4>
+//               <Stack>
+//                 <ParaNormal fontWeight={"bold"} color={"#486c9c"}>
+//                   Department
+//                 </ParaNormal>
+//                 <ParaNormalSmall>
+//                   {departments?.find((dept) => dept._id === el.department)
+//                     ?.name || "Not Available"}
+//                   {/* {el.department} */}
+//                 </ParaNormalSmall>
+//               </Stack>
+//               <Stack>
+//                 <ParaNormal fontWeight={"bold"} color={"#486c9c"}>
+//                   About
+//                 </ParaNormal>
+//                 <ParaNormalSmall
+//                   className="section-scroll-2"
+//                   height={"100px"}
+//                   overflow={"auto"}
+//                   dangerouslySetInnerHTML={{
+//                     __html: el.about,
+//                   }}
+//                 />
+//               </Stack>
+
+//               {/* Availability Section */}
+//               <Stack>
+//                 <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
+//                   {days.map((day, i) => (
+//                     <Stack>
+//                       <ButtonVerySmallOutline
+//                         key={i}
+//                         color={el.availablity?.[day] ? "white" : "#379237"}
+//                         bgColor={
+//                           el.availablity?.[day] ? "#379237" : "transparent"
+//                         }
+//                       >
+//                         {day}
+//                       </ButtonVerySmallOutline>
+//                       <Typography
+//                         fontSize={"8px"}
+//                         color={"black"}
+//                         textAlign={"center"}
+//                       >
+//                         {el.availablity?.[day] || "-"}
+//                       </Typography>
+//                     </Stack>
+//                   ))}
+//                 </Stack>
+//               </Stack>
+
+//               <Stack direction={"row"} gap={"10px"} flexWrap={"wrap"}>
+//                 <ButtonSmallOutline
+//                   padding={"8px 10px"}
+//                   color={"#379237"}
+//                   hoverColor={"#fff"}
+//                 >
+//                   Appointment
+//                 </ButtonSmallOutline>
+//                 <ButtonSmallOutline
+//                   color={"#486c9c"}
+//                   padding={"8px 10px"}
+//                   hoverColor={"#fff"}
+//                   onClick={() => router.push(`/find-a-doctor/${el._id}`)}
+//                 >
+//                   View Profile
+//                 </ButtonSmallOutline>
+//               </Stack>
+//             </Stack>
+//           </Stack>
+//         );
+//       })}
+//     </Stack>
+//   );
+// }
+
+
+
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { Head3, Head4 } from "@/app/styledComponents/frontend/Headings";
@@ -491,13 +656,21 @@ import {
   ButtonSmallOutline,
   ButtonVerySmallOutline,
 } from "@/app/styledComponents/frontend/Buttons";
-import { useDoctorById } from "@/app/components/admin/doctors/parts/useDoctor";
 import { useRouter } from "next/navigation";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export default function Doctors({ data, departments }) {
+export default function Doctors({ data = [], departments = [] }) {
   const router = useRouter();
+
+  // Helper to convert image URL (handle relative path or full URL)
+  const getBannerUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("http")) return url;
+    const fileName = url.substring(url.lastIndexOf("/") + 1);
+    return AnotherUrl(fileName);
+  };
 
   return (
     <Stack
@@ -507,27 +680,33 @@ export default function Doctors({ data, departments }) {
       justifyContent={"center"}
       marginTop={{ md: "50px", xs: "15px" }}
     >
-      {data?.map((el, i) => {
+      {data.map((el, i) => {
+        const imageUrl = getBannerUrl(el.image);
+
         return (
           <Stack
-            key={i}
+            key={el._id || i}
             width={{ lg: "30%", md: "46%", xs: "100%" }}
             sx={{ borderRadius: "15px", overflow: "hidden" }}
           >
             <Box
               height={{ xl: "227px", lg: "175px", md: "175px", xs: "165px" }}
-              backgroundColor={"#8EA5C3"}
+              bgcolor={"#8EA5C3"}
               width={"100%"}
               position={"relative"}
             >
-              <Image
-                src={el.image}
-                alt="Doctor Image"
-                fill
-                objectFit="contain"
-                objectPosition="center bottom"
-              />
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={el.name || "Doctor Image"}
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              ) : (
+                <div>Image Unavailable</div>
+              )}
             </Box>
+
             <Stack
               height={{ md: "450px", lg: "505px", xl: "460px" }}
               padding={{ lg: "20px 35px", md: "15px 25px", xs: "10px 15px" }}
@@ -554,9 +733,8 @@ export default function Doctors({ data, departments }) {
                   Department
                 </ParaNormal>
                 <ParaNormalSmall>
-                  {departments?.find((dept) => dept._id === el.department)
+                  {departments.find((dept) => dept._id === el.department)
                     ?.name || "Not Available"}
-                  {/* {el.department} */}
                 </ParaNormalSmall>
               </Stack>
               <Stack>
@@ -568,7 +746,7 @@ export default function Doctors({ data, departments }) {
                   height={"100px"}
                   overflow={"auto"}
                   dangerouslySetInnerHTML={{
-                    __html: el.about,
+                    __html: el.about || "",
                   }}
                 />
               </Stack>
@@ -577,9 +755,8 @@ export default function Doctors({ data, departments }) {
               <Stack>
                 <Stack direction={"row"} gap={"4px"} flexWrap={"wrap"}>
                   {days.map((day, i) => (
-                    <Stack>
+                    <Stack key={day}>
                       <ButtonVerySmallOutline
-                        key={i}
                         color={el.availablity?.[day] ? "white" : "#379237"}
                         bgColor={
                           el.availablity?.[day] ? "#379237" : "transparent"

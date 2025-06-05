@@ -19,6 +19,8 @@ import { ImagePreviewContainer } from "../../ui/ImagePreviewContainer";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import FileInput from "../../ui/FileInput";
 import { Stack } from "@mui/material";
+import { MediaUrl } from "../../services/MediaUrl";
+import toast from "react-hot-toast";
 
 function EditDepartmentForm({
   onCloseModal,
@@ -233,8 +235,13 @@ function EditDepartmentForm({
     });
   };
 
-  function onError(errors) {}
-
+const getImageUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("/uploads/")) {
+      return `${MediaUrl}${url.substring(url.lastIndexOf("/") + 1)}`;
+    }
+    return `${MediaUrl}${url}`;
+  };
   return (
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
       <FormRow label="Name">
@@ -257,7 +264,7 @@ function EditDepartmentForm({
               <img
                 src={
                   typeof editData.image === "string"
-                    ? editData.image
+                    ? getImageUrl(editData.image) // Use the updated getImageUrl function
                     : URL.createObjectURL(editData.image)
                 }
                 alt="Preview"
@@ -326,7 +333,7 @@ function EditDepartmentForm({
               <img
                 src={
                   typeof editData.bannerImage === "string"
-                    ? editData.bannerImage
+                    ? getImageUrl(editData.bannerImage) // Use the updated getImageUrl function
                     : URL.createObjectURL(editData.bannerImage)
                 }
                 alt="Preview"
@@ -386,7 +393,7 @@ function EditDepartmentForm({
         </ImagePreviewContainer>
       </FormRow>
       <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
-        <p>Image size  will be: 2880 * 1200</p>
+        <p>Image size will be: 2880 * 1200</p>
       </Stack>
       <FormRow label="Mobile Banner">
         <ImagePreviewContainer>
@@ -395,7 +402,7 @@ function EditDepartmentForm({
               <img
                 src={
                   typeof editData.mobileBanner === "string"
-                    ? editData.mobileBanner
+                    ? getImageUrl(editData.mobileBanner) // Use the updated getImageUrl function
                     : URL.createObjectURL(editData.mobileBanner)
                 }
                 alt="Preview"
@@ -453,7 +460,7 @@ function EditDepartmentForm({
             />
           )}
         </ImagePreviewContainer>
-    </FormRow>
+      </FormRow>
       <Stack color={"red"} fontSize={"0.8rem"} mb={"20px"}>
         <p>Image size will be: 1000 * 1200</p>
       </Stack>
@@ -464,7 +471,7 @@ function EditDepartmentForm({
               <img
                 src={
                   typeof editData.homeImage === "string"
-                    ? editData.homeImage
+                    ? getImageUrl(editData.homeImage) // Use the updated getImageUrl function
                     : URL.createObjectURL(editData.homeImage)
                 }
                 alt="Preview"

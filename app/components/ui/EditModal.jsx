@@ -9,6 +9,7 @@ import { ImagePreviewContainer } from "./ImagePreviewContainer";
 import Jodit from "../features/Openings/Jodit";
 import Spinner from "./Spinner";
 import SpinnerMini from "./SpinnerMini";
+import { MediaUrl } from "../services/MediaUrl";
 
 function ConfirmEdit({
   id,
@@ -65,6 +66,14 @@ function ConfirmEdit({
     onConfirm(); // Call the onConfirm function to handle the submission logic
   };
 
+  const getImageUrl = (url) => {
+      if (!url) return "";
+      if (url.startsWith("/uploads/")) {
+        return `${MediaUrl}${url.substring(url.lastIndexOf("/") + 1)}`;
+      }
+      return `${MediaUrl}${url}`;
+    };
+  
   return (
     <form onSubmit={handleSubmit}>
       <Heading as="h3">Edit {resourceName}</Heading>
@@ -109,9 +118,14 @@ function ConfirmEdit({
               {editData.image && (
                 <>
                   <img
+                    // src={
+                    //   typeof editData.image === "string"
+                    //     ? editData.image
+                    //     : URL.createObjectURL(editData.image)
+                    // }
                     src={
                       typeof editData.image === "string"
-                        ? editData.image
+                        ? getImageUrl(editData.image) // Use the updated getImageUrl function
                         : URL.createObjectURL(editData.image)
                     }
                     alt="Preview"

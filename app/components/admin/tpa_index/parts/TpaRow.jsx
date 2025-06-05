@@ -21,6 +21,7 @@ import { HiEyeOff } from "react-icons/hi";
 import CreateTpa from "./CreateTpa";
 import Button from "@/app/components/ui/Button";
 import EditTpaForm from "@/app/components/features/Tpa/EditTpaForm";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -42,6 +43,8 @@ const Stacked = styled.div`
 `;
 
 function TpaRow({ academic: { _id, name, logo, status, tag } }) {
+    const fileName = logo ? logo.substring(logo.lastIndexOf("/") + 1) : "";
+    console.log("fileName", fileName);
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   const { mutate: deleteTpa, isLoading: isDeleting } = useDeleteTpa();
@@ -83,7 +86,18 @@ function TpaRow({ academic: { _id, name, logo, status, tag } }) {
       </Stacked>
 
       <Stacked>
-        <Image src={logo} alt={name} width={50} height={50} />
+        {/* <Image src={logo} alt={name} width={50} height={50} /> */}
+          {logo ? (
+                  <Image
+                    src={`${MediaUrl}${fileName}`}
+                    alt={name}
+                    width={50}
+                    height={50}
+                    style={{ objectFit: "cover" }}
+                  />
+                ) : (
+                  <div>No Banner</div>
+                )}
       </Stacked>
  <Stacked>
         <span>{tag}</span>

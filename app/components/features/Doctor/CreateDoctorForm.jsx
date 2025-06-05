@@ -173,9 +173,8 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
             disabled={isWorking}
             type="text"
             id="room"
-            {...register("room", {
-              required: "This field is required",
-            })}
+            {...register("room"
+            )}
           />
         </FormRow>
 
@@ -184,9 +183,7 @@ function CreateDoctorForm({ cabinToEdit = {}, onCloseModal }) {
             disabled={isWorking}
             type="text"
             id="floor"
-            {...register("floor", {
-              required: "This field is required",
-            })}
+            {...register("floor")}
           />
         </FormRow>
         <FormRow label={"HOD"} error={errors?.isHod?.message}>

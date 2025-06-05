@@ -15,6 +15,7 @@ import { useAwards, useDeleteAward, useUpdateAward } from "../useAwards";
 import EditAwardForm from "@/app/components/features/Awards/EditAwardForm";
 import { FaRegImages } from "react-icons/fa";
 import AddImagesFormAward from "@/app/components/features/Awards/AddImagesFormAward";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -49,6 +50,16 @@ function AwardsRow({
     images,
   },
 }) {
+  const getImageUrl = (url) => {
+      if (!url) return "";
+      if (url.startsWith("http")) return url;
+      // Extract filename from relative path and prefix with MediaUrl base path
+      const fileName = url.substring(url.lastIndexOf("/") + 1);
+      return `${MediaUrl}${fileName}`;
+    };
+  
+    const imageUrl = getImageUrl(image);
+  
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: updateAward, isLoading: isUpdating } = useUpdateAward();
   const { mutate: deleteAward, isLoading: isDeleting } = useDeleteAward();
@@ -143,7 +154,18 @@ function AwardsRow({
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        {/* <Image src={image} alt={name} width={50} height={50} /> */}
+        {imageUrl ? (
+                  <Image
+                    src={imageUrl}
+                    alt={name}
+                    width={100}
+                    height={100}
+                    style={{ borderRadius: "8px" }}
+                  />
+                ) : (
+                  <span>No Image</span>
+                )}
       </Stacked>
 
       <Tag type={statusToTagName[convertedStatus]}>

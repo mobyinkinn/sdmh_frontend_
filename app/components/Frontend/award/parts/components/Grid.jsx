@@ -13,6 +13,7 @@ import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAwards } from "@/app/components/admin/awards/useAwards";
+import { getUrl } from "@/app/utils/getUrl";
 
 export default function Grid() {
   const { data, isLoading, error } = useAwards();
@@ -99,7 +100,7 @@ function AwardCard({ el }) {
           alignSelf: "center",
         }}
       >
-        <Image src={el.image} alt="" fill objectFit="cover" />
+        <Image src={getUrl(el.image)} alt="" fill objectFit="cover" />
       </Box>
       <Stack height={{ xs: "50%", md: "60%" }} gap={1} pt={3}>
         <Stack gap={1}>

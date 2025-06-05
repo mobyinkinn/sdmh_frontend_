@@ -8,6 +8,7 @@ import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/
 import { useBlogs } from "@/app/components/admin/blog/useBlogs";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
+import { getUrl } from "@/app/utils/getUrl";
 
 const Topics = () => {
   const router = useRouter();
@@ -73,7 +74,7 @@ const Topics = () => {
               position={"relative"}
             >
               <Image
-                src={blog.image}
+                src={getUrl(blog.image)}
                 style={{ borderRadius: "10px" }}
                 fill
                 objectFit="cover"

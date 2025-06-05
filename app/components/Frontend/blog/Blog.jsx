@@ -9,8 +9,7 @@ const Blog = () => {
   return (
     <>
       <Navbar />
-      <Hero
-      />
+      <Hero/>
       <Topics />
       <Footer />
       <MobileFooter/>

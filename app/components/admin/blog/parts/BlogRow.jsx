@@ -24,6 +24,7 @@ import { HiEyeOff } from "react-icons/hi";
 import ConfirmEdit from "@/app/components/ui/EditModal";
 import { FaRegImages } from "react-icons/fa";
 import AddImagesFormBlog from "@/app/components/features/Blog/AddImagesFormBlog";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -56,6 +57,15 @@ function BlogRow({
     images,
   },
 }) {
+    const getImageUrl = (url) => {
+      if (!url) return "";
+      if (url.startsWith("http")) return url;
+      // Extract filename from relative path and prefix with MediaUrl base path
+      const fileName = url.substring(url.lastIndexOf("/") + 1);
+      return `${MediaUrl}${fileName}`;
+    };
+  
+    const imageUrl = getImageUrl(image);
   const [fullDesc, showFullDesc] = useState(false);
   const [fullSDesc, showFullSDesc] = useState(false);
   const { mutate: deleteBlog, isLoading: isDeleting } = useDeleteBlog();
@@ -149,7 +159,7 @@ function BlogRow({
         </span>
       </Stacked>
 
-      <Stacked>
+      {/* <Stacked>
         {image ? (
           <Image
             src={image}
@@ -161,7 +171,20 @@ function BlogRow({
         ) : (
           <span>No Image</span>
         )}
-      </Stacked>
+      </Stacked> */}
+       <Stacked>
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  width={100}
+                  height={100}
+                  style={{ borderRadius: "8px" }}
+                />
+              ) : (
+                <span>No Image</span>
+              )}
+            </Stacked>
       <Stacked>{date}</Stacked>
 
       <Tag type={status ? "green" : "silver"}>

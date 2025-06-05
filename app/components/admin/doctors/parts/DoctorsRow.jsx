@@ -18,6 +18,7 @@ import EditDoctorForm from "@/app/components/features/Doctor/EditDoctorForm";
 import { useDepartment } from "../../departments/parts/useDepartment";
 import Spinner from "@/app/components/ui/Spinner";
 import { Stack } from "@mui/material";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -56,6 +57,8 @@ function DoctorsRow({
     isLoading: isDoctorsLoading,
     error,
   } = useDoctors();
+    const fileName = image ? image.substring(image.lastIndexOf("/") + 1) : "";
+    console.log("fileName", fileName);
   const { blockDoctor, isBlocking } = useBlockDoctor();
   const { unblockDoctor, isUnblocking } = useUnblockDoctor();
   const { deleteDoctor, isDeleting } = useDeleteDoctor();
@@ -103,9 +106,12 @@ function DoctorsRow({
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
-      </Stacked>
-
+            {image ? (
+              <Image src={`${MediaUrl}${fileName}`} alt={name} width={50} height={50} />
+            ) : (
+              <div>No Image</div>
+            )}
+          </Stacked>
       <Stacked>
         <span>{floor}</span>
       </Stacked>

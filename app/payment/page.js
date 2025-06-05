@@ -1,16 +1,6 @@
-// import Home from "@/app/components/Frontend/donation/parts";
-
-import ClientPaymentComponent from "./ClientPaymentComponent";
-
-// export default function Page(){
-//     return <Home />;
-// }
-
-
-
-
 // app/payment/page.jsx (or page.js)
 
+import ClientPaymentComponent from "./ClientPaymentComponent";
 
 
 async function getPaymentToken() {

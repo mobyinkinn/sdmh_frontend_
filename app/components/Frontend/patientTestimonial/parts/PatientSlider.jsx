@@ -6,6 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import quote from "../parts/assets/quotes.png";
+import { getUrl } from "@/app/utils/getUrl";
 const normalStyle = {
   height: "28px",
   cursor: "pointer",
@@ -114,7 +115,7 @@ const Designslider = ({
                               borderColor: "#007946",
                               width: "20%",
                               height: "115px",
-                              backgroundImage: `url(${item?.image})`,
+                              backgroundImage: `url(${getUrl(item?.image)})`,
                               backgroundSize: "cover",
                             }}
                           />
@@ -171,71 +172,71 @@ const Designslider = ({
                   gap={2}
                   justifyContent={"center"}
                 >
-                    <Stack
-                      padding={"40px 20px"}
-                      direction={"row"}
-                      key={item?.id}
-                      sx={{
-                        width: "100%", // Each card takes 22% to allow spacing
-                        padding: "10px",
-                        backgroundColor: "#D9EADF",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      <Stack alignItems={"Center"}>
+                  <Stack
+                    padding={"40px 20px"}
+                    direction={"row"}
+                    key={item?.id}
+                    sx={{
+                      width: "100%", // Each card takes 22% to allow spacing
+                      padding: "10px",
+                      backgroundColor: "#D9EADF",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Stack alignItems={"Center"}>
+                      <Box
+                        component="img"
+                        src={quote.src} // Use src here directly
+                        alt="quote"
+                        sx={{
+                          width: "25%",
+                          height: "140px",
+                          objectFit: "contain", // or "cover" depending on how you want it to fit
+                        }}
+                      />
+
+                      <Stack
+                        direction={"row"}
+                        gap={"20px"}
+                        alignItems={"center"}
+                      >
                         <Box
                           component="img"
-                          src={quote.src} // Use src here directly
-                          alt="quote"
                           sx={{
-                            width: "25%",
-                            height: "140px",
-                            objectFit: "contain", // or "cover" depending on how you want it to fit
+                            borderRadius: "100%",
+                            border: "4px solid",
+                            borderColor: "#007946",
+                            width: "20%",
+                            height: "115px",
+                            backgroundImage: `url(${getUrl(item?.image)})`,
+                            backgroundSize: "cover",
                           }}
                         />
-
-                        <Stack
-                          direction={"row"}
-                          gap={"20px"}
-                          alignItems={"center"}
-                        >
-                          <Box
-                            component="img"
-                            sx={{
-                              borderRadius: "100%",
-                              border: "4px solid",
-                              borderColor: "#007946",
-                              width: "20%",
-                              height: "115px",
-                              backgroundImage: `url(${item?.image})`,
-                              backgroundSize: "cover",
+                        <Divider
+                          sx={{
+                            borderColor: "#2F5D45",
+                            borderWidth: 1,
+                            height: "110px",
+                          }}
+                        />
+                        <Stack width={"75%"}>
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            dangerouslySetInnerHTML={{
+                              __html: item?.message,
                             }}
                           />
-                          <Divider
-                            sx={{
-                              borderColor: "#2F5D45",
-                              borderWidth: 1,
-                              height: "110px",
-                            }}
-                          />
-                          <Stack width={"75%"}>
-                            <Typography
-                              variant="body2"
-                              color="textSecondary"
-                              dangerouslySetInnerHTML={{
-                                __html: item?.message,
-                              }}
-                            />
-                            <Typography variant="h6" mt={1}>
-                              {item?.name}
-                            </Typography>
-                            <Typography fontSize={"10px"}>
-                              {item?.designation}
-                            </Typography>
-                          </Stack>
+                          <Typography variant="h6" mt={1}>
+                            {item?.name}
+                          </Typography>
+                          <Typography fontSize={"10px"}>
+                            {item?.designation}
+                          </Typography>
                         </Stack>
                       </Stack>
                     </Stack>
+                  </Stack>
                 </Stack>
               </Box>
             ))}

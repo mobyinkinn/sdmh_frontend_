@@ -3,7 +3,7 @@ import {
   blockDoctor as blockTheDoctor,
   unblockDoctor as unblockTheDoctor,
   deleteDoctor as deleteTheDoctor,
-  updateDoctor as updateTheDoctor,
+updateDoctor as updateDoctorAPI ,
   updateImage as updateTheImage,
   createDoctor as createTheDoctor,
   fetchDoctorById,
@@ -78,14 +78,14 @@ export const useUpdateDoctor = () => {
   const queryClient = useQueryClient();
 
   const { mutate: updateDoctor, isPending: isUpdating } = useMutation({
-    mutationFn: updateTheDoctor,
+    mutationFn: updateDoctorAPI, // ✅ use correct reference here
     onSuccess: () => {
       queryClient.invalidateQueries(["Doctors"]);
       toast.success("Doctor updated successfully!");
     },
     onError: (error) => {
-      console.error("Failed to updated the doctor: ", error);
-      toast.error("Failed to updated doctor. Please try again!!!");
+      console.error("Failed to update the doctor: ", error);
+      toast.error("Failed to update doctor. Please try again!");
     },
   });
 

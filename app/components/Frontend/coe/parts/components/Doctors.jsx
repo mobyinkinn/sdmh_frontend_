@@ -124,6 +124,7 @@ import { useDoctorById } from "@/app/components/admin/doctors/parts/useDoctor";
 import { useRouter } from "next/navigation";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
 import Modal from "@/app/components/ui/Modal";
+import { getUrl } from "@/app/utils/getUrl";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -131,7 +132,7 @@ export default function Doctors({ _id }) {
   const { data, isLoading, error } = useDoctorById(_id);
   const { data: departments, isLoading: isLoadingDepartments } =
     useDepartment();
-  console.log("data", data);
+  console.log("data", departments);
 const filteredData = data?.filter((el, i) => el.status === true);
   const router = useRouter();
   return (
@@ -175,7 +176,7 @@ const filteredData = data?.filter((el, i) => el.status === true);
                   position={"relative"}
                 >
                   <Image
-                    src={el.image}
+                    src={getUrl(el.image)}
                     alt="Doctor Image"
                     fill
                     objectFit="contain"

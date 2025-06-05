@@ -11,6 +11,8 @@ import { useDepartment } from "@/app/components/admin/departments/parts/useDepar
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 
 const coeData = [
   {
@@ -75,7 +77,11 @@ const coeData = [
     img: ballon,
   },
 ];
-
+ const getBannerUrl = (url) => {
+   if (!url) return "";
+   const fileName = url.substring(url.lastIndexOf("/") + 1);
+   return AnotherUrl(fileName);
+ };
 export default function Grid() {
   const [page, setPage] = useState(1);
   // const itemsPerPage = 6; // Adjust as needed
@@ -123,13 +129,15 @@ export default function Grid() {
       <Stack
         direction={"row"}
         flexWrap={"wrap"}
-        gap={{lg:"50px", sm:"20px"}}
+        gap={{ lg: "50px", sm: "20px" }}
         justifyContent={"center"}
         marginTop={"20px"}
       >
-        {filteredData.map((el) => (
-          <CoeCard key={el._id} el={el} />
-        ))}
+        {[...filteredData]
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((el) => (
+            <CoeCard key={el._id} el={el} />
+          ))}
       </Stack>
 
       {/* Pagination Controls */}
@@ -152,6 +160,11 @@ export default function Grid() {
 function CoeCard({ el }) {
   const router = useRouter();
 
+   
+ 
+
+  const image = getBannerUrl(el.image);
+console.log("image", image);
   return (
     <Stack
       width={{ lg: "29%", md: "46%", sm: "100%", sm: "100%" }}
@@ -165,13 +178,25 @@ function CoeCard({ el }) {
           position: "relative",
         }}
       >
-        {el.image ? (
-          <Image src={el.image} alt={el.name} fill objectFit="contain" />
+        {image ? (
+          <Image
+            src={image}
+            alt={el.name}
+            fill
+            style={{ objectFit: "contain" }}
+          />
         ) : (
           <div>Image Unavailable</div>
         )}
       </Box>
-      <ParaNormal textAlign={{ lg: "center", sm: "center" }} color={"#005900"} fontWeight={'bold'} height ={{lg:"60px"}} display={{lg:"flex"}} alignItems={{lg:"center"}}>
+      <ParaNormal
+        textAlign={{ lg: "center", sm: "center" }}
+        color={"#005900"}
+        fontWeight={"bold"}
+        height={{ lg: "60px" }}
+        display={{ lg: "flex" }}
+        alignItems={{ lg: "center" }}
+      >
         {el.name}
       </ParaNormal>
       <ButtonSmallOutline

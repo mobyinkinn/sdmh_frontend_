@@ -29,14 +29,14 @@ export const unblockDoctor = async (id) => {
 };
 
 export const updateDoctor = async ({ id, formdata }) => {
-  const response = await axios.post(
+  const response = await axios.patch(
     `${ApiUrl}/doctor/update?id=${id}`,
     formdata,
     { withCredentials: true }
   );
-
   return response.data;
 };
+
 
 export const deleteDoctor = async (id) => {
   const response = await axios.get(`${ApiUrl}/doctor/delete?id=${id}`, {

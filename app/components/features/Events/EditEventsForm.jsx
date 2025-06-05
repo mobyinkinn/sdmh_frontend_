@@ -13,6 +13,7 @@ import { useUpdateSingleImageFromEvent } from "../../admin/events/useEvents";
 import { ConstantAlphaFactor } from "three";
 import SpinnerMini from "../../ui/SpinnerMini";
 import styled from "styled-components";
+import { MediaUrl } from "../../services/MediaUrl";
 
 const EditEventsForm = ({
   id,
@@ -81,6 +82,13 @@ const EditEventsForm = ({
     onCloseModal?.();
     onConfirm();
   };
+  const getImageUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("/uploads/")) {
+      return `${MediaUrl}${url.substring(url.lastIndexOf("/") + 1)}`;
+    }
+    return `${MediaUrl}${url}`;
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -148,7 +156,7 @@ const EditEventsForm = ({
                   <img
                     src={
                       typeof editData.image === "string"
-                        ? editData.image
+                        ? getImageUrl(editData.image) // Use the updated getImageUrl function
                         : URL.createObjectURL(editData.image)
                     }
                     alt="Preview"

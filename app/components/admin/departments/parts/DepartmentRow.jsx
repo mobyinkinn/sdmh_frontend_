@@ -16,6 +16,7 @@ import {
 } from "./useDepartment";
 import EditDepartmentForm from "@/app/components/features/Department/EditDepartmentForm";
 import { useState } from "react";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -46,6 +47,20 @@ function DepartmentRow({
     homeImage,
   },
 }) {
+  const fileName = image ? image.substring(image.lastIndexOf("/") + 1) : "";
+  console.log("fileName", fileName);
+  const fileName2 = bannerImage
+    ? bannerImage.substring(bannerImage.lastIndexOf("/") + 1)
+    : "";
+  console.log("fileName", fileName2);
+  const fileName3 = mobileBanner
+    ? mobileBanner.substring(mobileBanner.lastIndexOf("/") + 1)
+    : "";
+  console.log("fileName", fileName3);
+  const fileName4 = homeImage
+    ? homeImage.substring(homeImage.lastIndexOf("/") + 1)
+    : "";
+  console.log("fileName", fileName4);
   const { mutate: blockDepartment, isLoading: isBlocking } =
     useBlockDepartment();
   const { unblockDepartment, isUnblocking } = useUnblockDepartment();
@@ -117,7 +132,7 @@ function DepartmentRow({
 
       <Stacked>
         {image ? (
-          <Image src={image} alt={name} width={50} height={50} />
+          <Image src={`${MediaUrl}${fileName}`} alt={name} width={50} height={50} />
         ) : (
           <div>No Image</div>
         )}
@@ -126,7 +141,7 @@ function DepartmentRow({
       <Stacked>
         {bannerImage ? (
           <Image
-            src={bannerImage}
+            src={`${MediaUrl}${fileName2}`}
             alt={name}
             width={50}
             height={50}

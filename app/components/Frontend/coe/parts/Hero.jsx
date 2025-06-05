@@ -41,7 +41,7 @@ const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const images = Array.isArray(data?.images) ? data?.images : [];
+  const images = Array.isArray(data?.banner) ? data?.banner : [];
   const mobileImages = Array.isArray(data?.mobileimages)
     ? data?.mobileimages
     : [];

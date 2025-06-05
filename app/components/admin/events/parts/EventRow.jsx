@@ -27,6 +27,7 @@ import EditEventsForm from "@/app/components/features/Events/EditEventsForm";
 import AddImagesForm from "@/app/components/features/Events/AddImagesForm";
 import toast from "react-hot-toast";
 import moment from "moment";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -58,6 +59,16 @@ function EventRow({
     tag,
   },
 }) {
+  const getImageUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("http")) return url;
+    // Extract filename from relative path and prefix with MediaUrl base path
+    const fileName = url.substring(url.lastIndexOf("/") + 1);
+    return `${MediaUrl}${fileName}`;
+  };
+
+  const imageUrl = getImageUrl(image);
+
   const [fullDesc, showFullDesc] = useState(false);
   const [fullSDesc, showFullSDesc] = useState(false);
   const { mutate: updateEvent, isLoading: isUpdating } = useUpdateEvent();
@@ -151,7 +162,7 @@ function EventRow({
         </span>
       </Stacked>
 
-      <Stacked>
+      {/* <Stacked>
         {image ? (
           <Image
             src={image}
@@ -163,8 +174,20 @@ function EventRow({
         ) : (
           <span>No Image</span>
         )}
+      </Stacked> */}
+      <Stacked>
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={title}
+            width={100}
+            height={100}
+            style={{ borderRadius: "8px" }}
+          />
+        ) : (
+          <span>No Image</span>
+        )}
       </Stacked>
-
       <Stacked>
         <span>{created}</span>
       </Stacked>

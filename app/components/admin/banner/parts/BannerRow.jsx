@@ -25,6 +25,8 @@ import {
 import { HiEyeOff } from "react-icons/hi";
 import EditBannerForm from "@/app/components/features/Banners/EditBannerForm";
 import { useState } from "react";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -48,6 +50,20 @@ const Stacked = styled.div`
 function BannerRow({
   academic: { _id, page, banner, images, status, link, mobileBanner, mobileimages },
 }) {
+const fileName3 =
+  Array.isArray(images) && images.length
+    ? images[0].substring(images[0].lastIndexOf("/") + 1)
+    : "";
+
+const fileName4 =
+  Array.isArray(mobileimages) && mobileimages.length
+    ? mobileimages[0].substring(mobileimages[0].lastIndexOf("/") + 1)
+    : "";
+
+const bannerUrl = fileName3 ? AnotherUrl(fileName3) : "";
+const mobileBannerUrl = fileName4 ? AnotherUrl(fileName4) : "";
+  console.log("bannerUrl", mobileBannerUrl);
+
   const { mutate: blockbanner, isLoading: isBlocking } = useBlockBanners();
   const { mutate: unblockbanner, isLoading: isUnblocking } =
     useUnblockBanners();
@@ -80,13 +96,12 @@ function BannerRow({
       <Stacked>
         <span>{_id}</span>
       </Stacked>
-
       <Stacked>
-        <Image src={banner || images[0]} alt={page} width={50} height={50} />
+        <Image src={banner || bannerUrl} alt={page} width={50} height={50} />
       </Stacked>
 
       <Stacked>
-        <Image src={mobileBanner|| mobileimages[0]} alt={page} width={50} height={50} />
+        <Image src={mobileBanner || mobileBannerUrl} alt={page} width={50} height={50} />
       </Stacked>
 
       <Stacked>

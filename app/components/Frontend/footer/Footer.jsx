@@ -42,27 +42,27 @@ const address = [
 const centerOfExcellence = [
   {
     id: 0,
-    data: "Medical Oncology",
+    data: "Medical Oncology -- Oncology Institute",
     link: "/centre-of-excellence/67c15ac9323e35a829c56a0c",
   },
   {
     id: 1,
-    data: "Surgical Gastroenterology",
+    data: "Surgical Gastroenterology-- Surgical Gastroenterology SIDDS",
     link: "/centre-of-excellence/67c15acd323e35a829c56a2a",
   },
   {
     id: 2,
-    data: "Neuro and spine",
+    data: "Neuro and spine-- Neuro and Spine Surgery",
     link: "/centre-of-excellence/67c15aca323e35a829c56a10",
   },
   {
     id: 3,
-    data: "Orthopaedic",
+    data: "Orthopaedic-- Orthopaedics & Joint Replacement",
     link: "/centre-of-excellence/67ef66f1748736a26205e4f3",
   },
   {
     id: 4,
-    data: "Paediatric and neonatology",
+    data: "Paediatrics and Neonatology",
     link: "/centre-of-excellence/67c15acb323e35a829c56a18",
   },
 ];
@@ -77,7 +77,7 @@ const supportACause = [
   { id: 2, data: "Outreach", link: "/support-a-cause/outreach" },
   {
     id: 3,
-    data: "Jaipur foot",
+    data: "Jaipur Foot",
     link: "/support-a-cause/jaipur-foot-polio-caliper",
   },
   {
@@ -109,7 +109,7 @@ const Patients = [
 const contactUs = [
   { id: 0, data: "Enquiry", link: "/contact-us" },
   { id: 1, data: "Emergency", link: "" },
-  { id: 2, data: "Patient testimonial", link: "/patient-testimonials" },
+  { id: 2, data: "Patient Testimonial", link: "/patient-testimonials" },
   { id: 3, data: "Appointment", link: "" },
 ];
 
@@ -127,17 +127,17 @@ const quickLinks = [
   { id: 0, data: "Academics", link: "/academics/academics-deanery" },
   { id: 1, data: "Blog", link: "/blog" },
   { id: 2, data: "Events", link: "/event" },
-  { id: 3, data: "Terms & conditions", link: "/terms-and-conditions" },
+  { id: 3, data: "Terms & Conditions", link: "/terms-and-conditions" },
   { id: 4, data: "Career", link: "/careers" },
-  { id: 5, data: "News & press release", link: "/news-press-release" },
-  { id: 6, data: "Send a greeting", link: "/send-a-greeting" },
+  { id: 5, data: "News & Press Release", link: "/news-press-release" },
+  { id: 6, data: "Send a Greeting", link: "/send-a-greeting" },
 ];
 
 const aboutUs = [
-  { id: 0, data: "Our founders", link: "/about#founder" },
-  { id: 1, data: "Vision & mission", link: "/about#vision" },
-  { id: 2, data: "Secretary's message", link: "/about#message" },
-  { id: 3, data: "Awards & accreditation", link: "/about#awards" },
+  { id: 0, data: "Our Founders", link: "/about#founder" },
+  { id: 1, data: "Vision & Mission", link: "/about#vision" },
+  { id: 2, data: "Secretary's Message", link: "/about#message" },
+  { id: 3, data: "Awards & Accreditation", link: "/about#awards" },
 ];
 
 export default function Footer() {
@@ -157,7 +157,7 @@ export default function Footer() {
           sx={{
             backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
-          padding="40px 35px"
+          padding="40px 20px"
           gap="20px"
         >
           <ContainerMain
@@ -183,7 +183,7 @@ export default function Footer() {
                 })}
               </Stack>
             </Stack>
-            <Stack gap={"50px"}>
+            <Stack gap={"50px"} width="30%">
               <Stack>
                 <ParaNormal margin={"0 0 10px 0"} fontWeight="bold">
                   Centre of Excellence

@@ -12,6 +12,7 @@ import { useNotices } from "@/app/components/admin/academic_notices/useNotices";
 import Spinner from "@/app/components/ui/Spinner";
 import { SearchInputHero } from "@/app/styledComponents/frontend/Inputs";
 import { useDepartment } from "@/app/components/admin/departments/parts/useDepartment";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 
 const Notices = () => {
   const { data, isLoading } = useNotices();
@@ -136,42 +137,52 @@ const Notices = () => {
         gap={3}
       >
         {(filteredNotices?.length > 0 ? filteredNotices : filteredData)?.map(
-          (d, i) => (
-            <Stack
-              key={i}
-              width={{ xs: "100%", md: "43%", lg: "30%" }}
-              bgcolor={"white"}
-              borderRadius={"20px"}
-              alignItems={"center"}
-              p={5}
-              gap={1}
-            >
-              <Box width={"30%"}>
-                <Image
-                  src={logo}
-                  alt="Sky Textiles"
-                  style={{ cursor: "pointer", width: "100%", height: "80px" }}
-                />
-              </Box>
-              <ParaNormal style={{ textAlign: "center" }}>{d.name}</ParaNormal>
-              <Stack direction={"row"} gap={2}>
-                <a
-                  href={d.file}
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <ButtonSmallOutlineWithoutHover
-                    style={{
-                      border: "1px solid lightgrey",
-                      fontSize: "16px",
-                    }}
+          (d, i) => {
+            // Extract filename from d.file
+            const fileName = d.file
+              ? d.file.substring(d.file.lastIndexOf("/") + 1)
+              : "";
+
+            return (
+              <Stack
+                key={i}
+                width={{ xs: "100%", md: "43%", lg: "30%" }}
+                bgcolor={"white"}
+                borderRadius={"20px"}
+                alignItems={"center"}
+                p={5}
+                gap={1}
+              >
+                <Box width={"30%"}>
+                  <Image
+                    src={logo}
+                    alt="Sky Textiles"
+                    style={{ cursor: "pointer", width: "100%", height: "80px" }}
+                  />
+                </Box>
+                <ParaNormal style={{ textAlign: "center" }}>
+                  {d.name}
+                </ParaNormal>
+                <Stack direction={"row"} gap={2}>
+                  <a
+                    href={`${MediaUrl}${fileName}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
                   >
-                    View
-                  </ButtonSmallOutlineWithoutHover>
-                </a>
+                    <ButtonSmallOutlineWithoutHover
+                      style={{
+                        border: "1px solid lightgrey",
+                        fontSize: "16px",
+                      }}
+                    >
+                      View
+                    </ButtonSmallOutlineWithoutHover>
+                  </a>
+                </Stack>
               </Stack>
-            </Stack>
-          )
+            );
+          }
         )}
       </Stack>
     </Stack>

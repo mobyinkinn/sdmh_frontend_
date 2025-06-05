@@ -7,11 +7,16 @@ import { Box, Stack } from "@mui/material";
 import NavUserVerticle from "./NavUserVerticle";
 import Spinner from "@/app/components/ui/Spinner";
 import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
+import { getUrl } from "@/app/utils/getUrl";
 
 export default function Hero({ sectionsRef }) {
   const { data, isLoading: isLoadingBanner } = useBannerByPage(
     "patient care and services"
   );
+
+   const bannerUrl = getUrl(data?.banner);
+   const mobileBannerUrl = getUrl(data?.mobileBanner);
+console.log("banner",bannerUrl, mobileBannerUrl)
   if (isLoadingBanner) return <Spinner />;
   return (
     <Stack direction={"row"}>
@@ -20,7 +25,7 @@ export default function Hero({ sectionsRef }) {
         minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.banner})`,
+          backgroundImage: `url(${bannerUrl})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -32,7 +37,7 @@ export default function Hero({ sectionsRef }) {
         minHeight={{ xs: "451px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundImage: `url(${mobileBannerUrl})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPosition: "center center",

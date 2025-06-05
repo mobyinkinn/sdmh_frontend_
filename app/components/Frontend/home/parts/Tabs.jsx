@@ -20,6 +20,7 @@ import canteen from "../assets/canteen.jpg";
 import conference_center from "../assets/conference_center.jpg";
 import semi_deluxe_room from "../assets/semi_deluxe_room.jpg";
 import pharmacy from "../assets/pharmacy.jpg";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 
 const tabs = [
   {
@@ -195,6 +196,13 @@ const tabs = [
      title: "Blood Donation Camp Through JSG GEM CITY",
    },
  ];
+
+ const getBannerUrl = (url) => {
+   if (!url) return "";
+   const fileName = url.substring(url.lastIndexOf("/") + 1); // Extract the file name from the URL
+   return AnotherUrl(fileName); // Use the AnotherUrl method to get the full URL
+ };
+
 export default function Tabs() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(0);
@@ -235,7 +243,7 @@ export default function Tabs() {
       data: [eventData],
     },
   ];
-            const isAward = tabsData[activeTab].name === "Awards";
+  const isAward = tabsData[activeTab].name === "Awards";
 
   var settings = {
     autoplay: false,
@@ -350,7 +358,11 @@ export default function Tabs() {
                     height={"200px"}
                     sx={{
                       backgroundImage: `url(${
-                        isTPA ? el.logo : isGallery ? el.image.src : el.image
+                        isTPA
+                          ? getBannerUrl(el.logo)
+                          : isGallery
+                          ? getBannerUrl(el.image.src)
+                          : getBannerUrl(el.image)
                       })`,
                       backgroundSize: "cover",
                       borderRadius: "10px 10px 0 0",
@@ -479,7 +491,11 @@ export default function Tabs() {
                 height={dynaHeight}
                 sx={{
                   backgroundImage: `url(${
-                    isTPA ? el.logo : isGallery ? el.image.src : el.image
+                    isTPA
+                      ? getBannerUrl(el.logo)
+                      : isGallery
+                      ? getBannerUrl(el.image.src)
+                      : getBannerUrl(el.image)
                   })`,
                   backgroundSize: "cover",
                   borderRadius: "10px 10px 0 0",

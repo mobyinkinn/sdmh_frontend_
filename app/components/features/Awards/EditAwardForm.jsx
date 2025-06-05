@@ -14,6 +14,7 @@ import {
 } from "../../admin/awards/useAwards";
 import SpinnerMini from "../../ui/SpinnerMini";
 import Jodit from "../Openings/Jodit";
+import { MediaUrl } from "../../services/MediaUrl";
 
 const EditAwardForm = ({
   id,
@@ -98,6 +99,13 @@ const EditAwardForm = ({
       setEditData({ ...editData, [fieldName]: file });
     }
   };
+ const getImageUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("/uploads/")) {
+      return `${MediaUrl}${url.substring(url.lastIndexOf("/") + 1)}`;
+    }
+    return `${MediaUrl}${url}`;
+  };
 
   return (
     <Form onSubmit={handleSubmit} type={onCloseModal ? "modal" : "regular"}>
@@ -151,7 +159,7 @@ const EditAwardForm = ({
                   <img
                     src={
                       typeof editData.image === "string"
-                        ? editData.image
+                        ? getImageUrl(editData.image) // Use the updated getImageUrl function
                         : URL.createObjectURL(editData.image)
                     }
                     alt="Preview"
@@ -184,9 +192,10 @@ const EditAwardForm = ({
                 {editData.bannerImage && (
                   <>
                     <img
+                     
                       src={
-                        typeof editData.bannerImage === "string"
-                          ? editData.bannerImage
+                        typeof editData.image === "string"
+                          ? getImageUrl(editData.bannerImage) // Use the updated getImageUrl function
                           : URL.createObjectURL(editData.bannerImage)
                       }
                       alt="Preview"

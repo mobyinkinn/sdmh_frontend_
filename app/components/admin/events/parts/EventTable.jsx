@@ -48,7 +48,7 @@ function EventTable() {
   let filteredEvent = data;
 
   if (filter !== "All") {
-    filteredEvent = data.filter((el) => {
+    filteredEvent = data?.filter((el) => {
       if (filter.toLowerCase() === "active") {
         return el.status === true;
       } else if (filter.toLowerCase() === "inactive") {
@@ -59,7 +59,7 @@ function EventTable() {
   }
 
   const startIndex = (page - 1) * itemsPerPage;
-  const paginatedEvents = filteredEvent.slice(
+  const paginatedEvents = filteredEvent?.slice(
     startIndex,
     startIndex + itemsPerPage
   );

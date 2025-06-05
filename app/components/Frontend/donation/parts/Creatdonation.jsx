@@ -1,135 +1,8 @@
+
+
+
+
 "use client";
-import { useState } from "react";
-
-export default function DonationForm() {
-  const [formData, setFormData] = useState({
-    donationType: "Avedna Ashram",
-    amount: "",
-    fname: "",
-    lname: "",
-    mobile: "",
-    email: "",
-    state: "",
-    city: "",
-    address: "",
-    zip: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleRadioChange = (e) => {
-    setFormData((prev) => ({ ...prev, donationType: e.target.value }));
-  };
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  // Redirect browser to your backend directly with POST form
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = "http://localhost:8000/api/v1/donation/initiate";
-
-  for (const key in formData) {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = key;
-    input.value = formData[key];
-    form.appendChild(input);
-  }
-
-  document.body.appendChild(form);
-  form.submit();
-};
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <h3>Select Donation</h3>
-      {[
-        "Avedna Ashram",
-        "Help Little Hearts",
-        "Jaipur Foot & Polio Caliper",
-        "Outreach",
-        "SDMH Free Clinic",
-        "Thalassemia Centre",
-      ].map((type) => (
-        <label key={type}>
-          <input
-            type="radio"
-            name="donationType"
-            value={type}
-            checked={formData.donationType === type}
-            onChange={handleRadioChange}
-          />
-          {type}
-        </label>
-      ))}
-
-      <input
-        name="amount"
-        placeholder="Amount"
-        type="number"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="fname"
-        placeholder="First Name"
-        type="text"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="lname"
-        placeholder="Last Name"
-        type="text"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="mobile"
-        placeholder="Mobile No"
-        type="tel"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="email"
-        placeholder="Email"
-        type="email"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="state"
-        placeholder="State"
-        type="text"
-        onChange={handleChange}
-      />
-      <input
-        name="city"
-        placeholder="City"
-        type="text"
-        onChange={handleChange}
-      />
-      <input
-        name="address"
-        placeholder="Address"
-        type="text"
-        onChange={handleChange}
-      />
-      <input name="zip" placeholder="Zip" type="text" onChange={handleChange} />
-
-      <button type="submit">Donate Now</button>
-    </form>
-  );
-}
-
-
-
-
-// "use client";
 // import {
 //   Box,
 //   Button,
@@ -141,9 +14,11 @@ const handleSubmit = (e) => {
 //   RadioGroup,
 //   FormLabel,
 // } from "@mui/material";
-// import { useState } from "react";
+// import { useEffect, useState } from "react";
 
-// const DonationForm = () => {
+import { useEffect } from "react";
+
+// const DonationForm = ({ token, txnId, merchId }) => {
 //   const [formData, setFormData] = useState({
 //     donationType: "Avedna Ashram",
 //     amount: "",
@@ -156,6 +31,42 @@ const handleSubmit = (e) => {
 //     address: "",
 //     zip: "",
 //   });
+//  useEffect(() => {
+//    // Load AtomPaynetz script
+//    const cdnScript = document.createElement("script");
+//    cdnScript.setAttribute(
+//      "src",
+//      `https://pgtest.atomtech.in/staticdata/ots/js/atomcheckout.js?v=${Date.now()}`
+//    );
+
+//    cdnScript.onload = () => {
+//      console.log("AtomPaynetz script loaded successfully.");
+
+//      // Event listener for AtomPaynetz responses
+//      const handleMessage = ({ data }) => {
+//        if (data === "cancelTransaction") {
+//          console.log("Payment has been cancelled by the user!");
+//        }
+//        if (data === "sessionTimeout") {
+//          console.log("Session Timeout");
+//        }
+//        if (data.ndpsResponse) {
+//          console.log("ndpsResponse response found");
+//          console.log(data.ndpsResponse.merchId);
+//          console.log(data.ndpsResponse.encData);
+//        }
+//      };
+
+//      window.addEventListener("message", handleMessage);
+
+//      // Clean up event listener on unmount
+//      return () => {
+//        window.removeEventListener("message", handleMessage);
+//      };
+//    };
+
+//    document.head.appendChild(cdnScript);
+//  }, []);
 
 //   const handleChange = (e) => {
 //     setFormData((prev) => ({
@@ -164,23 +75,15 @@ const handleSubmit = (e) => {
 //     }));
 //   };
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const form = document.createElement("form");
-//     form.method = "POST";
-//     form.action = "http://localhost:8000/api/v1/donation/initiate";
-
-//     for (const key in formData) {
-//       const input = document.createElement("input");
-//       input.type = "hidden";
-//       input.name = key;
-//       input.value = formData[key];
-//       form.appendChild(input);
-//     }
-
-//     document.body.appendChild(form);
-//     form.submit();
+//   const openPay = () => {
+//     const options = {
+//       atomTokenId: token,
+//       merchId: merchId,
+//       custEmail: "jatin@mobyink.com",
+//       custMobile: "9829231118",
+//       returnUrl: "http://localhost:3000", // replace with your return URL
+//     };
+//     let atom = new AtomPaynetz(options, "uat");
 //   };
 
 //   return (
@@ -197,8 +100,7 @@ const handleSubmit = (e) => {
 //       <Typography variant="h5" mb={2}>
 //         Make a Donation
 //       </Typography>
-
-//       <form onSubmit={handleSubmit}>
+//       <form onSubmit={openPay}>
 //         <FormLabel component="legend" sx={{ mb: 1 }}>
 //           Select Donation Type
 //         </FormLabel>
@@ -328,4 +230,110 @@ const handleSubmit = (e) => {
 //   );
 // };
 
+
+
+// export async function getServerSideProps() {
+//   // Fetch token from API
+//   const response = await fetch("http://localhost:3000/api/auth");
+//   const data = await response.json();
+//   console.log(data);
+
+//   const token = data.token;
+//   const txnId = data.txnId;
+//   const merchId = data.merchId;
+
+//   return {
+//     props: {
+//       token,
+//       txnId,
+//       merchId,
+//     },
+//   };
+// }
 // export default DonationForm;
+
+
+
+
+const DonationForm = ({ token, txnId, merchId }) => {
+  useEffect(() => {
+    // Load AtomPaynetz script
+    const cdnScript = document.createElement("script");
+    cdnScript.setAttribute(
+      "src",
+      `https://pgtest.atomtech.in/staticdata/ots/js/atomcheckout.js?v=${Date.now()}`
+    );
+
+    cdnScript.onload = () => {
+      console.log("AtomPaynetz script loaded successfully.");
+
+      // Event listener for AtomPaynetz responses
+      const handleMessage = ({ data }) => {
+        if (data === "cancelTransaction") {
+          console.log("Payment has been cancelled by the user!");
+        }
+        if (data === "sessionTimeout") {
+          console.log("Session Timeout");
+        }
+        if (data.ndpsResponse) {
+          console.log("ndpsResponse response found");
+          console.log(data.ndpsResponse.merchId);
+          console.log(data.ndpsResponse.encData);
+        }
+      };
+
+      window.addEventListener("message", handleMessage);
+
+      // Clean up event listener on unmount
+      return () => {
+        window.removeEventListener("message", handleMessage);
+      };
+    };
+
+    document.head.appendChild(cdnScript);
+  }, []);
+
+  const openPay = () => {
+    const options = {
+      atomTokenId: token,
+      merchId: merchId,
+      custEmail: "jatin@mobyink.com",
+      custMobile: "9829231118",
+      returnUrl: "http://localhost:3000/", // replace with your return URL
+    };
+    let atom = new AtomPaynetz(options, "uat");
+  };
+
+  return (
+    <div className="container my-5">
+      <h3>Merchant Shop</h3>
+      <p>Transaction Id: {txnId}</p>
+      <p>Atom Token Id: {token}</p>
+      <p>Pay Rs. 100</p>
+      <button className="btn btn-primary" onClick={openPay}>
+        Pay Now
+      </button>
+    </div>
+  );
+};
+
+export async function getServerSideProps() {
+  // Fetch token from API
+  const response = await fetch("https://sdmh.in/api/auth");
+  const data = await response.json();
+  console.log(data);
+
+  const token = data.token;
+  const txnId = data.txnId;
+  const merchId = data.merchId;
+
+  return {
+    props: {
+      token,
+      txnId,
+      merchId,
+    },
+  };
+}
+
+export default DonationForm;

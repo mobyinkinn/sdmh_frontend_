@@ -12,6 +12,7 @@ import {
 import { useBlogs } from "@/app/components/admin/blog/useBlogs";
 import Spinner from "@/app/components/ui/Spinner";
 import { useRouter } from "next/navigation";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 
 const blogData = [
   {
@@ -39,7 +40,11 @@ const blogData = [
     img: holi,
   },
 ];
-
+ const getBannerUrl = (url) => {
+   if (!url) return "";
+   const fileName = url.substring(url.lastIndexOf("/") + 1); // Extract the file name from the URL
+   return AnotherUrl(fileName); // Use the AnotherUrl method to get the full URL
+ };
 export default function Blog() {
   const { data, isLoading: loadingAllBlogs } = useBlogs();
   const another = data?.slice(0,3)
@@ -78,7 +83,7 @@ console.log("filteredRemainingBlog", filteredRemainingBlog);
         >
           <Box width={"100%"} height={"400px"} position={"relative"}>
             <Image
-              src={filterFirstBlog[0].image}
+              src={getBannerUrl(filterFirstBlog[0]?.image)}
               alt=""
               fill
               objectFit="cover"
@@ -145,7 +150,12 @@ console.log("filteredRemainingBlog", filteredRemainingBlog);
         display={{ md: "flex", xs: "none" }}
         onClick={() => router.push("/blog")}
       >
-        <ButtonMediumOutline color="#fff" hcolor="white" hoverColor="black" border ="1px solid #fff">
+        <ButtonMediumOutline
+          color="#fff"
+          hcolor="white"
+          hoverColor="black"
+          border="1px solid #fff"
+        >
           View All
         </ButtonMediumOutline>
       </Stack>
@@ -168,7 +178,7 @@ function BlogCard({ el }) {
         height={{ xs: "none", md: "217px", lg: "213px", xl: "206px" }}
         position={"relative"}
       >
-        <Image src={el.image} alt="" fill objectFit="cover" />
+        <Image src={getBannerUrl(el.image)} alt="" fill objectFit="cover" />
       </Box>
       <Stack
         backgroundColor={"white"}
@@ -218,7 +228,7 @@ function BlogCardSmall({ el }) {
         height={{ md: "250px", xs: "200px" }}
         position={"relative"}
       >
-        <Image src={el.img} alt="" fill objectFit="cover" />
+        <Image src={getBannerUrl(el.img)} alt="" fill objectFit="cover" />
       </Box>
       <Stack backgroundColor={"white"} padding={"20px"} gap={"15px"}>
         <Head4 align="left">{el.title}</Head4>

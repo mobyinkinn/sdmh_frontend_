@@ -136,6 +136,7 @@ import { useBannerByPage } from "@/app/components/admin/banner/parts/useBanner";
 import styled from "styled-components";
 import { TfiArrowCircleRight } from "react-icons/tfi";
 import { HiOutlinePlusSmall } from "react-icons/hi2";
+import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 
 const sideNavData = [
   { id: 1, name: "Overview", idName: "overview" },
@@ -175,6 +176,17 @@ export default function Hero() {
       block: "start", // Aligns to the top of the section
     });
   };
+    const getBannerUrl = (url) => {
+      if (!url) return "";
+
+      // Else, assume it's a filename like uploads/xyz.jpg
+      const fileName = url.substring(url.lastIndexOf("/") + 1);
+      return AnotherUrl(fileName);
+    };
+
+    const bannerUrl = getBannerUrl(data?.banner);
+    const mobileBannerUrl = getBannerUrl(data?.mobileBanner);
+console.log("banner", bannerUrl, mobileBannerUrl);
 
   return (
     <ContainerMain
@@ -188,7 +200,7 @@ export default function Hero() {
         minHeight={{ md: "322px", lg: "434px", xl: "600px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.banner})`,
+          backgroundImage: `url(${bannerUrl})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -200,7 +212,7 @@ export default function Hero() {
         minHeight={{ xs: "451px" }}
         width={"100%"}
         sx={{
-          backgroundImage: `url(${data?.mobileBanner})`,
+          backgroundImage: `url(${mobileBannerUrl})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPosition: "center center",
@@ -208,7 +220,7 @@ export default function Hero() {
       ></Box>
       <Stack
         width={{ lg: "21%", sm: "none" }}
-        justifyContent={{lg:"flex-start", sm:"center"}}
+        justifyContent={{ lg: "flex-start", sm: "center" }}
         direction={{ lg: "column", md: "row", sm: "row", xs: "row" }}
         flexWrap="wrap"
       >
@@ -225,9 +237,13 @@ export default function Hero() {
         </Stack>
         {sideNavData.map((el, i) => {
           return (
-            <Stack key={i} width={{ lg: "100%", sm: "none" }} alignItems={{sm:"center", md:"start"}} >
+            <Stack
+              key={i}
+              width={{ lg: "100%", sm: "none" }}
+              alignItems={{ sm: "center", md: "start" }}
+            >
               <Typography
-              width={"100%"}
+                width={"100%"}
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={{ lg: "space-between", sm: "none" }}

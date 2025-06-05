@@ -14,6 +14,7 @@ import {
 } from "./useTestimonial";
 import { HiEyeOff } from "react-icons/hi";
 import moment from "moment";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -34,6 +35,16 @@ const Stacked = styled.div`
 function TestimonialRow({
   academic: { _id, name, designation, message, image, status, createdAt },
 }) {
+  const getImageUrl = (url) => {
+      if (!url) return "";
+      if (url.startsWith("http")) return url;
+      // Extract filename from relative path and prefix with MediaUrl base path
+      const fileName = url.substring(url.lastIndexOf("/") + 1);
+      return `${MediaUrl}${fileName}`;
+    };
+  
+    const imageUrl = getImageUrl(image);
+  
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: deleteTestimonial, isLoading: isDeleting } =
     useDeleteTestimonial();
@@ -85,7 +96,18 @@ function TestimonialRow({
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        {/* <Image src={image} alt={name} width={50} height={50} /> */}
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={name}
+            width={100}
+            height={100}
+            style={{ borderRadius: "8px" }}
+          />
+        ) : (
+          <span>No Image</span>
+        )}
       </Stacked>
 
       <Tag type={status ? "green" : "silver"}>

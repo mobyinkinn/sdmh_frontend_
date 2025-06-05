@@ -14,6 +14,7 @@ import {
 } from "@/app/styledComponents/frontend/Buttons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { getUrl } from "@/app/utils/getUrl";
 
 export default function EventCard({ career }) {
   const [hovered, setHovered] = useState(false);
@@ -47,12 +48,14 @@ export default function EventCard({ career }) {
         width={{ md: "30%", xs: "100%" }}
         height={{ md: "25vh", xs: "35vh" }}
         sx={{
-          backgroundImage: `url(${hovered ? career.image : career.image})`,
+          backgroundImage: `url(${
+            hovered ? getUrl(career.image) : getUrl(career.image)
+          })`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
           "& :hover": {
-            backgroundImage: `url(${career.image})`,
+            backgroundImage: `url(${getUrl(career.image)})`,
           },
         }}
       ></Stack>

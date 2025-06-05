@@ -27,6 +27,7 @@ import { ButtonSmallOutlineWithoutHover } from "@/app/styledComponents/frontend/
 import EditNoticeForm from "@/app/components/features/academicNotices/EditNoticeForm";
 import { useDepartment } from "../../departments/parts/useDepartment";
 import Spinner from "@/app/components/ui/Spinner";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -50,6 +51,8 @@ const Stacked = styled.div`
 function AcademicRow({
   academic: { _id, name, file, status, year, department },
 }) {
+  const fileName = file ? file.substring(file.lastIndexOf("/") + 1) : "";
+  console.log("fileName", fileName);
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -94,9 +97,10 @@ function AcademicRow({
       </Stacked>
       <Stacked>
         <span>
+
           <a
-            href={file}
-            // target="blank"
+            href={`${MediaUrl}${fileName}`}
+            target="_blank"
             download
             style={{ textDecoration: "none", color: "inherit" }}
           >

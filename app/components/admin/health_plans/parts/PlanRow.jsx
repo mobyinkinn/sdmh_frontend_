@@ -26,6 +26,7 @@ import ConfirmEdit from "@/app/components/ui/EditCheckupModal";
 import toast from "react-hot-toast";
 import { FaRegImages } from "react-icons/fa";
 import AddImagesFormCheckup from "@/app/components/features/Checkup/AddImagesFormCheckup";
+import { MediaUrl } from "@/app/components/services/MediaUrl";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -61,6 +62,14 @@ function PlanRow({
     images,
   },
 }) {
+  const getImageUrl = (url) => {
+      if (!url) return "";
+      const fileName = url.substring(url.lastIndexOf("/") + 1);
+      return `${MediaUrl}${fileName}`;
+    };
+  
+    const imageUrl = getImageUrl(image);
+  
   const [fullDesc, setShowFullDesc] = useState(false);
   const { mutate: deleteCheckup, isLoading: isDeleting } = useDeleteCheckup();
   const { mutate: blockCheckup, isLoading: isBlocking } = useBlockCheckup();
@@ -168,17 +177,17 @@ function PlanRow({
       </Stacked>
 
       <Stacked>
-        {image ? (
-          <Image
-            src={image}
-            alt={title}
-            width={100}
-            height={100}
-            style={{ borderRadius: "8px" }}
-          />
-        ) : (
-          <span>No Image</span>
-        )}
+        {imageUrl ? (
+                 <Image
+                   src={imageUrl}
+                   alt={title}
+                   width={100}
+                   height={100}
+                   style={{ borderRadius: "8px" }}
+                 />
+               ) : (
+                 <span>No Image</span>
+               )}
       </Stacked>
 
       <Tag type={statusToTagName[convertedStatus]}>
