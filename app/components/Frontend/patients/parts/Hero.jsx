@@ -13,11 +13,19 @@ export default function Hero({ sectionsRef }) {
   const { data, isLoading: isLoadingBanner } = useBannerByPage(
     "patient care and services"
   );
+  if (isLoadingBanner) return <Spinner />;
 
    const bannerUrl = getUrl(data?.banner);
    const mobileBannerUrl = getUrl(data?.mobileBanner);
-console.log("banner",bannerUrl, mobileBannerUrl)
-  if (isLoadingBanner) return <Spinner />;
+
+
+     const images = Array.isArray(data?.images)
+       ? data.images.map(getUrl)
+       : [];
+     const mobileImages = Array.isArray(data?.mobileimages)
+       ? data.mobileimages.map(getUrl)
+       : [];
+
   return (
     <Stack direction={"row"}>
       <Box
