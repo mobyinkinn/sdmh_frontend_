@@ -42,22 +42,22 @@ const address = [
 const centerOfExcellence = [
   {
     id: 0,
-    data: "Medical Oncology -- Oncology Institute",
+    data: "Oncology Institute",
     link: "/centre-of-excellence/67c15ac9323e35a829c56a0c",
   },
   {
     id: 1,
-    data: "Surgical Gastroenterology-- Surgical Gastroenterology SIDDS",
+    data: "Surgical Gastroenterology SIDDS",
     link: "/centre-of-excellence/67c15acd323e35a829c56a2a",
   },
   {
     id: 2,
-    data: "Neuro and spine-- Neuro and Spine Surgery",
+    data: "Neuro and Spine Surgery",
     link: "/centre-of-excellence/67c15aca323e35a829c56a10",
   },
   {
     id: 3,
-    data: "Orthopaedic-- Orthopaedics & Joint Replacement",
+    data: "Orthopaedics & Joint Replacement",
     link: "/centre-of-excellence/67ef66f1748736a26205e4f3",
   },
   {
