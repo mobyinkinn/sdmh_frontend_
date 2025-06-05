@@ -1,4 +1,4 @@
-import { decrypt } from "../../utils";
+import { decrypt } from "@/app/utils/encrypt";
 
 export default async function handler(req, res) {
   console.log("Received POST request on '/api/response' route.");

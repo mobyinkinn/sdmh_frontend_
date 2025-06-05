@@ -386,7 +386,7 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
           </Box> */}
           <DarkGreenButtonSmallOutline padding="5px 5px">
             <span style={{ color: "red" }}>Book Appointment</span>
-            <FaPhone style={{ width: "15px", height: "25px" }} /> 70731-11811
+            <FaPhone style={{ width: "15px", height: "25px" }} /> 70731-11911
           </DarkGreenButtonSmallOutline>
           <Box position="relative">
             <Stack direction="row">
@@ -750,9 +750,11 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
       >
         {/* LEFT SECTION */}
         <Box textAlign="center" maxWidth="33%">
-          <Typography color="error" fontWeight="600" fontSize="0.6rem">
-            Book Appointment <br /> For Teleconsultation <br />
-            Or Call On- 70731-11811
+          <Typography color="error" fontWeight="500" fontSize="0.7rem">
+            Book Appointment <br />
+          </Typography>
+          <Typography color="error" fontWeight="700" fontSize="0.8rem">
+            70731-11911
           </Typography>
         </Box>
 
