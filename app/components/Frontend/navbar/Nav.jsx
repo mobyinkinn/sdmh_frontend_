@@ -250,24 +250,19 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
               <Stack
                 position="absolute"
                 top="100%"
+                overflow={"scroll"}
                 left={0}
                 bgcolor="white"
-                padding={3}
-                maxHeight="32rem"
-                overflowY="auto"
+                padding={2}
+                maxHeight="400px"
                 boxShadow={1}
                 zIndex={1000}
                 borderRadius="5px"
-                flexWrap={"wrap"}
-                columnGap={2}
                 sx={{
-                  opacity: 1,
-                  transform: "translateY(0)",
-                  transition: "opacity 0.3s ease, transform 0.3s ease",
-                  pointerEvents: "auto",
-                  width: "max-content",
-                  minWidth: "100%",
-                  maxWidth: "max-content",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  minWidth: "300px",
                 }}
               >
                 {filteredDoctors.map((doc) => (
@@ -285,12 +280,10 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
                     <Typography
                       sx={{
                         textTransform: "capitalize",
-                        width: "200px",
                         color: "black",
                         fontSize: "0.9rem",
                         whiteSpace: "normal",
                         wordWrap: "break-word",
-                        overflowWrap: "break-word",
                         "&:hover": {
                           color: "green",
                           cursor: "pointer",
@@ -408,22 +401,18 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
                 top="100%"
                 left={0}
                 bgcolor="white"
-                padding={3}
-                maxHeight="32rem"
-                overflowY="auto"
+                padding={2}
+                maxHeight="400px"
+                overflow="scroll"
+                overflowX="hidden"
                 boxShadow={1}
                 zIndex={1000}
                 borderRadius="5px"
-                flexWrap={"wrap"}
-                columnGap={2}
                 sx={{
-                  opacity: searchTerm ? 1 : 0,
-                  transform: searchTerm ? "translateY(0)" : "translateY(-10px)",
-                  transition: "opacity 0.3s ease, transform 0.3s ease",
-                  pointerEvents: searchTerm ? "auto" : "none",
-                  width: "max-content",
-                  minWidth: "100%",
-                  maxWidth: "max-content",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  minWidth: "300px",
                 }}
               >
                 {filteredDoctors.map((doc) => (
@@ -431,23 +420,20 @@ const [activeMobileItem, setActiveMobileItem] = useState(null);
                     key={doc._id}
                     p={1}
                     borderBottom="1px solid #ccc"
-                    sx={{
-                      cursor: "pointer",
-                    }}
+                    sx={{ cursor: "pointer" }}
                     onClick={() => {
                       router.push(`/find-a-doctor/${doc._id}`);
                       setSearchTerm("");
+                      setShowSearch(false);
                     }}
                   >
                     <Typography
                       sx={{
                         textTransform: "capitalize",
-                        width: "200px",
                         color: "black",
                         fontSize: "0.9rem",
                         whiteSpace: "normal",
                         wordWrap: "break-word",
-                        overflowWrap: "break-word",
                         "&:hover": {
                           color: "green",
                           cursor: "pointer",

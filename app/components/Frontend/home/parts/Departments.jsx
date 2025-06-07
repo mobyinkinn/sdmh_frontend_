@@ -60,7 +60,7 @@ useEffect(() => {
 
   if (isLoadingDepartment) return <Spinner />;
 
-  const activeDepartment = departmentData.find((el) => el._id === activeTab);
+  const activeDepartment = departmentData?.find((el) => el._id === activeTab);
    const getBannerUrl = (url) => {
       if (!url) return "";
       const fileName = url.substring(url.lastIndexOf("/") + 1);

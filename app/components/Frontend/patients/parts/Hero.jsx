@@ -14,18 +14,13 @@ export default function Hero({ sectionsRef }) {
     "patient care and services"
   );
   if (isLoadingBanner) return <Spinner />;
-
-   const bannerUrl = getUrl(data?.banner);
-   const mobileBannerUrl = getUrl(data?.mobileBanner);
-
-
-     const images = Array.isArray(data?.images)
-       ? data.images.map(getUrl)
-       : [];
-     const mobileImages = Array.isArray(data?.mobileimages)
-       ? data.mobileimages.map(getUrl)
-       : [];
-
+console.log("console.lo", data?.mobileimages.length);
+  //  const bannerUrl = getUrl(data?.banner);
+  //  const mobileBannerUrl = getUrl(data?.mobileBanner);
+  const bannerUrl = getUrl(data?.images.length>0 ? data?.images[0] : data?.banner);
+  const mobileBannerUrl = getUrl(
+    data?.mobileimages.length > 0 ? data?.mobileimages[0] : data?.mobileBanner
+  );
   return (
     <Stack direction={"row"}>
       <Box
