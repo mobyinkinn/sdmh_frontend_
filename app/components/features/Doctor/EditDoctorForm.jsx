@@ -95,18 +95,19 @@ function EditDoctorForm({ onCloseModal, id, department }) {
     formdata.append("image", file);
     updateImage({ id, formdata });
   }
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    // Update the formdata before submission
+    const updatedFormdata = { ...formdata, about: content };
+    setFormdata(updatedFormdata);
+
+    // Call the onUpdateDoctor with updated formdata
+    onUpdateDoctor(updatedFormdata, id);
+  };
 
   return (
-    <Form
-      onSubmit={(e) => {
-        setFormdata((prevFormdata) => {
-          const updatedFormdata = { ...prevFormdata };
-          onUpdateDoctor(updatedFormdata, id);
-          return updatedFormdata;
-        });
-      }}
-      type={onCloseModal ? "modal" : "regular"}
-    >
+    <Form onSubmit={onSubmit} type={onCloseModal ? "modal" : "regular"}>
       <FormRow label="Name" error={errors?.name?.message}>
         <Input
           disabled={isUpdating}
@@ -268,9 +269,9 @@ function EditDoctorForm({ onCloseModal, id, department }) {
 
       <FormRow label="About" />
       <Jodit content={content} setContent={setContent} />
-      <Stack direction="row" justifyContent="end" gap="20px" mt={2}>
+      {/* <Stack direction="row" justifyContent="end" gap="20px" mt={2}>
         <Button onClick={handleAboutClick}>Update About</Button>
-      </Stack>
+      </Stack> */}
 
       <FormRow label="Image">
         <FileInput
