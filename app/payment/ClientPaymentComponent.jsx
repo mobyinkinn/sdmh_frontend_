@@ -28,7 +28,7 @@ export default function ClientPaymentComponent({ token, txnId, merchId }) {
       merchId,
       custEmail: "jatin@mobyink.com",
       custMobile: "9829231118",
-      returnUrl: "https://sdmh.in",
+      returnUrl: "https://sdmh.in/thank-you",
     };
     new AtomPaynetz(options, "uat");
   };

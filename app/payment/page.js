@@ -4,7 +4,7 @@ import ClientPaymentComponent from "./ClientPaymentComponent";
 
 
 async function getPaymentToken() {
-  const res = await fetch("http://localhost:3000/api/auth", {
+  const res = await fetch("https://sdmh.in/api/auth", {
     cache: "no-store",
   });
   console.log("res",res)
