@@ -361,7 +361,7 @@ export default function ClientPaymentComponent() {
         custEmail: formData.email,
         custMobile: formData.mobile,
         amount: formData.amount,
-        returnUrl: "http://localhost:3000/donation", // change as needed
+        returnUrl: "http://localhost:3000/thank-you", // change as needed
       };
 
       new AtomPaynetz(options, "uat");

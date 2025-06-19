@@ -28,7 +28,7 @@ export default function ClientPaymentComponent({ token, txnId, merchId }) {
       merchId,
       custEmail: "jatin@mobyink.com",
       custMobile: "9829231118",
-      returnUrl: "http://localhost:3000/donation",
+      returnUrl: "https://sdmh.in",
     };
     new AtomPaynetz(options, "uat");
   };

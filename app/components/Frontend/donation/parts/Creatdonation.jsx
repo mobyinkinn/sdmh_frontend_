@@ -299,7 +299,7 @@ const DonationForm = ({ token, txnId, merchId }) => {
       merchId: merchId,
       custEmail: "jatin@mobyink.com",
       custMobile: "9829231118",
-      returnUrl: "http://localhost:3000/", // replace with your return URL
+      returnUrl: "https://sdmh.in", // replace with your return URL
     };
     let atom = new AtomPaynetz(options, "uat");
   };
