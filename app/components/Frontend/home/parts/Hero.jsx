@@ -124,11 +124,10 @@ import { AnotherUrl } from "@/app/components/services/AnotherUrl";
 
 export default function Hero() {
   const router = useRouter();
-  const { data, isLoading } = useBannerByPage("home");
+  const { data, isLoading } = useBannerByPage("test2");
 
   if (isLoading) return <Spinner />;
 
-  // Function to get full URL for banner images
   const getBannerUrl = (url) => {
     if (!url) return "";
     const fileName = url.substring(url.lastIndexOf("/") + 1); // Extract the file name

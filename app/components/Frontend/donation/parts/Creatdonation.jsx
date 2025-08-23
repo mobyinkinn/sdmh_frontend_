@@ -299,7 +299,7 @@ const DonationForm = ({ token, txnId, merchId }) => {
       merchId: merchId,
       custEmail: "jatin@mobyink.com",
       custMobile: "9829231118",
-      returnUrl: "https://sdmh.in/thank-you", // replace with your return URL
+      returnUrl: "https://www.atomtech.in/aipay-tool/response.php", // replace with your return URL
     };
     let atom = new AtomPaynetz(options, "uat");
   };
@@ -319,7 +319,7 @@ const DonationForm = ({ token, txnId, merchId }) => {
 
 export async function getServerSideProps() {
   // Fetch token from API
-  const response = await fetch("https://sdmh.in/api/auth");
+  const response = await fetch("http://localhost:8000/api/auth");
   const data = await response.json();
   console.log(data);
 

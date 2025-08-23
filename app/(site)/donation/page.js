@@ -1,20 +1,7 @@
-// import Home from "@/app/components/Frontend/donation/parts";
-
 import ClientPaymentComponent from "./ClientPaymentComponent";
 
-// export default function Page(){
-//     return <Home />;
-// }
-
-
-
-
-// app/payment/page.jsx (or page.js)
-
-
-
 async function getPaymentToken() {
-  const res = await fetch("https://sdmh.in/api/auth", {
+  const res = await fetch("http://localhost:3001/api/auth", {
     cache: "no-store",
   });
   console.log("res",res)

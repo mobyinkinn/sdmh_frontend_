@@ -47,7 +47,7 @@ const centerOfExcellence = [
   },
   {
     id: 1,
-    data: "Surgical Gastroenterology SIDDS",
+    data: "Surgical Gastroenterology SIDSS",
     link: "/centre-of-excellence/67c15acd323e35a829c56a2a",
   },
   {

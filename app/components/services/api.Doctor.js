@@ -9,7 +9,7 @@ export const fetchDoctors = async () => {
 };
 
 export const blockDoctor = async (id) => {
-  const response = await axios.post(
+  const response = await axios.patch(
     `${ApiUrl}/doctor/update?id=${id}`,
     { status: false },
     { withCredentials: true }
@@ -19,7 +19,7 @@ export const blockDoctor = async (id) => {
 };
 
 export const unblockDoctor = async (id) => {
-  const response = await axios.post(
+  const response = await axios.patch(
     `${ApiUrl}/doctor/update?id=${id}`,
     { status: true },
     { withCredentials: true }

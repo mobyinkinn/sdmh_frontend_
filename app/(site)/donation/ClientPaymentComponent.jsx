@@ -361,7 +361,9 @@ export default function ClientPaymentComponent() {
         custEmail: formData.email,
         custMobile: formData.mobile,
         amount: formData.amount,
-        returnUrl: "https://sdmh.in/thank-you", // change as needed
+        returnUrl: "http://localhost:3001/api/response",
+
+        // returnUrl: "https://www.atomtech.in/aipay-tool/response.php", // change as needed
       };
 
       new AtomPaynetz(options, "uat");

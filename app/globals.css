@@ -85,7 +85,7 @@
 }
 
 .sett ul li {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #555; /* Optional: You can adjust the color */
   margin-bottom: 10px; /* Space between list items */
 }
@@ -111,7 +111,7 @@
   display: flex;
   flex-direction: column; /* Ensure each div stacks items vertically */
   gap: 5px;
-  width: 25%; /* Adjust the width of each div */
+  width: 20%; /* Adjust the width of each div */
 }
 
 /* Make sure items wrap properly if the screen is small */

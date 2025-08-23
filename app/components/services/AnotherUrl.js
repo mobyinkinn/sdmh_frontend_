@@ -1,3 +1,3 @@
 export function AnotherUrl(fileName) {
-  return `https://sdmh.in/uploads/${fileName}`;
+  return `http://localhost:8000/uploads/${fileName}`;
 }

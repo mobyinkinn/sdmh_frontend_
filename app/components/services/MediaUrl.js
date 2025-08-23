@@ -1,1 +1,1 @@
-export const MediaUrl = "https://sdmh.in/uploads/";
+export const MediaUrl = "http://localhost:8000/uploads/";

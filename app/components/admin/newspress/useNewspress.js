@@ -23,13 +23,23 @@ export const useCreateNewspress = () => {
   const queryClient = useQueryClient();
   const { mutate: createNewspresses, isPending: isCreating } = useMutation({
     mutationFn: createNewspress,
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries(["Newspress"]);
       toast.success("Newspress Created successfully!");
     },
     onError: (error) => {
-      console.error("Failed to create Newspress:", error);
-      toast.error("Failed to create Newspress. Please try again.");
+      if (error.response) {
+        console.error("API Error:", error.response.data);
+        toast.error(
+          `Error: ${error.response.data.message || "Something went wrong."}`
+        );
+      } else if (error.request) {
+        console.error("No response from server:", error.request);
+        toast.error("No response from the server. Please try again.");
+      } else {
+        console.error("Error setting up the request:", error.message);
+        toast.error("Request setup failed. Please try again.");
+      }
     },
   });
 
@@ -79,7 +89,6 @@ export const useUpdateNewspressImage = () => {
     },
     onError: (error) => {
       console.error("Failed to update Newspress image:", error);
-      toast.error("Failed to update Newspress image. Please try again.");
     },
   });
 };

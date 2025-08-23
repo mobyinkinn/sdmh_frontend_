@@ -140,18 +140,30 @@ const merchPass = "Test@123";
 const prodId = "NSE";
 const Authurl = "https://caller.atomtech.in/ots/aipay/auth"; // UAT URL
 
+function generateTxnId() {
+  return `TXN${Date.now()}${Math.floor(Math.random() * 10000)}`;
+}
+
+// Function to get current date in the required format (yyyy-MM-dd HH:mm:ss)
+function getTxnDate() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 export async function GET(request) {
-  console.log("GET request received");
+  console.log("GET request received", request);
 const { searchParams } = new URL(request.url);
 const amount = searchParams.get("amount") || "1"; // default 1 if not passed
 const userEmailId = searchParams.get("email") || "jatin@mobyink.com";
 const userContactNo = searchParams.get("mobile") || "9829231118";
 
-  let txnId = "21343123";
-  let txnDate = "2023-03-10 20:46:00";
-//   let amount = "1";
-//   let userEmailId = "jatin@mobyink.com";
-//   let userContactNo = "9829231118";
+  const txnId = generateTxnId();
+  const txnDate = getTxnDate();
 
   const jsondata = `{
     "payInstrument": {

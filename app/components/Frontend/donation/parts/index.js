@@ -155,7 +155,7 @@ const Home = () => {
       merchId: merchId,
       custEmail: "jatin@mobyink.com",
       custMobile: "9829231118",
-      returnUrl: "https://sdmh.in/thank-you",
+      returnUrl: "https://www.atomtech.in/aipay-tool/response.php",
     };
 
     new AtomPaynetz(options, "uat");

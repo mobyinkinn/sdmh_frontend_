@@ -269,7 +269,7 @@ const DetailsHero = ({ id, data, isLoading }) => {
           fontSize={{ sm: "15px", smm: "18px", md: "21px", lg: "25px" }}
           fontWeight={"400"}
           lineheight={"2.1rem"}
-          padding={"0px 50px"}
+          padding={"28px 50px"}
           className="sett"
           dangerouslySetInnerHTML={{ __html: transformedContent }}
         />

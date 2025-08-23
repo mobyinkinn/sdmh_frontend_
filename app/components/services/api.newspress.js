@@ -11,6 +11,9 @@ export const fetchNewspress = async () => {
 export const createNewspress = async (formData) => {
   const response = await axios.post(`${ApiUrl}/newspress/create`, formData, {
     withCredentials: true,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   });
   return response.data;
 };
